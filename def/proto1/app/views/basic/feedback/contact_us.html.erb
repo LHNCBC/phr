@@ -1,0 +1,10 @@
+<%= form_tag contact_us_path(:format=>:basic), :method=>:post%>
+  <input type="hidden" value="basic" name="page_type" />
+  <div><%=fd_text_field @fds['con_name'], nil, {}, 'fe', '_1' %></div>
+  <div><%=fd_text_field @fds['con_email'], nil, {}, 'fe', '_1' %></div>
+  <div><%=fd_text_field @fds['con_phone'], nil, {}, 'fe', '_1' %></div>
+  <div><%=fd_text_field @fds['feedback_type'], nil, {}, 'fe', '_1' %></div>
+  <div><%=fd_text_area @fds['contact_comment'], nil, {}, 'fe', '_1' %></div>
+  <%= submit_tag 'Submit' %>
+  <%= link_to 'Cancel', '/'%>
+</form>

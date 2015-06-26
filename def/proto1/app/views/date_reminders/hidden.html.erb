@@ -1,0 +1,8 @@
+<%= link_to 'Back to unhidden reminders', phr_record_date_reminders_path(@phr_record) %>
+&nbsp;
+<%= link_to 'Back to PHR', phr_record_path(@phr_record) %>
+<% if @reminders.size == 0 %>
+<p>Currently there are no hidden date reminders.</p>
+<% else %>
+<%= render(:partial=>'date_reminder_table', :locals=>{:button_label=>'Unhide'}) %>
+<% end %>

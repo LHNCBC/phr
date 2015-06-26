@@ -1,0 +1,134 @@
+dose1:
+  id: -24611
+  code: 24611
+  text_list_id: -12
+  item_text: 3 Tbsp
+  sequence_num: 24611
+
+route1:
+  id: -24935
+  code: 24935
+  text_list_id: -13
+  item_name: PO
+  item_text: By Mouth
+  # hide sequence_num for order tests
+  #sequence_num: 24935
+
+route2:
+  id: -24936
+  code: 24936
+  text_list_id: -13
+  item_name: G-tube
+  item_text: Gastronomy Tube
+  #sequence_num: 24936
+
+route3:
+  id: -24938
+  code: 24938
+  text_list_id: -13
+  item_name: IV
+  item_text: Intravenous
+  #sequence_num: 24938
+
+sol_dose1:
+  text_list_id: -24
+  item_name: ""
+  id: -24759
+  code: 24759
+  item_help: ""
+  item_text: "1/2 Tsp"
+  sequence_num: 24759
+
+sol_dose2:
+  text_list_id: -24
+  item_name: ""
+  id: -24760
+  code: 24760
+  item_help: ""
+  item_text: "1 Tsp"
+  sequence_num: 24760
+
+rule_action1:
+  text_list_id: -30
+  item_name: "hide"
+  id: -15
+  code: 15
+  sequence_num: 15
+
+rule_action2:
+  text_list_id: -30
+  item_name: "show"
+  id: -16
+  code: 16
+  sequence_num: 16
+
+rule_action3:
+  text_list_id: -30
+  item_name: "add_message"
+  id: -17
+  code: 17
+  sequence_num: 17
+
+rule_action4:
+  text_list_id: -30
+  item_name: "set_fb_fields"
+  id: -18
+  code: 18
+  sequence_num: 18
+
+rule_action5:
+  text_list_id: -30
+  item_name: "hide_row"
+  id: -19
+  code: 19
+  sequence_num: 19
+
+rule_action6:
+  text_list_id: -30
+  item_name: "set_value"
+  id: -20
+  code: 20
+  sequence_num: 20
+
+list_item_codes1:
+  id: -21
+  code: 201
+  sequence_num: 21
+
+list_item_codes2:
+  id: -22
+  code: 202
+  sequence_num: 22
+
+parent_item:
+  id: -23
+  sequence_num: 23
+
+sub_list_item_one:
+  id: -24
+  code: '204'
+  item_text: "a"
+  parent_item_id: -23
+  sequence_num: 24
+
+sub_list_item_two:
+  id: -25
+  code: '205'
+  item_text: "b"
+  parent_item_id: -23
+  sequence_num: 25
+
+condition_status_1:
+  id: -26
+  text_list_id: -31
+  code: A
+  item_text: Active
+
+condition_status_2:
+  id: -27
+  text_list_id: -31
+  code: I
+  item_text: Inactive
+
+
+

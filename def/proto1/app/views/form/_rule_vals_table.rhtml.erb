@@ -1,0 +1,22 @@
+<div>
+<button class="rounded" id="rule_values_display_button" type="button"
+        onclick="Def.Rules.Cache.displayRuleVals();">
+        <span id="rule_values_button_text">Display Current Rule Values</span>
+</button>
+<div class="fieldGroup" id="rule_values"  style="display: none">
+  <h2 class="groupHeader" ondblclick="openOneGroupPrintableView(this)">&nbsp;
+    <span id='rule_values_table_title'>Current Rule Values</span>
+    <%= image_tag(asset_path('blank.gif'), :class=>"help eventsHandled", 
+    :alt=> "Help", :onclick=>"Def.Popups.openHelp(this, '/help/rule_value.shtml'); return false;" ) %>
+  </h2>
+  <table cellpadding=0 cellspacing=0 class="fieldsTable sortable"
+         id="rule_values_table">
+     <thead><tr>
+       <th class="fieldsTableHeader" id="rule_name_hdr">Rule Name</th>
+       <th class="fieldsTableHeader" id="rule_value_hdr">Rule Value</th>
+     </tr></thead>
+     <tbody id ="rule_values_table_body">
+     </tbody>
+  </table>
+</div>
+</div>

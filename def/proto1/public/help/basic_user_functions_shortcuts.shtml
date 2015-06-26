@@ -1,0 +1,106 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>User Functions and Shortcut Keys</h1>
+<p>
+The following table of user functions and shortcut keys provides alternative methods of navigation and data input that will allow you to minimize typing when creating or updating PHRs. </p>
+<p>
+ 
+<table border="1">
+	<tr>
+		<th>Function</th>
+		<th>Click on(icon)</th>
+		<th>Key short cut</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td colspan="4"><b>Information links</b></td>
+	</tr>
+	<tr>
+		<td>Access field help</td>
+		<td><span style="color: blue"><u>Help</u></span></td>
+		<td>None</td>
+		<td>A <span style="color: blue"><u>Help</u></span> link appears adjacent to every field name. The system
+			will display a pop-up help text window when you click this icon.</td>
+	</tr>
+	<tr>
+		<td>Dismissing pop-ups; including field help, information buttons, and 
+			reminders </td>
+		<td>Close button<br>
+		    <img src="./cancel.png" alt="Red X"></td>
+		<td>None</td>
+		<td>&nbsp</td>
+	</tr>
+	<tr>
+		<td>Obtaining clinical information specific to a problem, drug, allergy
+			(and most other items chosen from a menu)</td>
+		<td><b>Info Page</b> link </td>
+		<td>None</td>
+		<td>Click the link under the <b>Info Page</b> column adjacent to the name of a medical condition, drug, test, allergen,
+			or other item selected from a menu and the system will link to a
+			page of information about the item.</td>
+	</tr>
+	<tr>
+		<td colspan="4"><b>Navigation<b></td>
+	</tr>
+	<tr>
+		<td >Move to next (R to L) open field in form</td>
+		<td>Click on the field of interest with the mouse.</td>
+		<td>Tab</td>
+		<td>Form navigation is from left to right and then down (as on a typewriter)</br>
+			When you get to the last viewable field on a given screen, the focus of the navigation
+			returns to the top field of the form.</td>
+	</tr>
+	<tr>
+		<td >Return (back up) to the previous field (L to R)</td>
+		<td>Click on the field of interest with the mouse.</td>
+		<td>Shift+Tab</td>
+		<td>&nbsp</td>
+	</tr>
+	
+	</tr>
+	
+	<tr>
+		<td colspan="4"><b>Miscellaneous</b></td>
+	</tr>
+	<tr>
+		<td>Storing the information in a form</td>
+		<td>Press the <b>Save</b> button at the bottom of the form</td>
+		<td>Ctrl+Return</td>
+		<td>&nbsp</td>
+	</tr>
+	
+	
+		<td colspan="4"><b>Editing </b></td>
+	</tr>
+	<tr>
+		<td>Cut and paste</td>
+		<td>&nbsp</td>
+		<td>Highlight with shift keys, Ctrl+X to remove, Ctrl+C to copy, Ctrl+V to
+			paste somewhere else in the current form or another program.</td>
+		<td>&nbsp</td>
+	</tr>
+	
+	<tr>
+		<td>Undo</td>
+		<td>Highlight the text with your mouse and press the Backspace key.</td>
+		<td>Ctrl+Z</td>
+		<td>Changes the contents of the field to the previous value.</td>
+	</tr>
+	<!--<tr>
+		<td>Display health guidance reminder</td>
+		<td>Reminder button</td>
+		<td>Ctrl+R</td>
+		<td>&nbsp</td>
+	</tr> -->
+	<!--<tr>
+		<td>Generate printed and other kinds of reports</td>
+		<td>Click on report button</td>
+		<td>Ctrl+R</td>
+		<td>&nbsp</td>
+	</tr> -->
+	
+	
+</table>
+</p>
+<p>Table of User Functions and Shortcut Keys.</p>
+
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 100003
+  key_id: t1487
+  primary_name: Neisseria Meningitidis
+  icd9_code_id: -1008
+two:
+  id: 100005
+  key_id: t4373
+  primary_name: Cigarette Smoker
+  icd9_code_id: -2760
+three:
+  id: 100001
+  key_id: t8815
+  primary_name: Meningitis Fungal

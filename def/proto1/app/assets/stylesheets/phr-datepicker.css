@@ -1,0 +1,33 @@
+/* 
+    Document   : phr_datepicker
+    Created on : Nov 25, 2013, 10:54:14 AM
+    Author     : akanduru
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.phr-datepicker-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.phr-datepicker-input {
+   padding-right: 18px;
+}
+
+.phr-datepicker-inside-icon {
+  position: absolute;
+  right: 4px;
+  top: 5px;
+  /*
+  margin: altEl.css('margin');
+  padding: altEl.css('padding');
+  */
+}
+
+

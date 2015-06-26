@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>I Can't Remember My PHR Password</h1>
+
+<h3>If you have forgotten your PHR password</h3>
+<p>
+<ol>
+<li>Click the <b>Forgot your password?</b> link in the middle of the PHR login page and follow the steps to reset your password.</li>
+<li>You will need to supply the answers to the security questions you created and answered when you established your account.</li>
+<li>If you do not have access to the email address associated with the account or if you have difficulty resetting your password, send an email using the <b>PHR Support</b> link at the bottom of the PHR home page.</li>
+</ol>
+</p>
+<!--#include virtual="help_footer.shtml" -->

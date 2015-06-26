@@ -1,0 +1,116 @@
+<p class="instructions">This page lets you edit the help text files for the
+  system.  The system has two installation modes (TBD - your organization name,
+  TBD - an alternate organization name, and possibly
+  more later) and each help file can have different versions for each mode,
+  though most files just have one version that is shared across installations.
+  Many help files are specific for a form or for a form field, and there are
+  also some general help files that to which those files link.</p>
+
+<p class="instructions">Association of help texts with individual form fields is
+  handled on the Data Editing page, where you can download a form's text data
+  and edit the help_text data field (which can be a URL to a help text
+  file).</p>
+<form action="/help_text" method="post">
+  <b>Select a task:</b><br>
+<input type="radio" name="section" id="manage_help">Manage an existing
+ help file</input>
+<input type="radio" name="section" id="new_help">Create a new help
+  file</input>
+<div id ="manage_section" style="display: none">
+  <div> <%# for the Effect%>
+  <h2>Manage an Existing Help File</h2>
+  <div class="section">
+    <table><tbody>
+      <tr>
+        <td class="label"><label for="fe_file_name">Help Text File:</label></td>
+        <td><%= text_field(:fe, :file_name, :size=>40, :autocomplete=>'off',
+                           :class=>'eventsHandled') %>
+            <%= text_field(:fe, :file_name_C, :size=>40, :autocomplete=>'off',
+               :class=>'hidden_field') %></td>
+        <td><button id="edit" type="submit" class="rounded" name="edit" disabled
+            ><span>Edit</span></button>
+            <button id="delete" type="submit" class="rounded" name="delete" disabled
+            ><span>Delete</span></button>
+        </td>
+      </tr>
+    </tbody></table>
+  </div>
+  </div>
+</div>
+
+<div id="new_section" style="display: none">
+  <div> <%# for the Effect%>
+  <h2>Create a New Help File</h2>
+  <div class="section">
+    <table><tbody>
+      <tr>
+        <td class="label"><label for="fe_mode">Installation Mode:</label></td>
+        <td><%= text_field(:fe, :mode, :size=>40, :autocomplete=>'off') %>
+            <%= text_field(:fe, :mode_C, :size=>40, :autocomplete=>'off',
+               :class=>'hidden_field') %></td>
+        <td><button id="new" type="submit" class="rounded" name="new"
+             disabled><span>New</span></button>
+        </td>
+      </tr>
+    </tbody></table>
+  </div>
+  </div>
+</div>
+</form>
+
+<br><br>
+<div>
+  <a href="#" onclick="window.open('/help/template.shtml','helpTemplate', 'width=600,height=600,resiable=yes,scrollbars=yes')">
+    <b>Guideline for creating a help file</b></a>
+</div>
+<br>
+<div>
+  <a href="/help_text/list"><b>Show all help files on one page</b></a>
+</div>
+
+
+<% content_for :page_specific_js do %>
+  <script type="text/javascript">
+    var mode_autocomp =
+     new Def.Autocompleter.Prefetch('fe_mode', <%=@mode_names.to_json.html_safe%>,
+       {matchListValue: true, codes: <%=@mode_codes.to_json.html_safe%>,
+        autoFill: true});
+    var file_name_autocomp =
+     new Def.Autocompleter.Prefetch('fe_file_name', <%=@file_names.to_json.html_safe%>,
+       {matchListValue: true, codes: <%=@file_name_codes.to_json.html_safe%>,
+        autoFill: true});
+    Def.fieldObservers_['file_name_C'] = {
+      change: [function() {
+        var disabled = $('fe_file_name_C').value == '';
+        $('edit').disabled = disabled;
+        $('delete').disabled = disabled;
+      }]
+    };
+    Def.fieldObservers_['mode_C'] = {
+      change: [function() {
+        var disabled = $('fe_mode_C').value == '';
+        $('new').disabled = disabled;
+      }]
+    };
+    Event.observe('delete', 'click', function(event) {
+      if (!window.confirm("Delete this file?")) {
+        Event.stop(event);
+      }
+    });
+    Event.observe('manage_help', 'click', function(event) {
+      $('new_section').style.display='none';
+      $('manage_section').style.display='block';
+    });
+    Event.observe('new_help', 'click', function(event) {
+      $('manage_section').style.display='none';
+      $('new_section').style.display='block';
+    });
+    document.observe("dom:loaded", function() {
+      // Make sure the buttons are disabled again, in case the user
+      // hit the back button.
+      $('edit').disabled = true;
+      $('delete').disabled = true;
+      $('new').disabled = true;
+    });
+  </script>
+<% end %>

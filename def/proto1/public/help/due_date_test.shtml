@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Next Due</h1>
+	
+	<p>Enter the date the next test is due using your preferred date format. Once you type your entry, the PHR will convert the date to the standard format used by the PHR sytem.</p>
+
+<p>Click the <b>Date Reminders</b> button at the top of the PHR page to view a complete list of your test due dates along with drug, immunization and appointment reminders,. </p>
+	<p>For date formatting tips and date entry shortcuts, see <a href="/help/entering_dates_help.shtml">how to enter dates in the PHR</a>
+	</p>
+<!--#include virtual="help_footer.shtml" -->

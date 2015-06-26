@@ -1,0 +1,18 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Next Due</h1>
+	<p>
+	Enter the due date for the next vaccination in this series if relevant. Leave this field blank if there are no more doses of this vaccine to be given. </p>
+<p>The date must be entered in the following format: YYYY/mm/dd. The system will accept the following types of dates: 
+<ul>
+<li>the exact date, </li>
+		<li>the year and month, or </li>
+<li>only the year</li>
+</ul>
+		</p>
+	<p>
+	Some vaccines require a series of two or more doses to provide full immunity from disease. 
+	Other vaccines, such as influenza, are given  at regular intervals (e.g., yearly). 
+	Use this field to record the specific due date, or the month and year, for the next dose. 
+<p>To view a complete list of your drug refill dates, vaccine and appointment reminders, and test due dates, click the <b>Date Reminders</b> link at the top of the PHR page. </p>
+<!--#include virtual="help_footer.shtml" -->

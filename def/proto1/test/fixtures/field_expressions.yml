@@ -1,0 +1,65 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: -1
+  form_id: -1
+  field_id: -1
+  exp_id: PE1
+  name: Female Over 50
+  condition_name: Female
+  defining_field: 'patient_gender'
+  
+two:
+  id: -2
+  form_id: -1
+  field_id: -1
+  exp_id: PE1
+  name: Female Over 50
+  condition_name: Over_50
+  defining_field: 'patient_birth_year'
+
+three:
+  id: -3
+  form_id: -1
+  field_id: -1
+  exp_id: PE2
+  name: Male Between 51 and 65
+  condition_name: Male
+  defining_field: 'patient_gender'
+
+four:
+  id: -4
+  form_id: -1
+  field_id: -1
+  exp_id: PE2
+  name: Male Between 51 and 65
+  condition_name: Over_50
+  defining_field: 'patient_birth_year'
+
+five:
+  id: -5
+  form_id: -1
+  field_id: -1
+  exp_id: PE2
+  name: Male Between 51 and 65
+  condition_name: 65_and_Under
+  defining_field: 'patient_birth_year'
+
+six:
+  id: -6
+  form_id: -1
+  field_id: -1
+  exp_id: PE3
+  name: Pregnant Woman Under 50
+  condition_name: Pregnant
+  defining_field: 'with_child'
+
+seven:
+  id: -7
+  form_id: -1
+  field_id: -1
+  exp_id: PE3
+  name: Pregnant Woman Under 50
+  condition_name: Under_50
+  defining_field: 'patient_birth_year'
+
+

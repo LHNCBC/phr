@@ -1,0 +1,42 @@
+<% if @phr_record %>
+    <div data-role="navbar">
+      <ul>
+        <% current_tab_class = "ui-btn-active ui-state-persist" %>
+        <% unhidden_class =  @hidden ? "" : current_tab_class  %>
+        <% hidden_class = @hidden ? current_tab_class : "" %>
+        <% if @phr_record.date_reminders.length > 0 %>
+            <li>
+              <%= link_to 'Unhidden', phr_record_date_reminders_path(@phr_record), :class=>unhidden_class %>
+            </li>
+        <% end %>
+        <% if @phr_record.hidden_date_reminders.length > 0 %>
+            <li>
+              <%= link_to 'Hidden', hidden_phr_record_date_reminders_path(@phr_record), :class=>hidden_class %>
+            </li>
+        <% end %>
+        <li>  <%= link_to 'Date Reminder Settings',
+                          "/phr_records/#{@phr_record.id_shown}/reminder_options", :target=>'_blank' %>
+        </li>
+      </ul>
+    </div>
+<% end %>
+
+<% if @reminders.length > 0 %>
+    <div data-role="collapsibleset" data-mini="true">
+      <% @reminders.each do |r| %>
+          <div data-role="collapsible">
+            <h1><%=r.reminder_type%> / <%=r.reminder_item%></h1>
+            <p><%=r.date_type%> <br> <%=r.due_date%> <br> <%=r.reminder_status%></p>
+            <span><%= button_label = @hidden ? 'Unhide' : 'Hide'
+                      button_to_wo_js button_label, send("#{@hidden ? 'unhide':'hide'}_phr_record_date_reminder_path", @phr_record, r.id), {"data-inline"=>"true"} %></span>
+          </div>
+      <% end %>
+    </div>
+<% end %>
+
+
+
+
+
+
+

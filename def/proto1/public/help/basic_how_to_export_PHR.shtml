@@ -1,0 +1,20 @@
+<!--#include virtual="help_header.shtml" -->
+
+  <h1>Download a PHR to a File</h1>
+		<p>
+	The PHR system allows you to download a PHR to your computer into either a Microsoft Excel or a Comma Separated Values (CSV) file format. 
+</p>
+<h3>
+To download a PHR to a file on your computer
+</h3>
+<p>
+<ol>
+<li>On the PHR Management page, click the <b>Export</b> link next to the name of the PHR you wish to export. </li>
+	
+
+
+<li>The system will display a page that will allow you to choose either the <b>Excel</b> or <b>CSV</b> file format. 
+<li>Click the <b>Export</b> button.</li>
+</ol>
+</p>
+<!--#include virtual="help_footer.shtml" -->

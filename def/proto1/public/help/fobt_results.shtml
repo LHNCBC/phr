@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>FOBT Results</h1>
+	
+	<p>
+	Enter your FOBT result (usually positive or negative). A positive result indicates that microscopic blood was found in the stool and should be followed up with a colonoscopy.
+	</p>
+
+	
+<!--#include virtual="help_footer.shtml" -->

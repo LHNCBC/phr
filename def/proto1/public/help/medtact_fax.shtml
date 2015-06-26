@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medical Contacts Fax Number</h1>
+	<p>
+	Enter the fax number of the medical contact. 
+	</p>  
+
+<!--#include virtual="help_footer.shtml" -->

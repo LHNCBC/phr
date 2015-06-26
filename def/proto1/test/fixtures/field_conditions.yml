@@ -1,0 +1,77 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# Entries with form_id=1 and field_id=1 are used in
+# field_user_expression_test.rb
+
+one:
+  id: -1
+  form_id: -10
+  field_id: -1
+  cond_id: C1
+  name: Female
+  defining_field: 'patient_gender'
+
+two:
+  id: -2
+  form_id: -10
+  field_id: -1
+  cond_id: C2
+  name: Over_50
+  defining_field: 'patient_birth_year'
+
+three:
+  id: -3
+  form_id: -10
+  field_id: -1
+  cond_id: C3
+  name: 21_and_Over
+  defining_field: 'patient_birth_year'
+
+four:
+  id: 4
+  form_id: -10
+  field_id: -1
+  cond_id: C4
+  name: Under_50
+  defining_field: 'patient_birth_year'
+  
+five:
+  id: 5
+  form_id: -10
+  field_id: -1
+  cond_id: C5
+  name: 50_and_Under
+  defining_field: 'patient_birth_year'
+
+six:
+  id: 6
+  form_id: -10
+  field_id: -1
+  cond_id: C6
+  name: In_US
+  defining_field: 'country_of_residence'
+
+seven:
+  id: 7
+  form_id: -10
+  field_id: -1
+  cond_id: C7
+  name: DC_area
+  defining_field: 'state_of_residence'
+
+eight:
+  id: 8
+  form_id: -10
+  field_id: -1
+  cond_id: C8
+  name: Pregnant
+  defining_field: 'with_child'  
+
+nine:
+  id: 9
+  form_id: -10
+  field_id: -1
+  cond_id: C9
+  name: Pregnant
+  defining_field: 'has_diabetes'  
+

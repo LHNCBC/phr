@@ -1,0 +1,13 @@
+Unsaved data from a previous session (i.e. autosaved data) was found for the
+PHR Record, <%= @phr_record.phr.pseudonym %>.
+Autosave is not supported by the Basic HTML Mode, so this would have been
+autosaved while you were working with the record in the standard mode.  If you
+wish to proceed to work with this record in the basic mode, the autosaved data
+will be deleted.  You can either:
+<ul>
+  <li><%= link_to 'Delete (without review)', request.url + '?drop=true'%>
+    the autosave data and continue</li>
+  <li><%= link_to 'View', edit_phr_path(@phr_record) %> the record and its autosaved
+    changes in Standard Mode.</li>
+  <li><%= link_to 'Return', phr_records_path %> to the PHR Management page.
+</ul>

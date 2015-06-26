@@ -1,0 +1,149 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+<% SALT = "NaCl" unless defined?(SALT)%> # From p. 194 of AWDWR2
+
+PHR_Test:
+  id: -5
+  name: PHR_Test
+  email:  one@two.three.four
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  salt: <%=SALT%>
+  admin: 0
+  user_id: -545321
+  pin: 1234
+  email: iam5@anemail.com
+  inactive: false
+
+phr_admin:
+  id: -6
+  name: phr_admin
+  salt: <%=SALT%>
+  admin: 1
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  user_id: -000000
+  pin: 1234
+  email: iam6@anemail.com
+  inactive: false
+
+temporary_account:
+  id: -7
+  name: temp_account
+  account_type: 'E'
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: iam7@anemail.com
+  inactive: false
+
+standard_account:
+  id: -8
+  name: standard_account
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: iam8@anemail.com
+  inactive: false
+
+temporary_account_2:
+  id: -9
+  name: temp_account2
+  account_type: 'E'
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: iam9@anemail.com
+  inactive: false
+
+temporary_account_3:
+  id: -10
+  name: temp_account3
+  account_type: 'E'
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: iam10@anemail.com
+  inactive: false
+
+standard_account_2:
+  id: -11
+  name: standard_account2
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: iam11@anemail.com
+  inactive: false
+
+standard_account_3:
+  id: -12
+  name: standard_account3
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: iam12@anemail.com
+  inactive: false
+
+standard_account_4:
+  id: -13
+  name: standard_account4
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: iam13@anemail.com
+  inactive: false
+
+standard_account_5:
+  id: -14
+  name: standard_account5
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: iam14@anemail.com
+  inactive: false
+
+phr_home_user:
+  id: -15
+  name: phr_home_user
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: phr_home_user@anemail.com
+  inactive: false
+
+phr_home_user2:
+  id: -16
+  name: phr_home_user2
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: phr_home_user2@anemail.com
+  inactive: false
+
+phr_home_user3:
+  id: -17
+  name: phr_home_user3
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: phr_home_user3@anemail.com
+  inactive: false
+
+phr_home_user4:
+  id: -18
+  name: phr_home_user4
+  salt: <%=SALT%>
+  admin: 0
+  hashed_password: <%=User.encrypted_password("A password", SALT)%>
+  pin: 1234
+  email: phr_home_user4@anemail.com
+  inactive: false
+

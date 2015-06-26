@@ -1,0 +1,13 @@
+<p><%= @sub_title %></p>
+<%= form_tag studies_phr_record_phr_conditions_path(@phr_record)%>
+
+<%#= basic_prefetched_list(@studies_fds['problem'].display_name,
+        'fe', 'problem', nil, @conditions, 'problem',
+        'problem', @conditions.size > 0 ? @conditions[0].problem : nil, nil) %>
+<div><%= fd_prefetched_list @studies_fds['problem'], nil, @conditions %></div>
+<div><%= fd_prefetched_list @studies_fds['state'], nil, @states_list %></div>
+<div><%= fd_prefetched_list @studies_fds['age_group'], nil, @age_list %></div>
+<br>
+<%= submit_tag 'Search' %>
+<%= link_to 'Cancel', phr_record_phr_conditions_path %>
+</form>

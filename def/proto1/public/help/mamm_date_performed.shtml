@@ -1,0 +1,9 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Mammogram Date</h1>
+		
+		<p>
+		<p>Enter the date the mammogram was done.</p>
+		<p><a href="/help/entering_dates_help.shtml">How to enter dates in the PHR</a></p>
+		
+		
+	<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,15 @@
+<% if @user %>
+    <div id="topnavbar">
+      <p>
+        <% if @phr_record and @phr_record.phr and !@phr_record.phr.pseudonym.blank? %>
+          <span id="record_label">PHR for: <%=  @phr_record.phr.pseudonym %></span>
+        <% end %>
+        <% if !@hide_account_settings %>
+            <%= link_to 'Accounts Settings', account_settings_path %>
+        <% end %>
+      </p>
+      <p><%= help_button '/help/basic_general.shtml' %> </p>
+      <p><%= link_to 'Feedback', new_feedback_path %></p>
+      <p><%= link_to 'Logout', '/accounts/logout' %></p></div>
+    <hr />
+<% end %>

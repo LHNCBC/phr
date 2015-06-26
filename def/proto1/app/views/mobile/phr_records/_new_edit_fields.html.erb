@@ -1,0 +1,4 @@
+<%=fd_text_field_mb @fds['pseudonym'], @phr_record.phr %>
+<%=fd_date_field_mb(@fds['birth_date'], @phr_record.phr) %>
+<%=fd_prefetched_list_mb(@fds['gender'], @phr_record.phr, @gender_list)%>
+<%=fd_prefetched_list_mb(@fds['race_or_ethnicity'], @phr_record.phr, @race_list)%>

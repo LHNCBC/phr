@@ -1,0 +1,11 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Question Status</h1>
+	<p>
+New questions will be set to the <b>Not Asked</b> status automatically by the system.</p>
+    <p>
+You can mark the questions that are no longer relevant or have been 
+	answered as <b>Asked</b>.
+	</p>
+	
+<!--#include virtual="help_footer.shtml" -->

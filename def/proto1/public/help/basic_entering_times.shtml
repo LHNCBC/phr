@@ -1,0 +1,7 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Entering Times in the PHR</h1>
+		<p>		
+Enter times using either whole numbers (<i>hours</i>) or in <i>hours</i><b>:</b><i>minutes</i> format and follow the time with either an <b>AM</b> or  <b>PM</b> designation.</li>		
+<p>
+			
+<!--#include virtual="help_footer.shtml" -->

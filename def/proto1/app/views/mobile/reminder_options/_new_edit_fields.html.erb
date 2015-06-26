@@ -1,0 +1,16 @@
+<div >
+  <%#= (fd_text_field_mb @fds['due_date_type'], @reminder_option).inspect%>
+  <%=fd_labeled_text_value @fds['reminder_type'], @reminder_option %>
+  <% if @reminder_option.new_record? %>
+      <%= phr_hidden_field @reminder_option, 'reminder_type' %>
+      <% if !@reminder_option.reminder_type_C.blank? %>
+          <%= phr_hidden_field @reminder_option, 'reminder_type_C' %>
+      <% end %>
+  <% end %>
+</div>
+<%=fd_text_field_mb @fds['due_date_type'], @reminder_option %>
+<%=fd_text_field_mb @fds['cutoff_days'], @reminder_option %>
+<br>
+<%= submit_tag_m 'Save' %>
+<%= link_to_m 'Cancel', phr_record_reminder_options_path %>
+

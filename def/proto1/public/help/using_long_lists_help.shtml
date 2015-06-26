@@ -1,0 +1,26 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Using the PHR's Drop-down Lists to Enter Data</h1>
+		<p>
+Once you begin typing in a field with many possible responses, such as <b>Medical Conditions</b> or <b>Drugs</b>, the PHR will display a list of options based on the first few characters you type. The list of suggestions will become shorter as you type more letters. Additionally, the PHR will offer synonyms based on the words you type. For example, the terms <b>chest</b> and <b>thorax</b> are synonyms. If you begin to type the word <b>thorax</b> in the <b>Medical Conditions</b> section, the list of selections will include <b>chest pain</b>, <b>chest trauma</b>, <b>thoracic surgery</b>, <b>hemothorax</b>, etc., all of which relate to medical conditions associated with the chest.	
+</p>
+		<p>
+For fields with only a few possible responses, such as <b>Status</b> or <b>Allergy Type</b>, the PHR will automatically display a list of options before you begin typing a response. For example, when you click inside the <b>Allergy Type</b> field, a list will pop up with the options <b>Food</b>, <b>Medication classes</b>, <b> Medications specific</b> and <b>Other</b>.
+		</p>
+	<p>There are several ways to select an option from the list:</p>
+	<ul>
+		<li>
+		<b>Continue typing</b> until the correct option is highlighted, then press the Tab 
+		or Enter key.</li>
+		<li>
+		<b>Point to the correct option</b> on the choice list with your mouse and click it.</li>
+		<li>
+		Use the <b>Up Arrow</b> or <b>Down Arrow</b> keys to move the highlight bar to the correct option 
+		and press the Enter key.</li>
+               <li>
+               If the list of options is a numbered list, you need only <b>enter the item number next to your selection</b> and the text will be filled into the form. </li>
+	</ul>
+	<p>If you are unable to find your desired option in the drop-down list, 
+	describe the condition in your own words. The system will italicize the text and turn the input field orange 
+	to remind you that you are not choosing an item from the selection list; however, the system will 
+	still accept and store the text.</p>
+<!--#include virtual="help_footer.shtml" -->		

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+</head>
+<body>
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>testpanel.js</strong>.
+    </p>
+  </div>
+  <!-- Log output -->
+  <div id="testlog"> </div>
+
+  <!-- testing hasRule() -->
+  <div style="display:none">
+	<table>
+	<tr><td>
+	<input id="fe_tp1_panel_testdate_1_1_1" type="text" /></td></tr>
+	<tr><td>
+  <input id="fe_tp1_test_value_1_1_1_1" type="text" value="one" /></td><td>
+  <input id="fe_tp1_test_loinc_num_1_1_1_1" type="text" value="1234-5" /></td></tr>
+	<tr><td>
+  <input id="fe_tp1_test_value_1_1_1_2" type="text" value="one" /></td><td>
+  <input id="fe_tp1_test_loinc_num_1_1_1_2" type="text" value="1234-6" /></td></tr>
+  </table>
+  </div>
+  <!-- end of testing hasRule() -->
+
+</div> <!-- content -->
+  <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+  <script src="assets/effects.js?body=1" type="text/javascript"></script>
+  <script src="assets/controls.js?body=1" type="text/javascript"></script>
+  <script src="assets/application_phr.js?body=1" type="text/javascript"></script>
+  <script src="assets/rules.js?body=1" type="text/javascript"></script>
+  <script src="assets/testpanel.js?body=1" type="text/javascript"></script>
+  <script src="assets/logger.js?body=1" type="text/javascript"></script>
+  <script src="assets/idCache.js?body=1" type="text/javascript"></script>
+  <script src="assets/dojo/dojo/dojo.js?body=1" type="text/javascript"></script>
+  <script src="assets/taffy.js?body=1" type="text/javascript"></script>
+  <script src="assets/data_model.js?body=1" type="text/javascript"></script>
+  <script src="assets/autosave.js?body=1" type="text/javascript"></script>
+  <script src="assets/unittest.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+// runRules function will rely on taffyDb
+var formData = [
+  {"obx_observations":
+      [{"record_id":0,"loinc_num":"1234-5"},
+       {"record_id":1,"loinc_num":"1234-6"}]}, // data_tables_
+  {"fe_tp1_test_value_1_1_1_1":["obx_observations", "test_value", 1],//id mappinig
+   "fe_tp1_test_value_1_1_1_2":["obx_observations", "test_value", 2]},
+  {},//table mapping
+  [], []];
+Def.DataModel.setup(formData);
+
+// <![CDATA[
+// Rule scripts
+Def.Rules.loincFieldRules_ = {'tp_test_value:1234-5':['latest_sysbp']};
+
+  new Test.Unit.Runner({
+
+    // replace this with your real tests
+    setup: function() {
+      //this.testWin =
+      //  window.open('http://localhost:3000/form/show/phr', 'testwin');
+    },
+
+    teardown: function() {
+
+    },
+
+    testInTestPanel: function() { with(this){
+        var testPanelTargetField = "tp_test_value";
+        var nonTestPanelTargetField = "some_test_value";
+        var expected = TestPanel.inTestPanel(testPanelTargetField);
+        var actual = true;
+        assertEqual(expected, actual);
+        var expected = TestPanel.inTestPanel(nonTestPanelTargetField);
+        var actual = false;
+        assertEqual(expected, actual);
+      }},
+
+    testFindLoincRules: function() { with(this){
+        var triggerFieldIdParts = ["fe_","tp1_test_value", "_1_1_1_1"];
+        var triggerField = $(triggerFieldIdParts.join(""));
+        var actual =TestPanel.findLoincRules(triggerField);
+        var expected = ["latest_sysbp"];
+        assertEqual(expected.inspect(), actual.inspect());
+
+        var triggerFieldIdParts = ["fe_","tp1_test_value", "_1_1_1_2"];
+        var triggerField = $(triggerFieldIdParts.join(""));
+        var actual =TestPanel.findLoincRules(triggerField);
+        assert(actual.length == 0);
+      }},
+
+    testGetFieldValue: function(){with(this){
+        var panelField = $('fe_tp1_panel_testdate_1_1_1');
+        var loincNum= "1234-5";
+        var valueField = "tp_test_value";
+        var actual = TestPanel.getFieldValue(panelField, loincNum, valueField);
+        var expected = "one";
+        assertEqual(expected, actual);
+      }}
+
+  }, "testlog");
+
+
+
+  Event.observe(window, 'load', Def.Rules.runFormRules);
+
+// ]]>
+
+</script>
+</body>
+</html>

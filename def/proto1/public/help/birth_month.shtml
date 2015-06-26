@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Birth Month</h1>
+		<p>
+    Enter or select the name of the month of birth. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

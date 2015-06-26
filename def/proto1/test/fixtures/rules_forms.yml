@@ -1,0 +1,43 @@
+a:
+  form_id: -10
+  rule_id: -1002
+
+b:
+  form_id: -10
+  rule_id: -1001
+
+c:
+  form_id: -10
+  rule_id: -1003
+
+d:
+  form_id: -10
+  rule_id: -1004
+  
+case_rule1:
+  form_id: -10
+  rule_id: -1005
+
+a_f2:
+  form_id: -2
+  rule_id: -1002
+  
+c_f2:
+  form_id: -2
+  rule_id: -1003
+
+d_f2:
+  form_id: -2
+  rule_id: -1004
+  
+# mappings for testing FieldDescription.change_target_fields
+
+tc_1:
+  form_id: -7
+  rule_id: -1030
+  
+tc_2:
+  form_id: -7
+  rule_id: -1031
+  
+

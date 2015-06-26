@@ -1,0 +1,1849 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>phr_navigation</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">phr_sort</td></tr>
+</thead><tbody>
+<!-- SORTING IS CURRENTLY DISABLED.  Check to make sure that it still is.
+     If there are any objects with a class of 'sortable', something's off.
+     Actuall - we're in the process of changing that
+<tr>
+	<td>open</td>
+	<td>/form/test/PHR</td>
+	<td></td>
+</tr>
+
+<tr>
+  <td>waitForVisible</td>
+  <td>fe_problem_1</td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.$$('.sortable').length == 0}</td>
+  <td>true</td>
+</tr> -->
+<!-- UNCOMMENT THIS STUFF WHEN WE PUT SORTING BACK IN ...
+<!-- Populate three rows in the Medical Conditions table.  I'm using this table
+ because it has 4 different types of fields - one search field, one prefetched
+ list field, one date field, and one text field.  This allows us to make sure
+ that sorting doesn't get thrown off by different field types. 
+<tr>
+	<td>fireEvent</td>
+	<td>fe_problem_1</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_problem_1</td>
+	<td>Hernia Repair</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_problem_1</td>
+	<td>blur</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_present_1</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_present_1</td>
+	<td>Inactive</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_present_1</td>
+  <td>blur</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_when_started_1</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_when_started_1</td>
+	<td>2009 Mar 27</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_when_started_1</td>
+  <td>blur</td>
+</tr>
+<tr><!-- need change event to get hidden date fields filled 
+  <td>fireEvent</td>
+  <td>fe_when_started_1</td>
+  <td>change</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_problem_2</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_problem_2</td>
+	<td>Sinus Clouding</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_problem_2</td>
+  <td>blur</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_present_2</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_present_2</td>
+	<td>Active</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_present_2</td>
+  <td>blur</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_when_started_2</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_when_started_2</td>
+	<td>2009 Feb 8</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_when_started_2</td>
+  <td>blur</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_when_started_2</td>
+  <td>change</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_prob_desc_2</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_prob_desc_2</td>
+	<td>a comment</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_prob_desc_2</td>
+  <td>blur</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_problem_3</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_problem_3</td>
+	<td>Abdominal Mass</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_problem_3</td>
+  <td>blur</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_present_3</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_present_3</td>
+	<td>Remove</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_present_3</td>
+  <td>blur</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_when_started_3</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_when_started_3</td>
+	<td>2009 Apr 15</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{
+        testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_when_started_3</td>
+  <td>change</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_when_started_3</td>
+  <td>blur</td>
+</tr>
+<tr>
+	<td>fireEvent</td>
+	<td>fe_prob_desc_3</td>
+	<td>focus</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>fe_prob_desc_3</td>
+	<td>b comment</td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_prob_desc_3</td>
+  <td>blur</td>
+</tr>
+<!-- Now click on the Medical Condition header to sort on that column.  Then
+ make sure the lines are sorted correctly and that the data has stayed with
+ the right fields. This also tests sorting specifically on a search field,
+ and that the forwards horizontal navigation is working correctly after the
+ sort.
+<tr>
+  <td>click</td>
+  <td>fe_problem_hd_sorter</td>
+  <td></td>
+</tr>
+<!-- Start in the field immediately preceding the table and move forward from
+ there. 
+<tr>
+  <td>fireEvent</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>focus</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_3';}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_problem_3</td>
+  <td>Abdominal Mass</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_3</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_present_3</td>
+  <td>Remove</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_3</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>assertValue</td>
+  <td>fe_when_started_3</td>
+  <td>2009 Apr 15</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_3</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_prob_desc_3</td>
+  <td>b comment</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_3</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_problem_1</td>
+  <td>Hernia Repair</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_present_1</td>
+  <td>Inactive</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_when_started_1</td>
+  <td>2009 Mar 27</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_prob_desc_1</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_problem_2</td>
+  <td>Sinus Clouding</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_2</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_present_2</td>
+  <td>Active</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_2</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_when_started_2</td>
+  <td>2009 Feb 8</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_2</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>verifyValue</td>
+  <td>fe_prob_desc_2</td>
+  <td>a comment</td>
+</tr>
+<!-- Move to the blank line, and then beyond the table 
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_2</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_4</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_1'}</td>
+  <td>true</td>
+</tr>
+<!-- Now click on the Status header to sort on that column.  Make sure the
+ the lines are sorted correctly; no need to recheck field contents.  This tests
+ sorting on a date field, and that the backwards horizontal navigation is
+ working correctly.  
+<tr>
+  <td>click</td>
+  <td>fe_present_hd_sorter</td>
+  <td></td>
+</tr>
+<!-- This time start in the field immediately following the table and move backwards 
+<tr>
+  <td>fireEvent</td>
+  <td>fe_name_and_route_1</td>
+  <td>focus</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_name_and_route_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_4</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_4</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_4</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_4'}</td>
+  <td>true</td>
+</tr>
+
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_4</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_3</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_3</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_3</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_3</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_2</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_2</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>shiftKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_2</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>shiftKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'}</td>
+  <td>true</td>
+</tr>
+<!-- Now click on the When Started header to sort on that column.  Make sure the
+ the lines are sorted correctly; go up and down through the columns this time.
+ This tests sorting on a date field and forward vertical navigation. 
+<tr>
+  <td>click</td>
+  <td>fe_when_started_hd_sorter</td>
+  <td></td>
+</tr>
+<!-- Start in the field immediately preceding the table and move from there. 
+<tr>
+  <td>fireEvent</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>focus</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_2</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_3</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_4'}</td>
+  <td>true</td>
+</tr>
+<!-- Because we're not on the last line of the table, and it's blank, we
+ can't navigate to the fe_present_4 field using any forward navigation keys
+ (because we skip the blank line).  So we'll place the focus in fe_present_4
+ and continue. 
+<tr>
+  <td>fireEvent</td>
+  <td>fe_present_4</td>
+  <td>focus</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_4</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_3</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_1</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_2</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_2</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_3</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_4</td>
+  <td>\9</td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_4</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_3</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_1</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_2'}</td>
+  <td>true</td>
+</tr>
+<!-- Now click on the Description/Comments header to sort on that column.  This
+ time use backwards vertical sorting to check the order.  This tests sorting
+ on a text field - with 1 blank text field in a non-blank line and one blank
+ text field in the last blank line.  And it tests backwards vertical sorting.
+<tr>
+  <td>click</td>
+  <td>fe_prob_desc_hd_sorter</td>
+  <td></td>
+</tr>
+<!-- Start in the field immediately following the table and move from there. 
+<tr>
+  <td>fireEvent</td>
+  <td>fe_name_and_route_1</td>
+  <td>focus</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_name_and_route_1</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_4</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_3</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_2</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_1</td>
+  <td>\37</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_2</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_3</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_4</td>
+  <td>\37</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_4</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_3</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_2</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_1</td>
+  <td>\37</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_2</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_3</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_4'}</td>
+  <td>true</td>
+</tr>
+<!-- Now do a reverse sort on each column.  Just check the columns - we've run
+ through the full lines enough. -->
+<!-- Reverse sort on the Medical Condition column 
+<tr>
+  <td>click</td>
+  <td>fe_problem_hd_sorter</td>
+  <td></td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>focus</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_2</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_3</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_4'}</td>
+  <td>true</td>
+</tr>
+<!-- Reverse sort on the Status column 
+<tr>
+  <td>click</td>
+  <td>fe_present_hd_sorter</td>
+  <td></td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>focus</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_3</td>
+  <td>\39</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_3</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_2</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>pause</td>
+  <td>2000</td>
+  <td></td>
+</tr>
+<!-- Reverse sort on the When Started column 
+<tr>
+  <td>click</td>
+  <td>fe_when_started_hd_sorter</td>
+  <td></td>
+</tr>
+<tr>
+  <td>pause</td>
+  <td>2000</td>
+  <td></td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>focus</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_race_or_ethnicity_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_problem_3</td>
+  <td>\39</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_present_3</td>
+  <td>\39</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_3'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_3</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_1</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_when_started_2</td>
+  <td>\40</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_4'}</td>
+  <td>true</td>
+</tr>
+<!-- Reverse sort on the Description/Comments column.  Check from the bottom up
+ on this one. 
+<tr>
+  <td>click</td>
+  <td>fe_prob_desc_hd_sorter</td>
+  <td></td>
+</tr>
+<tr>
+  <td>fireEvent</td>
+  <td>fe_name_and_route_1</td>
+  <td>focus</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_name_and_route_1</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_4'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_4</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_1'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_1</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_2'}</td>
+  <td>true</td>
+</tr>
+<tr>
+  <td>controlKeyDown</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>keyDown</td>
+  <td>fe_prob_desc_2</td>
+  <td>\38</td>
+</tr>
+<tr>
+  <td>controlKeyUp</td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td>waitForExpression</td>
+  <td>javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_3'}</td>
+  <td>true</td>
+</tr>
+-->
+</tbody></table>
+</body>
+</html>

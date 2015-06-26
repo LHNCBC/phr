@@ -1,0 +1,20 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>How Do I Change My Password?</h1>
+<h3>To change your password </h3>
+<p>
+<ul>
+<li>Log in to the PHR with your current password.</li>
+<li>Click the <b>Account Settings</b> link at the top of the right side of the <b>PHR Home</b> page.</li>
+<li>Follow the instructions for changing your password. You will be prompted for your current password prior to entering a new password. Your password must be 
+		at least 8 characters long and include at least 3 of the 
+		following: capital letters, lower case letters, numeric 
+		characters, or special characters. Your password is case-sensitive.</li>  
+    </ul>
+</p>
+<h3>How do I ...</h3>
+<p>
+<a href="create_strong_passwords.shtml">Create strong passwords?</a></br>
+</p>
+
+<!--#include virtual="help_footer.shtml" -->

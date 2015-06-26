@@ -1,0 +1,9 @@
+<%= form_tag_wo_ajax phr_records_path, :method=>:post %>
+<%= render "mobile/phr_records/new_edit_fields" %>
+
+<div class="ui-field-contain">
+  <%= submit_tag_m 'Save' %>
+  <%= link_to_m 'Cancel', phr_records_path %>
+</div>
+
+</form>

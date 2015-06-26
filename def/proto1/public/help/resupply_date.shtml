@@ -1,0 +1,17 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Resupply Date</h1>
+	<p>
+		Enter the date a new supply of medication is needed using your preferred date format. Once you type your entry, the PHR will convert the date to the standard format used by the PHR sytem. The resupply date should be set to the date you need to purchase, refill, or obtain a new prescription for the medication. </p>
+<p>If you choose to enter a resupply date, an exact date (month, day, and year) is required. 
+		</p>
+		
+<p>The <b>Date Reminders </b> link at the top of the PHR page will display a list of medication resupply due dates along with other reminders.
+	</p>
+	<p>
+		For date formatting tips and date entry shortcuts, see <a href=" /help/entering_dates_help.shtml">how to 
+		enter dates in the PHR</a>.
+	</p>
+
+    
+<!--#include virtual="help_footer.shtml" -->

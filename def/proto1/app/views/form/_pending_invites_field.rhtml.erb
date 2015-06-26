@@ -1,0 +1,70 @@
+<% # Template for the Pending Invitations list available from the PHR Home page %>
+
+<div id="pending_invites_box">
+
+  <p id="pending_list_desc">
+    You have received <%= @invite_desc %> to access the PHR<%= @plural %> 
+    listed below.  Please accept or decline the invitation<%= @plural %> by clicking in one of the
+    round buttons to the left of the invitation.  If you click the "Ask Later"
+    button, or don't click any buttons for an invitation, it will be shown in
+    the list that will be displayed again next time you log into the system.
+  </p>
+
+  <table id="pending_invites_list">
+   <tr id="pending_invites_list_header_row">
+     <th>Accept</th>
+     <th>Decline </th>
+     <th>Ask Later</th>
+     <th>PHR Name</th>
+     <th>Invitation From</th>
+   </tr>
+
+    <% if !@pending_invites_list.nil? %>
+      <% row = 0 %>
+      <% @pending_invites_list.each do |invite| %>
+        <tr>
+
+          <% row += 1 %>
+          <% row_s = row.to_s %>
+
+          <% button_name = "invitation_option_" + row_s %>
+
+          <% accept_id = "accept_id_" + row_s %>
+          <td class="pending_radio_button" style="text-align:center">
+            <input id="<%= accept_id %>"
+                   type="radio" value="accept" name=<%= button_name %> >
+          </td>
+
+          <% decline_id = "decline_id_" + row_s %>
+          <td class="pending_radio_button" style="text-align:center">
+            <input id="<%= decline_id %>"
+                   type="radio" value="decline" name=<%= button_name %> >
+          </td>
+
+          <% defer_id = "defer_id_" + row_s %>
+          <td class="pending_radio_button" style="text-align:center">
+            <input id="<%= defer_id %>"
+                   type="radio" value="defer" name=<%= button_name %> >
+          </td>
+
+          <% phr_name_id = "phr_name_" + row_s %>
+          <td class="pending_phr_name" style="padding-right:10px">
+            <span id=<%= phr_name_id %> ><%= Profile.find(invite.profile_id).phr.pseudonym %></span>
+          </td>
+
+          <% issuer_id = "issuer_name_" + row_s %>
+          <td class="pending_issuer_name"><span id=<%= issuer_id %> >
+              <%= invite.issuer_name %></span>
+          </td>
+
+          <% profile_fld_id = "profile_id_" + row_s %>
+          <td style="display: none">
+            <span id=<%= profile_fld_id %> ><%= invite.profile_id %></span>
+          </td>
+        </tr>
+
+      <% end %> <!-- end pending_invites_list.each -->
+    <% end %> <!-- end if !@pending_invites_list.nil? -->
+   </table>
+  <span id="pending_count" style="display:none"><%= @list_size %></span>
+</div> <!-- pending_invites_box -->

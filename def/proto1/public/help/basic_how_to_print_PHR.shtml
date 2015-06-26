@@ -1,0 +1,49 @@
+<!--#include virtual="help_header.shtml" -->
+  <h1>Print a PHR</h1>		
+  <h2>Use your browser's print function to print a PHR.  </h2>
+<p>
+All pages of the PHR can be printed using your browser's <b>Print</b> function. 
+<ul>
+<li>Before printing the <b>View & Edit Results Timeline</b> page, display all of the results you want to print by selecting one or more test results to print and then clicking the <b>Show Results Timeline</b> button.</li>
+</ul>
+</p>
+<h3>Google Chrome</h3>
+<p>
+<ol>
+<li>Press <b>Ctrl+P</b> to bring up the Print dialog box.</li>
+<li>Select the <b>Landscape</b> radio button and check the <b>Print Background Colors and Images</b> checkbox.</li>
+<li>Click the <b>OK</b> button in the Print dialog box. </li>
+</ol>
+</p>
+<h3>Internet Explorer</h3>
+<p>
+<ol>
+<li>Select <b>File</b> then <b>Page setup...</b> at the top of the browser page to bring up the Page Setup dialog box. </li>
+<li>Select the <b>Landscape</b> radio button and check the <b>Print Background Colors and Images</b> checkbox.</li>
+<li>Click the <b>OK</b> button to dismiss the dialog box.</li>
+<li> Press <b>Ctrl+P</b> to bring up the Print dialog box. You can also select <b>File</b> then <b>Print...</b> at the top of the browser page or click the <b>Tools</b> icon to bring up the Print dialog box.</li>
+<li>Click the <b>Print</b> button. </li>
+</ol>
+</p>
+<h3>Mozilla Firefox</h3>
+<p>
+<ol>
+<li>At the top of the Firefox window, click on the orange <b>Firefox</b> button (or the <b>File</b> menu in Windows XP) and mouse over to the <b>Print...</b> menu item, then click  <b>Page Setup...</b>. The Page Setup dialog box will appear. </li>
+<li>
+Select <b>Landscape</b> orientation in the pop-up window and the <b>Print Background (colors and images)</b> checkbox in the Page Setup dialog box.</li>
+<li>Click the <b>OK</b> button to dismiss the dialog box.</li>
+<li>Click the orange <b>Firefox</b> button again and click <b>Print...</b>. The Print dialog box will appear. 
+<li>Click <b>OK</b> to print. </li>
+</ol>
+</p>
+<h3>Safari</h3>
+<p>
+<ol>
+<li>Select <b>Print</b> from the <b>File</b> menu to bring up the Print dialog box. </li>
+<li>Select <b>Landcape</b> orientation and then select the <b>Print backgrounds</b> and 
+<b>Print headers and footers</b> checkboxes. 
+<li>Click the <b>Print</b> button at the bottom of the Print dialog box. </li>
+</ol>
+</ul>
+</p>
+<!--#include virtual="help_footer.shtml" -->

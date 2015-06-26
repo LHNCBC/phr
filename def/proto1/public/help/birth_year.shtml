@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Date of Birth</h1>
+		<p>
+    Enter the date of birth for the person whose health data you are entering. You may enter either the full birth date or only the year of birth. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

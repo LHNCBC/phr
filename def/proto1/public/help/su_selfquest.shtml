@@ -1,0 +1,22 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Create Security Questions</h1>
+	<p>
+		Create two of your own security questions that have answers 
+		you are likely to remember. The best security questions have one 
+		or two word answers that do not change over time and cannot be 
+		easily guessed or researched by others.</p>
+<p>
+		Provide your answer to each question in 
+		the space to the right. </p>
+<p> If you forget your PHR 
+		account ID or password we will ask you to answer these questions to 
+		verify your identity.
+	</p>
+	
+<p>
+		<a href="/help/no_personal_identifiers.shtml">Please do not enter personal identifiers in this field.</a>
+	</p>
+	
+    
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,60 @@
+| open | /phr_home |
+| setTimeout | 35000 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'prevent_cache1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+| open | /accounts/logout |
+| waitForNotExpression | javascript{testWindow_.location.href} | *;edit |
+| goBack |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/login |
+
+| open | /phr_home |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/login |
+
+| type | fe_user_name_1_1 | test_admin |
+| type | fe_password_1_1 | I'm a test admin account |
+| verifyExpression | javascript{testWindow_.createCookie('phr_user','3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81',365);1} | 1 |
+| click | fe_login_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */admin_home |
+| waitForVisible | fe_phrs_1 |
+
+# Go to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_phrs_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |

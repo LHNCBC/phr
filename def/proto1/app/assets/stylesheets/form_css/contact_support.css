@@ -1,0 +1,19 @@
+label {
+  width: 10em;
+}
+
+/* groups background color */
+.fieldGroup .fieldExpColDiv
+{
+  background-color: #EFF5F9;
+  border: 0 !important;
+  padding-top: 2px;
+}
+
+#fe_button_grp_0_expcol {
+  background-color: transparent;
+}
+
+.field {
+  padding-bottom: 5px;
+}

@@ -1,0 +1,8 @@
+# This file configures who receives notices about new errors logged in the system_errors table.
+# The keys are IP addresses of people's machines, and the value is the person's email address.
+# If a particular machine (e.g. a scanner) produces errors we don't care about, the email address
+# can be set to blank.
+# The key "default" can be used to set a default email address to handle the remaining cases.
+
+# TBD - specify for your system
+default: 

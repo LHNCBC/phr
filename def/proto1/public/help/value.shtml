@@ -1,0 +1,9 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Value</h1>
+		<p>
+   Enter the value of the test measurement or result. Some results have numeric values, 
+   some are either "positive" or "negative", and others may have free text as their result. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

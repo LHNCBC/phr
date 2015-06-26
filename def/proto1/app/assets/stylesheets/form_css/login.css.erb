@@ -1,0 +1,388 @@
+#main_form {
+  background: url(<%= asset_path "phr-main-container-login.png" %>) 0 0 no-repeat;
+  border: 0 !important;
+  margin: 5px auto;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-top: 8px !important;
+  text-align: center;  
+  width: 925px;
+}
+
+#main_form #fe_splash_grp_0
+{
+	background:url(<%= asset_path "phr-feature-children-computer.jpg" %>) no-repeat scroll 14px 0 transparent;
+	left:-31px;
+	width:100%;
+	margin:0;
+}
+
+#fe_splash_grp_0_expcol
+{
+	background:none;
+}
+
+#formtitle {
+  /* move the title to center only on login page */
+  display: block !important;
+  text-align: center !important;
+}
+
+#main_form div, button {
+  margin: 0px auto;
+}
+
+form#main_form > div.field {
+  background-color: #d8ebfc;
+}
+
+div.field {
+  clear: left; /* Firefox 3.6 (at least on Linux) */
+}
+
+form#main_form div#fe_footer_grp_0 {
+  /* appearantly this group has a padding-bottom over 25px on IE7
+  but the following fix does not work.
+  setting it to 1px works!!!
+  padding-bottom: 0px !important;
+
+  this is a bug in IE7 for padding
+  solution: set display: inline-block;
+
+  update: but it makes the group smaller on FF3 and Safari
+  solution: set width: 100%;
+  -- ye
+  */
+    display: inline-block;
+    margin-left: -19px;
+    margin-top: 30px;
+    padding-bottom: 0;
+    width: 100%;
+}
+
+#fe_login_1 {
+  margin-top: 1em;
+}
+
+.field .static_text {
+  padding-top: 1em;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 0px;
+}
+
+label {
+  /*float: none;
+  position: static;*/
+  padding-left: 2%;
+  padding-right: 0px;
+}
+
+#fe_accnt_grp_0 {
+  float: left;
+  position: relative;
+  width: 35%;
+  padding-top: 50px;
+}
+
+#fe_splash_grp_0 {
+  float:left;
+  position:relative;
+  width:65%;
+  word-wrap: break-word; /* CSS3 */
+}
+
+#fe_splash_grp_0_expcol {
+  border: 0;
+  background-color: white;
+  font-size: 18px;
+}
+
+#fe_splash_1 {
+  padding: 1em 1% 0 ;
+}
+
+#fe_footer_1 li {
+  display: inline;
+  padding: .2em 1em;
+}
+
+#fe_footer_1 li a {
+  color: blue;
+  text-decoration: underline;
+}
+
+li:first-child a {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+#fe_footer_1 ul {
+  padding-left: 0;
+  width: 100%;
+}
+
+#fe_instructions2_1 {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 16px;
+}
+
+#fe_instructions2_1 p {
+  margin: 5px;
+}
+
+#fe_instructions3_1 {
+  text-align: center;
+  font-size: 16px;
+}
+
+#fe_instructions3_1 p {
+  margin: -10px;
+}
+
+#fe_create_new_1 {
+  padding-bottom: 1em;
+}
+
+#fe_footer_1  li:before {
+  /* content: url(/icons/bullet.gif); */
+}
+
+#fe_footer_1  li:first-child:before {
+  content: none !important;
+}
+
+.field label {
+  text-align : left;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+
+/** 
+ *
+ * PHR Global Stylesheet
+ *
+ */
+ 
+ 
+
+#main_form .field #fe_splash_1.static_text {     
+	color: #333333;
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 0;
+    padding: 0;
+    width: 51%;
+}
+#main_form .field #fe_splash_1.static_text > p {
+	display: none;/* Hides the "If you are having an emergency..." text */
+}
+#main_form .field #fe_splash_1.static_text ul {
+    margin: 0;
+    padding: 8px 0 0;
+    width: 100%;
+}
+#main_form .field #fe_splash_1.static_text ul li {    
+	background: url(<%= asset_path "phr-orange-bullet.gif" %>) no-repeat scroll 0 5px transparent;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 18px;
+    list-style: none outside none;
+    margin: 0 0 6px;
+    padding: 0 0 0 18px;
+}
+
+#main_form #fe_splash_grp_0_expcol .field {
+	width: 100%; 
+	margin: 0;
+}
+#main_form #fe_accnt_grp_0.fieldGroup { 
+	clear: both;
+	padding-top: 0;
+	width: 100%;
+}
+#main_form div.no_group_hdr.fieldGroup div.fieldExpColDiv {
+	background: none; 
+	border: none;
+}
+#main_form div.no_group_hdr.fieldGroup div.fieldExpColDiv .field label#fe_user_name_lbl_1,
+#main_form div.no_group_hdr.fieldGroup div.fieldExpColDiv .field label#fe_password_lbl_1 {
+	position: absolute;
+	text-indent: -9999em;
+}
+#main_form div.no_group_hdr.fieldGroup div.fieldExpColDiv .field #fe_instructions2_1 {
+	margin: 0;
+	padding: 25px 0 0;	
+}
+#main_form div.no_group_hdr.fieldGroup div.fieldExpColDiv .field #fe_instructions2_1.static_text p {
+    color: #FFFFFF;
+    font-size: 18px;
+    margin: 0 0 10px 50px;
+    text-align: left;
+}
+#fe_login_1 {
+    float: left;
+    margin: 0 0 0 50px;
+}
+#fe_forgot_login_1 {}
+
+#fe_footer_grp_0 #fe_footer_grp_0_expcol {
+    border-top: 3px solid #ECECEC;
+    margin: 0 auto;
+    padding-top: 10px;
+    width: 935px;
+}
+
+#fe_footer_1{
+  clear:none;
+  float:left;
+  text-align:left;
+  width: 56%;
+  padding: 0;
+  top: 0;
+  margin:0;
+}
+
+#fe_footer_grp_0 #fe_footer_grp_0_expcol #fe_footer_1 ul{
+	margin:0;
+	padding:0;
+}
+
+#fe_footer_grp_0 #fe_footer_grp_0_expcol #fe_footer_1 ul li{
+	list-style:none !important;
+	padding:0.2em 0.25em;
+}
+
+#fe_footer_grp_0 #fe_footer_grp_0_expcol #fe_footer_1 ul li a{
+  font-size:14px;
+  color:#457fc0;
+  text-decoration:none;
+}
+
+.field.recover_acct,.field.new_acct{
+	clear:none;
+	float:left;
+	font-family:Arial;
+	font-size:14px;
+	height:158px;
+	margin-top: 7px !important;
+	width:165px;
+	padding:0 40px 0 80px;
+}
+
+.field.new_acct{
+	width:153px;
+	background:url(<%= asset_path "phr-newacct-module-bg.png" %>) 0 0 no-repeat;
+}
+
+#fe_accnt_grp_0_expcol .field.recover_acct{
+	background:url(<%= asset_path "phr-forgotpw-module-bg.png" %>) 0 0 no-repeat;
+	margin-right:25px;
+}
+
+#fe_recover_instr_1{
+	padding:0;
+}
+
+.field.recover_acct p,.field.new_acct p{
+	font-size:13px;
+	color:#333;
+	margin:10px 0 0;
+}
+.field.new_acct p {
+  font-size: 14px;
+  margin: 10px 0 0;
+}
+.field.new_acct p button {
+  margin-top: 5px;
+}
+.field.new_acct p button span{
+  padding-left: 2em;
+  padding-right: 2em;
+}
+.field.recover_acct p a,.field.new_acct p a{
+  color:#457fc0;
+  font-size: 14px;
+  text-decoration:none;
+}
+
+#fe_recover_instr_1 h3{
+  color: #1268AC;
+  font-family: "Ubuntu",Arial;
+  font-size: 21px;
+  margin: 14px 0 0;
+}
+#fe_911_text_1{
+  color: #912323;
+  float: right;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  width: 42%;
+}
+#fe_footer_grp_0_expcol #fe_911_text_1 p{
+  font-size:14px;
+  margin:0;
+}
+#main_form #fe_accnt_grp_0{
+  margin:16px 0;
+}
+#fe_accnt_grp_0_expcol #fe_login_grp_1_0{
+  float:left;
+  width:290px;
+  padding-top:0;
+  margin:0 20px 0 20px;
+}
+div#fe_instructions2_1_1 {
+  margin-bottom: -8px;
+  padding-top: 5px;
+}
+#fe_instructions2_1_1 p {
+  font-size: 18px;
+}
+#fe_login_grp_1_0 p{
+  color: #FFFFFF;
+  font-family: "Ubuntu",Arial;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+#fe_user_name_lbl_1_1,
+#fe_password_lbl_1_1,
+#fe_fake_password_lbl_1_1{
+	position:absolute;
+	text-indent:-9999em;
+}
+#fe_user_name_1_1,
+#fe_password_1_1,
+#fe_fake_password_1_1{
+  border: 1px solid #DEDEDD;
+  font-size: 15px;
+/*  font-weight: 400; */
+  max-width: 100%;
+  padding: 7px;
+  width: 260px;
+}
+#fe_fake_password_1_1 {
+  color: gray;
+}
+#fe_password_1_1 {
+  color: #333;
+}
+#fe_user_name_1_1{
+  margin:0 0 11px;
+}
+#fe_login_grp_1_0_expcol button#fe_login_1_1{
+  float: left;
+  margin-left: -3px;
+  margin-top: 8px;
+}
+#fe_login_1_1 span{
+  padding-left: 2.25em;
+  padding-right: 2.25em;
+}

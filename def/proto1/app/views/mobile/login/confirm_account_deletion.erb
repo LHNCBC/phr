@@ -1,0 +1,8 @@
+Enter your password to confirm account deletion. Once the account is deleted the
+associated profiles and data cannot be recovered.
+<%= form_tag_wo_ajax delete_account_path(:format=>:basic), :method=>:delete%>
+<%= basic_password_field_m('Password', '', 'password') %>
+<br>
+<%= submit_tag_m 'Delete Account' %>
+<%= link_to_m 'Cancel', phr_records_path %>
+</form>

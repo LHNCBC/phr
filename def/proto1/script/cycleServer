@@ -1,0 +1,14 @@
+#!/depot/bin/perl 
+
+# This script is a work around for a problem with (I think) the MySQL
+# driver that causes the server process to hang after a day.
+
+while (1) {
+  if ($pid=fork) {
+    sleep 60*60*24;
+    kill INT, $pid;
+  }
+  else {
+    exec('script/server', @ARGV);
+  }
+}

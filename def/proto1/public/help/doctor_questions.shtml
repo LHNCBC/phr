@@ -1,0 +1,53 @@
+<!--#include virtual="help_header.shtml" -->
+
+   <h1> Questions to Ask Your Doctor</h1>
+<p>
+The PHR’s list of questions to ask your doctor serves as a reminder of what questions you need to ask your health care providers when you meet with them.</p>
+                <h2>
+                What do I need to know about questions to ask my doctor? </h2>
+<p>
+                <ul>
+                    <li>
+                    You can use this area to organize your questions by category. The system will allow you to select a category; however, you can also enter your own category in the category field. 
+                    <li>Indicate a status of <b>Not Asked</b> for questions that still need to be answered and a status of <b>Asked</b> for questions that are no longer relevant or have been answered. </li>
+                   </ul>
+</p>
+                <h2>
+                What kind of information should I enter? </h2>
+<p>
+All fields highlighted with <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields. 
+		<table style="border-spacing:25px 5px">
+<tr valign="top"><td><a href="/help/date_entered.shtml">Date Entered</a></td><td>Enter the date the question was entered into the PHR.</td></tr>
+			<tr valign="top" ><td><a href="/help/category.shtml">Category</a></td><td>Choose the category of the question to ask or enter your own.</td></tr>
+			<tr valign="top"><td><a href="/help/question_status.shtml">Status</a></td><td>Indicate <b>Not Asked</b> for questions that still need to be answered and <b>Asked</b> for questions which are no longer relevant or have been answered.</td></tr>
+			<tr valign="top"><td><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"><a href="/help/question.shtml">Question</td><td>Enter any information needed to remind yourself of the question you need to ask.</td></tr>
+			
+                        <tr valign="top"><td><a href="/help/question_answer.shtml">Answer</a></td><td>Enter the answer given to your question.</td></tr>
+                        
+		</table>
+</p>
+                <h2>
+                Why is this important?</h2>
+                <p>
+               Keeping a list of questions to ask your doctors will help them properly assess your condition and ensure that you receive the most effective treatment. It is important to discuss all of the questions you have about your symptoms, tests, treatment alternatives, medications, risks, and outcomes with your physician as part of your overall health care plan. 
+                </p>
+                <h2> How do I ...</h2>
+<p>
+                <ul>
+                  <li><a href="/help/using_long_lists_help.shtml">Use the drop down lists to enter data?</a></li>
+                  <li><a href="/help/bypassing_drop_downs.shtml">Enter my own data not found in the drop down list?</a></li>
+                  <li><a href="/help/entering_dates_help.shtml">Enter dates?</a></li>
+                  <li><a href="/help/opening_closing_help.shtml">Open and close sections of the PHR?</a></li>
+                  <li><a href="/help/error_indicators.shtml">Fix input errors?</a></li>
+                </ul>
+</p>
+
+                
+                
+                
+                
+
+
+
+	
+<!--#include virtual="help_footer.shtml" -->

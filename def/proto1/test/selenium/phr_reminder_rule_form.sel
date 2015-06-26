@@ -1,0 +1,136 @@
+# log in as an administrator
+| open | /accounts/logout |
+
+| waitForTextPresent | Loaded in |
+| pause | 200 |
+
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| type | fe_user_name_1_1 | test_admi |
+| typeKeys | fe_user_name_1_1 | n |
+| pause | 200 |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| type | fe_password_1_1 | I'm a test admin accoun |
+| typeKeys | fe_password_1_1 | t |
+| pause | 200 |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+
+| pause | 200 |
+| waitForExpression | javascript{testWindow_.createCookie('phr_user', '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81',365); true} | true |
+
+| pause | 500 |
+| waitForExpression | javascript{testWindow_.readCookie('phr_user');} | 3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81 |
+
+| pause | 200 |
+| click | fe_login_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */admin_home |
+
+# Create a new fetch rule
+| setTimeout | 35000 |
+| open | /fetch_rules/new |
+
+# Enter rule name
+| fireEvent | fe_rule_name | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_rule_name'} | true |
+| storeExpression | javascript{"test_fetch_rule_rrf_"+(new Date().getTime())} | newFetchRuleA |
+| typeText | fe_rule_name | javascript{storedVars["newFetchRuleA"]} |
+| keyDown | fe_rule_name | \9 |
+| waitForValue | fe_rule_name | javascript{storedVars["newFetchRuleA"]} |
+
+
+# Select source table as Drugs
+| fireEvent | fe_source_table | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_source_table'} | true |
+| selectByContent | fe_source_table | Drug |
+
+# Make sure that the Major Items section becomes visible
+| waitForVisible | fe_major_qualifier_name_1 |
+
+# Wait for the major qualifier field to get its list
+| waitForFieldHasList | fe_major_qualifier_name_1 |
+
+# Select the Drug Name list item
+| fireEvent | fe_major_qualifier_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_major_qualifier_name_1'} | true |
+| selectByContent | fe_major_qualifier_name_1 | Drug Name |
+| waitForValue | fe_major_qualifier_name_1 | Drug Name |
+
+
+# Select warfarin for the value.  We know it will have a prefetched list
+# of multiple values for the strength field.
+| fireEvent | fe_major_qualifier_value_1 | blur |
+| fireEvent | fe_major_qualifier_value_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_major_qualifier_value_1'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_major_qualifier_value_1').autocomp != null} | true |
+| selectByContent | fe_major_qualifier_value_1 | Warfarin (Oral Pill) |
+| waitForValue | fe_major_qualifier_value_1 | Warfarin (Oral Pill) |
+
+
+# Select Status for a non-major item.  If Status is not one of the
+# fields listed, something's wrong with the major-non-major field dependency
+| fireEvent | fe_non_date_qualifier_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_non_date_qualifier_name_1'} | true |
+| selectByContent | fe_non_date_qualifier_name_1 | Statu |
+| waitForValue | fe_non_date_qualifier_name_1 | Status |
+
+# Select a value for status.  Use the keyboard to select the value.
+| fireEvent | fe_qualifier_value_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_qualifier_value_1'} | true |
+# (Wait for the combo field to change into a list)
+| waitForExpression | javascript{testWindow_.$('fe_qualifier_value_1').autocomp != null} | true |
+| waitForExpression | javascript{testWindow_.$('fe_qualifier_value_1').autocomp.rawList_.length > 0} | true |
+| selectByContent | fe_qualifier_value_1 | Activ |
+| waitForValue | fe_qualifier_value_1 | Active |
+
+# Save the new fetch_rule
+| click | fe_save_changes |
+| waitForExpression | javascript{testWindow_.location.pathname} | */rules |
+
+# Create new value rule
+| open | /value_rules/new |
+
+# Enter rule name
+| fireEvent | fe_rule_name | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_rule_name'} | true |
+| storeExpression | javascript{"test_value_rule_rrf_"+ (new Date().getTime())}| newValueRuleA | 
+| typeText | fe_rule_name | javascript{storedVars['newValueRuleA']} |
+| keyDown | fe_rule_name | \9 |
+| waitForValue | fe_rule_name | javascript{storedVars['newValueRuleA']} |
+
+# Enter Rule Value
+| fireEvent | fe_computed_value_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_computed_value_1'} | true |
+| typeText | fe_computed_value_1 | 123 |
+| keyDown | fe_computed_value_1 | \9 |
+| waitForValue | fe_computed_value_1 | 123 |
+
+# Save the new value rule
+| click | fe_save_changes |
+| waitForExpression | javascript{testWindow_.location.pathname} | */rules |
+
+# On new reminder rule page, find the newly created fetch rule and value rule
+# are in the corresponding lists
+| open | /reminder_rules/new |
+
+# check newly created fetch rule name
+| fireEvent | fe_fetch_rule_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_fetch_rule_name_1'} | true |
+| selectByContent | fe_fetch_rule_name_1 | javascript{storedVars['newFetchRuleA']} |
+| waitForValue | fe_fetch_rule_name_1 | javascript{storedVars['newFetchRuleA']} |
+
+# check newly created value rule name
+| fireEvent | fe_value_rule_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_value_rule_name_1'} | true |
+| selectByContent | fe_value_rule_name_1 | javascript{storedVars['newValueRuleA']} |
+| waitForValue | fe_value_rule_name_1 | javascript{storedVars['newValueRuleA']} |
+
+
+
+
+
+

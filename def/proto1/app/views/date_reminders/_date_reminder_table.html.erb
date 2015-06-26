@@ -1,0 +1,20 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<table border="1"><thead><tr><th>Type</th><th>Item</th><th>Date Type</th>
+      <th>Date</th><th>Status</th><th><%= button_label %> </th></tr></thead>
+  <tbody>
+    <% @reminders.each do |r| %>
+    <tr>
+      <td><%=r.reminder_type%></td><td><%=r.reminder_item%></td>
+      <td><%=r.date_type%></td><td><%=r.due_date%></td>
+      <td><%=r.reminder_status%></td>
+      <td><%= path = button_label=='Hide' ? 'hide_phr_record_date_reminder_path' :
+                                            'unhide_phr_record_date_reminder_path'
+           button_to_wo_js button_label, send(path, @phr_record, r.id) %></td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>

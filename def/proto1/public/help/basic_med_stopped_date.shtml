@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Stopped date</h1>
+	<p>
+		Unless you are still taking the medication, enter the date you stopped taking the medication. </p>
+<p>The date must be entered in the following format: YYYY/mm/dd. The system will accept the following types of dates: 
+<ul>
+<li>the exact date, or</li>
+		<li>the year and month</li>
+</ul>
+		</p>
+<!--#include virtual="help_footer.shtml" -->

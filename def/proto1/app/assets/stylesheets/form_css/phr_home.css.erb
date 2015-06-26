@@ -1,0 +1,549 @@
+/*
+    Document   :  phr_home
+    Created    :  November, 2013
+    Author     :  lmericle
+    Description:  CSS for new PHR home page
+*/
+
+/** The entire form **/
+
+#main_form {
+  background-color: #EBF3F7;
+}
+
+/** The Add New button that appears above the profile listings **/
+/** The "rounded" class that is applied to this button in 
+ *  _profiles_list_field.rhtml.erb adds additional attributes
+ *  to this button that cause it to look like the orange buttons
+ *  used throughout the PHR system
+ */
+#add_new {
+  margin-top: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+/** The active and removed profiles lists **/
+
+#profiles_list, #other_profiles_list {
+  table-layout: auto;
+  empty-cells: show;
+}
+
+#profiles_list, #removed_profiles_list, #other_profiles_list {
+  margin-left: 2em;
+  margin-bottom: 2em;
+  width: auto;
+}
+
+tr {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+td.date_cell, td.date_help_cell {
+  vertical-align: middle;
+}
+
+td.date_help_cell {
+  text-align: right;
+}
+
+:not(table.dateField > tr > td) {
+  vertical-align: baseline;
+}
+
+#profiles_list th, #other_profiles_list th {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+/** headers in the active listings **/
+
+.updated_header {
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+}
+
+/** rows in the active listings **/
+
+.task_line {
+  padding: 10px;
+  text-align: left;
+  background-color: white;
+ }
+ 
+ 
+/** columns in the active and others listings **/
+
+.name_column, .updated_column, .owner_column {
+  text-align: left;
+}
+
+.name_column {
+  padding-left: 5px;
+}
+
+.icon_column {
+  /*padding-right: 20px;*/
+  width: 30px;
+}
+
+.wedgie_column {
+  width: 30px;
+}
+
+.envelope_column {
+  width: 30px;
+}
+
+.calendar_column {
+  width: 25px;
+  text-align: right;
+}
+
+.profile_row {
+  height: 30px ;
+}
+
+.name_column, .updated_column {
+  padding-right: 20px !important;
+}
+
+.updated_column, .owner_column, #owner_col_hdr {
+  padding-left: 20px !important;
+}
+
+/* Set the width on the health_reminders column to keep the
+ * date reminders icon and text from shifting when the health
+ * reminders counts are filled in
+ */
+.health_reminders_column {
+  width: 250px;
+}
+
+.link_column, .link_button_column {
+  text-align: left;
+}
+
+td.col3_btn {
+  padding-left: 10px;
+}
+
+td.access_cell {
+  padding-left: 10px !important;
+}
+
+/** buttons and links **/
+
+.envelope_button {
+  padding-bottom: 3px;
+  background: none;
+}
+
+.name_button, .name_string {
+  font-size: 16px;
+  background-color: #EBF3F7;
+}
+
+.updated_string {
+  font-size: 15px;
+  padding-right: 20px !important;
+}
+
+.text_button, .disabled_reminders {
+  font-size: 15px;
+  padding-left: 10px;
+  padding-right: 10px; 
+  background-color: #EBF3F7;
+}
+
+.calendar_button {
+  background: none;
+}
+
+.inline-block {
+  background-color: #EBF3F7;
+ }
+
+.name_string, .task_link, .text_button, #export_file_help_link {
+  text-decoration: underline;
+}
+
+.deleted_name_string {
+  text-decoration: line-through;
+}
+
+.deleted_text {
+  font-weight: bold;
+  text-align: center;
+}
+
+.has_deleted_text {
+  text-align: center  !important ;
+}
+
+.disabled_reminders {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.link_button {
+  font-size: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+button.task_button {
+  background-color:  #458AC5;
+  border-color: darkBlue; 
+  border-bottom-color: darkBlue; 
+  border-right-color: darkBlue; 
+  border-top-color: lightBlue; 
+  border-left-color: lightBlue;
+  border-width: 3px;
+  border-style: outset;
+  height: 25px;
+  padding: 0;
+  text-align: center;
+  width: 120px;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+button.wide_btn {
+  width: 210px !important;
+}
+
+button.very_wide_btn {
+  width: 260px !important;
+}
+
+button.task_button input {
+  border: 0;
+}
+
+button.task_button[disabled] {
+  background-color: #999;
+}
+
+button.task_button[disabled]:hover {
+  background-color: #999;
+  color: white;
+}
+#fe_other_invitations {
+  width: 215px !important;
+}
+.task_link, .link_column, .blank_column, .link_button  {
+  background-color: white;
+}
+
+/** state changes **/
+
+.name_string:hover, .text_button:hover, .link_button:hover,
+#export_file_help_link:hover, #removed_profiles_toggle:hover ,
+.name_string:active, .text_button:active, .link_button:active,
+#export_file_help_link:active, #removed_profiles_toggle:active {
+  color: DarkBlue;	
+}
+
+
+.name_string:focus, .text_button:focus, .link_button:focus,
+#export_file_help_link:focus, #removed_profiles_toggle:focus {
+  color: DarkBlue; 
+  outline: 2px solid lightBlue ;
+}
+
+.profile_icon_btn:focus, .wedgie_icon_btn:focus,
+.envelope_button:focus, .calendar_button:focus {
+  outline: 2px solid lightBlue;
+} 
+
+.task_button:focus, .task_button:hover {
+  color: DarkBlue;	
+}
+
+#fe_removed_profiles_toggle {
+  font-size: 16px ;
+  font-weight: bold ;
+  color: Black;
+  text-decoration: underline;
+  background-color: #EBF3F7;
+  display: none;
+}
+
+/** images **/
+
+.inline_image {
+  display: block; /* removes Firefox's extra space below the image in a button */
+}
+
+.wedgie_image {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 7px;
+  cursor: pointer;
+}
+
+.wedgie_icon_btn {
+  background-color: #EBF3F7;
+}
+
+.sprite_icons-env_red_whole {
+  padding-right: 6px;
+}
+
+.sprite_icons-env_blue_outline {
+  padding-right: 0px;
+}
+
+.sprite_icons-calendar {
+  border: 0 none;
+  margin: 0;
+  right: 4px;
+  top: 4px;
+  visibility: visible;
+  display: block;
+}
+
+/* Demographics box */
+
+img.requiredImgLabel {
+  float: left;
+  padding-right: 4px;
+  line-height: 10px;
+  padding-left: 2px;
+  margin-top: 5px;
+}
+
+span.requiredText {
+  font-size: 90% !important;
+  font-weight: 400 !important;
+  font-style: italic;
+  vertical-align: middle;
+  line-height: 10px;
+}
+
+div.reqNotice {
+  display: block;
+  padding-top: 12px;
+}
+
+div#access_notice {
+  display: block;
+  padding-top: 10px;
+}
+
+span#access_text {
+  color: red;
+  font-size: 90% !important;
+  vertical-align: middle;
+  line-height: 10px;
+}
+
+/** Export/Download and Share Invitation JQuery boxes **/
+
+#exportFormats {
+  border-collapse: separate;
+  border-spacing: 15pt;
+}
+
+#exportDialogFirstLine, #fe_invite_header_1_1,
+#fe_pending_list_header_1_1, #fe_access_list_header_1_1 {
+  font-size: x-large ;
+  color: #0078AE ;
+}
+
+#exportWarning {
+  background-color: LightGray ;
+  padding: 1em;
+}
+
+#exportContent, #exportWarning, #exportDialogFirstLine {
+  margin-bottom: 1em ;
+}
+
+#warning_image {
+  vertical-align: middle;
+  float: left;
+}
+
+label.radio_button {
+  margin-top: 1em !important;
+  padding-left: 2em;
+}
+
+#fe_button_set_1 {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.ui-dialog-content  #exportFormats td {
+   vertical-align: middle;
+   padding: 20px;
+   border-width: 5px ;
+   border: double;
+}
+
+.ui-widget input {
+  font-size: 15px !important;
+}
+
+#fe_birth_date_1_1 {
+  position: relative;
+  z-index: 100 !important;
+}
+
+img.ui-datepicker-trigger {
+  z-index: 101 !important;
+}
+
+button.export_button {
+  background: url(<%= asset_path "ui-bg_glass_45_0078ae_1x400.png" %>) repeat-x scroll 50% 50% #0078AE;
+  border: 1px solid #77D5F7;
+  border-radius: 5px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Ubuntu",Arial;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  height: 40px;
+  width: 85px;
+}
+
+
+button.export_button:hover {
+	border: 1px solid #448dae;
+	background: #79c9ec url(<%= asset_path 'ui-bg_glass_75_79c9ec_1x400.png' %>) 50% 50% repeat-x;
+	font-weight: normal;
+	color: #026890;
+}
+
+
+#fe_button_set_1_0_tbl tr {
+  background-color: transparent ;
+}
+
+#fe_button_set_1_0_tbl tr.labeled_fields:hover ,
+#fe_button_set_1_0_tbl tr.repeatingLine:focus ,
+#fe_button_set_1_0_tbl tr.repeatingLine:active {
+  background-color: transparent !important;
+}
+
+#fe_button_set_1_0_tbl td {
+  text-align: center;
+  border: 0 none !important;
+}
+
+#fe_button_set_1_0_tbl td {
+  text-align: center;
+  border: 0 none !important;
+}
+
+
+#exportExportBtn, #exportCancelBtn, #editSaveBtn, #editCancelBtn,
+#confDeleteYesBtn, #confDeleteNoBtn, #confRemoveAccessYesBtn,
+#confRemoveAccessNoBtn, #warningOKBtn {
+  text-align: center;
+  cursor: pointer;
+  overflow: visible;
+  position: relative;
+  margin: 1.4em 1em 1em 1em;
+}
+
+
+#fe_share_invitation_1_0 {
+  margin: 0 30px 0 0;
+}
+
+
+#fe_share_invitation_1_0_expcol label {
+  width: 20em;
+}
+
+#fe_share_invitation_1_0_expcol input[type="text"] {
+  width: 23em;
+}
+
+#fe_invite_header_1_1, #fe_access_list_header_1_1 {
+  margin-bottom: 0.75em
+}
+
+#fe_invite_preview_btn_1_1, #fe_dummy_accept_btn_1_1_1 {
+  color: #457FC0;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  width: 99%;
+  background-color: transparent;
+}
+
+#fe_invite_preview_btn_1_1:focus, #fe_invite_preview_btn_1_1:hover {
+  color: DarkBlue;
+}
+
+#fe_invitation_box_1_1_0 {
+  border: solid black;
+}
+
+
+#fe_invitation_box_1_1_0_expcol, #fe_access_list_1_0_expcol {
+  margin: 3px;
+}
+
+#fe_personalized_msg_1_1_1 {
+  margin-left: 10px;
+}
+
+#fe_pending_invitations_1_0, #fe_access_list_1_0 {
+  margin: 9px;
+}
+
+#pending_invites_box {
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 16px;
+}
+
+#pending_invites_list, #access_list_table {
+  border-style: solid !important ;
+  border-collapse: separate !important;
+  padding: 5px;
+  border-spacing: 10px;
+}
+
+#pending_invites_list_header_row, #access_list_header_row {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#pending_invites_list, #access_list tr {
+  border-bottom-style: solid !important;
+  border-bottom-width: thin;
+}
+
+#access_list_table {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.remove_this_access_button {
+  background-color: white ;
+  padding-left: 10px;
+  text-decoration: underline;
+  color: blue;
+}

@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Re-enter New Email</h1>
+		<p>
+		Please retype your new email address here to confirm.
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

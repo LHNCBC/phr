@@ -1,0 +1,67 @@
+| open | /phr_home |
+| setTimeout | 35000 |
+
+# ------------- verify initial screen for new user -------------
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+# -- Check for initial "Add a PHR" message box --
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.warningDialog_, testWindow_.Def.PHRHome.NO_PROFILES_TITLE)} | true |
+| verifyValue | ui-id-1 | javascript{testWindow_.Def.PHRHome.NO_ACTIVE_PROFILES_MSG} |
+| click | warningOKBtn |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'profile1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000/11 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 Nov |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Confirm that no account type info is shown on the top header bar
+| waitForExpression | javascript{(testWindow_.$("fe_form_header_0_expcol").innerHTML).indexOf('account)') == -1} | true |
+| pause | 500 |
+
+# Confirm that the sections start out closed
+| verifyNotVisible | fe_problem_1 |
+| verifyNotVisible | fe_name_and_route_1 |
+| verifyNotVisible | fe_allergy_name_1 |
+| verifyNotVisible | fe_surgery_type_1 |
+| verifyNotVisible | fe_tp1_loinc_panel_temp_1_1_0 |
+| verifyNotVisible | fe_imm_type_1 |
+| verifyNotVisible | fe_medtact_name_1 |
+| verifyNotVisible | fe_question_1 |
+| verifyNotVisible | fe_note_text_1 |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |
+

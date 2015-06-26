@@ -1,0 +1,26 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Using Short Selection Lists to Enter Data</h1>
+<p>	
+The PHR will display a drop-down list of choices before you begin typing a response. For example, 
+		when you click inside the allergy <b>Type</b> field, a list will display with the 
+		options, <b>Food</b>, <b>Medication classes</b>, <b>Medications specific</b> or <b>Other</b>.</p>
+	
+	<p>There are several ways to select an option from the list:
+	<ul>
+		<li>
+		Continue typing until the correct option is highlighted, then press the Tab 
+		or Enter key.</li>
+		<li>
+		Point to the correct option on the choice list with your mouse and click it.</li>
+		<li>
+		Use the Up or Down Arrow keys to move the highlight bar to the correct option 
+		and press the Enter key.</li>
+               <li>
+               If the list of options is a numbered list, you need only enter the item number next to your selection and the text will be filled into the form. </li>
+	</ul>	
+</p>
+	<p>If you are unable to find your desired option in the drop-down list, 
+	describe the problem in your own words. The input field will turn orange 
+	to remind you that you are not choosing an item from the selection list; however, the system will 
+	still accept and store the text.</p>
+<!--#include virtual="help_footer.shtml" -->		

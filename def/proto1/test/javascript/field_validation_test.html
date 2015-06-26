@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>JavaScript unit test file</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+    <style type="text/css">
+      input[required="true"]
+      {
+        background-color:yellow;
+      }
+      input.errReqOutline
+      {
+        outline:2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <div id="header">
+        <h1>JavaScript unit test file</h1>
+        <p>
+          This file tests <strong>field_validation.js</strong>.
+        </p>
+      </div>
+      <div id="testlog"></div>
+      <div id="validation_errors"><div id="validation_alerts"></div></div>
+
+      <form id="main_form">
+        <p>User Name:<input id="fe_username_1" class="required"/></p>
+        <p>Password:<input id="fe_password_1" /></p>
+        <p>Retype Password:<input id="fe_password_confirm_1" /></p>
+        <p>Email Address:<input id="fe_email_1" /></p>
+        <p>Drug Name:<input id="fe_drug_1" /></p>
+        <p>Date Field:<input id="fe_date_1" /></p>
+        <!-- The MakeDateFormat function needs the following two fields - Frank -->
+        <p>Date HL7 Field:<input id="fe_date_HL7_1" /></p>
+        <p>Date ET Field:<input id="fe_date_ET_1" /></p>
+        <p>Date Time Field:<input id="fe_date_time_1" /></p>
+        <p>Test Field:<input id="fe_test_value_1" /></p>
+      </form>
+
+    </div>
+
+    <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+    <script src="assets/effects.js?body=1" type="text/javascript"></script>
+    <script src="assets/controls.js?body=1" type="text/javascript"></script>
+    <script src="assets/jquery/jquery.js?body=1" type="text/javascript"></script>
+    <script src="assets/jquery-ui/js/jquery-ui.min.js?body=1" type="text/javascript"></script>
+    <script src="assets/application_phr.js?body=1" type="text/javascript"></script>
+    <script src="assets/navigation.js?body=1" type="text/javascript"></script>
+    <script src="assets/autocomp/autoCompBase.js?body=1" type="text/javascript"></script>
+    <script src="assets/autocomp/fieldAlarms.js" type="text/javascript"></script>
+    <script src="assets/autocomp/autoCompPrefetch.js?body=1" type="text/javascript"></script>
+    <script src="assets/autocomp/autoCompSearch.js?body=1" type="text/javascript"></script>
+    <script src="assets/logger.js?body=1" type="text/javascript"></script>
+    <script src="assets/idCache.js?body=1" type="text/javascript"></script>
+    <script src="assets/rules.js?body=1" type="text/javascript"></script>
+    <script src="assets/testpanel.js?body=1" type="text/javascript"></script>
+    <script src="assets/fieldEvents.js?body=1" type="text/javascript"></script>
+    <script src="assets/date.js?body=1" type="text/javascript"></script>
+    <script src="assets/dateTimeCalcs.js?body=1" type="text/javascript"></script>
+    <script src="assets/dateUtils.js?body=1" type="text/javascript"></script>
+    <script src="assets/validation.js?body=1" type="text/javascript"></script>
+    <script src="assets/field_validation.js?body=1" type="text/javascript"></script>
+    <script src="assets/autocomp/dialog.js?body=1" type="text/javascript"></script>
+    <script src="assets/fields_table.js?body=1" type="text/javascript"></script>
+    <script src="assets/tooltips.js?body=1" type="text/javascript"></script>
+
+    <script src="assets/unittest.js" type="text/javascript"></script>
+    <script>
+      var soundManager={
+        play: function(soundName){
+          console.log(soundName);
+        }
+      }
+
+      // used by field_validation.js#Def.Validation.checkUniqueness
+      Def.Validation.Base.UniqueValuesByField_ = {};
+      Def.Validation.Base.DefaultValueByField_ = {};
+      // Used by field_validation.js#Def.Validation.checkRegex
+      Def.REGEX_={
+        // for email address
+        "email":{
+          regex:"^\\s*((\\w+)(\\.\\w+)*)@((\\w+)(\\.\\w+)+)",
+          error_message: "Please enter a valid email address in the format username@hostname.domain. Username and hostname may have parts separated by a period (.).",
+          normalized_format: "#{$1}@#{$4}"
+        },
+        // for username
+        "user_name":{
+          regex:"(^[a-zA-Z]{1}[a-zA-Z0-9_]{5,31})",
+          error_message: "Please specify between 6 and 32 characters starting with an alphabet. Click help icon on right for detailed requirements.",
+          normalized_format: "#{$1}"
+        }
+      };
+
+      // validation rules
+      // the commented ones are dynamically defined in the test
+      Def.fieldValidations_ = {
+        username: [['regex','user_name'],["required","common"]],
+        password: [['password']],
+        password_confirm: [["confirmation","password"]],
+        email: [["regex", "email"]],
+        drug: [["xss"], ["uniqueness"]]
+        //date: [["date","YYYY/MM/DD",""],["date_range","Date Field","t-10y","t","",""]],
+        //date_time: [["time"]],
+      };
+
+      // Test helper function(s)
+      function vFindField(target){return findFields("fe_", target, "_1")[0];}
+
+      new Test.Unit.Runner({
+
+        // replace this with your real tests
+        setup: function() {
+        },
+
+        teardown: function() {
+        },
+
+        testFieldValidations: function() { with(this) {
+            function checkInvalidField(testField, invalidFormat, errorMessage ){
+              Def.setFieldVal(testField, invalidFormat, false);
+              Def.runValidations(testField);
+              var hasInvalidClass = testField.hasClassName("invalid") || (testField.hasClassName("required") && testField.hasClassName("errReqOutline"));
+              assert(hasInvalidClass,
+              "checkInvalidField() failed: input: The field: " + testField.id + " should have a classname called invalid or errReqOutline");
+              assert(testField.invalid,
+              "checkInvalidField() failed: input: " + invalidFormat + " on field: " + testField.id);
+              assertEqual(testField.errorMessage, errorMessage,
+              "checkInvalidField() failed: input: " + invalidFormat + " on field: " + testField.id);
+            }
+
+            function checkValidField(testField, validFormat ){
+              Def.setFieldVal(testField, validFormat, false);
+              Def.runValidations(testField);
+              var hasInvalidClass = testField.hasClassName("invalid") || (testField.hasClassName("required") && testField.hasClassName("errReqOutline"));
+              assert(!hasInvalidClass,
+              "checkValidField() failed: input: The field: " + testField.id + " should not have the classname called invalid or errReqOutline");
+              assert(!testField.invalid,
+              "checkValidField() failed: input: " + validFormat + " on field: " + testField.id);
+              assertEqual(testField.errorMessage, null,
+              "checkInvalidField() failed: The errorMessage property of field:" + testField.id + " should be null");
+            }
+
+            Def.vrFuncs.loadValidator();
+            var dv = Def.Validation;
+            var dvb = dv.Base;
+
+            var testField = errorMessage = format  = null;
+            //////////////////////////////////////////
+            // test username field (required field)
+            //////////////////////////////////////////
+            testField = vFindField("username");
+            errorMessage = Def.REGEX_['user_name'].error_message;
+            // starting with valid format matches to all
+            // - starting with alphabet letter and 6+ chars long
+            format = "abcded";
+            checkValidField(testField, format);
+            // - only 5-char long
+            format = "abcde";
+            checkInvalidField(testField, format, errorMessage);
+            // - 6-char long but not starting with alphabetic letter
+            format = "1abcde";
+            checkInvalidField(testField, format, errorMessage);
+            // required field validation
+            format = "";
+            errorMessage = dv.RequiredField.ErrDisplay.getTooltipErrMsg(testField);
+            checkInvalidField(testField, format, errorMessage);
+
+            ///////////////////////////
+            // test password field
+            ///////////////////////////
+            testField = vFindField("password");
+            // starting with valid format matches to all
+            // - 4 types of chars and 8+ chars long
+            format = "aaAA@@11";
+            checkValidField(testField, format);
+            // at least 8-char long
+            // - make it into less than 8-chars, but keep four types of chars
+            format = "aAA@@1";
+            errorMessage = dvb.getPasswordErrorMessage(["letter","capital","number","special"]);
+            checkInvalidField(testField, format, errorMessage);
+
+            // at least 3 types of chars
+            // - when 2 types of chars
+            format = "aaAAAAAA"; // 8 chars
+            errorMessage= dvb.getPasswordErrorMessage(["letter","capital","length"]);
+            checkInvalidField(testField, format, errorMessage);
+            // - when 3 types of chars
+            format = "aaAA@@@@"; // 8 chars
+            checkValidField(testField, format);
+
+            //////////////////////////////////
+            // test password_confirm field
+            //////////////////////////////////
+            testField = vFindField("password_confirm");
+            errorMessage = dvb.getConfirmationErrMsg("password")
+            format = "aaAA@@@@" + "1"; // miss-matched
+            checkInvalidField(testField, format, errorMessage);
+            format = "aaAA@@@@"; // matched
+            checkValidField(testField, format);
+
+            //////////////////////////////
+            // test email address field
+            //////////////////////////////
+            testField = vFindField("email");
+            errorMessage = Def.REGEX_['email'].error_message;
+            // starting with valid format matches to all
+            // - username, hostname and domain have to be word class
+            format = "a@a.a";
+            checkValidField(testField, format);
+            format = "_@_._";
+            checkValidField(testField, format);
+            format = "1@1.1";
+            checkValidField(testField, format);
+            // - allow multiple "."s on both sides of "@"
+            format = "a.a.a@a.a.a.a.a";
+            checkValidField(testField, format);
+            // - non-word class is not allowed
+            format = "a$@a.a";
+            checkInvalidField(testField, format, errorMessage);
+            // - missing "." character between host and domain
+            format = "a@aa";
+            checkInvalidField(testField, format, errorMessage);
+            // - missing "@" character between host and username
+            format = "aa.a";
+            checkInvalidField(testField, format, errorMessage);
+
+            /////////////////////////////////////
+            // test xss field (i.e. drug field)
+            ////////////////////////////////////
+            testField = vFindField("drug");
+            errorMessage = dvb.ErrorMessages_.uniqueness;
+           // errorMessage = Def.REGEX_['drug'].error_message;
+            // starting with valid format matches to all
+            // - username, hostname and domain have to be word class
+            format = "foo<a>bar";
+            checkValidField(testField, format);
+            actual = Def.getFieldVal(testField);
+            expected = "foo< a>bar";
+            assertEqual(actual, expected);
+            dv.Xss.dialog_.hide();
+
+            dvb.UniqueValuesByField_["drug"]=["a","b","c","aa"];
+            dvb.DefaultValueByField_["fe_drug_1"]="aa";
+            format = "abc";
+            checkValidField(testField, format);
+            format = "a";
+            checkInvalidField(testField, format, errorMessage);
+            format = "aa";
+            checkValidField(testField, format);
+
+            ///////////////////////////
+            // test date field
+            ///////////////////////////
+            targetField = "date";
+            testField = vFindField(targetField);
+            dateFormat = "YYYY/MM/DD", displayName = "Date Field", min = "t-140y", max="t";
+            // setup validation rules for the testField
+            Def.fieldValidations_[targetField]=[
+              ["date", dateFormat,""],
+              ["date_range",displayName, min, max, "", ""]];
+            ///////////////////////////////////////
+            // test date format and date range
+            //////////////////////////////////////
+            format = "2011/01/01";
+            checkValidField(testField, format);
+            format = "2011/01";
+            checkValidField(testField, format);
+            format = "2011/abcde";
+            errorMessage = dvb.getDateFieldErrMsgByField(testField);
+            checkInvalidField(testField, format, errorMessage);
+            ///////////////////////////
+             // test date range
+            ///////////////////////////
+            // later than max date
+            format = (new Date().getFullYear() + 1)+"/01/01";
+            errorMessage = dvb.getMaxDateErrMsg(Date.parse(max), displayName);
+            checkInvalidField(testField, format, errorMessage);
+            // earlier than min date
+            format = (new Date().getFullYear() - 141)+"/01/01";
+            errorMessage = dvb.getMinDateErrMsg(Date.parse(min), displayName);
+            checkInvalidField(testField, format, errorMessage);
+
+            ///////////////////////////
+            // test time field
+            ///////////////////////////
+            targetField = "date_time";
+            testField = vFindField(targetField);
+            // setup validation rules for the testField
+            Def.fieldValidations_[targetField]=[["time"]];
+            format="11:21";
+            checkValidField(testField, format);
+            format="xx:xx";
+            errorMessage = dvb.ErrorMessages_.time;
+            checkInvalidField(testField, format, errorMessage);
+
+            ////////////////////////////////////////
+            // test removeUniqueFieldValue function
+            ////////////////////////////////////////
+            Def.Validation.Base.UniqueValuesByField_ = {'pseudonym':["tester_a"]};
+            // The data model is needed only for updating the default value of unique field which
+            // is not tested here, therefore, we assign an empty {} to it.
+            Def.DataModel = {}
+            Def.removeUniqueFieldValue('pseudonym','tester_a');
+            assertEqual(Def.Validation.Base.UniqueValuesByField_['pseudonym'].length, 0,
+               "The function Def.removeUniqueFieldValue failed");
+          }}
+      }, "testlog");
+    </script>
+  </body>
+</html>

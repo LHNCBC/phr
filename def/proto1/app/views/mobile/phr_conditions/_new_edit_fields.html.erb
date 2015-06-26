@@ -1,0 +1,16 @@
+<div>
+  <%= fd_labeled_text_value @fds['problem'], @phr_condition %>
+  <% if @phr_condition.new_record? %>
+      <%= phr_hidden_field @phr_condition, 'problem' %>
+      <% if !@phr_condition.problem_C.blank? %>
+          <%= phr_hidden_field @phr_condition, 'problem_C' %>
+      <% end %>
+  <% end %>
+</div>
+<div><%= fd_prefetched_list_mb @fds['present'], @phr_condition, @statuses, false %></div>
+<div><%= fd_date_field_mb @fds['when_started'], @phr_condition %></div>
+<div><%= fd_date_field_mb @fds['cond_stop'], @phr_condition %></div>
+<div><%= fd_text_field_mb @fds['prob_desc'], @phr_condition %></div>
+<br>
+<%= submit_tag_m 'Save' %>
+<%= link_to_m 'Cancel', phr_record_phr_conditions_path %>

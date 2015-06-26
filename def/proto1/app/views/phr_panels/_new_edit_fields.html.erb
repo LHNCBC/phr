@@ -1,0 +1,13 @@
+<%# For editing the panel information fields  %>
+  <div><%=fd_date_field @fds['tp_panel_testdate'], @data_rec %>
+    <%= phr_hidden_field @data_rec, 'loinc_num' %></div>
+  <div><%=fd_text_field @fds['tp_panel_testdate_time'], @data_rec %></div>
+  <div><%= fd_prefetched_list @fds['tp_panel_testplace'], @data_rec, @places,
+           nil, nil, nil, false %></div>
+  <div><%=fd_text_field @fds['tp_panel_summary'], @data_rec %></div>
+  <div><%=fd_date_field @fds['tp_panel_duedate'], @data_rec %></div>
+  <%= @instructions %>
+  <br>
+  <%= submit_tag 'Save' %>
+  <%= link_to 'Cancel', @data_rec.new_record? ? phr_record_phr_panels_path :
+                           phr_record_phr_panel_path(@phr_record, @data_rec) %>

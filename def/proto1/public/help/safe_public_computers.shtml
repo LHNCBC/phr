@@ -1,0 +1,19 @@
+<!--#include virtual="help_header.shtml" -->
+
+<h1>Safety Tips for Using Public Computers</h1>
+<p>Be aware that hackers, thieves, and snoops take advantage of the systems and networks available in public places to gain access to to sensitive information such as bank account numbers, user IDs, passwords, and credit card numbers. They may use or install software on unsecured networks and public computers that will save or email your keystrokes and mouse clicks back to them. People in public places can easily "shoulder snoop" to watch or record you as you enter sensitive information on a keyboard.  Thieves may also check for sensitive information left behind on public computers when users either fail to log out or erase their browsing history.</p>
+<p>
+Web sites that begin with  an https: address (the secure HTTP protocol) are safer than those that begin with http: because they encrypt the traffic between the computer you are using and their site. The traffic can still be seen by hackers, but it cannot easily be unencrypted.
+</p>
+<h3>Practice these safety tips to minimize the possibility of compromising your sensitive information on public networks or computers: </h3>
+<p>
+<ul>
+<li>Whenever possible, avoid using public computers when entering or accessing sensitive information.  </li>
+<li>Disable automatic login features that save your account ID and/or passwords; for example, sites that use a "Remember me" option on the login page. </li>
+<li>Do not leave your computer unattended while in a public place.</li>
+<li>Delete your browsing history and temporary internet files from within your browser. Visit your browser's support site to learn how to delete your browsing history and learn more about private browsing options. 
+<li> Always log out of the PHR or other web sites when you are finished using them. </li> 
+
+</ul>
+</p>
+<!--#include virtual="help_footer.shtml" -->

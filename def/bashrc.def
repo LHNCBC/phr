@@ -1,0 +1,4 @@
+# We use tcsh on this project, but some scripts run sh,
+# so this provised some needed settings.
+umask 022
+export PATH=~/def/bin:$PATH

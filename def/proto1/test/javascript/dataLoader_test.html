@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <!-- The following js files are copied from new.html -->
+
+
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+</head>
+<body onload="Def.Navigation.setUpNavKeys()" >
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>dataLoader.js</strong>.
+    </p>
+  </div>
+
+  <!-- Log output -->
+  <div id="testlog"> </div>
+  <!-- start test html-->
+  <div id="searchResults">
+    <div id='moreResults'></div>
+  </div>
+<form action="/accounts/new" id="main_form" method="post">
+  <!-- Table one: max_responses = 2 -->
+<div class="fieldGroup" id="fe_signup_quest_0" max_responses="2" >
+     <div class="fieldExpColDiv expand_collapse" id="fe_signup_quest_0_expcol" suffix=_0>
+
+     <div class="no_group_hdr fieldGroup" id="fe_fix_quest_1_0" max_responses="2" >
+
+     <div class="fieldExpColDiv expand_collapse" id="fe_fix_quest_1_0_expcol" suffix=_1_0>
+
+     <table border=1 cellpadding=0 cellspacing=0 class="fieldsTable sortable" id="fe_fix_quest_1_0_tbl" suffix=_1_0 style="table-layout: fixed" nextid="2"><th class="fieldsTableHeader" id="fe_su_fix_quest_hd" width="50%">Select security questions
+
+     <tr class="repeatingLine" rowId=0 suffix=_1_0 style="display: none; width: 99%">
+     <td style="display: none; width: 0;" class="hidden_field"><input id="fe_fix_quest_id_1_0" name="fe[fix_quest_id_1_0]" size="30" type="text" /></td>
+     <td style="width: 50%;"><span class ="field" style="position:relative"><input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " autocomplete="off" class="ansList eventsHandled" id="fe_su_fix_quest_1_0" name="fe[su_fix_quest_1_0]" onblur="repeatingLine(this, 2) ; toggleTipMessages(this.parentNode) ;" onfocus="hideTheList(this)"  style="width: 97%"  type="text" />
+     </span></td>
+     <td style="width: 50%;"><span style="position:relative">
+     <input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " id="fe_su_fixansw_1_0" name="fe[su_fixansw_1_0]" onblur="repeatingLine(this, 2) ;  if(this.value == '') {this.style.opacity = '0.0'} else {this.nextSibling.opacity = '0.0'}" onfocus="hideTheList(this)"  style="width: 97%"  type="text" >
+     </input></span></td><td id="col_aligner" style="width: .5%;">&nbsp;</td></tr>
+
+     <tr class="repeatingLine" rowId=1 suffix=_1_1 style="width: 99%">
+     <td style="display: none; width: 0;" class="hidden_field"><input id="fe_fix_quest_id_1_1" name="fe[fix_quest_id_1_1]" size="30" type="text" /></td>
+     <td style="width: 50%;"><span class ="field" style="position:relative"><input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " autocomplete="off" class="ansList eventsHandled" id="fe_su_fix_quest_1_1" name="fe[su_fix_quest_1_1]" onblur="repeatingLine(this, 2) ; toggleTipMessages(this.parentNode) ;" onfocus="hideTheList(this)"  style="width: 97%"  type="text" />
+     </span></td>
+     <td style="width: 50%;"><span style="position:relative">
+     <input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " id="fe_su_fixansw_1_1" name="fe[su_fixansw_1_1]" onblur="repeatingLine(this, 2) ;  if(this.value == '') {this.style.opacity = '0.0'} else {this.nextSibling.opacity = '0.0'}" onfocus="hideTheList(this)"  style="width: 97%"  type="text" >
+     </input>
+     </span>
+     </td>
+     </tr>
+     </table>
+
+     </div>
+</div>
+<!-- end Table one-->
+
+
+  <!-- Table two: max_responses = 0 -->
+<div class="fieldGroup" id="fe_signup_quest_tb2_0" max_responses="0" >
+     <div class="fieldExpColDiv expand_collapse" id="fe_signup_quest_tb2_0_expcol" suffix=_0>
+     <div class="no_group_hdr fieldGroup" id="fe_fix_quest_tb2_1_0" max_responses="0" >
+
+     <div class="fieldExpColDiv expand_collapse" id="fe_fix_quest_tb2_1_0_expcol" suffix=_1_0>
+     <table border=1 cellpadding=0 cellspacing=0 class="fieldsTable sortable" id="fe_fix_quest_tb2_1_0_tbl" suffix=_1_0 style="table-layout: fixed" nextid="2"><th class="fieldsTableHeader" id="fe_su_fix_quest_tb2_hd" width="50%">Select security questions
+     <tr class="repeatingLine" rowId=0 suffix=_1_0 style="display: none; width: 99%">
+     <td style="display: none; width: 0;" class="hidden_field"><input id="fe_fix_quest_tb2_id_1_0" name="fe[fix_quest_tb2_id_1_0]" size="30" type="text" /></td>
+     <td style="width: 50%;"><span class ="field" style="position:relative"><input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " autocomplete="off" class="ansList eventsHandled" id="fe_su_fix_quest_tb2_1_0" name="fe[su_fix_quest_tb2_1_0]" onblur="repeatingLine(this, 2) ; toggleTipMessages(this.parentNode) ;" onfocus="hideTheList(this)"  style="width: 97%"  type="text" />
+
+     </span></td>
+     <td style="width: 50%;"><span style="position:relative">
+     <input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " id="fe_su_fixansw_tb2_1_0" name="fe[su_fixansw_tb2_1_0]" onblur="repeatingLine(this, 2) ;  if(this.value == '') {this.style.opacity = '0.0'} else {this.nextSibling.opacity = '0.0'}" onfocus="hideTheList(this)"  style="width: 97%"  type="text" >
+     </input>
+     </span>
+     </td>
+     </tr>
+
+     <tr class="repeatingLine" rowId=1 suffix=_1_1 style="width: 99%">
+     <td style="display: none; width: 0;" class="hidden_field"><input id="fe_fix_quest_tb2_id_1_1" name="fe[fix_quest_tb2_id_1_1]" size="30" type="text" /></td>
+     <td style="width: 50%;"><span class ="field" style="position:relative"><input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " autocomplete="off" class="ansList eventsHandled" id="fe_su_fix_quest_tb2_1_1" name="fe[su_fix_quest_tb2_1_1]" onblur="repeatingLine(this, 2) ; toggleTipMessages(this.parentNode) ;" onfocus="hideTheList(this)"  style="width: 97%"  type="text" />
+     </span></td>
+     <td style="width: 50%;"><span style="position:relative">
+     <input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " id="fe_su_fixansw_tb2_1_1" name="fe[su_fixansw_tb2_1_1]" onblur="repeatingLine(this, 2) ;  if(this.value == '') {this.style.opacity = '0.0'} else {this.nextSibling.opacity = '0.0'}" onfocus="hideTheList(this)"  style="width: 97%"  type="text" >
+     </input>
+     </span>
+     </td>
+     </tr>
+     </table>
+     </div>
+</div>
+<!-- end Table two-->
+
+  <!-- Table three: no max_responses  -->
+<div class="fieldGroup" id="fe_signup_quest_tb3_0" max_responses="0">
+     <div class="fieldExpColDiv expand_collapse" id="fe_signup_quest_tb3_0_expcol" suffix=_0>
+      <div class="no_group_hdr fieldGroup" id="fe_fix_quest_tb3_1_0"  >
+
+     <div class="fieldExpColDiv expand_collapse" id="fe_fix_quest_tb3_1_0_expcol" suffix=_1_0>
+     <table border=1 cellpadding=0 cellspacing=0 class="fieldsTable sortable" id="fe_fix_quest_tb3_1_0_tbl" suffix=_1_0 style="table-layout: fixed" nextid="2"><th class="fieldsTableHeader" id="fe_su_fix_quest_tb3_hd" width="50%">Select security questions
+     <tr class="repeatingLine" rowId=0 suffix=_1_0 style="display: none; width: 99%">
+     <td style="display: none; width: 0;" class="hidden_field"><input id="fe_fix_quest_tb3_id_1_0" name="fe[fix_quest_tb3_id_1_0]" size="30" type="text" /></td>
+     <td style="width: 50%;"><span class ="field" style="position:relative"><input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " autocomplete="off" class="ansList eventsHandled" id="fe_su_fix_quest_tb3_1_0" name="fe[su_fix_quest_tb3_1_0]" onblur="repeatingLine(this, 2) ; toggleTipMessages(this.parentNode) ;" onfocus="hideTheList(this)"  style="width: 97%"  type="text" />
+
+     </span></td>
+     <td style="width: 50%;"><span style="position:relative">
+     <input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " id="fe_su_fixansw_tb3_1_0" name="fe[su_fixansw_tb3_1_0]" onblur="repeatingLine(this, 2) ;  if(this.value == '') {this.style.opacity = '0.0'} else {this.nextSibling.opacity = '0.0'}" onfocus="hideTheList(this)"  style="width: 97%"  type="text" >
+     </input>
+     </span>
+     </td>
+     </tr>
+
+     <tr class="repeatingLine" rowId=1 suffix=_1_1 style="width: 99%">
+     <td style="display: none; width: 0;" class="hidden_field"><input id="fe_fix_quest_tb3_id_1_1" name="fe[fix_quest_tb3_id_1_1]" size="30" type="text" /></td>
+     <td style="width: 50%;"><span class ="field" style="position:relative"><input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " autocomplete="off" class="ansList eventsHandled" id="fe_su_fix_quest_tb3_1_1" name="fe[su_fix_quest_tb3_1_1]" onblur="repeatingLine(this, 2) ; toggleTipMessages(this.parentNode) ;" onfocus="hideTheList(this)"  style="width: 97%"  type="text" />
+     </span></td>
+     <td style="width: 50%;"><span style="position:relative">
+     <input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " id="fe_su_fixansw_tb3_1_1" name="fe[su_fixansw_tb3_1_1]" onblur="repeatingLine(this, 2) ;  if(this.value == '') {this.style.opacity = '0.0'} else {this.nextSibling.opacity = '0.0'}" onfocus="hideTheList(this)"  style="width: 97%"  type="text" >
+     </input>
+     </span>
+     </td>
+     </tr>
+     </table>
+     </div>
+</div>
+<!-- end Table three-->
+
+  <!-- Table four: max_responses == 1 -->
+<div class="fieldGroup" id="fe_signup_quest_tb4_0" max_responses="1">
+     <div class="fieldExpColDiv expand_collapse" id="fe_signup_quest_tb4_0_expcol" suffix=_0>
+      <div class="no_group_hdr fieldGroup" id="fe_fix_quest_tb4_1_0"  max_responses="1">
+
+     <div class="fieldExpColDiv expand_collapse" id="fe_fix_quest_tb4_1_0_expcol" suffix=_1_0>
+     <table border=1 cellpadding=0 cellspacing=0 class="fieldsTable sortable" id="fe_fix_quest_tb4_1_0_tbl" suffix=_1_0 style="table-layout: fixed" nextid="2"><th class="fieldsTableHeader" id="fe_su_fix_quest_tb4_hd" width="50%">Select security questions
+     <tr class="repeatingLine" rowId=0 suffix=_1_0 style="display: none; width: 99%">
+     <td style="display: none; width: 0;" class="hidden_field"><input id="fe_fix_quest_tb4_id_1_0" name="fe[fix_quest_tb4_id_1_0]" size="30" type="text" /></td>
+     <td style="width: 50%;"><span class ="field" style="position:relative"><input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " autocomplete="off" class="ansList eventsHandled" id="fe_su_fix_quest_tb4_1_0" name="fe[su_fix_quest_tb4_1_0]" onblur="repeatingLine(this, 2) ; toggleTipMessages(this.parentNode) ;" onfocus="hideTheList(this)"  style="width: 97%"  type="text" />
+
+     </span></td>
+     <td style="width: 50%;"><span style="position:relative">
+     <input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " id="fe_su_fixansw_tb4_1_0" name="fe[su_fixansw_tb4_1_0]" onblur="repeatingLine(this, 2) ;  if(this.value == '') {this.style.opacity = '0.0'} else {this.nextSibling.opacity = '0.0'}" onfocus="hideTheList(this)"  style="width: 97%"  type="text" >
+     </input>
+     </span>
+     </td>
+     </tr>
+
+     <tr class="repeatingLine" rowId=1 suffix=_1_1 style="width: 99%">
+     <td style="display: none; width: 0;" class="hidden_field"><input id="fe_fix_quest_tb4_id_1_1" name="fe[fix_quest_tb4_id_1_1]" size="30" type="text" /></td>
+     <td style="width: 50%;"><span class ="field" style="position:relative"><input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " autocomplete="off" class="ansList eventsHandled" id="fe_su_fix_quest_tb4_1_1" name="fe[su_fix_quest_tb4_1_1]" onblur="repeatingLine(this, 2) ; toggleTipMessages(this.parentNode) ;" onfocus="hideTheList(this)"  style="width: 97%"  type="text" />
+     </span></td>
+     <td style="width: 50%;"><span style="position:relative">
+     <input  onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " id="fe_su_fixansw_tb4_1_1" name="fe[su_fixansw_tb4_1_1]" onblur="repeatingLine(this, 2) ;  if(this.value == '') {this.style.opacity = '0.0'} else {this.nextSibling.opacity = '0.0'}" onfocus="hideTheList(this)"  style="width: 97%"  type="text" >
+     </input>
+     </span>
+     </td>
+     </tr>
+     </table>
+     </div>
+</div>
+<!-- end Table four -->
+
+<!-- Test for setting an autocompleter's list and value -->
+<input id="fe_drug_status" type='text'/>
+<span id="completionOptions" />
+  <!-- script part of test is below -->
+<!-- End Test for setting an autocompleter's list and value -->
+
+<!-- For testSetFieldValue -->
+<div class="field">
+         <div class="static_text" id="fe_instructions2" htmlParseLevel="1"></div>
+         <br clear=left></div>
+<div class="field">
+         <div class="static_text" id="fe_instructions3"></div>
+         <br clear=left></div>
+ <!-- End For testSetFieldValue -->
+
+
+
+
+</form>
+<!-- end -->
+</div>
+
+
+    <script src="assets/prototype.js?body=1?1204322774" type="text/javascript"></script>
+      <script src="assets/unittest.js" type="text/javascript"></script>
+<script src="assets/effects.js?body=1?1204729040" type="text/javascript"></script>
+
+<script src="assets/dragdrop.js?body=1?1172692621" type="text/javascript"></script>
+<script src="assets/controls.js?body=1?1204729040" type="text/javascript"></script>
+<script src="assets/jquery/jquery.js" type="text/javascript"></script>
+<script src="assets/jquery-ui/js/jquery-ui.min.js" type="text/javascript"></script>
+<script type="text/javascript">jQuery.noConflict();</script>
+<script src="assets/application_phr.js?body=1?1216828476" type="text/javascript"></script>
+    <script src="assets/logger.js?body=1?1202415434" type="text/javascript"></script>
+    <script src="assets/rules.js?body=1?1216837884" type="text/javascript"></script>
+    <script src="assets/idCache.js?body=1?1209405837" type="text/javascript"></script>
+    <script src="assets/autocomp/screenReaderLog.js" type="text/javascript"></script>
+    <script src="assets/autocomp/autoCompBase.js?body=1"
+            type="text/javascript"></script>
+    <script src="assets/autocomp/fieldAlarms.js" type="text/javascript"></script>
+    <script src="assets/autocomp/bonk.js" type="text/javascript"></script>
+    <script src="assets/autocomp/autoCompPrefetch.js?body=1"
+            type="text/javascript"></script>
+    <script src="assets/autocomp/autoCompSearch.js?body=1"
+            type="text/javascript"></script>
+    <script src="assets/browser_detect.js?body=1"
+            type="text/javascript"></script>
+    <script src="assets/absPos.js?body=1?1213994577" type="text/javascript"></script>
+
+    <script src="assets/getEnv.js?body=1?1177633940" type="text/javascript"></script>
+    <script src="assets/popups.js?body=1?1212440155" type="text/javascript"></script>
+    <script src="assets/popupMplusDrugs.js?body=1?1202865359" type="text/javascript"></script>
+    <script src="assets/resizing.js?body=1?1197406371" type="text/javascript"></script>
+    <!-- fields_table.js need to call functions in validation.js-->
+    <script src="assets/validation.js?body=1" type="text/javascript"></script>
+    <script src="assets/sorttable.js?body=1?1204210727" type="text/javascript"></script>
+
+    <script src="assets/dateTimeCalcs.js?body=1?1216246266" type="text/javascript"></script>
+    <script src="assets/dependencies.js?body=1?1202854042" type="text/javascript"></script>
+    <script src="assets/navigation.js?body=1?1216828476" type="text/javascript"></script>
+    <script src="assets/messageManager.js?body=1?1196220493" type="text/javascript"></script>
+    <script src="assets/fieldOps.js?body=1?1209066398" type="text/javascript"></script>
+    <script src="assets/fields_table.js?body=1?1216414435" type="text/javascript"></script>
+
+    <script src="assets/tooltips.js?body=1?1216322437" type="text/javascript"></script>
+    <script src="assets/dataLoader.js?body=1?1216843142" type="text/javascript"></script>
+
+    <script src="assets/printableView.js?body=1?1209663515" type="text/javascript"></script>
+    <!-- script for large Edit Box -->
+    <script src="assets/lgEditBox.js?body=1?1216160146" type="text/javascript"></script>
+
+    <!-- scripts for calendar data entry ((style is included above)-->
+    <script src="assets/jscalendar/calendar.js?body=1?1177633940" type="text/javascript"></script>
+
+    <script src="assets/jscalendar/calendar-setup.js?body=1?1215031931" type="text/javascript"></script>
+    <script src="assets/jscalendar/lang/calendar-en.js?body=1?1176933199" type="text/javascript"></script>
+    <script src="assets/date.js?body=1?1210012490" type="text/javascript"></script>
+    <script src="assets/jscalendar_date_format.js?body=1?1199820304" type="text/javascript"></script>
+
+
+    <script src="assets/testpanel.js?body=1?1215805362" type="text/javascript"></script>
+    <script src="assets/formBuilder.js?body=1?1216747576" type="text/javascript"></script>
+
+
+<!-- Test for setting an autocompleter's list and value (script part of
+ test) -->
+<script type="text/javascript">
+var fe_present_1_autoComp =
+  new Def.Autocompleter.Prefetch('fe_drug_status', []);
+</script>
+<!-- End Test for setting an autocompleter's list and value (script part of
+ test)-->
+
+
+
+<script type="text/javascript">
+// <![CDATA[
+
+  new Test.Unit.Runner({
+
+    // replace this with your real tests
+
+    setup: function() {
+
+    },
+
+    teardown: function() {
+
+    },
+
+    // We test data loading in a table of web page
+    // the test is based on the fix security question in signup page.
+    testLoadDataTable: function() { with(this) {
+
+      //create a datahas to simulate the process of filling table
+      // the dataHas is based the signup page
+      var dataHash={
+        signup_quest:
+        {
+          fix_quest:
+            [
+            {su_fix_quest: 'table 1 What city ? 1', su_fixansw: 'table 1  1'},
+            {su_fix_quest: 'table 1 What city ? 2', su_fixansw: 'table 1  2'},
+            ]
+        },
+        signup_quest_tb2:
+        {
+          fix_quest_tb2:
+            [
+            {su_fix_quest_tb2: 'table 2 What ? 1', su_fixansw_tb2: 'table 2 1'},
+            {su_fix_quest_tb2: 'table 2 What ? 2', su_fixansw_tb2: 'table 2 2'},
+            ]
+        },
+        signup_quest_tb3:
+        {
+          fix_quest_tb3:
+            [
+            {su_fix_quest_tb3: 'table 3 What ? 1', su_fixansw_tb3: 'table 3 1'},
+            {su_fix_quest_tb3: 'table 3 What ? 2', su_fixansw_tb3: 'table 3 2'},
+            ]
+        },
+        signup_quest_tb4:
+        {
+          fix_quest_tb4:
+            [
+            {su_fix_quest_tb4: 'table 3 What ? 1', su_fixansw_tb4: 'table 3 1'},
+            ]
+        }
+      };
+
+      //Test the datahash table is correctly loaded in a table
+      Def.DataLoader.loadData(dataHash,null)
+
+      // find the length of tr in arrTr. Since there are two extra rows,
+      // we reduce 2
+      var arrTr = $('fe_fix_quest_1_0_tbl').select("tr")
+      acctualTrNum = parseInt(arrTr.size()) - 2
+
+      //check the numbers by using assertEqual (expected, actual num, errormsg)
+      assertEqual(2, acctualTrNum, 'max_responses =2, it is supposed to have two rows');
+      // Also check that the two rows got correct values.
+      assertEqual('table 1  1', $('fe_su_fixansw_1_1').value,
+        'max_responses=2');
+      assertEqual('table 1  2', $('fe_su_fixansw_1_2').value,
+        'max_responses=2');
+
+
+      arrTr = $('fe_fix_quest_tb2_1_0_tbl').select("tr")
+      acctualTrNum = parseInt(arrTr.size()) - 2
+
+      //check the numbers by using assertEqual (expected, actual num, errormsg)
+      assertEqual(3, acctualTrNum, 'max_responses = 0, it is supposed to have three rows');
+
+      arrTr = $('fe_fix_quest_tb3_1_0_tbl').select("tr")
+      acctualTrNum = parseInt(arrTr.size()) - 2
+
+      //check the numbers by using assertEqual (expected, actual num, errormsg)
+      assertEqual(3, acctualTrNum, 'no max_responses, it is supposed to have three rows');
+
+      arrTr = $('fe_fix_quest_tb4_1_0_tbl').select("tr")
+      acctualTrNum = parseInt(arrTr.size()) - 2
+      assertEqual(1, acctualTrNum,
+        'There should be just one row in this table');
+    }},
+
+
+    testGetBulletListMatrix: function() { with(this) {
+      // Test an empty array.
+      var rtn = Def.DataLoader.getBulletListMatrix([], 30);
+      assertEqual(0, rtn.size(), 'empty: rtn size');
+
+      // Test a one element array
+      rtn = Def.DataLoader.getBulletListMatrix(['hi'], 30);
+      assertEqual(1, rtn.size(), 'one: rtn size');
+      assertEqual(1, rtn[0].size(), 'one: rtn[0] size');
+
+      // Make a one-column list
+      var arrayData = ['one', 'two', 'three', 'four', 'five'];
+      rtn = Def.DataLoader.getBulletListMatrix(arrayData, 0);
+      assertEqual(1, rtn.size(), 'one column: rtn size');
+      assertEqual(5, rtn[0].size(), 'one column: rtn[0] size');
+
+      // Make a one-column length with a short maxRowChars parameter.
+      rtn = Def.DataLoader.getBulletListMatrix(arrayData, 2);
+      assertEqual(1, rtn.size(), 'one column: rtn size');
+      assertEqual(5, rtn[0].size(), 'one column: rtn[0] size');
+      assertEqual('one', rtn[0][0], 'one column: rtn[0][0]');
+      assertEqual('two', rtn[0][1], 'one column: rtn[0][1]');
+
+      // Make a two-column list.
+      rtn = Def.DataLoader.getBulletListMatrix(arrayData, 7);
+      assertEqual(2, rtn.size(), 'two columns: rtn size');
+      assertEqual(3, rtn[0].size(), 'two columns: rtn[0] size');
+      assertEqual(2, rtn[1].size(), 'two columns: rtn[1] size');
+      assertEqual('one', rtn[0][0], 'two columns: rtn[0][0]');
+      assertEqual('two', rtn[0][1], 'two columns: rtn[0][1]');
+      assertEqual('four', rtn[1][0], 'two columns: rtn[0][1]');
+
+      // Make a three-column list.
+      rtn = Def.DataLoader.getBulletListMatrix(arrayData, 12);
+      assertEqual(3, rtn.size(), 'three columns: rtn size');
+      assertEqual(2, rtn[0].size(), 'three columns: rtn[0] size');
+      assertEqual(2, rtn[1].size(), 'three columns: rtn[1] size');
+      assertEqual(1, rtn[2].size(), 'three columns: rtn[2] size');
+      assertEqual('one', rtn[0][0], 'three columns: rtn[0][0]');
+      assertEqual('two', rtn[0][1], 'three columns: rtn[0][1]');
+      assertEqual('three', rtn[1][0], 'three columns: rtn[0][1]');
+      assertEqual('five', rtn[2][0], 'three columns: rtn[0][1]');
+    }},
+
+
+    /**
+     *  Tests setting the data for a bullet list matrix (in a static_text
+     *  field).
+     */
+    testSetBulletListField: function() { with(this) {
+      var dataHash = {
+         instructions2: ['one', 'two', 'three']}
+      Def.DataLoader.loadData(dataHash,null);
+      // Confirm that the value was set as a bullet list.
+      var fieldHTML = $('fe_instructions2').innerHTML;
+      assertEqual(0, fieldHTML.indexOf('<div class="bullet_list_column">'));
+    }},
+
+
+    /**
+     *  Tests setting the data a for an autocompletion list.
+     */
+    testSetAutocompList: function() { with(this) {
+      var dataHash = {
+        drug_status: ['Inactive', ['Active', 'Inactive', 'Remove'],
+                      ['DRG-A', 'DRG-I', 'DRG-R']]
+      };
+
+      Def.DataLoader.loadData(dataHash,null);
+      assertEqual('Inactive', $('fe_drug_status').value);
+      assertEqual('Active', $('fe_drug_status').autocomp.rawList_[0]);
+      assertEqual('DRG-A', $('fe_drug_status').autocomp.itemCodes_[0]);
+    }},
+
+
+    testSetFieldValue: function() { with(this) {
+      // At the moment, this just tests the setting of static text fields.
+      var dataHash = {
+        instructions2: 'one<br>two<script>',
+        instructions3: 'one<br>two<script>'
+      };
+
+      Def.DataLoader.loadData(dataHash,null);
+      // Test htmlParseLevel = 1
+      assertEqual('one<br>two&lt;script&gt;', $('fe_instructions2').innerHTML);
+      // Test htmlParseLevel = 0
+      assertEqual('one&lt;br&gt;two&lt;script&gt;',
+        $('fe_instructions3').innerHTML);
+    }}
+  }, "testlog");
+// ]]>
+</script>
+</body>
+</html>

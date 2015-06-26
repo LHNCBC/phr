@@ -1,0 +1,11 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Pap Test</h1>
+		
+		<p>If you are a woman and have had a cervical Pap smear, enter the date of that last 
+		study here. </p>
+                <p>You can also record information about the result. If your doctor told you 
+		to come back for another study at a specific time or earlier than usually required, 
+		you can also record that date here. </p>
+                <p>You can read more about cervical 
+		Pap testing at <a href="http://www.ahrq.gov/clinic/uspstf/uspscerv.htm" target="_blank">http://www.ahrq.gov/clinic/uspstf/uspscerv.htm </a>.</p><p><a href="/help/entering_dates_help.shtml">How to enter dates in the PHR</a></p>
+	<!--#include virtual="help_footer.shtml" -->

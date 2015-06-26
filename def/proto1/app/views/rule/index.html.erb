@@ -1,0 +1,99 @@
+<style type="text/css">
+  td {
+    padding-right: 0.5em;
+  }
+  div.section {
+    border-top: 4px solid #73A0C8;
+  }
+</style>
+<!-- Following flash notice is duplicated with the one in nonform layout - Frank -->
+<% if false # unless flash[:notice].blank? %>
+  <div id="notification"><%#= flash[:notice] %></div>
+<% end %>
+<form action="/rules" method="post">
+  <div id="download" class="section">
+    <p class="instructions">Select a rule type, and then either choose the New
+     button to create a new rule of that type or select the name of a rule
+     of that type for editing or deleting.</p>
+    <table>
+      <tr>
+        <td class="label"><label for="fe_rule_type">Rule Type:</label></td>
+        <td>
+          <%= text_field(:fe, :rule_type, :size=>40, :autocomplete=>'off') %>
+          <%= text_field(:fe, :rule_type_C, :size=>40, :autocomplete=>'off',
+           :class=>'hidden_field') %>
+        </td>
+        <td><button type="submit" class="rounded" id="new" name="new"
+             disabled="true">
+            <span>New</span></button></td>
+        <td><button type="submit" class="rounded" id="view_all" name="view_all"
+             disabled="true">
+            <span>View All</span></button></td>
+        <td>
+          <button type="submit" class="rounded" id="view_all_in_readable_format"
+                  name="view_all_in_readable_format" disabled="true">
+            <span>View All (Readable Format)</span>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td class="label"><label for="fe_rule_name">Rule Name:</label></td>
+        <td>
+          <%= text_field(:fe, :rule_name, :size=>40, :autocomplete=>'off',
+              :disabled=>'disabled') %>
+          <%= text_field(:fe, :rule_name_C, :size=>40, :autocomplete=>'off',
+           :class=>'hidden_field') %>
+</td>
+        <td><button id="edit" type="submit" class="rounded" name="edit"
+             disabled="true">
+            <span>Edit</span>
+          </button></td>
+        <td><button id="delete" type="submit" class="rounded" name="delete"
+          disabled="true">
+           <span>Delete</span>
+         </button></td>
+      </tr>
+    </table>
+  </div>
+  <input name="authenticity_token" type="hidden"
+     value="<%= form_authenticity_token -%>" />
+</form>
+
+<% content_for :page_specific_js do %>
+  <script type="text/javascript">
+    var rule_type_autocomp =
+     new Def.Autocompleter.Prefetch('fe_rule_type',
+       <%=@rule_type_names.to_json.html_safe%>,  {'matchListValue': true,
+       'addSeqNum': true, 'codes': <%=@rule_type_codes.to_json.html_safe%>,
+       'dataRequester': new Def.RecordDataRequester($('fe_rule_type'),
+       '/rule/get_rule_name_list', null, ["rule_name"], true)
+     , 'autoFill': true});
+    var rule_name_autocomp =
+     new Def.Autocompleter.Prefetch('fe_rule_name', [], {'matchListValue': true,
+       'addSeqNum': true, 'autoFill': true});
+    Def.fieldObservers_['rule_type_C'] = {
+      change: [function() {
+        var disabled = $('fe_rule_type_C').value == ''
+        $('fe_rule_name').disabled = disabled;
+        $('new').disabled = disabled;
+        // For now, view_all is only enabled for Reminder rules.
+        // (The other types aren't implemented, and might not be needed.)
+        $('view_all').disabled = disabled || $('fe_rule_type_C').value != 'RT3';
+        $('view_all_in_readable_format').disabled =
+          disabled || $('fe_rule_type_C').value != 'RT3';
+      }]
+    };
+    Def.fieldObservers_['rule_name_C'] = {
+      change: [function() {
+        var disabled = $('fe_rule_name_C').value == '';
+        $('edit').disabled = disabled;
+        $('delete').disabled = disabled;
+      }]
+    };
+    Event.observe('delete', 'click', function(event) {
+      if (!window.confirm("Delete this rule?")) {
+        Event.stop(event);
+      }
+    });
+  </script>
+<% end %>

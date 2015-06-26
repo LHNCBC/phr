@@ -1,0 +1,70 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medical Conditions</h1>
+
+<p>
+A <b>medical condition</b> is a medical problem that needs to be treated or managed. It can be a diagnosis, syndrome, or symptom. 
+</p>
+<h2>What do I need to know about the medical conditions list?</h2>
+		<p>
+		<ul>
+<li>Record all current medical conditions as well as serious conditions you have had in the past. As you type, the system will suggest medical conditions to you. </li>
+<li>Record all serious short-term conditions (e.g., a fracture, diabetes during pregnancy), as well as a major symptom if the cause of the symptom is unknown (e.g., fatigue, shortness of breath).</li>
+<li>If you do not find your specific medical condition in the selection list, simply type the name as you know it.</li>
+<li>The PHR system will provide you with an <img alt="Information" src="/assets/blank.gif" class="sprite_icons-info"> button next to many of the medical conditions you list. Click this button for additional reliable consumer health information from the National Institutes of Health and other trusted sources.</li>
+<li>
+You can also find the latest medical research studies related to particular medical diseases or conditions by clicking on the <b>Research Studies</b> button at the top of the <b>Medical Conditions</b> section.</li>
+</ul>
+   </p>
+		<h2>What kind of information should I enter? </h2>
+		<p>
+All fields highlighted with <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields. 
+<table style="border-spacing:20px 5px">
+			<tr>
+				<td>
+					<img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required" ><a href="/help/problem.shtml">Medical Condition </a>
+				</td>
+				<td>The name of the medical condition
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="/help/present.shtml">Status</a>
+				</td>
+				<td>
+				Select <b>Active</b> for conditions currently present or being treated; <b>Inactive</b> for cured or not currently present conditions
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/help/when_started.shtml">Started</a>
+				</td>
+				<td>The date the condition began
+				</td>
+                        </tr>
+                        <tr>
+                                <td><a href="/help/when_stopped.shtml">Stopped</a>
+                                 </td>
+                                <td>The date when the condition ended or was resolved</td>
+			</tr>
+			<tr>
+				<td><a href="/help/prob_desc.shtml">Description/Comment</a>
+				</td>
+				<td>Any additional information about your medical condition
+				</td>
+			</tr>
+		</table>
+</p>
+<h2>Why is this important?</h2>
+<p>Both present and past medical conditions are relevant to your overall health because they can provide your doctor with important clues about your current symptoms and the need for follow-up. </p>
+                <h2> How do I ...</h2>
+<p></br>
+                <a href="/help/using_long_lists_help.shtml">Use the drop down lists to enter data?</a></br>
+                  <a href="/help/bypassing_drop_downs.shtml">Enter my own data not found in the drop down list?</a></br>
+                  <a href="/help/entering_dates_help.shtml">Enter dates?</a></br>
+                  <a href="/help/opening_closing_help.shtml">Open and close sections of the PHR?</a></br>
+                  <a href="/help/error_indicators.shtml">Fix input errors?</a></li>
+               
+</p>
+  
+
+<!--#include virtual="help_footer.shtml" -->

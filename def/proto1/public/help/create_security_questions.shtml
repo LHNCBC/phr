@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Security Questions</h1>
+		<p>
+To ensure the security of your PHR account, we ask you to set up 3 security questions and answers which will allow you to verify your identity should you forget your password. You will be able to automatically recover or reset your account ID or password by verifying your identity by supplying the answers to these questions. Be sure to select questions that have answers you will remember over time. </p>
+<p>
+Please select and answer 2 security questions from our list and then create 1 of your own security questions and answers.  </p>
+		
+		<p>Want a bigger space? Put the cursor in the box, and then type <b>F2</b>.
+	</p>  
+    
+<!--#include virtual="help_footer.shtml" -->

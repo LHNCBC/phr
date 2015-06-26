@@ -1,0 +1,53 @@
+<!-- view for top header bar that appears above the banner on most pages -->
+
+<%= stylesheet_link_tag 'top_header_bar', :media=>'screen' %>
+
+<div suffix="_0" id="fe_form_header_0_expcol"
+     class="fieldExpColDiv form_hdr_grp no_grp_hdr">
+
+  <% show_admin_home_link = (@user && @user.admin &&
+         @form_name && @form_name.match(/\Aclassification(s)?\z/)) %>
+
+  <div>
+    <%= InstallationChange.installation_display_name %>
+    PHR: <span id="fe_user_name"></span>
+  </div>
+
+  <ul class="top_utility_nav">
+
+    <li id="fe_load_time_td"></li>
+    <% if !@show_header.nil? && @show_header && !@user.nil? && (@header_type.nil? || @header_type == 'F') %>
+      <li id="fe_profile_banner" class="static_text form_hdr_fld">
+      <%=@profile_banner%>
+      </li>
+    <% end %>
+    <% if show_admin_home_link %>
+      <li id="fe_admin_td" class="static_text form_hdr_fld">
+        <a id="fe_admin" href="javascript:void(0)"
+           onclick="Def.confirmCancel('/admin_home')">Admin Homepage</a>
+      </li>
+    <% end %>
+    <% if !DEMO_SYSTEM %>
+      <li id="fe_settings_td" class="static_text form_hdr_fld">
+        <a id="fe_settings" href="javascript:void(0)"
+         onclick="openPopup(this, '/accounts/change', 'Account Settings',
+                            '', 'account_settings', true); return false;">Account Settings</a>
+      </li>
+    <% end %>
+    <li class="static_text form_hdr_fld">
+      <a onclick="Def.Popups.openHelp(this, '/help/general.shtml'); return false;"
+       href="javascript:void(0)">Help</a>
+    </li>
+
+    <li class="static_text form_hdr_fld">
+      <a id="fe_feedback" onclick="openPopup(this, '/feedback/new', 'Feedback',
+           'width=900px,height=900px', 'feedback', true); return false;"
+       href="javascript:void(0)">Feedback</a>
+    </li>
+
+    <li id="fe_logout_td" class="static_text form_hdr_fld">
+      <a id="fe_logout" href="javascript:void(0)"
+       onclick="Def.confirmCancel('/accounts/logout')">Logout</a>
+    </li>
+  </ul>
+</div> <!-- end fe_form_header_0_expcol div -->

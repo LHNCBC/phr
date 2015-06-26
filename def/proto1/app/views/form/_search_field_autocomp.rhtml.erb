@@ -1,0 +1,14 @@
+var opts = {};<% if dataUrl %>
+opts['dataRequester']= new Def.RecordDataRequester($('<%= id %>'), '<%=dataUrl%>',
+  <%=dataReqInput.to_json.html_safe%>, <%= raw dataReqOutput.to_json%>, <%=outputToSameGroup%>)<%end
+%><% if !matchListValue.nil? %>
+opts['matchListValue']=<%= matchListValue %><%end
+%><% if !suggestionMode.nil? %>
+opts['suggestionMode']=<%= suggestionMode %><%end
+%><% if !button_id.nil? %>
+opts['buttonID']='<%= button_id %>'<%end
+%><% if !autocomp.nil? %>
+opts['autocomp']=<%= autocomp %><%end%>
+var <%=id%>_autoComp =
+  new Def.Autocompleter.Search('<%= id %>',
+    '<%=resultsUrl%>', opts);

@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Date</h1>
+	
+	<p>Enter the date you entered the note into the PHR using the format YYYY/MM/DD.</p>
+<p>If you choose to enter a date, an exact date is required. </p>
+	
+<!--#include virtual="help_footer.shtml" -->

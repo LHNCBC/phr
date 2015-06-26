@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>Reminders</h1>
+
+<p>
+                    The PHR will help you keep track of preventive tests and screenings and remind you when you are due for each of the screening tests. You can view health reminders recommended by the <a href="http://www.ahrq.gov/CLINIC/uspstfix.htm">U.S. Preventive Services Task Force</a> and other esteemed sources by clicking on the <b>Health Reminders</b> link at the top of the PHR.</p>
+<p>
+We provide links to reliable health information so you can explore the evidence for these recommendations.  The PHR offers reminders as a cue to you and your doctor about these preventive services, not as the final statement about which test is required and which is not. 
+</p><p>
+                    To view a complete list of your drug refill dates, immunization and appointment reminders, and test due dates, click the <b>Date Reminders</b> link at the top of the <b>Health Record Details</b> page. 
+</p>
+	
+	<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,6 @@
+<%= form_tag_wo_ajax phr_record_path, :method=>:put %>
+<%= render 'mobile/phr_records/new_edit_fields' %>
+
+<%= submit_tag_m 'Save' %>
+<%= link_to_m 'Cancel', phr_records_path %>
+</form>

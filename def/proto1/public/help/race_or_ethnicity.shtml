@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Race or Ethnicity</h1>
+		<p>
+		Enter or select the race/ethnicity of the person for whom this PHR is being kept. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

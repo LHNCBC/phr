@@ -1,0 +1,37 @@
+<% # Template for new PHR Home page active profile listings section %>
+
+<div id="topSection">
+  <button id="add_new" class="rounded" type="button"
+          onclick="Def.PHRHome.addNew();">
+    <span>Add New Person</span></button>
+
+  <table id="profiles_list">
+
+   <tr id="profile_list_header_row">
+   <th> </th>
+   <th> </th>
+   <th>Person</th>
+   <th class="updated_header">Updated</th>
+   <th></th>
+   <th>Notifications</th>
+   <th></th>
+   <th></th>
+   </tr>
+
+    <% if !@profiles.nil? %>
+      <% row = 0 %>
+      <% @profiles.each do |profile| %>
+
+        <% row += 1 %>
+        <% row_s = row.to_s %>
+        <% @profile_ids_shown[profile.id_shown] = row %>
+
+          <%= render({:partial =>'form/profile_listing.rhtml',
+                      :handlers =>[:erb],
+                      :locals=>{:row_s=>row_s, :profile=>profile}}).html_safe %>
+
+      <% end %> <!-- end profiles.each -->
+    <% end %> <!-- end if !@profiles.nil? -->
+  </table>
+
+</div> <!-- topSection -->

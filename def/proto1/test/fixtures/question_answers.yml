@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+temp_account_1:
+  id: -1
+  user_id: -7
+temp_account_2:
+  id: -2
+  user_id: -7
+temp_account_3:
+  id: -3
+  user_id: -7
+standard_account_1:
+  id: -4
+  user_id: -8
+standard_account_2:
+  id: -5
+  user_id: -8
+  

@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Answer Created Security Questions</h1>
+		<p>
+		Please enter an answer for each of your own security questions.</p>
+<p> You will be asked to provide this answer to verify your identity 
+		in the event that you forget your PHR account ID or password.
+	</p>
+		<p><a href="/help/no_personal_identifiers.shtml">Please do not enter personal 
+		identifiers in this field.</a>
+		</p>
+		
+    
+<!--#include virtual="help_footer.shtml" -->

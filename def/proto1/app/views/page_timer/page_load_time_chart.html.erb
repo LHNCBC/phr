@@ -1,0 +1,119 @@
+<script type="text/javascript">
+  // redefine jQuery's $ funtion to $J
+  if (typeof jQuery !='undefined' && jQuery !=null ) {
+    var $J = jQuery.noConflict();
+  }
+  
+  var chartName = "Page Load Time";
+
+  // show the chart, click event listener on the button
+  show_chart = function() {
+    // get the selected options
+    var modes = $J(".rails_mode");
+    var selected_modes = [];
+    for(var i=0, len=modes.length; i<len; i++) {
+      if (modes[i].checked) {
+        selected_modes.push(modes[i].name);
+      }
+    }
+    var ips = $J(".remote_ip");
+    var selected_ips = [];
+    for(var i=0, len=ips.length; i<len; i++) {
+      if (ips[i].checked) {
+        selected_ips.push(ips[i].name);
+      }
+    }
+    var agents = $J(".user_agent");
+    var selected_agents = [];
+    for(var i=0, len=agents.length; i<len; i++) {
+      if (agents[i].checked) {
+        selected_agents.push(agents[i].name);
+      }
+    }
+    
+    // a call back function
+    function showResponse(response) {
+      // See Core JavaScript documentation on eval() function
+      var chartDataArray = eval('(' + response.responseText + ')');
+      TestPanel.Flot.showPlotChart(chartDataArray,
+          chartName, false, false, 'chart');
+    }
+
+    // ajax call to get the chart data if any options are selected
+    if (selected_ips.length >0 && selected_modes.length>0 && selected_agents.length>0) {
+      var opt = {modes: selected_modes,
+                 ips: selected_ips,
+                 agents: selected_agents
+                }
+      new Ajax.Request('/page_timer/get_chart_data', {
+          method: 'post',
+          parameters: {
+            opt: Object.toJSON(opt),
+            authenticity_token: window._token
+          },
+          onSuccess: showResponse,
+          onFailure: function(t) {
+            alert('Error ' + t.status + ' -- ' + t.statusText);},
+          asynchronous: true
+        });
+
+    }
+
+  };
+  
+  checkBoxOnclick =function(){
+    $J(":checkbox").click(show_chart);
+  };
+  
+  Event.observe(window, 'dom:loaded', function(){
+    checkBoxOnclick();
+    show_chart();});
+</script>
+<style>
+  .user_agents, .remote_ips{
+    height:350px;
+    overflow: scroll;
+    border: 1px outset gray;
+  }
+  
+</style>
+<div class="head">
+  <h1 id="title"> Page load time for <%= @page_url %> </h1>
+  <button id="show_chart" type="button" onclick="show_chart()">Show Load Time Chart</button>
+</div>
+<div id="chart" style="float:left;"> </div>
+<div id="controller">
+  <div>
+    <h3>Rails Modes:</h3>
+    <div class="rails_modes">
+    <% @unique_modes.each do |mode| %>
+      <% is_current = mode==Rails.env %>
+      <%= check_box_tag mode, '1', is_current, :class=>'rails_mode' %>
+      <%= label_tag is_current ? mode + ' (current)' : mode %><br>
+    <% end %>
+    </div>
+  </div>
+  <div>
+    <h3>Remote IPs:</h3>
+    <div class="remote_ips">
+    <% @unique_ips.each do |ip| %>
+      <% is_current = ip == request.remote_ip %>
+      <%= check_box_tag ip, '1', is_current, :class=>'remote_ip' %>
+      <%= label_tag is_current ? ip + ' (current)' : ip %><br>
+    <% end %>
+    </div>
+  </div>
+  <div>
+    <h3>User Agents:</h3>
+    <div class="user_agents">
+    <% @unique_agents.each do |agent| %>
+      <% is_current = agent[0] == request.env['HTTP_USER_AGENT'] %>
+      <%= check_box_tag agent[0], '1', is_current, :class=>'user_agent' %>
+      <%= label_tag is_current ? agent[1] + ' (current)' : agent[1] %><br>
+    <% end %>
+    </div>
+  </div>
+  <div>
+  </div>
+  
+</div>

@@ -1,0 +1,12 @@
+<h1>New Drug Record</h1>
+
+<%= form_tag new_phr_record_phr_drug_path(:phr_record_id=>@phr_record) %>
+  <div><%=basic_text_field 'Drug Name', 'phr_drug', 'drug_name', nil, :value=>@drug_name, :readonly=>true%></div>
+  <div><%=fd_prefetched_list(@status_fd, @phr_drug_rec, @statuses, false)%></div>
+
+  <div><%=fd_prefetched_list(@strength_fd, @phr_drug_rec, @strengths)%></div>
+  <div><%=fd_text_field @instructions_fd %></div>
+  <div><%=fd_date_field @start_fd %></div>
+  <br>
+<%= link_to 'Cancel', phr_record_phr_drugs_path %>
+</form>

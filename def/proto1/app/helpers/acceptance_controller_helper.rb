@@ -1,0 +1,2 @@
+module AcceptanceControllerHelper
+end

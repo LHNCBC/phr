@@ -1,0 +1,24 @@
+/* 
+    Document   :  date_reminders
+    Created on :  Feb 9, 2012, 11:00:45 AM
+    Author     :  lmericle
+    Description:  CSS specific to the date_reminders form
+*/
+
+td.past_due {
+  color: red;
+}
+
+/* stripes */
+.fieldsTable tr.repeatingLine.even_row td {
+  background: #ecf3f8 !important;
+}
+.fieldsTable tr.repeatingLine.odd_row td {
+  background: #ffffff !important;
+}
+
+.fieldsTable tr.repeatingLine td {
+  color: #333333;
+  font-size: 12px;
+  padding: 8px 7px;
+}

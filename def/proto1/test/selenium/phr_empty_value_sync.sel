@@ -1,0 +1,90 @@
+| open | /phr_home |
+| setTimeout | 35000 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+
+# Create a profile that we can use for the rest of the test
+ fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'phr_pn1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForExpression | javascript{testWindow_.Def.DataModel.initialized_} | true |
+
+# Store the profile id
+| storeExpression | javascript{testWindow_.Def.DataModel.id_shown_ } | idShown |
+
+# Go to the phr_records page in basic mode
+# new medical conditions (Heroin abuse)
+| open |  javascript{'/phr_records/' + storedVars['idShown'] + '/phr_conditions/new?code=13349'} |
+| waitForTextPresent | New Medical Condition Record |
+# click the save button
+| click | javascript{testWindow_.document.getElementsByName('commit')[0]} |
+| waitForTextPresent | Your changes have been saved |
+
+# Go to the phr page in normal mode
+| open |  javascript{'/profiles/' + storedVars['idShown'] + ';edit' } |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+| fireEvent | fe_problem_2 | focus |
+| type | fe_problem_2 | Three vessel coronary artery diseas |
+| typeKeys | fe_problem_2 | e |
+| waitForTextPresent | | Three vessel coronary artery disease |
+
+# Wait for the list to be visible
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.$('completionOptions'))} | false |
+| waitForTextPresent | | 1 of |
+# (\40 means down arrow)
+| keyDown | fe_problem_2 | \40 |
+| keyDown | fe_present_2 | \9 |
+| waitForValue | fe_problem_C_2 | 18602 |
+
+# Wait for the list to go away
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.$('completionOptions'))} | true |
+
+# Save the form so we can test a saved row
+| click | fe_save_1 | |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+| waitForVisible | loading_msg |
+| waitForNotVisible | loading_msg |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |

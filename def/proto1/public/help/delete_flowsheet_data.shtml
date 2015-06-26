@@ -1,0 +1,30 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>Deleting Test Results or Health Trackers</h1>
+
+<h3>What do I need to know about deleting test results and health trackers?</h3>
+<p>
+Test result and health tracker data can only be deleted when the <b>Group Data Columns</b> option is not selected and when the <b>Combine records in one timeline table</b> and/or <b>Include test data from other panels</b> checkboxes are not selected.</li>
+</p>
+<h3>To delete test results or health trackers that have already been entered:</h3>
+<p> 
+                <ol>
+                    <li>Click the <b>View & Edit Results Timeline</b> link at the top of the PHR.  </li>
+
+                     <li>On the <b>View & Edit Results Timeline</b> page, select the checkbox next to the test results or health tracker data you want to delete and then click the <b>Show Results Timeline</b> button. </li>
+<li>
+Move your mouse over the column of test results you want to delete. A <img alt="Paper and Pencil" src="/assets/blank.gif" class="sprite_icons-doc_edit"> edit icon will appear at the top of the data column. If the icon does not appear, make sure you have not selected the <b>Group Data Columns</b> option or checked the <b>Combine records in one timeline table</b> and/or <b>Include test data from other panels</b> checkboxes.</li>
+<li>
+Right-click the <img alt="Paper and Pencil" src="/assets/blank.gif" class="sprite_icons-doc_edit"> icon and select <b>Delete</b> from the drop-down menu. </li>
+<li>
+Optionally, click the <b>Show Panel Info</b> button to view and delete the <b>Comments</b>, <b>Where Done</b>, and <b>Due Date</b> fields or click the <b>Show Empty Rows</b> button to view and edit empty rows.</li>
+<li>
+Make the changes needed or delete the test or tracker.</li>
+<li>
+Once you have finished editing or deleting data, click the <b>Save</b> button at the bottom of the page.</li>
+</ol>
+</p>
+<h3>How do I ...</h3>
+<p>
+<a href="edit_flowsheet_data.shtml">Edit existing tests or health trackers?</a></br>
+<a href="add_new_test.shtml">Add a new result to a test or health tracker?</a></p>
+<!--#include virtual="help_footer.shtml" -->

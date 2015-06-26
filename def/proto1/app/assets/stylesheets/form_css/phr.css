@@ -1,0 +1,233 @@
+/**
+ * phr.css - PHR-specific style specifications
+ */
+
+ /** General specs - not section specific **/
+
+ .top_group {
+   display: inline;
+   margin-top: -25px;
+   margin-bottom: 30px;
+ }
+
+ #fe_top_left_group_0 {
+    float: left ;
+ }
+
+ #fe_top_right_group_0 {
+    float: right;
+ }
+ /* top save button group */
+ #fe_phr_save_btn_top_grp_1_0 {
+   float: right;
+   margin-top: -16px;
+   margin-left: 16px;
+   clear: right;
+ }
+
+.fieldsTable tr td.cet_action,
+.fieldsTable tr td.rowid
+{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.fieldsTable tr td.info_button, .fieldsTable tr td.record_warning {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+/* These are for  the first/only open input field of a row ready to receive a
+   new entry.  nth-child needs to be fixed, since this won't always be
+   correct. Probably need a class for the "major" field in a group.
+ */
+/*.fieldsTable tr:last-child td:nth-child(5) {
+  padding-top: 0;
+  padding-bottom: 0;
+}*/
+
+/* Set font weight and size for the master field.  The drug table has an
+ * extra column, so we specify it separately. */
+.fieldsTable tr td.rowEditText:nth-child(5), #fe_drugs_0 td.rowEditText:nth-child(6) {
+	font-weight:700;
+	font-size: 13px;
+}
+
+#fe_print_1_1 {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+button.phr_header_link {
+  font-size: 15px;
+  color: #457FC0;
+  font-family: "Ubuntu",Arial;
+  font-weight: bold;
+  background-color: transparent;
+  padding-left: 0.6em;
+  padding-right: 0.2em;
+  width: auto;
+}
+
+button.phr_header_link:first-child {
+  background-image: none;
+}
+
+button.phr_header_link[disabled] {
+  color: #999;
+}
+
+.phr_detail {
+  margin-top: -5px !important;
+}
+
+#fe_phr_button_grp_1_0 button.rounded:hover span,
+.expcol_button:hover span,
+div.hide_show_button:hover {
+  text-decoration: underline;
+}
+
+#fe_phr_button_grp_1_0 {
+  clear: both;
+  float: right;
+  height: 47px;
+  margin: 0 -25px 25px 0;
+}
+
+#fe_phr_button_grp_1_0 #fe_phr_button_grp_1_0_expcol {
+  border:0 none;
+  float:right;
+  margin: 10px 20px 0 0;
+  padding:0;
+}
+#fe_phr_button_grp_1_0 button.rounded {
+  padding:0;
+}
+
+#fe_phr_button_grp_1_0 button.rounded span {
+  background: none;
+  color:#457FC0;
+  font-size:15px !important;
+  margin-right:0;
+  text-transform:capitalize;
+  width:auto;
+  padding:0 3px 0 6px;
+}
+#fe_phr_button_grp_1_0 button.rounded[disabled] span {
+  color: #999;
+  text-decoration: none;
+}
+#fe_phr_button_grp_1_0 button.rounded:first-child {
+  background:0;
+}
+
+/* ========================================================================== */
+
+/** Section specific **/
+#saved_panels td:nth-child(3) {
+  display: none;
+}
+
+#fe_problems_header_0 .guidance {
+  clear: both;
+  color: #333;
+  float: right;
+  font-size: 12px;
+  margin-top: -6px;
+}
+
+/** Medical Contacts **/
+
+/* Turn off the border around the comments field in the medical contacts
+   section */
+#fe_medicontact_0 div.no_group_hdr.fieldGroup div.fieldExpColDiv {
+  border: 0;
+  background: 0;
+}
+
+#fe_medicontact_0 div.field input { /* for the comments field */
+  width: 100%;
+  margin-bottom: 0.5em
+}
+
+/* Strengthen the line above each medical contact section, to give
+   the appearance of a line between each contact's information. */
+
+#fe_medicontact_0 tr.repeatingLine > td {
+  border-top-width: 2px;
+}
+
+/* Hidte the help button on the comments field in the medical contacts section
+   in saved rows, because it does not look right there. */
+/* the help button/msg could be removed from field_descriptions table to avoid such css calculation  */
+div.static_text[id^=fe_medtact_comnt] + img,
+textarea[id^=fe_medtact_comnt] + img {
+  display: none;
+}
+
+/* stripes for drugs table/group with optioanl hidden rows */
+/* saved rows */
+#fe_drugs_0_tbl tr.saved_row.show_me.odd_row{
+  background: #ffffff;
+}
+#fe_drugs_0_tbl tr.saved_row.show_me.even_row{
+  background: #ecf3f8;
+}
+
+/* stripes for table/group with sub group */
+/* for exampel the medical contact table on phr */
+/* new rows (all rows) */
+#fe_medicontact_0 .fieldsTable tr:nth-of-type(4n-1) {
+  background-color: #e8efe7;
+}
+#fe_medicontact_0 .fieldsTable tr:nth-of-type(4n) {
+  background-color: #e8efe7;
+}
+#fe_medicontact_0 .fieldsTable tr:nth-of-type(4n+1){
+  background-color: #f0f5ef;
+}
+#fe_medicontact_0 .fieldsTable tr:nth-of-type(4n+2){
+  background-color: #f0f5ef;
+}
+/* saved rows */
+#fe_medicontact_0 .fieldsTable tr.saved_row:nth-of-type(4n-1){
+  background-color: #ecf3f8;
+}
+#fe_medicontact_0 .fieldsTable tr.saved_row:nth-of-type(4n){
+  background-color: #ecf3f8;
+}
+#fe_medicontact_0 .fieldsTable tr.saved_row:nth-of-type(4n+1){
+  background-color: #ffffff;
+}
+#fe_medicontact_0 .fieldsTable tr.saved_row:nth-of-type(4n+2){
+  background-color: #ffffff;
+}
+/* hover */
+#fe_medicontact_0 .fieldsTable tr:hover {
+  background-color: #d0e1f0 !important;
+}
+#fe_medicontact_0 .fieldsTable tr.deleted:hover {
+  background-color: #f4dfdf !important;
+}
+#fe_medicontact_0 .fieldsTable tr.selected_row:hover {
+  background-color: #ffffee !important;
+}
+
+#fe_medicontact_0 .fieldsTable tr.deleted div.field.wrap {
+  padding: 6px 7px;
+}
+
+#fe_tests_and_trackers_0_expcol {
+  border: 7px solid #D9E6F0;
+  padding: 4px;
+}
+
+#fe_tests_and_trackers_0_expcol .odd {
+  background-color: #ECF3F8;
+}
+
+.fieldExpColDiv .fieldExpColDiv .fieldExpColDiv {
+  padding: 0px;
+}
+
+h2.groupHeader, h3.groupHeader {
+  margin-bottom: 0px;
+}

@@ -1,0 +1,60 @@
+<%#= link_to 'New', send('new_phr_record_'+s_table_name+'_path', @phr_record) %>
+<%#= link_to 'Back to PHR', phr_record_path(@phr_record)%>
+
+<%= render("mobile/#{@table}/extra_table_nav_links") if lookup_context.template_exists?(
+        'extra_table_nav_links', @table, true) %>
+<%= help_button get_help_url(@section_fd) %>
+
+
+<% if @records.length > 0 %>
+    <% s_table_name = @table.singularize
+       edit_path_method = 'edit_phr_record_'+s_table_name+'_path';
+       delete_path_method = 'phr_record_'+s_table_name+'_path'
+       has_info_link = @records[0].respond_to?('info_link') %>
+    <div data-role="collapsibleset" data-mini="true">
+      <% @records.each do |d| %>
+          <div data-role="collapsible">
+            <h1><%= d.send(@db_fields[@main_field_index]) %>
+              <div class="user_data_details">
+                <% list = [] %>
+                <% @db_fields.each_with_index do |col, i| %>
+                    <% list << d.send(col) if i != @main_field_index %>
+                <% end %>
+                <%= list.join(", ") + (@table == "reminder_options" ? " Days" : "") %>
+              </div>
+
+            </h1>
+            <p>
+              <% @db_fields.each_with_index do |col, i| %>
+                  <% if i == @main_field_index %>
+                      <% else %><%= @fds[col] ? @fds[col].display_name : col %>:
+                      <b><%= d.send(col) %></b><br>
+                  <% end %>
+              <% end %>
+              <% if has_info_link %>
+                  <% link_data = d.info_link %>
+                  <% if link_data %>
+                      <% if link_data.class == String %>
+                          <%= link_to 'Info', d.info_link, :target => '_blank' %>
+                      <% else # assume a hash  %>
+                          <% link_data.each do |url_data| %>
+                              <%= link_to url_data[1] + " [Info Link]", url_data[0], :target => '_blank' %>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+              <% end %>
+              <table>
+                <tbody>
+                <tr>
+                  <td><%= link_to_m "Edit",send(edit_path_method, @phr_record, d) %></td>
+                  <td><%= button_to_wo_js_m 'Delete', send(delete_path_method, @phr_record, d),
+                                        :confirm => 'Are you sure?', :method => :delete %></td></tr>
+                </tbody>
+              </table>
+              </p>
+              </div>
+      <% end %>
+    </div>
+<% end %>
+
+

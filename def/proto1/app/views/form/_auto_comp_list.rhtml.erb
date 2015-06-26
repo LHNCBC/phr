@@ -1,0 +1,6 @@
+<ul>
+  <% itemText = make_auto_completion_list_items(@listData, fields) %>
+  <% (0..itemText.length-1).each do |i| %>
+  <li><%=itemText[i]%></li>
+  <%end%>
+</ul>

@@ -1,0 +1,595 @@
+# Created and maintained by removeDisplayNameStrength.rb
+--- 
+ACCURETIC (Oral-pill): 
+- ACCURETIC 10/12.5 (Oral-pill)
+- ACCURETIC 20/12.5 (Oral-pill)
+- ACCURETIC 20/25 (Oral-pill)
+ACTOPLUS MET (Oral-pill): 
+- ACTOPLUS MET 15/500 (Oral-pill)
+- ACTOPLUS MET 15/850 (Oral-pill)
+ACTOPLUS MET XR (Oral-pill): 
+- ACTOPLUS MET 15/1000 XR (Oral-pill)
+- ACTOPLUS MET 30/1000 XR (Oral-pill)
+ACUPRIN (Oral-pill): 
+- ACUPRIN 81 (Oral-pill)
+ADANDAMET (Oral-pill): 
+- ADANDAMET 2/500 (Oral-pill)
+ADVICOR XR (Oral-pill): 
+- ADVICOR 1000/20 XR (Oral-pill)
+- ADVICOR 1000/40 XR (Oral-pill)
+- ADVICOR 500/20 XR (Oral-pill)
+- ADVICOR 750/20 XR (Oral-pill)
+ALOR (Oral-pill): 
+- ALOR 5/500 (Oral-pill)
+AMBI XR (Oral-pill): 
+- AMBI 1000/5 XR (Oral-pill)
+- AMBI 1200 XR (Oral-pill)
+- AMBI 40/1000/60 XR (Oral-pill)
+ANDRO LA (Injectable): 
+- ANDRO LA 200 (Injectable)
+ANDRO-CYP (Injectable): 
+- ANDRO-CYP 100 (Injectable)
+- ANDRO-CYP 200 (Injectable)
+ANDRYL (Injectable): 
+- ANDRYL 200 (Injectable)
+ANERGAN (Injectable): 
+- ANERGAN 50 (Injectable)
+ANEXSIA (Oral-pill): 
+- ANEXSIA 10/660 (Oral-pill)
+- ANEXSIA 5/325 (Oral-pill)
+- ANEXSIA 5/500 (Oral-pill)
+- ANEXSIA 7.5/325 (Oral-pill)
+- ANEXSIA 7.5/650 (Oral-pill)
+ANTINAUS (Injectable): 
+- ANTINAUS 50 (Injectable)
+APRESAZIDE (Oral-pill): 
+- APRESAZIDE 100/50 (Oral-pill)
+- APRESAZIDE 25/25 (Oral-pill)
+- APRESAZIDE 50/50 (Oral-pill)
+AQUATAB DM XR (Oral-pill): 
+- AQUATAB DM 28/835 XR (Oral-pill)
+- AQUATAB DM 60/1200 XR (Oral-pill)
+ASCOR L (Injectable): 
+- ASCOR L 500 (Injectable)
+ATACAND HCT (Oral-pill): 
+- ATACAND HCT 16/12.5 (Oral-pill)
+- ATACAND HCT 32/12.5 (Oral-pill)
+- ATACAND HCT 32/25 (Oral-pill)
+AUGMENTIN (Oral-pill): 
+- AUGMENTIN 250-MG (Oral-pill)
+- AUGMENTIN 500-MG (Oral-pill)
+- AUGMENTIN 875-MG (Oral-pill)
+AUGMENTIN CHEWABLE (Oral-pill): 
+- AUGMENTIN 125-MG CHEWABLE (Oral-pill)
+- AUGMENTIN 200-MG CHEWABLE (Oral-pill)
+- AUGMENTIN 250-MG CHEWABLE (Oral-pill)
+- AUGMENTIN 400-MG CHEWABLE (Oral-pill)
+AVALIDE (Oral-pill): 
+- AVALIDE 150/12.5 (Oral-pill)
+- AVALIDE 300/12.5 (Oral-pill)
+- AVALIDE 300/25 (Oral-pill)
+AVANDAMET (Oral-pill): 
+- AVANDAMET 1/500 (Oral-pill)
+- AVANDAMET 2/1000 (Oral-pill)
+- AVANDAMET 2/500 (Oral-pill)
+- AVANDAMET 4/1000 (Oral-pill)
+- AVANDAMET 4/500 (Oral-pill)
+AVANDARYL (Oral-pill): 
+- AVANDARYL 4/1 (Oral-pill)
+- AVANDARYL 4/2 (Oral-pill)
+- AVANDARYL 4/4 (Oral-pill)
+- AVANDARYL 8/2 (Oral-pill)
+- AVANDARYL 8/4 (Oral-pill)
+AZOR (Oral-pill): 
+- AZOR 10/20 (Oral-pill)
+- AZOR 10/40 (Oral-pill)
+- AZOR 5/20 (Oral-pill)
+- AZOR 5/40 (Oral-pill)
+BC POWDER (Oral-other): 
+- BC POWDER 650/33.3/195 (Oral-other)
+BENICAR HCT (Oral-pill): 
+- BENICAR HCT 20/12.5 (Oral-pill)
+- BENICAR HCT 40/12.5 (Oral-pill)
+- BENICAR HCT 40/25 (Oral-pill)
+BRONTEX (Oral-liquid): 
+- BRONTEX 10/100 (Oral-liquid)
+- BRONTEX 2.5/75 (Oral-liquid)
+BRONTEX (Oral-pill): 
+- BRONTEX 10/300 (Oral-pill)
+C.P. (Oral-liquid): 
+- C.P. 0.4/5 (Oral-liquid)
+- C.P. 0.8/12 (Oral-liquid)
+CADUET (Oral-pill): 
+- CADUET 10/10 (Oral-pill)
+- CADUET 10/20 (Oral-pill)
+- CADUET 10/40 (Oral-pill)
+- CADUET 10/80 (Oral-pill)
+- CADUET 2.5/10 (Oral-pill)
+- CADUET 2.5/20 (Oral-pill)
+- CADUET 2.5/40 (Oral-pill)
+- CADUET 5/10 (Oral-pill)
+- CADUET 5/20 (Oral-pill)
+- CADUET 5/40 (Oral-pill)
+- CADUET 5/80 (Oral-pill)
+CAPOZIDE (Oral-pill): 
+- CAPOZIDE 25/15 (Oral-pill)
+- CAPOZIDE 25/25 (Oral-pill)
+- CAPOZIDE 50/15 (Oral-pill)
+- CAPOZIDE 50/25 (Oral-pill)
+CEMILL (Oral-pill): 
+- CEMILL 1000 (Oral-pill)
+- CEMILL 500 (Oral-pill)
+CHERACOL D (Oral-liquid): 
+- CHERACOL D 10/100 (Oral-liquid)
+- CHERACOL D 15/100 (Oral-liquid)
+CLINAGEN LA (Injectable): 
+- CLINAGEN LA 40 (Injectable)
+CLORPRES (Oral-pill): 
+- CLORPRES 0.1/15 (Oral-pill)
+- CLORPRES 0.2/15 (Oral-pill)
+- CLORPRES 0.3/15 (Oral-pill)
+COCET (Oral-pill): 
+- COCET 650/30 (Oral-pill)
+- COCET 650/60 (Oral-pill)
+CODRIX (Oral-pill): 
+- CODRIX 500/15 (Oral-pill)
+- CODRIX 500/30 (Oral-pill)
+- CODRIX 500/60 (Oral-pill)
+COLDEC (Oral-liquid): 
+- COLDEC 0.4/3 (Oral-liquid)
+COLDEC (Oral-pill): 
+- COLDEC 4/60 (Oral-pill)
+COLDEC DM (Oral-liquid): 
+- COLDEC DM 0.8/3/9 (Oral-liquid)
+COLDEC XR (Oral-pill): 
+- COLDEC 8/120 XR (Oral-pill)
+- COLDEC 8/90 XR (Oral-pill)
+COMBIPRES (Oral-pill): 
+- COMBIPRES 0.1/15 (Oral-pill)
+- COMBIPRES 0.2/15 (Oral-pill)
+- COMBIPRES 0.3/15 (Oral-pill)
+CORTASTAT (Injectable): 
+- CORTASTAT 10 (Injectable)
+CORZIDE (Oral-pill): 
+- CORZIDE 40/5 (Oral-pill)
+- CORZIDE 80/5 (Oral-pill)
+DEP MEDALONE (Injectable): 
+- DEP MEDALONE 80 (Injectable)
+DEPANDRO (Injectable): 
+- DEPANDRO 100 (Injectable)
+DILEX-G (Oral-pill): 
+- DILEX-G 400 (Oral-pill)
+DIOVAL (Injectable): 
+- DIOVAL 40 (Injectable)
+DIOVAN HCT (Oral-pill): 
+- DIOVAN HCT 160/12.5 (Oral-pill)
+- DIOVAN HCT 160/25 (Oral-pill)
+- DIOVAN HCT 320/12.5 (Oral-pill)
+- DIOVAN HCT 320/25 (Oral-pill)
+- DIOVAN HCT 80/12.5 (Oral-pill)
+DUETACT (Oral-pill): 
+- DUETACT 30/2 (Oral-pill)
+- DUETACT 30/4 (Oral-pill)
+DUO-VIL (Oral-pill): 
+- DUO-VIL 2-10 (Oral-pill)
+- DUO-VIL 2-25 (Oral-pill)
+- DUO-VIL 4-10 (Oral-pill)
+DURABOLIN (Injectable): 
+- DURABOLIN 50 (Injectable)
+DURAPHEN XR (Oral-pill): 
+- DURAPHEN 1000 XR (Oral-pill)
+DURATHATE (Injectable): 
+- DURATHATE 200 (Injectable)
+DUTOPROL (Oral-pill): 
+- DUTOPROL 100/12.5 (Oral-pill)
+- DUTOPROL 25/12.5 (Oral-pill)
+- DUTOPROL 50/12.5 (Oral-pill)
+DUTOPROL XR (Oral-pill): 
+- DUTOPROL 100/12.5 XR (Oral-pill)
+- DUTOPROL 25/12.5 XR (Oral-pill)
+- DUTOPROL 50/12.5 XR (Oral-pill)
+E.E.S. FILMTAB (Oral-pill): 
+- E.E.S. 400 FILMTAB (Oral-pill)
+ENDOCET (Oral-pill): 
+- ENDOCET 10/325 (Oral-pill)
+- ENDOCET 10/650 (Oral-pill)
+- ENDOCET 5/325 (Oral-pill)
+- ENDOCET 7.5/325 (Oral-pill)
+- ENDOCET 7.5/500 (Oral-pill)
+ESTRA-V (Injectable): 
+- ESTRA-V 40 (Injectable)
+ESTRO-SPAN (Injectable): 
+- ESTRO-SPAN 40 (Injectable)
+ETRAFON (Oral-pill): 
+- ETRAFON 2-10 (Oral-pill)
+- ETRAFON 2-25 (Oral-pill)
+- ETRAFON 4-10 (Oral-pill)
+- ETRAFON 4-25 (Oral-pill)
+EXFORGE (Oral-pill): 
+- EXFORGE 10/160 (Oral-pill)
+- EXFORGE 10/320 (Oral-pill)
+- EXFORGE 5/160 (Oral-pill)
+- EXFORGE 5/320 (Oral-pill)
+EXFORGE HCT (Oral-pill): 
+- EXFORGE HCT 10/160/12.5 (Oral-pill)
+- EXFORGE HCT 10/160/25 (Oral-pill)
+- EXFORGE HCT 10/320/25 (Oral-pill)
+- EXFORGE HCT 5/160/12.5 (Oral-pill)
+- EXFORGE HCT 5/160/25 (Oral-pill)
+FE-TINIC (Oral-pill): 
+- FE-TINIC 150 (Oral-pill)
+FERREX PLUS (Oral-pill): 
+- FERREX 150 PLUS (Oral-pill)
+FERRIMIN (Oral-pill): 
+- FERRIMIN 150 (Oral-pill)
+FOSAMAX PLUS D (Oral-pill): 
+- FOSAMAX PLUS D 70/2800 (Oral-pill)
+- FOSAMAX PLUS D 70/5600 (Oral-pill)
+GG NR (Oral-pill): 
+- GG 200 NR (Oral-pill)
+GILTUSS (Oral-pill): 
+- GILTUSS 28/388/10 (Oral-pill)
+GRISACTIN (Oral-pill): 
+- GRISACTIN 250 (Oral-pill)
+- GRISACTIN 500 (Oral-pill)
+GUAIFENEX PPA XR (Oral-pill): 
+- GUAIFENEX PPA 75 XR (Oral-pill)
+GUAIFENEX PSE XR (Oral-pill): 
+- GUAIFENEX PSE 120 XR (Oral-pill)
+- GUAIFENEX PSE 60 XR (Oral-pill)
+- GUAIFENEX PSE 80 XR (Oral-pill)
+- GUAIFENEX PSE 85 XR (Oral-pill)
+GUIADRINE PSE XR (Oral-pill): 
+- GUIADRINE PSE 120 XR (Oral-pill)
+GYNOGEN LA (Injectable): 
+- GYNOGEN LA 20 (Injectable)
+HYZAAR (Oral-pill): 
+- HYZAAR 100/12.5 (Oral-pill)
+- HYZAAR 100/25 (Oral-pill)
+- HYZAAR 50/12.5 (Oral-pill)
+IBIFON (Oral-pill): 
+- IBIFON 600 (Oral-pill)
+IBUDONE (Oral-pill): 
+- IBUDONE 10/200 (Oral-pill)
+- IBUDONE 5/200 (Oral-pill)
+INDERIDE (Oral-pill): 
+- INDERIDE 40/25 (Oral-pill)
+- INDERIDE 80/25 (Oral-pill)
+INDERIDE XR (Oral-pill): 
+- INDERIDE 120/50 XR (Oral-pill)
+- INDERIDE 160/50 XR (Oral-pill)
+- INDERIDE 80/50 XR (Oral-pill)
+JANUMET (Oral-pill): 
+- JANUMET 50/1000 (Oral-pill)
+- JANUMET 50/500 (Oral-pill)
+K-DUR (Oral-pill): 
+- K-DUR 20 (Oral-pill)
+KEN-JEC (Injectable): 
+- KEN-JEC 40 (Injectable)
+KENALOG (Injectable): 
+- KENALOG 40 (Injectable)
+KOMBIGLYZE XR (Oral-pill): 
+- KOMBIGLYZE 2.5/1000 XR (Oral-pill)
+- KOMBIGLYZE 5/1000 XR (Oral-pill)
+- KOMBIGLYZE 5/500 XR (Oral-pill)
+LEXXEL XR (Oral-pill): 
+- LEXXEL 5/2.5 XR (Oral-pill)
+- LEXXEL 5/5 XR (Oral-pill)
+LIMBITROL (Oral-pill): 
+- LIMBITROL 12.5/5 (Oral-pill)
+- LIMBITROL 25/10 (Oral-pill)
+LIQUIDBID XR (Oral-pill): 
+- LIQUIDBID 1200 XR (Oral-pill)
+LOPRESSOR HCT (Oral-pill): 
+- LOPRESSOR HCT 100/25 (Oral-pill)
+- LOPRESSOR HCT 100/50 (Oral-pill)
+- LOPRESSOR HCT 50/25 (Oral-pill)
+LORCET (Oral-pill): 
+- LORCET 10/650 (Oral-pill)
+LORTAB (Oral-pill): 
+- LORTAB 10/500 (Oral-pill)
+- LORTAB 2.5/500 (Oral-pill)
+- LORTAB 5/500 (Oral-pill)
+- LORTAB 7.5/500 (Oral-pill)
+LOTENSIN HCT (Oral-pill): 
+- LOTENSIN HCT 10/12.5 (Oral-pill)
+- LOTENSIN HCT 20/12.5 (Oral-pill)
+- LOTENSIN HCT 20/25 (Oral-pill)
+- LOTENSIN HCT 5/6.25 (Oral-pill)
+LOTREL (Oral-pill): 
+- LOTREL 10/20 (Oral-pill)
+- LOTREL 10/40 (Oral-pill)
+- LOTREL 2.5/10 (Oral-pill)
+- LOTREL 5/10 (Oral-pill)
+- LOTREL 5/20 (Oral-pill)
+- LOTREL 5/40 (Oral-pill)
+LYNOX (Oral-pill): 
+- LYNOX 10/300 (Oral-pill)
+- LYNOX 2.5/300 (Oral-pill)
+- LYNOX 5/300 (Oral-pill)
+- LYNOX 7.5/300 (Oral-pill)
+MAG XR (Oral-pill): 
+- MAG 64 XR (Oral-pill)
+MAG-OX (Oral-pill): 
+- MAG-OX 400 (Oral-pill)
+MAGNACET (Oral-pill): 
+- MAGNACET 10/400 (Oral-pill)
+- MAGNACET 2.5/400 (Oral-pill)
+- MAGNACET 5/400 (Oral-pill)
+- MAGNACET 7.5/400 (Oral-pill)
+MAGNEBIND (Oral-pill): 
+- MAGNEBIND 250/300 (Oral-pill)
+- MAGNEBIND 400/200 (Oral-pill)
+MALARONE (Oral-pill): 
+- MALARONE 250/100 (Oral-pill)
+- MALARONE 62.5/25 (Oral-pill)
+MEDIDIOL (Injectable): 
+- MEDIDIOL 10 (Injectable)
+MEDRALONE (Injectable): 
+- MEDRALONE 40 (Injectable)
+- MEDRALONE 80 (Injectable)
+METHACORT (Injectable): 
+- METHACORT 40 (Injectable)
+- METHACORT 80 (Injectable)
+METHYLONE (Injectable): 
+- METHYLONE 40 (Injectable)
+- METHYLONE 80 (Injectable)
+MICARDIS-HCT (Oral-pill): 
+- MICARDIS-HCT 40/12.5 (Oral-pill)
+- MICARDIS-HCT 80/12.5 (Oral-pill)
+- MICARDIS-HCT 80/25 (Oral-pill)
+MODURETIC (Oral-pill): 
+- MODURETIC 5-50 (Oral-pill)
+MONOPRIL-HCT (Oral-pill): 
+- MONOPRIL-HCT 10/12.5 (Oral-pill)
+- MONOPRIL-HCT 20/12.5 (Oral-pill)
+MST (Oral-pill): 
+- MST 600 (Oral-pill)
+MUCO-FEN DM XR (Oral-pill): 
+- MUCO-FEN 1000 DM XR (Oral-pill)
+- MUCO-FEN 600 DM XR (Oral-pill)
+- MUCO-FEN 800 DM XR (Oral-pill)
+MUCO-FEN XR (Oral-pill): 
+- MUCO-FEN 1200 XR (Oral-pill)
+- MUCO-FEN 800 XR (Oral-pill)
+NASABID XR (Oral-pill): 
+- NASABID 250/90 XR (Oral-pill)
+- NASABID 600/90 XR (Oral-pill)
+NORCO (Oral-pill): 
+- NORCO 10/325 (Oral-pill)
+- NORCO 5/325 (Oral-pill)
+- NORCO 7.5/325 (Oral-pill)
+NU-IRON (Oral-pill): 
+- NU-IRON 150 (Oral-pill)
+ORAZINC (Oral-pill): 
+- ORAZINC 110 (Oral-pill)
+- ORAZINC 220 (Oral-pill)
+ORETICYL (Oral-pill): 
+- ORETICYL 25 (Oral-pill)
+- ORETICYL 50 (Oral-pill)
+PANASAL (Oral-pill): 
+- PANASAL 5/500 (Oral-pill)
+PANEX (Oral-pill): 
+- PANEX 500 (Oral-pill)
+PARCOPA (Oral-pill): 
+- PARCOPA 10/100 (Oral-pill)
+- PARCOPA 25/100 (Oral-pill)
+- PARCOPA 25/250 (Oral-pill)
+PERCOCET (Oral-pill): 
+- PERCOCET 10/325 (Oral-pill)
+- PERCOCET 10/650 (Oral-pill)
+- PERCOCET 2.5/325 (Oral-pill)
+- PERCOCET 5/325 (Oral-pill)
+- PERCOCET 7.5/325 (Oral-pill)
+- PERCOCET 7.5/500 (Oral-pill)
+PERLOXX (Oral-pill): 
+- PERLOXX 10/300 (Oral-pill)
+- PERLOXX 2.5/300 (Oral-pill)
+- PERLOXX 5/300 (Oral-pill)
+- PERLOXX 7.5/300 (Oral-pill)
+PHARMAFLUR (Oral-pill): 
+- PHARMAFLUR 1.1 (Oral-pill)
+PHAZYME (Oral-pill): 
+- PHAZYME 125 (Oral-pill)
+PHENAZINE (Injectable): 
+- PHENAZINE 50 (Injectable)
+PHENDIET XR (Oral-pill): 
+- PHENDIET 105 XR (Oral-pill)
+PRANDIMET (Oral-pill): 
+- PRANDIMET 1/500 (Oral-pill)
+- PRANDIMET 2/500 (Oral-pill)
+PREDACORT (Injectable): 
+- PREDACORT 50 (Injectable)
+PREDALONE (Injectable): 
+- PREDALONE 50 (Injectable)
+PRI-CORTIN (Injectable): 
+- PRI-CORTIN 50 (Injectable)
+PRIMALEV (Oral-pill): 
+- PRIMALEV 300/10 (Oral-pill)
+- PRIMALEV 300/2.5 (Oral-pill)
+- PRIMALEV 300/5 (Oral-pill)
+- PRIMALEV 300/7.5 (Oral-pill)
+PRIMLEV (Oral-pill): 
+- PRIMLEV 10/300 (Oral-pill)
+- PRIMLEV 300/10 (Oral-pill)
+- PRIMLEV 300/5 (Oral-pill)
+- PRIMLEV 300/7.5 (Oral-pill)
+- PRIMLEV 5/300 (Oral-pill)
+- PRIMLEV 7.5/300 (Oral-pill)
+PROCET (Oral-pill): 
+- PROCET 5/325 (Oral-pill)
+- PROCET 7.5/325 (Oral-pill)
+PROPACET (Oral-pill): 
+- PROPACET 100 (Oral-pill)
+QUIBRON (Oral-pill): 
+- QUIBRON 300 (Oral-pill)
+QUINARETIC (Oral-pill): 
+- QUINARETIC 10/12.5 (Oral-pill)
+- QUINARETIC 12.5/10 (Oral-pill)
+- QUINARETIC 12.5/20 (Oral-pill)
+- QUINARETIC 20/12.5 (Oral-pill)
+- QUINARETIC 20/25 (Oral-pill)
+- QUINARETIC 25/20 (Oral-pill)
+REPREXAIN (Oral-pill): 
+- REPREXAIN 10/200 (Oral-pill)
+- REPREXAIN 2.5/200 (Oral-pill)
+- REPREXAIN 5/200 (Oral-pill)
+- REPREXAIN 7.5/200 (Oral-pill)
+RESPAIRE (Oral-pill): 
+- RESPAIRE 30 (Oral-pill)
+RESPAIRE XR (Oral-pill): 
+- RESPAIRE 120 XR (Oral-pill)
+- RESPAIRE 60 XR (Oral-pill)
+RHINOFLEX (Oral-pill): 
+- RHINOFLEX 650 (Oral-pill)
+RHINOLAR-EX XR (Oral-pill): 
+- RHINOLAR-EX 12 XR (Oral-pill)
+ROBITET (Oral-pill): 
+- ROBITET 500 (Oral-pill)
+ROSULA (Other): 
+- ROSULA 100/40 (Other)
+- ROSULA 100/50 (Other)
+ROXICET (Oral-pill): 
+- ROXICET 5/325 (Oral-pill)
+- ROXICET 5/500 (Oral-pill)
+RU-TUSS DM XR (Oral-pill): 
+- RU-TUSS 800 DM XR (Oral-pill)
+SEPTRA (Injectable): 
+- SEPTRA 80/16 (Injectable)
+SEPTRA (Oral-liquid): 
+- SEPTRA 40/200 (Oral-liquid)
+SEPTRA (Oral-pill): 
+- SEPTRA 400/80 (Oral-pill)
+- SEPTRA 800/160 (Oral-pill)
+SILDEC (Oral-liquid): 
+- SILDEC 0.8/12 (Oral-liquid)
+- SILDEC 1/15 (Oral-liquid)
+- SILDEC 2/15 (Oral-liquid)
+SIMCOR XR (Oral-pill): 
+- SIMCOR 1000/20 XR (Oral-pill)
+- SIMCOR 1000/40 XR (Oral-pill)
+- SIMCOR 500/20 XR (Oral-pill)
+- SIMCOR 500/40 XR (Oral-pill)
+- SIMCOR 750/20 XR (Oral-pill)
+SINEMET (Oral-pill): 
+- SINEMET 10-100 (Oral-pill)
+- SINEMET 25-100 (Oral-pill)
+- SINEMET 25-250 (Oral-pill)
+SINEMET XR (Oral-pill): 
+- SINEMET 25-100 XR (Oral-pill)
+- SINEMET 50-200 XR (Oral-pill)
+SLO-PHYLLIN XR (Oral-pill): 
+- SLO-PHYLLIN 250 XR (Oral-pill)
+STAGESIC (Oral-pill): 
+- STAGESIC 10/250 (Oral-pill)
+- STAGESIC 5/500 (Oral-pill)
+SUBOXONE (Oral-other): 
+- SUBOXONE 2/0.5 (Oral-other)
+- SUBOXONE 8/2 (Oral-other)
+SUDAL XR (Oral-pill): 
+- SUDAL 120/600 XR (Oral-pill)
+- SUDAL 60/500 XR (Oral-pill)
+SYMBYAX (Oral-pill): 
+- SYMBYAX 12/25 (Oral-pill)
+- SYMBYAX 12/50 (Oral-pill)
+- SYMBYAX 3/25 (Oral-pill)
+- SYMBYAX 6/25 (Oral-pill)
+- SYMBYAX 6/50 (Oral-pill)
+TARKA XR (Oral-pill): 
+- TARKA 1/240 XR (Oral-pill)
+- TARKA 2/180 XR (Oral-pill)
+- TARKA 2/240 XR (Oral-pill)
+- TARKA 4/240 XR (Oral-pill)
+TEKAMLO (Oral-pill): 
+- TEKAMLO 150/10 (Oral-pill)
+- TEKAMLO 150/5 (Oral-pill)
+- TEKAMLO 300/10 (Oral-pill)
+- TEKAMLO 300/5 (Oral-pill)
+TEKTURNA HCT (Oral-pill): 
+- TEKTURNA HCT 150/12.5 (Oral-pill)
+- TEKTURNA HCT 150/25 (Oral-pill)
+- TEKTURNA HCT 300/12.5 (Oral-pill)
+- TEKTURNA HCT 300/25 (Oral-pill)
+TENORETIC (Oral-pill): 
+- TENORETIC 100 (Oral-pill)
+- TENORETIC 50 (Oral-pill)
+TETRA (Oral-pill): 
+- TETRA 500 (Oral-pill)
+TOLECTIN (Oral-pill): 
+- TOLECTIN 600 (Oral-pill)
+TRIAMONIDE (Injectable): 
+- TRIAMONIDE 40 (Injectable)
+TRIAVIL (Oral-pill): 
+- TRIAVIL 10/2 (Oral-pill)
+- TRIAVIL 10/4 (Oral-pill)
+- TRIAVIL 25/2 (Oral-pill)
+- TRIAVIL 25/4 (Oral-pill)
+- TRIAVIL 50/4 (Oral-pill)
+TRIBENZOR (Oral-pill): 
+- TRIBENZOR 20/5/12.5 (Oral-pill)
+- TRIBENZOR 40/10/12.5 (Oral-pill)
+- TRIBENZOR 40/10/25 (Oral-pill)
+- TRIBENZOR 40/5/12.5 (Oral-pill)
+- TRIBENZOR 40/5/25 (Oral-pill)
+TUSSI ORGANIDIN (Oral-liquid): 
+- TUSSI ORGANIDIN 10/100 (Oral-liquid)
+- TUSSI ORGANIDIN 10/300 (Oral-liquid)
+TUSSI ORGANIDIN DM (Oral-liquid): 
+- TUSSI ORGANIDIN DM 10/100 (Oral-liquid)
+- TUSSI ORGANIDIN DM 10/300 (Oral-liquid)
+TWYNSTA (Oral-pill): 
+- TWYNSTA 40/10 (Oral-pill)
+- TWYNSTA 40/5 (Oral-pill)
+- TWYNSTA 80/10 (Oral-pill)
+- TWYNSTA 80/5 (Oral-pill)
+UNI-GUAIFEN (Oral-pill): 
+- UNI-GUAIFEN 600/300 (Oral-pill)
+UNI-GUAIFEN XR (Oral-pill): 
+- UNI-GUAIFEN 600/300 XR (Oral-pill)
+UNIRETIC (Oral-pill): 
+- UNIRETIC 15/12.5 (Oral-pill)
+- UNIRETIC 15/25 (Oral-pill)
+- UNIRETIC 7.5/12.5 (Oral-pill)
+VASERETIC (Oral-pill): 
+- VASERETIC 10-25 (Oral-pill)
+- VASERETIC 5-12.5 (Oral-pill)
+VICODIN (Oral-pill): 
+- VICODIN 10/660 (Oral-pill)
+- VICODIN 5/500 (Oral-pill)
+- VICODIN 7.5/750 (Oral-pill)
+VIMOVO EC (Oral-pill): 
+- VIMOVO 375/20 EC (Oral-pill)
+- VIMOVO 500/20 EC (Oral-pill)
+VIRAVAN-P (Oral-liquid): 
+- VIRAVAN-P 6/4 (Oral-liquid)
+VIRAVAN-PDM (Oral-liquid): 
+- VIRAVAN-PDM 3/6/4 (Oral-liquid)
+VISICOL (Oral-pill): 
+- VISICOL 398/1102 (Oral-pill)
+XODOL (Oral-pill): 
+- XODOL 10/300 (Oral-pill)
+- XODOL 5/300 (Oral-pill)
+- XODOL 7.5/300 (Oral-pill)
+ZANTAC (Oral-pill): 
+- ZANTAC 150 (Oral-pill)
+- ZANTAC 300 (Oral-pill)
+- ZANTAC 75 (Oral-pill)
+ZANTAC GELDOSE (Oral-pill): 
+- ZANTAC 300 GELDOSE (Oral-pill)
+ZESTORETIC (Oral-pill): 
+- ZESTORETIC 10/12.5 (Oral-pill)
+- ZESTORETIC 20/12.5 (Oral-pill)
+- ZESTORETIC 20/25 (Oral-pill)
+ZIAC (Oral-pill): 
+- ZIAC 10/6.25 (Oral-pill)
+- ZIAC 2.5/6.25 (Oral-pill)
+- ZIAC 5/6.25 (Oral-pill)
+ZOSYN (Injectable): 
+- ZOSYN 200/25 (Injectable)
+- ZOSYN 40/5 (Injectable)
+- ZOSYN 60/7.5 (Injectable)
+ZYDONE (Oral-pill): 
+- ZYDONE 10/400 (Oral-pill)
+- ZYDONE 5/400 (Oral-pill)
+- ZYDONE 5/500 (Oral-pill)
+- ZYDONE 7.5/400 (Oral-pill)

@@ -1,0 +1,21 @@
+<%= form_tag_wo_ajax login_path(:format=>"mobile"), :method=>:post %>
+  <input type="hidden" value="mobile" name="page_type" />
+  <div >
+    <%=basic_text_field_m @login_labels['user_name']+":", 'fe', 'user_name_1_1'%>
+    <%=basic_password_field_m  'Password:', 'fe', 'password_1_1'%>
+  </div>
+  <%=submit_tag_m 'Sign in' %>
+</form>
+
+<div>
+ <%= link_to 'Forgot your account ID?', recover_account_id_step_one_path %><br>
+ <%= link_to 'Forgot your password?', reset_password_step_one_path %>
+</div>
+<div><%= link_to 'Register', account_sign_up_path %> for an account.</div>
+
+<div id="mode_notice"> Page Mode:
+  <a href="/accounts/login.default" data-ajax="false">Standard </a> /
+  <a href="/accounts/login.basic" data-ajax="false">Basic </a> /
+  Mobile (Current)
+</div>
+<div id="page_view" style="display:none">mobile</div>

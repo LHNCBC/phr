@@ -1,0 +1,9 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Mammogram</h1>
+		
+		<p>You can record information about the mammogram(s) you have had in this section. Enter the date and result of your most recent mammogram, as well as when your next mammogram is due. 
+		</p>
+		
+		<p><a href="/help/entering_dates_help.shtml">How to enter dates in the PHR</a>
+		</p>
+	<!--#include virtual="help_footer.shtml" -->

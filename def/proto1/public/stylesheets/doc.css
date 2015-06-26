@@ -1,0 +1,67 @@
+
+    body {
+      background: url("../images/phr-body-gradient.png") repeat-x scroll 0 0 #fff;
+      margin: 0;
+      overflow: visible;
+      padding: 0;
+      font-family: Arial;
+      font-size: 14.4px;
+    }
+    .indent {
+      list-style-type: none;
+    }
+    div#hdr_banner {
+      background: url("../images/org_banner.png") no-repeat scroll 40px 15px rgba(0,0,0,0);
+      display: block;
+      height: 96px;
+      margin: 0 0 10px;
+    }
+    div#hdr_banner_img {
+      background: url("../images/phr_banner.png") no-repeat scroll 96% 25px rgba(0,0,0,0);
+      height: 100%;
+      width: 100%
+    }
+    div#target_name {
+      border: medium none;
+      color: #fff;
+      font-family: Arial;
+      font-size: 18px;
+      font-weight: bold;
+      padding-top: 0px;
+      margin-left: 25px;
+      clear: both;
+    }
+    div#content {
+      background-color: #FFF;
+      border: 7px solid rgba(0, 0, 0, 0);
+      border-bottom: 0;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding;
+      background-clip: padding-box;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px 5px 0 0;
+      width: auto;
+      margin: 10px 25px 25px 25px;
+      padding: 25px;     
+    }
+    div#main_title {
+      font-family: "Ubuntu",Arial;
+      font-size: 28px;
+      font-weight: 400;
+      color: #333333;
+      margin-bottom: 5px;
+    }
+    li.note {
+      margin-bottom: 10px;
+    }
+    span#ack {
+      text-decoration: underline;
+      color: darkBlue;
+    }
+    div#license_req {
+      display: block;
+    }
+    div#download_link {
+      display: none;
+    }

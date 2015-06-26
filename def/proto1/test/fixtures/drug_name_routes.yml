@@ -1,0 +1,38 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  text: Aminobenzoate (Oral-pill)
+  route: Oral-pill
+  code: "10000"
+  id: -2
+  drug_class_codes: "|9|14|"
+  ingredient_rxcuis: "|719|9624|"
+
+two:
+  text: Aminobenzoate (Oral-liquid)
+  route: Oral-liquid
+  code: "10001"
+  id: -3
+
+three:
+  text: "[Potaba] (Oral-pill)"
+  route: Oral-pill
+  code: "10002"
+  id: -4
+
+bad_route:
+  text: "Something (zzzzzzz)"
+  route: zzzzzzz
+  code: "10002"
+  id: -5
+  
+strength_form_array_test:
+  id: -6
+
+ing_name_order_test:
+  id: -7
+  text: Combo A-B-C
+  code: 10003
+  ingredient_rxcuis: "|123|580|79|"
+  drug_class_codes: "|120|121|122|"
+

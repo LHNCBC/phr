@@ -1,0 +1,13 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Next Appointment</h1>
+	<p>
+	Enter the date of the next appointment with the medical contact using your preferred date format. The system will convert the date to the standard format used by the PHR sytem.. </p>
+<p>If you choose to enter an appointment date, an exact date (month, day, and year) is required. 
+	</p>  
+<p>Click the <b>Date Reminders</b> link at the top of the PHR page to view a complete list of your appointment reminders, drug refill dates, test due dates, and vaccine reminders.
+<p>
+For date formatting tips and date entry shortcuts, see <a href="/help/entering_dates_help.shtml">how to enter dates in the PHR</a>
+	</p>
+
+<!--#include virtual="help_footer.shtml" -->

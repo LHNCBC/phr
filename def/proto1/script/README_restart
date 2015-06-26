@@ -1,0 +1,11 @@
+When restart server running in production mode, remember to clear the page cache.
+
+Page cache directories:
+ public/form/show/
+
+If you change data that supports search, remember to rebuild the search index.
+  1) Start the Ruby production console
+     script/console production
+  2) Enter command to rebuild index for the table
+     Command Form: RubyClassName.rebuild.index
+     Example:      DrugIngredient.rebuild_index

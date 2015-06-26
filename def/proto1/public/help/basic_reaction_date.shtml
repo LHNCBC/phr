@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Started</h1>
+		<p>
+			Enter the date when you first experienced symptoms of an allergic or dangerous reaction to the substance.
+		</p>
+<p>The date must be entered in the following format: YYYY/mm/dd. The system will accept the following types of dates: 
+<ul>
+<li>the exact date, </li>
+		<li>the year and month, or </li>
+<li>only the year</li>
+</ul>
+		
+		
+<!--#include virtual="help_footer.shtml" -->

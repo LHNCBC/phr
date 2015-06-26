@@ -1,0 +1,30 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Entering Phone Numbers in the PHR</h1>
+		<p>
+		Phone number fields accept both U.S. and international phone numbers. Enter phone numbers in one of the formats described below. Capital letters, 
+		such as NNNN, indicate a required part of the phone number.  Lowercase letters indicate an optional part of the phne number. </p> 
+<h3>U.S. Phone Numbers</h3>
+<p>Enter U.S. phone numbers as <b>cc AAA EEE NNNN</b>, where:<ul>
+<li>cc = an optional country code,</li>
+<li>AAA = a U.S. area code (required),</li>
+<li>EEE = a local exchange (required),</li>
+<li>NNNN = the number (required).</li>
+</ul>
+A single hyphen, space or period may be specified between each part of the number. The area code may also be enclosed in parentheses, although this is optional.</p>
+<h3>International Phone Numbers </h3>
+<p>Enter International phone numbers as <b>+C..C A..A N..N n..n n..n</b>, where:<ul>
+<li>the plus sign is required at the beginning of the string,</li>
+<li>c..c represents a country code (required)of up to 4 digits,</li>
+<li>a..a represents a group of at least two digits (required),</li>
+<li>n..n n..n represents optional multiple groups of at least two digits per group (minimum one group required).</li>
+</ul>
+The country code and the first group of digits following the country code may be enclosed in parentheses.  Hyphens, spaces, and periods may be used to separate the groups.</p>
+
+<h3>Optional Phone Number Extension</h3>
+<p>If desired, enter an extension following both U.S. and International phone numbers.  
+<ul>
+<li>The extension must follow the phone number and must be preceded by an <b>x</b> or an <b>X</b> or the abbreviation <b>ext</b>. </li>
+<li>Spaces may separate the extension from the phone number.</li>
+</ul></p>
+				
+	<!--#include virtual="help_footer.shtml" -->

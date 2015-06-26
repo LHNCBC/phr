@@ -1,0 +1,54 @@
+<% # This almost could have been done without a template, except we
+# needed the helper function.
+if (@table_recs)
+  list_data = make_auto_completion_list_items(@table_recs, @col_names)
+  list_code = get_list_item_codes(@table_recs, @code_field)
+else
+  list_data = []
+end
+%>
+
+  <% len = list_data.length %>
+<% if len >0 %>
+  <% row_num = (len / @col_num.to_f).ceil  %>
+  <% td_blocks = [] %>
+  <% 0.upto(len-1) do |i| %>
+    <% checked = @prev_panel_selection.empty? ? 'checked' : @prev_panel_selection.include?(list_code[i]) ? 'checked' : '' %>
+    <% td_blocks <<
+      "<input class='selected_panel' type='checkbox' " + checked +
+      " onchange=TestPanel.checkCheckAll(this);></input><span class='listNum'>"+
+      (i+1).to_s + ": </span>"+list_data[i] +"</td><td class='hidden_field'>" +
+      list_code[i]+"</td>" %>
+  <% end %>
+
+  <table style="border-collapse: collapse; width:100%;">
+    <tr>
+      <% 0.upto(@col_num.to_i - 1) do |i| %>
+        <th style="width: 33%"></th>
+      <% end %>
+    </tr>
+
+    <% 0.upto(row_num -1 ) do |j| %>
+      <tr>
+        <% 0.upto(@col_num.to_i - 1) do |k| %>
+          <td><div>
+            <% if td_blocks[j + k * row_num].nil? %>
+              <%= '&nbsp;'.html_safe %>
+            <% else %>
+              <%= td_blocks[j+k*row_num].html_safe %>
+            <% end %>
+	  </div></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <% if @access_level == ProfilesUser::READ_ONLY_ACCESS %>
+   <div class="no-panel">This page displays a flowsheet for panels of tests and
+     measures.  No test or measures data has been entered for this PHR yet.</div>
+  <% else %>
+    <div class="no-panel">This page displays a flowsheet for panels of tests and
+      measures.  You haven't entered that data yet.  To add some, use the Add
+      Trackers and Test Results button.</div>
+  <% end %>
+<% end %>

@@ -1,0 +1,4 @@
+<%= form_tag send('phr_record_'+@table+'_path', :phr_record_id=>@phr_record) %>
+  <%= render 'basic/dup_warning_section' if @dup_warning_data %>
+  <%= render "#{@table}/new_edit_fields" %>
+</form>

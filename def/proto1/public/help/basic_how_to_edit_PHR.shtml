@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+
+  
+ <h1>View or Edit an Existing PHR</h1>
+  <h3>	To view or edit an existing PHR </h3>
+<p>
+<ol>
+<li>On the <b>PHR Management</b> page, click the <b>View/Edit</b> link for the PHR you with to edit. The PHR system will then display the <b>PHR Record</b> page. 
+	
+<li> To add new information to a section of the PHR, click any link except for the <b>Health Reminders</b> and <b>Date Reminders</b> links. (These sections of the PHR are used by the system to display health reminders based on your age, gender, and other risk factors and date reminders for upcoming medical appointments and prescription refills.)</li>
+<li>To save your changes, click the <b>Save</b> button at the bottom of the input form.   </li>
+</ol>
+</p>
+<!--#include virtual="help_footer.shtml" -->

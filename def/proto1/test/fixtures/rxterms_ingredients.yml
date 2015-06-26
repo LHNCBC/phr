@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+drug_one_ing_1:
+  ing_rxcui: 719
+  name: Amobarbital
+
+drug_one_ing_2:
+  ing_rxcui: 9624
+  name: Secobarbital
+
+ing_name_order_test_1:
+  ing_rxcui: 123
+  name: bbb
+
+ing_name_order_test_2:
+  ing_rxcui: 580
+  name: aaa
+
+ing_name_order_test_3:
+  ing_rxcui: 79
+  name: ccc

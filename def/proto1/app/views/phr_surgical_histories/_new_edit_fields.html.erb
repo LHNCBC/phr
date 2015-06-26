@@ -1,0 +1,13 @@
+  <div><%=fd_labeled_text_value @fds['surgery_type'], @phr_surgery %>
+    <% if @phr_surgery.new_record? %>
+      <%= phr_hidden_field @phr_surgery, 'surgery_type' %>
+      <% if !@phr_surgery.surgery_type_C.blank? %>
+        <%= phr_hidden_field @phr_surgery, 'surgery_type_C' %>
+      <% end %>
+    <% end %>
+  </div>
+  <div><%=fd_date_field @fds['surgery_when'], @phr_surgery %></div>
+  <div><%=fd_text_field @fds['surgery_comments'], @phr_surgery %></div>
+  <br>
+  <%= submit_tag 'Save' %>
+  <%= link_to 'Cancel', phr_record_phr_surgical_histories_path %>

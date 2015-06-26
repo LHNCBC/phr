@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medical Contact Type</h1>
+
+	<p>
+	Select a medical specialist from the list or enter your own. 
+	</p> 
+	<p><a href="/help/using_long_lists.shtml">
+	How to find and select items from the medical specialists list</a>
+	</p>  
+
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,18 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medication Status</h1>
+		<p>
+		Indicate whether or not you are currently 
+		taking the medication you have entered. If you are currently taking it, select the <b>Active</b> status from the drop-down menu.</p>
+                <p>
+		If you have entered a medication that you have taken in the past, 
+		and are no longer taking, select the 
+		<b>Stopped</b> status. </p>
+                <p><i>By default, the PHR system displays a list of all medications labeled as <b>Active</b>. Click the <b>Include stopped medications</b> check box to display the complete list of all <b>Active</b> and <b>Stopped</b> medications. </i>
+   </p>
+		<p>
+			<a href="/help/using_short_lists_help.shtml">How to select items 
+			from the list</a>
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

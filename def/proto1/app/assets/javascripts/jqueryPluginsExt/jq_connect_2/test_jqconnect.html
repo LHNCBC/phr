@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>My Foo Tests</title>    
+    <script language="javascript" src="../jquery/jquery-1.2.6.js" type="text/javascript"></script>
+    <script src="jquery.connect.js"></script>
+    <!-- add a script reference to your library here -->
+    <link media="screen" href="../jquery/testsuite.css" type="text/css" rel="stylesheet"/>    
+</head>
+
+<script language="javascript" type="text/javascript">
+
+  var called = false;
+  var called1 = null;
+  var called2 = null;
+  var called3 = null;
+  var listeners = 0;
+  function Class1(){
+      this.fun1 = function(){
+       called1 = 'calss1-fun1';
+      }
+  }
+  function Class2(){
+     this.fun1 = function(){
+       called2 = 'class2-fun1';
+     }
+  }
+  function Class3(){
+     this.fun1 = function(){
+       called1 = 'class3-fun1';
+     }
+  }
+  function Class4(){
+     this.fun1 = function(){
+       called2 = 'class4-fun1';
+     }
+  }
+  function Class5(){
+     this.fun1 = function(){
+       called1 = 'class5-fun1';
+     }
+  }
+  function Class6(){
+     this.fun1 = function(){
+       called2 = 'class6-fun1';
+     }
+  }
+  function fun2(){
+      called = true;
+  }
+
+      function fun3(){
+         called1 = "fun3";
+      }
+      function fun4(){
+         called2 = "fun4";
+      }    
+    function fun5(){called1='fun5';};
+    function fun6(){listeners = listeners + 1; called2 = 'fun6';};
+    function fun7(){listeners = listeners + 1; called3 = 'fun7';};
+
+  function fun8(){
+    called1 = "fun8";
+  }
+  function fun9(){
+    called2 = "fun9";
+  }
+  function fun10(){
+    called1 = "fun10";
+  }
+  function fun11(){
+    called2 = "fun11";
+  }
+  function fun12(){
+    called3 = "fun12";
+  }
+  function fun13(){
+    called3 = "fun13";
+  }
+  var clickHandler = null;
+  function clickHandle(){
+    clickHandler = true;
+  }
+
+
+
+
+$(document).ready(function(){
+
+  test("attaching global function to class function",function(){
+        var cl = new Class1();
+        $.connect(cl,'fun1',self,fun2);
+        cl.fun1();
+
+        ok(called, "attached function executed");
+  });
+
+  test("attaching global function to global function",function(){
+      $.connect(self,'fun3',self,fun4);
+      fun3();
+      //actual expected
+      equals(called1,'fun3',"original function executed");
+      equals(called2,'fun4',"attached function executed");
+      
+  });
+
+  test("attaching global function with function name string",function(){
+      called1 = null;
+      called2 = null;
+      $.connect(self,'fun3',self,'fun4');
+      fun3();
+      //actual expected
+      equals(called1,'fun3',"original function executed");
+      equals(called2,'fun4',"attached function executed");
+      
+  });
+  
+  test("attaching class function to global function",function(){
+     called1 = null;
+     called2 = null;
+     var c2 = new Class2();
+     $.connect(self,'fun3',c2,c2.fun1);
+     fun3()
+     equals(called1,'fun3','original function executed');
+     equals(called2,'class2-fun1','attached function executed');
+      
+  });
+
+  test("attaching class function to class function",function(){
+     called1 = null;
+     called2 = null;
+     var c1 = new Class1();
+     var c2 = new Class2();
+     $.connect(c1,'fun1',c2,c2.fun1);
+     c1.fun1()
+     equals(called1,'calss1-fun1','original function executed');
+     equals(called2,'class2-fun1','attached function executed');
+      
+  });
+  test("passing null object for the first argument",function(){
+     called1 = null;
+     called2 = null;
+     var c2 = new Class2();
+     $.connect(null,'fun3',c2,c2.fun1);
+     fun3()
+     equals(called1,'fun3','original function executed');
+     equals(called2,'class2-fun1','attached function executed');
+  });
+  test("passing null object for the third argument",function(){
+     called1 = null;
+     called2 = null;
+     $.connect(null,'fun3',null,fun4);
+     fun3()
+     equals(called1,'fun3','original function executed');
+     equals(called2,'fun4','attached function executed');
+  });
+
+  test("do not pass any thing for the reference object",function(){
+     called1 = null;
+     called2 = null;
+     var c2 = new Class2();
+     $.connect('fun3',c2,c2.fun1);
+     fun3()
+     equals(called1,'fun3','original function executed');
+     equals(called2,'class2-fun1','attached function executed');
+  });
+
+  test("do not pass any thing for the call obj object",function(){
+     called1 = null;
+     called2 = null;
+     $.connect('fun3',fun4);
+     fun3()
+     equals(called1,'fun3','original function executed');
+     equals(called2,'fun4','attached function executed');
+  });
+
+  test("attach more than one handlers",function(){
+    called1 = null;
+    called2 = null;
+    called3 = null;
+    $.connect('fun5',fun6);
+    $.connect('fun5',fun7);
+    fun5();
+    equals(called1,'fun5','original function executed');
+    equals(called2 , 'fun6','first listener executed');
+    equals(called3, 'fun7', 'second listener executed');
+    equals(listeners,2,'2 listner functions executed');
+  });
+
+  test("test dom event attach",function(){
+     b = $('#button').get(0);
+     $.connect(b,'click',clickHandle);
+     equals(clickHandler,null);
+     $(b).click();
+     ok(clickHandler,'click handler executed');
+  });
+
+  test("test disconnect one function",function(){
+     called1 = null;
+     called2 = null;
+     $.connect('fun8',fun9);
+     fun8();
+     equals(called1,'fun8');
+     equals(called2,'fun9');
+     called1=null;
+     called2=null;
+     $.disconnect('fun8',fun9);
+     fun8();
+     equals(called1,'fun8');
+     equals(called2,null);
+  });
+
+  test("test disconnect one class function",function(){
+     var obj1 = new Class3();
+     var obj2 = new Class4();
+     called1 = null;
+     called2 = null;
+     $.connect(obj1,'fun1',obj2,obj2.fun1);
+     obj1.fun1();
+     equals(called1,'class3-fun1');
+     equals(called2,'class4-fun1');
+     called1=null;
+     called2=null;
+     $.disconnect(obj1,'fun1',obj2,obj2.fun1);
+     obj1.fun1();
+     equals(called1,'class3-fun1');
+     equals(called2,null);
+  });
+
+
+  test("test disconnect all function",function(){
+     called1 = null;
+     called2 = null;
+     called3 = null;
+     $.connect('fun10',fun11);
+     $.connect('fun10', fun12);
+     fun10();
+     equals(called1,'fun10');
+     equals(called2,'fun11');
+     equals(called3,'fun12');
+     called1=null;
+     called2=null;
+     called3=null;
+     $.disconnectAll('fun10');
+     fun10();
+     equals(called1,'fun10');
+     equals(called2,null);
+     equals(called3,null);
+  });
+
+  test("test disconnect all object function",function(){
+     called1 = null;
+     called2 = null;
+     called3 = null;
+     var obj1 = new Class5();
+     var obj2 = new Class6();
+     $.connect(obj1,'fun1',obj2,obj2.fun1);
+     $.connect(obj1,'fun1','fun13');
+     obj1.fun1();
+     equals(called1,'class5-fun1');
+     equals(called2,'class6-fun1');
+     equals(called3,'fun13');
+     called1=null;
+     called2=null;
+     called3=null;
+     $.disconnectAll(obj1,'fun1');
+     obj1.fun1();
+     equals(called1,'class5-fun1');
+     equals(called2,null);
+     equals(called3,null);
+  });
+
+  
+});
+</script>
+
+<body>
+
+
+
+<script type="text/javascript" src="../jquery/testrunner.js"></script>
+ <h1>QUnit example</h1>
+ <h2 id="banner"></h2>
+ <h2 id="userAgent"></h2>
+
+ <ol id="tests"></ol>
+
+ <div id="main"></div>
+
+ <input type="button" id="button" />
+
+        <!-- Any HTML you may require for your tests to work properly -->
+        
+</body>
+</html>

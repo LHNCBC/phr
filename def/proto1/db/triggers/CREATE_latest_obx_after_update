@@ -1,0 +1,47 @@
+DROP TRIGGER IF EXISTS latest_obx_after_update;
+DELIMITER $$
+CREATE DEFINER = CURRENT_USER TRIGGER latest_obx_after_update 
+AFTER UPDATE ON obx_observations
+FOR EACH ROW
+BEGIN
+  DECLARE p_id_ INT;
+  DECLARE l_num_ VARCHAR(255);
+
+  DECLARE first_id INT;
+  DECLARE last_id INT;
+  DECLARE existing_rec_id INT;
+  
+  SET p_id_ = NEW.profile_id;
+  SET l_num_ = NEW.loinc_num;
+
+  # get the id of the earliest obx record
+  SELECT id INTO first_id
+  FROM obx_observations
+  WHERE profile_id = p_id_ AND loinc_num = l_num_ AND latest=1 AND obx5_value is not NULL
+  ORDER BY test_date_ET ASC limit 1;
+
+  # get the id of the latest obx record
+  SELECT id INTO last_id
+  FROM obx_observations
+  WHERE profile_id = p_id_ AND loinc_num = l_num_ AND latest=1 AND obx5_value is not NULL
+  ORDER BY test_date_ET DESC limit 1;
+
+  # get the id of the existing record in latest_obx_records
+  SELECT id INTO existing_rec_id
+  FROM latest_obx_records
+  WHERE profile_id=p_id_ AND loinc_num=l_num_;
+
+  # create a new record if no existing records in latest_obx_records
+  IF existing_rec_id IS NULL
+  THEN
+    IF first_id IS NOT NULL AND last_id IS NOT NULL
+    THEN
+      INSERT INTO latest_obx_records (profile_id,loinc_num,first_obx_id,last_obx_id) VALUES(p_id_,l_num_,first_id,last_id);
+    END IF;
+  # update the existing record in latest_obx_records if an existing records is found
+  ELSE
+    UPDATE latest_obx_records SET first_obx_id=first_id, last_obx_id=last_id WHERE id=existing_rec_id;
+  END IF;
+END;
+$$
+DELIMITER ;

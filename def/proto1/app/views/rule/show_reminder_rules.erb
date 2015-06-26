@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag  'reminder_rules' %>
+
+<h1>Reminder Rules</h1>
+<div id="all_rule_info">
+<% @rules.each do |r| %>
+<h2><%= r.name %></h2>
+
+<% if @rule_data[r.name][:fetch_rules] %>
+<h3>Referenced Fetch Rules</h3>
+<%= @rule_data[r.name][:fetch_rules].html_safe %>
+<% end %>
+
+<% if @rule_data[r.name][:value_rules] %>
+<h3>Referenced Value Rules</h3>
+<%= @rule_data[r.name][:value_rules].html_safe %>
+<% end %>
+
+<div class="rule_cases">
+<h3>Cases</h3>
+<% if !r.expression.blank? %>
+<div class="exclusions"><span class="exclusion_label">Exclusion Criteria</span>:
+  <%= @rule_data[r.name][:expression] %>
+</div>
+<% end %>
+<%= @rule_data[r.name][:cases].html_safe %>
+</div>
+<% end %>
+</div>

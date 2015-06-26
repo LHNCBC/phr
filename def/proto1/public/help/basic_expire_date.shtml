@@ -1,0 +1,20 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Expire Date</h1>
+		<p>
+		Enter the prescription&#39;s expiration date. This is the date 
+		when the prescription runs out and does not allow refills.
+	</p>
+		<p>
+		For short term medications, such as antibiotics for strep throat, 
+		the expiration date is not important, as prescriptions for most 
+		maintenance medications will expire in one year. For controlled 
+		substances, like codeine or valium, the prescription normally 
+		expires in six months or less. The expiration date will be on 
+		the prescription bottle and will be called the <q>expiration date</q>. 
+		Enter this date for long term medications so you can see 
+		which medications will need a new prescription prior to the 
+		expiration date.
+	</p>
+		
+<!--#include virtual="help_footer.shtml" -->

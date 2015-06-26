@@ -1,0 +1,40 @@
+﻿body ul.cm_default, body ul.cm_default ul
+{
+	/* Required settings */
+	top:-1000px; left:-1000px; position:absolute; z-index:999; 
+	/* Possibly inherited values overrides */
+	border-width:0;  float:none; height:auto; margin:0; padding:0; width:auto;	
+	/* Additional settings */
+	border-top:solid 1px #acacac; border-bottom:solid 1px #acacac;
+}
+body ul.cm_default li
+{
+	/* Required settings */
+	width:162px; list-style:none none outside;
+	/* Possibly inherited values overrides */
+	float:none; height:auto; letter-spacing:normal; margin:0; border-width:0; line-height:normal; margin:0; 
+	text-align:left; text-decoration:none; text-indent:0; text-transform:none; vertical-align:top; word-spacing:normal;
+	font-family:Arial, Sans-Serif; font-size:13px; font-style:normal; font-variant:normal; font-weight:normal;
+	/* Additional settings */
+	overflow:hidden; cursor:default; padding:5px 5px 5px 31px; 
+	border-left:solid 1px #acacac; border-right:solid 1px #acacac; 
+	background:#e6e6e6 url(images/background.gif) repeat-y 0 0
+}
+body ul.cm_default li.separator{width:198px; height:12px; background:#e6e6e6 url(images/separator.gif) no-repeat; padding:0}
+/* IE 6/7 hack */
+body ul.cm_default li.separator{*margin:-1px 0 -5px 0}
+body ul.cm_default li.disabled{color:#999}
+body ul.cm_default li span.submenu{display:block; width:4px; height:11px; float:right; background:url(images/submenu.gif) no-repeat 0 4px}
+body ul.cm_default li.disabled span.submenu{background-image:url(images/submenu_dis.gif)}
+body ul.cm_default li.hover{background-color:#d4dde6; background-image:url(images/hover.gif)}
+/* no hover effects on separators*/
+body ul.cm_default li.hover.separator{background-color:#e6e6e6; background-image:url(images/separator.gif)}
+/*icons*/
+body ul.cm_default li.icon{width:188px; padding:5px}
+body ul.cm_default span.icon{display:block; float:left; width:26px; height:16px; background-repeat:no-repeat}
+body ul.cm_default span.icon.hover{background-position:0 -16px}
+body ul.cm_default span.disk{background-image:url(images/icons/disk.gif)}
+body ul.cm_default span.drive{background-image:url(images/icons/drive.gif)}
+body ul.cm_default span.folder{background-image:url(images/icons/folders.gif)}
+body ul.cm_default span.file{background-image:url(images/icons/file.gif)}
+body ul.cm_default span.ok{background-image:url(images/icons/ok.gif)}

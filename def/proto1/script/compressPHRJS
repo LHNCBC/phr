@@ -1,0 +1,37 @@
+#!/proj/def/bin/ruby
+
+# This script is used to compress a single JavaScript file using script 
+# compressJS. The compressed JavaScript codes will have a license at the top of 
+# the file. It will also create a gzipped version of the compressed file.
+
+require 'tempfile'
+# Define a license statement to go at the top of the compressed JS files.
+LICENSE = <<END_L
+// License:  This file is a mixture of our code and third-party code,
+// some of which has its own license.  Please don't re-use this version.
+END_L
+ 
+uncompressed_js_file = ARGV[0]
+compressed_js_file = ARGV[1]
+unless (uncompressed_js_file && compressed_js_file)
+  raise "Missing argument(s) path_to_uncompressed_JavaScript_file and/or "+
+    "path_to_compressed_JavaScript_file"
+end
+
+temp_file = Tempfile.new('compressPHRJS')
+if File.exists?(uncompressed_js_file) 
+  # Output a license statement before following with the compressed file.
+  File.open(temp_file.path, 'w') do |file|
+    file.write(LICENSE)
+  end
+  compressor = "script/compressJS"
+  puts ("Compressing source file...  #{uncompressed_js_file}")
+  system("#{compressor} #{uncompressed_js_file} >> #{temp_file.path}")
+  system("mv #{temp_file.path} #{compressed_js_file}")
+  system("chmod 644 #{compressed_js_file}")
+  # Make a gzipped version too.
+  system("cat #{compressed_js_file} | gzip > #{compressed_js_file}.gz")
+  system("chmod 644 #{compressed_js_file}.gz")
+else
+  raise "No such file or directory - #{uncompressed_js_file}"
+end

@@ -1,0 +1,101 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+phr_test_phr1:
+  id: -10
+  id_shown: abc
+  
+phr_test_phr2:
+  id: -11
+  id_shown: 1234567
+  
+other_user_phr1:
+  id: -12
+  id_shown: def123
+  
+other_user_nap1:
+  id: -13
+  id_shown: 123abc
+
+temp_profile_1:
+  id: -20
+  id_shown: 7e8rt
+
+temp_profile_2:
+  id: -21
+
+temp_profile_3:
+  id: -22
+  
+temp_profile_4:
+  id: -30
+
+standard_profile_1:
+  id: -23
+  
+standard_profile_2:
+  id: -24
+
+standard_profile_3:
+  id: -34
+  id_shown: 767ev
+
+# profile with no user
+orphan_profile:
+  id: -857
+
+# profiles used by the phr_home tests
+
+phr_home_active_profile_1:
+  id: -40
+  id_shown: phap1
+  archived: false
+
+phr_home_active_profile_2:
+  id: -41
+  id_shown: phap2
+  archived: false
+
+phr_home_active_profile_3:
+  id: -42
+  id_shown: phap3
+  archived: false
+
+phr_home_removed_profile_1:
+  id: -43
+  id_shown: phrp1
+  archived: true
+
+phr_home_removed_profile_2:
+  id: -44
+  id_shown: phrp2
+  archived: true
+
+phr_home_removed_profile_3:
+  id: -45
+  id_shown: phrp3
+  archived: true
+
+phr_home_active_profile_4:
+  id: -46
+  id_shown: phap4
+  archived: false
+
+phr_home_active_profile_5:
+  id: -47
+  id_shown: phap5
+  archived: false
+
+phr_home_removed_profile_4:
+  id: -48
+  id_shown: phrp4
+  archived: true
+
+phr_home_removed_profile_5:
+  id: -49
+  id_shown: phrp5
+  archived: true
+
+phr_home_removed_profile_6:
+  id: -50
+  id_shown: phrp6
+  archived: true

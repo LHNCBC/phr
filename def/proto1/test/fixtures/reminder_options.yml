@@ -1,0 +1,52 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+temp_profile_1a:
+  id: -101
+  profile_id: -20
+  record_id: -1
+
+temp_profile_1b:
+  id: -102
+  profile_id: -20
+  record_id: -2
+
+temp_profile_2a:
+  id: -103
+  profile_id: -21
+  record_id: -1
+
+temp_profile_2b:
+  id: -104
+  profile_id: -21
+  record_id: -2
+
+temp_profile_3a:
+  id: -105
+  profile_id: -22
+  record_id: -1
+
+temp_profile_3b:
+  id: -106
+  profile_id: -22
+  record_id: -2
+
+standard_profile_1a:
+  id: -107
+  profile_id: -23
+  record_id: -1
+
+standard_profile_1b:
+  id: -108
+  profile_id: -23
+  record_id: -2
+
+standard_profile_2a:
+  id: -109
+  profile_id: -24
+  record_id: -1
+
+standard_profile_2b:
+  id: -110
+  profile_id: -24
+  record_id: -2
+

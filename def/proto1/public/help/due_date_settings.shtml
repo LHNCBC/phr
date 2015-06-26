@@ -1,0 +1,21 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Date Reminder Settings</h1>
+    <p>
+    The <b>Date Reminders</b> list displays upcoming events that apply to a specific PHR.
+    The list includes all drug refills, medical appointments, medical tests and
+    immunizations that are upcoming within the time frames defined by <b>Date Reminder Settings</b>.</p>
+    <p>
+    The <b>Date Reminder Settings</b> page allows you to update the setting for each
+    type of due date displayed.  The <b>Days Ahead</b> column shows how far
+    ahead of a due date the item will be shown on the <b>Date Reminders</b> list. 
+   
+    For example, if you have a medical appointment set for November 15 of this
+    year, and if the <b>Days Ahead</b> setting is 30 days, the appointment
+    will begin displaying on the <b>Date Reminders</b> list on October 17. If you change the <b>Days Ahead</b> value for medical appointments to 20, the
+    appointment will not show up in the list until October 27.</p>
+   
+    
+<p> The <b>Date Reminder Settings</b> list can be sorted by clicking any of the column headings in the list.</p>
+    </p>
+ 
+<!--#include virtual="help_footer.shtml" -->

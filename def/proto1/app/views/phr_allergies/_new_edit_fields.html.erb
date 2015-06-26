@@ -1,0 +1,12 @@
+ <div><%=fd_labeled_text_value @fds['allergy_name'], @data_rec %>
+    <%= phr_hidden_field @data_rec, 'allergy_name' %>
+    <% if @data_rec.allergy_name_C %>
+      <%= phr_hidden_field @data_rec, 'allergy_name_C' %>
+    <% end %>
+  </div>
+  <div><%=fd_prefetched_list @fds['reaction'], @data_rec, @reactions %></div>
+  <div><%=fd_date_field @fds['reaction_date'], @data_rec %></div>
+  <div><%=fd_text_field @fds['allergy_comment'], @data_rec %></div>
+  <br>
+  <%= submit_tag 'Save' %>
+  <%= link_to 'Cancel', phr_record_phr_allergies_path %>

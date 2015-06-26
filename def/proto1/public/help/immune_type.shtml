@@ -1,0 +1,13 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Vaccine Type</h1>
+	
+<p>
+Choose the type of vaccine from the drop-down list. Vaccines can be classified into three groups; <b>Childhood</b>, <b>Adolescent and Adult</b>, and <b>Other</b> vaccines.  <b>Other</b> vaccines include travel vaccines or those given to people working in high-risk occupations (e.g., rabies vaccine for veterinarians).
+</p>
+
+	
+<!--#include virtual="help_footer.shtml" -->
+
+
+

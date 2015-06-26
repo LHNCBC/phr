@@ -1,0 +1,9 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Date Entered</h1>
+	
+	<p>Enter the date you entered the question into the PHR  using your preferred date format. The system will convert the date to the standard format used by the PHR sytem.</p>
+
+	<p>For date formatting tips and date entry shortcuts, see <a href="/help/entering_dates_help.shtml">how to enter dates in the PHR</a>
+	</p>
+<!--#include virtual="help_footer.shtml" -->

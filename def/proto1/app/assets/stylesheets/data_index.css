@@ -1,0 +1,24 @@
+/* 
+    Document   :  data_index
+    Created on :  Feb 8, 2012, 11:13:00 AM
+    Author     :  lmericle
+    Description:  CSS specific to the Data List Updater page
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+td .table_list {
+  margin-top: 0;
+}
+
+div.table_links {
+  border: 1px solid #73A0C8;
+  padding-bottom: 0.5em;
+}
+
+#upload {
+  margin-bottom: 0;
+}

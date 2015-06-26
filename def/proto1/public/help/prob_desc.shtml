@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Description&#47;Comment</h1>
+		<p>
+			Use this field to note any additional information about the medical condition.	
+		</p>
+	
+
+<!--#include virtual="help_footer.shtml" -->

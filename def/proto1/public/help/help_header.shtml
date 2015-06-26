@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <title>PHR Help</title>
+     <!--#include virtual="help_page_css.shtml" -->
+     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin" media="all"/>
+  </head>
+<body id="helpBody">
+<a href="javascript:history.back();" id="backLink" >Go Back</a>

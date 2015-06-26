@@ -1,0 +1,22 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+key_id_1487_1:
+  id: 100001
+  gopher_key_id: t1487
+  gopher_primary_name: Neisseria Meningitidis
+  urlid: http://somewhere1
+  mplus_page_title: Page One
+
+key_id_1487_2:
+  id: 100002
+  gopher_key_id: t1487
+  gopher_primary_name: Neisseria Meningitidis
+  urlid: http://somewhere2
+  mplus_page_title: Page Two
+
+key_id_4373_2:
+  id: 100003
+  gopher_key_id: t4373
+  gopher_primary_name: Cigarette Smoker
+  urlid: http://somewhere3
+  mplus_page_title: Page Three
+

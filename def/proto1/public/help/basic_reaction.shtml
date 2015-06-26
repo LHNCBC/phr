@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Type of Allergic Reaction</h1>
+		<p>
+		Select the reaction caused by the allergen.  
+		As you begin typing, the system will provide you with a list of possible 
+		reactions based on the first few characters.  
+		If you do not find an adequate description of the reaction in the master list, 
+		type your own description in the next field.
+		</p>
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Answer Security Question</h1>
+		<p>
+		Please enter your answer to the provided security question. </p>
+<p>
+		You provided an answer to this question at the time of 
+		registration to prevent unauthorized disclosure 
+		of your account information.
+	</p>
+		
+<!--#include virtual="help_footer.shtml" -->

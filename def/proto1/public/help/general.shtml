@@ -1,0 +1,67 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Help Topics</h1>
+	<h3>PHR Basics</h3>
+<p>
+		<ul>
+			<li><a href="what_is_the_PHR.shtml">What Is the Personal Health Record (PHR)?</a></li>
+			<li><a href="what_the_PHR_does.shtml">What Can the PHR Do for Me?</a></li>
+			<li><a href="what_kind_information_PHR.shtml">What Type of Information Can I Record?</a></li>
+                         <li><a href="system_requirements.shtml">What Are the System Requirements for Using the PHR?</a></li>
+                        
+		</ul>
+</p>
+        <h3>PHR Tasks</h3>
+<p>
+<ul>
+			
+<li><a href="how_to_create_PHR.shtml">Create a New PHR</a></li>
+<li><a href="how_to_edit_PHR.shtml">View or Edit an Existing PHR</a></li>
+<li><a href="how_to_print_PHR.shtml">Print</a></li>
+<li><a href="download_a_PHR.shtml">Download a PHR File to My Computer</a></li>
+<li><a href="remove_a_PHR.shtml">Make a PHR Inactive</a></li>
+<li><a href="restore_a_PHR.shtml">Restore an Inactive PHR</a></li>
+<li><a href="how_to_delete_PHR.shtml">Delete a PHR</a></li>
+<li><a href="share_phr.shtml">Share a PHR</a></li>
+</ul>
+</p>
+	<h3>How Do I ...</h3>
+<p>
+		<ul>
+			
+			<li><a href="opening_closing_help.shtml">Open and Close Sections in the PHR?</a></li>
+			<li> <a href="using_long_lists_help.shtml">Use the Drop-down Lists to Enter Data?</a></li>
+			<li> <a href="bypassing_drop_downs.shtml">Bypass the Drop-down Lists?</a></li>
+			<li><a href="entering_dates_help.shtml">Enter Dates?</a></li>
+                        <li><a href="entering_times.shtml">Enter Times?</a></li>
+                        <li> <a href="error_indicators.shtml">Fix Input Errors?</a></li>
+			<li> <a href="user_functions_shortcuts.shtml">Enter Data Using Keyboard Shortcuts?</a></li>
+                        <li> <a href="get_more_info.shtml">Get More Information About My Medical Conditions, Medications, Allergies, and Vaccines?</a></li>
+                        <li> <a href="add_new_test.shtml">Add New Test Results or Health Trackers?</a></li>
+                        <li> <a href="edit_flowsheet_data.shtml">Edit Existing Test Results or Health Trackers?</a></li>
+<li> <a href="delete_flowsheet_data.shtml">Delete Test Result or Health Tracker Data?</a></li>
+                        <li> <a href="flowsheet.shtml">View All of My Test Results and Trackers?</a></li>
+		</ul>
+</p>
+	<h3>My Account</h3>
+<p>
+		<ul>
+                <li><a href="user_name.shtml">About the PHR Account ID</a></li>
+                <li><a href="cant_remember_id.shtml">I Can't Remember My PHR Account ID</a></li>
+                <li><a href="cant_remember_passwd.shtml">I Can't Remember My Password</a></li>
+                <li><a href="how_to_change_passwd.shtml">How Do I Change My Password?</a></li>
+                <li><a href="how_to_change_email.shtml">How Do I Change My Email Address?</a></li>
+                <li><a href="cant_remember_questions.shtml">I'm Not Sure I Remember the Answers to My Security Questions. Can I Change the Questions and/or Answers?</a></li>
+		</ul>
+</p>
+	<h3>Privacy and Security</h3>
+<p>
+		<ul>
+                <li><a href="personal_info_security.shtml">How Secure is My Personal Information?</a></li>
+                <li><a href="no_personal_identifiers.shtml">Limit the Use of Personal Identifiers</a></li>
+                <li><a href="create_security_questions.shtml">Security Questions</a></li>  
+               
+		</ul>
+</p>
+    
+<!--#include virtual="help_footer.shtml" -->

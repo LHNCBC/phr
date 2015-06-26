@@ -1,0 +1,8 @@
+  <div><%=fd_date_field @fds['date_entered'], @data_rec %></div>
+  <div><%=fd_prefetched_list @fds['category'], @data_rec, @categories %></div>
+  <div><%=fd_prefetched_list @fds['question_status'], @data_rec, @statuses, false %></div>
+  <div><%=fd_text_field @fds['question'], @data_rec %></div>
+  <div><%=fd_text_field @fds['question_answer'], @data_rec %></div>
+  <br>
+  <%= submit_tag 'Save' %>
+  <%= link_to 'Cancel', phr_record_phr_doctor_questions_path %>

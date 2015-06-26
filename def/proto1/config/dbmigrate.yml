@@ -1,0 +1,61 @@
+# 
+# Configuration file for script/dbMigrate.rb, which migrate a MySQL database
+# into an Oracle database/schema.
+#
+# This file should be located at config/dbmigrate.yml
+# 
+# MySQL database information. Required
+# username: 
+# password : password of username
+# database : the name of the source database where data and database objects 
+#            are to be dumped
+# host     : hostname of the MySQL server
+#
+mysql:
+    username: irvmgr
+    password: ?????
+    database: proto1_development
+    host: anthem
+
+#    
+# Oracle database information. Required.
+# admin_username : a user account that have create/drop/grant privillge on
+#                  on user/schema and other database objects.
+# admin_password : password of admin_username
+# userschema     : a user/schema that will be created and data will be 
+#                  loaded into this schema.
+#                  ***WARNING***
+#                  this user/schema will be drop if it already exists. all data 
+#                  and database objects will be lost. Do a backup if needed.
+# password       : password of userschema
+# database       : a TNS name for Oracle connections. 
+#                  See your Oracle DBA if any of above settings is not clear to
+#                  you.
+# tablespace     : a tablespace where the new schema will be created. 
+#                  defautl value: users
+#
+
+
+oracle:
+    admin_username: wangye
+    admin_password: ?????
+    userschema: wangye_phrdev
+    tablespace: phrdev
+    password: ?????
+    database: phrdev
+
+#
+# Optional information
+# file_location : default location is <project dir>/tmp/dbmigrate
+# keep_file     : yes/no, default is yes. it determines whether to keep the five
+#                 script files (1 mysqldump file, 2 oracle sql script files and
+#                 2 oracle sqlldr files
+# show_msg      : yes/no, default is yes. it displays important messages about
+#                 the requirement and (possible disaterous) effects in the  
+#                 beginning.
+#    
+option:
+    file_location: tmp/dbmigrate
+    keep_file: yes
+    show_msg: yes
+    

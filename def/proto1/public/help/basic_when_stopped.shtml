@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>When Stopped</h1>
+		<p>
+		Enter the date when the condition ended or was resolved using the format  YYYY/mm/dd.  </p>
+<p>Enter the exact date if known; however, the system will accept  any of the the following types of dates: 
+<ul>
+<li>the exact date, </li>
+		<li>the year and month, or </li>
+<li>only the year</li>
+</ul>
+		</p>
+
+		
+<!--#include virtual="help_footer.shtml" -->

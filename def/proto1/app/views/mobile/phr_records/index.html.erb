@@ -1,0 +1,42 @@
+<%#= render :template=>"phr_records/profiles_index", :layout=>"basic" %>
+<% if @user %>
+    <div data-role="navbar">
+      <ul>
+        <% current_tab_class = "ui-btn-active ui-state-persist" %>
+        <% act = @profile_status == "active" ? current_tab_class : "" %>
+        <% arc = @profile_status == "archived" ? current_tab_class : "" %>
+        <%#=[@profile_status, act,arc, current_tab_class].join("<br>") %>
+        <% if @user.has_active_phr_records %>
+            <li><%= link_to 'Active', phr_records_path, :class => act %></li>
+        <% end %>
+        <% if @user.has_archived_phr_records %>
+            <li><%= link_to 'Archived', archived_phr_records_path, :class => arc %></li>
+        <% end %>
+        <% if @user.has_shared_phr_records %>
+            <li><a href="#anylink">Shared</a></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+<% if @phr_records.length > 0 %>
+    <div data-role="collapsibleset">
+      <% @phr_records.each do |phr_record| %>
+          <div data-role="collapsible">
+            <h1><%= phr_record.phr.pseudonym %></h1>
+            <p>
+              <% if @page_title == "PHR Management" %>
+                  <% btn_classes= "ui-btn ui-corner-all" %>
+                  <%= link_to "View/Edit", phr_record, :id => phr_record.id_shown, "class" => btn_classes %>
+                  <%= link_to 'Change Demographic Info', edit_phr_record_path(phr_record), "class" => btn_classes %>
+                  <%= link_to 'Export', export_phr_record_path(phr_record), "class" => btn_classes %>
+                  <%= button_to_wo_js 'Archive', archive_phr_record_url(phr_record), :method => :put %>
+              <% else %>
+                  <%= button_to_wo_js 'Restore', unarchive_phr_record_path(phr_record), :method => :put %>
+                  <%= button_to_wo_js 'Destroy', phr_record, :confirm => 'Are you sure?', :method => :delete %>
+              <% end %>
+            </p>
+          </div>
+      <% end %>
+    </div>
+<% end %>

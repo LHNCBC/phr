@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+</head>
+<body>
+
+  <div id="content">
+    <div id="header">
+      <h1>JavaScript unit test file</h1>
+      <p>
+        This file tests <strong>data_model.js</strong>.
+      </p>
+    </div>
+
+    <!-- Log output -->
+    <div id="testlog"> </div>
+
+    <!-- test form -->
+    <div id="testLatestFromForm" >
+      <!-- vertical group -->
+      <div id="vertical_group">
+        <input id="fe_name_1" type=text value="test one" />
+        <input id="fe_birth_day_1" type=text value="2000/01/11" />
+      </div>
+
+      <!-- horizontal group -->
+      <div id="horizontal_group">
+        <table>
+          <tr>
+            <td>
+              <input type="text" id="fe_test_name_1" value="n1"/>
+            </td>
+            <td>
+              <input type="text" id="fe_test_value_1" value="v1"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" id="fe_test_name_2" value="n2"/>
+            </td>
+            <td>
+              <input type="text" id="fe_test_value_2" value="v2"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" id="fe_test_name_3" value="n3"/>
+            </td>
+            <td>
+              <input type="text" id="fe_test_value_3" value="v1"/>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+      <!-- end of horizontal group -->
+    </div>
+    <!-- end of test form -->
+  </div>
+  <!-- end of content -->
+  <script src="assets/jquery/jquery.js" type="text/javascript"></script>
+  <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+  <script src="assets/effects.js?body=1" type="text/javascript"></script>
+  <script src="assets/controls.js?body=1" type="text/javascript"></script>
+  <script src="assets/application_phr.js?body=1" type="text/javascript"></script>
+  <script src="assets/navigation.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompBase.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompPrefetch.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompSearch.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/unittest.js" type="text/javascript"></script>
+  <script src="assets/logger.js?body=1" type="text/javascript"></script>
+  <script src="assets/idCache.js?body=1" type="text/javascript"></script>
+  <script src="assets/rules.js?body=1" type="text/javascript"></script>
+  <script src="assets/testpanel.js?body=1" type="text/javascript"></script>
+  <script src="assets/date.js?body=1" type="text/javascript"></script>
+  <script src="assets/dateTimeCalcs.js?body=1" type="text/javascript"></script>
+  <script src="assets/navigation.js?body=1" type="text/javascript"></script>
+  <script src="assets/fieldOps.js?body=1" type="text/javascript"></script>
+  <script src="assets/fields_table.js?body=1" type="text/javascript"></script>
+  <script src="assets/taffy.js?body=1" type="text/javascript"></script>
+  <script src="assets/data_model.js?body=1" type="text/javascript"></script>
+  <script src="assets/fieldEvents.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autosave.js?body=1" type="text/javascript"></script>
+
+
+  <script type="text/javascript">
+// <![CDATA[
+      function compareObjects(exp, act){
+        exp = Object.toJSON(exp);
+        act = Object.toJSON(act);
+        return exp == act;
+      }
+
+  new Test.Unit.Runner({
+
+    // replace this with your real tests
+
+    setup: function() {
+      data_table = {table_1:[{name:'test one',birth_day: '2000/01/11'}],
+                    table_2:[{test_name:'n1',test_value:'v1'},
+                             {test_name:'n2',test_value:'v2'},
+                             {test_name:'n3',test_value:'v1'}],
+                    table_3:[{array_field:['123','456'],
+                              string_field:'|123|456|',
+                              int_field:123}]
+                   };
+      mapping_table ={fe_name_1:['table_1','name',1],
+                      fe_birth_day_1:['table_1','birth_day',1],
+                      fe_test_name_1:['table_2','test_name',1],
+                      fe_test_value_1:['table_2','test_value',1],
+                      fe_test_name_2:['table_2','test_name',2],
+                      fe_test_value_2:['table_2','test_value',2],
+                      fe_test_name_3:['table_2','test_name',3],
+                      fe_test_value_3:['table_2','test_value',3]
+
+                     };
+      model_table = {table_1:{'name':'','birth_day': ''},
+                     table_2:{'test_name':'','test_value':''},
+                     table_3:{'array_field':'', 'string_field':'', 'int_field':''}
+                    };
+      table_2_group = [];
+      form_info=['test_form_name', 'test_id_show'];
+      Def.DataModel.setup([data_table, mapping_table, model_table,
+          table_2_group, form_info], true, null, false);
+      Def.DataModel.resetFormFieldValues();
+      Def.Navigation.setUpFieldListeners($('fe_name_1'));
+      Def.DataModel.setupModelListener();
+    },
+
+    teardown: function() {
+
+    },
+
+    test_2_way_updating: function (){with(this){
+
+      // hack - setupFormFieldListener in data_model.js used to add a
+      // change observer, but that's been moved to form_helper.rb.
+      // now that setupFormfieldListener is no longer used, we have to
+      // add the event here.  yuck
+      Event.observe($('fe_name_1'), 'change',
+                    Def.DataModel.formFieldUpdateHandler.bind(Def.DataModel)) ;
+      // update a field on the form, affacting taffydb
+
+      $('fe_name_1').value = 'test two';
+      appFireEvent($('fe_name_1'),'change');
+      expected = 'test two';
+      actual = Def.DataModel.getModelFieldValueById('fe_name_1');
+      assertEqual(expected, actual);
+
+      // this method updates taffydb, and does not affect the field on the form
+      Def.DataModel.updateOneField('fe_name_1', 'test three');
+      expected = 'test three';
+      actual = Def.DataModel.getModelFieldValueById('fe_name_1');
+      assertEqual(expected, actual);
+      // field value is not updated
+      expected = 'test two';
+      actual = $('fe_name_1').value;
+      assertEqual(expected, actual);
+
+      // this method updates taffydb, and affects the field on the form
+      Def.DataModel.updateOneField('fe_name_1', 'test four', true);
+      expected = 'test four';
+      actual = Def.DataModel.getModelFieldValueById('fe_name_1');
+      assertEqual(expected, actual);
+      // field value is updated too
+      expected = 'test four';
+      actual = $('fe_name_1').value;
+      assertEqual(expected, actual);
+    }},
+
+    test_search_record: function(){with(this){
+      table_name = 'table_2';
+
+      // test a normal search, has limit, order and condistions
+      options = [{limit:1, order:'test_name', conditions:{test_value:'v2'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n2',test_value:'v2'}];
+      assert(compareObjects(expected, actual));
+      // test order desc
+      options = [{limit:1, order:{test_name:'desc'}, conditions:{test_value:'v1'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n3',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+      // test order asc
+      options = [{limit:1, order:{test_name:'asc'}, conditions:{test_value:'v1'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n1',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+      // test limit, limit < result set size
+      options = [{limit:2, order:'test_name', conditions:{test_value:'v1'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n1',test_value:'v1'},{test_name:'n3',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+      // test limit, limit > result set size
+      options = [{limit:10, order:'test_name', conditions:{test_value:'v1'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n1',test_value:'v1'},{test_name:'n3',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+
+     //  has order, no limit, has conditions
+      options = [{order:'test_name', conditions:{test_value:'v2'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n2',test_value:'v2'}];
+      assert(compareObjects(expected, actual));
+      // has limit, no order, has conditions
+      options = [{limit:1, conditions:{test_value:'v2'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n2',test_value:'v2'}];
+      assert(compareObjects(expected, actual));
+      // no limit, no order, has conditions,
+      options = [{conditions:{test_value:'v2'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n2',test_value:'v2'}];
+      assert(compareObjects(expected, actual));
+
+      // has limit, has order, no conditions
+      options = [{limit:1, order:'test_name'}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n1',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+      // has limit, no order, no conditions
+      options = [{limit:1}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n1',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+      // no limit, has order, no conditions
+      options = [{order:'test_value'}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n1',test_value:'v1'},
+                  {test_name:'n3',test_value:'v1'},
+                  {test_name:'n2',test_value:'v2'}]
+      assert(compareObjects(expected, actual));
+      // no limit, no order, no conditions, get error
+      options = [{conditionT:{test_value:'v2'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = null;
+      assertEqual(expected, actual);
+
+      // get record count
+      options = [{order:'test_name', conditions:{test_value:'v1'}}]
+      actual = Def.DataModel.searchRecord(table_name, options, true);
+      expected = 2
+      assertEqual(expected, actual);
+      options = [{limit:1, order:'test_name', conditions:{test_value:'v1'}}]
+      actual = Def.DataModel.searchRecord(table_name, options, true);
+      expected = 1
+      assertEqual(expected, actual);
+
+      // get no data
+      options = [{conditions:{test_value:'v3'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [];
+      assert(compareObjects(expected, actual));
+
+      // test search with multiple search options
+      // 2 complete searches
+      options = [{limit:2, order:'test_name', conditions:{test_value:'v1'}},
+                 {limit:1, order:'test_name', conditions:{test_name:'n3'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n3',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+      // 1 complete search, 1 w/o order
+      options = [{limit:2, order:'test_name', conditions:{test_value:'v1'}},
+                 {limit:1, conditions:{test_name:'n1'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n1',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+      // 1 complete search, 1 w/o limit
+      options = [{limit:2, order:'test_name', conditions:{test_value:'v1'}},
+                 {order:'test_name', conditions:{test_name:'n3'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n3',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+      // 1 complete search, 1 w/o conditions
+      options = [{limit:2, order:'test_name', conditions:{test_value:'v1'}},
+                 {limit:1, order:'test_name'}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n1',test_value:'v1'}];
+      assert(compareObjects(expected, actual));
+      // 1 complete search, 1 w/ wrong conditions, get no data
+      options = [{limit:2, order:'test_name', conditions:{test_value:'v1'}},
+                 {order:'test_name', conditions:{test_name:'no data'}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [];
+      assert(compareObjects(expected, actual));
+      // 1 complete search, 1 empty {}
+      options = [{limit:2, order:'test_name', conditions:{test_value:'v2'}},
+                 {}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n2',test_value:'v2'}];
+      assert(compareObjects(expected, actual));
+      //  1 empty {}, 1 complete search
+      options = [{},{limit:2, order:'test_name', conditions:{test_value:'v2'}},
+                ]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n2',test_value:'v2'}];
+      assert(compareObjects(expected, actual));
+
+      // test like, no limit, no order, has conditions,
+      options = [{conditions:{test_value:{like:'v2'}}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n2',test_value:'v2'}];
+      assert(compareObjects(expected, actual));
+
+      // test notlike, no limit, no order, has conditions,
+      // notlike is not in the original taffydb, but in our modified version
+      options = [{conditions:{test_value:{notlike:'v1'}}}]
+      actual = Def.DataModel.searchRecord(table_name, options);
+      expected = [{test_name:'n2',test_value:'v2'}];
+      assert(compareObjects(expected, actual));
+
+    }},
+
+    // test value is an array
+    test_value_as_array: function(){with(this){
+      table_name = 'table_3';
+      // all returns [0]
+      table3 = Def.DataModel.taffy_db_['table_3']
+      table3.find({'array_field':{has:'456'}})
+      table3.find({'string_field':{like:'|456|'}})
+
+
+      table3.find({'string_field':{lessthan:'|123|456||'}})
+      table3.find({'int_field':{lessthan:300}})
+      table3.find({'int_field':{has:123}})
+      table3.find({'string_field':{has:123}})
+      table3.find({'string_field':{has:'|123|456|'}})
+      table3.find({'string_field':{hasAll:'|123|456|'}})
+      table3.find({'array_field':{hasAll:'123'}})
+      table3.find({'array_field':{hasAll:['123','456']}})
+
+      // 'has', 'hasAll' do not work on arrays of integer. (or anything other than string)
+    }},
+    // test fields in a table
+    test_insert_one_row: function(){with(this){
+
+    }},
+
+    test_delete_one_row: function(){with(this){
+
+    }},
+
+    test_undelete_one_row: function(){with(this){
+
+    }}
+
+  }, "testlog");
+// ]]>
+</script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+| open | /phr_home
+| setTimeout | 35000|
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+# Create a profile that we can use for the rest of the test
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'navigation1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# All groups start out closed on this form, but they were just opened.
+# Close the Medical Conditions, Allergies, and Risks sections, and make sure
+# each one closed.
+| waitForVisible | fe_problems_header_0_expcol_button |
+| click | fe_problems_header_0_expcol_button |
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.$('fe_problem_1'))} | true |
+| click | fe_allergies_0_expcol_button |
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.$('fe_allergy_name_1'))} | true |
+| click | fe_risk_factors_0_expcol_button |
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.$('fe_pregnant_1'))} | true |
+
+# Open the Medical Conditions section back up and move into the
+# first input field on the line.  Make sure that the focusedField_ variable
+# in Def.Navigation has the right field name, and then specify something
+# in the field.  Make sure the focus moves to the next field correctly.
+| click | fe_problems_header_0_expcol_button |
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.$('fe_problem_1'))} | false |
+
+# Before we move into the problem field, click on the Research Studies
+# button and make sure the focus DOESN'T move to the problem field.
+| click | fe_clin_trials | |
+| waitForExpression | javascript{testWindow_.Def.PHR.studiesWindow_.closed;} | false |
+| waitForExpression | javascript{testWindow_.Def.PHR.studiesWindow_.close(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.PHR.studiesWindow_.closed;} | true |
+| verifyExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_clin_trials';} | true |
+
+# NOW move to the problem field.
+| fireEvent | fe_problem_1 | focus |
+| pause | 1000 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_1'} | true |
+| typeText | fe_problem_1 | ac |
+| waitForVisible | searchResults |
+| selectByIndex | fe_problem_1 | 1 |
+| keyDown | fe_problem_1 | \9 |
+
+# Make sure a new blank line was added to the table. Then move
+# beyond it without entering any data.  Make sure that the next 
+# field to end up with focus is the first field in the next open
+# section - which is the Drugs section.
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_1'} | true |
+| verifyElementPresent | fe_problem_2 |
+| fireEvent | fe_problem_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'} | true |
+| keyDown | fe_problem_2 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_1'} | true |
+
+# Move past the Drugs table, directly to the next OPEN section,
+# which is the Major Surgeries section.  We should bypass the allergies
+# section, which we left closed.
+| keyDown | fe_name_and_route_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_surgery_type_1'} | true |
+| shiftKeyDown |
+| keyDown | fe_surgery_type_1 | \9 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_1'} | true |
+
+# Test backing up through the date field using the Control-Left Arrow and
+# then Shift-Return.  To do this we need to put something in fe_name_and_route_1
+# so the other fields open up.  We also need to set the status to "Discontinued"
+# so that the why_stopped and stopped_date fields open up.
+| typeText | fe_name_and_route_1 | so |
+| waitForVisible | searchResults |
+| selectByIndex | fe_name_and_route_1 | 1 |
+| keyDown | fe_name_and_route_1 | \9 |
+| waitForVisible | fe_drug_use_status_1 |
+| typeKeys | fe_drug_use_status_1 | \9 |
+| waitForVisible | fe_name_and_route_2  |
+| selectByIndex | fe_drug_use_status_1 | 1 |
+| waitForVisible | fe_why_stopped_1 |
+| fireEvent | fe_name_and_route_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_2'} | true |
+# (now back up through the date field)
+| shiftKeyDown |
+| keyDown | fe_name_and_route_2 | \9 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_why_stopped_1'} | true |
+| controlKeyDown |
+| keyDown | fe_why_stopped_1 | \37 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_stopped_date_1'} | true |
+| shiftKeyDown |
+| keyDown | fe_stopped_date_1 | \13 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_start_1'} | true |
+
+# Now go back through the date field with the right arrow and return
+| controlKeyDown |
+| keyDown | fe_drug_start_1 | \39 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_stopped_date_1'} | true |
+| keyDown | fe_stopped_date_1 | \13 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_why_stopped_1'} | true |
+| controlKeyDown |
+| keyDown | fe_why_stopped_1 | \40 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_surgery_type_1'} | true |
+
+# Try to move forward one field with the Control-Right key.  Because we're in
+# the first field of the last (and only visible) row in the table, and the row is
+# empty, we'll go on to the next visible field after the table instead.
+| controlKeyDown |
+| keyDown | fe_surgery_type_1 | \39 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_1_1_1'} | true |
+
+# Get back up to the surgery type field (using control+up)
+| controlKeyDown |
+| keyDown | fe_tp1_panel_testdate_1_1_1 | \38 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_surgery_type_1'} | true |
+
+# Open up a second line of fields in the medical conditions table, in prepration
+# for the next test, and then put the focus back in fe_problem_2.  Doing
+# this will create a third row, which will just have one open field
+# (fe_problem_3).
+| controlKeyDown |
+| keyDown | fe_expire_date_1 | \38 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'} | true |
+| typeText | fe_problem_2 | as |
+| waitForVisible | searchResults |
+| selectByIndex | fe_problem_2 | 1 |
+| keyDown | fe_problem_2 | \9 |
+| waitForVisible | fe_problem_3 |
+| fireEvent | fe_problem_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'} | true |
+
+# Use the Control-Up key to go back up to the last field in the
+# Medical Conditions section, which has two lines.  Move to the left
+# (using Shift-return) into a date field, and then move up from there, 
+# to the corresponding date field on the first line. Then go back down
+# twice, which should move us back to the date in the second line and then
+# to the first field in the next visible section.
+| shiftKeyDown |
+| keyDown | fe_prob_desc_2 | \13 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+| controlKeyDown |
+| keyDown | fe_when_started_2 | \38 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_1'} | true |
+| controlKeyDown |
+| keyDown | fe_when_started_1 | \40 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+| controlKeyDown |
+| keyDown | fe_when_started_2 | \40 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_1'} | true |
+
+# Now make sure we can cruise through a test panel.  Let's use the third panel
+# on the form, since it's the first one with three visible lines in the results
+# area
+| fireEvent | fe_tp1_panel_testdate_1_3_1 | focus |
+| pause | 1000 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_1_3_1'} | true |
+
+# Move back and forth through the top line using the tab, return, and shift
+# keys
+| typeKeys | fe_tp1_panel_testdate_1_3_1 | t |
+# Note:  As of Firefox 19, firing a tab event will no longer fire a change event
+| fireEvent | fe_tp1_panel_testdate_1_3_1 | change |
+| keyDown | fe_tp1_panel_testdate_1_3_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_time_1_3_1'} | true |
+| keyDown | fe_tp1_panel_testdate_time_1_3_1 | \13 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testplace_1_3_1'} | true |
+| keyDown | fe_tp1_panel_testplace_1_3_1 | \13 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_summary_1_3_1'} | true |
+| keyDown | fe_tp1_panel_summary_1_3_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_duedate_1_3_1'} | true |
+| shiftKeyDown |
+| keyDown | fe_tp1_panel_duedate_1_3_1 | \9 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_summary_1_3_1'} | true |
+| shiftKeyDown |
+| keyDown | fe_tp1_panel_summary_1_3_1 | \13 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testplace_1_3_1'} | true |
+| shiftKeyDown |
+| keyDown | fe_tp1_panel_testplace_1_3_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_time_1_3_1'} | true |
+| keyDown | fe_tp1_panel_testdate_time_1_3_1 | \13 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_1_3_1'} | true |
+
+# Now go into the test results section and move around in it
+| controlKeyDown |
+| keyDown | fe_tp1_panel_testdate_1_3_1 | \40 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_1'} | true |
+| keyDown | fe_tp1_test_value_1_3_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_2'} | true |
+| keyDown | fe_tp1_test_value_1_3_1_2 | \13 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_3'} | true |
+| shiftKeyDown |
+| keyDown | fe_tp1_test_value_1_3_1_3 | \9 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_2'} | true |
+| shiftKeyDown |
+| keyDown | fe_tp1_test_value_1_3_1_2 | \13 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_1'} | true |
+
+# make units and range editable
+| click | fe_tp1_test_unit_1_3_1_1 |
+| fireEvent | fe_tp1_test_unit_1_3_1_1 | focus |
+| typeText | fe_tp1_test_unit_1_3_1_1 | some units |
+| click | fe_tp1_test_range_1_3_1_1 |
+| fireEvent | fe_tp1_test_range_1_3_1_1 | focus |
+| typeText | fe_tp1_test_range_1_3_1_1 | some range |
+| fireEvent | fe_tp1_test_value_1_3_1_1 | focus |
+| keyDown | fe_tp1_test_value_1_3_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_unit_1_3_1_1'} | true |
+| keyDown | fe_tp1_test_unit_1_3_1_1 | \13 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_range_1_3_1_1'} | true |
+| shiftKeyDown |
+| keyDown | fe_tp1_test_range_1_3_1_1 | \9 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_unit_1_3_1_1'} | true |
+| shiftKeyDown |
+| keyDown | fe_tp1_test_unit_1_3_1_1 | \13 |
+| shiftKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_1'} | true |
+| controlKeyDown |
+| keyDown | fe_tp1_test_value_1_3_1_1 | \40 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_2'} | true |
+| controlKeyDown |
+| keyDown | fe_tp1_test_value_1_3_1_2 | \40 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_3'} | true |
+| controlKeyDown |
+| keyDown | fe_tp1_test_value_1_3_1_3 | \37 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_2'} | true |
+| controlKeyDown |
+| keyDown | fe_tp1_test_value_1_3_1_2 | \38 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_1'} | true |
+| controlKeyDown |
+| keyDown | fe_tp1_test_value_1_3_1_1 | \40 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_2'} | true |
+| controlKeyDown |
+| keyDown | fe_tp1_test_value_1_3_1_2 | \39 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_3_1_3'} | true |
+
+# and now use the Control-Down key to move beyond the table
+| controlKeyDown |
+| keyDown | fe_tp1_test_value_1_3_1_3 | \40 |
+| controlKeyUp |
+| verifyNotVisible | fe_tp1_test_name_1_1_1_7 |
+| verifyExpression | javascript{testWindow_.$('fe_tp1_panel_opt_button_1_1_1_1').down().innerHTML == "Show More";} | true |
+
+# Click the "More" button, make sure a field from the "more" group IS
+# visible, the button now has the text "Fewer", and the focus didn't move.
+# update: "more" has been moved to the column header and has no id
+#| click | dom=$('fe_tp1_loinc_panel_temp_1_2_0_tbl').select('th.img_button_col')[1].firstChild |
+| click | fe_tp1_panel_opt_button_1_1_1_1 |
+| waitForVisible | fe_tp1_test_name_1_1_1_7 |
+#| verifyExpression | javascript{testWindow_.$('fe_tp1_loinc_panel_temp_1_1_0_tbl').select('th.img_button_col')[1].firstChild.src;} | glob:*showless.png |
+| verifyExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_opt_button_1_1_1_1';} | true |
+| verifyExpression | javascript{testWindow_.$('fe_tp1_panel_opt_button_1_1_1_1').down().innerHTML == "Show Less";} | true |
+
+# Do it again and make sure that things revert to their starting condition
+# and that the focus still hasn't moved.
+#| click | dom=$('fe_tp1_loinc_panel_temp_1_1_0_tbl').select('th.img_button_col')[1].firstChild |
+| click | fe_tp1_panel_opt_button_1_1_1_1 |
+| waitForNotVisible | fe_tp1_test_name_1_1_1_7 |
+#| verifyExpression | javascript{testWindow_.$('fe_tp1_loinc_panel_temp_1_1_0_tbl').select('th.img_button_col')[1].firstChild.src;} | glob:*showmore.png |
+| verifyExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_opt_button_1_1_1_1';} | true |
+
+# Now move to the medical contacts section, first visible field (name).  Before
+# we enter anything, tab to see if we move to the Questions section
+| fireEvent | fe_medtact_name_1 | focus |
+| pause | 1000 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_name_1'} | true |
+| keyDown | fe_medtact_name_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_date_entered_1'} | true |
+
+# While we're in the questions section, enter a date and a question
+| typeText | fe_date_entered_1 | 2000/01/01 |
+| keyDown | fe_date_entered_1 | \9 |
+| fireEvent | fe_date_entered_1 | change |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_category_1'} | true |
+| waitForVisible | fe_date_entered_2 |
+| keyDown | fe_category_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_question_status_1'} | true |
+| keyDown | fe_question_status_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_question_1'} | true |
+| typeText | fe_question_1 | Why is there an expiration date on sour cream?  Isn't it sour already? |
+| keyDown | fe_question_1 | \9 |
+
+# wait to make sure that the autosave stuff has run for new row
+#| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+# Now simulate a "clear row" on question row
+| fireEvent | fe_date_entered_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_date_entered_1'} | true |
+| type | fe_date_entered_1 | |
+| waitForValue | fe_date_entered_1 | |
+| fireEvent | fe_date_entered_1 | change |
+| fireEvent | fe_date_entered_1 | blur |
+| waitForValue | fe_date_entered_HL7_1 | |
+| waitForValue | fe_date_entered_ET_1 | |
+
+| fireEvent | fe_question_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_question_1'} | true |
+| type | fe_question_1 | |
+| waitForValue | fe_question_1 | |
+| fireEvent | fe_question_1 | change |
+| fireEvent | fe_question_1 | blur |
+
+# Wait until the row has the 'removed' class name
+#| waitForExpression | javascript{testWindow_.$('fe_question_1').parent.hasClassName('removed');} | true |
+
+# Put the focus back in the first field of the blank line in medical contacts and
+# make sure that hitting the tab takes the focus to the first visible row in
+# the questions table, which will be the date field of the 2nd row
+| fireEvent | fe_medtact_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_name_1'} | true |
+| keyDown | fe_medtact_name_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_date_entered_2'} | true |
+
+# Now tab to see if we move to the Notes section
+| keyDown | fe_date_entered_2 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_note_date_1'} | true |
+
+# Now go back to the medical contacts, but put the cursor in the comment field line
+| pause | 100 |
+| fireEvent | fe_medtact_comnt_1_1| focus |
+| pause | 1000 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_comnt_1_1'} | true |
+| keyDown | fe_medtact_comnt_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_date_entered_2'} | true |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |
+
+
+

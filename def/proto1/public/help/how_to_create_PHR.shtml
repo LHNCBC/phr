@@ -1,0 +1,38 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Create a New Personal Health Record (PHR)</h1>
+<p>
+You can create and store personal health records (PHRs) for yourself and your family members 
+	using a single PHR account ID. The PHR health record form automatically tailors itself to the age, gender and other characteristics 
+of you or your family member. For example, the PHR system will only insert space for recording a mammogram result 
+when the health record is for a woman who is the appropriate age for mammography.
+The PHR will also generate a unique form for each type of medical test, procedure, or health tracker.
+</p>
+    <h3>	To create a new PHR </h3>
+<p>
+<ol>
+<li>Click the <b>Add New Person</b> button on the <b>PHR Home</b> page. The PHR will generate a form to prompt you to enter the following information about the new PHR you are creating. Fields highlighted with a <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields. </p>
+  
+<ul><li><b><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required">PHR Record Name:</b>  Create a name for the personal health record. You may wish to use an alias or invented name such as "Self", "Son 1", or "Father" to maximize your privacy.</li>
+<li><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"><b>Date of Birth:</b> Enter the date of birth for the family member whose health data you are entering. </li>
+<li><b><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required">Gender:</b> Select the gender of the person from the drop down list. </li>
+<li><b>Race or Ethnicity:</b> Select the race/ethnicity of the person from the drop down list.</li>
+</ul>
+	
+</li>
+<li>  
+Click the <b>Save</b> button below the form fields to create the new PHR. The system will then display the <b>Health Record Details</b> page. </li>
+<li>On the <b>Health Record Details</b> page, enter medical conditions, medications, allergies, tests, vaccinations, and medical contacts by selecting the 
+name of each item from the drop down list, or select from the lists that appear as you start typing and get more specific as you enter more characters.</li>
+<li>
+Enter questions you want to ask your doctor as you think of them 
+and bring them along on the next appointment. </li>
+<li>
+To save your PHR, click the <b>Save</b>  button at the top or bottom of the page.
+</li>
+</ol>
+</p>
+
+
+    
+<!--#include virtual="help_footer.shtml" -->

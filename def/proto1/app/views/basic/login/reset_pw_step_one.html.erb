@@ -1,0 +1,6 @@
+<%= form_tag reset_password_step_one_path, :method=>:post %>
+  <div><%= fd_text_field(@p.fds['user_name'], nil, {}, @p.form_obj, '_1') %></div>
+
+<%= submit_tag 'Submit' %>
+<%= link_to 'Cancel', login_path %>
+</form>

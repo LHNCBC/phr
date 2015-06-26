@@ -1,0 +1,104 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# these contain fields that are not in the table as of 7/8/10
+#Self-1:
+#  id: -1
+#  patient_id: -501
+#  row_num: 1
+#  name_and_route: "[Claritin-D 24 Hour] (Oral-pill)"
+#  strength_and_form: "10-240 MG 24 Hrs XR Tabs"
+#  dose: "1 Tab"
+#  route: "By Mouth"
+#  sig: "once daily"
+#  duration: "indefinite"
+#  start_date: "1/1/2001"
+#  drug_use_status: "A"
+#Self-2:
+#  id: -2
+#  patient_id: -502
+#  row_num: 2
+#  name_and_route: "Aspirin (Oral-pill)"
+#  strength_and_form: "325 MG Tabs"
+#  dose: "2 Tab"
+#  route: "By Mouth"
+#  sig: "every week"
+#  duration: "indefinite"
+#  start_date: "2/02/2002"
+#  drug_use_status: ""
+#Mother-1:
+#  id: -3
+#  patient_id: -503
+#  row_num: 1
+#  name_and_route: "[Wellbutrin] (Oral-pill)"
+#  strength_and_form: "100 MG Tabs"
+#  dose: "1 Tab"
+#  route: "By Mouth"
+#  sig: "every 12 hours"
+#  duration: "indefinite"
+#  start_date: "10/01/07"
+#  drug_use_status: "A"
+#Mother-2:
+#  id: -4
+#  patient_id: -503
+#  row_num: 2
+#  name_and_route: "[Lipitor] (Oral-pill)"
+#  strength_and_form: "10 MG Tabs"
+#  dose: "1 Tab"
+#  route: "By Mouth"
+#  sig: "once daily"
+#  duration: "indefinite"
+#  start_date: "5/01/2005"
+#  drug_use_status: "W"
+#Mother-3:
+#  id: -5
+#  patient_id: -503
+#  row_num: 3
+#  name_and_route: "[Vytorin] (Oral-pill)"
+#  strength_and_form: "10-20 MG Tabs"
+#  dose: "1 Tab"
+#  route: "By Mouth"
+#  sig: "every morning"
+#  duration: "indefinite"
+#  start_date: "10/30/2007"
+#  drug_use_status: "A"
+
+temp_profile_1a:
+  id: -101
+  profile_id: -20
+
+temp_profile_1b:
+  id: -102
+  profile_id: -20
+
+temp_profile_2a:
+  id: -103
+  profile_id: -21
+
+temp_profile_2b:
+  id: -104
+  profile_id: -21
+
+temp_profile_3a:
+  id: -105
+  profile_id: -22
+
+temp_profile_3b:
+  id: -106
+  profile_id: -22
+
+standard_profile_1a:
+  id: -107
+  profile_id: -23
+
+standard_profile_1b:
+  id: -108
+  profile_id: -23
+
+standard_profile_2a:
+  id: -109
+  profile_id: -24
+
+standard_profile_2b:
+  id: -110
+  profile_id: -24
+
+

@@ -1,0 +1,12 @@
+  <p>To reset the password and/or security questions for PHR account ID
+    <%= @user %>, please click on the following link, which will
+    expire in one hour:<br>
+      <% link=reset_account_security_url(:user=>@user, :reset_key=>@reset_key) %>
+      <a href="<%=link%>"><%=link%></a><br>
+    If clicking on the link does not work, you can copy and paste the link into
+    your browser's address bar.</p>
+    
+  <p>If you or anyone with authorized access to your Personal Health Record did
+    not request that your password or security questions be reset, please use the
+    <%= link_to SUPPORT_PAGE_NAME, new_contact_us_url %> page to let us know.</p>
+ 

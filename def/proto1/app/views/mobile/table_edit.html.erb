@@ -1,0 +1,4 @@
+<%= form_tag_wo_ajax send('phr_record_'+@table.singularize+'_path', :phr_record_id => @phr_record), :method => :put %>
+<%= render 'mobile/dup_warning_section' if @dup_warning_data %>
+<%= render "mobile/#{@table}/new_edit_fields"  %>
+</form>

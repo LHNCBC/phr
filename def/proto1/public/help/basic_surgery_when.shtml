@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Surgery Date</h1>
+		<p>
+			Enter the date the surgery was performed. 
+			If you are not sure about the date, just enter your best guess. If the procedure was recent 
+			and you know the month, enter the year and month.
+		</p>
+		<p>The date must be entered in the following format: YYYY/mm/dd. The system will accept the following types of dates: 
+<ul>
+<li>the exact date, </li>
+		<li>the year and month, or </li>
+<li>only the year</li>
+</p>
+	<!--#include virtual="help_footer.shtml" -->

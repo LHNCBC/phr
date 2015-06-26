@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Compresses a single javascript file by removing whitespace.  The file to be
+# compressed should be given as an argument to the script, and the compressed
+# output will be sent the STDOUT.
+
+#compressor ="/depot/bin/custom_rhino.jar -c "    # use > instead of -o
+compressor="/depot/packages/yuicompressor/yuicompressor.jar"
+inputfile=$1
+outputfile=${inputfile}.gz
+#
+# input file type should be .js or a "--type" parameter should be specified.
+#  --charset US-ASCII  --nomunge
+
+java -jar ${compressor} --type js ${inputfile}
+

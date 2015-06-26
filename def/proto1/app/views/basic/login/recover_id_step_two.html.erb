@@ -1,0 +1,13 @@
+<%= form_tag recover_account_id_step_two_path, :method=>:post %>
+  <div><%= @p.fds['email'].display_name %>: <%= @p.possible_user.email %></div>
+  <div><%= fd_static_text @p.fds['recover_instr'] %></div>
+
+  <p>You only need to fill in one of these two fields.  Leave the other blank.</p>
+  <div><%= fd_password(@p.fds['passwd_ans'], {}, @p.form_obj, '_1_1') %></div>
+  <div> - OR - </div>
+  <div><%= @p.fds['chall_quest'].display_name %>:  <%= @p.question %></div>
+  <div><%= fd_text_field(@p.fds['chall_answ'], nil, {}, @p.form_obj, '_1_1') %></div>
+
+  <%= submit_tag 'Submit' %>
+  <%= link_to 'Cancel', login_path %>
+</form>

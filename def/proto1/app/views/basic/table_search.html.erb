@@ -1,0 +1,27 @@
+<% s_table_name = @table.singularize %>
+<%= form_tag send('search_phr_record_'+s_table_name+'_path', :phr_record_id=>@phr_record, :id=>'new'), :method=>'get' %>
+<% @search_text = h(@search_text) %>
+<%=basic_text_field 'Enter part of the name to look up', 'phr', 'search_text', nil, :value=>@search_text%>
+<%=submit_tag 'Search' %>
+<% if @displayed_data  %>
+<hr>
+  <% if @total_hits > 0 or @item_codes.length > 0 %>
+    <% if @total_hits > 0 %>
+      Select a matching name from below, or search again:
+    <% else %>
+      There were no matches, but the following items were found that were close:
+    <% end %>
+    <ul>
+    <% @displayed_data.each_with_index do |e, i| %>
+     <li><%= link_to e, send('new_phr_record_'+s_table_name+'_path')+'?code='+@item_codes[i] %></li>
+    <% end %>
+    </ul>
+    You may also use your original search string as the item name:
+  <% else %>
+    No results were found.  Either try searching again, or use your original
+    search string as the item name:
+  <% end %>
+  <%= link_to @search_text, send('new_phr_record_'+s_table_name+'_path')+'?name='+@search_text %>
+<% end %>
+</form>
+<%= link_to 'Cancel', send('phr_record_'+@table+'_path') %>

@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Jeegoocontext, a jQuery context menu plugin</title>
+    <link href="style.css" rel="Stylesheet" type="text/css" />
+    
+     <!-- Context menu default skin -->
+    <link href="jeegoocontext/skins/cm_default/style.css" rel="Stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="jquery.livequery.js"></script>
+    <script type="text/javascript" src="jeegoocontext/jquery.jeegoocontext.min.js"></script>
+    <script type="text/javascript">
+         //<![CDATA[
+        $(function(){
+            $('.context').jeegoocontext('menu', {
+                livequery: true,
+                widthOverflowOffset: 0,
+                heightOverflowOffset: 1,
+                submenuLeftOffset: -4,
+                submenuTopOffset: -5,
+                onSelect: function(e, context){
+                    if($(this).hasClass('disabled'))
+                    {              
+                        if(confirm('These options are disabled. Do you want to enable these options?'))$(this).removeClass('disabled');
+                        $(context).animate({
+                            borderWidth: '0',
+                            paddingLeft: '0',
+                            paddingTop: '0',
+                            paddingBottom: '0',
+                            paddingRight: '0'
+                        }, 200);
+                        return true;
+                    }
+                    switch($(this).attr('id'))
+                    {
+                        case 'style_italic':
+                        $(context).css('fontStyle', 'italic');
+                        break;
+                        case 'style_normal':
+                        $(context).css('fontStyle', 'normal');
+                        break;
+                        case 'weight_bold':
+                        $(context).css('fontWeight', 'bold');
+                        break;
+                        case 'weight_normal':
+                        $(context).css('fontWeight', 'normal');
+                        break;
+                        case 'size_large':
+                        $(context).css('fontSize', '1.5em');
+                        break;
+                        case 'size_normal':
+                        $(context).css('fontSize', '1em');
+                        break;
+                        case 'red':
+                        $(context).css('color', 'Red');
+                        break;
+                        case 'green':
+                        $(context).css('color', 'Green');
+                        break;
+                        case 'blue':
+                        $(context).css('color', 'Blue');
+                        break;
+                        case 'lh_normal':
+                        $(context).css('lineHeight', 'normal');
+                        break;
+                        case 'lh_14':
+                        $(context).css('lineHeight', '1.4em');
+                        break;
+                        case 'lh_16':
+                        $(context).css('lineHeight', '1.6em');
+                        break;
+                        case 'lh_18':
+                        $(context).css('lineHeight', '1.8em');
+                        break;
+                        case 'title_h1':
+                        $(context).after('<h1 class="context">' + $(this).text() + '</h1>');
+                        break;
+                        case 'title_h2':
+                        $(context).after('<h2 class="context">' + $(this).text() + '</h2>');
+                        break;
+                        case 'title_h3':
+                        $(context).after('<h3 class="context">' + $(this).text() + '</h3>');
+                        break;
+                        case 'title_h4':
+                        $(context).after('<h4 class="context">' + $(this).text() + '</h4>');
+                        break;
+                        case 'title_h5':
+                        $(context).after('<h5 class="context">' + $(this).text() + '</h5>');
+                        break;
+                        case 'title_h6':
+                        $(context).after('<h6 class="context">' + $(this).text() + '</h6>');
+                        break;
+                        case 'disable':
+                        if(confirm('Are you sure?'))$(context).nojeegoocontext();
+                        break;
+                        case 'delete':
+                        if(confirm('Are you sure?'))$(context).unbind().remove();
+                        break;
+                        default:
+                        return false;
+                    }
+                    $(context).animate({
+                        borderWidth: '0',
+                        paddingLeft: '0',
+                        paddingTop: '0',
+                        paddingBottom: '0',
+                        paddingRight: '0'
+                    }, 200);
+                },
+                onHover: function(e, context){
+                    if($(this).hasClass('disabled'))return false;
+                },
+                onShow: function(e, context){
+                    $(this).find('.ok').remove();
+                    if($(context).css('fontWeight').toString().toLowerCase() == 'bold')
+                    {
+                        $('#weight_normal').removeClass('icon').find('.ok').remove();
+                        $('#weight_bold').addClass('icon').prepend('<span class="icon ok"></span>');
+                    }
+                    else
+                    {
+                        $('#weight_bold').removeClass('icon').find('.ok').remove();
+                        $('#weight_normal').addClass('icon').prepend('<span class="icon ok"></span>');
+                    }
+                    $('.active').animate({
+                        borderWidth: '0',
+                        paddingLeft: '0',
+                        paddingTop: '0',
+                        paddingBottom: '15px',
+                        paddingRight: '0',
+                        marginBottom: '0'
+                    }, 200);
+                    $(context).animate({
+                        borderWidth: '3px',
+                        paddingLeft: '5px',
+                        paddingTop: '5px',
+                        paddingBottom: '5px',
+                        paddingRight: '5px',
+                        marginBottom: '15px'
+                    }, 200);
+                },
+                onHide: function(e, context){
+                    $(context).animate({
+                        borderWidth: '0',
+                        paddingLeft: '0',
+                        paddingTop: '0',
+                        paddingBottom: '15px',
+                        paddingRight: '0',
+                        marginBottom: '0'
+                    }, 200);
+                }              
+            });
+        });
+        //]]>
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <div id="header">
+            <h1><span class="jg_red">J</span><span class="jg_green">ee</span><span class="jg_yellow">g</span><span class="jg_blue">oo</span>context, <span style="font-size:.7em">a jQuery context menu plugin</span></h1>
+            <h2>Copyright &copy; 2009 - 2010 Erik van den Berg, <a href="http://www.planitworks.nl/jeegoocontext" target="_blank">http://www.planitworks.nl/jeegoocontext</a></h2>
+        </div>          
+        <div id="content">
+            <h2 class="context">Customized behavior via callbacks</h2>
+            <p>
+                <strong>
+                All areas on this page except for this one can be customized via the context menu.
+                New titles can be added to the document via the menu.
+                These titles are automatically bound to the menu through the magic of livequery.
+                </strong>
+            </p>
+            <p class="context">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elementum dui nec lectus tempor vel porttitor purus malesuada. Morbi id sapien magna, eu consequat mauris. Nunc placerat convallis gravida. Nam tincidunt blandit quam, at congue justo tristique et.
+            </p>
+            <h2 class="context">Duis</h2>
+            <p class="context">
+                Duis justo leo, consequat sed molestie et, mollis nec sapien. Suspendisse vel arcu tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus vestibulum fringilla enim, vel porta justo accumsan sed. Duis risus ipsum, vulputate et porttitor non, laoreet quis libero. Donec tincidunt felis ullamcorper purus faucibus ac viverra urna pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit eros, tempus vel sagittis ac, blandit vel magna. Suspendisse erat libero, fermentum eu condimentum sit amet, ornare ac ligula. Vivamus non vestibulum turpis.
+            </p>
+            <h2 class="context">Nullam</h2>
+            <p class="context">
+                Nullam et tincidunt quam. Vestibulum ut velit risus. Pellentesque sed diam eget nibh sodales ultrices nec eget metus. Vestibulum gravida ultrices metus sed laoreet. Aenean quis tempus enim. Suspendisse potenti. In rutrum quam quis sapien euismod consectetur. Aenean vel ante ac neque pulvinar blandit. Nam vulputate vulputate nisi, et sollicitudin orci pretium a. In tempor congue justo viverra sollicitudin. Etiam molestie, orci ut porttitor tincidunt, risus tortor fermentum nunc, scelerisque semper nisi diam at augue. Integer eu tellus risus. Aliquam vel facilisis ipsum. Nullam sit amet eros id elit facilisis congue at nec arcu. 
+            </p>
+            <h2 class="context">Etiam</h2>
+            <p class="context">
+                Etiam viverra nibh diam, sed congue elit. Pellentesque purus erat, dictum ut consequat vel, facilisis ac enim. Aenean a accumsan quam. Vestibulum eget auctor augue. Vestibulum purus tortor, volutpat pulvinar pretium et, ornare in sapien. Cras eget nisl at lorem imperdiet aliquet non sit amet diam. Nulla eu aliquam dolor. Praesent non est ante. Vestibulum sed nibh in lectus euismod malesuada. Nulla dignissim, ante a tincidunt convallis, est tellus vulputate mauris, id rutrum tortor arcu et orci. 
+            </p>
+            <br />
+            <a href="multiple.htm" style="float:right">Multiple context menus &gt;&gt;</a>   
+            <a href="advanced.htm">&lt;&lt; Advanced styling</a>      
+        </div>                
+    </div>
+       
+     <!--  Context menu -->
+    <ul id="menu" class="jeegoocontext cm_default">
+        <li>
+            Font
+            <ul>
+                <li>
+                    Font-style
+                    <ul>
+                        <li id="style_italic">Italic</li>
+                        <li id="style_normal">Normal</li>
+                    </ul>
+                </li>
+                <li>
+                    Font-weight
+                    <ul>
+                        <li id="weight_bold">Bold</li>
+                        <li id="weight_normal">Normal</li>
+                    </ul>
+                </li>
+                <li>
+                    Font-size
+                    <ul>
+                        <li id="size_large">Large</li>
+                        <li id="size_normal">Normal</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            Color
+            <ul>
+                <li id="red">Red</li>
+                <li id="green">Green</li>
+                <li id="blue">Blue</li>
+            </ul>
+        </li>
+        <li class="disabled">
+            Line-height
+            <ul>
+                <li id="lh_normal">normal</li>
+                <li id="lh_14">1.4em</li>
+                <li id="lh_16">1.6em</li>
+                <li id="lh_18">1.8em</li>
+            </ul>
+        </li>
+        <li>
+            Add title
+            <ul>
+                <li id="title_h1">Title H1</li>
+                <li id="title_h2">Title H2</li>
+                <li id="title_h3">Title H3</li>
+                <li id="title_h4">Title H4</li>
+                <li id="title_h5">Title H5</li>
+                <li id="title_h6">Title H6</li>
+            </ul>
+        </li>
+        <li class="separator"></li>
+        <li id="disable">Disable editing</li>
+        <li id="delete">Delete</li>
+    </ul>    
+</body>
+</html>

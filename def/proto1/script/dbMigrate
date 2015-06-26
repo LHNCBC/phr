@@ -1,0 +1,566 @@
+#!/usr/bin/env ruby
+# This script migrates data and batabase objects from a MySQL database to an 
+# Oracle database. Configuration file config/dbmigrate.yml is used to specify 
+# MySQL and Oracle account information and other options. 
+# Read config/dbmigrate.yml for details.
+# 
+# An Oracle user account/schema will be created where data and batabase objects 
+# will be loaded. If this Oracle user account/schema already exists, it will be 
+# dropped and recreated. All data and database objects within this user/schema 
+# will be LOST! Please backup the database if necessary.
+
+require "yaml"
+
+# Prints out the system call and then runs it.  Returns the return value of the
+# system call.
+def echo_system(cmd)
+  puts cmd
+  rtn = system(cmd)
+  puts '(Completed)' if rtn
+  return rtn
+end
+
+# Dump a database from a MySQL server
+def dump_mysql(uid, password, server, db_name, dump_file, file_dir)
+  echo_system('mysqldump --skip-extended-insert -h ' + server + ' -u ' + uid + ' -p' + password + 
+              ' ' + db_name + ' > ' + file_dir + dump_file )
+end
+
+# check if there are some upper case characters in in the string
+def has_uppercase_code(column_name)
+  rtn = false
+  if column_name =~ /_C\z/
+    rtn = true
+  elsif column_name =~ /_ET\z/
+    rtn = true
+  elsif column_name =~ /_HL7\z/
+    rtn = true
+  end
+  return rtn
+end
+# Convert a MySQL dump script file into 3 Oracel PL/SQL script files 
+# and a SQLLDR control file and a SQLLDR data file
+def convert_script(mysql_script, oracle_script, data_file, control_file, alter_script, file_dir)
+  
+  # Open the Oracle script for writing
+  if File.exist?(file_dir + oracle_script) 
+    puts "Error: File #{file_dir + oracle_script} already exists."
+    return false
+  end
+  ora_script = File.new(file_dir + oracle_script, "w")
+
+  # Open the db alteration script for writing
+  # it rebuilds indexes after data is loaded
+  if File.exist?(file_dir + alter_script) 
+    puts "Error: File #{file_dir + alter_script} already exists."
+    return false
+  end
+  ora_alter = File.new(file_dir + alter_script, "w")
+  
+  # Open the slqldr data file for writing
+  if File.exist?(file_dir + data_file) 
+    puts "Error: File #{file_dir + data_file} already exists."
+    return false
+  end
+  ora_data = File.new(file_dir + data_file, "w")
+
+  # Open the slqldr control file for writing
+  if File.exist?(file_dir + control_file) 
+    puts "Error: File #{file_dir + control_file} already exists."
+    return false
+  end
+  ora_control = File.new(file_dir + control_file, "w")
+  
+  # Open the mysql script file
+  if !File.exist?(file_dir + mysql_script) 
+    puts "Error: File #{file_dir + mysql_script} does not exist."
+    return false
+  end
+  
+  # Add initial commands in Oracle script file
+  ora_script.puts "SET SCAN OFF;"
+  ora_script.puts "DROP USER #{$ora_uid} CASCADE;"
+  ora_script.puts "CREATE USER #{$ora_uid} IDENTIFIED BY #{$ora_password} DEFAULT TABLESPACE #{$ora_tablespace} TEMPORARY TABLESPACE TEMP;"
+  ora_script.puts "GRANT CREATE SESSION, RESOURCE, CREATE VIEW to #{$ora_uid};"
+  ora_script.puts "connect #{$ora_uid}/#{$ora_password}@#{$ora_tns};"
+    
+  # Add initial setting for SQL Loader control file
+  ora_control.puts "LOAD DATA"
+  ora_control.puts "  INFILE #{data_file} \"str X'00'\""
+  ora_control.puts "  BADFILE #{$sqlldr_bad_file}"
+  ora_control.puts "  DISCARDFILE #{$sqlldr_err_file}"
+  ora_control.puts "  APPEND "
+  ora_control.puts ""
+
+  # table name lists
+  tablenames = []
+  # create index statement
+  create_indexes = []
+  #primary index name list
+  primary_indexes = []
+  
+  inCreate = false
+  seq_needed = false
+  pk_sn = $primary_key_sn
+  extra_sql = []
+  table_name = ''
+  control_line = nil
+  # col lines in sql loader control file
+  control_cols = []
+  
+  # Convert the SQL commands
+  File.open(file_dir + mysql_script, "r").each { |line|
+    # Ignore comments
+    # 1. starting with '--'
+    # 2. included by '/*' and '*/'
+    # Ingore empty lines
+    # Ignore DROP TABLE statement
+    # Ignore LOCK, UNLOCK statement
+    if line =~ /^--/ || line =~ /^\/\*.*\*\/;$/ || line =~ /^\s*$/ ||
+      line =~ /^(DROP|LOCK|UNLOCK)/i  
+      # puts "Ignored: " + line
+    else
+      # puts "Converted: " + line
+      # Remove ``
+      line.gsub!(/`/, '')
+      
+      control_line = line
+      
+      if line =~ /^CREATE\s+TABLE\s+(\S*)\s+\(/i
+        table_name = $1
+        tablenames.push table_name
+        inCreate = true
+        
+        # sqlldr control file
+        ora_control.puts "  INTO TABLE #{table_name} WHEN TAB ='#{table_name}'"
+        ora_control.puts "  FIELDS TERMINATED BY \",\" OPTIONALLY ENCLOSED BY \"'\""
+        ora_control.puts "  ( tab FILLER position(1),"
+        control_line = nil
+        control_cols = []
+      end
+      
+      # Within CREATE TABLE statement:
+      if inCreate
+        # 0.0 found a 'auto_increment'
+        if line =~ /auto_increment/
+          seq_needed = true
+        end
+        # 0.1 remove "auto_increment"
+        if line !~ /ENGINE.*AUTO_INCREMENT=(.*)\s+DEFAULT\s+CHARSET.*;$/i
+          line.gsub!(/auto_increment/i, '')
+        end
+        
+        # 0.2 remove "default ''"
+        if line =~ /NOT\s+NULL\s+default\s+''/
+          line.gsub!(/NOT\s+NULL\s+default\s+''/, 'NOT NULL')
+        end
+        
+        # 0.3 remove column comments;
+        if line =~ /\S+\s+COMMENT/i
+          line.gsub!(/(\S+\s+)COMMENT.*,/, '\1,')
+          line.gsub!(/(\S+\s+)COMMENT.*/, '\1')
+        end
+        
+        # 1. Do data type translation
+        #  MySQL data type ======>   Oracle data type
+        #  int(11)                   number(38)
+        #  int                       number
+        #  tinyint(1)                number(1)
+        #  varchar                   varchar2
+        #  float                     number
+        #  text                      clob
+        #  blob                      blob
+        #  datetime                  date 
+        line.gsub!(/(\S+\s+)int\(11\)/i, '\1number(38)')
+        line.gsub!(/(\S+\s+)tinyint\(/i, '\1number(')
+        line.gsub!(/(\S+\s+)int\(/i, '\1number(')
+        line.gsub!(/(\S+\s+)float/i, '\1number')
+        line.gsub!(/(\S+\s+)varchar\(/i, '\1varchar2(')
+        line.gsub!(/(\S+\s+)text,$/i, '\1clob,')
+        line.gsub!(/(\S+\s+)text$/i, '\1clob')
+        line.gsub!(/(\S+\s+)datetime/i, '\1date')
+
+        # replace wrap column name with " if it has upper case code
+        if line =~ /^\s+(\S*)(.*)/
+           column_name = $1
+           rest_of_the_line = $2
+           if has_uppercase_code(column_name)
+             line = '"' + column_name + '"' + rest_of_the_line
+           end
+        end
+        
+        control_line = line unless control_line.nil?
+ 
+        # 2. Rewrite primary key statement
+        #    "PRIMARY KEY  (`id`),"
+        # ==> CONSTRAINT primary_#{sn} PRIMARY KEY (id)
+        if line =~ /^\s*PRIMARY KEY/i
+          line.gsub!(/^\s*PRIMARY\s+KEY\s+(.*)/i,
+              "  CONSTRAINT primary_#{pk_sn} PRIMARY KEY \\1")
+          primary_indexes.push "primary_#{pk_sn}"
+          # add rebuild index command in db alteration script
+          ora_alter.puts "alter index primary_#{pk_sn} rebuild;"
+          pk_sn += 1
+          # remove the ending ',' if there's one (when it's followed by KEY ...)
+          line.gsub!(/,$/, '')
+          control_line = nil
+        # 2.1 Rewrite unique key statement
+        #    "UNIQUE KEY `unique_schema_migrations` (`version`)"
+        # ==> "CONSTRAINT unique_schema_migrations UNIQUE(version)"
+        elsif line =~ /^\s*UNIQUE KEY/i
+          line.gsub!(/^\s*UNIQUE\s+KEY\s+(\S+)\s+(\S+)/i,
+              "  CONSTRAINT \\1 UNIQUE \\2")
+          # remove the ending ',' if there's one (when it's followed by KEY ...)
+          line.gsub!(/,$/, '')
+          control_line = nil
+        else
+          # 3. CREATE a INDEX for other KEY
+          #    "KEY `index_mplus_drugs_on_urlid_and_name_type` (`urlid`,`name_type`)"
+          # ==> CREARE INDEX index_mplus_drugs_on_urlid_and_name_type ON mplus_drugs
+          #     (urlid, name_type);
+          if line =~ /KEY\s+(\S*)\s+\((\S*)\)/i
+            index_name = $1
+            column_names = $2
+            col_names = column_names.split(',')
+            modified_col_names =[]
+            col_names.each do | col_name|
+              if has_uppercase_code(col_name)
+                modified_col_names << '"' + col_name + '"'
+              else
+                modified_col_names << col_name
+              end
+            end
+            modified_column_names = modified_col_names.join(',')
+
+            # index_name should be no more than 30 characters
+            index_name = index_name.slice(0..29)
+            sql_statement = "CREATE INDEX #{index_name} ON #{table_name} (#{modified_column_names});"
+            create_indexes.push(sql_statement)
+            # add rebuild index command in db alteration script
+            ora_alter.puts "alter index #{index_name} rebuild;"
+            line = nil
+            control_line = nil
+            ##extra_sql.push(sql_statement)
+          end
+        end
+
+        # 4. Create sequence if in CREATE TABLE statement, id is ended with
+        # " `id` int(11) NOT NULL auto_increment, "
+        # Check the last line for the start value of the sequence
+        # "ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;"
+        # check keyword : 'AUTO_INCREMENT=3'
+        # ==> CREATE SEQUENCE #{table_name}_SEQ MINIVALUE 3 MAXVALUE 999999999999999999999999
+        #     INCREMENT BY 1 NOCYCLE NOCACHE ORDER
+        if seq_needed
+          if line =~ /ENGINE.*AUTO_INCREMENT=(.*)\s+DEFAULT\s+CHARSET.*/i
+            seq_init_value = $1
+            sql_statement = "CREATE SEQUENCE #{table_name}_SEQ MINVALUE #{seq_init_value} MAXVALUE 999999999999999999999999 INCREMENT BY 1 NOCYCLE NOCACHE ORDER;"
+            extra_sql.push(sql_statement)
+            line = ');'
+            # drop existing seq
+            ora_drop.puts "DROP SEQUENCE #{table_name}_SEQ;"
+            control_line = nil
+            seq_needed = false
+          elsif line =~ /ENGINE.*\s+DEFAULT\s+CHARSET.*/i
+            seq_init_value = 1
+            sql_statement = "CREATE SEQUENCE #{table_name}_SEQ MINVALUE #{seq_init_value} MAXVALUE 999999999999999999999999 INCREMENT BY 1 NOCYCLE NOCACHE ORDER;"
+            extra_sql.push(sql_statement)
+            line = ');'
+            # drop existing seq
+            ora_drop.puts "DROP SEQUENCE #{table_name}_SEQ;"
+            control_line = nil
+            seq_needed = false
+          end
+        end
+          
+        # 5. Remove "ENGINE=InnoDB DEFAULT CHARSET=utf8;" part
+        if line =~ /ENGINE.*DEFAULT\s+CHARSET.*/i
+          line = ');'
+          
+          control_line = nil
+        end
+
+        ora_script.puts line unless line.nil?
+        
+        # sqlldr control file
+        # get column name, data type and data size
+        col_control_line = ''
+        col_name = ''
+        col_type = ''
+        col_size = ''
+        
+        if !control_line.nil? 
+          if control_line =~ /^\s*(\S+)\s+(\S+)\((\S+)\)\s*.*/
+            col_name = $1
+            col_type = $2
+            col_size = $3
+#            if col_type == 'varchar2' && col_size !='255'
+#              col_control_line = "#{col_name} char(#{col_size})"
+#            else
+#              col_control_line = "#{col_name}"
+#            end
+            if col_type == 'varchar2' && col_size.to_i > 255
+              col_control_line = "#{col_name} char(#{col_size})"
+            else
+              col_control_line = "#{col_name}"
+            end
+#            col_control_line = "#{col_name}"
+          # date, clob, blob or number without size specified
+          elsif control_line =~ /^\s*(\S+)\s+(\S+),?\s*.*/
+            col_name = $1
+            col_type = $2
+            # remove the tailing ',' if there's one
+            col_type.gsub!(/,$/, '')
+            if col_type == 'clob' || col_type == 'blob'
+              col_control_line = "#{col_name} char(80000)"
+            elsif col_type == 'date'
+              col_control_line = "#{col_name} date 'YYYY-MM-DD HH24:MI:SS'"
+            else
+              col_control_line = "#{col_name}"            
+            end
+          else
+            puts "#{control_line} is not parsed correctly in table #{table_name}"
+          end
+          # add default NULL, except for "NOT NULL" 
+          if control_line !~ /NOT NULL/i 
+            # special handling for reserved word 'last' in table 'pets'
+            # use "" to avoid reseved word error. Note: it becomes case sensitive
+            # "LAST" is the actual column name stored in Oracle db. 
+            # so is "EXPRESSION", "DATA"
+            if col_name =~ /"/
+              uppercase_col_name = col_name
+            else
+              uppercase_col_name = '"' + col_name.upcase + '"'
+            end
+            col_control_line = col_control_line + " NULLIF (#{uppercase_col_name}='NULL')"
+#            col_control_line = col_control_line + " decode(:#{col_name},'NULL',null)"
+          end
+          control_cols.push(col_control_line)
+        end
+        # end of "CREATE TABLE"
+        if line =~ /;$/
+          # add extra sql statement
+          extra_sql.each do |sql|
+            ora_script.puts sql
+          end
+#          # alter table to nologgin
+#          ora_script.puts "ALTER TABLE #{table_name} NOLOGGING;"
+
+          i=0
+          while i< control_cols.length-1
+            ora_control.puts "    #{control_cols[i]},"
+            i += 1
+          end
+          # last line , no ","
+          ora_control.puts "    #{control_cols[control_cols.length-1]}"
+          ora_control.puts "  )"
+          
+          inCreate = false
+          extra_sql = []
+          seq_init_value = 1
+          table_name = ''
+        end
+      # "INSERT INTO" commands
+      elsif line =~ /^s*INSERT\s+INTO\s+(\S+)\s+VALUES\s+\((.*)\);$/
+        table_name = $1
+        value = $2
+        # special handling for data in some tables
+        # if it's gopher_terms or temp_gopher_terms table
+        # replace "\r\n' with ''
+        if table_name == 'gopher_terms' || table_name == 'temp_gopher_terms'
+          value.gsub!(/\\r\\n/,'')
+        end
+        # if it's field_descriptions or rules table
+        # replace '\n' with newline 10.chr
+        # replace '\\t' with 9.chr
+        if table_name == 'field_descriptions' || table_name == 'rules'
+          value.gsub!(/\\r\\n/,10.chr)  # some has \r\n
+          value.gsub!(/\\n/,10.chr)     # \n
+          value.gsub!(/\\\\\t/,9.chr)   # \\t
+        end
+
+        # general convertion        
+        # escape single quote (mysql : \', oracle: '')
+        value.gsub!(/\\'/, "''")   # \'
+        # replace \" with "
+        value.gsub!(/\\"/,'"')     # \"
+        # repalce \\ with \
+        value.gsub!(/\\\\/, '\\')  # \\
+
+        # if it's open_id_associations, open_id_auth_nonces or sessions
+        # don't touch '\n'
+
+        ora_data.write table_name + ',' + value  + 00.chr
+#        ora_data.puts table_name + ',' + value 
+        
+        line = nil
+
+      # Other SQL than "CREATE TABLE" or "INSERT INTO"
+      else
+        puts "other sql statements than creat or insert"
+        ora_script.puts line unless line.nil?
+      end
+      
+      
+    end
+  }
+  #create indexes
+  create_indexes.each do |index_creation|
+    ora_script.puts index_creation
+  end
+  
+#  # alter table to logging
+#  tablenames.each do |table|
+#    ora_script.puts "ALTER TABLE #{table} LOGGING;"
+#  end
+  ora_script.puts "disconnect;"
+  ora_script.puts "exit;"
+  ora_script.close
+  ora_alter.puts "disconnect;"
+  ora_alter.puts "exit;"
+  ora_alter.close  
+  ora_data.close
+  ora_control.close
+  
+end
+
+# The main program
+# No parameters are accepted
+warning_msg = "
+================================================================================
+                                   WARNING
+================================================================================
+This script migrates data and batabase objects from a MySQL database to an 
+Oracle database. Configuration file config/dbmigrate.yml is used to specify 
+MySQL and Oracle account information and other options. 
+Read config/dbmigrate.yml for details.
+
+An Oracle user account/schema will be created where data and batabase objects 
+will be loaded. If this Oracle user account/schema already exists, it will be 
+dropped and recreated. All data and database objects within this user/schema 
+will be LOST! Please backup the database if necessary.
+================================================================================
+Please disconnect any connections to the Oracle database.
+Press any key to continue, Ctrl-C to quit."
+
+# get configuration info
+config = YAML.load(File.read(File.dirname(__FILE__) + '/../config/dbmigrate.yml'))
+if config.nil?
+  puts "Configuration file config/dbmigrate.yml not found."
+  exit
+end
+
+
+# MySQL account info
+$mysql_uid = config['mysql']['username']
+$mysql_password = config['mysql']['password']
+$mysql_server = config['mysql']['host']
+$mysql_db = config['mysql']['database']
+# Oracle account info
+$ora_admin_uid = config['oracle']['admin_username']
+$ora_admin_password = config['oracle']['admin_password']
+$ora_uid = config['oracle']['userschema']
+$ora_tablespace = config['oracle']['tablespace']
+if $ora_tablespace.nil?
+  $ora_tablespace = 'USERS'
+end
+$ora_password = config['oracle']['password']
+$ora_tns = config['oracle']['database']
+# exit if any of the db account info is missing
+if $mysql_uid.nil? || $mysql_password.nil? || $mysql_server.nil? ||
+   $mysql_db.nil? || $ora_admin_uid.nil? || $ora_admin_password.nil? ||
+   $ora_uid.nil? || $ora_password.nil? || $ora_tns.nil? || $ora_tablespace.nil?
+  puts 'configuration file config/dbmigrate is not correct.'
+  puts 'exiting...'
+  exit
+end
+ 
+# Options
+$file_location = config['option']['file_location']
+$file_location = 'tmp/dbmigrate' unless !$file_location.nil?
+$keep_file = config['option']['keep_file']
+$keep_file = true unless $keep_file == false
+$show_msg = config['option']['show_msg']
+$show_msg = true unless $show_msg == false
+$primary_key_sn = config['option']['primary_key_sn_start']
+$primary_key_sn = 1 unless $primary_key_sn >0
+
+if $show_msg
+  puts warning_msg
+  gets
+end
+
+# create destination directory
+$file_dir = File.dirname(__FILE__) + '/../' + $file_location + '/'
+if (!File.exists?($file_dir))
+  Dir.mkdir($file_dir)
+end
+# get current time for file names
+$time_now = Time.now.strftime('%Y%m%d%H%M%S')
+
+# MySQL dump file
+$mysql_dump_file = 'mysql_export_' + $time_now + '.sql'
+# db schema recreation
+$ora_db_file = 'oracle_db_' + $time_now + '.sql'
+# db schema alteration
+$ora_alter_file = 'oracle_alter_' + $time_now + '.sql'
+# Oracle SQL Loader data file
+$ora_data_file = 'sqlldr_data_' + $time_now + '.dat'
+# Oracle SQL Loader control file
+$ora_control_file = 'sqlldr_control_' + $time_now + '.ctl'    
+    
+# sqlldr log file, bad file, and error file 
+$sqlldr_log_file = 'sqlldr_log_' + $time_now + '.log'
+$sqlldr_bad_file = 'sqlldr_bad_' + $time_now + '.bad'
+$sqlldr_err_file = 'sqlldr_err_' + $time_now + '.err'
+
+# sqlldr options, fixed. not necessary in dbmigrate.yml
+$sqlldr_options = 'DIRECT=TRUE COLUMNARRAYROWS=1000 ERRORS=1000'
+#$sqlldr_options = 'ROWS=1000'
+# Create a MySQL dump file
+dump_mysql($mysql_uid, $mysql_password, $mysql_server, $mysql_db, $mysql_dump_file, $file_dir)
+
+# Convert the MySQL dump scripts to be Oracel-specific scripts
+convert_script($mysql_dump_file, $ora_db_file, $ora_data_file, $ora_control_file, $ora_alter_file, $file_dir)
+
+#exit
+# disconnect all $ora_uid sessions
+# ??
+
+# go to the file location
+Dir.chdir($file_dir)
+# execute $ora_script_file
+cmd = "sqlplus #{$ora_admin_uid}/#{$ora_admin_password}@#{$ora_tns} @#{$ora_db_file}"
+echo_system(cmd)
+
+# execute SQL Loader with $ora_control_file and $ora_data_file
+# with options:
+# DIRECT=TRUE           : reduce execution time from 44m to 40s. 
+#                         need to rebuild index after data is loaded.
+# COLUMNARRAYROWS=1000  : reduce memory requirement. default: 5000
+cmd = "sqlldr #{$ora_uid}/#{$ora_password}@#{$ora_tns} control=#{$ora_control_file} log=#{$sqlldr_log_file} #{$sqlldr_options}"
+echo_system(cmd)
+# Example
+# sqlldr test/p#8080@phrdev control=sqlldr_control_20080910115936.ctl log=sqlldr_log.log DIRECT=TRUE COLUMNARRAYROWS=1000 > sqlldr.out
+
+# execute $ora_alter_file to rebuild index
+cmd = "sqlplus #{$ora_uid}/#{$ora_password}@#{$ora_tns} @#{$ora_alter_file}"
+echo_system(cmd)
+
+# change file permissions to 700 or remove these files
+if $keep_file
+  File.chmod(0700, $mysql_dump_file)
+  File.chmod(0700, $ora_db_file)
+  File.chmod(0700, $ora_data_file)
+  File.chmod(0700, $ora_control_file)
+  File.chmod(0700, $ora_alter_file)
+else
+  File.delete($mysql_dump_file)
+  File.delete($ora_db_file)
+  File.delete($ora_data_file)
+  File.delete($ora_control_file)
+  File.delete($ora_alter_file)
+end
+
+# end of main program
+

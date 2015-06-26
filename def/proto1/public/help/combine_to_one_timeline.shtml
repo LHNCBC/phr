@@ -1,0 +1,22 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Combine Records in One Timeline Table</h1>
+<p><b>Note:</b><i>To edit data on the <b>View & Edit Results Timeline</b> page, be sure to uncheck this option. You will not be able to edit data while the <b>Combine records in one timeline table</b> option is selected.</i></p>  
+<p>
+The default display shows the results for each test result or health tracker in its own timeline from newest to oldest. </p>
+<p>
+For example, if you entered a weight today and last week and a cholesterol two weeks ago and last year, today's weight would appear in the same column as the cholesterol from two weeks ago, and last week's weight would appear in the same column as last year's cholesterol:
+</p>
+<p>
+<img alt="different_timelines" src="/help/different_timelines.png" />
+</p>
+<p>
+If you choose the <b>Combine records in one timeline table</b> option, a single timeline for all of the test results will be displayed so that you can see when one test was done relative to another one. </p>
+<p>
+For example, if you entered a weight today and last week and a cholesterol two weeks ago and last year, both of the weight measurements, which are the newest results, will appear on the timeline first, followed by the cholesterol result: 
+</p>
+<p>
+<img alt="one_timeline" src="/help/one_timeline.png" />
+</p>
+	
+<!--#include virtual="help_footer.shtml" -->

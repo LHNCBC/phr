@@ -1,0 +1,350 @@
+/* Style in common with the screen version. */
+body {
+  font-family: Arial;
+}
+
+body, input, textarea {
+  margin: 0;
+}
+
+div.panel_def table {
+  width: 100%;
+}
+
+td.fixed_col div.panel_def table tr:first-child,
+td.fixed_col div.panel_def table tr:nth-child(2),
+td.fixed_col div.panel_def table tr:nth-child(3) {
+  display: none;
+}
+
+div.panel_def tr.panel_header.panel_l1:nth-child(4) {
+  font-weight: bold;
+  height: 54px;
+}
+
+div.panel_def table tr, div.test_data_table table tr {
+  height: 29px;
+}
+
+div.test_data_table table tr.datetime_header {
+  height: 18px;
+}
+
+div.panel_def tr.panel_header td.test_name {
+  padding-left: 10px;
+}
+
+div.panel_def tr.panel_header.panel_l1 td, div.test_data_table td.panel_header.panel_l1 {
+  vertical-align: bottom;
+  font-size: 105%;
+}
+
+div.panel_def .sparkline_chart {
+  width: 88px;
+}
+
+div.panel_def input[type='checkbox'] {
+  float: left;
+  margin: 0px;
+  height: 16px;
+
+}
+
+div.panel_def table td {
+  border-bottom: 1px solid #CCCCCC;
+  padding: 6px;
+  vertical-align: middle;
+}
+
+td.sparkline_chart {
+  border-left: 1px solid #ccc;
+}
+
+div.test_data_table table tr:nth-child(4) {
+  display: none;
+}
+
+div.test_data_table th {
+  border-left: 1px solid #CCCCCC;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+  width: 5em;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+div.test_data_table tr:nth-child(3) th, div.test_data_table table td {
+  border-bottom: 1px solid #ccc;
+}
+
+div.test_data_table table td {
+  border-left: 1px solid #ccc;
+  padding: 6px;
+}
+/* End of section for styles in common with the screen version */
+
+/* Things hidden for printing */
+#skip_link, #fe_panel_list_grp_0, .closingLink, input.forplot {
+  display: none;
+}
+
+div.panel_timeline {
+  margin-bottom: 16px;
+  border: 1px solid #CCCCCC;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+div.panel_timeline table {
+  table-layout: fixed;
+}
+
+div.panel_timeline td.fixed_col {
+  width: 400px;
+}
+
+div.panel_timeline table {
+  table-layout: fixed;
+}
+
+td {
+  /* Because the panel_timeline table is a fixed layout, we need to hide the
+   * overflow */
+  overflow: hidden;
+}
+
+div.panel_timeline td {
+  padding: 0px;
+  vertical-align:top;
+}
+
+div.panel_def {
+  position:relative;
+  height:auto;
+  top:0px;
+}
+
+div.panel_def table {
+  border-collapse: collapse;
+  padding:  0px;
+  border-color: #73a0c8;
+  border: 0px;
+}
+
+div.panel_def th {
+  text-align:left;
+  padding-right: 4px;
+  padding-top:1px;
+  padding-bottom:1px;
+
+}
+
+div.panel_def th.test_name {
+  width: 240px;
+}
+
+div.panel_timeline_grp {
+  margin-left: 0px;
+  margin-right:0px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+div.test_data_table_wrapper {
+  height:auto;
+  width:100%;
+  border-width:2px;
+}
+div.test_data_table {
+  overflow:visible;
+  height:auto;
+  width:100%;
+}
+div.test_data_table table {
+  table-layout: auto;
+  border-collapse: collapse;
+  padding:  0px;
+  border-color: #73a0c8;
+  empty-cells:show;
+  text-align:right;
+  white-space:nowrap;  
+}
+div.test_data_table th {
+  padding-right:2px;
+  padding-left:2px;
+  padding-top:1px;
+  padding-bottom:1px;
+  text-align:center;
+  white-space:nowrap;
+}
+div.test_data_table td.no_data {
+  text-align:center;
+  white-space:nowrap;
+}
+
+div.test_data_table input.readonly_field {
+  color: red;
+  text-align: right;
+  width:1.5em;
+  margin-right:2px;
+}
+
+tr.panel_l2 td:first-child {
+  padding-left: 10px;
+}
+tr.panel_l3 td:first-child {
+  padding-left: 20px;
+}
+tr.panel_l4 td:first-child {
+  padding-left: 30px;
+}
+tr.panel_l5 td:first-child {
+  padding-left: 40px;
+}
+
+#fe_panel_selector_grp_0_tbl {
+  width: 60%;
+}
+
+div.panel_def tr.panel_header.panel_l1 {
+  font-weight: bold;
+}
+div.panel_def tr.panel_header.panel_l2 {
+  background-color:transparent;
+  font-weight: bold;
+}
+div.panel_def tr.panel_header.panel_l3 {
+  background-color:transparent;
+  font-weight: bold;
+}
+div.panel_def tr.panel_header.panel_l4 {
+  background-color:transparent;
+  font-weight: bold;
+}
+div.panel_def tr.panel_header.panel_l5 {
+  background-color:transparent;
+  font-weight: bold;
+}
+
+tr.panel_header.panel_l2 td:first-child {
+  text-decoration:underline;
+}
+tr.panel_header.panel_l3 td:first-child {
+  text-decoration:underline;
+}
+tr.panel_header.panel_l4 td:first-child {
+  text-decoration:underline;
+}
+tr.panel_header.panel_l5 td:first-child {
+  text-decoration:underline;
+}
+
+
+/* overload styles in style.css */
+div.field {
+  margin-bottom: 0px;
+  height: 25px; /* don't know why the height is almost doubled */
+}
+
+
+/* hide/show grouped columns */
+.rec {
+  display:none;
+}
+.rec.last {
+  border-right-width: 3px;
+  border-right-color: #73A0C8;
+}
+.sum {
+  border-right-width: 3px;
+  border-right-color: #73A0C8;
+}
+img.exp_column:hover {
+  cursor:pointer;
+  
+}
+
+/* redefine group margin/padding */
+div.fieldGroup.no_group_hdr {
+  margin-left:0px;
+  margin-right:0px;
+}
+
+div.fieldGroup.no_group_hdr div.fieldGroup.no_group_hdr {
+  margin-left:20px;
+  margin-right:20px;
+}
+
+#in_one_grid_1_div {
+  display: inline;
+}
+
+
+/* style overwrite for print*/
+
+.hidden_field {
+  display: none;
+ 
+}
+
+input, textarea {
+  z-index: 0;
+  margin-left: 0.0em;
+  position: relative;
+  padding-top:	0px;
+  padding-right:	0px;
+  padding-bottom:	0px;
+  padding-left:	0px;
+  border-top-width:	1px;
+  border-right-width:	1px;
+  border-bottom-width:	1px;
+  border-left-width: 1px;
+  left: 0px;
+  font-weight: bold;
+  background-color: white;
+  font-size: 90%;
+  /*font-family: sans-serif;*/
+}
+
+input.readonly_field {
+  background-color: transparent !important;
+  color: black ;
+  border: none;
+  font-weight: normal;
+}
+
+div.field label {
+  font-size: 90%;
+  font-weight: normal;
+  float: left;
+}
+div.field input {
+  max-width: 50%;
+  font-weight: normal;
+}
+
+
+div.no_group_hdr.fieldGroup h3.groupHeader {
+  display:none;
+}
+#fe_panel_list_grp_0 h2.groupHeader {
+  display:none;
+}
+/* not to display some content */
+#form_hdr_phr, #hdr_image, #searchResults, #blinder, #dev_menu_div,
+    #fe_form_header_0_expcol, #load_time_msg, #fe_panel_list_grp_ins_0, .reqNotice{
+  display:none !important;
+}
+
+/* buttons */
+/*
+#rule_values_display_button, #fe_expand_columns, #fe_group_columns,
+    #fe_return_button, #fe_show_hide_empty, #fe_show_record_too_1  {
+  display:none !important;
+}
+*/
+
+/* not to display buttons */
+button {
+  display: none !important;
+}

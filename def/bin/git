@@ -1,0 +1,223 @@
+#!/proj/def/bin/ruby
+# Runs tests, helps to prevent mistakes, and checks files in.
+
+GIT_PATH = '/usr/local/bin/git'
+
+require 'open3'
+
+PROTO1_DIR = File.join(File.dirname($0), '..', 'proto1')
+
+# The VCS commit lock file used for preventing two people commiting at the
+# same time.  (The regular VCS command takes care of this, but we want the
+# lock to start before updating and running tests.)
+require File.join(PROTO1_DIR, 'lib/vcs')
+
+run_tests = false
+
+# Returns true if this is the master branch and the command is using a release branch, or vice versa.
+def between_release_and_master
+  current_branch = `#{GIT_PATH} symbolic-ref HEAD`.chomp.split(/\//)[-1]
+  all_args  = ARGV.join(' ')
+  return ((current_branch=='master' && all_args =~ /-branch$/) or
+         (all_args=~/master/ && current_branch =~ /-branch$/))
+end
+
+
+# Disallow git merge.  Also require that git push and pull be run without further arguments.
+args = ""
+is_pull = false
+ARGV.each do |arg|
+  if arg =~ /^(merge|push|pull|checkout)$/
+    if $1 == 'merge'
+      if between_release_and_master
+        puts 'Do not use git merge to merge changes between the release branch and the '+
+         'master branch (in either direction).'
+        exit
+      end
+    elsif $1 == 'checkout' || $1 == 'pull'
+      is_pull = $1 == 'pull'
+      schema_file = File.join(PROTO1_DIR, 'db', 'schema.rb')
+      File.delete(schema_file) if File.exists?(schema_file)
+      if $1 == 'checkout'
+        if between_release_and_master
+          puts 'WARNING:  If you are changing between a release branch and the master branch, '+
+           'use rake def:change_branch version=[branch name] '+
+           'instead of git checkout, so that the database is in sync with the '+
+           'code.  There are times when copying the database is not necessary, but be careful.'
+        end
+      end
+      puts 'Removing cached files and generated javascript files...'
+      system("rm -rf #{File.join(PROTO1_DIR, 'tmp/cache')}")
+      system("cd #{File.join(PROTO1_DIR, 'public')}; rm -rf javascripts/uncompressed/generated_form_js javascripts/compressed/generated_form_js")
+    elsif ARGV.length > 1
+      puts 'To avoid pushing/pulling to/from the wrong branch, this script disallows git '+
+       'push/pull with additional arguments.'
+      exit
+    else
+      run_tests = true if $1 == 'push'
+    end
+  end
+  if arg =~ /"/
+    args = args + " " + "'" + arg + "'"
+  else
+    args = args + " " + '"' + arg + '"'
+  end
+end
+
+# Add -x to cherry-pick
+cherry_pick_str = '"cherry-pick"'
+ch_ind = args.index(cherry_pick_str)
+if ch_ind && !ARGV.index('-x')
+  puts 'WARNING:  Adding -x to your cherry-pick'
+  args.insert(ch_ind + cherry_pick_str.length, ' -x')
+end
+
+
+def test_javascript()
+  icount = 0
+  #
+  # Only works for Firefox on Linux machines
+  #
+  system("firefox &")
+  has_err = false
+  Open3.popen3("cd #{PROTO1_DIR}; rake test:javascripts") do |stdin,stdout,stderr|
+    # check STDOUT ---move to a thread
+    while output = stdout.gets
+      #puts "STDOUT: " + output
+      puts output
+      if output =~ /(FAILURE|ERROR)/
+        icount += 1
+      end
+    end
+    # check STDERR ---move to a thread
+    while errout =stderr.gets
+      puts errout
+      if !errout.index('DEPRECATION WARNING') and !errout.index('already initialized')
+        has_err = true
+      end
+    end
+  end
+  rtn = true
+  if has_err
+    puts "test:javascripts had ERRORS!"
+    rtn = false
+  elsif icount != 0
+    puts "test:javascripts      #{icount} Failures."
+    rtn = false
+  end
+  return rtn
+end
+
+
+# Returns the version tag in defPackVersion.txt
+def read_version_tag
+  File.read(File.join(PROTO1_DIR, 'public', 'defPackVersion.txt')).chomp
+end
+
+
+if !run_tests
+  # Run the command.  If this is a pull, compare the tag in defPackVersion.txt
+  # before and after.
+  old_version_tag = read_version_tag if is_pull
+  system("#{GIT_PATH} #{args}")
+  if is_pull && old_version_tag != read_version_tag
+    puts 'WARNING:  The version tag in defPackVersion.txt has changed.  You '+
+      'might want to run rake def:reload_db to make sure your data is in sync '+
+      'with the code.'
+  end
+else
+  print "\a" # Alert the user
+  puts "Before committing new code, please be sure you have responded\n"+
+   'to the review requests assigned to you.  (Hit return to continue)'
+  STDIN.gets
+  Vcs::vcs_commit_lock(true)
+  Signal.trap('EXIT') do
+    puts 'Exiting.'
+    Vcs::release_vcs_lock
+  end
+  begin
+    cwd = Dir.pwd  # save the current directory for the commit command
+
+    # Make sure we are in the proto1 directory or its parent (which might
+    # not be named "def".).
+    under_proto1 = Dir.pwd =~ /\/proto1(\/|$)/
+    in_def = !under_proto1 && Dir.entries(Dir.pwd).include?('proto1')
+    if (!in_def && !under_proto1)
+      puts 'Please run the vcs command from within the proto1 directory or its '+
+        'parent directory (usually def).'
+    else
+      # Make sure the area is up to date
+      Dir.chdir(PROTO1_DIR + '/..')
+      puts 'Updating files...'
+      system("umask 22; #{GIT_PATH} pull") || (puts 'Could not run git pull') && exit
+      Dir.chdir('proto1')
+      puts 'Reloading database...'
+      system('rake def:reload_db have_vcs_lock=true') || (puts 'Could not reload database' && exit)
+
+      puts 'Migrating database...'
+      if !system('rake db:migrate')
+        puts 'Migration failed.'
+        exit
+      end
+
+      puts 'Restarting web server...' # to avoid cached data
+      if !system('../apache/apache.sh restart')
+        puts 'Restart failed.'
+        exit
+      end
+
+      # Prompt the user to run the manual test script
+      print "\a" # Alert the user
+      puts 'Please run through the manual test script, which is on the Twiki at'
+      puts "\n"+'http://phr-master-build:3737/twiki/bin/view/Main/ManualTestScript'
+      puts "\n"+'When finished, hit return to continue.'
+      STDIN.gets
+
+      # Run the tests first
+      puts 'Cloning schema of development database into test database'
+      puts '(Yes, we know that db:test:clone is deprecated, but we need it.)'
+      # Don't use the clone_structure task, which results in collation errors
+      # when the tests are run (as of Rails 4.1).  However, we do need to run
+      # db:test:clone (not clone_structure) to clear the test database of data.
+      # The db:test:clone task says it is deprecated.  In case it goes away,
+      # here is its definition:
+      #     task :clone => %w(db:schema:dump db:test:load)
+      #system("rake db:test:clone_structure")
+      system('rake db:test:clone')
+      puts 'Running tests...'
+      # TESTOPTS for "rake test" is now specified via an environment variable.
+      if (system('rake test') &&
+          test_javascript())
+
+        # Prompt the user to run the acceptance tests.
+        puts
+        puts 'Please run "rake acceptance_tests autorun=false" and run the acceptance tests.'
+        passed = false
+        while !passed
+          puts "Type 'passed' when you have gotten all tests to pass, or hit"
+          puts "control-C to release the VCS lock: "
+          passed = STDIN.gets.chomp == 'passed'
+        end
+
+        puts "\n\n\n"
+        print "\a" # Alert the user
+        puts 'Would you like to create a review request for these changes? (y/n)'
+        ans = STDIN.gets.chomp
+        if (ans == 'y' || ans == '')
+          system('branchname=`git rev-parse --abbrev-ref HEAD`; git diff -b $branchname --not --remotes="*/$branchname" > /tmp/diff.txt')
+          puts "The diff file has been created in /tmp/diff.txt.  For now, "+
+             "you will need to use the review board's web page to upload it "+
+             "and create the request.  (Hit return to continue.)"
+          STDIN.gets
+        end
+
+        puts 'Pushing files...'
+        system("cd #{cwd}; #{GIT_PATH} #{args}")
+      end
+    end
+  rescue
+    puts 'Caught exception:  ' + $!
+    exit
+  end
+  print "\a" # Alert the user that we're done
+end

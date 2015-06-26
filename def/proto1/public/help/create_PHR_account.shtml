@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+<h1>Create Your PHR Account</h1>
+<p>A PHR account will allow you to create multiple Personal Health Records (PHRs) under the same account. For example, you can create PHRs for yourself, your children, and other dependents, such as a parent. </p>
+<p>Your PHR account ID and password are private. We will not share your account information with anyone. To maximize your privacy, consider limiting the use of <a href="/help/no_personal_identifiers.shtml">personal identifiers</a> in your account name.</p>
+
+
+<!--#include virtual="help_footer.shtml" -->

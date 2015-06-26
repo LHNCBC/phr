@@ -1,0 +1,10 @@
+<h2>Data Set Analysis</h2>
+<form action="/data_set/analyze" method="post">
+   <%= text_area_tag('dataSet', @dataSet, :size=>'60x5') %>
+   <input type='submit' value='Analyze' />
+</form>
+<p>
+<% if ! @histImg.nil? %>
+<img src="<%=@histImg%>" />
+</p>
+<% end %>

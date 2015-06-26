@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>JavaScript unit test file</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+  </head>
+  <body>
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>dateTimeCalcs.js</strong>.
+    </p>
+    <input id="fe_date_1" type="text" class="required" value="2010 Jun 10" /><br/>
+    <input id="fe_date_time_1" type="text" class="time" timeonly="true" value="12 a" /><br/>
+    <input id="fe_date_ET_1" type="text" class="time" value="" /><br/>
+    <input id="fe_date_HL7_1" type="text" class="time" value="" /><br/>
+  </div>
+
+  <!-- Log output -->
+  <div id="testlog"> </div>
+
+</div>
+    <!-- The body element needs to be available before loading idCache.js file-->
+    <script src="assets/jquery/jquery.js?body=1" type="text/javascript"></script>
+    <script src="assets/jquery-ui/js/jquery-ui.min.js?body=1" type="text/javascript"></script>
+    <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+    <script src="assets/autocomp/prototype_ext.js?body=1" type="text/javascript"></script>
+    <script src="assets/effects.js?body=1" type="text/javascript"></script>
+    <script src="assets/application_phr.js?body=1" type="text/javascript"></script>
+    <script src="assets/logger.js?body=1" type="text/javascript"></script>
+    <script src="assets/fieldEvents.js?body=1" type="text/javascript"></script>
+    <script src="assets/idCache.js?body=1" type="text/javascript"></script>
+    <script src="assets/date.js?body=1" type="text/javascript"></script>
+    <script src="assets/dateTimeCalcs.js?body=1" type="text/javascript"></script>
+    <script src="assets/dateUtils.js?body=1" type="text/javascript"></script>
+    <script src="assets/logger.js?body=1" type="text/javascript"></script>
+    <script src="assets/rules.js?body=1" type="text/javascript"></script>
+    <script src="assets/browser_detect.js?body=1" type="text/javascript"></script>
+    <script src="assets/validation.js?body=1" type="text/javascript"></script>
+    <script src="assets/field_validation.js?body=1" type="text/javascript"></script>
+    <script src="assets/unittest.js" type="text/javascript"></script>
+<script type="text/javascript">
+// <![CDATA[
+
+  new Test.Unit.Runner({
+
+    // replace this with your real tests
+
+    setup: function() {
+
+    },
+
+    teardown: function() {
+
+    },
+
+    testTruth: function() { with(this) {
+      assert(true);
+    }},
+
+    testParseMonth: function() { with(this) {
+      var date = Date.parseMonthString('1999 / 01 ') ;
+      assertEqual('01/99',date.toString('MM/yy'));
+    }},
+
+    testParseDay: function() { with(this) {
+      var date = Date.parseDayString('1999 / 01 1') ;
+      assertEqual('01/01/99',date.toString('MM/dd/yy'));
+    }},
+
+    testParseTimeMidNight: function() { with(this) {
+      $('fe_date_time_1').value = '12 AM' ;
+      Def.Validation.checkTime($('fe_date_time_1')) ;
+      assertEqual('12:00 AM',$('fe_date_time_1').value);
+    }},
+
+    testParseTimeNoon: function() { with(this) {
+      $('fe_date_time_1').value = '12 PM' ;
+      Def.Validation.checkTime($('fe_date_time_1')) ;
+      assertEqual('12:00 PM',$('fe_date_time_1').value);
+    }},
+
+    testParseTimeAM: function() { with(this) {
+      $('fe_date_time_1').value = '11 AM' ;
+      Def.Validation.checkTime($('fe_date_time_1')) ;
+      assertEqual('11:00 AM',$('fe_date_time_1').value);
+    }},
+    testParseTimePM: function() { with(this) {
+      $('fe_date_time_1').value = '9 PM' ;
+      Def.Validation.checkTime($('fe_date_time_1')) ;
+      assertEqual('9:00 PM',$('fe_date_time_1').value);
+    }},
+
+    testParseTime24: function() { with(this) {
+      $('fe_date_time_1').value = '2311' ;
+      Def.Validation.checkTime($('fe_date_time_1')) ;
+      assertEqual('11:11 PM',$('fe_date_time_1').value);
+    }},
+
+    testEpochTimeYear0: function() { with(this) {
+      assertEqual(946702800000,Def.DateUtils.getEpochTime('2000',0)) ;
+    }},
+
+    testEpochTimeMonth0: function() { with(this) {
+      assertEqual(954565200000,Def.DateUtils.getEpochTime('2000 Apr',0)) ;
+    }},
+
+    testEpochTimeDay0: function() { with(this) {
+      assertEqual(954651600000,Def.DateUtils.getEpochTime('2000 Apr 02',0)) ;
+    }},
+
+    // Changed default getEpochTime to median, i.e getEpochTime('2000') =>
+    //  getEpochTime('2000', 1).
+    //  Assertions changed for testEpochTime*NUL() - Ajay 06/19/2013.
+    testEpochTimeYearNUL: function() { with(this) {
+      //assertEqual(946702800000,Def.DateUtils.getEpochTime('2000')) ;
+      assertEqual(962424000000,Def.DateUtils.getEpochTime('2000')) ;
+    }},
+
+    testEpochTimeMonthNUL: function() { with(this) {
+      //assertEqual(954565200000,Def.DateUtils.getEpochTime('2000 Apr')) ;
+      assertEqual(955771200000,Def.DateUtils.getEpochTime('2000 Apr')) ;
+    }},
+
+    testEpochTimeDayNUL: function() { with(this) {
+      //assertEqual(954565200000,Def.DateUtils.getEpochTime('2000 Apr')) ;
+      assertEqual(954691200000,Def.DateUtils.getEpochTime('2000 Apr 2')) ;
+    }},
+    testEpochTimeYear1: function() { with(this) {
+      // assertEqual(1279166400000,Def.DateUtils.getEpochTime('2010',1)) ; // the js function was wrong. it was 7/15/2010 EDT (east daytime saving?)
+      // it should be 7/1/2010
+      // Fixed the bug in DateUtils and enabled the test. -Ajay
+      assertEqual(1277956800000,Def.DateUtils.getEpochTime('2010',1)) ;
+    }},
+    testEpochTimeMonth1: function() { with(this) {
+      assertEqual(955771200000,Def.DateUtils.getEpochTime('2000 Apr',1)) ;
+    }},
+    testEpochTimeDay1: function() { with(this) {
+      //assertEqual(954651600000,Def.DateUtils.getEpochTime('2000 Apr 02',1)) ; // the js function was wrong, it was the beginning of 4/2/2000, not the noon
+      // it should be
+      // Fixed the bug in DateUtils and enabled the test. -Ajay
+      assertEqual(954691200000,Def.DateUtils.getEpochTime('2000 Apr 02',1));
+    }},
+    testEpochTimeYear2: function() { with(this) {
+      assertEqual(978325199999,Def.DateUtils.getEpochTime('2000',2)) ;  // test failed, but 978325199999 is correct, meaning the js function was wrong, it returns 981003599999 (the end of 1/31/2000)
+    }},
+    testEpochTimeMonth2: function() { with(this) {
+      assertEqual(957153599999,Def.DateUtils.getEpochTime('2000 Apr',2)) ;
+    }},
+
+    testEpochTimeDay2: function() { with(this) {
+      assertEqual(954734399999,Def.DateUtils.getEpochTime('2000 Apr 02',2)) ;
+    }}
+
+  }, "testlog");
+// ]]>
+</script>
+</body>
+</html>

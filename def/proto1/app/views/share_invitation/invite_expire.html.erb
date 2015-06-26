@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "manifest_form_layout_common"%>
+
+<!-- <div id="formContent" class="<%=@banner_class%>"> -->
+
+    <div id="form_hdr_phr" class="<%=@banner_class%>">
+      <div id="hdr_banner">
+        <div id="hdr_banner_text">
+          <%= BANNER_ALT_TEXT.html_safe %>
+        </div>
+        <div id="hdr_banner_img" class=<%=DEMO_SYSTEM ? "demo" : ""%>></div>
+        <%# banner specified as background image in style.css %>
+        <%# prevents horizontal bar from appearing just for the banner. %>
+      </div>
+      <br/>
+    </div>
+
+<div class="notice_box">
+  <h1>Invitation Expired</h1>
+<p>We're sorry, but the invitation you received to share access to
+<%= @prof_name_possessive %> PHR data expired on <%=  @expire_date %>.</p>
+<p>If you would like to have access, please ask <%= @issuer_name %> to send you
+  another invitation.</p>
+<p><center>Thanks.</center></p>
+
+ </div>

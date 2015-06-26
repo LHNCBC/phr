@@ -1,0 +1,16 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>PHR Record Name</h1>
+		<p>
+    Create and enter a PHR Record Name for the person whose data is to be 
+	entered into this Personal Health Record. PHR record names may include: 
+<ul>
+<li>From 1 to 255 characters</li>
+<li>Spaces, numerals, and any special character except for "<"</li>
+</ul>
+<p>Avoid using <a href="/help/no_personal_identifiers.shtml"> personal identifiers</a> as record names. You may wish to use an alias or invented name such as "Self", "Son 1", or "Father" to ensure your privacy.
+</p>
+<p> A record name can be changed by clicking the <b>Demographics</b> button underneath the user's name on the <b>PHR Home</b> page. 
+<p>To edit an existing PHR, choose the a PHR record from the list PHRs on the <b>PHR Home</b> page. </p>
+    
+<!--#include virtual="help_footer.shtml" -->

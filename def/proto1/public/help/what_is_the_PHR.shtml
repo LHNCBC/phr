@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>What Is the Personal Health Record Manager for Families?</h1>
+		<p>
+		The Personal Health Record (PHR) is a web-based program into which you 
+		can enter health history information about you and 
+		your medical dependents.</p>
+<p> Medical dependents are those who 
+		depend upon you to orchestrate and oversee their medical care; 
+		for example, a child or an elderly parent whose medications and medical 
+		appointments you manage. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

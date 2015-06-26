@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Jeegoocontext, a jQuery context menu plugin</title>
+    <link href="style.css" rel="Stylesheet" type="text/css" />
+    
+    <!-- Context menu blue skin -->
+    <link href="jeegoocontext/skins/cm_blue/style.css" rel="Stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="jeegoocontext/jquery.jeegoocontext.min.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function(){
+            $('.context').jeegoocontext('menu');
+            var div = document.createElement('div');
+            div.setAttribute('oncontextmenu', '');
+            $('#opera').text(
+                (typeof div.oncontextmenu != 'undefined') ? 
+                'Your browser supports right-click event overrides, right-click this area to open a multi-level context menu.' :
+                'You are probably using an older version of Opera, ctrl-click this area to open a multi-level context menu.' 
+            );
+        });
+        //]]>
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <div id="header">
+            <h1><span class="jg_red">J</span><span class="jg_green">ee</span><span class="jg_yellow">g</span><span class="jg_blue">oo</span>context, <span style="font-size:.7em">a jQuery context menu plugin</span></h1>
+            <h2>Copyright &copy; 2009 - 2010 Erik van den Berg, <a href="http://www.planitworks.nl/jeegoocontext" target="_blank">http://www.planitworks.nl/jeegoocontext</a></h2>
+        </div>          
+        <div id="content">
+            <h2 class="context">Opera compatibility</h2>
+            <p id="opera" class="context"></p>
+            <br />
+            <a href="advanced.htm" style="float:right">Advanced styling &gt;&gt;</a>   
+            <a href="basic.htm">&lt;&lt; Basic context menu</a>      
+        </div>                
+    </div>
+       
+    <!--  Context menu -->
+    <ul id="menu" class="jeegoocontext cm_blue">
+        <li>
+            Option A
+            <ul>
+                <li>Option D</li>
+                <li>Option E</li>
+                <li>Option F</li>
+                <li>Option G</li>
+                <li>Option H</li>
+                <li>Option I</li>
+            </ul>
+        </li>
+        <li>Option B</li>
+        <li>
+            Option C
+            <ul>
+                <li>Option J</li>
+                <li>Option K</li>
+                <li>
+                    Option L
+                    <ul>
+                        <li>Option M</li>
+                        <li>Option N</li>
+                        <li>Option O</li>
+                        <li>Option P</li>
+                        <li>
+                            Option Q
+                            <ul>
+                                <li>Option S</li>
+                                <li>Option T</li>
+                                <li>Option U</li>
+                                <li>Option V</li>
+                                <li>Option W</li>
+                                <li>Option X</li>
+                            </ul>
+                        </li>
+                        <li>Option R</li>
+                    </ul>
+                </li>               
+            </ul>
+        </li>
+    </ul>    
+</body>
+</html>

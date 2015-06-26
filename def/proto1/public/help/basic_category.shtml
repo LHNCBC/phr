@@ -1,0 +1,9 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Question Categories</h1>
+	<p>
+	Creating a list of questions to ask your health care providers will help you remember to ask these questions when discussing your health care. You can use this space to organize your questions by category. The system will offer you categories, but you can also create your own by typing your own description in the <b> Unlisted Category</b> field next to it. 
+	</p>
+	
+
+<!--#include virtual="help_footer.shtml" -->

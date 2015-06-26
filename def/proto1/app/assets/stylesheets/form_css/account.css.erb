@@ -1,0 +1,169 @@
+/* 
+  Document   :  account
+  Author     :  sumeet muju
+  Description:  Styles specific to the Account Settings and PHR Signup pages
+*/
+
+.fieldsTable {
+  width: 99%;
+  margin: 2px;
+}
+
+/* hide the flash object */
+.flash_object {
+  display: none;
+}
+
+/* read only fields */
+div.readonly_field input {
+  background-color: transparent !important;
+}
+
+/* check boxes */
+/* to be consistent to the cookie_checkbox in the recaptcha group */
+#agree_chbox_1_div {
+  padding: 10px;
+  background-color: #E6EFF5;
+}
+
+#agree_chbox_1_div img {
+  margin: 5px;
+}
+
+#fe_vaemailquest_1_0 .field .static_text {
+  padding-top: 0.0em;
+  float: left ;
+}
+
+#fe_instructions2_1.big_static_text{
+  height: 200px;
+  background-color: #EFF5F9;
+  padding: 10px;    
+  overflow: auto;
+}
+
+/* groups background color */
+.fieldGroup .fieldExpColDiv
+{
+  background-color: #EFF5F9;
+  border: 0 !important;
+  padding-top: 2px;
+}
+
+.field {
+  padding-bottom: 5px;
+}
+
+/* field instruction */
+.field.field_inst {
+  padding-top: 0;
+}
+
+.field div.field_inst {
+  margin: -5px 40px 0 21.2em;
+  padding-top: 0 0 0.4em 0;
+}
+
+.field.field_inst ul {
+  padding-left: 12px;
+}
+
+/* account type sub group */
+#fe_account_grp_1_0_expcol.fieldExpColDiv {
+  background-color: #E6EFF5;
+  padding: 5px 0;
+}
+
+/* questions table */
+.fieldsTable th.fieldsTableHeader,
+.fieldsTable tr.repeatingLine td{
+  background-color: #EFF5F9 !important;
+}
+
+.fieldsTable th.fieldsTableHeader {
+  color: black !important;
+  font-size: 90%;
+  font-weight: 700;
+}
+
+/* add padding for each group with field instruction as the last section */
+#fe_signup_quest_0_expcol {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+#fe_email_grp_0_expcol,
+#fe_account_recovery_0_expcol {
+  padding-bottom: 10px;
+}
+
+/* reCaptcha section */
+.fieldGroup.recaptcha .fieldExpColDiv div.field:first-child {
+  float:left;
+  margin-left: 15%;
+  margin-top:0;
+  margin-bottom: 0;
+}
+
+.fieldGroup.recaptcha .fieldExpColDiv div.field:nth-child(2) {
+  float:left;
+  clear:right;
+  margin-top: 20px;
+  width: 40%;
+}
+
+.fieldGroup.recaptcha .fieldExpColDiv div.field:nth-child(3) {
+  clear: both;
+}
+
+/* instructions */
+#fe_captcha_instr_1,
+#fe_captcha_instr_1_1 {  
+  float: left;
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-right: 0;
+  width: 80%;
+}
+
+/* check boxes */
+#cookie_checkbox_1_div,
+#cookie_checkbox_1_1_div{
+  padding: 10px;
+  background-color: #E6EFF5;
+}
+
+#fe_cookie_checkbox_1 img,
+#fe_cookie_checkbox_1_1 img{
+  margin: 5px;
+}
+
+/* buttons group */
+#fe_button_grp_0_expcol {
+  border: 0 none;
+  margin-top: 30px;
+  text-align: center;
+  background-color: transparent;
+}
+
+/* dummy block for captcha group */
+.field.dummy_block {
+  margin: 0;
+  padding: 0;
+}
+
+.field.dummy_block .static_text {
+  margin: 0;
+  padding: 0;
+}
+
+/* radio buttons */
+div.radio_group {
+  padding-left: 21em;
+}
+
+/*two factor answer page */
+h3.groupHeader {
+  margin: 0;
+}

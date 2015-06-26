@@ -1,0 +1,23 @@
+<h1>Drug Name Lookup</h1>
+
+<%= form_tag search_phr_record_phr_drug_path(:phr_record_id=>@phr_record, :id=>'new'), :method=>'get' %>
+<% @search_text = h(@search_text) %>
+<%=basic_text_field 'Enter partial drug name', 'phr_drug', 'search_text', nil, :value=>@search_text%>
+<%=submit_tag 'Search' %>
+<% if @displayed_data  %>
+<hr>
+  <% if @total_hits > 0 %>
+    Select a matching drug from below, or search again:
+    <ul>
+    <% @displayed_data.each_with_index do |e, i| %>
+      <li><%= link_to e, new_phr_record_phr_drug_path+'?code='+@item_codes[i] %></li>
+    <% end %>
+    </ul>
+    You may also use your original search string as the drug name: 
+  <% else %>
+    No results were found.  Either try searching again, or use your original
+    search string as the drug name:
+  <% end %>
+  <%= link_to @search_text, new_phr_record_phr_drug_path+'?name='+@search_text %>
+<% end %>
+</form>

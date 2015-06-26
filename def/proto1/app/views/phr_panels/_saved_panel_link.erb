@@ -1,0 +1,7 @@
+<%=obr.panel_name%> &nbsp;
+<a onclick="TestPanel.getPrevDataForLoinc('<%=obr.loinc_num%>')"
+ href="javascript:void(0)">(View)</a> &nbsp;
+<% if @access_level < ProfilesUser::READ_ONLY_ACCESS %>
+  <a onclick="TestPanel.openPanelEditor('<%=obr.loinc_num%>')"
+     href="javascript:void(0)">(Add more)</a>
+ <% end %>

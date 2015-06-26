@@ -1,0 +1,41 @@
+<%= link_to 'Back to '+PhrPanelsController::PANELS_SECTION_TITLE, phr_record_phr_panels_path(@phr_record)%>
+<%= form_tag flowsheet_phr_record_phr_panels_path(@phr_record), :method=>'post' %>
+<% if @p.panel_list.size == 0 %>
+The flowsheet displays tests &amp; measures data for a PHR.  You will need
+to add some <%= link_to 'Tests & Measures', new_phr_record_phr_panel_path %>
+before this page will be useful.
+<% else %>
+  <%= field_set_tag('Flowsheet Settings') do %>
+    <p>Please select the panels to show in the flowsheet by using the
+      checkboxes below.</p>
+    <% @p.panel_list.each do |panel_data| %>
+      <%= basic_checkbox(panel_data.panel_name,
+        "panels[#{panel_data.loinc_num}]",
+        @p.selected_panels.member?(panel_data.loinc_num))%>
+    <% end %>
+
+    <div><%= fd_prefetched_list(@p.fds['group_by'], @p.data, @p.group_by_list,
+             false) %></div>
+    <div><%= fd_prefetched_list(@p.fds['date_range'], @p.data, @p.date_range_list,
+             false) %></div>
+    <fieldset><legend>Dates for a custom range</legend>
+      You must specify "Customize" in the "<%=@p.fds['date_range'].display_name%>"
+      field above to use these fields.<br />
+      <%= fd_date_field(@p.fds['start_date'], @p.data) %>
+      <%= fd_date_field(@p.fds['end_date'], @p.data) %>
+    </fieldset>
+
+    <div><%= fd_checkbox(@p.fds['in_one_grid'], @p.data) %></div>
+    <div><%= fd_checkbox(@p.fds['include_all'], @p.data) %></div>
+    <div><%= basic_checkbox('Hide empty rows', 'hide_empty_rows',
+             @p.data.hide_empty_rows=='1')%></div>
+    <%= submit_tag @p.fds['show_record_too'].display_name %>
+  <% end %>
+
+  <% if @flowsheet %>
+    <h2>Flowsheet</h2>
+    <%= @flowsheet.html_safe %>
+  <%  end %>
+<% end %>
+
+</form>

@@ -1,0 +1,208 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# Use these to test with valid combinations identifying data, etc.
+
+
+# Don't create an autosave rec for profile -12 - need it to not have one
+# for the test_has_autosave test in profile_test.rb.  7/19/12 lm
+
+# user = PHR_Test
+# profile = standard_profile_1
+standard_user_empty_base:
+  id: -1
+  profile_id: -10
+  data_table: '{}'
+  form_name: phr
+  base_rec: true  
+
+# user = standard_account
+# profile = standard_profile_2
+standard_user_populated_base:
+  id: -2
+  profile_id: -24
+  form_name: phr
+  base_rec: true
+  data_table: '{
+  "phr_drugs":[
+     {"record_id":1, "drug_use_status":"Active", "stopped_date_HL7":null,
+      "expire_date_ET":null, "expire_date_HL7":null,
+      "drug_routes":"|Oral Liquid|Systemic|",
+      "name_and_route":"morphine (Oral Liquid)", "drug_start_ET":null,
+      "stopped_date":null, "why_stopped":null, "drug_classes_C":null,
+      "drug_ingredients":"|Morphine|", "drug_use_status_C":"DRG-A",
+      "drug_routes_C":"|119|RC1|", "drug_strength_form":null,
+      "drug_start_HL7":null, "expire_date":null,
+      "name_and_route_C":"29240", "why_stopped_C":null, "drug_start":null,
+      "stopped_date_ET":null, "drug_strength_form_C":null, "instructions":null,
+      "drug_ingredients_C":"|7052|", "drug_classes":null },
+     {"record_id":"", "drug_use_status":"", "stopped_date_HL7":"",
+      "expire_date_ET":"", "expire_date_HL7":"",
+      "drug_routes":"",
+      "name_and_route":"", "drug_start_ET":"",
+      "stopped_date":"", "why_stopped":"", "drug_classes_C":"",
+      "drug_ingredients":"", "drug_use_status_C":"",
+      "drug_routes_C":"", "drug_strength_form":"",
+      "drug_start_HL7":"", "expire_date":"",
+      "name_and_route_C":"", "why_stopped_C":"", "drug_start":"",
+      "stopped_date_ET":"", "drug_strength_form_C":"", "instructions":"",
+      "drug_ingredients_C":"", "drug_classes":"" }
+   ],
+   "phrs":[
+      {"pregnant":null, "race_or_ethnicity_C":"UK", "due_date_ET":null,
+       "birth_date_ET":1301976000000, "pregnant_C":null,
+       "birth_date_HL7":"20110405", "pseudonym":"Another Dora",
+       "due_date_HL7":null, "birth_date":"2011 Apr 05",
+       "gender":"Female", "race_or_ethnicity":"Unknown", "gender_C":"F",
+       "due_date":null }
+   ],
+   "phr_conditions":[
+      {"record_id":3, "present_C":"A", "cond_stop":null, "cond_stop_HL7":null,
+       "problem_C":"2143", "present":"Active", "when_started_ET":1327467600000,
+       "when_started_HL7":"20120125", "cond_stop_ET":null,
+       "problem_classes":"|Diabetes Mellitus, not stated as uncontrolled, without mention of complication|",
+       "problem":"Diabetes mellitus (DM)", "prob_desc":null,
+       "when_started":"2012 Jan 25", "problem_classes_C":"|26239|"
+      },
+      {"record_id":4, "present_C":"A", "cond_stop":null, "cond_stop_HL7":null,
+       "problem_C":"2281", "present":"Active", "when_started_ET":1340769600000,
+       "when_started_HL7":"20120627", "cond_stop_ET":null,
+       "problem_classes":null,
+       "problem":"Kidney or bladder infection (UTI)", "prob_desc":null,
+       "when_started":"2012 Jun 27", "problem_classes_C":null
+      },
+      {"record_id":1, "present_C":"A", "cond_stop":null, "cond_stop_HL7":null,
+       "problem_C":"9839", "present":"Active", "when_started_ET":1327467600000,
+       "when_started_HL7":"20120125", "cond_stop_ET":null,
+       "problem_classes":null,
+       "problem":"Menstrual cycle - irregular", "prob_desc":null,
+       "when_started":"2012 Jan 25", "problem_classes_C":null
+      },
+      {"record_id":"", "present_C":"", "cond_stop":"", "cond_stop_HL7":"",
+       "problem_C":"", "present":"", "when_started_ET":"",
+       "when_started_HL7":"", "cond_stop_ET":"",
+       "problem_classes":"",
+       "problem":"", "prob_desc":"",
+       "when_started":"", "problem_classes_C":"" }
+   ]
+}'
+  
+# user = standard_account
+# profile = standard_profile_2
+standard_user_change_hash:
+  id: -3
+  profile_id: -24
+  data_table: '{"phr_surgical_histories":{"1":{"surgery_when":"12 Mar 2012"}}}'
+  form_name: phr
+  base_rec: false
+  
+ 
+# Use this to test temporary accounts
+
+# user = temporary_account 
+# profile = temp_profile_1
+temp_user_empty_base:
+  id: -4
+  profile_id: -20
+  data_table: '{}'
+  form_name: phr
+  base_rec: true
+
+# user = temporary_account
+# profile = temp_profile_2
+temp_user_populated_base:
+  id: -5
+  profile_id: -21
+  data_table: '{}'
+  form_name: phr
+  base_rec: true
+  
+# Use these to test invalid combinations of row types (base/change) 
+temp_user_multiple_changes:
+  id: -6
+  profile_id: -30
+  data_table: '{}'
+  form_name: phr
+  base_rec: true  
+
+# user = temporary_account_2
+# profile = temp_profile_4
+temp_user_change_hash_1:
+  id: -7
+  profile_id: -30
+  data_table: '{"phr_surgical_histories":{"1":{"surgery_when":"12 Mar 2012"}}}'
+  form_name: phr
+  base_rec: false
+
+# user = temporary_account_2
+# profile = temp_profile_4
+temp_user_change_hash_2:
+  id: -77
+  profile_id: -30
+  data_table: '{"phr_surgical_histories":{"1":{"surgery_when":"13 Mar 2012"}}}'
+  form_name: phr
+  base_rec: false
+
+# user = temporary_account_3
+# profile = standard_profile_3
+standard_user_change_hash_2:
+  id: -8
+  profile_id: -34
+  data_table: '{}'
+  form_name: phr
+  base_rec: false
+  
+  
+# user = standard_account_2
+# profile = standard_profile_2
+standard_user_orphan_change_hash:
+  id: -9
+  profile_id: -857
+  data_table: '{}'
+  form_name: phr
+  base_rec: false
+
+# user = standard_account
+# profile = standard_profile_2
+standard_user_panel_edit_base:
+  id: -10
+  profile_id: -24
+  data_table: '{}'
+  form_name: panel_edit
+  base_rec: true
+  
+# user = standard_account
+# profile = standard_profile_2
+standard_user_panel_view_base:
+  id: -11
+  profile_id: -24
+  data_table: '{}'
+  form_name: panel_view
+  base_rec: true 
+  
+# user = temporary_account 
+# profile = temp_profile_1
+temp_user_panel_view_populated_base:
+  id: -12
+  profile_id: -20
+  data_table: '{"obx_observations":{"1":{"obx5_1_value_if_coded":"2","obx5_value":"Happy","test_date_HL7":"201109281404","test_date":"2011 Sep 28","test_date_ET":"1317233040000"}}}'
+  form_name: panel_view
+  base_rec: true  
+
+# User with change records for test panel forms, but no base records
+# user = temporary_account
+# profile = temp_profile_3
+temp_user_panel_view_change:
+  id: -13
+  profile_id: -22
+  data_table: '{data}'
+  form_name: panel_edit
+  base_rec: false
+
+# user = temporary_account
+# profile = temp_profile_3
+temp_user_panel_edit_change:
+  id: -14
+  profile_id: -22
+  data_table: '{data}'
+  form_name: panel_view
+  base_rec: false

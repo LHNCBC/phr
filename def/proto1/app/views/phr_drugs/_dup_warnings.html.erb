@@ -1,0 +1,105 @@
+<%# Note:  This logic was ported from the client side appSpecific.js file
+(warnIfDrugConflicts), so if you change something here you will likely need
+to change that as well. %>
+
+<% exact_dups = @dup_warning_data[0] %>
+<% action_str = @phr_drug.new_record? ? 'adding' : 'changing' %>
+<% if exact_dups.length > 0 %>
+  <p><b>Warning: Duplicate active medications</b><br>
+  <%# Two cases here, depending on whether the drug has certain ingredients %>
+  <% if @phr_drug.has_multi_dose_ing %>
+    <% if exact_dups.length == 1 %>
+      <%# Note:  Also remember to update appSpecific.js if you revise this message. %>
+      The medication you are <%=action_str%> is the same as your other entry
+      "<%=exact_dups[0]%>".  Unless the prescribing doctor told you to take both
+      medications at the same time (e.g. different doses on different days of the
+      week), you should either mark one as "Stopped", or delete or clear one
+      (after making sure the correct information for this drug is entered in the
+      remaining row). If you are not sure if one or both of these prescriptions
+      should be taken, please call your physician.
+    <% else %>
+      The medication you are <%=action_str%> is the same as your other entries
+      for "<%=h exact_dups[0]%>".  Unless the prescribing doctor told you to
+      take these medications at the same time (e.g. different doses on
+      different days of the week), you should either mark all but one as
+      "Stopped", or delete or clear them (after making sure the correct
+      information for this drug is entered in the remaining row). 
+      If you are not sure if one or all of these
+      prescriptions should be taken, please call your physician.
+    <% end %>
+  <% else %> <%# not a special drug %>
+    <% if exact_dups.length == 1 %>
+      The medication you are <%=action_str%> is the same as your other entry for
+      "<%=h exact_dups[0]%>".  You should either mark one as "Stopped", or delete
+      or clear one
+    <% else %>
+      The medication you are <%=action_str%> same as your other entries for
+      "<%=h exact_dups[0]%>".  You should either mark all but one as "Stopped", or
+      delete or clear them 
+    <% end %>
+    (after making sure the correct information for this drug is
+    entered in the remaining row).  If you are not sure which of these
+    prescriptions should be taken, please call your physician.</p>
+  <% end %>
+<% end %>
+
+<% drug_route_duplicates = @dup_warning_data[1] # ingredient and route matches %>
+<% if drug_route_duplicates.length > 0 %>
+  <p><b>Warning: Duplicate active medications, different name</b><br>
+  <%# Note:  Also remember to update appSpecific.js if you revise this message. %>
+  The medication "<%=h @phr_drug.name_and_route%>" you are <%= action_str %> is
+  the same drug as your other
+  <% if drug_route_duplicates.length == 1 %>
+    entry "<%=h drug_route_duplicates[0]%>", only with a only with a different
+    generic or brand name.  You should either mark one as "Stopped", or delete
+    or clear one
+  <% else %>
+    entries <%=h drug_route_duplicates.to_english%>, only with a different generic
+    or brand name. You should either mark all but one as "Stopped", or delete or
+    clear them
+  <% end %>
+  (after making sure the correct information for this drug is
+  entered in the remaining record).  If you are not sure which of these
+  prescriptions should be taken, please call your physician.</p>
+<% end %>
+
+<% drug_route_equivalents = @dup_warning_data[2] # different form or route %>
+<% if drug_route_equivalents.length > 0 %>
+  <p><b>Warning: Duplicate active medications, different form or route</b><br>
+  <%# Note:  Also remember to update appSpecific.js if you revise this message. %>
+  The medication "<%=h @phr_drug.name_and_route%>" you are <%= action_str %> is
+  the same drug as your other
+  <% if drug_route_equivalents.length == 1 %>
+    entry "<%=h drug_route_equivalents[0]%>",
+  <% else %>
+    entries <%=h drug_route_equivalents.to_english%>,
+  <% end %>
+  only with a different form (e.g. regular versus extended release) and/or
+  route (e.g. injectable versus oral).
+  <% if drug_route_equivalents.length == 1 %>
+    You should either mark one as "Stopped", or delete or clear one
+  <% else %>
+    You should either mark all but one as "Stopped", or delete or clear them
+  <% end %>
+  (after making sure the correct information for this drug is 
+  entered in the remaining record). If you are not sure which of these
+  prescriptions should be taken, please call your physician.</p>
+<% end %>
+
+
+<% shared_ing_drugs = @dup_warning_data[3] # drugs with shared ingredients %>
+<% shared_ing_drugs.each do |shared_ing_drug| %>
+  <p><b>Warning: Duplicate ingredients in different active medications</b><br>
+  <%# Note:  Also remember to update appSpecific.js if you revise this message. %>
+  The medication "<%=h @phr_drug.name_and_route%>" you are <%= action_str %> is
+  has the same active
+  <% if shared_ing_drug[1].length == 1 %>
+    ingredient <%=h shared_ing_drug[1][0] %>
+  <% else %>
+    ingredients <%=h shared_ing_drug[1].to_english %>
+  <% end %>
+  as the entry "<%=h shared_ing_drug[0] %>".
+  Two different medications with the same active ingredient usually
+  should not be taken at the same time. If you are not sure if one or
+  both of these medications should be taken, please call your physician.</p>
+<% end %>

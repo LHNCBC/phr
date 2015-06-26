@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Vaccination Comments</h1>
+	<p>
+	Enter any information or comments you have regarding the vaccination. For example, you may wish to note which doctor's office or clinic administered the vaccine so that you can get official records should you need them in the future. 
+	</p>
+	
+	
+
+<!--#include virtual="help_footer.shtml" -->

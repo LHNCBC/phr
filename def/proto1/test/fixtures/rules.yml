@@ -1,0 +1,45 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# wrap the value of a TEXT filed (expression and js_function) with ''
+a:
+  id: -1002
+  name: a
+  expression: 'c+d'
+
+b:
+  id: -1001
+  name: b
+  expression: 'c+a'
+
+c:
+  id: -1003
+  name: c
+  expression: 'd'
+
+d:
+  id: -1004
+  name: d
+  expression: '5'
+  
+case_rule_one:
+  id: -1005
+  name: case_rule_one
+  expression: '5>2'
+  rule_type: <%= Rule::CASE_RULE %>
+  
+a_rule_for_form_2: # don't add to form 1
+  id: -1006
+  name: a_rule_for_form_2
+  expression: '-3.2'
+
+# Fields to test change_target_field
+change_target_case_rule:
+  id: -1030
+  name: change_target_case_rule
+  expression: to_be_changed='true'
+  rule_type: <%= Rule::CASE_RULE %>
+  
+change_target_not_case_rule:
+  id: -1031
+  name: change_target_not_case_rule
+  expression: to_be_changed='true'
+  

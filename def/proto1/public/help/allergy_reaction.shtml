@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+		<h1>Allergy Reaction Type</h1>
+		<p>
+		Describe the reaction you have experienced.  
+		As you begin typing, the system will provide you with a list of possible reactions based on the first few characters you typed. If you don't find an adequate description of your reaction in the master list, 
+		you can enter your own description.
+		</p>
+
+<!--#include virtual="help_footer.shtml" -->

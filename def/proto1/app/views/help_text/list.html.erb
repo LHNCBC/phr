@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <meta http-equiv="X-UA-Compatible" content="IE=9" />
+  <head>
+    <%# The help_popup.css can be found in public/stylesheets/help_popup directory %>
+    <%# It is mainly used by shtml pages %>
+    <%# This template treats it as a third party style sheet %>
+    <%= stylesheet_link_tag "help_popup/help_popup.css",  :title=>'default', :type=>'text/css',:media => 'all' %>
+  </head>
+  <body>
+
+<h1>List of Help Files</h1>
+<%= render(:partial=>'spec_files', :locals=>{:help_type=>'all (shared + installation)', :help_files=>@common_files}) %>
+<% @mode_files.each do |mode, files| %>
+<%= render(:partial=>'spec_files', :locals=>{:help_type=>mode, :help_files=>files}) %>
+<% end %>
+
+<br><br>
+<p align="right">
+  <a href="javascript:self.close()" accesskey="C">
+    <button class="rounded" style="display: block;">
+      <span>Close</span>
+    </button>
+  </a>
+</p>
+
+</body></html>

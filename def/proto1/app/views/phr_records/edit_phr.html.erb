@@ -1,0 +1,6 @@
+<%= form_tag update_phr_phr_record_path, :method=>:put %>
+  <div><%=fd_prefetched_list(@fds['pregnant'], @phr_record.phr, @pregnant_list)%></div>
+  <div><%=fd_date_field(@fds['due_date'], @phr_record.phr) %></div>
+  <%= submit_tag 'Save' %>
+  <%= link_to 'Cancel', phr_record_path %>
+</form>

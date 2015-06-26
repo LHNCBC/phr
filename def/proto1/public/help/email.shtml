@@ -1,0 +1,9 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Email Address </h1>
+<p>We need an email address to help you recover your PHR account ID and/or password in the event you forget your account information and cannot remember the answers to your security questions.</p>
+
+<p>
+If you wish to remain completely anonymous, you should create an anonymous email address from a web-based email service provider (such as Google, MSN Hotmail, or Yahoo) to use only for your PHR account. In order to remain anonymous, the e-mail address should not contain any identifying information (such as your name or birth date), and you should not use it to send or receive either personal or other e-mail messages outside the PHR.</p>  
+    
+<!--#include virtual="help_footer.shtml" -->

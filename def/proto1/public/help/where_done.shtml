@@ -1,0 +1,11 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Where Done</h1>
+		<p>
+   Select the name of the location where the test was performed from the drop-down list or enter your own location. </p>
+<p>
+You may select general names, such as <b>Hospital</b> or <b>MD office</b>, or enter specific names, such as "St. Elsewhere Hospital." Once used, the system will keep track of all of the new location names and 
+   will allow you choose them from a drop-down list.  
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

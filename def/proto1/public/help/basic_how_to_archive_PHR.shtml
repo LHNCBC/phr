@@ -1,0 +1,16 @@
+<!--#include virtual="help_header.shtml" -->
+  <h1>Archive a PHR</h1>
+		<p>
+	You may archive PHRs that you are no longer using to keep them permanently or to prepare them for deletion. Archived PHRs will be moved to the <b> Archived PHRs</b> list. Archived PHRs can be accessed by clicking the <b>View Archived PHR Records</b> link at the bottom of the <b>PHR Management</b> page. Archived PHRs can be unarchived should you wish to make them active again. PHRs must be also be archived before they can be permanently deleted. 
+</p>
+<h3>
+To archive a PHR
+</h3>
+<p>
+<ol>
+<li>On the <b>PHR Management</b> page, click the <b>Archive</b> button next to the PHR record you wish to archive. </li>
+<li>You will receive a confirmation message at the top of the PHR management page when the record is archived. </li>
+<li>The archived PHR record will now appear in the list of archived files available by clicking the <b>View Archived PHR Records</b> link at the bottom of the <b>PHR Management</b> page. 
+</ol>
+</p>
+<!--#include virtual="help_footer.shtml" -->

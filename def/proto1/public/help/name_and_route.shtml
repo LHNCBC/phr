@@ -1,0 +1,13 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medication Name</h1>
+		<p>
+		Enter the names of the medications you are taking and their dosage forms. The dosage form refers to the formulation of the drug, such as oral pill, oral liquid, topical or injectable.  When you type in a medication, you might see the same drug name with different dosage forms, for example <q>penicillin (Oral-pill)</q> and <q>penicillin (Injectable).</q> Be sure to pay attention 
+to these distinctions.  <q>Penicillin (Oral-pill)</q> refers to a pill taken by mouth, whereas  <q>penicillin (Injectable)</q> refers to penicillin given by a shot or through an IV.</p>
+		<p>
+		As you start typing the name of a medication, a list of choices will appear based on what you have typed. You can pick the medication with the appropriate formulation as soon as it appears in the drop-down list. </p>
+		<p>
+		<a href="/help/using_long_lists_help.shtml">More about how to find 
+		and select items from the medication list</a></p>  
+    
+<!--#include virtual="help_footer.shtml" -->

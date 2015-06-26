@@ -1,0 +1,8 @@
+<p><%= @sub_title %></p>
+<%= form_tag_wo_ajax studies_phr_record_phr_conditions_path(@phr_record) %>
+<%= fd_prefetched_list_mb @studies_fds['problem'], nil, @conditions %>
+<%= fd_prefetched_list_mb @studies_fds['state'], nil, @states_list %>
+<%= fd_prefetched_list_mb @studies_fds['age_group'], nil, @age_list %>
+<%= submit_tag_m 'Search' %>
+<%= link_to_m 'Cancel', "#", "onclick"=>"window.close();" %>
+</form>

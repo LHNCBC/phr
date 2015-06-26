@@ -1,0 +1,13 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Time Done</h1>
+		<p>
+Enter the time of day the test was performed. </p>
+<p>
+When appropriate, a physician may order certain tests to be performed after overnight fasting. Some test results are also influenced by the time of day they are performed, what you drink or eat before the test, as well as your activity level. 
+    </p>  
+<p>
+<a href="/help/entering_times.shtml">How to 
+		enter times in the PHR</a> </p>
+    
+<!--#include virtual="help_footer.shtml" -->

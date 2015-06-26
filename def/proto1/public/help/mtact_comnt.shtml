@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medical Contacts Comments</h1>
+	<p>
+	Enter any comments regarding the medical contact as needed. 
+	</p>  
+	
+<!--#include virtual="help_footer.shtml" -->

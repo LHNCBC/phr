@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="../stylesheets/doc.css">
+    </head>
+    <body>
+      <div id="hdr_banner">
+        <div id="hdr_banner_img"></div>
+      </div>
+      <div id="target_name">The Virtual Machine (VM) PHR</div>
+      <div id="content">
+      <div id="main_title">Notes</div>
+  
+       <h1>Automatic Startup</h1><ul>
+        <li class="note">
+        Starting the VM from the VM manager will cause several startup steps
+        to execute <b>automatically</b>, ending with the PHR login page being
+        presented in a Firefox browser window.  Those steps are, specifically:
+        <ul>
+        <li>logging you into the VM as user <b>phr</b>;</li>
+        <li>opening up access to the internet;</li>
+        <li>starting up the apache webserver as well as the node process;</li>
+        <li>starting up firefox; and</li>
+        <li>bringing up the PHR system, which will start you out at the
+          login page.</li>
+      </ul></li></ul>
+
+      <h1>Startup Problems?</h1>
+      <p>If you are using the Oracle VirtualBox VM manager on a Windows
+        system, you may get a problem when you first try to start the imported VM.
+        The error will be about VT-x being disabled in the BIOS.
+      <p>To work around that you can turn off the use of hardware virtualization
+        on VBoxManage.exe, which should be in the same folder as the
+        VirtualBox program.  For example, on Windows 7, running the following
+        command will solve the issue:
+      <p><center><b>C:\Program Files\Oracle\VirtualBox\VBoxManager.exe modifyvm
+          <i>VmPHR</i> --hwvirtex off</b></center>
+      <p>where you would replace <i>VmPHR</i> with whatever name you chose for
+        your imported VM.
+
+      <h1>PHR User Accounts</h1><ul>
+      <li class="note">
+        We recommend that when you first bring up the PHR, you create your own
+        PHR user account(s) (use the REGISTER button on the login page).  We have
+        provided two sample accounts that you can look at to see some of the
+        features of the system.  The two accounts are:
+        <ol>
+        <li>SampleAccount1<ul>
+            <li>account ID: <b>SampleAccount1</b></li>
+            <li>password: <b>Password1</b></li>
+            <li>selected security question 1: In what city was your mother born?<ul>
+                <li>answer: <b>City</b></li></ul></li>
+            <li>selected security question 2: In what city were you born?<ul>
+                <li>answer: <b>City</b></li></ul></li>
+            <li>created question: What is the question?<ul>
+                <li>answer: <b>City</b></li></ul></li>
+            <li>email address:  <b>sample1@localhost.com</b></li>
+          </ul>
+        </li><br>
+        <li>SampleAccount2<ul>
+            <li>account ID: <b>SampleAccount1</b></li>
+            <li>password: <b>Password1</b></li>
+            <li>selected security question 1: In what city was your mother born?<ul>
+                <li>answer: <b>City</b></li></ul></li>
+            <li>selected security question 2: In what city were you born?<ul>
+                <li>answer: <b>City</b></li></ul></li>
+            <li>created question: What is the question?<ul>
+                <li>answer: <b>City</b></li></ul></li>
+            <li>email address:  <b>sample2@localhost.com</b></li>
+          </ul>
+        </li>
+      </ol></li></ul>
+      <h1>Linux Accounts</h1><ul>        
+      <li class="note">The VM PHR comes with 2 Linux user accounts:<ol>
+            <li>a standard <b>root</b> account<ul>
+                <li>password: <b>phrdemo</b></li></ul></li>
+            <li>a standard user account<ul>
+                <li>username: <b>phr</b></li>
+                <li>password: <b>demo</b></li></ul></li>
+        </ol>
+      </li></ul>
+      <h1>Your Organization's Email Address</h1><ul>
+      <li class="note">
+        You will need to update 2 files with the email address of the
+        person who needs to receive emails requesting support as well as
+        certain data update notifications.  The files are:<ul>
+        <li>def/proto1/config/constants.rb; and</li>
+        <li>def/proto1/config/app_settings.rb.</li></ul>
+        In both of those files, search for "phrgeneric@mailinator.com" and
+        replace it with the appropriate email address.  Otherwise those
+        messages will go to a generic and unattended mailbox.
+      </li></ul>
+     <h1>System Documentation</h1><ul>
+      <li class="note">Please see the <a href="../users_guide/tableofcontents.html">User's Guide</a> for detailed descriptions of the PHR
+        system and how to use its many features.
+      <li class="note">The <a href="tba.html">technical documentation</a> on the
+         <a href="tba.html">PHR's GitHub</a> website provides
+            a detailed description of the code and third-party packages used
+            by the system.  We recommend you look there if you are interested
+            in understanding what's is included in the system.  The VM PHR
+            includes the third-party packages described in that documentation.
+      </li></ul>
+      </div> <!-- content -->
+    </body>
+</html>

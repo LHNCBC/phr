@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../config/boot'
+
+# Some cleanup
+if (File.exist?('tmp/sessions'))
+  `rm -rf tmp/sessions`
+end
+if (File.exist?('tmp/cache'))
+  `rm -rf tmp/cache`
+end
+if (File.exist?('public/form/show/*.html'))
+  `rm public/form/show/*.html`
+end
+
+require 'commands/server'

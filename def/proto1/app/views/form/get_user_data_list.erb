@@ -1,0 +1,11 @@
+<% # This almost could have been done without a template, except we
+   # needed the helper function.
+   if (@table_recs)
+     list_data = make_auto_completion_list_items(@table_recs, @col_names)
+     list_code = get_list_item_codes(@table_recs, @code_field)
+   else
+     list_data = []
+   end
+ %>
+<%= [list_data, list_code].to_json.html_safe%>
+

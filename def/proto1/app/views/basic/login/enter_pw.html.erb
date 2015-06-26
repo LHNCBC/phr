@@ -1,0 +1,9 @@
+<%= form_tag account_settings_path, :method=>:post %>
+<div>
+<%= fd_static_text(@p.fds['verify_pass_instr']) %>
+<%= @p.fds['password'].display_name = 'Password';
+    fd_password(@p.fds['password'], {}, @p.form_obj, '_1_1') %>
+</div>
+<%= submit_tag 'Submit' %>
+<%= link_to 'Cancel', phr_records_path %>
+</form>

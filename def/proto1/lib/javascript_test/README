@@ -1,0 +1,61 @@
+=JavaScript testing plugin
+
+This plugin provides the script.aculo.us JavaScript unit testing framework
+in a way that integrates with Rails applications.
+
+==Usage
+
+Use the provided generator to built a skeleton for your JavaScript test.
+The built-in rake task can then be used to automatically run the unit tests
+in various installed browsers (supported are Firefox on IE/Mac/Linux, 
+Safari on Mac, Konqueror on Linux).
+
+Note that due to the built-in webrick, you don't have to change anything
+about your app, just add tests. :)
+
+==Example
+
+Generate a JavaScript test skeleton for your public/javascripts/foo.js file:
+
+  script/generate javascript_test foo
+
+Run the unit tests (an "assertTruth" dummy test is provided,
+so you should see "SUCCESS" messages), and see the automagically 
+controlled browsers in action:
+
+  rake test:javascripts
+  
+You have to manually close the browser window(s) afterwards.
+
+You can also run the test manually, by symlinking the assets directory.
+In your Rails application root, run:
+
+  ln -s ../../vendor/plugins/javascript_test/assets/ test/javascript/assets
+  
+You then can just open the individual .html test files in your browser.
+
+All in all, unittest.js is closely modelled on Test::Unit and there's 
+also experimental support for RSpec-style BDD testing. You can find lots 
+of examples in both the Prototype and script.aculo.us SVN repositories.
+
+You'll find more info on how to write tests on the script.aculo.us wiki:
+http://wiki.script.aculo.us/scriptaculous/show/UnitTesting.
+The documentation there is not really complete, so feel free to help out.
+
+==Questions?
+
+Join the Rails Spinoffs Google Group, or ask on #prototype on irc.freenode.net.
+
+==Credits
+
+Big thanks with sugar on the top to Jon Tirsen, who authored the automated
+browser remote control-niceties.
+
+==TODO
+
+* Some more docs and a presentation :)
+* Make ^C aborting work
+
+== License
+
+Copyright (c) 2005-2006 Thomas Fuchs, released under the MIT license

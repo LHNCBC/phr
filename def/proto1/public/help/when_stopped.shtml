@@ -1,0 +1,16 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>When Stopped</h1>
+		<p>
+		Enter the date when the condition ended or was resolved using your preferred date format. Once you type your entry, the PHR will convert the date to the standard format used by the PHR sytem. </p>
+<p>Enter the exact date if known; however, the system will accept any of the following types of dates: 
+<ul>
+<li>the exact date, </li>
+		<li>the year and month, or </li>
+<li>only the year</li>
+</ul>
+		</p>
+		<p>
+		For date formatting tips and date entry shortcuts, see <a href=" /help/entering_dates_help.shtml">how to 
+		enter dates in the PHR</a>.
+	</p>
+<!--#include virtual="help_footer.shtml" -->

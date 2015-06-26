@@ -1,0 +1,78 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: -10
+  form_name: PHR
+  form_style: phr
+  form_title: Title for PHR
+  autosaves: true
+  
+two:
+  id: -2
+  form_name: NAP
+  form_title: Title for NAP
+  autosaves: false
+#edit_general_rule:
+#  id: 3
+#  form_name: test_edit_general_rule
+#  form_title: Edit Rule
+#  form_style: phr
+
+rules:
+  id: -4
+  form_name: rules
+  form_title: Rules for form
+  form_style: phr
+  
+form_builder:
+  id: -5
+  form_name: FormBuilder
+  form_title: Form Builder
+  vsplit: 1
+  access_level: 2
+  form_style: phr
+  data_view: 0
+  
+shared_fields_one:
+  id: -6
+  form_name: shared_fields_one
+  form_title: Shared Fields Test (One)
+  form_style: phr
+
+shared_fields_two:
+  id: -7
+  form_name: shared_fields_two
+  form_title: Shared Fields Test (Two)
+  form_style: phr
+
+data_hash_from_params_test:
+  id: -8
+  form_name: data_hash_from_params_test
+  form_style: phr
+
+abs_range_test_form:
+  id: -9
+  
+fields_test_form:
+  id: -12
+
+phr_index:
+  id: -13
+
+loinc_rule_parser:
+  id: -14
+  form_name: loinc_panel_temp
+
+data_req_params_test:
+  id: -15
+  form_name: data_req_params_test
+
+panel_edit:
+  id: -79
+  form_name: panel_edit
+  autosaves: true
+  
+panel_view:
+  id: -62
+  form_name: panel_view
+  autosaves: true
+    

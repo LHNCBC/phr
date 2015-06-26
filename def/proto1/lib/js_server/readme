@@ -1,0 +1,33 @@
+Server Side JavaScript Engine Installation Steps:
+
+1) Install node.js which includes the V8 engine and npm node module 
+   management system in /depot/packages and create a soft link 
+   /depot/packages/node
+   Commonds:
+     cd /tmp   ## go to your temporary working directory
+     wget http://nodejs.org/dist/vx.x.x/node-vx.x.x.tar.gz
+     cp node-vx.x.x.tar.gz /depot/packages/.
+     gunzip node-vx.x.x.tar.gz; 
+     tar -xf node-vx.x.x.tar
+     cd node-vx.x.x
+     ./configure --prefix=/depot/packages/node-vx.x.x & make install 
+     cd /depot/packages 
+     rm node   ## unlink soft link if exists
+     ln -s ./node-vx.x.x node
+
+2) Install needed node_modules in /depot/packages/node_modules using npm:
+   a) Backup current node modules into /depot/packages/node_modules_old
+   b) Install the new version of node modules with version number appear on the names
+   c) create soft links (with no version number) for modules in /depot/packages/node_modules
+   Commands:
+     cd /depot/packages/node_modules ## make sure you are in node_modules folder
+     rm forever                      ## unlink the soft link if any
+     cd ..
+     mv ./node_modules/forever-vx.x.x ./node_modules_old/.  ## backup current modules if any
+     npm install forever             ## install new forever in ./node_modules folder
+     cd ./node_modules
+     mv ./forever ./forever-vn.n.n   ## rename new forever with new version number
+     ln -s ./forever-vn.n.n forever  ## create soft link
+
+3) Start the JavaScript server using forever 
+   (e.g. forever start APPLICATION_ROOT/lib/js_server/javascript_server.js)

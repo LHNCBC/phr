@@ -1,0 +1,30 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>Adding New Test Results and Health Trackers</h1>
+
+<h3>To add new test results or trackers</h3>
+<p>
+<ol>
+<li> On the <b>PHR Home</b> page, click the link to the name of the PHR you wish to update. This will expand the PHR entry to display action buttons for the individual's PHR.</li>
+<li>
+Select the <b>Test Results & Trackers</b> button. </li>
+<li> In the <b>View & Edit Results Timeline</b> window, click the <b>Add Test Results & Trackers</b> button.</li>		
+<li>On the <b>Add Test Results & Trackers</b> page, either browse for a test or health tracker using the drop-down list of test panel categories, or select the <b>Search Panels/Tests</b> radio button to search for the name of the test or health tracker you want to add.</li>
+<li>Click the <b>Add</b> button. </li>
+</ol>
+</p>
+
+<h3>To add a new measurement to a test result or health tracker</h3> 
+<p>
+                <ol>
+                    <li>If the test or tracker is already displayed on the <b>Health Record Details</b> page, click the <b>Add More</b> link next to the test. This will open the <b>Add Test Results & Trackers</b> page. </i>
+</li>
+<li>Enter the new measurement to the test or tracker. </li>
+<li>If needed, add another measurement using the <b>Add More</b> link next to the test or tracker. </li>     
+<li>You can also add a new measurement to a test or tracker by clicking the <b>Add Test Results & Trackers</b> link at the top of the <b>PHR Record Details</b> page and searching or browsing for the test or tracker and then clicking the <b>Add</b> button.</li>                       
+</ol>
+</p>
+<h3>How do I ...</h3>
+<p>
+<a href="edit_flowsheet_data.shtml">Edit existing test results or trackers?</a></p>
+<!--#include virtual="help_footer.shtml" -->
+		

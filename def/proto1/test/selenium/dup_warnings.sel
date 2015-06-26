@@ -1,0 +1,174 @@
+# Create a profile for this test
+
+| open | /phr_home |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForTextPresent | Loaded in |
+
+| click | add_new |
+| waitForVisible | fe_pseudonym_1_1 |
+| fireEvent | fe_pseudonym_1_1 | focus |
+| type | fe_pseudonym_1_1 | javascript{'test_ib_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2002/01 |
+| pause | 1000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2002 Jan |
+
+# Save the form
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| pause | 500 |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# Add a drug to the page, and save
+| selectByContent | fe_name_and_route_1 | Propranolol (Oral Pill) |
+| selectByContent | fe_drug_use_status_1 | Active |
+
+# Save the form
+| click | fe_save_1 |
+| waitForVisible | saved_notice |
+
+# Add a different drug to the page
+| selectByContent | fe_name_and_route_2 | Aspirin (Oral Pill) |
+| selectByContent | fe_drug_use_status_2 | Active |
+
+# Confirm that there are no drug warnings on the page
+| assertExpression | javascript{testWindow_.$('fe_warnings_1').style.visibility != 'visible'} | true |
+| assertExpression | javascript{testWindow_.$('fe_warnings_2').style.visibility != 'visible'} | true |
+
+# Now change the second drug to be the same, and confirm that
+# we do get a warning and that the icons show up.
+| selectByContent | fe_name_and_route_2 | Propranolol (Oral Pill) |
+| waitForExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("isOpen" )===true} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_1').style.visibility == 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_2').style.visibility == 'visible'} | true |
+| assertExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("close" ); 1} | 1 |
+
+# Change the second drug, and confirm that the icons go away.
+| selectByContent | fe_name_and_route_2 | Aspirin (Oral Pill) |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_1').style.visibility != 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_2').style.visibility != 'visible'} | true |
+
+# Now re-enter the duplicate, and then clear the second drug, and confirm that the icons go away.
+| selectByContent | fe_name_and_route_2 | Propranolol (Oral Pill) |
+| waitForExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("isOpen" )===true} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_1').style.visibility == 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_2').style.visibility == 'visible'} | true |
+| assertExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("close" ); 1} | 1 |
+| assertExpression | javascript{testWindow_.$('fe_drugs_0').ce_table.initMenuLocation('fe_name_and_route_2'); 1} | 1 |
+| assertExpression | javascript{testWindow_.$('fe_drugs_0').ce_table.clearRow(); 1} | 1 |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_1').style.visibility != 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_2').style.visibility != 'visible'} | true |
+
+# Now enter a third drug, also the same, and save.
+| selectByContent | fe_name_and_route_3 | Propranolol (Oral Pill) |
+| waitForExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("isOpen" )===true} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_1').style.visibility == 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_3').style.visibility == 'visible'} | true |
+| assertExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("close" ); 1} | 1 |
+# Clicking in the status field should make it fill in with its default.
+| click | fe_drug_use_status_3 | |
+| click | fe_save_1 |
+| waitForVisible | saved_notice |
+
+# Delete the first drug, save, and confirm the warning is gone
+| assertExpression | javascript{testWindow_.$('fe_drugs_0').ce_table.initMenuLocation('fe_name_and_route_1'); 1} | 1 |
+| assertExpression | javascript{testWindow_.$('fe_drugs_0').ce_table.deleteRow(); 1} | 1 |
+| click | fe_save_1 |
+| waitForVisible | saved_notice |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_3').style.visibility != 'visible'} | true |
+
+# Enter another duplicate, and check the warning flags
+| selectByContent | fe_name_and_route_4 | Propranolol (Oral Pill) |
+| waitForExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("isOpen" )===true} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_4').style.visibility == 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_3').style.visibility == 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_5').style.visibility != 'visible'} | true |
+| assertExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("close"); 1} | 1 |
+| click | fe_drug_use_status_4 | |
+
+# There was a race condition (which should now be fixed) in which the entry of
+# ARIMIDEX (Pack) following ARIMIDEX (Oral pill) did not produce a warning.
+# Confirm that it does.
+| selectByContent | fe_name_and_route_5 | ARIMIDEX (Oral Pill) |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_5').style.visibility != 'visible'} | true |
+| click | fe_drug_use_status_5 | |
+| selectByContent | fe_name_and_route_6 | ARIMIDEX (Pack) |
+| waitForExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("isOpen" )===true} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_6').style.visibility == 'visible'} | true |
+| assertExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("close"); 1} | 1 |
+| click | fe_drug_use_status_6 | |
+
+# Bug fix:  If you enter two new rows that are duplicate, and then clear one,
+# the warning icon on the other should go away.
+| selectByContent | fe_name_and_route_7 | AROMASIN (Oral Pill) |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_7').style.visibility != 'visible'} | true |
+| click | fe_drug_use_status_7 | |
+| selectByContent | fe_name_and_route_8 | AROMASIN (Oral Pill) |
+| waitForExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("isOpen" )===true} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_7').style.visibility == 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_8').style.visibility == 'visible'} | true |
+| assertExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("close"); 1} | 1 |
+| click | fe_drug_use_status_8 | |
+| assertExpression | javascript{testWindow_.$('fe_drugs_0').ce_table.initMenuLocation('fe_name_and_route_7'); 1} | 1 |
+| assertExpression | javascript{testWindow_.$('fe_drugs_0').ce_table.clearRow(); 1} | 1 |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_8').style.visibility != 'visible'} | true |
+
+# Bug fix:  Make sure that when an unsaved row with a non-matching drug name is
+# deleted, that does not trigger a conflict warning with the blank row at the
+# bottom.
+| typeText | fe_name_and_route_9 | 'aaa' |
+| keyDown | fe_name_and_route_9 | \9 |
+| fireEvent | fe_name_and_route_9 | change |
+| fireEvent | fe_name_and_route_9 | blur |
+| waitForExpression | javascript{testWindow_.Def.Autocompleter.SuggestionDialog.getSuggestionDialog().dialog_.dialog('isOpen')===true} | true |
+| assertExpression | javascript{testWindow_.$('fe_name_and_route_9').hasClassName('no_match')} | true |
+| assertExpression | javascript{testWindow_.Def.Autocompleter.SuggestionDialog.getSuggestionDialog().dialog_.dialog('close'); 1} | 1 |
+| assertExpression | javascript{testWindow_.$('fe_drugs_0').ce_table.initMenuLocation('fe_name_and_route_9'); 1} | 1 |
+| assertExpression | javascript{testWindow_.$('fe_drugs_0').ce_table.clearRow(); 1} | 1 |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_10').style.visibility == 'visible'} | false |
+
+# Bug fix (4570): If you enter two drugs that are duplicate of each other, and mark one
+# stopped, the drug warnings should go away.
+# Entering a drug that is a duplicate of the one in fe_warnings_8 (above).
+| selectByContent | fe_name_and_route_10 | AROMASIN (Oral Pill) |
+| selectByContent | fe_drug_use_status_10 | Active |
+| waitForExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("isOpen" )===true} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_8').style.visibility == 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_10').style.visibility == 'visible'} | true |
+| assertExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("close"); 1} | 1 |
+| selectByContent | fe_drug_use_status_10 | Stopped |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_8').style.visibility == 'visible'} | false |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_10').style.visibility == 'visible'} | false |
+# If the user makes the drug active again (after it was stopped), the warnings should
+# re-appear.
+| selectByContent | fe_drug_use_status_10 | Active |
+| waitForExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("isOpen" )===true} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_8').style.visibility == 'visible'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_warnings_10').style.visibility == 'visible'} | true |
+| assertExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.ConflictChecker.warningDialog_.dialog_.dialog("close"); 1} | 1 |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |

@@ -1,0 +1,29 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Add Test Results and Trackers</h1>
+<p>Add new medical tests or health trackers to your PHR by browsing or searching for them. The PHR system will generate a customized form for nearly all medical tests and common health trackers.</p>
+<h3>What do I need to know about adding test results and health trackers?</h3>
+<p>
+<ul>
+<li>To browse for new tests for trackers
+<ul> 
+<li>Click the <b>Browse Panels/Tests</b> radio button and choose a category from the <b>Category</b> drop-down list. </li><li>View all of the available tests in that category by clicking on the <b>Panel/Test</b> drop-down list.</li>
+</ul>
+<li>To search for new tests and trackers
+<ul>
+<li>Click the <b>Search Panels/Tests</b> radio button and begin typing in the space provided. </li>
+</ul>
+<li>Once you locate the test or tracker you wish to add, click the <b>Add</b> button. </li>
+<li>To view the test and all previous tests, select the <b>View & Edit Results Timeline</b> link on the main PHR page. You must add at least one test measurement for the test or tracker to appear as an entry on the <b>View & Edit Results Timeline</b> page. </li>
+<li>
+                     In some cases, not all fields within a test panel are displayed by default. If more fields are available, a <b>Show more</b> arrow will appear below the data entry line in the form. Click the <b>Show more</b> arrow to show additional fields or the <b>Show less</b> arrow to hide additional fields. </li>
+</ul> 
+</p>
+ 
+<h3>How do I ...</h3>
+<p></br>
+<a href="/help/add_new_test.shtml">Add a new test measurement to an existing test or tracker?</a></br>
+<a href="/help/view_flowsheet.shtml">View all of my test panel data?</a></br>
+<a href="/help/edit_flowsheet_data.shtml">Edit existing test panel data?</a></br>
+</p>
+<!--#include virtual="help_footer.shtml" -->

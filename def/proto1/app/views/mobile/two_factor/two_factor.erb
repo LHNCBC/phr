@@ -1,0 +1,42 @@
+<div id="form_title">
+  <% if @form.form_title %>
+      <div id="main_title"><%= @form.form_title %></div>
+  <% end %>
+  <% if @form.sub_title %>
+      <div id="sub_title"><%= @form.sub_title %></div>
+  <% end %>
+</div>
+</hr>
+
+<div class="groupHeader"><%= @labels["verify_identity_grp"] %></div>
+
+
+<%= form_tag_wo_ajax @action_url, :method => :post %>
+<input value="basic" name="page_type" type="hidden">
+<div class="ui-field-contain">
+  <table>
+    <tbody>
+    <tr>
+      <td width="20%"><label for="fe_user_name_1_1"><%= @labels["user_name"] %></label></td>
+      <td><b><%= @user.name %></b></td>
+    </tr>
+    <tr>
+      <td><label for="fe_user_question_1_1"><%= @labels["user_quest"] %></label></td>
+      <td><b><%= @user.random_question.question %> </b></td>
+    </tr>
+    <tr>
+      <td><label for="fe_user_answ_1_1"><%= @labels["user_answ"] %></label></td>
+      <td><input id="fe_user_answ_1_1" name="fe[user_answ_1_1]" type="text"></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="hidden" name="fe[cookie_checkbox_1_1]" value="0">
+        <input type="checkbox" id="fe_cookie_checkbox_1_1" name="fe[cookie_checkbox_1_1]" value="1" data-mini="true">
+        <label for="fe_cookie_checkbox_1_1"><%= @labels["cookie_checkbox"] %></label>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<%= submit_tag_m 'submit' %>
+</form>

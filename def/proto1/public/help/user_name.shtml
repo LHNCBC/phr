@@ -1,0 +1,29 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>About the PHR Account ID</h1>
+	 <p>
+		Your PHR account ID is the unique identifier you will use 
+		to access your Personal Health Records. </p>
+<p>
+		Longer and more complex account IDs are more secure; however, 
+		you should choose an account ID that will be easy for you to 
+		remember. Please avoid using any
+		<a href="/help/no_personal_identifiers.shtml"> personal identifiers</a> 
+		in this field to ensure your privacy. 
+	</p>
+<p>Your PHR account ID 
+<ul>
+<li>
+		can be from 6 to 32 characters long</li>
+<li>must begin with a letter</li>
+<li>can contain a combination of letters, numbers, and 
+		underscore (_) characters</li>
+<li>is not case-sensitive</li> 
+</ul>
+	</p>
+	<p>
+		You will be able to create multiple Personal Health Records 
+		using the same PHR account ID.
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

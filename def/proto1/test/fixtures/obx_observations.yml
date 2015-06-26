@@ -1,0 +1,102 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+temp_profile_1a1:
+  id: -1
+  profile_id: -20
+  obr_order_id: -1
+
+temp_profile_1b1:
+  id: -2
+  profile_id: -20
+  obr_order_id: -2
+
+temp_profile_2a1:
+  id: -3
+  profile_id: -21
+  obr_order_id: -3
+
+temp_profile_2b1:
+  id: -4
+  profile_id: -21
+  obr_order_id: -4
+
+temp_profile_3a1:
+  id: -5
+  profile_id: -22
+  obr_order_id: -5
+
+temp_profile_3b1:
+  id: -6
+  profile_id: -22
+  obr_order_id: -6
+
+standard_profile_1a1:
+  id: -7
+  profile_id: -23
+  obr_order_id: -7
+
+standard_profile_1b1:
+  id: -8
+  profile_id: -23
+  obr_order_id: -8
+
+standard_profile_2a1:
+  id: -9
+  profile_id: -24
+  obr_order_id: -9
+  
+standard_profile_2b1:
+  id: -10
+  profile_id: -24
+  obr_order_id: -10
+    
+temp_profile_1a2:
+  id: -21
+  profile_id: -20
+  obr_order_id: -1
+
+temp_profile_1b2:
+  id: -22
+  profile_id: -20
+  obr_order_id: -2
+
+temp_profile_2a2:
+  id: -23
+  profile_id: -21
+  obr_order_id: -3
+
+temp_profile_2b2:
+  id: -24
+  profile_id: -21
+  obr_order_id: -4
+
+temp_profile_3a2:
+  id: -25
+  profile_id: -22
+  obr_order_id: -5
+
+temp_profile_3b2:
+  id: -26
+  profile_id: -22
+  obr_order_id: -6
+
+standard_profile_1a2:
+  id: -27
+  profile_id: -23
+  obr_order_id: -7
+
+standard_profile_1b2:
+  id: -28
+  profile_id: -23
+  obr_order_id: -8
+
+standard_profile_2a2:
+  id: -29
+  profile_id: -24
+  obr_order_id: -9
+  
+standard_profile_2b2:
+  id: -30
+  profile_id: -24
+  obr_order_id: -10
+       

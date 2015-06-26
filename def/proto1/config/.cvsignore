@@ -1,0 +1,4 @@
+database.yml*
+database_mysql.yml
+database_oracle.yml
+app_settings.rb

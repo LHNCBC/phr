@@ -1,0 +1,11 @@
+<%= link_to 'Return to the list of active PHRs', phr_records_path %>
+
+<table border="1">
+<% @phr_records.each do |phr_record| %>
+  <tr> 
+    <th><%= phr_record.phr.pseudonym %></th>
+    <td><%= button_to_wo_js 'Restore', unarchive_phr_record_path(phr_record), :method=>:put %></td>
+    <td><%= button_to_wo_js 'Destroy', phr_record, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

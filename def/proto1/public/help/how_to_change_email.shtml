@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>Change Your Email Address</h1>
+
+<h3>To change your email address</h3>
+<p>
+<ol>
+<li>Log in to the PHR.</li>
+<li>Click the <b>Account Settings</b> link at the top right side of the <b>PHR Home</b> page.</li>
+<li>You will be prompted for your current PHR password prior to updating your email address. </li>
+</ol>
+</p>
+<!--#include virtual="help_footer.shtml" -->

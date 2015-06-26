@@ -1,0 +1,43 @@
+<% #TBD rewrite later 
+  if @action_url
+     action_url_data = @action_url
+  else # We don't really need a form action for most forms, which use AJAX.
+    action_url_data = '/'
+  end
+   %>
+
+<% html_opts = {:id => 'main_form'} %>
+<%html_opts[:method] = @form_submission_method if @form_submission_method %>
+<%= form_for FORM_OBJ_NAME, :html => html_opts, :url => action_url_data do |f| %>
+  <% if @password_verified_token %>
+    <input name="password_verified_token" type="text" style="display: none" value="<%=@password_verified_token%>">
+  <% end %>
+<% if !@show_header.nil? && @show_header %>
+    <% @form_data_display = '' %>
+<% end  %>
+  
+  <% if @form.show_form_title == true %>
+    <div id="form_title">
+    <% if @profile_banner.nil? %>
+      <div id="main_title"><%= @form_title || @form.form_title %></div>
+    <% else %>
+      <div id="main_title"><%= @profile_banner %></div>
+    <% end %>
+    <% if !@form_subtitle.blank? %>
+      <div id="sub_title"><%= @form_subtitle %></div>
+    <% end %>
+    </div>
+  <% end %>
+    
+<% cache(Rails.env + '/part2'+@form_cache_name) do %> 
+  <% @fields.each do |field| %>
+    <%= displayField(field, f) %>
+  <% end %>
+<% end %>
+<%if  !$regexMap[@form.id].blank? && @user %>
+  <% replace_embedded_vars(@output_buffer,$regexMap[@form.id]) %>
+  <%  @output_buffer=  ActionView::OutputBuffer.new(@output_buffer.to_s) %>
+<% end %>
+
+<% session[:action] = nil %>
+<% end %>

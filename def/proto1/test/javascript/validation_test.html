@@ -1,0 +1,782 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <!--script src="assets/page_bottom.js?body=1" type="text/javascript"></script-->
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+  <!--link rel="stylesheet" href="../../public/background_img_100.css" type="text/css" id="resize" /-->
+  <link rel="stylesheet" href="../../public/style.css" type="text/css" media="all" />
+  <style type="text/css">
+    input[required="true"]
+    {
+    background-color:yellow;
+    }
+    input.errReqOutline
+    {
+    outline:2px solid red;
+    }
+  </style>
+</head>
+<body>
+<div id="content">
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>validation.js</strong>.
+    </p>
+  </div>
+  <!-- Log output -->
+  <div id="testlog"> </div>
+  <div><strong>*** REQUIRED FIELDS ARE MARKED WITH YELLOW BACKGROUND COLOR ***</strong></div>
+  <form id="main_form" >
+  <div class="errReqDiv">original_error_div</div>
+  <!-- Beginning of non-repeating-line fields-->
+  <div id="fe_no_rl_hh_0" class="fieldGroup" >
+    <div><strong>Non Repeating Line Inputs:</strong></div>
+    <!-- should be invalid because it's blank and has no js_validator -->
+
+    INPUT A:<input id="fe_non_rl_a_1" type="text" class="required" /><br/>
+    INPUT B:<input id="fe_non_rl_b_1" type="text" class="required" value ="    " /><br/>
+    INPUT C:<input id="fe_non_rl_c_1" type="text" class="required" value ="" /><br/>
+    <!-- should be skipped because it's invisible  -->
+    INPUT D:<input id="fe_non_rl_d_1" type="text" class="required" value="" style="display:none" /><br/>
+    <!-- should be valid because it has some value -->
+    INPUT E:<input id="fe_non_rl_e_1" type="text" class="required" value="some value" /><br/>
+    INPUT F:<input id="fe_non_rl_f_1" type="text" class="required" value="some value" /><br/>
+  </div>
+  <!-- Eng of non-repeating-line fields-->
+  <div><strong>Non Normal Line Inputs:</strong></div>
+  <div id="fe_rl_0" class="fieldGroup">
+    <table>
+      <!-- header -->
+      <tr class="repeatingLine">
+        <th><span>COLUMN A</span></th>
+        <th><span>COLUMN S</span></th>
+      </tr>
+      <!-- the first row is a model row required by func: addTableLine -->
+      <tr class="repeatingLine" style="display:none" suffix="_0" rowid="0">
+        <td>
+          <input id="fe_normal_rl_columnA_0" type="text" class="required" onblur="repeatingLine(this, 0)"/>
+        </td>
+        <td><input id="fe_normal_rl_columnS_0" type="text" /></td>
+      </tr>
+      <!-- end of model row -->
+      <tr class="repeatingLine">
+        <!-- should be valid because the required field has a value -->
+        <td><input id="fe_normal_rl_columnA_1" type="text" value="required field value"
+                   class="required" /></td>
+        <td><input type="text" value="sibling field value" /></td>
+      </tr>
+      <tr class="repeatingLine">
+        <!-- should be invalid because the required field is empty
+                 while the entire line is not empty -->
+        <td><input id="fe_normal_rl_columnA_2" type="text" value="" class="required" />
+        </td>
+        <td><input type="text" value="sibling field value" /></td>
+      </tr>
+      <!-- should be valid because it is an empty normal-line  -->
+      <tr class="repeatingLine">
+        <td><input id="fe_normal_rl_columnA_3" type="text" value="" class="required" />
+        </td>
+        <td><input type="text" value=" " /></td>
+      </tr>
+      <tr class="repeatingLine" rowid="4">
+        <!-- same as above -->
+        <td>
+          <input id="fe_normal_rl_columnA_4" type="text" value="" class="required"
+                 onblur="repeatingLine(this, 0)"/>
+        </td>
+        <td><input id="fe_normal_rl_columnS_4" type="text" /></td>
+      </tr>
+    </table>
+  </div>
+  <!--  End of normal-line fields-->
+  <div><strong>ABNORMAL-LINE FIELDS IN SIGNUP PAGE</strong></div>
+    <table>
+      <tbody id ="fe_signup_quest_1">
+      <!-- header -->
+      <tr class="repeatingLine">
+        <th><span>COLUMN A</span></th>
+        <th><span>COLUMN B</span></th>
+        <th><span>COLUMN S</span></th>
+      </tr>
+      <tr class="repeatingLine">
+      <!-- use signup_quest to define an abnormal line-->
+        <td><input id="fe_abnormal_rl_columnA_1" type="text" value=""
+                     class="required" />
+        </td>
+        <td><input id="fe_abnormal_rl_columnB_1" type="text" value=""
+                     class="required" />
+        </td>
+        <td><input id="fe_abnormal_rl_columnS_1" type="text" value="" />
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  <!-- End of abnormal-line fields in signup-quest -->
+      <!-- begin of required field in collapsed folder -->
+  <div><strong>REQUIRED FIELDS IN COLLAPSED FOLDER</strong></div>
+  <div>
+    <h><img id="expcol_1_image" alt="[exp_col_image]"/></h>
+    <div id="expcol_1" class="expand_collapse" style="display:block">
+      <input id="fe_non_rl_x_1" type="text" class="required" value="" />
+    </div>
+  </div>
+  <!-- end of required field in collapsed folder -->
+  <div class="errReqDiv">original_error_div</div>
+  <button id="fe_save" class="save_button" type="submit" ><span>SAVE</span></button>
+  <!-- End of repeating-line fields -->
+  </form>
+
+
+  <!-- javascripts on the bottom -->
+  <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+  <script src="assets/effects.js?body=1" type="text/javascript"></script>
+  <script src="assets/controls.js?body=1" type="text/javascript"></script>
+  <script src="assets/application_phr.js?body=1" type="text/javascript"></script>
+  <script src="assets/data_model.js?body=1" type="text/javascript"></script>
+  <script src="assets/navigation.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompBase.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompPrefetch.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompSearch.js?body=1" type="text/javascript"></script>
+  <script src="assets/logger.js?body=1" type="text/javascript"></script>
+  <script src="assets/idCache.js?body=1" type="text/javascript"></script>
+  <script src="assets/rules.js?body=1" type="text/javascript"></script>
+  <script src="assets/testpanel.js?body=1" type="text/javascript"></script>
+  <script src="assets/date.js?body=1" type="text/javascript"></script>
+  <script src="assets/dateTimeCalcs.js?body=1" type="text/javascript"></script>
+  <script src="assets/validation.js?body=1" type="text/javascript"></script>
+  <script src="assets/unittest.js" type="text/javascript"></script>
+
+  <script src="assets/fields_table.js?body=1" type="text/javascript"></script>
+
+  <script src="assets/tooltips.js?body=1" type="text/javascript"></script>
+
+
+
+    <!-- End Test Content for Def.Validation.RequiredField.getReqFldErrs -->
+
+</div>
+
+<script>
+  var soundManager={
+    play: function(soundName){
+            console.log(soundName);
+    }
+  }
+  // <![CDATA[
+  Def.Validation.RequiredField.labelNames_ = {
+    "non_rl_a":"NonReptLine A",
+    "non_rl_b":"NonReptLine B",
+    "non_rl_c":"NonReptLine C",
+    "non_rl_d":"NonReptLine D",
+    "non_rl_e":"NonReptLine E",
+    "non_rl_f":"NonReptLine F",
+    "normal_rl_columnA":"ReptLine(normal)/ColumnA",
+    "abnormal_rl_columnA":"ReptLine(abnormal)/ColumnA",
+    "abnormal_rl_columnB":"ReptLine(abnormal)/ColumnB",
+    "non_rl_x":"NonReptLine X"}
+
+  // Testing functions for validation_test.html only
+  function fireEvent(element,event){
+    if (document.createEventObject){
+      // handling IE
+      var evt = document.createEventObject();
+      return element.fireEvent('on'+event,evt)
+    }
+    else{
+      // handling firefox + others
+      var evt = document.createEvent("HTMLEvents");
+      evt.initEvent(event, true, true );
+      return !element.dispatchEvent(evt);
+    }
+  }
+
+  function hasErrMsgInErrDiv(element, changedValueTo, errMsg){
+    element.value = changedValueTo;
+    fireEvent(element, "change");
+    return $$('.errReqDiv')[0].innerHTML.inspect().indexOf(errMsg) > -1;
+  }
+
+  function assertHasErrMsgInErrDiv(element, changedValueTo, errMsg, trueOrFalse){
+    assert(trueOrFalse, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+  }
+
+  function buildJumpToLink(id, labelName){
+    var link_a= "<a href=\"#label\" onclick=\\\'jumpTo(\"";
+    var link_b="\");\\\'>";
+    var link_c = "</a>";
+    return link_a + id + link_b + labelName + link_c;
+  }
+
+  function addNewNormalLine(){
+    // add new test line
+    var newTR, newTD, newInput, tbody;
+
+    newTR = document.createElement('tr');
+    newTR.setAttribute("class", 'repeatingLine');
+    newTR.setAttribute("rowid", '5');
+    newTD = document.createElement("td");
+    newInput = document.createElement("input");
+    newInput.setAttribute("type","text");
+    newInput.id = "fe_normal_rl_columnA_5";
+    newInput.setAttribute("required","true");
+    newInput.value = "";
+
+    newTD.appendChild(newInput);
+    newTR.appendChild(newTD);
+
+    newInput = document.createElement("input");
+    newInput.setAttribute("type", "text");
+    newInput.id="fe_normal_rl_columnS_5";
+    newTD = document.createElement("td");
+
+    newTD.appendChild(newInput);
+    newTR.appendChild(newTD);
+
+    tbody = getAncestor($('fe_normal_rl_columnA_4'), "TBODY");
+    tbody.appendChild(newTR);
+    return newTR;
+  }
+
+  function addNewAbnormalLine(){
+      // add new test abnormal line
+    var newTR, newTD, newInput, tbody;
+
+    newTR = document.createElement('tr');
+    newTR.setAttribute("class", 'repeatingLine');
+    newTR.setAttribute("rowid", '2');
+    newTD = document.createElement("td");
+
+    newInput = document.createElement("input");
+    newInput.setAttribute("type","text");
+    newInput.id = "fe_abnormal_rl_columnA_2";
+    newInput.setAttribute("required","true");
+    newInput.value = "";
+
+    newTD.appendChild(newInput);
+    newTR.appendChild(newTD);
+
+    newInput = document.createElement("input");
+    newInput.setAttribute("type","text");
+    newInput.id = "fe_abnormal_rl_columnB_2";
+    newInput.setAttribute("required","true");
+    newInput.value = "";
+
+    newTD.appendChild(newInput);
+    newTR.appendChild(newTD);
+
+    newInput = document.createElement("input");
+    newInput.setAttribute("type", "text");
+    newInput.id="fe_abnormal_rl_columnS_2";
+    newTD = document.createElement("td");
+
+    newTD.appendChild(newInput);
+    newTR.appendChild(newTD);
+
+    tbody = getAncestor($('fe_abnormal_rl_columnA_1'), "TBODY");
+    tbody.appendChild(newTR);
+    return newTR;
+  }
+
+  function clearAbnormalLineErrorMsgs(line){
+    for(var i=0, max=line.length; i< max; i++){
+      if(line[i].getAttribute("required")=="true"){
+        line[i].value = "something";
+        fireEvent(line[i],"change");
+      }
+    }
+  }
+
+  Def.Validation.RequiredField.Functions.loadValidator();
+
+  new Test.Unit.Runner({
+
+    // replace this with your real tests
+    setup: function() {
+    },
+
+    teardown: function() {
+    },
+
+    testGetReqFldErrs: function() { with(this) {
+        var errHash, err, idList, reqAttrList;
+        idList = [];
+        reqAttrList = [];
+
+        var func = Def.Validation.RequiredField.Functions;
+        func.updateErrHash();
+        var errHash = func.reqErrHash_;
+        $H(errHash).keys().each(function(e){
+          if(errHash[e] != null ) idList.push(e);
+        });
+
+        expected = ["fe_non_rl_a_1", "fe_non_rl_b_1", "fe_non_rl_c_1",
+          "fe_normal_rl_columnA_2",
+          "fe_abnormal_rl_columnA_1",
+          "fe_abnormal_rl_columnB_1",
+          "fe_non_rl_x_1"];
+        // removed the following line from the list of expected fields.
+        // although line 53 documents that it should not be marked as
+        // invalid because it is hidden (display:none), it was still in
+        // this list and caused an failure of the test.  lm, 10/29/10
+        // "fe_non_rl_d_1",//changes related to ticket#1930
+
+        // should return a list of invalid required fields
+        assertEqual(expected.inspect(), idList.inspect());
+      }},
+
+
+    // BEFORE click the submit button:
+    // Changes non-repeating-line required field value
+    // no validation error display;
+    // Changes required field value in normal-line
+    // no validation error display;
+    // Changes the value of required field's sibling in normal-line
+    // no validation error display;
+    // Added a new empty normal line
+    // no validation error display;
+    // Added a new empty abnormal-line
+    // no validation error display;
+
+    // AFTER click the submit button:
+    // Changes non-repeating-line required field value
+    // will display validation error messages;
+    // Changes required field value in normal-line
+    // will display validation error messages;
+    // Changes the value of required field's sibling in normal-line
+    // will display validation error messages;
+    // Gives a value to a non required field on the newly added normal-line
+    // will display validation error messages;
+    // Gives a value to a required field on the newly added abnormal-line
+    // will remove validation error messages related to this required field;
+    testBeforeAndAfterClickSubmitButton: function(){with(this){
+        /*var errorMsgTitle = "Error Message(s) For Required Field(s):";
+
+        var NonRepLineReqFld = $('fe_non_rl_f_1');
+        var NonRepLineReqFldErrMsg =
+          buildJumpToLink("fe_non_rl_f_1",
+        "NonReptLine F");
+
+        var normalLineReqFld = $('fe_normal_rl_columnA_1');
+        var normalLineReqFldErrMsg =
+          buildJumpToLink("fe_normal_rl_columnA_1",
+        "ReptLine(normal)/ColumnA (Row: 1)");
+
+        // On a normal-line, modify non required field value could
+        // invalid any empty required field
+        // normal-line 4:
+        var normalLineSibFld4 = $('fe_normal_rl_columnS_4');
+        var normalLineSibFldErrMsg4 =
+          buildJumpToLink("fe_normal_rl_columnA_4",
+        "ReptLine(normal)/ColumnA (Row: 4)");
+
+        var abnormalLineReqFld = $('fe_abnormal_rl_columnA_1');
+        var abnormalLineReqFldErrMsg =
+          buildJumpToLink('fe_abnormal_rl_columnA_1',
+        "ReptLine(abnormal)/ColumnA (Row: 1)");
+
+        var saveButton = $('fe_save');
+
+        var element, changedValueTo, errMsg;
+
+        // BEFORE CLICKING ==============================================
+        // test non-repeating-line required field:
+        //
+        // changes the value of a non-repeating-line required field
+        // should not generate any error msg for this required field
+        element = NonRepLineReqFld;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "non-repeating-line required field: no_rl_f";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));*/
+    }}
+  }, "testlog");
+  // ]]>
+</script>
+</body>
+</html>
+<!--
+/*
+// test required field on normal-line:
+        //
+        // changes the value for the required field of normal-line
+        // should not generate any error msg for this required field
+        element = normalLineReqFld;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "required field on line 1 of normal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test non required field on normal-line
+        //
+        // changes the value of a non required field on an normal-line
+        // should not generate any error msg for this required field
+        element = normalLineSibFld4;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "sibling field on line 4 of normal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test required field on abnormal-line
+        //
+        // changes the value of required field on normal-line
+        // should not generate any error msg for this required field
+        element = abnormalLineReqFld;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "required fld: on abnormal line 1";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+       // test newly added normal line which has a required field
+        //   - loaded all the validation handlers to related fields
+        var newTestLine = addNewNormalLine();
+        newTestLine = newTestLine.getElementsBySelector('input');
+        Def.Validation.RequiredField.Functions.enableValidationOnNewLine(newTestLine);
+        //   - get all the necessary elements and error msgs for testing
+        var normalLineReqFld5 = $('fe_normal_rl_columnA_5');
+        var normalLineReqFldErrMsg5 = buildJumpToLink("fe_normal_rl_columnA_5",
+        "ReptLine(normal)/ColumnA (Row: 5)");
+        var normalLineSibFld5 = $('fe_normal_rl_columnS_5');
+        var normalLineSibFldErrMsg5 = normalLineReqFldErrMsg5;
+        //   - test required field
+        //     should not generate any error msg
+        element = normalLineReqFld5;
+        errMsg  = errorMsgTitle;
+        changedValueTo = "required field on line 5 of normal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+         //   - test non required field(i.e. sibling field)
+        //     should not generate any error msg
+        element = normalLineSibFld5;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "sibling field on line 5 of normal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test newly added abnormal line which has two required fields and one
+        // non required field(i.e. sibling field)
+        //   - loaded all the validation handlers to related fields
+        var newTestAbnormalLine = addNewAbnormalLine();
+        newTestAbnormalLine = newTestAbnormalLine.getElementsBySelector('input');
+        Def.Validation.RequiredField.Functions.enableValidationOnNewLine(newTestAbnormalLine);
+        //   - get all the necessary elements and error msgs for testing
+        var abnormalLineReqFld2 = $('fe_abnormal_rl_columnA_2');
+        var abnormalLineReqFldErrMsg2 = buildJumpToLink("fe_abnormal_rl_columnA_2",
+        "ReptLine(abnormal)/ColumnA (Row: 2)");
+        var abnormalLineSibFld2 = $('fe_abnormal_rl_columnS_2');
+        var abnormalLineSibFldErrMsg2 = abnormalLineReqFldErrMsg2;
+        //   - test required field
+        //     should turn the error msg related to the required field on and
+        //     off
+        element = abnormalLineReqFld2;
+        errMsg  = errorMsgTitle;
+        changedValueTo = "required field on line 2 of abnormal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        //   - test non required field(i.e. sibling field)
+        //     should not generate any error msg
+        element = abnormalLineSibFld2;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "sibling field on line 2 of abnormal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));*/
+
+        // BEFORE CLICKING ======Per Wednesday meeting 06/09/10=================
+        // test non-repeating-line required field:
+        //
+        // changes the value of a non-repeating-line required field
+        // should generate error msg for this required field
+/*        element = NonRepLineReqFld;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "non-repeating-line required field: no_rl_f";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test required field on normal-line:
+        //
+        // changes the value for the required field of normal-line
+        // should generate error msg for this required field
+        element = normalLineReqFld;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "required field on line 1 of normal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test non required field on normal-line
+        //
+        // changes the value of a non required field on an normal-line
+        // should generate error msg for this required field
+        element = normalLineSibFld4;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "sibling field on line 4 of normal line";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test required field on abnormal-line
+        //
+        // changes the value of required field on normal-line
+        // should generate error msg for this required field
+        element = abnormalLineReqFld;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "required fld: on abnormal line 1";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+       // test newly added normal line which has a required field
+        //   - loaded all the validation handlers to related fields
+        var newTestLine = addNewNormalLine();
+        newTestLine = newTestLine.getElementsBySelector('input');
+        Def.Validation.RequiredField.Functions.enableValidationOnNewLine(newTestLine);
+        //   - get all the necessary elements and error msgs for testing
+        var normalLineReqFld5 = $('fe_normal_rl_columnA_5');
+        var normalLineReqFldErrMsg5 = buildJumpToLink("fe_normal_rl_columnA_5",
+        "ReptLine(normal)/ColumnA (Row: 5)");
+        var normalLineSibFld5 = $('fe_normal_rl_columnS_5');
+        var normalLineSibFldErrMsg5 = normalLineReqFldErrMsg5;
+        //   - test required field
+        //     should not generate any error msg
+        element = normalLineReqFld5;
+        errMsg  = errorMsgTitle;
+        changedValueTo = "required field on line 5 of normal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+         //   - test non required field(i.e. sibling field)
+        //     should not generate any error msg
+        element = normalLineSibFld5;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "sibling field on line 5 of normal line";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test newly added abnormal line which has two required fields and one
+        // non required field(i.e. sibling field)
+        //   - loaded all the validation handlers to related fields
+        var newTestAbnormalLine = addNewAbnormalLine();
+        newTestAbnormalLine = newTestAbnormalLine.getElementsBySelector('input');
+        Def.Validation.RequiredField.Functions.enableValidationOnNewLine(newTestAbnormalLine);
+        //   - get all the necessary elements and error msgs for testing
+        var abnormalLineReqFld2 = $('fe_abnormal_rl_columnA_2');
+        var abnormalLineReqFldErrMsg2 = buildJumpToLink("fe_abnormal_rl_columnA_2",
+        "ReptLine(abnormal)/ColumnA (Row: 2)");
+        var abnormalLineSibFld2 = $('fe_abnormal_rl_columnS_2');
+        var abnormalLineSibFldErrMsg2 = abnormalLineReqFldErrMsg2;
+        //   - test required field
+        //     should turn the error msg related to the required field on and
+        //     off
+        element = abnormalLineReqFld2;
+        errMsg  = errorMsgTitle;
+        changedValueTo = "required field on line 2 of abnormal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        //   - test non required field(i.e. sibling field)
+        //     should not generate any error msg
+        element = abnormalLineSibFld2;
+        errMsg  = errorMsgTitle;
+
+        changedValueTo = "sibling field on line 2 of abnormal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+
+
+       // CLICKING the submit button ====================================
+        Def.Validation.RequiredField.Functions.validateAll(saveButton);
+
+        // test non-repeating-line required field:
+        //
+        // changes the value of a non-repeating-line required field
+        // should turn error msg for this required field on and off
+        element = NonRepLineReqFld;
+        errMsg  = NonRepLineReqFldErrMsg;
+
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "non-repeating-line required field: no_rl_f";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test required field on normal-line:
+        //
+        // changes the value for the required field of normal-line
+        // should turn error msg for this required field on and off
+        //(sibling is not empty, so this required field will be invalid if
+        // it is empty)
+        element = normalLineReqFld;
+        errMsg  = normalLineReqFldErrMsg;
+
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "required field on line 1 of normal-line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+
+        // test non required field on normal-line:
+        //
+        // changes the value of a non required field on an normal-line
+        // which has an empty required field
+        // should turn error msg for the required field on and off
+        element = normalLineSibFld4;
+        errMsg  = normalLineSibFldErrMsg4;
+
+        changedValueTo = "sibling field on line 4 of normal-line";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test required field on abnormal-line:
+        //
+        // changes the value of required field on abnormal-line
+        // should turn the error msg of this required field on and off
+        element = abnormalLineReqFld;
+        errMsg  = abnormalLineReqFldErrMsg;
+
+        changedValueTo = "required fld: on abnormal-line 1";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test newly added empty normal-line which has one required field and
+        // one non required field (i.e. sibling field)
+        // - test required field
+        //   - changes the value of the required field
+        //     should not generate any error msg
+        element = normalLineReqFld5;
+        errMsg  = normalLineReqFldErrMsg5;
+        changedValueTo = "required field on line 5 of normal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        // - test non required field(i.e. sibling field)
+        //   - changes the value of the sibling field
+        //     should turn the error msg related to the required field on and
+        //     off
+        element = normalLineSibFld5;
+        errMsg  = normalLineSibFldErrMsg5;
+        changedValueTo = "sibling field on line 5 of normal line";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // test newly added empty abnormal-line which has two required fields
+        // and one non required field(i.e. sibling field)
+        // - test required field
+        //   - changes the value of the required field
+        //     should turn error msg for the required field on and off
+        element = abnormalLineReqFld2;
+        errMsg  = abnormalLineReqFldErrMsg2;
+        changedValueTo = "required field on line 2 of abnormal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(true, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        //   - test non required field(i.e. sibling field)
+        //     should not generate any error msg
+        element = abnormalLineSibFld2;
+        errMsg  = abnormalLineReqFldErrMsg2;
+        clearAbnormalLineErrorMsgs(newTestAbnormalLine);
+
+        changedValueTo = "sibling field on line 2 of abnormal line";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+        changedValueTo = "";
+        assertEqual(false, hasErrMsgInErrDiv(element, changedValueTo, errMsg));
+
+        // TESTING showErrs() =========================================
+        var fe_non_rl_a_1 = buildJumpToLink("fe_non_rl_a_1", "NonReptLine A");
+        var fe_non_rl_b_1 = buildJumpToLink("fe_non_rl_b_1", "NonReptLine B");
+        var fe_non_rl_c_1 = buildJumpToLink("fe_non_rl_c_1", "NonReptLine C");
+        var fe_non_rl_d_1 = buildJumpToLink("fe_non_rl_d_1", "NonReptLine D");//changes related to ticket#1930
+        var fe_normal_rl_columnA_2 =
+          buildJumpToLink("fe_normal_rl_columnA_2", "ReptLine(normal)/ColumnA (Row: 2)");
+        var fe_abnormal_rl_columnA_1 =
+          buildJumpToLink("fe_abnormal_rl_columnA_1", "ReptLine(abnormal)/ColumnA (Row: 1)");
+        var fe_abnormal_rl_columnB_1 =
+          buildJumpToLink("fe_abnormal_rl_columnB_1", "ReptLine(abnormal)/ColumnB (Row: 1)");
+        var fe_non_rl_x_1 = buildJumpToLink("fe_non_rl_x_1", "NonReptLine X");
+
+        var normal_line_req_fld_msg =
+          " Please enter data or clear the entire row.</li>"
+        var commom_req_fld_msg =
+          " (This field must not be left blank.)</li>"
+        var msg = "'Error Message(s) For Required Field(s): <br> "+
+          "<ul>"+
+          "<li>The <strong>" + fe_non_rl_a_1 + "</strong> field looks invalid."+ commom_req_fld_msg +
+          "<li>The <strong>" + fe_non_rl_b_1 + "</strong> field looks invalid."+ commom_req_fld_msg +
+          "<li>The <strong>" + fe_non_rl_c_1 + "</strong> field looks invalid."+ commom_req_fld_msg +
+          "<li>The <strong>" + fe_non_rl_d_1 + "</strong> field looks invalid."+ commom_req_fld_msg +//changes related to ticket#1930
+          "<li>The <strong>" + fe_normal_rl_columnA_2 + "</strong> field looks invalid."+ normal_line_req_fld_msg +
+          "<li>The <strong>" + fe_abnormal_rl_columnA_1 + "</strong> field looks invalid."+ commom_req_fld_msg +
+          "<li>The <strong>" + fe_abnormal_rl_columnB_1 + "</strong> field looks invalid."+ commom_req_fld_msg +
+          "<li>The <strong>" + fe_non_rl_x_1 + "</strong> field looks invalid."+ commom_req_fld_msg +
+          "</ul>'"
+        assertEqual(msg, $$('.errReqDiv')[0].innerHTML.inspect());
+
+        var idList =[];
+        $$('.errReqOutline').each(function(e){if(e.tagName =="INPUT")idList.push(e.id);});
+        expected = ["fe_non_rl_a_1", "fe_non_rl_b_1", "fe_non_rl_c_1",
+          "fe_non_rl_d_1",//changes related to ticket#1930
+          "fe_normal_rl_columnA_2",
+          "fe_abnormal_rl_columnA_1",
+          "fe_abnormal_rl_columnB_1",
+          "fe_non_rl_x_1"];
+        // Outline the detected invalid required fields
+        assertEqual(expected.inspect(), idList.inspect());*/
+/*      }},
+
+
+    testAvailablilityOfRequiredFieldInsideCollapsedDiv: function() {with(this){
+        // testElement is a visible required field
+        // expandCollapseDiv is DIV act as an expandable folder
+        // testElement is located inside expandCollapseDiv folder
+        var testElement = $("fe_non_rl_x_1");
+        var expandCollapseDiv = $('expcol_1');
+
+        // Originally the expand_collapse folder is in "expand" status
+        // User should be able to see it
+        assert(!isHiddenOrDisabled(testElement));
+        // The required field is a virtually visible field
+        assert(!isHiddenOrDisabled(testElement, true))
+        // getRealRequiredFieldIds() will return a list including the required field
+        Def.Validation.RequiredField.Functions.loadValidator;
+        var rlist = Def.Validation.RequiredField.Functions.reqFldIds_;
+        assert(rlist.inspect().indexOf(testElement.id) > -1);
+
+        // When the expand_collapse folder is collapsed
+        expandCollapseDiv.style.display = "none";
+        // User should NOT be able to see it
+        assert(isHiddenOrDisabled(testElement));
+        // The required field remains as a virtually visible field
+        assert(!isHiddenOrDisabled(testElement, true))
+        // getRealRequiredFieldIds() will return the same list as before
+        Def.Validation.RequiredField.Functions.loadValidator;
+        rlist = Def.Validation.RequiredField.Functions.reqFldIds_;
+        assert(rlist.inspect().indexOf(testElement.id) > -1);
+      }}*/
+-->

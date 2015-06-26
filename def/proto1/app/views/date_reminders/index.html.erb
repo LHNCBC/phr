@@ -1,0 +1,10 @@
+<%= link_to 'Back to PHR', phr_record_path(@phr_record) %>
+<% if @reminders.size == 0 %>
+<p>Currently there are no date reminders.</p>
+<% else %>
+<%= render(:partial=>'date_reminder_table', :locals=>{:button_label=>'Hide'}) %>
+<% end %>
+<%= link_to 'View previously hidden reminders', hidden_phr_record_date_reminders_path(@phr_record) %>
+&nbsp;
+<%= link_to 'Date Reminder Settings',
+  "/profiles/#{@phr_record.id_shown}/reminder_options", :target=>'_blank' %>

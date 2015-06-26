@@ -1,0 +1,77 @@
+/* CSS for that Acceptance Test Runner */
+div#banner {
+  background-color: white;
+}
+h1 {
+  margin: 5px;
+  font-size: 150%;
+  font-family: sans-serif;
+  text-align: center;
+}
+button {
+  color: white;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 80%;
+  border-style: solid;
+  border-width: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  display: block;
+}
+canvas {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  vertical-align: top;
+}
+
+.button_not_run {
+  background-color: #000077;
+  border-color: #000088 #000066 #000066 #000088;
+}
+.button_success {
+  background-color: #007700;
+  border-color: #008800 #006600 #006600 #008800;
+}
+.button_in_progress {
+  background-color: #777700;
+  border-color: #888800 #666600 #666600 #888800;
+}
+.button_failure {
+  background-color: #770000;
+  border-color: #880000 #660000 #660000 #880000;
+}
+
+.cmd_in_progress {
+  background-color: #FFFFBB;
+}
+.cmd_success {
+  background-color: #BBFFBB;
+}
+.cmd_failure {
+  background-color: #FFBBBB;
+}
+
+table.command_list {
+  border-collapse: collapse;
+}
+
+.command_list_title {
+  font-weight: bold;
+}
+
+.command_list_section {
+  display: none;
+  height: 300px;
+  overflow: auto;
+  border: 1px solid black;
+}
+
+tr.comment {
+  background-color: #DDDDFF;
+}
+
+iframe {
+  overflow: auto;
+  display: none;
+}

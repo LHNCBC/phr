@@ -1,0 +1,17 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Security Check</h1>
+		<p>
+		Type the displayed words or numbers in the space provided.</p>
+<p>If you have trouble reading the text, click on the circular arrows for another text challenge or select an audio challenge if desired. This security check, also known as a CAPTCHA, keeps automated computer programs that simulate human activity from maliciously attacking our Web site. </p>
+<p> 
+<a href="/help/audio_captcha_tips.shtml">Tips for using the CAPTCHA audio challenge.</a>
+</p>
+<p>
+For 
+		more information on CAPTCHAs, see 
+		<a href="http://www.captcha.net/">www.captcha.net</a>.
+    </p>  
+
+    
+<!--#include virtual="help_footer.shtml" -->

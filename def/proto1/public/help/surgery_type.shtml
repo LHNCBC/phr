@@ -1,0 +1,23 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Surgery Type</h1>
+		<p>
+		Enter the name of any major surgical procedures 
+		you have had.</p>
+<p>Be sure to include procedures that resulted in 
+		implants, such as pacemakers, artificial heart valves, or hip replacement, 
+		because these have many implications for your doctor's choice of treatments 
+		and diagnostic procedures. For example, if you have a cardiac pacemaker, 
+		you cannot undergo magnetic resonance imaging. 
+		</p>
+
+<p>Information about major surgeries may be important 
+		to the diagnosis of future conditions and may influence the preventive 
+		care you need. For example, if you have had a total colectomy, which 
+		includes removal of the entire large bowel, you do not need further 
+		colonoscopy screenings.</p>
+		
+		<p>
+		<a href="/help/using_long_lists_help.shtml">More about how to find 
+		and select items from the surgery list</a>
+		</p>
+	<!--#include virtual="help_footer.shtml" -->

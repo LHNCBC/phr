@@ -1,0 +1,174 @@
+| open | /phr_home |
+| setTimeout | 35000 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+
+# Create a profile that we can use for the rest of the test
+ fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'phr_problem1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForExpression | javascript{testWindow_.Def.DataModel.initialized_} | true |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+| fireEvent | fe_problem_1 | focus |
+| type | fe_problem_1 | Three vessel coronary artery diseas |
+| typeKeys | fe_problem_1 | e |
+| waitForTextPresent | | Three vessel coronary artery disease |
+
+# Wait for the list to be visible
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.$('completionOptions'))} | false |
+| waitForTextPresent | | 1 of |
+# (\40 means down arrow)
+| keyDown | fe_problem_1 | \40 |
+| keyDown | fe_present_1 | \9 |
+| waitForValue | fe_problem_C_1 | 18602 |
+
+# Wait for the list to go away
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.$('completionOptions'))} | true |
+| fireEvent | fe_present_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.DataModel.data_table_['phr_conditions'][0]['problem'] != ''} | true |
+
+# Wait for the list to come back
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.$('completionOptions'))} | false |
+| type | fe_present_1 | |
+| typeKeys | fe_present_1 | 1
+
+# Wait for the list to update
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 1 |
+| keyDown | fe_present_1 | \40 |
+| keyDown | fe_present_1 | \9 |
+| waitForValue | fe_present_C_1 | A |
+
+# Make sure we can get a large edit box on the description field
+| fireEvent | fe_prob_desc_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_1'} | true |
+| fireEvent | fe_prob_desc_1 | click |
+| controlKeyDown |
+| keyDown | fe_prob_desc_1 | \113 |
+| controlKeyUp |
+| waitForExpression | javascript{testWindow_.$$('div.lgEditBoxWrapper').length} | 1 |
+
+# Save the form so we can test a saved row
+| click | fe_save_1 | |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+| waitForVisible | loading_msg |
+| waitForNotVisible | loading_msg |
+
+# Open up the form again
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# Test for a bug where a saved row gets unintentionally put into a "removed"
+# state.  The bug happened when you revised a row, changed a date field, and
+# then undid the revision to revert back to the original saved state.
+| waitForVisible | fe_problem_1 | |
+# Open the row for editing.
+| assertExpression | javascript{var cet=testWindow_.$('fe_problems_header_0').ce_table; cet.setUpContextMenu(testWindow_.$('fe_problem_1')); cet.editRow(); true} | true |
+# Put a value in the date field
+| fireEvent | fe_when_started_1 | focus |
+| type | fe_when_started_1 | t-1 |
+| fireEvent | fe_when_started_1 | blur |
+# Revert the row
+| assertExpression | javascript{var cet=testWindow_.$('fe_problems_header_0').ce_table; cet.setUpContextMenu(testWindow_.$('fe_problem_1')); cet.undoLatestCommand(); true} | true |
+# Confirm that the first row is still visible (i.e. the bug is fixed)
+| assertVisible | fe_problem_1 | |
+
+# Test for a bug that happens when you right click on a new row in the allergies
+# table.  (In the tests above, we have left that table empty, so we work with
+# the first row here.)  The following line (setting up the context menu for
+# that row) raises an exception when the bug is present, causing the test to
+# halt.
+| assertExpression | javascript{var cet=testWindow_.$('fe_allergies_0').ce_table; cet.setUpContextMenu(testWindow_.$('fe_allergy_name_1')); cet.editRow(); true} | true |
+
+# Test that if you change the status on a row, the calendar icon for date
+# fields stay hidden.  Actually, we test this by putting the row into a
+# saveable state; there is no need to change the status field.
+| assertExpression | javascript{var cet=testWindow_.$('fe_problems_header_0').ce_table; cet.setUpContextMenu(testWindow_.$('fe_problem_1')); cet.makeRowSaveable(); testWindow_.isHiddenOrDisabled(testWindow_.$('fe_when_started_1').next())} | true |
+
+# Test for bug where after a save to a "changed" row whose values actually match
+# the original values, opening up fields for editing does not result in the
+# fields being initialized properly.
+# Open the row for editing, and make sure the description field has the value
+# we expect to start with.
+| assertExpression | javascript{var cet=testWindow_.$('fe_problems_header_0').ce_table; cet.setUpContextMenu(testWindow_.$('fe_problem_1')); cet.editRow(); true} | true |
+# Change the value and change it back
+| fireEvent | fe_prob_desc_1 | focus |
+| type | fe_prob_desc_1 | z |
+| fireEvent | fe_prob_desc_1 | change |
+| fireEvent | fe_prob_desc_1 | blur |
+| waitForExpression | javascript{testWindow_.Def.DataModel.data_table_.phr_conditions[0].prob_desc} | z |
+# Save the form
+| verifyNotVisible | saved_notice | |
+| click | fe_save_1 |
+| waitForVisible | saved_notice | |
+| waitForExpression | javascript{testWindow_.Def.DataModel.initialized_} | true |
+# Open the row for editing again.
+| assertExpression | javascript{var cet=testWindow_.$('fe_problems_header_0').ce_table; cet.setUpContextMenu(testWindow_.$('fe_problem_1')); cet.editRow(); true} | true |
+# Change the value and change it back
+| fireEvent | fe_prob_desc_1 | focus |
+| type | fe_prob_desc_1 | zz |
+| fireEvent | fe_prob_desc_1 | change |
+| fireEvent | fe_prob_desc_1 | blur |
+# Wait for the data model to update
+| waitForExpression | javascript{testWindow_.Def.DataModel.data_table_.phr_conditions[0].prob_desc} | zz |
+| fireEvent | fe_prob_desc_1 | focus |
+| type | fe_prob_desc_1 | z |
+| fireEvent | fe_prob_desc_1 | change |
+| fireEvent | fe_prob_desc_1 | blur |
+| waitForExpression | javascript{testWindow_.Def.DataModel.data_table_.phr_conditions[0].prob_desc} | z |
+# Save the form
+| click | fe_save_1 |
+# That should first cause an immediate hide of the saved_notice
+| verifyNotVisible | saved_notice | |
+| waitForVisible | saved_notice | |
+| waitForExpression | javascript{testWindow_.Def.DataModel.initialized_} | true |
+# Now open the fields for editing again
+| type | fe_when_started_1 | |
+| fireEvent | fe_when_started_1 | blur |
+# Save the form, and then reload the page -- Really?  Doesn't look like it. (9/15/14 lm)
+| assertExpression | javascript{var cet=testWindow_.$('fe_problems_header_0').ce_table; cet.setUpContextMenu(testWindow_.$('fe_problem_1')); cet.editRow(); true} | true |
+# One symptom is that the problem field is in a tooltip state (novalue == true).
+| waitForExpression | javascript{testWindow_.$('fe_problem_1').readAttribute('novalue')} | false |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |

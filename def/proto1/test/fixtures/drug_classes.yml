@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+drug_one_class_1:
+  code: 9
+  drug_class: Antihypertensive
+
+drug_one_class_2:
+  code: 14
+  drug_class: Beta Blocker, B1 Selective
+
+ing_name_order_test_1:
+  code: 120
+  drug_class: ccc
+
+ing_name_order_test_2:
+  code: 121
+  drug_class: bbb
+
+ing_name_order_test_3:
+  code: 122
+  drug_class: aaa

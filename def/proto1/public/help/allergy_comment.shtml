@@ -1,0 +1,9 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>Allergy Comments</h1>
+	<p>
+	Enter any additional information or comments you have regarding the allergic reaction.   
+	</p>
+	
+	
+
+<!--#include virtual="help_footer.shtml" -->

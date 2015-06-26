@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Previous</h1>
+		<p>
+    This column will display the value and date of the most recent 
+	test recorded prior to this entry session. You can easily 
+	see how any new values for this test compare with the most recent past value. 
+    </p>  
+<p>
+    To view all previous results, click the <b>All Previous Values</b> button at the top of the test panel or select the <b>View & Edit Results Timeline</b> link at the top of the PHR.
+
+<!--#include virtual="help_footer.shtml" -->

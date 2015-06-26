@@ -1,0 +1,23 @@
+<%= form_tag export_phr_record_path, :method=>:post %>
+  <p><b>Click the Export button to download the health information to your
+      computer.</b>
+  <ul><li>
+      A file will be created with <%= @phr_record.phr.pseudonym%>'s name in the title, and it
+      will be downloaded by your internet browser to your computer.</li>
+    <li>The file will include data from <%= @phr_record.phr.pseudonym%>'s health summary and test
+      results and trackers information.</li>
+    <li>The file will not include any documents you may have uploaded
+      (imported).</li>
+    <li>You can use most spreadsheet programs to view the information and to
+      print a copy for your records or for your health care provider.</li></ul></p>
+
+      <p><b>Warning - to ensure your privacy, avoid downloading personal
+          information if you are using a public computer.</b></p>
+
+  <p>Note:  After clicking the Export button, you might have to wait a bit
+  (possibly up to a minute depending on the amount of data).  Please be patient
+  and do not click the Export button again.</p>
+  <%= submit_tag 'Export' %>
+  <%= link_to 'Cancel', phr_records_path %>
+</form>
+

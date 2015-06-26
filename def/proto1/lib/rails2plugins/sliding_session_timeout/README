@@ -1,0 +1,35 @@
+SlidingSessionTimeout
+=====================
+
+By default, sessions in Rails expire at a fixed time from the moment 
+they are created.  This plugin lets you configure your sessions to 
+expire in a sliding window, a fixed time from the last page view.
+
+Usage:
+  # the macro for use in controllers
+  sliding_session_timeout seconds [, upon_expiry_function]
+	
+  'seconds' is the time in seconds for a session to live
+  'upon_expiry_function' is an optional method to call when a session dies
+	
+  - ActionController::Base.reset_session will be called upon session expiry.
+  - If an expiry_function was provided, the call to reset_session will happen
+	  after the call to the expiry_function to preserve session data for the 
+	  expiry_function.
+	
+Examples:
+  # in app/controllers/application.rb
+  
+  # expire in thirty minutes
+  sliding_session_timeout 60 * 30
+  
+  # or use Rails' number helpers
+  sliding_session_timeout 30.minutes
+  
+  # expire in two hours and call the 'logout' method upon expiry
+  sliding_session_timeout 2.hours, :logout
+  
+  def logout
+    # do stuff here for logout
+  end
+  

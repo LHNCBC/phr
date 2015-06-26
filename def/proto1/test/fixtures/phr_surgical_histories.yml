@@ -1,0 +1,67 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# these contain fields that are not in the table as of 7/8/10
+#Father-1:
+#  id: -1
+#  patient_id: -502
+#  row_num: 1
+#  surgery_type: "amputation arm"
+#  surgery_when: "1/4/2007"
+#Mother:
+#  id: -2
+#  patient_id: -503
+#  row_num: 1
+#  surgery_type: "breast lumpectomy"
+#  surgery_when: "5/16/2007"
+#Self:
+#  id: -3
+#  patient_id: -501
+#  row_num: 1
+#  surgery_type: "hip replacement"
+#  surgery_when: "6/27/2006"
+#Father-2:
+#  id: -4
+#  patient_id: -502
+#  row_num: 2
+#  surgery_type: "cardiac valve replacement-artificial"
+#  surgery_when: "5/9/2000"
+#
+temp_profile_1a:
+  id: -101
+  profile_id: -20
+
+temp_profile_1b:
+  id: -102
+  profile_id: -20
+
+temp_profile_2a:
+  id: -103
+  profile_id: -21
+
+temp_profile_2b:
+  id: -104
+  profile_id: -21
+
+temp_profile_3a:
+  id: -105
+  profile_id: -22
+
+temp_profile_3b:
+  id: -106
+  profile_id: -22
+
+standard_profile_1a:
+  id: -107
+  profile_id: -23
+
+standard_profile_1b:
+  id: -108
+  profile_id: -23
+
+standard_profile_2a:
+  id: -109
+  profile_id: -24
+
+standard_profile_2b:
+  id: -110
+  profile_id: -24
+

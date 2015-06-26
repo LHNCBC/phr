@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+<h1>Time Done</h1>
+		<p>
+Enter the time of day the test was performed. </p>
+<p>
+</p>Enter times using either whole numbers (<i>hours</i>) or in <i>hours</i><b>:</b><i>minutes</i> format and follow the time with either an <b>AM</b> or <b>PM</b> designation.</li>		
+<p>
+When appropriate, a physician may order certain tests to be performed after overnight fasting. Some test results are also influenced by the time of day they are performed, what you drink or eat before the test, as well as your activity level. 
+</p>  
+
+<!--#include virtual="help_footer.shtml" -->

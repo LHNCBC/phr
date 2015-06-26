@@ -1,0 +1,23 @@
+---
+aminobenzoate-pill:
+  text: "10 MG/ML Susp"
+  id: -5
+  rxcui: 581629
+  amount_list_name: Solution_Dose_Type
+  drug_name_route_id: -3
+
+strength_form_array_test_1:
+  id: -6
+  rxcui: 501
+  strength: '50 mg'
+  form: 'Caps'
+  text: '50 mg Caps'
+  drug_name_route_id: -6
+
+strength_form_array_test_2:
+  id: -7
+  rxcui: 502
+  strength: '60 mg'
+  form: 'Tabs'
+  text: '60 mg Tabs'
+  drug_name_route_id: -6

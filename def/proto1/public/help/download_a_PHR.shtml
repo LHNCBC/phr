@@ -1,0 +1,28 @@
+<!--#include virtual="help_header.shtml" -->
+  <h1>Download a PHR File to Your Computer </h1>
+		<p>
+	You may download the data from a PHR to your computer for use by other spreadsheet programs such as Microsoft Excel. Your Internet browser will open a dialog box and prompt you to download the file from the PHR server to your computer.
+    The file will be saved in XLS format and include data from the Health Summary and Test Results and Trackers; however, it will not include documents you have uploaded (imported).
+</p>
+<h3>
+To download a PHR to your computer</h3>
+<p>
+<ol>
+<li>On the <b>PHR Home</b> page, click on the name of the PHR you wish to download from the <b>My Personal Health Records</b> area. 
+<li>Click the <b>Download</b> button beneath the person's name to begin the download process. </li>	
+<li>A dialog box will appear with instructions on how to download the file. The file name that will be generated will begin with the name of the PHR, followed by the date and time it was generated.
+        i.e., child2_2014Feb0795122.xls </li>
+<li>You can use most spreadsheet programs to view the information and to print a copy for your records or for your health care provider.</li>
+</ol>
+</p>
+<h3>How do I ...</h3>
+<p>
+<a href="remove_a_PHR.shtml">Make a PHR inactive?</a></br>
+<a href="how_to_delete_PHR.shtml">Permanently delete a PHR?</a>
+</p>
+
+
+
+    
+    
+<!--#include virtual="help_footer.shtml" -->

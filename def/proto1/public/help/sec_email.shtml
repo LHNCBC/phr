@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Retype Email Address</h1>
+		<p>
+		Please confirm your email address by retyping it 
+		in the space provided. </p>
+
+<p>We will use this email address 
+		to help you recover your PHR account ID or password 
+		in the event you forget your account information and 
+		cannot remember the answers to your security questions.
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

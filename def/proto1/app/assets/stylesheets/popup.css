@@ -1,0 +1,69 @@
+#helpBody {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-weight: normal;
+  color: #333333;
+  font-size: 14px;
+  margin: 25px 25px 25px;
+}
+
+
+h2 {
+  font-family: "Ubuntu",Arial;
+  font-size: 28px;
+  font-weight: 400;
+  padding: 10px;
+}
+
+.even {
+  background-color: #ECF3F8;
+}
+.odd {
+  background-color: #FFFFFF;
+}
+
+.group_title{
+  font-family: "Ubuntu",Arial;
+  background-color: #458AC5;
+  color: #FFFFFF;
+  font-size: 21px;
+  font-weight: 400;
+  padding: 7px 7px 7px 10px;
+  line-height: 25px;
+}
+
+.r_text {
+  padding: 2px 7px 7px 40px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+.unreviewed.truncated_node .r_text {
+  font-weight: 700;
+  opacity: 0.9;
+}
+.unreviewed.truncated_node.clicked .r_text {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.r_title{
+  font-weight: 700;
+  font-size: 16px;
+  padding: 2px 7px 2px 10px;
+}
+
+.r_checkbox{
+  vertical-align: top
+}
+
+.helper_text {
+  color: #333333;
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  font-style: italic;
+  margin: 5px;
+}
+
+table.read_table, table.unread_table {
+  border-spacing: 0.01em;
+}

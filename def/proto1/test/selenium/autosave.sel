@@ -1,0 +1,735 @@
+| setTimeout | 35000 |
+
+| open | /phr_home |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForTextPresent | Loaded in |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_pseudonym_1_1 |
+| fireEvent | fe_pseudonym_1_1 | focus |
+| type | fe_pseudonym_1_1 | javascript{'autosave1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | recName |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| pause | 1000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+# Save the form
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| pause | 500 |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# Load up the form with data; Start with a brain tumor
+| waitForVisible | fe_problem_1 |
+| fireEvent | fe_problem_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_1'} | true |
+| selectByContent | fe_problem_1 | Brain tumor |
+| waitForValue | fe_problem_C_1 | 2922 |
+
+| fireEvent | fe_present_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_1'} | true |
+| selectByContent | fe_present_1 | Inactive |
+| waitForValue | fe_present_C_1 | I |
+
+| fireEvent | fe_when_started_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_1'} | true |
+| type | fe_when_started_1 | 2006 |
+| waitForValue | fe_when_started_1 | 2006 |
+| fireEvent | fe_when_started_1 | change |
+| fireEvent | fe_when_started_1 | blur |
+| waitForValue | fe_when_started_1 | 2006 |
+
+# Add Depression
+| fireEvent | fe_problem_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'} | true |
+| selectByContent | fe_problem_2 | Depression |
+| waitForValue | fe_problem_C_2 | 2166 |
+
+| fireEvent | fe_present_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_2'} | true |
+| selectByContent | fe_present_2 | Active |
+| waitForValue | fe_present_C_2 | A |
+
+| fireEvent | fe_when_started_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+| type | fe_when_started_2 | 1992 |
+| waitForValue | fe_when_started_2 | 1992 |
+| fireEvent | fe_when_started_2 | change |
+| fireEvent | fe_when_started_2 | blur |
+| waitForValue | fe_when_started_2 | 1992 |
+
+# And throw in some neck pain to round it off
+| fireEvent | fe_problem_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_3'} | true |
+| selectByContent | fe_problem_3 | Neck pain |
+| waitForValue | fe_problem_C_3 | 5117 |
+
+| fireEvent | fe_present_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_present_3'} | true |
+| selectByContent | fe_present_3 | Active |
+| waitForValue | fe_present_C_3 | A |
+
+| fireEvent | fe_when_started_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_3'} | true |
+| type | fe_when_started_3 | 2001 |
+| waitForValue | fe_when_started_3 | 2001 |
+| fireEvent | fe_when_started_3 | change |
+| fireEvent | fe_when_started_3 | blur |
+| waitForValue | fe_when_started_3 | 2001 |
+
+| fireEvent | fe_prob_desc_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_3'} | true |
+| type | fe_prob_desc_3 | DB |
+| waitForValue | fe_prob_desc_3 | DB |
+| fireEvent | fe_prob_desc_3 | change |
+| waitForValue | fe_prob_desc_3 | DB |
+
+# With problems like those, we will need some drugs;
+# Put in some modafinil to use for the clear row test
+| fireEvent | fe_name_and_route_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_1'} | true |
+| selectByContent | fe_name_and_route_1 | Modafinil (Oral Pill) |
+| waitForValue | fe_name_and_route_C_1 | 22484  |
+
+| fireEvent | fe_drug_use_status_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_use_status_1'} | true |
+| selectByContent | fe_drug_use_status_1 | Active |
+| waitForValue | fe_drug_use_status_C_1 | DRG-A |
+
+| fireEvent | fe_drug_strength_form_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_strength_form_1'} | true |
+| selectByContent | fe_drug_strength_form_1 | 200 mg Tab |
+| waitForValue | fe_drug_strength_form_C_1 | 205324 |
+
+# Now some Wellbutrin for the depression
+| fireEvent | fe_name_and_route_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_2'} | true |
+| selectByContent | fe_name_and_route_2 | WELLBUTRIN (Oral Pill) |
+| waitForValue | fe_name_and_route_C_2 | 24854 |
+
+| fireEvent | fe_drug_use_status_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_use_status_2'} | true |
+| selectByContent | fe_drug_use_status_2 | Active |
+| waitForValue | fe_drug_use_status_C_2 | DRG-A |
+
+| fireEvent | fe_drug_strength_form_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_strength_form_2'} | true |
+| selectByContent | fe_drug_strength_form_2 | 100 mg Tab |
+| waitForValue | fe_drug_strength_form_C_2 | 993688 |
+
+# Put in some neurontin, also to use for the clear row test
+| fireEvent | fe_name_and_route_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_3'} | true |
+| selectByContent | fe_name_and_route_3 | NEURONTIN (Oral Pill) |
+| waitForValue | fe_name_and_route_C_3 | 21194  |
+
+| fireEvent | fe_drug_use_status_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_use_status_3'} | true |
+| selectByContent | fe_drug_use_status_3 | Active |
+| waitForValue | fe_drug_use_status_C_3 | DRG-A |
+
+| fireEvent | fe_drug_strength_form_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_strength_form_3'} | true |
+| selectByContent | fe_drug_strength_form_3 | 300 mg Cap |
+| waitForValue | fe_drug_strength_form_C_3 | 105029 |
+
+# Then let's add some morphine for that pain in the neck.  BIG pain!!
+| fireEvent | fe_name_and_route_4 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_4'} | true |
+| selectByContent | fe_name_and_route_4 | morphine (Injectable) |
+| waitForValue | fe_name_and_route_C_4 | 27142  |
+
+| fireEvent | fe_drug_use_status_4 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_use_status_4'} | true |
+| selectByContent | fe_drug_use_status_4 | Active |
+| waitForValue | fe_drug_use_status_C_4 | DRG-A |
+
+| fireEvent | fe_drug_strength_form_4 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_strength_form_4'} | true |
+| selectByContent | fe_drug_strength_form_4 | 14.3 mg/ml Prefilled Syringe 0.7 ml |
+| waitForValue | fe_drug_strength_form_C_4 | 894911 |
+
+# And finally, some Valium as the last drug for the clear row test
+| fireEvent | fe_name_and_route_5 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_5'} | true |
+| selectByContent | fe_name_and_route_5 | VALIUM (Oral Pill) |
+| waitForValue | fe_name_and_route_C_5 | 25887 |
+
+| fireEvent | fe_drug_use_status_5 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_use_status_5'} | true |
+| selectByContent | fe_drug_use_status_5 | Active |
+| waitForValue | fe_drug_use_status_C_5 | DRG-A |
+
+| fireEvent | fe_drug_strength_form_5 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_strength_form_5'} | true |
+| selectByContent | fe_drug_strength_form_5 | 2 mg Tab |
+| waitForValue | fe_drug_strength_form_C_5 | 104699 |
+
+# And let's put in some medical contact data to test the embedded Comments row
+| fireEvent | fe_medtact_type_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_type_1'} | true |
+| selectByContent | fe_medtact_type_1 | Medical equipment supplier |
+| waitForValue | fe_medtact_type_1 | Medical equipment supplier |
+
+| fireEvent | fe_medtact_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_name_1'} | true |
+| type | fe_medtact_name_1 | Guido's Special Medical Supplies |
+| waitForValue | fe_medtact_name_1 | Guido's Special Medical Supplies |
+| fireEvent | fe_medtact_name_1 | change |
+| fireEvent | fe_medtact_name_1 | blur |
+| waitForValue | fe_medtact_name_1 | Guido's Special Medical Supplies |
+
+| fireEvent | fe_medtact_comnt_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_comnt_1_1'} | true |
+| type | fe_medtact_comnt_1_1 | Ask about racing stripes for the wheelchair |
+| waitForValue | fe_medtact_comnt_1_1 | Ask about racing stripes for the wheelchair |
+| fireEvent | fe_medtact_comnt_1_1 | change |
+| waitForValue | fe_medtact_comnt_1_1 | Ask about racing stripes for the wheelchair |
+
+# wait to make sure that the autosave stuff has run for all the updates
+| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+# Now simulate a "clear row" on the 1st, 3rd, and last drugs entered
+| fireEvent | fe_name_and_route_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_1'} | true |
+| type | fe_name_and_route_1 | |
+| waitForValue | fe_name_and_route_1 | |
+| fireEvent | fe_name_and_route_1 | change |
+| fireEvent | fe_name_and_route_1 | blur |
+| waitForValue | fe_name_and_route_C_1 | |
+| waitForValue | fe_drug_ingredients_1 | |
+| waitForValue | fe_drug_ingredients_C_1 | |
+| waitForValue | fe_drug_classes_1 | |
+| waitForValue | fe_drug_classes_C_1 | |
+
+| fireEvent | fe_drug_use_status_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_use_status_1'} | true |
+| type | fe_drug_use_status_1 | |
+| waitForValue | fe_drug_use_status_1 | |
+| fireEvent | fe_drug_use_status_1 | change |
+| fireEvent | fe_drug_use_status_1 | blur |
+| waitForValue | fe_drug_use_status_C_1 | |
+
+| fireEvent | fe_drug_strength_form_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_strength_form_1'} | true |
+| type | fe_drug_strength_form_1 | |
+| waitForValue | fe_drug_strength_form_1 | |
+| fireEvent | fe_drug_strength_form_1 | change |
+| fireEvent | fe_drug_strength_form_1 | blur |
+| waitForValue | fe_drug_strength_form_C_1 | |
+| waitForValue | fe_drug_routes_1 | |
+| waitForValue | fe_drug_routes_C_1 | |
+
+| fireEvent | fe_name_and_route_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_3'} | true |
+| type | fe_name_and_route_3 | |
+| waitForValue | fe_name_and_route_3 | |
+| fireEvent | fe_name_and_route_3 | change |
+| fireEvent | fe_name_and_route_3 | blur |
+| waitForValue | fe_name_and_route_C_3 | |
+| waitForValue | fe_drug_ingredients_3 | |
+| waitForValue | fe_drug_ingredients_C_3 | |
+| waitForValue | fe_drug_classes_3 | |
+| waitForValue | fe_drug_classes_C_3 | |
+
+| fireEvent | fe_drug_use_status_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_use_status_3'} | true |
+| type | fe_drug_use_status_3 | |
+| waitForValue | fe_drug_use_status_3 | |
+| fireEvent | fe_drug_use_status_3 | change |
+| fireEvent | fe_drug_use_status_3 | blur |
+| waitForValue | fe_drug_use_status_C_3 | |
+
+| fireEvent | fe_drug_strength_form_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_strength_form_3'} | true |
+| type | fe_drug_strength_form_3 | |
+| waitForValue | fe_drug_strength_form_3 | |
+| fireEvent | fe_drug_strength_form_3 | change |
+| fireEvent | fe_drug_strength_form_3 | blur |
+| waitForValue | fe_drug_strength_form_C_3 | |
+| waitForValue | fe_drug_routes_3 | |
+| waitForValue | fe_drug_routes_C_3 | |
+
+| fireEvent | fe_name_and_route_5 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_5'} | true |
+| type | fe_name_and_route_5 | |
+| waitForValue | fe_name_and_route_5 | |
+| fireEvent | fe_name_and_route_5 | change |
+| fireEvent | fe_name_and_route_5 | blur |
+| waitForValue | fe_name_and_route_C_5 | |
+| waitForValue | fe_drug_ingredients_5 | |
+| waitForValue | fe_drug_ingredients_C_5 | |
+| waitForValue | fe_drug_classes_5 | |
+| waitForValue | fe_drug_classes_C_5 | |
+
+| fireEvent | fe_drug_use_status_5 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_use_status_5'} | true |
+| type | fe_drug_use_status_5 | |
+| waitForValue | fe_drug_use_status_5 | |
+| fireEvent | fe_drug_use_status_5 | change |
+| fireEvent | fe_drug_use_status_5 | blur |
+| waitForValue | fe_drug_use_status_C_5 | |
+
+| fireEvent | fe_drug_strength_form_5 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_strength_form_5'} | true |
+| type | fe_drug_strength_form_5 | |
+| waitForValue | fe_drug_strength_form_5 | |
+| fireEvent | fe_drug_strength_form_5 | change |
+| fireEvent | fe_drug_strength_form_5 | blur |
+| waitForValue | fe_drug_strength_form_C_5 | |
+| waitForValue | fe_drug_routes_5 | |
+| waitForValue | fe_drug_routes_C_5 | |
+
+# wait to make sure that the autosave stuff has run for all the updates
+| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+# reload the page
+| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+| waitForVisible | loading_msg |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form again
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('unsaved data changes') > -1} | true |
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('To keep the') > -1} | true |
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('To discard the') > -1} | true |
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('button at either the top or the bottom') > -1} | true |
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('button at the top or the bottom') > -1} | true |
+| verifyExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_problem_1"), 'TR').hasClassName('recovered')} | true |
+| verifyExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_problem_2"), 'TR').hasClassName('recovered')} | true |
+| verifyExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_problem_3"), 'TR').hasClassName('recovered')} | true |
+| verifyExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_name_and_route_1"), 'TR').hasClassName('recovered')} | true |
+| waitForValue | fe_name_and_route_1 | WELLBUTRIN (Oral Pill) |
+| waitForValue | fe_name_and_route_C_1 | 24854 |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_name_and_route_2"), 'TR').hasClassName('recovered')} | true |
+| waitForValue | fe_name_and_route_2 | morphine (Injectable) |
+| waitForValue | fe_name_and_route_C_2 | 27142 |
+| waitForValue | fe_name_and_route_3 | |
+| waitForValue | fe_name_and_route_C_3 | |
+| waitForValue | fe_drug_ingredients_3 | |
+| waitForValue | fe_drug_ingredients_C_3 | |
+| waitForValue | fe_drug_classes_3 | |
+| waitForValue | fe_drug_classes_C_3 | |
+| waitForValue | fe_drug_strength_form_3 | |
+| waitForValue | fe_drug_strength_form_C_3 | |
+| waitForValue | fe_drug_routes_3 | |
+| waitForValue | fe_drug_routes_C_3 | |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_medtact_type_1"), 'TR').hasClassName('recovered')} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_medtact_comnt_1_1"), 'TR').hasClassName('recovered')} | true |
+
+# Now use the save button at the bottom of the page to save the new data and
+# make sure the recovered fields flags go away
+| fireEvent | fe_save_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_save_1'} | true |
+| click | fe_save_1 |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+
+| waitForExpression | javascript{testWindow_.Def.noticeIsHidden()} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_problem_1"), 'TR').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_problem_2"), 'TR').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_problem_3"), 'TR').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_name_and_route_1"), 'TR').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_name_and_route_2"), 'TR').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_medtact_type_1"), 'TR').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_medtact_comnt_1_1"), 'TR').hasClassName('recovered')} | false |
+
+# Also make sure that we have record ids for the new rows, specifically for the ones
+# we're going to change in the next steps
+| waitForExpression | javascript{testWindow_.Def.DataModel.data_table_.phr_conditions[2].record_id != ''} | true |
+| waitForExpression | javascript{testWindow_.Def.DataModel.data_table_.phr_drugs[1].record_id != ''} | true |
+
+# Now change a couple of things (to test highlighting of changes to saved rows)
+# and add some test panel data
+# First we have to write some javascript to open several rows for editing.
+| assertExpression | javascript{var cet=testWindow_.$("fe_problems_header_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_prob_desc_2')); cet.editRow(); cet.initMenuLocation(testWindow_.$('fe_prob_desc_3')); cet.editRow(); cet=testWindow_.$("fe_drugs_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_instructions_2')); cet.editRow(); cet=testWindow_.$("fe_medicontact_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_medtact_email_1')); cet.editRow(); 1} | 1 |
+
+# Clear out the description on the pain in the neck (since it's gone) to
+# test highlighting of blanked out fields
+| fireEvent | fe_prob_desc_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_3'} | true |
+| type | fe_prob_desc_3 |  |
+| waitForValue | fe_prob_desc_3 |  |
+| fireEvent | fe_prob_desc_3 | change |
+| waitForValue | fe_prob_desc_3 |  |
+
+# Add a description of the depression
+| fireEvent | fe_prob_desc_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_2'} | true |
+| type | fe_prob_desc_2 | Woe is me! |
+| fireEvent | fe_prob_desc_2 | change |
+| waitForValue | fe_prob_desc_2 | Woe is me! |
+
+| fireEvent | fe_instructions_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_instructions_2'} | true |
+| type | fe_instructions_2 | Relax! |
+| waitForValue | fe_instructions_2 | Relax! |
+| fireEvent | fe_instructions_2 | change |
+| waitForValue | fe_instructions_2 | Relax! |
+
+| fireEvent | fe_medtact_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_email_1'} | true |
+| type | fe_medtact_email_1 | dont.call.me@iwill.callyou |
+| waitForValue | fe_medtact_email_1 | dont.call.me@iwill.callyou |
+| fireEvent | fe_medtact_email_1 | change |
+| fireEvent | fe_medtact_email_1 | blur |
+| waitForValue | fe_medtact_email_1 | dont.call.me@iwill.callyou |
+
+| fireEvent | fe_tp1_panel_testdate_1_9_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_1_9_1'} | true |
+| type | fe_tp1_panel_testdate_1_9_1 | 2010/12/25 |
+| waitForValue | fe_tp1_panel_testdate_1_9_1 | 2010/12/25 |
+| fireEvent | fe_tp1_panel_testdate_1_9_1 | change |
+| fireEvent | fe_tp1_panel_testdate_1_9_1 | blur |
+| waitForValue | fe_tp1_panel_testdate_1_9_1 | 2010 Dec 25 |
+
+| fireEvent | fe_tp1_panel_testdate_time_1_9_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_time_1_9_1'} | true |
+| type | fe_tp1_panel_testdate_time_1_9_1 | 6 |
+| waitForValue | fe_tp1_panel_testdate_time_1_9_1 | 6 |
+| fireEvent | fe_tp1_panel_testdate_time_1_9_1 | change |
+| fireEvent | fe_tp1_panel_testdate_time_1_9_1 | blur |
+| waitForValue | fe_tp1_panel_testdate_time_1_9_1 | 6:00 AM |
+
+| fireEvent | fe_tp1_panel_testplace_1_9_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testplace_1_9_1'} | true |
+| selectByContent | fe_tp1_panel_testplace_1_9_1 | Other |
+| waitForValue | fe_tp1_panel_testplace_1_9_1 | Other |
+
+| fireEvent | fe_tp1_panel_summary_1_9_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_summary_1_9_1'} | true |
+| type | fe_tp1_panel_summary_1_9_1 | Nowhere, no time, no way |
+| waitForValue | fe_tp1_panel_summary_1_9_1 | Nowhere, no time, no way |
+| fireEvent | fe_tp1_panel_summary_1_9_1 | change |
+| waitForValue | fe_tp1_panel_summary_1_9_1 | Nowhere, no time, no way |
+
+| fireEvent | fe_tp1_test_value_1_9_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_9_1_1'} | true |
+| selectByContent | fe_tp1_test_value_1_9_1_1 | Yes |
+| waitForValue | fe_tp1_test_value_1_9_1_1 | Yes |
+
+| fireEvent | fe_tp1_test_value_1_9_1_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_9_1_2'} | true |
+| selectByContent | fe_tp1_test_value_1_9_1_2 | Yes |
+| waitForValue | fe_tp1_test_value_1_9_1_2 | Yes |
+
+# We tested whether or not the autosave function will kick off on its own above,
+# so this time invoke it directly.
+| verifyExpression | javascript{testWindow_.Def.AutoSave.checkForUpdates(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+# reload the page
+| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+| waitForVisible | loading_msg |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form again
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# check highlighting and message
+| waitForVisible | fe_prob_desc_3 |
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('unsaved data changes') > -1} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_prob_desc_2"), 'TD').hasClassName('recovered')} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_prob_desc_3"), 'TD').hasClassName('recovered')} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_instructions_2"), 'TD').hasClassName('recovered')} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_medtact_email_1"), 'TD').hasClassName('recovered')} | true |
+# The following lines fail due to a last-row bug with the recovered styles.
+# These will be uncommented after that is fixed.
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.getAncestor(testWindow_.$("fe_tp1_panel_testdate_1_9_1"), 'TABLE', true), 'TD').hasClassName('recovered')} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_tp1_panel_testdate_time_1_9_1"), 'TD').hasClassName('recovered')} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_tp1_panel_testplace_1_9_1"), 'TD').hasClassName('recovered')} | true |
+
+# make sure we haven't lost the record ids
+| waitForExpression | javascript{testWindow_.Def.DataModel.data_table_.phr_conditions[2].record_id != ''} | true |
+| waitForExpression | javascript{testWindow_.Def.DataModel.data_table_.phr_drugs[1].record_id != ''} | true |
+
+
+# Now use the save button at the top of the page to save the new data and
+# make sure the recovered fields flags go away
+| click | fe_save_top_1_1 |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+
+# check lack of highlighting and message
+| waitForExpression | javascript{testWindow_.Def.noticeIsHidden()} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_prob_desc_2"), 'TD').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_prob_desc_3"), 'TD').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_instructions_2"), 'TD').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_medtact_email_1"), 'TD').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.getAncestor(testWindow_.$("fe_tp1_panel_testdate_1_9_1"), 'TABLE', true), 'TR').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_tp1_panel_testdate_time_1_9_1"), 'TD').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_tp1_panel_testplace_1_9_1"), 'TD').hasClassName('recovered')} | false |
+
+# Check to make sure that the redesign fixed the problem of reverted values showing
+# as changed.
+
+# Open up the depression row and the Wellbutrin row
+| assertExpression | javascript{var cet=testWindow_.$("fe_problems_header_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_prob_desc_2')); cet.editRow(); 1} | 1 |
+| assertExpression | javascript{var cet=testWindow_.$("fe_medicontact_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_medtact_ph_1')); cet.editRow(); 1} | 1 |
+
+
+# Change the onset date for the depression to 1990
+| fireEvent | fe_when_started_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+| type | fe_when_started_2 | 1990 |
+| fireEvent | fe_when_started_2 | change |
+| fireEvent | fe_when_started_2 | blur |
+| waitForValue | fe_when_started_2 | 1990 |
+
+# Add a phone number for our medical contact
+| fireEvent | fe_medtact_ph_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_ph_1'} | true |
+| type | fe_medtact_ph_1 | Ring ring! |
+| waitForValue | fe_medtact_ph_1 | Ring ring! |
+| fireEvent | fe_medtact_ph_1 | change |
+| waitForValue | fe_medtact_ph_1 | Ring ring! |
+
+# force an autosave
+| verifyExpression | javascript{testWindow_.Def.AutoSave.checkForUpdates(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+# Now put things back the way they were
+# Reset the onset date for the depression to 1992
+| fireEvent | fe_when_started_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+| type | fe_when_started_2 | 1992 |
+| fireEvent | fe_when_started_2 | change |
+| fireEvent | fe_when_started_2 | blur |
+| waitForValue | fe_when_started_2 | 1992 |
+
+# Remove the phone number on our medical contact
+| fireEvent | fe_medtact_ph_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_ph_1'} | true |
+| type | fe_medtact_ph_1 | |
+| fireEvent | fe_medtact_ph_1 | change |
+| waitForValue | fe_medtact_ph_1 | |
+
+# force an autosave
+| verifyExpression | javascript{testWindow_.Def.AutoSave.checkForUpdates(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+# reload the page
+| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+| waitForVisible | loading_msg |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form again
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# Make sure there is no unsaved changes message and that the fields we changed
+# and then reverted are not highlighted.
+# check highlighting and message
+| waitForVisible | fe_prob_desc_3 |
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('unsaved data changes') > -1} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_when_started_2"), 'TD').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_medtact_ph_1"), 'TD').hasClassName('recovered')} | false |
+
+# Now test where we have one change that does NOT get reverted and one that does.
+# Open up the depression row and the medical contacts row
+| assertExpression | javascript{var cet=testWindow_.$("fe_problems_header_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_prob_desc_2')); cet.editRow(); 1} | 1 |
+| assertExpression | javascript{var cet=testWindow_.$("fe_medicontact_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_medtact_ph_1')); cet.editRow(); 1} | 1 |
+
+# Change the onset date for the depression to 1990
+| fireEvent | fe_when_started_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+| type | fe_when_started_2 | 1990 |
+| waitForValue | fe_when_started_2 | 1990 |
+| fireEvent | fe_when_started_2 | change |
+| fireEvent | fe_when_started_2 | blur |
+| waitForValue | fe_when_started_2 | 1990 |
+
+# Add a phone number for our medical contact
+| fireEvent | fe_medtact_ph_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_medtact_ph_1'} | true |
+| type | fe_medtact_ph_1 | Ring ring! |
+| waitForValue | fe_medtact_ph_1 | Ring ring! |
+| fireEvent | fe_medtact_ph_1 | change |
+| waitForValue | fe_medtact_ph_1 | Ring ring! |
+
+# force an autosave
+| verifyExpression | javascript{testWindow_.Def.AutoSave.checkForUpdates(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+# Now put things back the way they were for the depression only
+# Reset the onset date for the depression to 1992
+| fireEvent | fe_when_started_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+| type | fe_when_started_2 | 1992 |
+| waitForValue | fe_when_started_2 | 1992 |
+| fireEvent | fe_when_started_2 | change |
+| fireEvent | fe_when_started_2 | blur |
+| waitForValue | fe_when_started_2 | 1992 |
+
+# force an autosave
+| verifyExpression | javascript{testWindow_.Def.AutoSave.checkForUpdates(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+# reload the page
+| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+| waitForVisible | loading_msg |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form again
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# Make sure there is an unsaved changes message and that the field we changed
+# and then reverted is not highlighted - but the one we didn't revert is.
+# check highlighting and message
+| waitForVisible | fe_prob_desc_3 |
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('unsaved data changes') > -1} | true |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_when_started_2"), 'TD').hasClassName('recovered')} | false |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_medtact_ph_1"), 'TD').hasClassName('recovered')} | true |
+
+# Now use the save and close button at the top of the page to save the new data
+# and make sure the recovered fields flags go away
+# BUT FIRST, make a change to the depression start date, so that we can check
+# that it was made.
+| assertExpression | javascript{var cet=testWindow_.$("fe_problems_header_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_prob_desc_2')); cet.editRow(); 1} | 1 |
+| fireEvent | fe_when_started_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+| type | fe_when_started_2 | 1984 |
+| waitForValue | fe_when_started_2 | 1984 |
+| fireEvent | fe_when_started_2 | change |
+| fireEvent | fe_when_started_2 | blur |
+| waitForValue | fe_when_started_2 | 1984 |
+
+| click | fe_save_top_1_1 |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+
+# reload the page
+| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+| waitForVisible | loading_msg |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form again
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+| waitForVisible | fe_prob_desc_2 |
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('unsaved data changes') > -1} | false |
+| assertExpression | javascript{var cet=testWindow_.$("fe_problems_header_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_prob_desc_2')); cet.editRow(); 1} | 1 |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_when_started_2"), 'TD').hasClassName('recovered')} | false |
+| waitForValue | fe_when_started_2 | 1984 |
+
+# Now try the save and close button at the bottom of the page
+# Reset the onset date for the depression to 1980
+| assertExpression | javascript{var cet=testWindow_.$("fe_problems_header_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_when_started_2')); cet.editRow(); 1} | 1 |
+
+| fireEvent | fe_when_started_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+| type | fe_when_started_2 | 1980 |
+| waitForValue | fe_when_started_2 | 1980 |
+| fireEvent | fe_when_started_2 | change |
+| fireEvent | fe_when_started_2 | blur |
+| waitForValue | fe_when_started_2 | 1980 |
+
+# force an autosave
+| verifyExpression | javascript{testWindow_.Def.AutoSave.checkForUpdates(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+| click | fe_save_top_1_1 |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+
+# reload the page
+| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+| waitForVisible | loading_msg |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form again
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+| waitForVisible | fe_prob_desc_2 |
+| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('unsaved data changes') > -1} | false |
+| assertExpression | javascript{var cet=testWindow_.$("fe_problems_header_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_prob_desc_2')); cet.editRow(); 1} | 1 |
+| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_when_started_2"), 'TD').hasClassName('recovered')} | false |
+| waitForValue | fe_when_started_2 | 1980 |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |
+
+
+
+# TESTING OF THE CANCEL BUTTONS IS ON HOLD UNTIL we can figure out how to
+# respond to the confirm cancel box.
+# Now make sure the cancel buttons are working.  Start with the one at the top
+# Reset the onset date for the depression to 1970
+#| fireEvent | fe_when_started_2 | focus |
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_when_started_2'} | true |
+#| type | fe_when_started_2 | 1970 |
+#| waitForValue | fe_when_started_2 | 1970 |
+#| fireEvent | fe_when_started_2 | change |
+#| fireEvent | fe_when_started_2 | blur |
+#| waitForValue | fe_when_started_2 | 1970 |
+
+# force an autosave
+#| verifyExpression | javascript{testWindow_.Def.AutoSave.checkForUpdates(); true;} | true |
+#| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+#| click | fe_close_top_1_1 |
+
+#| keyDown | dom=html | \13 |  # THIS DOESN'T WORK
+#| waitForExpression | javascript{testWindow_.location.href} | */profiles |
+#| waitForTextPresent | Loaded in |
+
+#| waitForVisible | fe_action_1 |
+#| fireEvent | fe_action_1 | focus |
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_action_1'} | true |
+#| selectByContent | fe_action_1 | Review/Edit PHR |
+#| waitForValue | fe_action_C_1 | 2 |
+#| waitForVisible | fe_record_name_1 |
+#| waitForVisible | fe_do_action_1 |
+#| fireEvent | fe_record_name_1 | focus |
+#| selectByContent | fe_record_name_1 | javascript{storedVars['recName']} |
+#| waitForValue | fe_record_name_1 | javascript{storedVars['recName']} |
+#| waitForButtonEnabled | fe_do_action_1 |
+#| click | fe_do_action_1 |
+#| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+#| waitForTextPresent | Loaded in |
+
+# Make sure no "unsaved changes" stuff AND the change was canceled
+#| waitForVisible | fe_prob_desc_2 |
+#| waitForExpression | javascript{(testWindow_.$("notification").innerHTML).indexOf('unsaved data changes') > -1} | false |
+#| assertExpression | javascript{var cet=testWindow_.$("fe_problems_header_0").ce_table; cet.initMenuLocation(testWindow_.$('fe_prob_desc_2')); cet.editRow(); 1} | 1 |
+#| waitForExpression | javascript{testWindow_.getAncestor(testWindow_.$("fe_when_started_2"), 'TD').hasClassName('recovered')} | false |
+#| waitForValue | fe_when_started_2 | 1980 |

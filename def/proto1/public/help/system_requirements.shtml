@@ -1,0 +1,44 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>What Are the System Requirements for Using the PHR?</h1>
+
+		<p>
+<h3>Operating Systems</h3>
+<p>
+The PHR will work with the following operating systems:
+
+    <ul>
+       <li>Windows 8, 7, Vista, or XP</li>
+       <li>Macintosh OS X </li>
+       <li>Linux</li>
+    </ul>
+</p>
+<h3>Browsers</h3>
+<p>
+The PHR will work with the following browsers:
+
+     <ul>
+       <li>Mozilla Firefox Version 18.0 or later</li>
+       <li>Internet Explorer Version 9.0 or later</li>
+       <li>Google Chrome Version 24.0 or later</li>
+       <li>Safari Version 5.0 or later  (not extensively tested, but we believe it works with all of the PHR's features) </li>
+</ul>
+</p>
+<p><b>Note:</b> When accessing the PHR, users should avoid opening more than one instance of the PHR at the same time. Using multiple windows to view and enter data within the PHR may result in unexpected behavior such as errors when attempting to save data. This applies to both the basic and standard versions of the PHR.</p>
+
+<h3>Browser Settings</h3>
+<p>
+     <ul>
+       <li><b>Enable JavaScript:</b> Regardless of your browser type, you must have a browser that supports JavaScript and the browser must be set to enable JavaScript. (Does not apply to <a href="/accounts/login.basic" target="_blank" onclick="window.opener.document.location='/accounts/login.basic'; window.close(); return false">Basic HTML Mode</a>.)</li>
+       <li><b>Enable Session Cookies:</b> You must also have session cookies enabled in your browser to use the PHR.</li>
+</ul>
+</p>
+<h3>Accessibility</h3>
+<p>
+<ul>
+<li><a href="/help/trouble_reading_text.shtml">Increasing and decreasing the size of the PHR text.</a></li>
+<li>If you plan to use the PHR with assistive technology such as screen readers, please access the PHR using <a href="/accounts/login.basic" target="_blank" onclick="window.opener.document.location='/accounts/login.basic'; window.close(); return false">Basic HTML Mode</a>.  </li>
+</ul>
+    </ul>
+ </p>
+<!--#include virtual="help_footer.shtml" -->

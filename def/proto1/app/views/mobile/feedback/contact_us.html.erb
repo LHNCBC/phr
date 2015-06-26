@@ -1,0 +1,12 @@
+<%= form_tag_wo_ajax contact_us_path(:format=>:basic), :method=>:post %>
+  <input type="hidden" value="basic" name="page_type" />
+  <div><%=fd_text_field_m @fds['con_name'], nil, {}, 'fe', '_1' %></div>
+  <div><%=fd_text_field_m @fds['con_email'], nil, {}, 'fe', '_1' %></div>
+  <div><%=fd_text_field_m @fds['con_phone'], nil, {}, 'fe', '_1' %></div>
+  <div><%=fd_text_field_m @fds['feedback_type'], nil, {}, 'fe', '_1' %></div>
+  <div><%=fd_text_area_m @fds['contact_comment'], nil, {}, 'fe', '_1' %></div>
+  <%= submit_tag_m 'Submit' %>
+  <%= link_to_m 'Cancel', '/' %>
+</form>
+
+

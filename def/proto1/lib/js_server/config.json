@@ -1,0 +1,5 @@
+{
+  "gid": "TBD - e.g., webserve",
+  "uid": "TBD - e.g., webserve",
+  "uri": "http://localhost:3001/fetch_reminders"
+}

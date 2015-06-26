@@ -1,0 +1,151 @@
+<%# The flowsheet template %>
+<table border="1" class="panel_timeline" p_no=<%=@panel_def[0]['loinc_num'] %> >
+  <%# define columns %>
+  <%- @panel_date.each do |date| -%>
+    <%- obr_id = date.keys[0] -%>
+    <%- p_ln = date.values[0][5] -%>
+    <%- p_name = date.values[0][6] -%>
+    <%- col_class=date.values[0][4].join(' ')-%>
+    <%- if obr_id.include?('sum') -%>
+      <col class="<%= col_class %>"> </col>
+    <%- elsif !@p.using_group_by -%>
+      <col class="<%= col_class %>" obr_id="<%=obr_id%>" p_ln="<%=p_ln%>" p_name="<%=p_name%>"> </col>
+    <%- end -%>
+  <%- end -%>
+  <%# add data table column headers %>
+  <%# year %>
+  <tr>
+    <th>Panel, field, or test name</th>
+    <%- @panel_date.each do |date| -%>
+      <%- obr_id = date.keys[0] -%>
+      <% if !@p.using_group_by || obr_id.include?('sum') -%>
+        <%- value=date.values[0][0] -%>
+        <%- col_class=date.values[0][4].join(' ') -%>
+        <th class="<%= col_class %>">
+          <%= value.blank? ? '&nbsp;'.html_safe : value %>
+        </th>
+      <% end -%>
+    <%- end -%>
+  </tr>
+  <%# month-day, or the group %>
+  <tr>
+    <th></th>
+    <%- @panel_date.each do |date| -%>
+      <%- obr_id = date.keys[0] -%>
+      <% if !@p.using_group_by || obr_id.include?('sum') -%>
+        <%- value=date.values[0][1] -%>
+        <%- col_class=date.values[0][4].join(' ') -%>
+        <th class="<%= col_class %>">
+          <%= value.blank? ? '&nbsp;'.html_safe : value %>
+        </th>
+      <% end -%>
+    <%- end -%>
+  </tr>
+  <%# time, or the expand button %>
+  <tr>
+    <th></th>
+    <%- @panel_date.each do |date| -%>
+      <%- obr_id = date.keys[0] -%>
+      <% if !@p.using_group_by || obr_id.include?('sum') -%>
+        <%- value=date.values[0][2] -%>
+        <%- value ='&nbsp;'.html_safe if value.blank? -%>
+        <%- col_class=date.values[0][4].join(' ') -%>
+        <th class="<%= col_class %>">
+          <%= value %>
+        </th>
+      <% end -%>
+    <%- end -%>
+  </tr>
+  <%# add the data table %>
+  <%- index=0 -%>
+  <%- @panel_data.each do |obx_rec| -%>
+    <%- panel = @panel_def[index] -%>
+    <%- if !panel.empty? -%>
+      <%- if panel['panel_separator'] -%>
+      <%-   class_name ="panel_separator" -%>
+      <%-   value='&nbsp;'.html_safe -%>
+      <%- else -%>
+        <%- value=panel['name'] -%>
+        <%- if !panel['is_test'] -%>
+        <%-   class_name ="panel_header " -%>
+        <%- else -%>
+        <%-   class_name =" " -%>
+        <%-   units=panel['units'] -%>
+        <%-   value += " (" + units + ")" if !units.blank? -%>
+        <%- end -%>
+        <%- if panel['no_data'] -%>
+        <%-   class_name +="no_data " -%>
+        <%- end -%>
+        <%- if panel['panel_info'] -%>
+        <%-   class_name +="panel_info " -%>
+        <%- end -%>
+        <%- display_level ="panel_l" + panel['disp_level'].to_s -%>
+        <%- class_name += display_level -%>
+      <%- end -%>
+    <%- else -%>
+      <%-   class_name =" " -%>
+      <%-   value='&nbsp;' -%>
+    <%- end -%>
+    <%  if !@hide_empty_rows || !@panel_def[index]['no_data'] %>
+      <%- if units.blank? -%>
+      <tr>
+      <%- else -%>
+      <tr units="<%=units%>">
+      <%- end -%>
+        <% level = panel['disp_level'].to_i
+           indent=(level-1)*1.5
+           tag = panel['is_test'] ? 'div' : "h#{level+2}" %>
+        <th class="test_name"><<%=tag%> style="padding-left: <%=indent%>em"><%=value%></<%=tag%> ></th>
+
+
+      <%- @panel_date.each do |date | -%>
+        <%- obr_id = date.keys[0] -%>
+        <% if !@p.using_group_by || obr_id.include?('sum') -%>
+          <%# check column class %>
+          <%- col_class=date.values[0][4].clone -%>
+          <%- if obx_rec.empty? || !@panel_def[index]['is_test'] -%>
+            <%- if @panel_def[index]['no_data'] -%>
+              <%- cell_value =  '-' -%>
+              <%- col_class << 'no_data' -%>
+            <%- else -%>
+              <%- cell_value = '&nbsp;'.html_safe -%>
+             <%- end -%>
+          <%- else -%>
+            <%- if !obx_rec[obr_id].nil? && !obx_rec[obr_id].empty? -%>
+              <%- value = obx_rec[obr_id][0].blank? ? '&nbsp' : obx_rec[obr_id][0] -%>
+              <%- has_data = obx_rec[obr_id][9] -%>
+              <%- if !has_data -%>
+                <%- cell_value ='-' -%>
+                <%- col_class << 'no_data' -%>
+              <%- else -%>
+                <%# display units with value if there's one %>
+                <%- units = obx_rec[obr_id][2] -%>
+                <%- if !units.blank? -%>
+                <%-   value += " " + units -%>
+                <%- end -%>
+                <%# display abnormal flag with value if there's one %>
+                <%- abnormal_flag = obx_rec[obr_id][1] -%>
+                <%- if abnormal_flag.blank? -%>
+                  <%- cell_value = value  -%>
+                <%- else -%>
+                  <%- cell_value = h(value) +
+                    '<span class="readonly_field flag">'.html_safe +
+                    h(abnormal_flag) + '</span>'.html_safe -%>
+                <%- end -%>
+              <%- end -%>
+            <%- else -%>
+              <%- cell_value ='-' -%>
+              <%- col_class << 'no_data' -%>
+            <%- end -%>
+          <%- end -%>
+          <td class="<%= col_class.join(' ') %>">
+            <%= cell_value %>
+          </td>
+        <%- end -%>
+      <% end -%>
+      </tr>
+    <% end %>
+    <%- index +=1 -%>
+  <%- end -%>
+</table>
+<p></p>

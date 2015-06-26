@@ -1,0 +1,3 @@
+Hydrochloride|HCl
+Hydrochloric Acid|HCl
+hydrochloride|HCl

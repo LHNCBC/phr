@@ -1,0 +1,48 @@
+﻿=============================================================================================
+# Release Notes         						  October 10, 2010 #
+=============================================================================================
+
+# Version 1.3
+
+# Improvements/additions:
+
+- Improved Opera support:
+	- Previous versions relied on browser sniffing to detect Opera(older versions of Opera don't support right-click event overrides).
+	  The new version relies on feature-detection as described here: http://perfectionkills.com/detecting-event-support-without-browser-sniffing/.
+	- The event and operaEvent properties can be set to both a modifier and the actual event like this: 'ctrl+click'.
+	  The contextmenu can now be invoked by pressing and holding Ctrl and clicking the left mouse button.
+	  This improvement was suggested by Roman Imankulov (www.netangels.ru). 
+	- The default value of the operaEvent property changed from 'dblclick' to 'ctrl+click'.
+- When using livequery(by setting options.livequery to true and including a reference to livequery), menu items are now also bound by livequery.
+  This enables dynamically adding menu items to an already initialized menu.
+- The onShow callback receives two additional parameters: 'startLeft' and 'startTop'.
+  The parameters contain the location where the contextmenu is about to show/fade-in.
+  Previous versions overrode the e.pageX and e.pageY properties of the original event object e with the location of the menu, which wasn't good practice.
+- Added option 'openBelowContext'.
+  Default undefined.  
+  When set to true, instead of opening at the clicked position the contextmenu opens at the lowerleft corner of the context.
+  The first level of the menu automatically maintains its vertical position regardless of height overflow and window resizes.
+  This feature can be used to create a contextmenu opened by a button, or to create multilevel dropdown menus.
+- Added option 'ignoreWidthOverflow'.
+  Default undefined.
+  When set to true, width overflow is ignored which causes the menu to expand across the right boundary of the window.
+- Added option 'ignoreHeightOverflow'.
+  Default undefined. 
+  When set to true, height overflow is ignored which causes the menu to expand across the bottom boundary of the window.
+- Added option 'startLeftOffset'.
+  Default 0.
+  This value is added to the left position where the menu is about to show/fade-in.
+- Added option 'startTopOffset'.
+  Default 0.
+  This value is added to the top position where the menu is about to show/fade-in.
+- Added option 'keyboard'.
+  Default true. 
+  When set to false, the menu doesn't respond to keyboard events.
+- Added option 'autoHide'.
+  Default undefined. 
+  When set to true, the whole menu hides after the mouse pointer exits the menu.
+  The delay property controls the time between exiting the menu and hiding the menu.
+  
+  
+
+

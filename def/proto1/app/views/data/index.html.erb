@@ -1,0 +1,139 @@
+<%= stylesheet_link_tag  'data_index' %>
+<h2>Current List Data</h2>
+<div id="download" class="section">
+  <p class="instructions">
+    Click a link below to download a CSV file containing the list's data.
+  Open the downloaded file in Excel, edit, save (as CSV), and the upload the
+  revised file using the "Submit changes" section below.  Items can be deleted
+  by placing the word "delete " (with a space afterwards) in front of the id value in the
+  item's id column.  New items can be created by adding a new row that does
+  not have an id.  If you delete a row completely from the file you upload,
+  no change will be made to it, so if you wish you can just submit a subset
+  of the list records.</p>
+  <table><thead><col width="50%" /><col width="50%" /></thead><tbody><tr><td>
+    <ul class="table_list">
+      <li>Allergies
+        <div class="table_links">
+          <ul>
+            <li><%= download_link('All allergies', 'text_list_items',
+              'text_list_id=136') %></li>
+            <li><%= download_link('Allergic reactions', 'text_list_items',
+              'text_list_id=26') %></li>
+          </ul>
+        </div>
+      </li>
+      <li><%= download_link('Drugs- Why Stopped', 'text_list_items',
+        'text_list_id=59') %></li>
+      <%#*<li>PHR Management Page%>
+        <%#*<div class="table_links">%>
+          <%#*<ul>%>
+            <%#*<li><%= download_link('Actions',%>
+               <%#*'text_list_items', 'text_list_id=98') </li>%>
+            <%#*<li><%= download_link('File Formats',%>
+               <%#*'text_list_items', 'text_list_id=107') (for Export)</li>%>
+          <%#*</ul>%>
+        <%#*</div>%>
+      <%#*</li>%>
+    </ul>
+    </td><td>
+    <ul class="table_list">
+      <li><%= download_link('Immunizations', 'text_list_items', 'text_list_id=137') %></li>
+      <!-- <li><%# = download_link('Major Surgeries & Implants', 'text_list_items',
+        'text_list_id=39') This is now from the table used by Medical Conditions  %></li>  -->
+      <li>Medical Conditions (also the list for Surgeries)
+        <div class="table_links">
+          <ul>
+            <li><%= download_link('Main table', 'gopher_terms') %></li>
+            <li><%= download_link('Term synonyms', 'gopher_term_synonyms') %></li>
+            <li><%= download_link('Word synonyms', 'word_synonyms') %></li>
+            <li><%= download_link('Medline Plus links', 'gopher_terms_mplus_hts') %></li>
+            <li><%= download_link('Status', 'text_list_items',
+               'text_list_id=113') %> (okay to rename,
+              but do not create or delete)</li>
+          </ul>
+        </div>
+      </li>
+      <li><%= download_link('Medical Contacts', 'text_list_items',
+        'text_list_id=93') %></li>
+      <li><%= download_link('Question Categories', 'text_list_items',
+        'text_list_id=60') %></li>
+      <li><%= download_link('Vaccine Dose Number', 'text_list_items',
+        'text_list_id=20') %></li>
+      <li><%= download_link('Regular expression validation error messages',
+        'regex_validators')%> (Be careful to only edit the error message
+        field.)</li>
+      <li><%= download_link('Security Questions', 'text_list_items',
+        'text_list_id=96')%></li>
+    </ul>
+   </td>
+  </tr></tbody></table>
+</div>
+
+<h2>Form Text & Help</h2>
+<div class="section">
+  <p class="instructions">
+    You may also edit some of the text that appears on the form, such as
+    form instruction text and field labels.  The edit and update procedure is
+    the same as for the data lists above, except that you cannot create or
+    delete field records.</p>
+  <table width="100%"><thead><col width="50%" /><col width="50%" /></thead><tbody><tr><td>
+    <ul class="table_list">
+      <li>User Account Forms
+        <div class="table_links">
+          <ul>
+            <li><%= form_text_link('signup', 'Account Signup') %></li>
+            <li><%= form_text_link('login_answer', 'Login Assistance') %></li>
+            <li><%= form_text_link('two_factor_question', 'Confirm Your Identity') %></li>
+            <li><%= form_text_link('forgot_id', 'Recover User ID') %></li>
+            <li><%= form_text_link('forgot_id_step2', 'Recover User ID - Step 2') %></li>
+            <li><%= form_text_link('forgot_password', 'Forgotten Password') %></li>
+            <li><%= form_text_link('reset_password_step2', 'Forgotten Password - Step 2') %></li>
+            <li><%= form_text_link('reset_password_step3', 'Forgotten Password - Step 3') %></li>
+            <li><%= form_text_link('login', 'Login Page') %></li>
+            <li><%= form_text_link('verify_password',
+                 'Verify Password (for account settings)') %></li>
+            <li><%= form_text_link('change_profile', 'Account Settings') %></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+    </td><td>
+    <ul class="table_list">
+      <li>PHR Application Pages
+        <div class="table_links">
+          <ul>
+            <li><%= form_text_link('phr', 'PHR') %></li>
+            <li><%= form_text_link('panel_view', 'View & Edit Results Timeline') %></li>
+            <li><%= form_text_link('panel_edit', 'Add Trackers & Test Results') %></li>
+            <li><%= form_text_link('loinc_panel_temp', 'Entry Template for Panels') %></li>
+            <li><%= form_text_link('phr_home', 'PHR Home') %></li>
+            <li><%= form_text_link('date_reminders', 'Due Date Reminders') %></li>
+            <li><%= form_text_link('reminder_options', 'Due Date Settings') %></li>
+          </ul>
+        </div>
+      </li>
+      <li><%= form_text_link('contact_support', 'PHR Support') %></li>
+      <li><%= form_text_link('feedback', 'Feedback') %></li>
+    </ul>
+   </td>
+  </tr></tbody></table>
+
+  <p class="instructions">Help pages for form fields can be edited on the
+    <%=  link_to 'help management page', '/help_text' %>.</p>
+</div>
+
+<h2>Submit Changes</h2>
+<div id="upload" class="section">
+  <form method="post" action="/data/update" enctype="multipart/form-data">
+    <input name="authenticity_token" type="hidden"
+     value="<%= form_authenticity_token -%>" />
+    Enter or select the CSV formatted file to use in updating the data tables:
+    <br />
+    <input type="file" size="80" id="update_file" name="update_file" />
+    <button type="submit" class="rounded"><span>Update</span></button>
+    <p>Note:  After the update completes, you will receive an email message
+     letting you know whether things went okay.  Also, the web server will be
+     restarted, so wait a minute after receiving the email before trying to
+     see your changes or uploading further update files.</p>
+  </form>
+</div>

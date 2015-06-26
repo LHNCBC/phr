@@ -1,0 +1,16 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>Editing Test Results and Health Tracker Data</h1>
+
+<h3>To edit test results or tracker data that has already been entered:</h3> 
+<p>
+                <ol>
+                    <li>Click the <b>Tests & Measures</b> link on the main PHR page.  </li>
+
+                     <li>Click the <b>View/Edit</b> link next to the test result you want to edit and then click the  <b>Edit</u></b> link next to the item you want to edit. </li>
+                    
+</ol>
+</p>
+<h3>How do I ...</h3>
+<p>
+<a href="basic_add_new_test.shtml">Add a new result to a test or tracker?</a></p>
+<!--#include virtual="help_footer.shtml" -->

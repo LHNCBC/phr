@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>New Email</h1>
+		<p>
+    Please enter your new email address here. This email address will replace the old email address that was associated with your PHR account. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Status</h1>
+		<p>
+		If the medical condition is still present, ongoing, or currently being treated, record its status as <b>Active.</b> </p>
+<p>
+		If the condition has been cured or is not currently present, record its status as <b>Inactive.</b>  
+		</p>
+<!--#include virtual="help_footer.shtml" -->	

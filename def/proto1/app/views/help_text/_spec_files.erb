@@ -1,0 +1,30 @@
+<% total = help_files.length %>
+<h3><%= "'#{help_type}' help files: #{total}" %> </h3>
+<table>
+  <tr>
+    <th>No.</th>
+    <th>File Name</th>
+    <th>No.</th>
+    <th>File Name</th>
+    <th>No.</th>
+    <th>File Name</th>
+  </tr>
+  <% i = 0 %>
+  <% while i < total %>
+    <tr>
+    <%  0.upto(2) do |j| %>
+      <% file_name = help_files[i+j] %>
+      <% if help_type.match 'all' %>
+        <% link =  "/help/#{file_name}" %>
+      <% else %>
+        <% link =  "/help/installation/#{help_type.downcase}/#{file_name}" %>
+      <% end %>
+      <%  if i+j < total %>
+      <td><%= i+j+1 %></td>
+      <td><a href='<%= link %>'><%= file_name %></a></td>
+      <% end %>
+    <% end %>
+    </tr>
+    <% i += 3 %>
+  <% end %>
+</table>

@@ -1,0 +1,1415 @@
+| setTimeout | 40000 |
+# first log in, so that we are sure which user account we're using
+| open | /accounts/logout |
+| waitForTextPresent | Loaded in |
+| pause | 200 |
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| typeText | fe_user_name_1_1 | test_admin |
+| pause | 200 |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| typeText | fe_password_1_1 | I'm a test admin account |
+| pause | 200 |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+| pause | 200 |
+| waitForExpression | javascript{testWindow_.createCookie('phr_user', '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81',365); true} | true |
+| pause | 500 |
+| waitForExpression | javascript{testWindow_.readCookie('phr_user');} | 3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81 |
+| pause | 200 |
+| click | fe_login_1_1 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */admin_home |
+| waitForVisible | fe_phrs_1 |
+| waitForButtonEnabled | fe_phrs_1 |
+| storeExpression | javascript{a={}} | events |
+
+# Move the focus off the page and then back on.  Use the pause to let the
+# user see the box rather than have it flash by, which is annoying.
+| waitForExpression| javascript{blankWin = window.open('', 'Blank Window', 'width=400,height=250,left=200,top=100,scrollbars=no,toolbar=no,menubar=no,location=no'); blankWin.document.write('<center><br><br><br><p style="font-size:1.5em;color:green;"><b>YEEHAH!</b></p></center>'); blankWin.focus(); true;} | true |
+| pause | 500 |
+| waitForExpression | javascript{blankWin.close(); true;} | true |
+#| pause | 5000 |
+
+# Check for expected events
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+#| pause | 5000 |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true);} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['admin_index'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Administrator Home Page'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['admin_index'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Administrator Home Page'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['admin_index'] == 1;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Administrator Home Page'] == 1;} | true |
+
+# Move to the PHR Home page to create a profile to use for this test
+| click | fe_phrs_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home* |
+| waitForVisible | add_new |
+
+# Move the focus off the page and then back on
+| waitForExpression| javascript{blankWin = window.open('', 'Blank Window', 'width=400,height=250,left=200,top=100,scrollbars=no,toolbar=no,menubar=no,location=no'); blankWin.document.write('<center><br><br><br><p style="font-size:2em;color:blue;"><b>YEEHAH!</b></p></center>'); blankWin.focus(); true;} | true |
+| pause | 500 |
+| waitForExpression | javascript{blankWin.close(); true; | true |
+
+# Check for expected events
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true);} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['phr_home'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['My Personal Health Records'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['phr_home'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['My Personal Health Records'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['phr_home'] == 1;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['My Personal Health Records'] == 1;} | true |
+
+# Create a profile
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'test_um1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | profileName |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Male |
+| pause | 500 |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | M |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| pause | 1000 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 1952/03 |
+| pause | 1000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 1952 Mar |
+
+# Save the form
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# Check for the form_opened event for the PHR form; toss any others (focus)
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false);} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['PHR'] == 1;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['PHR'] == 1;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['PHR'] = 0 ; true;} | true |
+
+# Save the constant that defines how long autocompleter lists are before being
+# expanded.  We use it to confirm list lengths, and it seems like referencing
+# it in autocompleter base sometimes causes problems.
+| storeExpression | javascript{testWindow_.Def.Autocompleter.Base.MAX_ITEMS_BELOW_FIELD;} | listLength |
+
+# Fill in two rows in each table that has info buttons.
+# Start with the medical problems table.
+# SCENARIO B - Specify part of a term and then expand the "see more" list by
+#              clicking on it; select a value by clicking on it;
+| fireEvent | fe_problem_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_1';} | true |
+| typeText | fe_problem_1 | Juvenile |
+| waitForVisible | moreResults | |
+| click | moreResults |
+| waitForNotVisible | moreResults | |
+| waitForVisible | searchResults |
+| mouseDown | css=span#completionOptions > ul > li:first-child |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false);} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_problem_1";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "Diabetes - type 1 (juvenile, insulin-dependent)";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "clicked";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list_expansion_method'] == "clicked";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == true ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "B";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == true;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "Juvenile";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].length > storedVars['listLength'];} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].indexOf("Diabetes - type 1 (juvenile, insulin-dependent)") > -1;} | true |
+
+# Now that we've generated some mouse/keyboard activity, check for and save the
+# lastActive_ value maintained in the UsageMonitor.  We'll check it again before
+# we close the form, to make sure it's been updated.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.lastActive_ != null;} | true |
+| storeExpression | javascript{testWindow_.Def.UsageMonitor.lastActive_} | lastActive |
+
+
+# SCENARIO B - Specify part of a term and then expand the "see more" list by
+#              using control-return; select a value using the down arrow;
+# fill in the second one the same way except use control-return to select
+# "see More" and the down arrow key to select the value
+| fireEvent | fe_problem_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_2'} | true |
+| typeText | fe_problem_2 | cel |
+| waitForVisible | moreResults | |
+| controlKeyDown | | |
+| typeKeys | fe_problem_2 | \13 |
+| controlKeyUp | | |
+| waitForNotVisible | moreResults | |
+| waitForVisible | searchResults |
+| keyDown | fe_problem_2 | \40 |
+| typeKeys | fe_problem_2 | \9 |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false);} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_problem_2";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "Cellulitis";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "arrows";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list_expansion_method'] == "CtrlRet";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == true ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "B";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == true;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "cel";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].length > storedVars['listLength'];} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].indexOf("Cellulitis") > -1;} | true |
+
+# Add a third condition - pilonidal cyst.  Let's try typing in the whole thing
+# SCENARIO A - Specify the full term; no list expansion, no selection from the
+#              list - but there was a list to select from.
+| fireEvent | fe_problem_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_3'} | true |
+| type | fe_problem_3 | Pilonidal cys |
+| typeKeys | fe_problem_3 | t |
+| waitForVisible | searchResults |
+| keyDown | fe_problem_3 | \9 |
+| waitForValue | fe_problem_C_3 | 9408 |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false);} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_problem_3";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "Pilonidal cyst";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "typed";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == true ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "A";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == false;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "Pilonidal cyst";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'] == "Pilonidal cyst";} | true |
+
+# Now blank out the code for this value.  We need this to test the usage data
+# stored for a popup page with multiple options for the user to choose from.
+| fireEvent | fe_problem_C_3 | focus |
+| type | fe_problem_C_3 | |
+| fireEvent | fe_problem_C_3 | change |
+| fireEvent | fe_problem_C_3 | blur |
+| waitForValue | fe_problem_C_3 | |
+
+# Fill in the drugs table
+# SCENARIO A - Specify part of a term and choose a value from the unexpanded
+#              list by clicking on it.
+# try entering part of the drug name and then choosing from the
+# unexpanded list with the mouse
+| fireEvent | fe_name_and_route_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_1'} | true |
+| storeExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length;} | odCount |
+| typeText | fe_name_and_route_1 | Propra |
+| waitForVisible | searchResults |
+| mouseDown | css=span#completionOptions > ul > li:first-child |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_name_and_route_1";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "Propranolol (Oral Pill)";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "clicked";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == true ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "A";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == true;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "Propra";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].indexOf("Propranolol (Oral Pill)") > -1;} | true |
+
+| selectByContent | fe_drug_use_status_1 | Active |
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_ = []; true ;} | true |
+
+# SCENARIO A - Specify part of a term and choosing a value from the unexpanded
+#              list using the down arrow.
+# Now enter part of the drug name and choose from the unexpanded list using
+# the down arrow.
+| waitForElementPresent | fe_name_and_route_2 |
+| fireEvent | fe_name_and_route_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_2'} | true |
+| typeText | fe_name_and_route_2 | Aspirin EC |
+| waitForVisible | searchResults |
+| keyDown | fe_name_and_route_2 | \40 |
+| typeKeys | fe_name_and_route_2 | \9 |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_name_and_route_2";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "Aspirin EC (Oral Pill)";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "arrows";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == true ;} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "A";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == true;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "Aspirin EC";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'] == "Aspirin EC (Oral Pill)";} | true |
+
+
+# SCENARIO G - Specify a drug; no list expansion, no selection from the
+#              list.  Drug is a duplicate of a drug already specified; duplicate
+#              value warning is displayed.
+| fireEvent | fe_name_and_route_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_3'} | true |
+| typeText | fe_name_and_route_3 | Aspirin EC |
+| waitForVisible | searchResults |
+| keyDown | fe_name_and_route_3 | \40 |
+| typeKeys | fe_name_and_route_3 | \9 |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.  We should have 2 list events here - a standard one and a
+# duplicate warning one.  Create a separate event for the duplicate warning.
+| pause | 500 |
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_name_and_route_3";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "Aspirin EC (Oral Pill)";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "arrows";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == true ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "A";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == true;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "Aspirin EC";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'] == "Aspirin EC (Oral Pill)";} | true |
+| verifyExpression | javascript{storedVars['events']['dup_warning']['field_id'] == "fe_name_and_route_3";} | true |
+| verifyExpression | javascript{storedVars['events']['dup_warning']['scenario'] == "G";} | true |
+| verifyExpression | javascript{storedVars['events']['dup_warning']['duplicate_warning'].indexOf('Drug Warnings') == 0;} | true |
+| verifyExpression | javascript{storedVars['events']['dup_warning']['duplicate_warning'].indexOf('Aspirin EC (Oral Pill)') > 0 ;} | true |
+| verifyExpression | javascript{storedVars['events']['dup_warning']['final_val'] == 'Aspirin EC (Oral Pill)';} | true |
+
+| selectByContent | fe_drug_use_status_3 | Active |
+# close the popup to get it out of the way
+| click | css=.ui-widget-overlay |
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_ = []; true ;} | true |
+
+
+# Scenario C - Specify a partial value, cruise the selection list with the
+#              arrow keys, then use escape to put the partial value originally
+#              typed in back into the field
+| waitForElementPresent | fe_name_and_route_4 |
+| fireEvent | fe_name_and_route_4 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_4'} | true |
+| storeExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length;} | odCount |
+| typeText | fe_name_and_route_4 | hal |
+| waitForVisible | searchResults |
+| keyDown | fe_name_and_route_4 | \40 |
+| keyDown | fe_name_and_route_4 | \40 |
+| keyDown | fe_name_and_route_4 | \40 |
+| keyDown | fe_name_and_route_4 | \27 |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_name_and_route_4";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['escape_key'] == true ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "C";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == false;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "hal";} | true |
+
+| fireEvent | fe_name_and_route_4 | blur |
+| click | css=.ui-widget-overlay |
+| fireEvent | fe_drug_use_status_4 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_drug_use_status_4'} | true |
+| selectByContent | fe_drug_use_status_4 | Active |
+
+
+# SCENARIO D - Specify a term; no list expansion, no selection from the
+#              list.  Suggestion list displayed, user selects one of the
+#              suggestions.
+| fireEvent | fe_name_and_route_5 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_5'} | true |
+
+# After the box comes down from fe_name_and_route_4 (!) we'll get a suggestion
+# list event.  Process it. For some reason it doesn't show up immediately after
+# the box comes down. I had to wait until here to make this work.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['field_id'] == "fe_name_and_route_4";} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['scenario'] == "E";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['suggestions']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['used_suggestion'] == false;} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['suggestion_list'].length > 0 ;} | true |
+
+# set up an observer to store the suggestion list when it's generated
+| storeExpression | javascript{a={}} | suggestionData |
+| waitForExpression | javascript{testWindow_.Def.Autocompleter.Event.observeSuggestionsShown('name_and_route', function(data){storedVars['suggestionData']=data}); 1} | 1|
+
+| typeText | fe_name_and_route_5 | cana |
+| waitForVisible | searchResults |
+| keyDown | fe_name_and_route_5 | \9 |
+| waitForValue | fe_name_and_route_5 | cana |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.  We are expecting 2 list events; put the suggestion list
+# event in a separate event type.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_name_and_route_5";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "cana";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "typed";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == false ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "A";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == false;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "cana";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].length <= storedVars['listLength'];} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].indexOf("cana") == -1;} | true |
+
+# Now access the div with the suggestion list, and the suggestion data written
+# by the observer set up above.  Take the first suggested value.
+| waitForVisible | suggestionList |
+| waitForValue | suggestionFieldVal | cana |
+| waitForExpression | javascript{storedVars['suggestionData']['suggestion_list'].length > 0;}  | true |
+| storeExpression | javascript{storedVars['suggestionData']['suggestion_list'][0];}  | firstSuggestion |
+| fireEvent | javascript{testWindow_.document.getElementById('suggestionList').childNodes[1].firstChild.firstChild;} | focus |
+| click | javascript{testWindow_.document.getElementById('suggestionList').childNodes[1].firstChild.firstChild;} |
+| waitForValue | fe_name_and_route_5 | javascript{storedVars['firstSuggestion'];} |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_name_and_route_5";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "Sugar cane extract (Injectable)";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "typed";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == true ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "A";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == false;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "cana";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].length > 0;} | true |
+
+| verifyExpression | javascript{storedVars['events']['suggestions']['field_id'] == "fe_name_and_route_5";} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['scenario'] == "E";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['suggestions']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['used_suggestion'] == true;} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['suggestion_list'].length > 0 ;} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['suggestion_list'].indexOf(storedVars['firstSuggestion']) >= 0;} | true |
+
+# add a drug that's not on anyone's list
+# Scenario F - Specify a value for which no matches are found.
+#
+| waitForElementPresent | fe_name_and_route_6 |
+| fireEvent | fe_name_and_route_6 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_6'} | true |
+| typeText | fe_name_and_route_6 | xxxxxxxxxz |
+| keyDown | fe_name_and_route_6 | \9 |
+| waitForValue | fe_name_and_route_6 | xxxxxxxxxz |
+
+# Clear out any previous suggestion data
+| storeExpression | javascript{a={}} | suggestions |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.  We are expecting 2 list events; put the suggestion list
+# event in a separate event type.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_name_and_route_6";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "xxxxxxxxxz";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "typed";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == false;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "A";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == false;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "xxxxxxxxxz";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'] == "";} | true |
+
+| verifyExpression | javascript{storedVars['events']['suggestions']['field_id'] == "fe_name_and_route_6";} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['scenario'] == "F";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['suggestions']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['suggestion_list'].length == 0 ;} | true |
+
+# Now click on the box to make it go away, and fill in the next field
+| fireEvent | css=.ui-widget-overlay | click |
+| selectByContent | fe_drug_use_status_6 | Active |
+
+
+# Fill in the surgeries table.
+| selectByContent | fe_surgery_type_1 | Cardiac pacemaker |
+
+# Scenario A - type in partial, select from unexpanded list.  We've already tested
+#              this on a drug, but we need to make sure the surgeries are being
+#              tracked too.
+| waitForElementPresent | fe_surgery_type_2 |
+| fireEvent | fe_surgery_type_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_surgery_type_2'} | true |
+
+# we're not actually testing the events from the entry in fe_surgery_type_1, so
+# clear out the usage data now, before we create events for fe_surgery_type_2
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_ = []; true;} | true |
+
+| typeText | fe_surgery_type_2 | Res |
+| waitForVisible | searchResults |
+| keyDown | fe_surgery_type_2 | \40 |
+| typeKeys | fe_surgery_type_2 | \9 |
+| waitForValue | fe_surgery_type_2 | Resuscitation after cardiac arrest |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_surgery_type_2";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "Resuscitation after cardiac arrest";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "arrows";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == true ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "A";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == true;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "Res";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].indexOf("Resuscitation after cardiac arrest") >= 0;} | true |
+
+
+# SCENARIO E - Specify a term; no list expansion, no selection from the
+#              list.  Suggestion list displayed, user DOES NOT select one of the
+#              suggestions.
+| fireEvent | fe_surgery_type_3 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_surgery_type_3'} | true |
+| storeExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length;} | odCount |
+
+# set up an observer to store the suggestion list when it's generated
+| storeExpression | javascript{a={}} | suggestionData |
+| waitForExpression | javascript{testWindow_.Def.Autocompleter.Event.observeSuggestionsShown('surgery_type', function(data){storedVars['suggestionData']=data}); 1} | 1|
+
+| typeText | fe_surgery_type_3 | hea |
+| waitForVisible | searchResults |
+| keyDown | fe_surgery_type_3 | \9 |
+| waitForValue | fe_surgery_type_3 | hea |
+
+## Check for expected events. Ignore any focus events, which are testing
+# artifacts only.  We are expecting 2 list events; put the suggestion list
+# event in a separate event type.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['field_id'] == "fe_surgery_type_3";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['final_val'] == "hea";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['input_method'] == "typed";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['on_list'] == false ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['scenario'] == "A";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['list_value']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['start_val'] == "";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['used_list'] == false;} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['val_typed_in'] == "hea";} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].length <= storedVars['listLength'];} | true |
+| verifyExpression | javascript{storedVars['events']['list_value']['list'].indexOf("hea") == -1;} | true |
+
+# Now access the div with the suggestion list
+| waitForVisible | suggestionList |
+| waitForValue | suggestionFieldVal | hea |
+| waitForExpression | javascript{storedVars['suggestionData']['suggestion_list'].length > 0;}  | true |
+| fireEvent | css=.ui-widget-overlay | click |
+# Create a focus event in another field.  At the moment we need that to kick the
+# suggestion list into action when the user doesn't use a suggestion.
+| fireEvent | fe_surgery_type_1 | focus |
+
+# Check for expected events. Ignore any focus events, which are testing
+# artifacts only.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['field_id'] == "fe_surgery_type_3";} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['scenario'] == "E";} | true |
+| verifyExpression | javascript{Def.UsageStatsTest.validateDateTime(storedVars['events']['suggestions']['start_time']) ;} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['used_suggestion'] == false;} | true |
+| verifyExpression | javascript{storedVars['events']['suggestions']['suggestion_list'].length > 0 ;} | true |
+
+
+# Fill in the allergies table - 3 three rows for allergies because there are
+# three different sources of info (at least)
+# (Egg)
+| selectByIndex | fe_allergy_name_1 | 3 |
+# (Latex)
+| selectByIndex | fe_allergy_name_2 | 28 |
+# (Cold Weather)
+| selectByIndex | fe_allergy_name_3 | 23 |
+
+# Don't forget the immunizations - I specifically chose topics that do NOT
+# return a pdf document, because that causes an intermediate window to come
+# up ("what do you want to do with this?") that we can't handle here.
+# Adolescent and Adult => Mumps (not commonly used)
+| selectByIndex | fe_immune_name_1 | 44 |
+# Other (e.g. Travel) => Lyme disease (no longer available in the US)
+| selectByIndex | fe_immune_name_2 | 42 |
+
+# Pause to let the events accumulate.  Then clear out any leftover events in the
+# storedVars['occData'] array as well as any unprocessed ones in the
+# Def.UsageMonitor.occurrenceData_ array and the storedVars['usageArray'].
+# We're just clearing them out so we can start fresh.
+| pause | 400 |
+| storeExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_ = []} | occData |
+| storeExpression | javascript{storedVars['occData'] = []} | usageArray |
+
+# Start testing the info buttons, which means we'll want to be sure that they
+# bring up the correct window AND that the focus off/on events are generated.
+
+# Test the conditions info buttons before saving.  Opening the various popups
+# should cause usage data to be written.  Make sure it is.
+
+# Info button for Diabetes - type 1 (juvenile, insulin-dependent)
+| click | fe_mplus_health_topics_1 |
+| pause | 300 |
+# Close the popup
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 2} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.nlm.nih.gov/medlineplus/diabetestype1.html'] == 1;} | true |
+
+# Info button for Cellulitis
+| click | fe_mplus_health_topics_2 |
+| pause | 300 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 2} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.nlm.nih.gov/medlineplus/cellulitis.html'] == 1;} | true |
+
+
+# Info button for Pilonidal cyst - the multi option popup
+| click | fe_mplus_health_topics_3 |
+| waitForExpression | javascript{testWindow_.MplusDialog_ != null} | true |
+# Click on an item and make sure that the click was recorded - give it time
+# to get the event to the usage monitor
+| pause | 300 |
+| click | item1 |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.nlm.nih.gov/medlineplus/tailbonedisorders.html'] == 1;} | true |
+
+# Test the drug info buttons
+| click | fe_mplus_drug_topics_1 |
+| pause | 300 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://search.nlm.nih.gov/medlineplus/query?MAX=500&SERVER1=server1&SERVER2=server2&DISAMBIGUATION=true&FUNCTION=search&PARAMETER=Propranolol'] == 1;} | true |
+
+
+| click | fe_mplus_drug_topics_2 |
+| pause | 300 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.nlm.nih.gov/medlineplus/druginfo/meds/a682878.html'] == 1;} | true |
+
+
+# Test the surgeries info button, as far as we are able.
+| click | fe_surgery_info_1 |
+# let it display before we close it
+| pause | 500 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 2} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.nlm.nih.gov/medlineplus/pacemakersandimplantabledefibrillators.html'] == 1;} | true |
+
+
+| click | fe_surgery_info_2 |
+| pause | 300 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.nlm.nih.gov/medlineplus/cpr.html'] == 1;} | true |
+
+
+# Test the allergies info buttons
+| storeExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length;} | odCount |
+| click | fe_allergy_info_1 |
+| pause | 100 |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.foodallergy.org/allergens/egg-allergy'] == 1;} | true |
+
+| waitForVisible | fe_allergy_info_2 |
+| storeExpression | javascript{testWindow_.Def.lastPopupWindow_} | lastPopup |
+| click | fe_allergy_info_2 |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_ != storedVars['lastPopup']} | true |
+| verifyExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.nlm.nih.gov/medlineplus/latexallergy.html'] == 1;} | true |
+
+
+| click | fe_allergy_info_3 |
+| pause | 300 |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.mayoclinic.com/health/cold-urticaria/DS01160'] == 1;} | true |
+
+
+# Test the immunizations info buttons
+| click | fe_immune_info_1 |
+| pause | 300 |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://cdc.gov/vaccines/vpd-vac/measles/default.htm'] == 1;} | true |
+
+
+| click | fe_immune_info_2 |
+| pause | 300 |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+# Check for the expected events - focus and info_button_opened
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['info_button_opened']['info_url']['http://www.cdc.gov/japaneseencephalitis/vaccine/vaccineChildren.html'] == 1;} | true |
+
+
+# Check the lastActive_ value maintained in the UsageMonitor to make sure it is
+# greater than the value stored when we opened the form.
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.lastActive_ > storedVars['lastActive'];} | true |
+
+# Save the form
+| click | fe_save_1 |
+| waitForVisible | saved_notice |
+
+# Clear out any leftover events.  We're just clearing them out so we can start fresh.
+| storeExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_ = []} | occData |
+| storeExpression | javascript{storedVars['occData'] = []} | usageArray |
+
+# This section brings up various windows accessible from the main PHR window.
+
+# Try some of the other pages that can be brought up from this main window
+# First the Research Studies button
+| click | fe_clin_trials |
+
+# Accumulate events; check for expected ones - this often takes longer. I
+# don't know why.
+| pause | 800 |
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+
+# Switch to the Research Studies page
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | popupTestWindow |
+| storeExpression | javascript{testWindow_} | mainWindow |
+| waitForExpression | javascript{testWindow_ = storedVars['popupTestWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['ct_search'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Find Medical Research Studies'] > 0;} | true |
+
+# Move the focus off the page and then back on
+| waitForExpression| javascript{blankWin = window.open('', 'Blank Window', 'width=400,height=250,left=200,top=100,scrollbars=no,toolbar=no,menubar=no,location=no'); blankWin.document.write('<center><br><br><br><p style="font-size:2.5em;color:red;"><b>YEEHAH!</b></p></center>'); blankWin.focus(); true;} | true |
+| pause | 500 |
+| waitForExpression | javascript{blankWin.close(); true;} | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['ct_search'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['ct_search'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Find Medical Research Studies'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Find Medical Research Studies'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['ct_search'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['ct_search'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Find Medical Research Studies'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Find Medical Research Studies'] = 0 ; true;} | true |
+
+# Go ahead and close it.  We're not tracking where the user goes on the
+# clinical trials website.  Reset the testWindow_ to the main window.
+| click | fe_close_1 |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+
+# Check for a form closed event for the research studies page - nope.
+# The form closed event was recorded on the research studies page, which, when
+# it was closed, sent its events to the server.  Can't see it here.
+
+# Try the reminders window next. Bring it up and check to see if we recorded a
+# form_opened event.  This one actually gets recorded in the usage data for the
+# page that opened the form.  The rest get recorded on the page that is opened.
+| pause | 5 |
+| click | fe_reminders_1_1 |
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last().Def.formName_ == 'Health Reminders'} | true |
+
+# Accumulate events; check for expected ones
+#| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+#| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+#| assertExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+#| assertExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0 ; true;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0 ; true;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+#| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['Health Reminders'] > 0;} | true |
+#| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Health Reminders'] > 0;} | true |
+#| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['Health Reminders'] = 0; true;} | true |
+#| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Health Reminders'] = 0; true;} | true |
+
+# Now switch to the reminders page
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | popupTestWindow |
+| waitForExpression | javascript{testWindow_ = storedVars['popupTestWindow']; true; } | true |
+
+# We need to test clicking on more and clicking on a link.  Use the first
+# reminder for this.
+| waitForExpression | javascript{testWindow_.document.getElementsByClassName(testWindow_.HtmlTruncator.TRUNCATABLE_CLASS).length > 0;} | true |
+| storeExpression | javascript{testWindow_.document.getElementsByClassName(testWindow_.HtmlTruncator.TRUNCATABLE_CLASS) ;} | truncatables |
+| pause | 500 |
+| storeExpression | javascript{storedVars['truncatables'][2] ;} | reminderFull |
+| storeExpression | javascript{storedVars['truncatables'][3] ;} | reminderTruncated |
+| storeExpression | javascript{storedVars['reminderFull'].getElementsByTagName('a')[0] ; } | linkEle |
+| storeExpression | javascript{storedVars['linkEle'].text ; } | rUrl |
+| storeExpression | javascript{$A(storedVars['reminderTruncated'].getElementsByTagName('a')).last() ; } | moreLink |
+| storeExpression | javascript{storedVars['reminderTruncated'].getElementsByClassName('r_title') ; | titles |
+| storeExpression | javascript{storedVars['titles'][0].textContent ; } | moreTitle |
+| click | javascript{storedVars['moreLink'] ; } |
+
+| pause | 100 |
+| click | javascript{storedVars['linkEle']} |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['reminders_more']['topic'][storedVars['moreTitle']] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['reminders_url']['reminder_url'][storedVars['rUrl']] > 0;} | true |
+
+# Bring down the health reminders popup
+| click | close_button |
+
+# Go back to the main phr details window
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last().close(); true;} | true |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true} | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+#| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['Health Reminders'] > 0;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Health Reminders'] > 0;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['Health Reminders'] = 0; true;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Health Reminders'] = 0; true;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['Health Reminders'] > 0;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Health Reminders'] > 0;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['Health Reminders'] = 0; true;} | true |
+#| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Health Reminders'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+
+
+# The form closed event was issued by the reminders window, which is now
+# closed.  So we can't confirm that one.
+
+# Now let's try the Date Reminders
+| click | fe_date_reminder_1_1 |
+
+# Switch to the date reminders window
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | dateRemindersPopup |
+| waitForExpression | javascript{testWindow_ = storedVars['dateRemindersPopup']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined} | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['date_reminders'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Due Date Reminders'] > 0;} | true |
+
+# Now bring up the due date settings popup
+| waitForVisible | fe_cutoff_days_1 |
+| click | fe_cutoff_days_1 |
+
+# Switch to the settings window
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | dateSettingsPopup |
+| waitForExpression | javascript{testWindow_ = storedVars['dateSettingsPopup']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['reminder_options'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Due Date Settings'] > 0;} | true |
+
+# Move the focus on and off with our trusty box.
+| waitForExpression| javascript{blankWin = window.open('', 'Blank Window', 'width=400,height=250,left=200,top=100,scrollbars=no,toolbar=no,menubar=no,location=no'); blankWin.document.write('<center><br><br><br><p style="font-size:3em;color:purple;"><b>YEEHAH!</b></p></center>'); blankWin.focus(); true;} | true |
+| pause | 500 |
+| waitForExpression | javascript{blankWin.close(); true;} | true |
+| waitForExpression | javascript{ testWindow_.Def.UsageMonitor !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['reminder_options'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Due Date Settings'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['reminder_options'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Due Date Settings'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['reminder_options'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Due Date Settings'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['reminder_options'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Due Date Settings'] = 0; true ; } | true |
+
+# Now close 'em up
+| click | fe_close_1 |
+| waitForExpression | javascript{testWindow_ = storedVars['dateRemindersPopup']; true} | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['date_reminders'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['date_reminders'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Due Date Reminders'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Due Date Reminders'] = 0; true ; } | true |
+
+| waitForButtonEnabled | fe_close_button_1 |
+| click | fe_close_button_1 |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true} | true |
+
+# This pause is here to avoid getting stuck on line #1032.  Without the pause it
+# seems that we get to that line too quickly after the switch to the main window.
+# lm. 2/10/15.
+| pause | 5 |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0; true ; } | true |
+
+# On to the flowsheet
+| waitForButtonEnabled | fe_test_panel_timeline_1_1 |
+| click | fe_test_panel_timeline_1_1 |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] = 0; true ; } | true |
+
+# Move to the flowsheet
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | flowsheet |
+| waitForExpression | javascript{testWindow_ = storedVars['flowsheet']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['panel_view'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['View & Edit Results Timeline'] > 0;} | true |
+
+
+# and go to the Add Tests & Measures window from the flowsheet
+| waitForButtonEnabled | fe_add_new_test |
+| click | fe_add_new_test |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['panel_view'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['panel_view'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['View & Edit Results Timeline'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['View & Edit Results Timeline'] = 0; true ; } | true |
+
+# move to the Add Tests & Measures window
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | addTests |
+| waitForExpression | javascript{testWindow_ = storedVars['addTests']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['panel_edit'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Add Trackers & Test Results'] > 0;} | true |
+
+# Move the focus off the page and then back on
+| waitForExpression| javascript{blankWin = window.open('', 'Blank Window', 'width=400,height=250,left=200,top=100,scrollbars=no,toolbar=no,menubar=no,location=no'); blankWin.document.write('<center><br><br><br><p style="font-size:3em;color:purple;"><b>YEEHAH!</b></p></center>'); blankWin.focus(); true;} | true |
+| pause | 500 |
+| waitForExpression | javascript{blankWin.close(); true;} | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['panel_edit'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['panel_edit'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Add Trackers & Test Results'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Add Trackers & Test Results'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['panel_edit'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['panel_edit'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Add Trackers & Test Results'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Add Trackers & Test Results'] = 0; true ; } | true |
+
+# Close 'em up, going back to the main phr page
+| waitForButtonEnabled | fe_close |
+| click | fe_close |
+
+| waitForExpression | javascript{testWindow_ = storedVars['flowsheet']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['panel_view'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['View & Edit Results Timeline'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['panel_view'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['panel_view'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['View & Edit Results Timeline'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['View & Edit Results Timeline'] = 0 ; true;} | true |
+
+
+| waitForButtonEnabled | fe_return_button |
+| click | fe_return_button |
+
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHPR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHPR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+
+# Try going to the Add Tests & measures window directly
+| waitForButtonEnabled | fe_add_new_test_1_1 |
+| click | fe_add_new_test_1_1 |
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | addTests |
+| waitForExpression | javascript{testWindow_ = storedVars['addTests']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['panel_edit'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Add Trackers & Test Results'] = 0 ; true;} | true |
+
+# and return to the main PHR page
+| waitForButtonEnabled | fe_close |
+| click | fe_close |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHPR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHPR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+
+# Try an add more button
+| waitForButtonEnabled | fe_tp1_add_more_1_1 |
+| click | fe_tp1_add_more_1_1 |
+
+# move to the Add Tests & Measures window
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | addTests |
+| waitForExpression | javascript{testWindow_ = storedVars['addTests']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['panel'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Add Trackers & Test Results'] = 0 ; true;} | true |
+
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_ == true;} | true |
+
+# and return to the main PHR page
+| waitForButtonEnabled | fe_close |
+| waitForVisible | fe_close |
+| click | fe_close |
+
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['PHPR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['PHPR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['PHR'] = 0 ; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['PHR'] = 0 ; true;} | true |
+
+# Now go back to the PHR Home page
+| waitForButtonEnabled | fe_close_top_1_1 |
+| click | fe_close_top_1_1 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForTextPresent | Loaded in |
+| waitForVisible | wedgie_1 |
+
+# Go directly to the View Tests & Measures page
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | show_tests_1 |
+
+| waitForExpression | javascript{testWindow_.location.href} | *panels |
+| waitForTextPresent | Loaded in |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['panel_view'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['panel_view'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['View & Edit Results Timeline'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['View & Edit Results Timeline'] = 0; true;} | true |
+
+# Now try the Add Tests & Measures popup from here
+| waitForButtonEnabled | fe_add_new_test |
+| click | fe_add_new_test |
+
+| storeExpression |javascript{testWindow_} | flowsheet |
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | addTests |
+| waitForExpression | javascript{testWindow_ = storedVars['addTests']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['panel_edit'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['panel_edit'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Add Trackers & Test Results'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Add Trackers & Test Results'] = 0; true;} | true |
+
+# Close it up, going back to the flowsheet page
+| waitForButtonEnabled | fe_close |
+| click | fe_close |
+
+| waitForExpression | javascript{testWindow_ = storedVars['flowsheet']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# And back to the PHR Home page
+| waitForButtonEnabled | fe_return_button |
+| click | fe_return_button |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForTextPresent | Loaded in |
+| waitForVisible | add_new |
+
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | phrHomeWin |
+
+# Now let's try the Account Settings
+| click | fe_settings |
+
+| storeExpression |javascript{testWindow_} | phrHomeWin |
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | verifyPwd |
+| waitForExpression | javascript{testWindow_ = storedVars['verifyPwd']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['verify_password'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['verify_password'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Verify Identity'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Verify Identity'] = 0; true;} | true |
+
+# Move the focus off the page and then back on
+| waitForExpression| javascript{blankWin = window.open('', 'Blank Window', 'width=400,height=250,left=200,top=100,scrollbars=no,toolbar=no,menubar=no,location=no'); blankWin.document.write('<center><br><br><br><p style="font-size:2.5em;color:red;"><b>YEEHAH!</b></p></center>'); blankWin.focus(); true;} | true |
+| pause | 500 |
+| waitForExpression | javascript{blankWin.close(); true;} | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['verify_password'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['verify_password'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Verify Identity'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Verify Identity'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['verify_password'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['verify_password'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Verify Identity'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Verify Identity'] = 0; true ; } | true |
+
+# Enter the password and click on submit
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| type | fe_password_1_1 | I'm a test admin account |
+| pause | 200 |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+
+| click | fe_submit_1 |
+# the way this gets called seems to automatically set testWindow_ to the
+# account settings popup.
+| waitForVisible | form_title |
+| waitForExpression | javascript{testWindow_.Def !== undefined} | true |
+| waitForExpression | javascript{testWindow_.Def.formTitle_ == 'Account Settings';} | true |
+
+# but evidently it takes a sec
+| pause | 800 |
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['change_profile'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['change_profile'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Account Settings'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Account Settings'] = 0; true;} | true |
+
+# Move the focus off the page and then back on
+| waitForExpression| javascript{blankWin = window.open('', 'Blank Window', 'width=400,height=250,left=200,top=100,scrollbars=no,toolbar=no,menubar=no,location=no'); blankWin.document.write('<center><br><br><br><p style="font-size:2em;color:blue;"><b>YEEHAH!</b></p></center>'); blankWin.focus(); true;} | true |
+| pause | 500 |
+| waitForExpression | javascript{blankWin.close(); true;} | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['change_profile'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['change_profile'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Account Settings'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Account Settings'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['change_profile'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['change_profile'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Account Settings'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Account Settings'] = 0; true ; } | true |
+
+
+# Now cancel, which will take us back to the PHR Home page
+| click | fe_cancel_1 |
+
+| waitForExpression | javascript{testWindow_ = storedVars['phrHomeWin']; true; } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['phr_home'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['phr_home'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['My Personal Health Records'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['My Personal Health Records'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['phr_home'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['phr_home'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['My Personal Health Records'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['My Personal Health Records'] = 0; true;} | true |
+
+# Now let's try the Feedback page
+| click | fe_feedback |
+
+| storeExpression |javascript{testWindow_} | phrHomeWin |
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | feedback |
+| waitForExpression | javascript{testWindow_ = storedVars['feedback']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, false) ; | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['feedback'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_name']['feedback'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Feedback'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['form_opened']['form_title']['Feedback'] = 0; true;} | true |
+
+# Move the focus off the page and then back on
+| waitForExpression| javascript{blankWin = window.open('', 'Blank Window', 'width=400,height=250,left=200,top=100,scrollbars=no,toolbar=no,menubar=no,location=no'); blankWin.document.write('<center><br><br><br><p style="font-size:1.5em;color:green;"><b>YEEHAH!</b></p></center>'); blankWin.focus(); true;} | true |
+| pause | 500 |
+| waitForExpression | javascript{blankWin.close(); true;} | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 1} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['feedback'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['feedback'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Feedback'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['Feedback'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['feedback'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['feedback'] = 0; true ; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Feedback'] > 0; } | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['Feedback'] = 0; true ; } | true |
+
+# Now cancel, which will take us back to the PHR Home page
+| click | fe_cancel_1 |
+
+| waitForExpression | javascript{testWindow_ = storedVars['phrHomeWin']; true; } | true |
+
+# Accumulate events; check for expected ones
+| waitForExpression | javascript{testWindow_.Def.UsageMonitor.occurrenceData_.length > 0} | true |
+| waitForExpression | javascript{Def.UsageStatsTest.getEvents(testWindow_.Def.UsageMonitor.occurrenceData_, storedVars, true) ; | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['phr_home'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_name']['phr_home'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['My Personal Health Records'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_off']['form_title']['My Personal Health Records'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['phr_home'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_name']['phr_home'] = 0; true;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['My Personal Health Records'] > 0;} | true |
+| verifyExpression | javascript{storedVars['events']['focus_on']['form_title']['My Personal Health Records'] = 0; true;} | true |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |

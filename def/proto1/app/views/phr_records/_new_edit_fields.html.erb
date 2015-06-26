@@ -1,0 +1,4 @@
+  <div><%=fd_text_field @fds['pseudonym'], @phr_record.phr %></div>
+  <div><%=fd_date_field(@fds['birth_date'], @phr_record.phr) %></div>
+  <div><%=fd_prefetched_list(@fds['gender'], @phr_record.phr, @gender_list)%></div>
+  <div><%=fd_prefetched_list(@fds['race_or_ethnicity'], @phr_record.phr, @race_list)%></div>

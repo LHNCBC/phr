@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+complete-test-a:
+  rule_id: -1002
+  used_by_rule_id: -1001
+
+complete-test-c-1:
+  rule_id: -1003
+  used_by_rule_id: -1002
+
+complete-test-c-2:
+  rule_id: -1003
+  used_by_rule_id: -1001
+
+complete-test-d-1:
+  rule_id: -1004
+  used_by_rule_id: -1003
+
+complete-test-d-2:
+  rule_id: -1004
+  used_by_rule_id: -1002

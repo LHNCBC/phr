@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+    <title><%= @page_title %></title>
+    <%#= stylesheet_link_tag '/stylesheets/basic_html' %>
+    <%= stylesheet_link_tag 'basic_html' %>
+  </head>
+  <body>
+    <% if @user %>
+      <div id="topnavbar"><% if @phr_record and @phr_record.phr and !@phr_record.phr.pseudonym.blank? %>
+        <span id="record_label">PHR for: <%=  @phr_record.phr.pseudonym %></span>
+        &nbsp; <% end %><% if !@hide_account_settings %><%=
+         link_to 'Accounts Settings', account_settings_path %> &nbsp; <% end %>
+       <%= help_button '/help/basic_general.shtml' %> &nbsp;
+       <%= link_to 'Feedback', new_feedback_path %> &nbsp;
+       <%= link_to 'Logout', '/accounts/logout' %></div>
+    <hr />
+    <% end %>
+    <h1><%= @page_title %></h1>
+    <%# Notification div %>
+    <% unless flash[:notice].blank? %>
+      <div id="notification"><%= flash[:notice] %></div>
+    <% else %>
+      <div id="notification" style="display: none"></div>
+    <% end %>
+      
+    <%# Page errors div %>
+    <% if flash[:error]
+         @page_errors = [] if !@page_errors
+         if flash[:error].is_a?(String)
+           @page_errors << flash[:error]
+         else
+           @page_errors += flash[:error]
+         end
+       end
+    %>
+    <% if @page_errors && @page_errors.size > 0 %>
+      <div id="page_errors">
+        <% if @page_errors.size == 1 %>
+        <p>The following problem was found:
+          <%= @page_errors[0] %></p>
+        <% else %>
+          The following problems were found:
+          <ul>
+            <% @page_errors.each do |e|
+               if e == '</ul>' %>
+                <%= e %>
+            <% elsif e.index('<ul>')%>
+              <li><%=e%>
+            <% else %>
+              <li><%=e%></li>
+            <%end; end%>
+          </ul>
+        <% end %>
+      </div>
+    <% else %>
+      <div id="page_errors" style="display: none"></div>
+    <% end %>    
+    
+    <%= yield %>
+    <% if @user %>
+      <hr />
+      <div id="timeout_warning">Your session will time out in
+       <%= @session_timeout %> minutes from when this page was loaded.  If you
+       need more time, you may <%= link_to 'extend your session',
+        extend_session_path, :target=>'_blank' %>.</div>
+    <% end %>
+  </body>
+</html>

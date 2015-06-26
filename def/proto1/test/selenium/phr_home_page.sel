@@ -1,0 +1,1111 @@
+| setTimeout | 35000 |
+
+# ------------- Create the first non-admin user for this test -------------
+| open | /accounts/logout |
+# Make sure we are in standard mode
+| open | /accounts/login.default |
+| waitForTextPresent | Sign in |
+| open | /accounts/new |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| verifyExpression | javascript{testWindow_.$('fe_instructions2_1').scrollTop = testWindow_.$('fe_instructions2_1').scrollHeight; 1} | 1 |
+| fireEvent | fe_agree_chbox_1 | focus |
+| click | fe_agree_chbox_1 |
+
+| fireEvent | fe_user_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1'} | true |
+| typeText |  fe_user_name_1 | javascript{'bypass_activation_'+new Date().getTime()}  |
+| fireEvent | fe_user_name_1 | change |
+| fireEvent | fe_user_name_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_user_name_1').value} | user1Name |
+
+| fireEvent | fe_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1'} | true |
+| type |  fe_password_1 | 'TT_0987&' |
+| fireEvent | fe_password_1 | change |
+| fireEvent | fe_password_1 | blur |
+
+| fireEvent | fe_confirm_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_confirm_password_1'} | true |
+| type |  fe_confirm_password_1 | 'TT_0987&' |
+| fireEvent | fe_confirm_password_1 | change |
+| fireEvent | fe_confirm_password_1 | blur |
+
+# first question
+| fireEvent | fe_su_fix_quest_1_1 | focus |
+| typeKeys | fe_su_fix_quest_1_1 | 1 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_1 | \9 |
+| fireEvent | fe_su_fix_quest_1_1 | blur |
+| waitForValue | fe_su_fix_quest_1_1 | In what city was your mother born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').autocomp.hasFocus} | false |
+
+# second question
+| fireEvent | fe_su_fix_quest_1_2 | focus |
+| typeKeys | fe_su_fix_quest_1_2 | 2 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_2 | \9 |
+| fireEvent | fe_su_fix_quest_1_2 | blur |
+| waitForValue | fe_su_fix_quest_1_2 | In what city were you born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').autocomp.hasFocus} | false |
+
+| fireEvent | fe_su_fixansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_1'} | true |
+| type |  fe_su_fixansw_1_1 | 1 |
+| fireEvent | fe_su_fixansw_1_1 | change |
+| fireEvent | fe_su_fixansw_1_1 | blur |
+
+| fireEvent | fe_su_fixansw_1_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_2'} | true |
+| type |  fe_su_fixansw_1_2 | 1 |
+| fireEvent | fe_su_fixansw_1_2 | change |
+| fireEvent | fe_su_fixansw_1_2 | blur |
+
+| fireEvent | fe_su_selfquest_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfquest_1_1'} | true |
+| typeText |  fe_su_selfquest_1_1 | 1 |
+| fireEvent | fe_su_selfquest_1_1 | change |
+| fireEvent | fe_su_selfquest_1_1 | blur |
+
+| fireEvent | fe_su_selfansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfansw_1_1'} | true |
+| typeText |  fe_su_selfansw_1_1 | 1 |
+| fireEvent | fe_su_selfansw_1_1 | change |
+| fireEvent | fe_su_selfansw_1_1 | blur |
+
+| fireEvent | fe_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1'} | true |
+| typeText |  fe_email_1 | javascript{storedVars['user1Name'] + '@notadomain.qrt'} |
+| fireEvent | fe_email_1 | change |
+| fireEvent | fe_email_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_email_1').value} | user1Email |
+
+| fireEvent | fe_sec_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_sec_email_1'} | true |
+| typeText |  fe_sec_email_1 | javascript{storedVars['user1Name'] + '@notadomain.qrt'} |
+| fireEvent | fe_sec_email_1 | change |
+| fireEvent | fe_sec_email_1 | blur |
+
+| fireEvent | recaptcha_response_field | focus |
+| type |  recaptcha_response_field | correct_response |
+| fireEvent | recaptcha_response_field | change |
+| fireEvent | recaptcha_response_field | blur |
+
+# Save the form
+| click | fe_signup_1 |
+| waitForVisible | savingNotice |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/login |
+| waitForVisible | fe_user_name_1_1 |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+| waitForTextPresent | Thanks for signing up |
+# ------------- New account activation ---------------------
+| open | /accounts/email_verification?verification_token=abc |
+| waitForVisible | fe_user_name_1 |
+| typeText | fe_user_name_1 | javascript{storedVars['user1Name']} |
+| waitForVisible | fe_password_1 |
+| typeText | fe_password_1 | TT_0987& |
+| click | fe_submit_button_1 |
+| waitForVisible | fe_user_name_1_1 |
+| waitForTextPresent | has been activated successfully |
+# ------------- end of create user1 for this test -------------
+
+# ------------- login -------------
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| typeText | fe_user_name_1_1 | javascript{storedVars['user1Name']} |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| typeText | fe_password_1_1 | 'TT_0987&' |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+| click | fe_login_1_1 |
+
+| waitForVisible | main_title |
+| waitForValue | main_title | Your Computer Is Not Recognized |
+| fireEvent | fe_user_answ_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_answ_1_1'} | true |
+| typeText | fe_user_answ_1_1 | 1 |
+| fireEvent | fe_user_answ_1_1 | change |
+| fireEvent | fe_user_answ_1_1 | blur |
+| click | fe_submit_1 |
+# ------------- end of login -------------
+
+# ------------- verify initial screen for new user -------------
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home* |
+| waitForVisible | add_new |
+
+# -- Check for initial "Add a PHR" message box --
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.warningDialog_, testWindow_.Def.PHRHome.NO_PROFILES_TITLE)} | true |
+| verifyValue | ui-id-1 | javascript{testWindow_.Def.PHRHome.NO_ACTIVE_PROFILES_MSG} |
+| click | warningOKBtn |
+
+# -- Make sure that what shouldn't be shown isn't
+| verifyNotVisible | fe_removed_profiles_toggle |
+| verifyNotVisible | fe_removed_profiles_0 |
+| verifyNotVisible | profiles_list |
+# ------------- end verify initial screen for new user -------------
+
+# ------------- add a new person -------------
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+# --- make sure the input fields start out empty
+| verifyExpression | javascript{testWindow_.fe_pseudonym_1_1.getAttribute("novalue") == "true";} | true |
+| verifyExpression | javascript{testWindow_.Def.getFieldVal(testWindow_.$('fe_birth_date_1_1')) == ""} | true |
+| verifyExpression | javascript{testWindow_.fe_gender_1_1.getAttribute("novalue") == "true";} | true |
+| verifyExpression | javascript{testWindow_.fe_race_or_ethnicity_1_1.getAttribute("novalue") == "true";} | true |
+
+# --- fill in the data
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{'person1_'+new Date().getTime()}  |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | person1Name |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText |  fe_birth_date_1_1 | javascript{Def.PhrHomeTest.getPrevDate(22,0,0)}  |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| storeExpression | javascript{'22 years old'} | person1Age |
+
+| fireEvent | fe_gender_1_1 | focus |
+| selectByIndex |  fe_gender_1_1 | 0 |
+| waitForValue | fe_gender_C_1_1 | F |
+
+| fireEvent | fe_race_or_ethnicity_1_1 | focus |
+| selectByContent |  fe_race_or_ethnicity_1_1 | Hispanic or Latino |
+| waitForValue | fe_race_or_ethnicity_C_1_1 | LA6214-6 |
+
+| click | editSaveBtn |
+
+# -- goes to main phr page
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['person1Name']} |
+| click | fe_close_top_1_1 |
+
+# -- return to phr home page
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+# -- verify listing for first person
+| waitForVisible | profiles_list |
+| verifyNotVisible | fe_removed_profiles_0 |
+| waitForValue | name_string_1 | javascript{storedVars['person1Name']} |
+| verifyValue | age_string_1 | javascript{', ' + storedVars['person1Age']} |
+| verifyNotValue | last_updated_1 | not available |
+| waitForNotValue | health_reminders_text_1 | No health reminders |
+| verifyValue | date_reminders_text_1 | No date reminders
+# ------------- end add a new person -------------
+
+# ------------- remove and delete the only person -------------
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| verifyVisible | links_cell_1_2 |
+| verifyVisible | links_cell_1_3 |
+| verifyVisible | links_cell_1_4 |
+| verifyVisible | links_cell_1_5 |
+| verifyVisible | links_cell_1_6 |
+| verifyVisible | links_cell_1_7 |
+| verifyVisible | links_cell_1_8 |
+| click | remove_profile_1 |
+| storeExpression | javascript{'The PHR for ' + storedVars['person1Name'] + ' has been flagged as "inactive".  See the "Inactive PHRs" section below for a list of your inactive PHRs.'} | notificationMsg |
+| waitForValue | notification | javascript{storedVars['notificationMsg']} |
+
+# -- check that the "no profiles" box is displayed
+#| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.warningDialog_, testWindow_.Def.PHRHome.NO_PROFILES_TITLE)} | true |
+#| verifyValue | ui-id-1 | javascript{testWindow_.Def.PHRHome.NO_ACTIVE_PROFILES_MSG} |
+#| click | warningOKBtn |
+
+# -- use the Removed PHRs toggle to show & verify the removed profiles listing
+# -- no - not using the toggle this 6-week period.  :)
+# -- just make sure the listing is correct
+#| verifyVisible | fe_removed_profiles_toggle |
+#| click | fe_removed_profiles_toggle |
+| waitForVisible | fe_removed_profiles_0 |
+| waitForValue | rem_name_string_1 | javascript{storedVars['person1Name']} |
+| verifyValue | rem_age_string_1 | javascript{', ' + storedVars['person1Age']} |
+
+# reload the page to make sure that the removed phrs section starts out
+# closed - header is there, but no listings.
+# reload the page
+| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+#| waitForVisible | loading_msg |
+| waitForExpression | javascript{testWindow_.location.href} | *phr_home |
+| waitForTextPresent | Loaded in |
+
+| waitForVisible | fe_removed_profiles_lbl_0 |
+| verifyNotVisible | removed_profiles_list |
+
+# Now open up the section
+| click | fe_removed_profiles_0_expcol_button |
+| waitForVisible | removed_profiles_list |
+
+# -- delete the PHR - first say no, then say yes
+| click | delete_profile_1 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.confirmDeletePhrDialog_, testWindow_.Def.PHRHome.DELETE_PHR_DIALOG_TITLE)} | true |
+| verifyValue | confDeleteName | javascript{storedVars['person1Name']} |
+| click | confDeleteNoBtn |
+| waitForNotVisible | javascript{testWindow_.Def.PHRHome.confirmDeletePhrDialog_} |
+| verifyVisible | rem_age_string_1 |
+
+| click | delete_profile_1 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.confirmDeletePhrDialog_, testWindow_.Def.PHRHome.DELETE_PHR_DIALOG_TITLE)} | true |
+| verifyValue | confDeleteName | javascript{storedVars['person1Name']} |
+| click | confDeleteYesBtn |
+| waitForNotVisible | javascript{testWindow_.Def.PHRHome.confirmDeletePhrDialog_} |
+#| verifyNotVisible | fr_rem_name_string_1 |
+#| verifyNotVisible | fe_removed_profiles_0 |
+
+# Add 3 more people (#2-4) to test the other functions
+# ------------- add person 2 -------------
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{'person2_'+new Date().getTime()}  |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | person2Name |
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText |  fe_birth_date_1_1 | javascript{Def.PhrHomeTest.getPrevDate(80,5,15)}  |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_birth_date_1_1').value} | person2BirthDate |
+| storeExpression | javascript{'80 years old'} | person2Age |
+| fireEvent | fe_gender_1_1 | focus |
+| selectByIndex |  fe_gender_1_1 | 1 |
+| waitForValue | fe_gender_C_1_1 | M |
+| storeExpression | javascript{testWindow_.$('fe_gender_1_1').value} | person2Gender |
+| fireEvent | fe_race_or_ethnicity_1_1 | focus |
+| selectByContent |  fe_race_or_ethnicity_1_1 | Asian |
+| waitForValue | fe_race_or_ethnicity_C_1_1 | LA6156-9 |
+| storeExpression | javascript{testWindow_.$('fe_race_or_ethnicity_1_1').value} | person2Ethnicity |
+| click | editSaveBtn |
+# -- goes to main phr page
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForVisible | loading_msg |
+| waitForNotVisible | loading_msg |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['person2Name']} |
+
+# -- while we're here, put in something to generate a due date reminder
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+| waitForVisible | fe_name_and_route_1 |
+| fireEvent | fe_name_and_route_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_1'} | true |
+| typeText | fe_name_and_route_1 | ADDERALL XR (Oral Pill) |
+| fireEvent | fe_name_and_route_1 | blur |
+| fireEvent | fe_name_and_route_1 | change |
+| fireEvent | fe_drug_use_status_1 | focus |
+| typeText | fe_drug_use_status_1 | Active |
+| fireEvent | fe_drug_use_status_1 | blur |
+| fireEvent | fe_drug_use_status_1 | change |
+| fireEvent | fe_drug_strength_form_1 | focus |
+| typeText | fe_drug_strength_form_1 | 1.25-1.25-1.25-1.25 mg 24 Hrs XR Cap |
+| fireEvent | fe_drug_strength_form_1 | blur |
+| fireEvent | fe_drug_strength_form_1 | change |
+| fireEvent | fe_expire_date_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_expire_date_1'} | true |
+| typeText | fe_expire_date_1 | t + 28 |
+| fireEvent | fe_expire_date_1 | blur |
+| fireEvent | fe_expire_date_1 | change |
+
+# -- save it and, because there is a bug in when the count is figured, open
+# the date reminders popup and close it.  Hopefully this little dance can
+# be removed soon.  2/10/14 lm
+| click | fe_save_1 |
+| pause | 100 |
+| click | fe_date_reminder_1_1 |
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | dateRemWindow |
+| storeExpression | javascript{testWindow_} | mainWindow |
+| waitForExpression | javascript{testWindow_ = storedVars['dateRemWindow']; true; } | true |
+| waitForVisible | fe_close_button_1 |
+| click | fe_close_button_1 |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
+
+# -- now go back to the phr home page
+| click | fe_close_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+# -- verify listing for second person (first shown)
+| waitForVisible | profiles_list |
+| verifyNotVisible | fe_removed_profiles_toggle |
+| waitForValue | name_string_1 | javascript{storedVars['person2Name']} |
+| verifyValue | age_string_1 | javascript{', ' + storedVars['person2Age']} |
+| verifyNotValue | last_updated_1 | not available |
+| verifyValue | date_reminders_text_1 | 1 date reminder |
+# ------------- end add person 2 -------------
+
+# ------------- add person 3 -------------
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{'person3_'+new Date().getTime() + ', Jr.'}  |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | person3Name |
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText |  fe_birth_date_1_1 | javascript{Def.PhrHomeTest.getPrevDate(45,6,25)}  |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| storeExpression | javascript{'45 years old'} | person3Age |
+| fireEvent | fe_gender_1_1 | focus |
+| selectByIndex |  fe_gender_1_1 | 1 |
+| waitForValue | fe_gender_C_1_1 | M |
+| fireEvent | fe_race_or_ethnicity_1_1 | focus |
+| selectByContent |  fe_race_or_ethnicity_1_1 | Native Hawaiian or Pacific Islander |
+| waitForValue | fe_race_or_ethnicity_C_1_1 | LA6266-6 |
+| click | editSaveBtn |
+# -- goes to main phr page
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['person3Name']} |
+| click | fe_close_top_1_1 |
+# -- return to phr home page
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+# -- verify listing for third person (second shown)
+| waitForVisible | profiles_list |
+| verifyNotVisible | fe_removed_profiles_toggle |
+| waitForValue | name_string_2 | javascript{storedVars['person3Name']} |
+| verifyValue | age_string_2 | javascript{', ' + storedVars['person3Age']} |
+| verifyNotValue | last_updated_2 | not available |
+| verifyValue | date_reminders_text_2 | No date reminders
+# ------------- end add person 3 -------------
+
+# ------------- add person 4 -------------
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{'person4_'+new Date().getTime()}  |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | person4Name |
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText |  fe_birth_date_1_1 | javascript{Def.PhrHomeTest.getPrevDate(15,2,18)}  |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| storeExpression | javascript{'15 years old'} | person4Age |
+| fireEvent | fe_gender_1_1 | focus |
+| selectByIndex |  fe_gender_1_1 | 0 |
+| waitForValue | fe_gender_C_1_1 | F |
+| fireEvent | fe_race_or_ethnicity_1_1 | focus |
+| selectByContent |  fe_race_or_ethnicity_1_1 | Black or African-American |
+| waitForValue | fe_race_or_ethnicity_C_1_1 | LA6162-7 |
+| click | editSaveBtn |
+# -- goes to main phr page
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['person4Name']} |
+| click | fe_close_top_1_1 |
+# -- return to phr home page
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+# -- verify listing for fourth person (third shown)
+| waitForVisible | profiles_list |
+| verifyNotVisible | fe_removed_profiles_toggle |
+| waitForValue | name_string_3 | javascript{storedVars['person4Name']} |
+| verifyValue | age_string_3 | javascript{', ' + storedVars['person4Age']} |
+| verifyNotValue | last_updated_3 | not available |
+| verifyValue | date_reminders_text_3 | No date reminders
+# ------------- end add person 4 -------------
+
+# ------------- test health reminders -------------
+| waitForExpression | javascript{testWindow_.$('envelope_icon_2').hasClassName('sprite_icons-env_red_whole')} | true |
+| storeExpression | javascript{testWindow_.$('health_reminders_text_2').innerHTML} | person2HRemText |
+| storeExpression | javascript{Def.PhrHomeTest.totalRemCount(storedVars['person2HRemText'], "health")} | person2HRemTotal |
+| storeExpression | javascript{Def.PhrHomeTest.newRemCount(storedVars['person2HRemText'])} | person2HRemNew |
+| click | health_reminders_link_2 |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_ !== null } | true |
+| storeExpression | javascript{testWindow_.Def.lastPopupWindow_} | healthRemWindow |
+| storeExpression | javascript{testWindow_} | mainWindow |
+| waitForExpression | javascript{testWindow_ = storedVars['healthRemWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+| waitForVisible | helpBody |
+
+# click on the "more" link in the first message
+| storeExpression | javascript{testWindow_.getElementsByClass('truncated_node')} | truncated_nodes |
+| verifyExpression | javascript{storedVars['truncated_nodes'].length == storedVars['person2HRemTotal']} | true |
+| storeExpression | javascript{testWindow_.getElementsByClass('unread')} | unread |
+| verifyExpression | javascript{storedVars['unread'].length == storedVars['person2HRemTotal'] * 2 ;} | true |
+| click | javascript{storedVars['truncated_nodes'][0].getElementsByClassName('html_truncator_link')[0]} |
+
+# close the popup and make sure the health reminders numbers (total & new) are correct
+| click | close_button |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
+| storeExpression | javascript{testWindow_.$('health_reminders_text_2').innerHTML} | person2HRemText |
+| storeExpression | javascript{Def.PhrHomeTest.totalRemCount(storedVars['person2HRemText'], "health")} | newPerson2HRemTotal |
+| storeExpression | javascript{Def.PhrHomeTest.newRemCount(storedVars['person2HRemText'])} | newPerson2HRemNew |
+| verifyExpression | javascript{storedVars['person2HRemTotal'] == storedVars['newPerson2HRemTotal']} | true |
+| verifyExpression | javascript{storedVars['newPerson2HRemNew'] == storedVars['person2HRemNew'] - 1} | true |
+
+# click on the envelope button to make sure it also brings up the health reminders
+| click | envelope_button_2 |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_ !== null } | true |
+| storeExpression | javascript{testWindow_.Def.lastPopupWindow_} | healthRemWindow |
+| storeExpression | javascript{testWindow_} | mainWindow |
+| waitForExpression | javascript{testWindow_ = storedVars['healthRemWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+| waitForVisible | helpBody |
+
+| storeExpression | javascript{testWindow_.getElementsByClass('truncated_node')} | truncated_nodes |
+| verifyExpression | javascript{storedVars['truncated_nodes'].length == storedVars['person2HRemTotal']} | true |
+| storeExpression | javascript{testWindow_.getElementsByClass('unread')} | unread |
+| verifyExpression | javascript{storedVars['unread'].length == storedVars['newPerson2HRemNew'] * 2;} | true |
+
+# review the reminders that haven't been reviewed yet and then close the popup
+#| click | javascript{for (var i=1; i < storedVars['person2HRemTotal']; i++) storedVars['truncated_nodes'][i].getElementsByClassName('html_truncator_link')[i];} | true |
+| waitForExpression | javascript{Def.PhrHomeTest.reviewHealthReminders(storedVars['truncated_nodes']);} | true |
+| click | close_button |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
+
+# check to make sure the open blue envelope is now displayed for this person's health reminders
+| waitForExpression | javascript{testWindow_.$('envelope_icon_2').hasClassName('sprite_icons-env_blue_outline')} | true |
+# ------------- end test health reminders -------------
+
+# ------------- test date reminders -------------
+# We created a date reminder for person2, so let's go look at it
+# try first with the link
+| click | date_reminders_link_1 |
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | dateRemWindow |
+| storeExpression | javascript{testWindow_} | mainWindow |
+| waitForExpression | javascript{testWindow_ = storedVars['dateRemWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+| waitForVisible | fe_pseudonym_alias_1 |
+| waitForValue | fe_pseudonym_alias_1 | javascript{storedVars['person2Name']} |
+| waitForValue | fe_reminder_type_1 | Active Drugs |
+| click | fe_close_button_1 |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
+
+# now try using the calendar
+| click | calendar_button_1 |
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | dateRemWindow |
+| storeExpression | javascript{testWindow_} | mainWindow |
+| waitForExpression | javascript{testWindow_ = storedVars['dateRemWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+| waitForVisible | fe_pseudonym_alias_1 |
+| waitForValue | fe_pseudonym_alias_1 | javascript{storedVars['person2Name']} |
+| waitForValue | fe_reminder_type_1 | Active Drugs |
+| click | fe_close_button_1 |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
+# one more thing - make sure those buttons & links are disabled when there are no reminders
+| verifyExpression | javascript{testWindow_.$('calendar_button_3').disabled == true;} | true |
+| verifyExpression | javascript{testWindow_.$('date_reminders_link_3').disabled == true;} | true |
+# ------------- end test date reminders -------------
+
+# ------------- test toggles to open/close link lines -------------
+# start with the profile icon
+| verifyExpression | javascript{testWindow_.$('profile_icon_btn_1').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['name'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('wedgie_btn_1').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['name'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('name_string_1').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['name'] ; } | true |
+| click | profile_icon_btn_1 |
+| waitForVisible | links_cell_1_1 |
+| verifyVisible | links_cell_1_2 |
+| verifyVisible | links_cell_1_3 |
+| verifyVisible | links_cell_1_4 |
+| verifyVisible | links_cell_1_5 |
+| verifyVisible | links_cell_1_6 |
+| verifyVisible | links_cell_1_7 |
+| verifyVisible | links_cell_1_8 |
+| verifyExpression | javascript{testWindow_.$('profile_icon_btn_1').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['wedgie_up'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('wedgie_btn_1').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['wedgie_up'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('name_string_1').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['wedgie_up'] ; } | true |
+# we tested the wedgie when we removed person 1, so go on to the name link
+| verifyExpression | javascript{testWindow_.$('profile_icon_btn_2').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['name'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('wedgie_btn_2').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['name'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('name_string_2').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['name'] ; } | true |
+| click | name_string_2 |
+| waitForVisible | links_cell_2_1 |
+| verifyVisible | links_cell_2_2 |
+| verifyVisible | links_cell_2_3 |
+| verifyVisible | links_cell_2_4 |
+| verifyVisible | links_cell_2_5 |
+| verifyVisible | links_cell_2_6 |
+| verifyVisible | links_cell_2_7 |
+| verifyVisible | links_cell_2_8 |
+| verifyExpression | javascript{testWindow_.$('profile_icon_btn_2').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['wedgie_up'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('wedgie_btn_2').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['wedgie_up'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('name_string_2').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['wedgie_up'] ; } | true |
+# make sure the lines previously open were closed
+| waitForNotVisible | links_cell_1_1 |
+| verifyNotVisible | links_cell_1_2 |
+| verifyNotVisible | links_cell_1_3 |
+| verifyNotVisible | links_cell_1_4 |
+| verifyNotVisible | links_cell_1_5 |
+| verifyNotVisible | links_cell_1_6 |
+| verifyNotVisible | links_cell_1_7 |
+| verifyNotVisible | links_cell_1_8 |
+| verifyExpression | javascript{testWindow_.$('profile_icon_btn_1').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['name'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('wedgie_btn_1').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['name'] ; } | true |
+| verifyExpression | javascript{testWindow_.$('name_string_1').title == testWindow_.Def.PHRHome.FORM_TOOLTIPS['name'] ; } | true |
+# ------------- end test toggles to open/close link lines -------------
+
+# ------------- test links to main PHR and test pages -------------
+# first the link to the main PHR page
+| click | show_phr_form_2 |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['person3Name']} |
+| click | fe_close_top_1_1 |
+# -- return to phr home page
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+# now the flowsheet page
+| click | show_tests_2 |
+| waitForExpression | javascript{testWindow_.location.href} | *panels |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1 |
+| waitForExpression | javascript{testWindow_.$('fe_pseudonym_alias_1').innerHTML.substring(0,storedVars['person3Name'].length) == storedVars['person3Name'];} | true |
+| click | fe_return_button |
+# -- return to phr home page
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+# ------------- end test links to main PHR and test pages -------------
+
+# ------------- test demographics updates -------------
+| click | wedgie_1 |
+| waitForVisible | edit_demographics_1 |
+| click | edit_demographics_1 |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_UPDATE_TITLE)} | true |
+
+# --- make sure the input fields contain this person's data
+| waitForValue | fe_pseudonym_1_1 | javascript{storedVars['person2Name']} |
+| verifyValue | fe_birth_date_1_1 | javascript{storedVars['person2BirthDate']} |
+| verifyValue | fe_gender_1_1 | javascript{storedVars['person2Gender']} |
+| verifyValue | fe_race_or_ethnicity_1_1 | javascript{storedVars['person2Ethnicity']} |
+
+# -- try to enter a duplicate pseudonym
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{storedVars['person4Name']}  |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| waitForExpression | javascript{testWindow_.$('fe_pseudonym_1_1').hasClassName('invalid');} | true |
+| waitForExpression | javascript{testWindow_.document.getElementsByClassName('ui-tooltip-content')[0].innerHTML == 'Please enter a unique value.';} | true |
+
+# --- now update the data - 3 out of the 4 fields
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{storedVars['person2Name'] + 'Phd., FAC, IV'} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | person2Name |
+| waitForExpression | javascript{testWindow_.$('fe_pseudonym_1_1').hasClassName('invalid');} | false |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText |  fe_birth_date_1_1 | javascript{Def.PhrHomeTest.getPrevDate(28,0,0)}  |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_birth_date_1_1').value} | person2BirthDate |
+| storeExpression | javascript{'28 years old'} | person2Age |
+
+# --- try to enter a blank gender
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| typeText |  fe_gender_1_1 | |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForExpression | javascript{testWindow_.$('fe_gender_1_1').hasClassName('errReqOutline');} | true |
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.document.getElementsByClassName('ui-tooltip-content')[0].innerHTML == 'This field must not be left blank.';} | true |
+| typeText |  fe_gender_1_1 | Female  |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+| storeExpression | javascript{testWindow_.$('fe_gender_1_1').value} | person2Gender |
+
+| click | editSaveBtn |
+
+# -- verify changes to the listing
+| waitForVisible | profiles_list |
+| waitForValue | name_string_1 | javascript{storedVars['person2Name']} |
+| verifyValue | age_string_1 | javascript{', ' + storedVars['person2Age']} |
+| verifyNotValue | last_updated_1 | not available |
+
+# now bring up the box again to make sure it shows the new values
+| waitForVisible | edit_demographics_1 |
+| click | edit_demographics_1 |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_UPDATE_TITLE)} | true |
+
+# --- make sure the input fields contain this person's data
+| waitForValue | fe_pseudonym_1_1 | javascript{storedVars['person2Name']} |
+| verifyValue | fe_birth_date_1_1 | javascript{storedVars['person2BirthDate']} |
+| verifyValue | fe_gender_1_1 | javascript{storedVars['person2Gender']} |
+| verifyValue | fe_race_or_ethnicity_1_1 | javascript{storedVars['person2Ethnicity']} |
+
+# --- blank out a required field and try to save it
+| fireEvent | fe_gender_1_1 | focus |
+| typeText |  fe_gender_1_1 | |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| click | editSaveBtn |
+
+# --- check for error messages, then cancel the request
+| waitForExpression | javascript{testWindow_.$('validation_errors').hasClassName('screen_reader_only');} | false |
+| waitForExpression | javascript{testWindow_.$('validation_alert').innerHTML.indexOf('fe_gender_1_1') > 0;} | true |
+| waitForExpression | javascript{testWindow_.$('fe_gender_1_1').hasClassName('errReqOutline');} | true |
+| click | editCancelBtn |
+# ------------- end test demographics updates -------------
+
+# ------------- bug test - hijacked data --------------
+# This tests a bug where adding a new phr immediately after the demographics
+# dialog had been used to update an existing phr caused the new phr to hijack
+# the existing phr's data.
+# ------------- add person 4 -------------
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{'Xhijacker_'+new Date().getTime()}  |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | hijackerName |
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText |  fe_birth_date_1_1 | javascript{Def.PhrHomeTest.getPrevDate(15,2,18)}  |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| storeExpression | javascript{'15 years old'} | hijackerAge |
+| fireEvent | fe_gender_1_1 | focus |
+| selectByIndex |  fe_gender_1_1 | 0 |
+| waitForValue | fe_gender_C_1_1 | F |
+| fireEvent | fe_race_or_ethnicity_1_1 | focus |
+| selectByContent |  fe_race_or_ethnicity_1_1 | Black or African-American |
+| waitForValue | fe_race_or_ethnicity_C_1_1 | LA6162-7 |
+| click | editSaveBtn |
+# -- goes to main phr page
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['hijackerName']} |
+# now make sure that this new phr doesn't have the drugs we entered for person2
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['hijackerName']} |
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+| waitForVisible | fe_name_and_route_1 |
+| verifyValue | fe_name_and_route_1 | |
+| click | fe_close_top_1_1 |
+# -- return to phr home page
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+# now delete this one
+| click | name_string_4 |
+| click | remove_profile_4 |
+| waitForVisible | fe_removed_profiles_0 |
+| click | delete_profile_1 |
+| verifyValue | confDeleteName | javascript{storedVars['hijackerName']} |
+| click | confDeleteYesBtn |
+| waitForNotVisible | javascript{testWindow_.Def.PHRHome.confirmDeletePhrDialog_} |
+#| verifyNotVisible | fe_removed_profiles_0 |
+#| verifyNotVisible | fr_rem_name_string_1 |
+#| verifyNotVisible | fe_removed_profiles_0 |
+# ------------- end bug testing - data hijack -------------
+
+# ------------- test import -------------
+| click | name_string_3 |
+| waitForVisible | links_cell_3_2 |
+| click | import_phr_3 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.warningDialog_, testWindow_.Def.PHRHome.ERROR_MSG_BOX_TITLE)} | true |
+| click | warningOKBtn |
+# ------------- end test import -------------
+
+# ------------- test download -------------
+| waitForVisible | export_phr_3 |
+| click | export_phr_3 |
+| waitForVisible | exportWarning |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.exportDialog_, testWindow_.Def.PHRHome.EXPORT_DIALOG_TITLE.replace('NAME', storedVars['person4Name'] + "'s"))} | true |
+| waitForValue | exportDialogFirstLine | javascript{testWindow_.Def.PHRHome.EXPORT_DIALOG_MAIN_LINE.replace('name', storedVars['person4Name'] + "'s")} |
+| storeExpression | javascript{testWindow_.Def.PHRHome.EXPORT_DIALOG_TEXT} | exportText |
+| storeExpression | javascript{storedVars['exportText'].replace('filename">', 'filename">' + testWindow_.Def.PHRHome.exportFileName_)} | exportText |
+| storeExpression | javascript{storedVars['exportText'].replace('pseudonym">', 'pseudonym">' + storedVars['person4Name'])} | exportText |
+| storeExpression | javascript{storedVars['exportText'].replace('main_form_name">name', 'main_form_name">' + testWindow_.Def.PHRHome.FORM_LABELS['main_form'])} | exportText |
+| storeExpression | javascript{storedVars['exportText'].replace('test_form_name">name', 'test_form_name">' + testWindow_.Def.PHRHome.FORM_LABELS['tests'])} | exportText |
+| waitForValue | exportMessage | javascript{storedVars['exportText']} |
+# click on the cancel button.  I don't know how to capture anything on the download
+# box that the browser displays.
+| click | exportCancelBtn |
+# ------------- end test download -------------
+
+# ------------- test remove and restore -------------
+# -- remove 2 of the three people
+| click | remove_profile_3 |
+| waitForVisible | fe_removed_profiles_0 |
+| waitForNotVisible | main_profile_line_3  |
+| click | name_string_1 |
+| waitForVisible | remove_profile_1 |
+| click | remove_profile_1 |
+| waitForNotVisible | main_profile_line_3 |
+#| click | fe_removed_profiles_toggle |
+#| waitForNotVisible | fe_removed_profiles_toggle |
+#| waitForVisible | fe_removed_profiles_0_expcol |
+| verifyValue | rem_name_string_1 | javascript{storedVars['person2Name']} |
+| verifyValue | rem_age_string_1 | javascript{', ' + storedVars['person2Age']} |
+| verifyValue | rem_name_string_2 | javascript{storedVars['person4Name']} |
+| verifyValue | rem_age_string_2 | javascript{', ' + storedVars['person4Age']} |
+
+# -- now logout and log back in, test restoration positions
+| click | fe_logout |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/logout |
+| waitForVisible | fe_user_name_1_1 |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| typeText | fe_user_name_1_1 | javascript{storedVars['user1Name']} |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| typeText | fe_password_1_1 | 'TT_0987&' |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+| click | fe_login_1_1 |
+
+| waitForVisible | main_title |
+| waitForValue | main_title | Your Computer Is Not Recognized |
+| fireEvent | fe_user_answ_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_answ_1_1'} | true |
+| typeText | fe_user_answ_1_1 | 1 |
+| fireEvent | fe_user_answ_1_1 | change |
+| fireEvent | fe_user_answ_1_1 | blur |
+| click | fe_submit_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home* |
+
+#| waitForVisible | fe_removed_profiles_toggle |
+#| click | fe_removed_profiles_toggle |
+| waitForNotVisible | fe_removed_profiles_toggle |
+| waitForVisible | fe_removed_profiles_0 |
+
+# restore person 2, make sure that person 2 is listed first in the active profiles list
+| click | restore_profile_1 |
+| waitForValue | name_string_2 | javascript{storedVars['person2Name']} |
+| verifyExpression | javascript{testWindow_.$('profile_list_header_row').nextElementSibling == testWindow_.$('main_profile_line_2')} | true |
+
+# restore person 4 and make sure person 4 is listed last in the active profiles list
+| click | restore_profile_2 |
+| waitForValue | name_string_3 | javascript{storedVars['person4Name']} |
+| verifyExpression | javascript{testWindow_.$('main_profile_line_3').nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling == null} | true |
+# and make sure the removed profiles section is no longer visible
+#| waitForNotVisible | fe_removed_profiles_toggle |
+| waitForNotVisible | fe_removed_profiles_0 |
+# ------------- end test remove and restore -------------
+
+# Now logout and create another non-admin user
+| click | fe_logout |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/logout |
+
+# ------------- Create the second non-admin user for this test -------------
+| open | /accounts/new |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| verifyExpression | javascript{testWindow_.$('fe_instructions2_1').scrollTop = testWindow_.$('fe_instructions2_1').scrollHeight; 1} | 1 |
+| fireEvent | fe_agree_chbox_1 | focus |
+| click | fe_agree_chbox_1 |
+
+| fireEvent | fe_user_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1'} | true |
+| typeText |  fe_user_name_1 | javascript{'bypass_activation_'+new Date().getTime()}  |
+| fireEvent | fe_user_name_1 | change |
+| fireEvent | fe_user_name_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_user_name_1').value} | user2Name |
+
+| fireEvent | fe_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1'} | true |
+| type |  fe_password_1 | 'TT_0987&' |
+| fireEvent | fe_password_1 | change |
+| fireEvent | fe_password_1 | blur |
+
+| fireEvent | fe_confirm_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_confirm_password_1'} | true |
+| type |  fe_confirm_password_1 | 'TT_0987&' |
+| fireEvent | fe_confirm_password_1 | change |
+| fireEvent | fe_confirm_password_1 | blur |
+
+# first question
+| fireEvent | fe_su_fix_quest_1_1 | focus |
+| typeKeys | fe_su_fix_quest_1_1 | 1 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_1 | \9 |
+| fireEvent | fe_su_fix_quest_1_1 | blur |
+| waitForValue | fe_su_fix_quest_1_1 | In what city was your mother born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').autocomp.hasFocus} | false |
+
+# second question
+| fireEvent | fe_su_fix_quest_1_2 | focus |
+| typeKeys | fe_su_fix_quest_1_2 | 2 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_2 | \9 |
+| fireEvent | fe_su_fix_quest_1_2 | blur |
+| waitForValue | fe_su_fix_quest_1_2 | In what city were you born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').autocomp.hasFocus} | false |
+
+| fireEvent | fe_su_fixansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_1'} | true |
+| type |  fe_su_fixansw_1_1 | 1 |
+| fireEvent | fe_su_fixansw_1_1 | change |
+| fireEvent | fe_su_fixansw_1_1 | blur |
+
+| fireEvent | fe_su_fixansw_1_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_2'} | true |
+| type |  fe_su_fixansw_1_2 | 1 |
+| fireEvent | fe_su_fixansw_1_2 | change |
+| fireEvent | fe_su_fixansw_1_2 | blur |
+
+| fireEvent | fe_su_selfquest_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfquest_1_1'} | true |
+| typeText |  fe_su_selfquest_1_1 | 1 |
+| fireEvent | fe_su_selfquest_1_1 | change |
+| fireEvent | fe_su_selfquest_1_1 | blur |
+
+| fireEvent | fe_su_selfansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfansw_1_1'} | true |
+| typeText |  fe_su_selfansw_1_1 | 1 |
+| fireEvent | fe_su_selfansw_1_1 | change |
+| fireEvent | fe_su_selfansw_1_1 | blur |
+
+| fireEvent | fe_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1'} | true |
+| typeText |  fe_email_1 | javascript{storedVars['user2Name'] + '@notadomain.qrt'} |
+| fireEvent | fe_email_1 | change |
+| fireEvent | fe_email_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_email_1').value} | user2Email |
+
+| fireEvent | fe_sec_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_sec_email_1'} | true |
+| typeText |  fe_sec_email_1 | javascript{storedVars['user2Name'] + '@notadomain.qrt'} |
+| fireEvent | fe_sec_email_1 | change |
+| fireEvent | fe_sec_email_1 | blur |
+
+| fireEvent | recaptcha_response_field | focus |
+| type |  recaptcha_response_field | correct_response |
+| fireEvent | recaptcha_response_field | change |
+| fireEvent | recaptcha_response_field | blur |
+
+# Save the form
+| click | fe_signup_1 |
+| waitForVisible | savingNotice |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/login |
+| waitForVisible | fe_user_name_1_1 |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+| waitForTextPresent | Thanks for signing up |
+# ------------- New account activation ---------------------
+| open | /accounts/email_verification?verification_token=abc |
+| waitForVisible | fe_user_name_1 |
+| typeText | fe_user_name_1 | javascript{storedVars['user2Name']} |
+| waitForVisible | fe_password_1 |
+| typeText | fe_password_1 | TT_0987& |
+| click | fe_submit_button_1 |
+| waitForVisible | fe_user_name_1_1 |
+| waitForTextPresent | has been activated successfully |
+# ------------- end of create user1 for this test -------------
+
+# ------------- login -------------
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| typeText | fe_user_name_1_1 | javascript{storedVars['user2Name']} |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| typeText | fe_password_1_1 | 'TT_0987&' |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+| click | fe_login_1_1 |
+
+| waitForVisible | main_title |
+| waitForValue | main_title | Your Computer Is Not Recognized |
+| fireEvent | fe_user_answ_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_answ_1_1'} | true |
+| typeText | fe_user_answ_1_1 | 1 |
+| fireEvent | fe_user_answ_1_1 | change |
+| fireEvent | fe_user_answ_1_1 | blur |
+| click | fe_submit_1 |
+# ------------- end of login -------------
+
+# ------------- verify initial screen for new user -------------
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home* |
+| waitForVisible | add_new |
+
+# -- Check for initial "Add a PHR" message box --
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.warningDialog_, testWindow_.Def.PHRHome.NO_PROFILES_TITLE)} | true |
+| verifyValue | ui-id-1 | javascript{testWindow_.Def.PHRHome.NO_ACTIVE_PROFILES_MSG} |
+| click | warningOKBtn |
+# ------------- end verify initial screen for new user -------------
+
+# ------------- add a new person for user2 -------------
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+# --- make sure the input fields start out empty
+| verifyExpression | javascript{testWindow_.fe_pseudonym_1_1.getAttribute("novalue") == "true";} | true |
+| verifyExpression | javascript{testWindow_.Def.getFieldVal(testWindow_.$('fe_birth_date_1_1')) == ""} | true |
+| verifyExpression | javascript{testWindow_.fe_gender_1_1.getAttribute("novalue") == "true";} | true |
+| verifyExpression | javascript{testWindow_.fe_race_or_ethnicity_1_1.getAttribute("novalue") == "true";} | true |
+
+# --- fill in the data
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{'person5_'+new Date().getTime()}  |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | person5Name |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText |  fe_birth_date_1_1 | javascript{Def.PhrHomeTest.getPrevDate(22,0,0)}  |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| storeExpression | javascript{'22 years old'} | person5Age |
+
+| fireEvent | fe_gender_1_1 | focus |
+| selectByIndex |  fe_gender_1_1 | 0 |
+| waitForValue | fe_gender_C_1_1 | F |
+
+| fireEvent | fe_race_or_ethnicity_1_1 | focus |
+| selectByContent |  fe_race_or_ethnicity_1_1 | Hispanic or Latino |
+| waitForValue | fe_race_or_ethnicity_C_1_1 | LA6214-6 |
+
+| click | editSaveBtn |
+
+# -- goes to main phr page
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['person5Name']} |
+| click | fe_close_top_1_1 |
+
+# -- return to phr home page
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+# -- verify listing for this person
+| waitForVisible | profiles_list |
+| verifyNotVisible | fe_removed_profiles_0 |
+| waitForValue | name_string_1 | javascript{storedVars['person5Name']} |
+| verifyValue | age_string_1 | javascript{', ' + storedVars['person5Age']} |
+| verifyNotValue | last_updated_1 | not available |
+| waitForNotValue | health_reminders_text_1 | No health reminders |
+| verifyValue | date_reminders_text_1 | No date reminders
+# ------------- end add a new person -------------
+
+# ------------- open up the task lines -----------
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_7 |
+| click | share_invite_1 |
+| waitForVisible | fe_email_1_1 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.shareInviteDialog_, testWindow_.Def.PHRHome.SHARE_INVITE_DIALOG_TITLE)} | true |
+
+# --- make sure the input fields start out empty
+| verifyExpression | javascript{testWindow_.fe_email_1_1.getAttribute("novalue") == "true";} | true |
+| verifyExpression | javascript{testWindow_.fe_confirm_target_email_1_1.getAttribute("novalue") == "true";} | true |
+| verifyExpression | javascript{testWindow_.fe_target_name_1_1.getAttribute("novalue") == "true";} | true |
+| verifyExpression | javascript{testWindow_.fe_issuer_name_1_1.getAttribute("novalue") == "true";} | true |
+| verifyExpression | javascript{testWindow_.fe_personalized_msg_1_1_1.getAttribute("novalue") == "true";} | true |
+
+# --- fill in the data
+
+# --- specify an invalid email to check for validation
+| fireEvent | fe_email_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1_1'} | true |
+| typeText |  fe_email_1_1 | notanemailaddress |
+| fireEvent | fe_email_1_1 | change |
+| fireEvent | fe_email_1_1 | blur |
+| waitForExpression | javascript{testWindow_.$('fe_email_1_1').hasClassName('invalid');} | true |
+| waitForExpression | javascript{testWindow_.document.getElementsByClassName('ui-tooltip-content')[0].innerHTML == 'Please enter a valid email address in the format username@hostname.domain. Username and hostname may have parts separated by a period (.).';} | true |
+
+| fireEvent | fe_email_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1_1'} | true |
+| typeText |  fe_email_1_1 | javascript{storedVars['user1Email']} |
+| fireEvent | fe_email_1_1 | change |
+| fireEvent | fe_email_1_1 | blur |
+
+# --- specify a non-matching email to check for validation
+| fireEvent | fe_confirm_target_email_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_confirm_target_email_1_1'} | true |
+| typeText |  fe_confirm_target_email_1_1 | not@matching.email |
+| fireEvent | fe_confirm_target_email_1_1 | change |
+| fireEvent | fe_confirm_target_email_1_1 | blur |
+| waitForExpression | javascript{testWindow_.$('fe_confirm_target_email_1_1').hasClassName('invalid');} | true |
+| waitForExpression | javascript{testWindow_.document.getElementsByClassName('ui-tooltip-content')[0].innerHTML == 'These email fields do not match. Try again?';} | true |
+
+# --- now specify the matching email
+| fireEvent | fe_confirm_target_email_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_confirm_target_email_1_1'} | true |
+| typeText |  fe_confirm_target_email_1_1 | javascript{storedVars['user1Email']} |
+| fireEvent | fe_confirm_target_email_1_1 | change |
+| fireEvent | fe_confirm_target_email_1_1 | blur |
+
+# --- now the names
+| fireEvent | fe_target_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_target_name_1_1'} | true |
+| typeText |  fe_target_name_1_1 | George |
+| fireEvent | fe_target_name_1_1 | change |
+| fireEvent | fe_target_name_1_1 | blur |
+| waitForExpression | javascript{storedVars['targetName'] = 'George'; true;} | true |
+
+| fireEvent | fe_issuer_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_issuer_name_1_1'} | true |
+| typeText |  fe_issuer_name_1_1 | Harriet |
+| fireEvent | fe_issuer_name_1_1 | change |
+| fireEvent | fe_issuer_name_1_1 | blur |
+| storeExpression | javascript{storedVars['issuerName'] = 'Harriet'; true' | true |
+
+# Now look at the invitation
+| fireEvent | fe_invite_preview_btn_1_1 | focus |
+| click | fe_invite_preview_btn_1_1 |
+| waitForVisible | fe_invitation_box_1_1_0 |
+| waitForExpression | javascript{testWindow_.$('target_name').textContent == storedVars['targetName'] ;} | true |
+| verifyExpression | javascript{testWindow_.$('issuer_name').textContent == storedVars['issuerName'] ;} | true |
+
+# Now specify a personalized message
+| fireEvent | fe_personalized_msg_1_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_personalized_msg_1_1_1'} | true |
+| typeText |  fe_personalized_msg_1_1_1 | A personalized message. |
+| fireEvent | fe_personalized_msg_1_1_1 | change |
+| fireEvent | fe_personalized_msg_1_1_1 | blur |
+| storeExpression | javascript{storedVars['personalizedMsg'] = 'A personalized message.'; true' | true |
+
+# and verify that the due date is correct - no - I could not find a good way to
+# do this using javascript without just using the same method that's in the code.
+#| waitForExpression | javascript{Def.PhrHomeTest.verifyExpireDate(testWindow_.$('expire_date').textContent)} | true |
+
+# Send the invitation and make sure that we get a success message
+| fireEvent | shareInviteBtn | focus |
+| click | shareInviteBtn |
+| waitForExpression | javascript{testWindow_.$('notification').textContent == testWindow_.Def.PHRHome.SHARE_INVITE_SUCCESS.replace('<name>', storedVars['targetName']);} | true |
+
+# bring the invitation popup back up and make sure the cancel button works
+| click | share_invite_1 |
+| waitForVisible | fe_email_1_1 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.shareInviteDialog_, testWindow_.Def.PHRHome.SHARE_INVITE_DIALOG_TITLE)} | true |
+| fireEvent | shareCancelBtn | focus |
+| click | shareCancelBtn |
+| waitForNotVisible | fe_email_1_1 |

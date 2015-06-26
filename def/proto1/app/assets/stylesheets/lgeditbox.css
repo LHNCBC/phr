@@ -1,0 +1,95 @@
+
+
+/* create a z-index context
+ * for main_form and lgEditBoxWrapper
+ * "position: relative;" is required so that the newly added textarea stays
+ * put over the text input field while form is being scrolled up or down.
+ * z-index should be less than 10 as specified above. default is 0.
+ */
+div#formContent {
+ /*position: relative !important;*/
+ /* NOTE: it now seems like with position:static, the newly added textarea stays
+    put too over the original field. -- 7/3/12 Ye
+ */
+ /* z-index: 0; */ /* default value */
+}
+
+/* Large Edit box */
+div.lgEditBoxWrapper {
+  /*position: absolute; 
+    this will cause a problem in firefox 3. offsetLeft and offsetTop are 
+    calculated differently in firefox 2 and firefox 3.
+  */
+  position: relative;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+  z-index: 10;
+  min-height: 65px;
+  height: auto;
+  width: 200px;
+}
+
+textarea.lgEditBox {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 90%;
+  vertical-align: baseline;
+  position: absolute;
+  border: 2px solid #73a0c8;
+  overflow: auto;
+  padding: 0px;
+  margin: 0px;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: auto;
+  z-index: 10;
+  display: block;
+}
+
+/* Multi-field Edit box*/
+div.mFieldBoxWrapper table{
+  border-spacing: 0px;
+  border: 0 none;
+  border-collapse: collapse;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+div.mFieldBoxWrapper td {
+  border-width: 0px;
+  padding: 0px;
+}
+
+div.mFieldBoxWrapper label {
+  font-size:100%;
+  display:block;
+  text-align: center;
+}
+
+input[type="text"].mFieldBox {
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+  top: 0px;
+}
+
+div.mFieldBoxWrapper {
+  /*position: absolute;
+    this will cause a problem in firefox 3. offsetLeft and offsetTop are
+    calculated differently in firefox 2 and firefox 3.
+  */
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  z-index: 10;
+  background-color: #D8EBFC;
+  display:block;  /* display:table; required to remove extra space on the right side*/
+  border-style: solid;
+  border-width: 0px;
+  border-color:	#73A0C8;
+  
+}
+

@@ -1,0 +1,15 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Security Challenge Question</h1>
+		<p>
+		
+Please supply the same answer you gave to this question when you registered for your PHR account. Your answer is not case-sensitive. </p>
+
+<p>If you don't
+remember the answer you gave, please use the <b> Contact Us</b> link at the bottom of the login page to email our help desk for assistance. 
+
+
+    </p>  
+  
+
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,161 @@
+# Due date tests
+# Create a new profile
+| setTimeout | 35000 |
+| open | /phr_home |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'phr_duedate1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# enter data in the appointment table
+# first record
+| click | fe_medtact_type_1 |
+| waitForExpression | javascript{!testWindow_.isHiddenOrDisabled(testWindow_.$('completionOptions'))} | true |
+| selectByIndex | fe_medtact_type_1 | 1 |
+| keyDown | fe_medtact_type_1 | \9 |
+| fireEvent | fe_medtact_name_1 | focus |
+| type | fe_medtact_name_1 |Dr. A |
+| fireEvent | fe_medtact_name_1 | change |
+| keyDown | fe_medtact_name_1 | \9 |
+| fireEvent | fe_next_appt_1 | focus |
+| type | fe_next_appt_1 | t+2 |
+| fireEvent | fe_next_appt_1 | change |
+| keyDown | fe_next_appt_1 | \9 |
+# second record
+| click | fe_medtact_type_2 |
+| waitForExpression | javascript{!testWindow_.isHiddenOrDisabled(testWindow_.$('completionOptions'))} | true |
+| selectByIndex | fe_medtact_type_2 | 2 |
+| keyDown | fe_medtact_type_2 | \9 |
+| fireEvent | fe_medtact_name_2 | focus |
+| type | fe_medtact_name_2 | Dr. B |
+| fireEvent | fe_medtact_name_2 | change |
+| keyDown | fe_medtact_name_2 | \9 |
+| fireEvent | fe_next_appt_2 | focus |
+| type | fe_next_appt_2 | t |
+| fireEvent | fe_next_appt_2 | change |
+| keyDown | fe_next_appt_2 | \9 |
+# third record
+| click | fe_medtact_type_3 |
+| waitForExpression | javascript{!testWindow_.isHiddenOrDisabled(testWindow_.$('completionOptions'))} | true |
+| selectByIndex | fe_medtact_type_3 | 3 |
+| keyDown | fe_medtact_type_3 | \9 |
+| fireEvent | fe_medtact_name_3 | focus |
+| type | fe_medtact_name_3 | Dr. C |
+| fireEvent | fe_medtact_name_3 | change |
+| keyDown | fe_medtact_name_3 | \9 |
+| fireEvent | fe_next_appt_3 | focus |
+| type | fe_next_appt_3 | t-2 |
+| fireEvent | fe_next_appt_3 | change |
+| keyDown | fe_next_appt_3 | \9 |
+# save the data
+| click | fe_save_1 |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+# open due date reminder window
+| click | fe_date_reminder_1_1 |
+| pause | 5000 |
+| waitForExpression | javascript{mainTestWindow = testWindow_; true} | true |
+| waitForExpression | javascript{popupTestWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_ = popupTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *popup |
+
+# check due date value
+| waitForValue | fe_reminder_item_1 | Dr. A |
+| waitForValue | fe_reminder_item_2 | Dr. B |
+| waitForValue | fe_reminder_item_3 | Dr. C |
+| waitForValue | fe_reminder_status_1 | Due in 2 days |
+| waitForValue | fe_reminder_status_2 | Due today |
+| waitForValue | fe_reminder_status_3 | 2 days past due |
+
+# check sorting
+| click | fe_due_date_hd_sorter |
+| waitForExpression | javascript{testWindow_.$('fe_reminder_item_3').parentNode.parentNode.nextSibling.childNodes[7].down(0).id} | fe_reminder_item_2 |
+| waitForExpression | javascript{testWindow_.$('fe_reminder_item_2').parentNode.parentNode.nextSibling.childNodes[7].down(0).id} | fe_reminder_item_1 |
+| waitForExpression | javascript{testWindow_.$('fe_reminder_item_3').parentNode.parentNode.nextSibling.childNodes[7].textContent} | Dr. B |
+| waitForExpression | javascript{testWindow_.$('fe_reminder_item_2').parentNode.parentNode.nextSibling.childNodes[7].textContent} | Dr. A |
+
+| click | fe_due_date_hd_sorter |
+#| waitForExpression | javascript{testWindow_.$('fe_reminder_item_1').parentNode.parentNode.nextSibling.childNodes[7].down(0).id} | fe_reminder_item_2 |
+#| waitForExpression | javascript{testWindow_.$('fe_reminder_item_2').parentNode.parentNode.nextSibling.childNodes[7].down(0).id} | fe_reminder_item_3 |
+#| waitForExpression | javascript{testWindow_.$('fe_reminder_item_1').parentNode.parentNode.nextSibling.childNodes[7].textContent} | Dr. B |
+#| waitForExpression | javascript{testWindow_.$('fe_reminder_item_2').parentNode.parentNode.nextSibling.childNodes[7].textContent} | Dr. C |
+| click | fe_reminder_status_hd_sorter |
+#| waitForExpression | javascript{testWindow_.$('fe_reminder_item_3').parentNode.parentNode.nextSibling.childNodes[7].down(0).id} | fe_reminder_item_1 |
+#| waitForExpression | javascript{testWindow_.$('fe_reminder_item_1').parentNode.parentNode.nextSibling.childNodes[7].down(0).id} | fe_reminder_item_2 |
+#| waitForExpression | javascript{testWindow_.$('fe_reminder_item_3').parentNode.parentNode.nextSibling.childNodes[7].textContent} | Dr. A |
+#| waitForExpression | javascript{testWindow_.$('fe_reminder_item_1').parentNode.parentNode.nextSibling.childNodes[7].textContent} | Dr. B |
+
+# check hiding
+| click | fe_hide_me_2 |
+| waitForNotVisible | fe_due_date_2 |
+
+# check show hidden
+| click | fe_rmd_show |
+| waitForVisible | fe_due_date_2 |
+
+# close the popup window
+| click | fe_close_button_1 |
+
+# reset test window
+| waitForExpression | javascript{testWindow_ = mainTestWindow; true} | true |
+
+# open the due date popup again
+| click | fe_date_reminder_1_1 |
+| pause | 5000 |
+| waitForExpression | javascript{mainTestWindow = testWindow_; true} | true |
+| waitForExpression | javascript{popupTestWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_ = popupTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *popup |
+
+# check if the hidden reminder record is actually hidden
+| waitForNotVisible | fe_due_date_2 |
+
+# close the popup window again
+| click | fe_close_button_1 |
+
+# reset test window
+| waitForExpression | javascript{testWindow_ = mainTestWindow; true} | true |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |
+

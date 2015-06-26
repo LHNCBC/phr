@@ -1,0 +1,16 @@
+<p>This is the login page for the demo version of the National Library of
+  Medicine's (NLM) Personal Health Record application.</p>
+
+<div><%= fd_static_text @demo_login_fds['instructions2'] %></div>
+
+<%= form_tag demo_login_path(:format=>:basic), :method=>:post%>
+  <input type="hidden" value="basic" name="page_type" />
+  <div><%=fd_checkbox @demo_login_fds['agree_chbox'], nil, 'fe', '_1'%></div>
+  <%= submit_tag @demo_login_labels['submit'] %>
+</form>
+
+<div id="footer"><%= help_button '/help/general.shtml', 'Help' %> &nbsp;
+<%= link_to 'PHR Support', new_contact_us_path %></div>
+
+<div id="mode_notice">Current page mode:  Basic HTML.
+<%=link_to 'Standard mode', demo_login_path(:format=>'default')%></div>

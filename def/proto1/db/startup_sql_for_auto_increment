@@ -1,0 +1,2 @@
+use proto1_development;
+call reset_auto_increment();

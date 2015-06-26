@@ -1,0 +1,16 @@
+<!--#include virtual="help_header.shtml" -->
+
+  <h1>Unarchive a PHR</h1>
+	
+  <h3>To unarchive a PHR </h3>
+<ol>
+
+<li>Click the <b>Archived PHRs</b> link at the bottom of the <b>PHR Management</b> page. The system will display the <b>Archived PHRs</b> form. </li>
+	
+<li> Select <b>Unarchive PHR Record</b> from the <b>Archived PHR Task</b> drop-down list. </li>
+<li>Select the PHR you wish to unarchive from the <b>Archived PHR Record</b> drop-down list. </li>
+
+<li>Click the <b>Go</b> button.</li>
+<li>The system will unarchive the PHR and place it back in the <b>PHR Record Name</b> drop-down list of existing PHRs on the <b>PHR Management</b> page. </li>
+</ol>
+<!--#include virtual="help_footer.shtml" -->

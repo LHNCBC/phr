@@ -1,0 +1,131 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+#phr_test_phr1:
+#  id: -15
+#  user_id: -5
+#  profile_id: -10
+#
+#phr_test_phr2:
+#  id: -16
+#  user_id: -5
+#  profile_id: -11
+#
+#other_user_phr1:
+#  id: -17
+#  user_id: -6
+#  profile_id: -12
+#
+#other_user_nap1:
+#  id: -18
+#  user_id: -6
+#  profile_id: -13
+
+# User = PHR_Test
+phr_test_phr1:
+  user_id: -5
+  profile_id: -10
+
+phr_test_phr2:
+  user_id: -5
+  profile_id: -11
+  
+# User = phr_admin
+other_user_phr1:
+  user_id: -6
+  profile_id: -12
+
+other_user_nap1:
+  user_id: -6
+  profile_id: -13
+  
+# User = temporary_account
+temp_profile_1:
+  user_id: -7
+  profile_id: -20
+
+temp_profile_2:
+  user_id: -7
+  profile_id: -21
+
+temp_profile_3:
+  user_id: -7
+  profile_id: -22
+ 
+# User = temporary_account_2
+temp_profile_4:
+  user_id: -9
+  profile_id: -30
+
+# User = standard_account
+standard_profile_1:
+  user_id: -8
+  profile_id: -23
+  
+standard_profile_2:
+  user_id: -8
+  profile_id: -24
+
+standard_profile_3:
+  user_id: -10
+  profile_id: -34
+  access_level: 1
+
+standard_profile_3r:
+  user_id: -11
+  profile_id: -34
+  access_level: 3
+
+ # profiles used by the phr_home tests
+ # User = phr_home_user, phr_home_user2, phr_home_user3
+
+phr_home_active_profile_1:
+  user_id: -15
+  profile_id: -40
+  access_level: 1
+
+phr_home_active_profile_2:
+  user_id: -15
+  profile_id: -41
+  access_level: 1
+
+phr_home_active_profile_3:
+  user_id: -15
+  profile_id: -42
+  access_level: 1
+
+phr_home_removed_profile_1:
+  user_id: -15
+  profile_id: -43
+
+phr_home_removed_profile_2:
+  user_id: -15
+  profile_id: -44
+
+phr_home_removed_profile_3:
+  user_id: -15
+  profile_id: -45
+
+phr_home_active_profile_4:
+  user_id: -16
+  profile_id: -46
+
+phr_home_active_profile_4b:
+  user_id: -15
+  profile_id: -46
+  access_level: 3
+
+phr_home_active_profile_5:
+  user_id: -16
+  profile_id: -47
+
+phr_home_removed_profile_4:
+  user_id: -17
+  profile_id: -48
+
+phr_home_removed_profile_5:
+  user_id: -17
+  profile_id: -49
+
+phr_home_removed_profile_6:
+  user_id: -17
+  profile_id: -50

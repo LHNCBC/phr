@@ -1,0 +1,11 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>Units</h1>
+<p> Select or enter the units of measure. Either standard units or a drop-down list of appropriate units will be displayed in the field.</i></b></p>
+<p>
+<ul>
+<li>If only one unit of measure is possible, the form field will be pre-filled and you will not be able to type within the field.</li>
+<li>If the field contains a drop-down list of units of measurement, select the units reported in the test results from the list or begin typing the unit abbreviation to see a list of commonly used measurement units. </li>
+<li>You may also enter your own units of measure in this field.</li>
+</ul>
+</p>
+<!--#include virtual="help_footer.shtml" -->

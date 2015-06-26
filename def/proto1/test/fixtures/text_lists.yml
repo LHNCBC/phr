@@ -1,0 +1,20 @@
+dose:
+  id: -12
+  list_name: Dose
+
+route:
+  id: -13
+  list_name: Route
+
+solution_dosages:
+  id: -24
+  list_name: 'Solution_Dose_Type'
+  
+rule_actions:
+  id: -30
+  list_name: 'rule_actions'
+
+condition_status:
+  id: -31
+  list_name: condition_status
+

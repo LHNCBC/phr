@@ -1,0 +1,45 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>Vaccinations</h1>
+		<p><b>Vaccines</b> work by stimulating the immune system, the natural disease-fighting system of the body. The PHR classifies vaccines into the following groups: 
+<ul><b>
+<li>
+Adolescent/Adult</li>
+<li>Childhood</li>
+<li>Influenza</li>
+<li>Travel</li>
+<li>Not commonly used or not available in U.S</li></b>
+</ul>
+	
+                <h2>
+                What do I need to know about the Vaccinations list? </h2>
+                <ul>
+                    <li>
+                    Some vaccines protect against multiple diseases, like MMR (measles, mumps, and rubella) or DTaP (diphtheria, tetanus, and pertussis [whooping cough]), while others are separate, like hepatitis A or influenza. MMR and DTaP are not considered combination vaccines. There are also combination vaccines that combine multiple immunizations into one, for example, Pentacel is a combination vaccine that includes DTaP, polio, and hepatitis B. In the PHR, these combination vaccines should be entered as their separate components.
+                    </li>
+                    <li>
+                     Some vaccines require a series of 2 or more doses to provide full immunity to disease. 
+                    </li>
+                    <li>
+                    The PHR will remind you about routine vaccines that are recommended by the <a href="http://www.cdc.gov/vaccines/">U.S. Centers for Disease Control and Prevention</a>.</li>
+
+<li> The PHR system will provide you with an <img alt="Information" src="/assets/blank.gif" class="sprite_icons-info"> button next to many of the vaccines you list. Click this button for additional reliable consumer health information from the National Institutes of Health and other trusted sources.</li>
+                    <li>
+                    If you do not know the name of the vaccine you received, check with your physician or simply enter the name as you know it.</li>
+                   </ul>
+                <h2>
+                What kind of information should I enter? </h2>
+<p>All fields highlighted with <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields. </p>
+		<table style="border-spacing:25px 5px">
+			<tr valign="top"><td><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"><a href="/help/immune_name.shtml">Vaccine Name</a></td><td>The name of the vaccine. </td></tr>
+			<tr valign="top"><td><a href="/help/vaccine_date.shtml">Date</a></td><td>The date the last dose of the vaccine was given.</td></tr>
+            <tr valign="top"><td><a href="/help/immune_duedate.shtml">Next Due</a></td><td>The due date for the next vaccination in the series, if applicable.</td></tr>
+            <tr valign="top"><td><a href="/help/imm_comment.shtml">Comment</a></td><td>Any information or comments you have about the vaccine.</td></tr>
+      
+		</table>
+                <h2>
+                Why is this important?</h2>
+                <p>
+               The PHR will remind you about routine vaccines that are recommended by the <a href="http://www.cdc.gov/vaccines/">U.S. Centers for Disease Control and Prevention</a>. You should discuss these recommendations with your doctor to see if and when you should get the vaccine(s). In addition, there may be vaccines that you need, depending on your health and risk factors, for which you may not get a system reminder. If you know of such a vaccine, you should discuss it with your doctor.
+                </p>
+                
+	<!--#include virtual="help_footer.shtml" -->

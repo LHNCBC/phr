@@ -1,0 +1,138 @@
+/* 
+    Document   : test
+    Created on : Feb 27, 2012
+    Author     : Ye Wang
+    Description: css specs for the test panel input group, which is an extension
+      of the styles for horizontalFieldGroup; and for the flow sheet pages.
+*/
+
+div.phr_name {
+  margin-top: 2px !important;
+  float: left;
+  clear: none !important;
+}
+
+#fe_panel_title_grp_0_expcol > div.access_notice {
+  clear: none !important;
+}
+
+#fe_access_notice_1 {
+  float: right;
+  width: 49%;
+  text-align: right !important;
+}
+
+div.guidance {
+  clear: both;
+}
+
+/* for test panel input group, everything is under the div.panelGroupContainer 
+*/
+
+div.panelGroupContainer div.panelGroup{
+  border: 0; /*7px solid #D9E6F0;*/
+  margin: 0 0 10px;
+  /* padding: 5px;*/
+}
+
+div.panelGroupContainer.fieldGroup {
+  border: 7px solid #D9E6F0;
+  padding: 4px;
+  background-color: white;
+  margin: 0;
+}
+
+div.panelGroupContainer.fieldGroup tr.embeddedRow,
+div.panelGroupContainer.fieldGroup tr.embeddedRow tr.repeatingLine{
+  background-color: transparent;
+}
+
+div.panelGroupContainer table th.fieldsTableHeader {
+  border-top: 1px solid #ced5d9;
+  border-bottom: 1px solid #ced5d9;
+}
+
+div.panelGroup div.panelTest table.fieldsTable {
+  border-bottom: 1px solid #ced5d9;
+}
+
+div.panelGroup tr.embeddedRow div.panelTest tr.repeatingLine td {
+  border: 0;
+  border-left: 1px solid #ced5d9;
+}
+div.panelGroup tr.embeddedRow div.panelTest tr.repeatingLine td:nth-child(2) {
+  border-left: none;
+}
+
+div.panelGroupContainer input[type="text"][disabled=""] {
+  border: 0;
+  background-color: transparent !important;
+}
+
+
+div.panelGroupContainer input.readonly_field.inlineedit {
+  border: 0;/*solid #73a0c8;*/
+  background-color: transparent !important;
+}
+
+div.panelGroupContainer input.readonly_field.inlineedit:enabled:hover {
+  background-color: #FFC !important;
+  cursor: default;
+}
+
+/* calendar border */ /* the input field has a border already  --ye*/
+div.panelGroupContainer table.dateField td {
+  border: 0;
+}
+
+/* the 'more' button row has a different background color */
+div.panelGroupContainer div.panel_buttons div.fieldExpColDiv{
+  background-color: #F2F2F2 !important ;
+  padding: 4px 12px;
+}
+
+/* padding on test names */
+div.panelGroupContainer tr.repeatingLine td:nth-child(2),
+div.panelGroupContainer div.panelTest.fieldGroup tr th:nth-child(2)
+{
+  padding-left: 5px;
+}
+
+div.panelGroupContainer tr.repeatingLine.panel_l2 td:nth-child(2) {
+  padding-left: 15px;
+}
+div.panelGroupContainer tr.repeatingLine.panel_l3 td:nth-child(2) {
+  padding-left: 25px;
+}
+div.panelGroupContainer tr.repeatingLine.panel_l4 td:nth-child(2) {
+  padding-left: 35px;
+}
+div.panelGroupContainer tr.repeatingLine.panel_l5 td:nth-child(2) {
+  padding-left: 45px;
+}
+
+/* test group padding */
+div.panelGroupContainer div.panelTest.fieldGroup tr.embeddedRow > td {
+  padding: 0;
+}
+
+/* stripes for tests with optioanl hidden rows */
+div.panelGroupContainer table.fieldsTable tr.repeatingLine.test_required.odd_row{
+  background: #ffffff;
+}
+div.panelGroupContainer table.fieldsTable tr.repeatingLine.test_required.even_row{
+  background: #ecf3f8;
+}
+
+/* sub panel header row */
+div.panelGroupContainer table.fieldsTable tr.repeatingLine.test_required.panel_header,
+div.panelGroupContainer table.fieldsTable tr.repeatingLine.test_required.panel_header td {
+  background: #E8E8E8 !important;
+}
+/* highlight the focused editable field in the flow sheet content table */
+td.in_edit input.test_value_edit:focus,
+th.in_edit input.test_value_edit:focus {
+  background: #FFF8C6  !important;
+  color: #333;
+  font-weight: 700;
+}

@@ -1,0 +1,131 @@
+| setTimeout | 35000 |
+#| open | /forms/phr/fetch_rules/new |
+| open | /fetch_rules/new |
+| waitForTextPresent | Loaded in |
+
+# Test with the drugs table as the source table, since it has the most
+# complicated stuff
+| fireEvent | fe_rule_name | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_rule_name'} | true |
+| type | fe_rule_name | javascript{'Drug_Rule_'+new Date().getTime()} |
+| pause | 1000 |
+| fireEvent | fe_rule_name | change |
+| fireEvent | fe_rule_name | blur |
+
+
+| fireEvent | fe_source_table | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_source_table'} | true |
+| typeText | fe_source_table | Drug |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length == 1} | true |
+# (\40 = down arrow)
+| keyDown | fe_source_table | \40 |
+| keyDown | fe_source_table | \9 |
+| waitForValue | fe_source_table | Drugs |
+
+# Make sure that the Major Items section becomes visible
+| waitForVisible | fe_major_qualifier_name_1 |
+
+# Make sure that the proper headers appear in the major items and other
+# attributes sections.
+| waitForExpression | javascript{testWindow_.$('fe_major_qualifier_group_lbl_0').firstChild.nodeValue == 'Drug Name or Class'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_major_qualifier_group_ins_0').firstChild.nodeValue == 'Specify the drug, class or ingredient.'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_major_qualifier_name_hd').firstChild.nodeValue == 'Drug, Class or Ingredient'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_non_date_fetch_qualifiers_group_lbl_0').firstChild.nodeValue == 'Status'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_non_date_fetch_qualifiers_group_ins_0').firstChild.nodeValue == 'Qualify on active/inactive status of this drug.'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_non_date_qualifier_name_hd').firstChild.nodeValue == 'Status'} | true |
+
+# Select the drug name as the major item
+| fireEvent | fe_major_qualifier_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_major_qualifier_name_1'} | true |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length > 1} | true |
+| typeText | fe_major_qualifier_name_1 | Drug Nam |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length == 1} | true |
+| keyDown | fe_major_qualifier_name_1 | \40 |
+| keyDown | fe_major_qualifier_name_1 | \9 |
+| waitForValue | fe_major_qualifier_name_1 | Drug Name |
+| pause | 1000 |
+
+
+# Select warfarin for the value.  
+| fireEvent | fe_major_qualifier_value_1 | blur |
+| fireEvent | fe_major_qualifier_value_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_major_qualifier_value_1'} | true |
+| type | fe_major_qualifier_value_1 | W |
+| typeKeys | fe_major_qualifier_value_1 | a |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length >1} | true |
+| type | fe_major_qualifier_value_1 | Warfarin (Oral P |
+| typeKeys | fe_major_qualifier_value_1 | i |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length ==1} | true |
+| keyDown | fe_major_qualifier_value_1 | \40 |
+| keyDown | fe_major_qualifier_value_1 | \9 |
+| waitForValue | fe_major_qualifier_value_1 | Warfarin (Oral Pill) |
+| waitForExpression | javascript{testWindow_.$('fe_major_qualifier_value_1').autocomp.recDataRequester_.lastDataHash_ != null} | true |
+
+
+# Select the Status field
+| fireEvent | fe_non_date_qualifier_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_non_date_qualifier_name_1'} | true |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length > 0} | true |
+| pause | 1000 |
+| keyDown | fe_non_date_qualifier_name_1 | \40 |
+| pause | 1000 |
+| keyDown | fe_non_date_qualifier_name_1 | \9 |
+| waitForValue | fe_non_date_qualifier_name_1 | Status |
+
+
+# Should have moved to the value field and displayed the list of possible values
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_qualifier_value_1'} | true |
+# (Wait for the combo field to change into a list)
+| waitForExpression | javascript{testWindow_.$('fe_qualifier_value_1').autocomp != null} | true |
+| waitForExpression | javascript{testWindow_.$('fe_qualifier_value_1').autocomp.rawList_.length > 0} | true |
+| pause | 1000 |
+| keyDown | fe_qualifier_value_1 | \40 |
+| pause | 1000 |
+| keyDown | fe_qualifier_value_1 | \9 |
+| waitForValue | fe_qualifier_value_1 | Active |
+
+# save it
+| fireEvent | fe_save_changes | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_save_changes'} | true |
+| click | fe_save_changes | |
+
+# make sure we went back to the rule management page
+| waitForExpression | javascript{testWindow_.location.href} | */rules |
+| waitForTextPresent | Rule Management |
+| waitForExpression | javascript{testWindow_.$ == undefined } | false |
+
+# now edit the latest_ldl rule
+| waitForExpression | javascript{ATR.testWindowLoaded_} | true |
+| pause | 1000 |
+| fireEvent | fe_rule_type | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_rule_type'} | true |
+| selectByIndex | fe_rule_type | 0 |
+| waitForValue | fe_rule_type | Fetch Rule |
+| fireEvent | fe_rule_type | blur |
+| fireEvent | fe_rule_name | focus |
+
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_rule_name'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_rule_name').autocomp.rawList_.length > 0} | true |
+| selectByContent | fe_rule_name | Latest_ldl |
+| waitForValue | fe_rule_name | Latest_ldl |
+| fireEvent | fe_rule_name | blur |
+| fireEvent | edit | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'edit'} | true |
+| click | edit |
+
+| waitForExpression | javascript{testWindow_.location.href} | */fetch_rules/433;edit |
+| waitForTextPresent | Edit Fetch Rule for the PHR |
+| waitForValue | fe_rule_name | Latest_ldl |
+
+
+
+
+
+
+
+
+
+
+
+
+# that's it for now

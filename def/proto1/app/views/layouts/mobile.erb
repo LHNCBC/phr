@@ -1,0 +1,130 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css"-->
+  <!-- script src="https://code.jquery.com/jquery-1.10.2.min.js"></script -->
+  <!--script src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script-->
+  <%= stylesheet_link_tag "manifest_mobile.css" %>
+  <%= javascript_include_tag "manifest_mobile.js" %>
+  <title><%= @page_title %></title>
+</head>
+<body>
+
+
+<div data-role="page"><%# start of data-role page%>
+  <% if @user %>
+      <div data-role="panel" id="userAccountPanel" data-position="left">
+        <%= render({:partial => 'mobile/phr_records/user_account_panel.html', :handlers => [:erb],
+                    :locals => {:user => @user}}) %>
+      </div>
+  <% else %>
+      <div data-role="panel" id="pageFooterPanel" data-position="left">
+        <%= link_to_mp "User Agreement", "/help/user_agreement.shtml?go_back=false",  :target=>"_blank" %>
+        <%= link_to_mp "Privacy Policy", "/help/privacy_policy.shtml?go_back=false", :target=>"_blank" %>
+        <%= link_to_mp "Help", "/help/general.shtml?go_back=false", :target=>"_blank" %>
+        <%= link_to_mp "PHR Support", "/contact/new" %>
+      </div>
+  <% end %>
+
+  <div data-role="header" data-add-back-btn="false">
+    <% editing_patient_record = @data_rec || @phr_condition || @phr_drug || @phr_surgery || @reminder_option %>
+    <% if @table == "reminder_options" %><%# reminder_options index page is different from pages list phr_conditions etc. needs to have a close button %>
+      <%= link_to "Close", '',"onclick"=>"window.close()", "class" => "ui-btn ui-icon-delete ui-btn-icon-left" %>
+    <% else %>
+      <% if !editing_patient_record %><%# not when editing phr-condtiion etc%>
+        <% if @phr_record %>
+            <% if @reminders || @records || @saved_panel_info || (@page_title ==PhrPanelsController::PANELS_SECTION_TITLE ) %>
+                <%#= link_to "PHR", phr_record_path(@phr_record),"class" => "ui-btn ui-icon-carat-l ui-btn-icon-left" %>
+                <%= link_to @phr_record.phr.pseudonym, phr_record_path(@phr_record), "class" => "ui-btn ui-icon-carat-l ui-btn-icon-left" %>
+            <% elsif @page_title == "Panel Flowsheet"  %>
+            <%# visually separated the basic mode flowsheet page into two pages:%>
+            <%# one for the settings another for displaying flowsheet%>
+                <% if @flowsheet %>
+                   <%= link_to 'Panel Flowsheet Settings', flowsheet_phr_record_phr_panels_path(@phr_record),  "data-ajax"=>false  ,"class" => "ui-btn ui-icon-carat-l ui-btn-icon-left" %>
+                <% else  %>
+                   <% @page_title ="Panel Flowsheet Settings" %>
+                   <%= link_to PhrPanelsController::PANELS_SECTION_TITLE, phr_record_phr_panels_path(@phr_record), "class" => "ui-btn ui-icon-carat-l ui-btn-icon-left"%>
+                <% end %>
+            <% else %>
+                <%#= link_to 'Profiles', phr_records_path ,"class" => "ui-btn ui-icon-carat-l ui-btn-icon-left" %>
+                <%= link_to "PHR Home", phr_records_path, "class" => "ui-btn ui-icon-carat-l ui-btn-icon-left ui-corner-all ui-shadow " %>
+            <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <h1><%#= @page_title %></h1>
+    <% if !editing_patient_record || (@page_title =="Test Results & Trackers") %>
+        <% if @user %>
+            <% if @phr_records %>
+                <a href="#userAccountPanel" class="ui-btn ui-corner-all ui-icon-bars ui-btn-icon-notext">User Account
+                  Panel</a>
+            <% end %>
+        <% else %>
+            <a href="#pageFooterPanel" class="ui-btn ui-corner-all ui-icon-bars ui-btn-icon-notext">Page Footer
+              Panel</a>
+            <%# render back button%>
+        <% end %>
+        <% url= send('new_phr_record_'+@table.singularize+'_path', @phr_record) if @table && @phr_record %>
+        <% url = new_phr_record_phr_panel_path(@phr_record) if @saved_panel_info %>
+        <% url= new_phr_record_path if @user && @phr_records %>
+        <%= link_to 'Add', url, "data-icon" => "plus", "class" => "ui-btn-right" if url && @table !="reminder_options" %>
+    <% end %>
+  </div><%# end of page header%>
+
+  <div data-role="main" class="ui-content"><%# start of data-role main%>
+    <% if @page_title %> <h2 class="groupHeader"><span><%= @page_title %></span></h2>
+    <% end %>      <!--p>I Am Now A Mobile Developer!!</p-->
+<%# accountSettings etc has been moved into _user_account_panel.html.erb%>
+    <h1><%#= @page_title %></h1>
+    <%# Notification div %>
+    <% unless flash[:notice].blank? %>
+        <div id="notification"><%= flash[:notice] %></div>
+    <% else %>
+        <div id="notification" style="display: none"></div>
+    <% end %>
+    <%# Page errors div %>
+    <% if flash[:error]
+         @page_errors = [] if !@page_errors
+         if flash[:error].is_a?(String)
+           @page_errors << flash[:error]
+         else
+           @page_errors += flash[:error]
+         end
+       end
+    %>
+    <% if @page_errors && @page_errors.size > 0 %>
+        <div id="page_errors" class="error">
+          <% if @page_errors.size == 1 %>
+              <p>The following problem was found:
+                <%= @page_errors[0] %></p>
+          <% else %>
+              The following problems were found:
+              <ul>
+                <% @page_errors.each do |e|
+                  if e == '</ul>' %>
+                        <%= e %>
+                    <% elsif e.index('<ul>') %>
+                        <li><%= e %>
+                    <% else %>
+                        <li><%= e %></li>
+                    <% end; end %>
+              </ul>
+          <% end %>
+        </div>
+    <% else %>
+        <div id="page_errors" style="display: none"></div>
+    <% end %>
+
+    <%= yield %>
+    <% if false # @user  %>
+        <hr/>
+        <div id="timeout_warning">Your session will time out in
+          <%= @session_timeout %> minutes from when this page was loaded. If you
+          need more time, you may <%= link_to 'extend your session',
+                                              extend_session_path, :target => '_blank' %>.
+        </div>
+    <% end %>
+  </div><%# end of data-role main%>
+</div> <%# end of data-role page%>
+</body>
+</html>

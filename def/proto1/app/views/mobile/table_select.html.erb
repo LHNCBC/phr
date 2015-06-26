@@ -1,0 +1,33 @@
+<%# This handles the first part of creating a record for a table where the
+  main item nees to be selected by first picking a type, and then picking a
+  name from a sub-list.  %>
+Select <%=@item_name%>:
+<ul>
+<% s_table_name = @table.singularize %>
+<% if @type_code || @no_type %>
+  <li><%= form_tag_wo_ajax send('new_phr_record_'+s_table_name+'_path'), :method=>'get' %>
+     <%= hidden_field_tag :type_C, @type_code %>
+     <%=basic_text_field_m 'Other name (not in the list below)',
+     BasicModeController::FD_FORM_OBJ_NAME, 'other_name'%>
+     <%= submit_tag_m 'Create' %><%= link_to_m 'Cancel', send('phr_record_'+@table+'_path') %>
+    </form></li>
+<% end %>
+
+<%# Support one level of headings.  Heading items have codes that start
+  # with "heading" %>
+<% in_list = nil; @items.each do |item_info| %>
+  <% code = item_info[0]; if code=~ /\Aheading/ %>
+    <% if in_list %>
+      </ul></li>
+    <% end; in_list = 1 %>
+      <li><b><%= item_info[1] %>:</b><ul>
+  <% else ;  @link_params[@code_param] = code %>
+    <li><%= link_to item_info[1],  send('new_phr_record_'+s_table_name+'_path',
+                                        @link_params) %></li>
+  <% end %>
+<% end %>
+<% if in_list %>
+  </ul>
+<% end %>
+</ul>
+<%#= link_to_m 'Cancel', send('phr_record_'+@table+'_path') %>

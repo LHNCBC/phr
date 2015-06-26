@@ -1,0 +1,6 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Surgery Comments</h1>
+		<p>
+			Type in any comments you wish to enter about the surgery or implant. 
+		</p>
+	<!--#include virtual="help_footer.shtml" -->

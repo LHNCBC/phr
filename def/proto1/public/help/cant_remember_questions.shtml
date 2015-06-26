@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>I Forgot the Answers to My Security Questions</h1>
+
+<h3>To change the security questions and answers associated with your PHR account</h3>
+<p>
+<ol>
+<li>Log in to the PHR.</li>
+<li>Click the <b>Account Settings</b> link at the top of the right side of the <b>PHR Home</b> page</li>
+<li>You will be prompted for your current password prior to changing your security questions and answers. </li>
+</ol>
+</p>
+<!--#include virtual="help_footer.shtml" -->

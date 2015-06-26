@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+</head>
+<body>
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>IDCache.js</strong>.
+    </p>
+  </div>
+
+  <!-- Log output -->
+  <div id="testlog"> </div>
+
+</div>
+
+<div style="display: none">
+  <!-- test content -->
+  <div id="fe_one">
+    <div id="fe_one_1">
+      <div id="fe_one_1_2"></div>
+    </div>
+    <input id="fe_one_2"/>
+    <div id="fe_two_12_3"></div>
+  </div>
+  <div id="fe_three"></div>
+  <table id="test_table">
+    <tr rowid="0">
+      <td><input id="fe_table_field_0"/></td>
+    </tr>
+    <tr rowid="1">
+      <td><input id="fe_table_field_1"/></td>
+      <td><input id="fe_class_none_1" class="none"/></td>
+      <td><input id="fe_class_ones_1" class="ones"/></td> 
+      <td><input id="fe_two_classes_1" class = "one two"/></td>
+    </tr>
+  </table>
+</div>
+  <script src="assets/prototype.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/unittest.js" type="text/javascript"></script>  
+  <script src="assets/effects.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/application_phr.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/logger.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/idCache.js?body=1"
+          type="text/javascript"></script>    
+  <script src="assets/rules.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/browser_detect.js?body=1"
+          type="text/javascript"></script>
+  
+<script type="text/javascript">
+// <![CDATA[
+
+  new Test.Unit.Runner({
+    
+    // replace this with your real tests
+    
+    setup: function() {
+
+    },
+    
+    teardown: function() {
+
+    },
+    
+    testAddToCache: function() { with(this) {
+      Def.IDCache.cache_ = null ;
+      Def.IDCache.addToCache($('fe_one'));
+      var numKeys = 0
+      for (var key in Def.IDCache.cache_)
+        ++numKeys;
+      assertEqual(2, numKeys);
+      assertNotNull(Def.IDCache.cache_["fe_one"], 'fe_one', 'fe_one');
+      assertNotNull(Def.IDCache.cache_["fe_two"], 'fe_two', 'fe_two');
+      assertNotNull(Def.IDCache.cache_["fe_one"]["fe_one"], 'fe_one,fe_one');
+      assertNotNull(Def.IDCache.cache_["fe_one"]["fe_one_1"],
+                   'fe_one,fe_one_1');
+      assertNotNull(Def.IDCache.cache_["fe_one"]["fe_one_1_2"],
+                   'fe_one,fe_one_1_2');
+      assertNotNull(Def.IDCache.cache_["fe_one"]["fe_one_2"],
+                   'fe_one,fe_one_2');
+      assertNotNull(Def.IDCache.cache_["fe_two"]["fe_two_12_3"],
+                   'fe_two,fe_two_12_3');
+      assertNull(Def.IDCache.cache_["fe_three"]);
+    }},
+
+    
+    testFindByIDStart: function() { with(this) {
+      Def.IDCache.addToCache($('fe_one'));
+      Def.IDCache.addToCache($('fe_one')); // make sure we don't get duplicates
+      Def.IDCache.addToCache($('fe_one_2')); //make sure we don't get duplicates
+      var fields = Def.IDCache.findByIDStart('fe_one', '');
+      assertEqual(4, fields.length);
+      fields = Def.IDCache.findByIDStart('fe_one', '_1_');
+      assertEqual('fe_one_1_2', fields[0].id);
+      fields = Def.IDCache.findByIDStart('fe_one', '_');
+      assertEqual(3, fields.length);
+      fields = Def.IDCache.findByIDStart('fe_two', '_12_3');
+      assertEqual('fe_two_12_3', fields[0].id);
+      fields = Def.IDCache.findByIDStart('fe_three', '_12_3');
+      assertEqual(0, fields.length, 'fields.length is wrong');
+      
+      // Check that model rows are not included.
+      Def.IDCache.addToCache($('test_table'));
+      assertEqual(0, Def.IDCache.findByIDStart('fe_table_field', '_0').length);
+      assertEqual(1,
+                      Def.IDCache.findByIDStart('fe_table_field', '_1').length);
+    }},
+    
+    testCheckClassName: function() { with(this) {
+      assertEqual(false, checkClassName($('fe_table_field_1'), 'none')) ;
+      assertEqual(true, checkClassName($('fe_class_none_1'), 'none')) ;
+      assertEqual(false, checkClassName($('fe_class_none_1'), 'one')) ;
+      assertEqual(true, checkClassName($('fe_class_ones_1'), 'ones')) ;
+      assertEqual(false, checkClassName($('fe_class_ones_1'), 'one')) ;
+      assertEqual(true, checkClassName($('fe_two_classes_1'), 'one')) ;
+      assertEqual(true, checkClassName($('fe_two_classes_1'), 'two')) ;
+      assertEqual(false, checkClassName($('fe_two_classes_1'), 'ones')) ;
+      assertEqual(false, checkClassName($('fe_two_classes_1'), 'none')) ;
+      assertEqual(true, checkClassName($('fe_class_ones_1'), ['ones', 'two'])) ;
+      assertEqual(true, checkClassName($('fe_class_ones_1'), ['two', 'ones'])) ;
+    }},
+
+
+    testSplitFullFieldID: function() { with(this) {
+      assertEnumEqual(['one_', 'two_three', '_12_3_4'],
+        Def.IDCache.splitFullFieldID('one_two_three_12_3_4'), 'first time');
+      assertEnumEqual(['a_', 'b_c', '_5'],
+        Def.IDCache.splitFullFieldID('a_b_c_5'), 'first time');
+
+      // Also check the cached results
+      assertEnumEqual(['one_', 'two_three', '_12_3_4'],
+        Def.IDCache.splitFullFieldID('one_two_three_12_3_4'), 'second time');
+    }}
+    
+  }, "testlog");
+// ]]>
+</script>
+</body>
+</html>

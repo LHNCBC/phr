@@ -1,0 +1,7 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>More Information About Medical Conditions, Drugs, Allergies, and Vaccines</h1>
+<p>
+The PHR system will provide you with an <b>Info Page</b> link next to many of the medical conditions, drugs, allergies, and vaccines you list in your PHRs. Click this link for additional reliable consumer health information from the National Institutes of Health and other trusted sources.
+</p>
+
+<!--#include virtual="help_footer.shtml" -->

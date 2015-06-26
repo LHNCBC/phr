@@ -1,0 +1,13 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Answer Selected Security Questions</h1>
+		<p>
+		Please enter an answer to the security question you selected from 
+		the drop down list.</p>
+<p>You will be asked to provide 
+		this answer to verify your identity in the event that you forget your 
+		PHR account ID or password.
+	</p>
+		
+    
+<!--#include virtual="help_footer.shtml" -->

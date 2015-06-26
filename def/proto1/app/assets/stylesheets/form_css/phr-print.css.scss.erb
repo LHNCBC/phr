@@ -1,0 +1,208 @@
+/**
+ * phr.css - PHR-specific style specifications FOR PRINTING
+ */
+/**
+ *  Styles in common with the screen version.
+ */
+body {
+  font-family: Arial,Helvetica,Verdana,sans-serif;
+}
+
+.fieldGroup.phr_title .field.phr_detail .static_text {
+  color: #666;
+  font-family: "Ubuntu",Arial;
+  font-size: 15px;
+}
+
+.fieldGroup.phr_title .field.phr_name .static_text {
+  color: #333;
+  font-family: "Ubuntu",Arial;
+  font-size: 28px;
+}
+
+.groupHeader {
+  font-family: "Ubuntu",arial;
+  font-size: 21px;
+}
+
+.fieldsTableHeader {
+  font-size: 13px;
+}
+
+.fieldsTable tr td.rowEditText:nth-child(5) {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.fieldsTable tr {
+  $rl_pad: 7px;
+  td, th {
+    text-align: left;
+    font-size: 12px;
+  }
+  td {
+    padding: 6px $rl_pad;
+  }
+  th {
+    padding: 0px $rl_pad;
+  }
+}
+
+.fieldGroup table {
+    border-collapse: collapse;
+}
+
+table.fieldsTable {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.reader_log {
+  display: none;
+}
+
+div.panelGroupContainer.fieldGroup > .groupHeader {
+  display: none;
+}
+
+/* End of styles in common with the screen version. */
+
+/**
+ *  Things not displayed
+ */
+button, .expcolall, div.hide_show_button, img.help, img.cet_action,
+.requiredImg, .hidden_field, .inline_fields, p.reqNotice, img.ffar_calendar,
+img.info_button, ul.top_utility_nav, div#searchResults,
+div.closingLink, div#dev_menu_div, a, div#validation_errors, .guidance, .super,
+.ui-datepicker-trigger, .reader_log, .jeegoocontext {
+  display: none !important;
+}
+
+/* hide the fields with no values (have tooltips only */
+input[novalue='true'], textarea[novalue='true'] {
+  visibility: hidden;
+}
+
+/* hide the last row of a fields table (except test panels),
+   which is all empty.
+*/
+div.fieldGroup[max_responses='0']  table.fieldsTable > tbody > tr.repeatingLine:last-child {
+  display: none;
+}
+
+/* also hide the last 2 rows for the medical contact table */
+#fe_medicontact_0 table.fieldsTable > tbody >tr:nth-last-child(2),
+#fe_medicontact_0 table.fieldsTable > tbody >tr:last-child {
+  display: none;
+}
+
+
+/* Hide all images that take up significant space so the print out
+ * looks good without backgound images and colors. */
+#fe_form_header_0_expcol, #hdr_banner, #form_hdr_phr br, #blinder {
+  display: none;
+}
+
+div#form_hdr_phr.full_banner {
+  background: none;
+  height: auto;
+  width: auto;
+  font-size: 140%;
+  border-bottom: 1px solid rgb(69, 138, 197);
+}
+
+#form_hdr_phr::before {
+  content: "Personal Health Record";
+}
+
+#form_hdr_phr::after {
+  content: "<%= SITE_OWNER %>";
+  float: right;
+}
+
+#main_form {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+#fe_phr_title_grp_0 {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+.groupHeader:empty {
+  border: none;
+}
+
+.groupHeader {
+  background-color: none;
+  color: rgb(69, 138, 197);
+  margin-bottom: 0;
+}
+
+/* Hide columns of edit and info buttons */
+#fe_problems_header_0, #fe_drugs_0, #fe_allergies_0,
+#fe_surgical_history_0, #fe_immunizations_0 {
+  td:nth-child(2), th:nth-child(2),
+  td:nth-child(4), th:nth-child(4) {
+    display: none;
+  }
+
+  col:nth-child(2), col:nth-child(4) {
+    display: none !important;
+  }
+}
+
+#fe_notes_0, #fe_doctor_questions_0 {
+  td:nth-child(2), th:nth-child(2) {
+    display: none;
+  }
+
+  col:nth-child(2) {
+    display: none !important;
+  }
+}
+/* End of "Hide columns of edit and info buttons" */
+
+#fe_risk_factors_0 {
+  td, th {padding: 0;}
+}
+
+td, th {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+/* Turn off the border for date field tables */
+.dateField td {
+  border: none;
+}
+
+input {
+  border: none;
+}
+
+.fieldGroup.group_collapsed {
+  /* Field groups shown by rules get a "display: block" on the element itself,
+   * so we have to use !important for this.   Example:  Pregnancy section.*/
+  display: none !important;
+}
+
+input:disabled {
+  background: none;
+}
+
+/* Hide sections we don't want to print */
+#fe_tests_and_trackers_0 {
+  display: none;
+}
+
+/* Section specific */
+#saved_panels td:nth-child(3), #saved_panels_filter {
+  display: none;
+}   

@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>E-mail Address</h1>
+		<p>
+    Please enter the e-mail address you provided at the time of registration. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

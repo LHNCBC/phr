@@ -1,0 +1,26 @@
+<!--#include virtual="help_header.shtml" -->
+
+   
+<h1>View Test Results and Health Trackers</h1>
+<p>
+The <b>View & Edit Results Timeline </b> page allows you to view a summary of your test results and health trackers as either a timeline chart or a graph. The timeline and graph views allow you and your health care provider to quickly and easily track test results such as blood pressure, cholesterol, weight, and others over time.
+</p>
+<h3>To view the <b>View & Edit Results Timeline</b> page from the <b>PHR Home</b> page: </h3>
+<p>
+<ol>
+<li>
+Click the <Test Results and Trackers</b> button under the name of the PR you wish to view</li>
+<li>Next, click the <b>Show Results Timeline</b> button on the <b>View & Edit Results Timeline</b> page. </li>
+</ol>
+</p>
+<h3>To view the <b>View & Edit Results Timeline</b> page from the <b>PHR Record Details</b> page: </h3>
+<p>
+<ol>
+<li>Select <b>View & Edit Results Timeline</b> link at the top of the <b>PHR Record Details</b> page. </li>
+</ol>
+</p>
+<p>
+<a href="/help/flowsheet.shtml">Learn more about viewing and editing test results</a>
+</p>
+
+<!--#include virtual="help_footer.shtml" -->

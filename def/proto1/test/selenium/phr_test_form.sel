@@ -1,0 +1,273 @@
+| open | /form/test/phr_test_form |
+#| waitForVisible | loading_msg |
+#| waitForNotVisible | loading_msg |
+
+# Test that the code and data_req_output fields get set and cleared
+#  appropriately for a prefetched list.
+| fireEvent | fe_gender_1 | focus |
+| typeKeys | fe_gender_1 | M |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 1 |
+# (\40 refers to the down arrow)
+| keyDown | fe_gender_1 | \40 |
+| keyDown | fe_gender_1 | \9 |
+| waitForValue | fe_gender_1 | Male |
+| waitForValue | fe_gender_C_1 | M |
+| waitForValue | fe_gender_dreq_1 | 24750 |
+
+# Now change the value in the field to another valid value, but don't
+#  select, just fire the change and blur events.
+| fireEvent | fe_gender_1 | focus |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 2 |
+| type | fe_gender_1 | Femal |
+| typeKeys | fe_gender_1 | e |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 1 |
+| fireEvent | fe_gender_1 | change |
+| fireEvent | fe_gender_1 | blur |
+| assertValue | fe_gender_1 | Female |
+| assertValue | fe_gender_C_1 | F |
+| waitForValue | fe_gender_dreq_1 | 24749 |
+
+# Now change the value in the field to an invalid value.
+| verifyExpression | javascript{testWindow_.Def.Navigation.focusedField_ = null; 1} | 1 |
+| fireEvent | fe_gender_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_} | fe_gender_1 |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length>0} | true |
+| type | fe_gender_1 | Gree |
+| typeKeys | fe_gender_1 | n |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 0 |
+# (We want to blur the field and wait for the focus to return to it.)
+| verifyExpression | javascript{testWindow_.Def.Navigation.focusedField_ = null; 1} | 1 |
+# As of Firefox 19, firing a blur event will not automatically trigger a change event.
+| fireEvent | fe_gender_1 | change,blur |
+#| fireEvent | fe_gender_1 | blur |
+| pause | 1000 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_} | fe_gender_1 |
+| assertValue | fe_gender_1 | Green |
+| pause | 1000 |
+| fireEvent | fe_gender_1 | blur |
+| waitForValue | fe_gender_1 | |
+# Note:  As of autocomp-phr 2.1.2 (and maybe earlier) the code field won't get
+# cleared until the second blur, when the list field is cleared of its invalid
+# value.
+| waitForValue | fe_gender_C_1 |
+| waitForValue | fe_gender_dreq_1 |
+
+# Test that the code and data_req_output fields get set and cleared
+# appropriately for an TableSearch autocompletion field.
+| fireEvent | fe_problem_1 | focus |
+| type | fe_problem_1 | esoph* diver |
+| typeKeys | fe_problem_1 | t |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 1 |
+| keyDown | fe_problem_1 | \40 |
+| keyDown | fe_problem_1 | \9 |
+| waitForValue | fe_problem_1 | Esophageal diverticulum |
+| waitForValue | fe_problem_C_1 | 1306 |
+| waitForValue | fe_problem_dreq_1 | 2046 |
+
+# Now change the value in the field to another valid value, but don't
+#  select, just fire the change and blur events.
+| fireEvent | fe_problem_1 | focus |
+| type | fe_problem_1 |
+| type | fe_problem_1 | Abdominal Aneurys |
+| typeKeys | fe_problem_1 | m |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down('li').innerHTML} | Abdominal aneurysm |
+| fireEvent | fe_problem_1 | change |
+| fireEvent | fe_problem_1 | blur |
+| assertValue | fe_problem_1 | Abdominal aneurysm |
+| waitForValue | fe_problem_C_1 | 1412 |
+| waitForValue | fe_problem_dreq_1 | 8387 |
+
+# Now change the value in the field to an invalid value.
+| fireEvent | fe_problem_1 | focus |
+| type | fe_problem_1 |
+| type | fe_problem_1 | Harpoo |
+| typeKeys | fe_problem_1 | n |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 0 |
+| fireEvent | fe_problem_1 | blur |
+| waitForValue | fe_problem_C_1 |
+| waitForValue | fe_problem_dreq_1 |
+| assertValue | fe_problem_1 | Harpoon |
+# Close the suggestion pop-up before continuing
+| waitForVisible | css=.ui-dialog-titlebar-close |
+| fireEvent | css=.ui-dialog-titlebar-close | click |
+| waitForNotVisible | css=.ui-dialog-titlebar-close |
+
+# Test that the code and data_req_output fields get set and cleared
+#  appropriately for a Search autocompletion field.
+| fireEvent | fe_name_and_route_1 | focus |
+| waitForExpression | javascript{testWindow_.$('fe_name_and_route_1').autocomp.hasFocus} | true |
+| type | fe_name_and_route_1 | cefad |
+| typeKeys | fe_name_and_route_1 | r |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down('li.suggestion').innerHTML} | Cefadroxil (Oral Pill) |
+| waitForVisible | searchResults |
+| keyDown | fe_name_and_route_1 | \40 |
+| waitForValue | fe_name_and_route_1 | Cefadroxil (Oral Pill) |
+| keyDown | fe_name_and_route_1 | \9 |
+| waitForExpression | javascript{testWindow_.$('fe_drug_strength_form_1').autocomp.options.array.length == 2} | true |
+
+# Now change the value in the field to another valid value, but don't
+#  select, just fire the change and blur events.
+| fireEvent | fe_name_and_route_1 | focus |
+| waitForExpression | javascript{testWindow_.$('fe_name_and_route_1').autocomp.hasFocus} | true |
+| type | fe_name_and_route_1 | DECADRON (Oral Pi |
+| typeKeys | fe_name_and_route_1 | l |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down('li').innerHTML} | DECADRON (Oral Pill) |
+| keyDown | fe_name_and_route_1 | \40 |
+| fireEvent | fe_name_and_route_1 | change |
+| fireEvent | fe_name_and_route_1 | blur |
+| waitForValue | fe_name_and_route_1 | DECADRON (Oral Pill) |
+| waitForExpression | javascript{testWindow_.$('fe_drug_strength_form_1').autocomp.options.array.length == 2} | true |
+
+# Now change the value in the field to an invalid value.
+| fireEvent | fe_name_and_route_1 | focus |
+| waitForExpression | javascript{testWindow_.$('fe_name_and_route_1').autocomp.hasFocus} | true |
+| type | fe_name_and_route_1 | Chocolate Chi |
+| typeKeys | fe_name_and_route_1 | p |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 0 |
+| fireEvent | fe_name_and_route_1 | blur |
+| waitForValue | fe_name_and_route_C_1 |
+| assertValue | fe_name_and_route_1 | Chocolate Chip |
+| waitForVisible | css=.ui-dialog-titlebar-close |
+| fireEvent | css=.ui-dialog-titlebar-close | click |
+| waitForNotVisible | css=.ui-dialog-titlebar-close |
+
+
+# Check for 0 strength and form entries plus a header
+| waitForExpression | javascript{testWindow_.$('fe_drug_strength_form_1').autocomp.options.array.length == 0} | true |
+
+# Test that the code and data_req_output fields get set and cleared
+#  First, restore the drug field to a valid drug, so we have a list to
+#  work with.
+| fireEvent | fe_name_and_route_1 | focus |
+| type | fe_name_and_route_1 | cefad |
+| typeKeys | fe_name_and_route_1 | r |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down('li.suggestion').innerHTML} | Cefadroxil (Oral Pill) |
+| waitForVisible | searchResults |
+| selectByContent | fe_name_and_route_1 | Cefadroxil (Oral Pill) |
+| waitForValue | fe_name_and_route_1 | Cefadroxil (Oral Pill) |
+| keyDown | fe_name_and_route_1 | \9 |
+| waitForExpression | javascript{testWindow_.$('fe_drug_strength_form_1').autocomp.options.array.length} | 2 |
+
+# now continue with the Prefetch tests
+| fireEvent | fe_drug_strength_form_1 | focus |
+| waitForExpression | javascript{testWindow_.$('fe_drug_strength_form_1').autocomp.hasFocus} | true |
+| waitForVisible | completionOptions |
+| keyDown | fe_drug_strength_form_1 | \40 |
+| keyDown | fe_drug_strength_form_1 | \40 |
+| keyDown | fe_drug_strength_form_1 | \9 |
+| waitForValue | fe_drug_strength_form_1 | 1000 mg Tab |
+| waitForValue | fe_drug_strength_form_C_1 | 309047 |
+
+# Now change the value in the field to another valid value, but don't
+#  select, just fire the change and blur events.
+| fireEvent | fe_drug_strength_form_1 | focus |
+| type | fe_drug_strength_form_1 | 500 mg Ca |
+| typeKeys | fe_drug_strength_form_1 | p |
+| waitForVisible | completionOptions |
+| fireEvent | fe_drug_strength_form_1 | change |
+| fireEvent | fe_drug_strength_form_1 | blur |
+| waitForValue | fe_drug_strength_form_C_1 | 309049 |
+| assertValue | fe_drug_strength_form_1 | 500 mg Cap |
+
+# Now change the value in the field to an invalid value.
+| fireEvent | fe_drug_strength_form_1 | focus |
+| type | fe_drug_strength_form_1 |
+| typeText | fe_drug_strength_form_1 | Ox |
+| waitForVisible | completionOptions |
+| fireEvent | fe_drug_strength_form_1 | change |
+| fireEvent | fe_drug_strength_form_1 | blur |
+| waitForValue | fe_drug_strength_form_C_1 |
+| assertValue | fe_drug_strength_form_1 | Ox |
+
+# Test that the strength and form code field automatically fills in
+# when a name and route is selected that has just one strength and form.
+| fireEvent | fe_name_and_route_1 | focus |
+| type | fe_name_and_route_1 | water irri |
+| typeKeys | fe_name_and_route_1 | g |
+| waitForVisible | completionOptions |
+| keyDown | fe_name_and_route_1 | \40 |
+| keyDown | fe_name_and_route_1 | \9 |
+| waitForValue | fe_name_and_route_1 | Water (Irrigation) |
+| waitForValue | fe_drug_strength_form_1 | 1000 mg/ml Irrig Sol |
+| waitForValue | fe_drug_strength_form_C_1 | 150985 |
+
+# Now see what happens when the name_and_route field goes invalid.  The
+# strength and form field should be cleared and the dependent fields should be
+# cleared too.
+| fireEvent | fe_name_and_route_1 | focus |
+| type | fe_name_and_route_1 | Chocolate Cookie |
+| typeKeys | fe_name_and_route_1 | s |
+| fireEvent | fe_name_and_route_1 | change |
+| fireEvent | fe_name_and_route_1 | blur |
+| waitForValue | fe_drug_strength_form_1 |
+| waitForValue | fe_drug_strength_form_C_1 |
+| waitForVisible | css=.ui-dialog-titlebar-close |
+| fireEvent | css=.ui-dialog-titlebar-close | click |
+| waitForNotVisible | css=.ui-dialog-titlebar-close |
+
+
+# Tests for the RecordDataRequester.assignListData method and related
+# functionality.
+| selectByContent | fe_name_and_route_1 | Aspirin (Chewable) |
+
+# Wait for the strength list
+| waitForExpression | javascript{testWindow_.$('fe_drug_strength_form_1').autocomp.options.array.length} | 3 |
+
+# Erase the strength list
+| assertExpression | javascript{(testWindow_.$('fe_drug_strength_form_1').autocomp.options.array.pop()); true} | true |
+| assertExpression | javascript{(testWindow_.$('fe_drug_strength_form_1').autocomp.options.array.pop()); true} | true |
+| assertExpression | javascript{(testWindow_.$('fe_drug_strength_form_1').autocomp.options.array.pop()); true} | true |
+
+# Now focus the field and confirm that the list is repopulated.  At the same
+# time, also check that the field value is not reset.  (The field is just
+# trying to get the list, not update the value.)
+| type | fe_drug_strength_form_1 | Hello |
+| fireEvent | fe_drug_strength_form_1 | focus |
+| waitForExpression | javascript{testWindow_.$('fe_drug_strength_form_1').autocomp.options.array.length} | 3 |
+| assertValue | fe_drug_strength_form_1 | Hello |
+
+# Line two of the drug table is blank.  Focus the field, and confirm
+# that the internal flag that tracks the use of the RecordDataRequester is
+# unchanged (implying no request is made, because the RDR's form field is blank.
+| assertExpression | javascript{testWindow_.$('fe_name_and_route_2').autocomp.recDataRequester_.noPriorDataReq_} | true |
+| fireEvent | fe_drug_strength_form_2 | focus |
+| assertExpression | javascript{testWindow_.$('fe_name_and_route_2').autocomp.recDataRequester_.noPriorDataReq_} | true |
+
+# Now add some invalid value in the field, and try again.  This time
+# the value should change.  (We need to reset the listLoadAttempted flag,
+# though.)
+| type | fe_name_and_route_2 | aaaaaaaaaaaaaaaaaaa |
+| assertExpression | javascript{testWindow_.$('fe_drug_strength_form_2').autocomp.listLoadAttempted_=false} | false |
+| assertExpression | javascript{testWindow_.$('fe_name_and_route_2').autocomp.recDataRequester_.noPriorDataReq_} | true |
+| fireEvent | fe_drug_strength_form_2 | focus |
+| assertExpression | javascript{testWindow_.$('fe_name_and_route_2').autocomp.recDataRequester_.noPriorDataReq_} | false |
+
+# Now put a valid value in the name and route field, and focus the
+# strength and form field.  The strength and form field should still not
+# get its list, because the RecordDataRequester has already been used.  This
+# simulates the case where the users clicks in the strength and form field
+# after filling in a valid value.  We don't want the strength and form field
+# to try to get its own list, because the change event from the name and route
+# field should be doing that already.  (In this test, we are not sending
+# the change event, which means we won't get a list.)
+| assertExpression | javascript{testWindow_.$('fe_drug_strength_form_2').autocomp.options.array.length} | 0 |
+| type | fe_name_and_route_2 | ARAVA (Oral Pill) |
+| fireEvent | fe_drug_strength_form_2 | focus |
+
+# Here we have to wait a bit, because we are checking that something
+# didn't happen.
+| pause | 1000 |
+| assertExpression | javascript{testWindow_.$('fe_drug_strength_form_2').autocomp.options.array.length} | 0 |
+
+# Test field defaults by tabbing through the fields that have them and checking
+# for the default value.  The date field should be have today's date.
+| fireEvent | fe_drug_strength_form_C_2 | focus |
+| keyDown | fe_drug_strength_form_C_2 | \40 |
+| keyDown | fe_drug_strength_form_C_2 | \9 |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 2 |
+| keyDown | fe_drug_use_status_2 | \9 |
+| waitForValue | fe_drug_use_status_2 | Active |
+| keyDown | fe_expire_date_2 | \40 |
+| keyDown | fe_expire_date_2 | \9 |
+| waitForNotValue | fe_expire_date_2 | |
+| waitForNotValue | fe_expire_date_2 | exact:t |

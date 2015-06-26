@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+
+# This script shift a range of migration numbers forward or backward by the given 
+# step number. The migrations affected should have been summited in the git 
+# depository. 
+# 
+require 'fileutils'
+
+# Prints out the system call and then runs it.  Returns the return value of the
+# system call.
+def echo_system(cmd)
+  puts cmd
+  
+  rtn = system(cmd)
+  puts '(Completed)' if rtn
+  return rtn
+end
+
+current_dir = File.dirname($0)
+
+
+backward = false
+if (ARGV.length > 3 || ARGV.length < 2)
+  puts 'Usage:  shiftMigrationNumber start end <[+]|->steps]'
+  puts '        where steps != 0'
+  exit
+elsif (ARGV.length == 3)
+  start_num = ARGV[0].to_i
+  end_num = ARGV[1].to_i
+  steps = ARGV[2].to_i
+  if steps < 0
+    backward = true
+    steps = steps.abs
+  end
+elsif (ARGV.length == 2)
+  start_num = ARGV[0].to_i
+  end_num = ARGV[1].to_i
+  steps = 1
+end
+
+if (steps == 0 || start_num < 1 || end_num < 1) 
+  puts 'Usage:  shiftMigrationNumber start end <[+]|->steps]'
+  puts '        where steps != 0'
+  exit      
+end
+
+
+migration_dir = current_dir + "/../db/migrate"
+migration_files = Dir.new(migration_dir).entries
+migration_files.each do |file_name|
+  migration_num = start_num
+  while migration_num <= end_num
+    if (file_name.index(migration_num.to_s + '_') == 0 )
+      # TODO: check if the migrations are already in the git depository
+
+      # print out the file_name
+      puts file_name
+      
+      
+      # shift the migration number by steps
+      if (backward)
+        new_num = migration_num - steps
+      else
+        new_num = migration_num + steps
+      end
+      new_file_name = new_num.to_s + file_name.slice(migration_num.to_s.length .. -1)
+      cmd = "git mv #{migration_dir}/#{file_name} #{migration_dir}/#{new_file_name}"
+      echo_system(cmd)
+
+    end
+    migration_num += 1
+  end
+end
+

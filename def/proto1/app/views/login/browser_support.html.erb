@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>PHR Browser Support</title>
+
+    <%= javascript_include_tag "manifest_page_bottom"  %>
+    <script type="text/javascript">
+      function ShowInfo() {
+        var str = "";
+        if (BrowserDetect.IE8){
+          str = "Internet Explorer Version 8.";
+        }
+        else if (BrowserDetect.IE8compatibilityMode) {
+          str = "Internet Explorer Version 8 in Compatibility mode.";
+        }
+        else if (BrowserDetect.IEoldVersion) {
+          str = "Internet Explorer Version " + BrowserDetect.version;
+        }
+        else {
+          str = BrowserDetect.browser + " Version " + BrowserDetect.version;
+        }
+          
+        document.getElementById("info").innerHTML = 
+          "<p><b>We have detected that you are using "+str+" </b></p>";
+      }
+        
+      function setCookie() {
+        CookieHandler.setCookie("browser_support", "OK", 1, "/");
+        document.location.href = "/accounts/login";
+      }
+    </script>
+    <%= stylesheet_link_tag  'manifest_base_package.css' %>
+    <!-- link href="/stylesheets/help.css" rel="stylesheet" title="default" type="text/css" media="all"/-->
+    <!-- link href="/stylesheets/button.css" media="screen" rel="stylesheet" type="text/css" /-->
+  </head>
+
+  <body onload="ShowInfo();">
+    <div id="info"></div>
+    <h1>Browser Support</h1>
+    <p>
+      <b> Currently this site is best when viewed with <a href="http://mozilla.org/firefox">Firefox</a>,
+        <a href="http://google.com/chrome">Chrome</a>,
+        <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie">Internet Explorer 9</a> or
+        <a href="http://apple.com/safari">Safari 5</a> browsers.</b>
+    </p>  
+    <br/><br/>
+<!--
+    <button class="rounded" id="ok" name="ok" type="button" onClick="setCookie()">
+      <span>Login Screen</span>
+    </button>
+-->
+    <p></p>
+  </body>
+</html>

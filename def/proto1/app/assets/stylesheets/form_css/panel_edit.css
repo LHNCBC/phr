@@ -1,0 +1,83 @@
+div.fieldGroup.panelGroup {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  
+}
+
+div.panelGroupContainer.fieldGroup > div.fieldExpColDiv {
+  background-color: white;
+}
+
+table.fieldsTable {
+  background-color: transparent;
+}
+
+h3.groupHeader {
+  background-color: transparent !important;
+}
+
+div.fieldExpColDiv div.fieldExpColDiv{
+  border: 4px solid #73A0C8
+}
+
+/* temporarily hidden */
+button.panel_del_btn {
+  visibility: hidden;
+}
+
+table.dateField input.deleted {
+  font-size: 100%;
+}
+
+div.panelGenerator table.fieldsTable {
+  border: none;
+  border-collapse: separate;
+}
+
+div.panelGenerator td {
+  border: none;
+}
+
+div.panelGenerator div.panelGroupContainer.fieldGroup {
+  display:none;
+}
+
+div.panelGenerator.fieldGroup {
+  margin: 0 0 15px 0;
+  background-color: #ECF3F8;
+}
+
+div.panelGenerator.fieldGroup tr,
+div.panelGenerator.fieldGroup tr:hover {
+  background-color: transparent !important;
+}
+
+
+div.panelGenerator.fieldGroup td {
+  padding: 5px 5px 10px 15px;
+  
+}
+
+div.panelGenerator.fieldGroup td button {
+  margin-bottom: -10px;
+}
+div.panelGroupContainer.fieldGroup {
+  margin: 0;
+}
+button#fe_save,
+button#fe_save_and_close,
+button#fe_cancel{
+  margin-top: 30px;
+}
+
+#fe_search_option_1 {
+  padding: 15px 15px 15px 5px;
+  background-color: #ECF3F8;
+}
+
+#fe_option_grp_0 {
+  margin: 30px 0 0 0;
+}
+

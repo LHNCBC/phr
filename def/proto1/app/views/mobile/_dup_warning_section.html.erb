@@ -1,0 +1,13 @@
+<h2>WARNING</h2>
+<% if File.exists?(File.join(Rails.root, 'app', 'views', @table, '_dup_warnings.html.erb')) %>
+  <%= render "#{@table}/dup_warnings" %>
+<% else %>
+  <%# The standard message.  This is from controlled_edit_table.js
+      warnAboutDuplicates.  If you change this message, also update it there. %>
+  You have more than one record for <%= h @dup_warning_data %>.
+  That is allowed, but these tables are really intended to be 
+  profiles rather than histories.
+<% end %>
+<p>
+<%= check_box_tag 'dup_ok' %><%= label_tag 'dup_ok', 'Acknowledge warnings' %>
+</p>

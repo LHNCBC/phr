@@ -1,0 +1,560 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>JavaScript unit test file</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <script src="assets/prototype.js" type="text/javascript"></script>
+    <script src="assets/unittest.js" type="text/javascript"></script>
+
+    <script src="assets/effects.js" type="text/javascript"></script>
+    <script src="assets/controls.js" type="text/javascript"></script>
+    <script src="assets/autocomp/event.simulate.js" type="text/javascript"></script>
+    <script src="assets/application_phr.js" type="text/javascript"></script>
+    <script src="assets/validation.js" type="text/javascript"></script>
+    <script src="assets/field_validation.js" type="text/javascript"></script>
+    <!--script src="assets/tooltip.js" type="text/javascript"></script-->
+    <script src="assets/logger.js" type="text/javascript"></script>
+    <script src="assets/textresizedetector.js" type="text/javascript"></script>
+    <script src="assets/taffy.js" type="text/javascript"></script>
+    <script src="assets/data_model.js" type="text/javascript"></script>
+    <script src="assets/browser_detect.js" type="text/javascript"></script>
+    <script src="assets/jquery/jquery.js" type="text/javascript"></script>
+    <script src="assets/jquery-ui/js/jquery-ui.min.js?body=1" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+    <link rel="stylesheet" href="../../public/background_img_100.css" type="text/css" id="resize" />
+
+  </head>
+  <body>
+
+    <div id="content">
+
+      <div id="header">
+        <h1>JavaScript unit test file</h1>
+        <p>
+          This file tests <strong>application_phr.js</strong>.
+        </p>
+      </div>
+
+      <!-- Log output -->
+      <div id="testlog"> </div>
+
+      <!-- Testing Content -->
+      <!--<div style="visibility: hidden">-->
+      <div>
+
+        <!-- Test Content for getColumnVals -->
+        <input type="text" id="fe_cond_id" value="C1"/>
+        <input type="text" id="fe_cond_id_2" value="C2"/>
+        <input type="text" id="fe_cond_id_3" value=""/>
+        <!-- End Test Content for getColumnVals -->
+
+
+        <!-- Test Content for expColSection -->
+        <div class="hide_show_button group_collapsed" id="something_expcol_button"
+             onclick='expColSection("something_expcol")'>
+          <text>Show</text>
+          <img src="/images/blank.gif" alt="expand/collapse section button"></img>
+        </div>
+        Header text
+        <div id='something_expcol' class='expand_collapse' style="display: none">
+          <div class="hide_show_button group_collapsed" id="inner_expcol_button"
+               onclick='expColSection("inner_expcol")'>
+            <text>Show</text>
+            <img src="/images/blank.gif" alt="expand/collapse section button"></img>
+          </div>
+          Inner Header text
+          <div id='inner_expcol' class='expand_collapse' style="display: none">
+          </div>
+        </div>
+        <div class="hide_show_button group_collapsed" id="other_expcol_button"
+             onclick='expColSection("other_expcol")'>
+          <text>Show</text>
+          <img src="/images/blank.gif" alt="expand/collapse section button"></img>
+        </div>
+        Other Header text
+        <div id='other_expcol' class='expand_collapse' style="display: none">
+        </div>
+        <!-- End Test Content for expColSection -->
+
+
+        <!-- Test Content for validateInputCtls -->
+        <table>
+          <tr>
+            <td id="truly_visible_td_txt_1"><input id="truly_visible_text_1"
+                                                   type="text" value="txt 1" /></td>
+          </tr>
+          <tr>
+            <td id="hidden_via_class_td"><input id="hidden_textbox_via_class"
+                                                class="hidden_field" type="text" value="hidden via class" /></td>
+          </tr>
+          <tr>
+            <td id="hidden_via_style_td"><input id="hidden_textbox_via_style"
+                                                style="visibility: hidden" type="text" value="hidden via style" /></td>
+          </tr>
+          <tr>
+            <td id="truly_visible_td_txt_2"><input id="truly_visible_text_2"
+                                                   type="text" value="txt 2" /></td>
+          </tr>
+          <tr>
+            <td id="truly_visible_td_radio"><input id="truly_visible_radio"
+                                                   type="radio" value="radio" /></td>
+          </tr>
+          <tr>
+            <td id="truly_visible_td_checkbox"><input id="truly_visible_checkbox"
+                                                      type="checkbox" value="checkbox" /></td>
+          </tr>
+          <tr>
+            <td id="truly_visible_td_non_input"><p id="truly_visible_non_input" >
+                non input</p></td>
+          </tr>
+        </table>
+        <!-- End Test Content for validateInputCtls -->
+
+        <!-- Test content for fillInForm -->
+        <input type="text" id="fe_arc_1" value="one"/>
+        <input type="text" id="fe_arc_2" value="two"/>
+        <input type="text" id="fe_segment_1" value="red"/>
+        <input type="text" id="fe_segment_2" value="green"/>
+        <input type="text" id="fe_segment_C_1" value="R"/>
+        <input type="text" id="fe_segment_C_2" value="G"/>
+
+        <input type="text" id="fe_arc_nums">
+          <input type="text" id="fe_segments">
+            <input type="text" id="fe_segments_C">
+              <input type="text" id="fe_age">
+                <input type="text" id="fe_age_C">
+                  <input type="text" id="fe_color">
+
+                    <div id="completionOptions"></div>
+                    <div id="moreResults"></div>
+                    <script src="assets/idCache.js" type="text/javascript"></script>
+                    <script src="assets/rules.js" type="text/javascript"></script>
+                    <script src="assets/navigation.js" type="text/javascript"></script>
+                    <script src="assets/autocomp/observable.js" type="text/javascript"></script>
+                    <script src="assets/autocomp/screenReaderLog.js" type="text/javascript"></script>
+                    <script src="assets/autocomp/fieldAlarms.js" type="text/javascript"></script>
+                    <script src="assets/autocomp/bonk.js" type="text/javascript"></script>
+                    <script src="assets/autocomp/autoCompBase.js" type="text/javascript"></script>
+                    <script src="assets/autocomp/autoCompPrefetch.js" type="text/javascript"></script>
+                    <script src="assets/autocomp/autoCompEvents.js" type="text/javascript"></script>
+                    <script src="assets/testpanel.js" type="text/javascript"></script>
+                    <script src="assets/fieldEvents.js" type="text/javascript"></script>
+                    <script src="assets/fields_table.js" type="text/javascript"></script>
+                    <script src="assets/controlled_edit_table/controlled_edit_table.js" type="text/javascript"></script>
+                    <script src="assets/controlled_edit_table/conflict_checker.js" type="text/javascript"></script>
+                    <script src="assets/def_autocomp.js" type="text/javascript"></script>
+
+                    <script type="text/javascript">
+                      new Def.Autocompleter.Prefetch('fe_arc_nums', []);
+                      new Def.Autocompleter.Prefetch('fe_segments', []);
+                      new Def.Autocompleter.Prefetch('fe_age', ['Child', 'Adult', 'Senior'],
+                      {'codes': ['0', '1', '2']});
+                      Def.Rules.Cache.setRuleVal('age_category', '1');
+                      Def.Rules.Cache.setRuleVal('fav_color', 'blue');
+                      Def.Rules.fieldRules_ = {};
+                    </script>
+                    <!-- End Test content for fillInForm -->
+
+                    <!-- Test unique values by field -->
+                    <input type="text" id="fe_unique_field_1" />
+                    <!-- End Test unique values by field -->
+
+                    <!-- Test setFieldVal function -->
+                    <div id="fe_sfv_not_input_field_1"></div>
+                    <input type="text" id="fe_sfv_input_field_1" />
+                    <script type="text/javascript">
+                      Def.runObserver = function(field){
+                        Def.changeEventTriggered_ = !Def.changeEventTriggered_;
+                      }
+                      Def.fieldObservers_['sfv_not_input_field']=
+                        {'change':[function(event){Def.runObserver(this);}]}
+                      Def.fieldObservers_['sfv_input_field']=
+                        {'change':[function(event){Def.runObserver(this);}]}
+                      Def.Navigation.setUpFieldListeners($('fe_sfv_not_input_field_1'));
+                      Def.Navigation.setUpFieldListeners($('fe_sfv_input_field_1'));
+                    </script>
+
+                    <!-- End Test setFieldVal function -->
+
+                    </div>
+                    <!-- End Test Content -->
+                    </div>
+                    <!-- End of Content -->
+
+                    <script src="assets/idCache.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                      // <![CDATA[
+
+                      Def.SET_VAL_DELIM = '|';
+
+                      new Test.Unit.Runner({
+
+                        // replace this with your real tests
+
+                        setup: function() {
+
+                        },
+
+                        teardown: function() {
+
+                        },
+
+
+                        /**
+                         *  Tests the fillInForm function.
+                         */
+                        testFillInForm: function() { with(this) {
+                            Def.fillInForm(window, {'fav_color': 'color', 'age_category': 'age_C'},
+                            {'arc': 'arc_nums', 'segment': 'segments'});
+                            wait(1, function() {
+                              assertEqual('blue', $('fe_color').value);
+                              assertEqual('1', $('fe_age_C').value);
+                              assertEqual('Adult', $('fe_age').value);
+                              assertEnumEqual(['one', 'two'], $('fe_arc_nums').autocomp.rawList_);
+                              assertNull($('fe_arc_nums').autocomp.itemCodes_);
+                              assertEnumEqual(['red', 'green'], $('fe_segments').autocomp.rawList_);
+                              assertEnumEqual(['R', 'G'], $('fe_segments').autocomp.itemCodes_);
+                            });
+                          }},
+
+
+                        /**
+                         *  Tests the getFieldValsAndCodes function.
+                         */
+                        testGetFieldValsAndCodes: function() { with(this) {
+                            var fieldData = Def.getFieldValsAndCodes('arc');
+                            assertEnumEqual(['one', 'two'], fieldData[0]);
+                            assertNull(fieldData[1]);
+                            fieldData = Def.getFieldValsAndCodes('segment');
+                            assertEnumEqual(['red', 'green'], fieldData[0]);
+                            assertEnumEqual(['R', 'G'], fieldData[1]);
+
+                            // Test the case where a field value is blank
+                            $('fe_segment_1').value = '';
+                            fieldData = Def.getFieldValsAndCodes('segment');
+                            assertEnumEqual(['green'], fieldData[0]);
+                            assertEnumEqual(['G'], fieldData[1]);
+                            // Put the value back for other tests
+                            $('fe_segment_1').value = 'red';
+                          }},
+
+
+                        testHtmlEncode: function() { with(this) {
+                            assertEqual(
+                            'one &amp; two &amp; &quot;&#39;&lt;&lt;three&gt;&gt;&#39;&quot;',
+                            htmlEncode('one & two & "\'<<three>>\'"'));
+                          }},
+
+
+                        testHtmlDecode: function() { with(this) {
+                            assertEqual(
+                            'one & two & "\'<<three>>\'"', htmlDecode(
+                            'one &amp; two &amp; &quot;&#39;&lt;&lt;three&gt;&gt;&#39;&quot;'));
+                          }},
+
+
+                        testMatchesRegex:  function() { with(this) {
+                            results = matchesRegex("  5  ", "^\\s*(\\d+)\\s*$")
+                            assertNotNull(results);
+                            assertEqual(2, results.length)
+                            assertEqual('  5  ', results[0], "problem with whole match");
+                            assertEqual('5', results[1], "problem with sub match");
+                          }},
+
+
+                        testGetColumnVals: function() { with(this) {
+                            var vals = getColumnVals('fe_cond_id');
+                            assertEqual(2, vals.length);
+                            assertEqual('C1', vals[0]);
+                            assertEqual('C2', vals[1]);
+                          }},
+
+
+                        testGetBaseFieldID: function() { with(this) {
+                            assertEqual('fe_field_one', getBaseFieldID('fe_field_one'),
+                            'getBaseFieldID modified a base field ID');
+                            assertEqual('fe_field_two', getBaseFieldID('fe_field_two_1'));
+                            assertEqual('fe_field_three', getBaseFieldID('fe_field_three_13_12'));
+                          }},
+
+
+                        testParseSetValue: function() { with(this) {
+                            assertEnumEqual([], Def.parseSetValue(null));
+                            assertEnumEqual([], Def.parseSetValue(''));
+                            assertEnumEqual(['one'], Def.parseSetValue('|one|'));
+                            assertEnumEqual(['one', 'two'], Def.parseSetValue('|one|two|'));
+                          }},
+
+
+                        testToEnglish: function() { with(this) {
+                            assertEqual('', [].toEnglish());
+                            assertEqual('one', ['one'].toEnglish());
+                            assertEqual('one and two', ['one', 'two'].toEnglish());
+                            assertEqual('one, two, and three', ['one', 'two', 'three'].toEnglish());
+                          }},
+
+
+                        testMakeFormFieldID: function() { with(this) {
+                            assertEqual('fe_hello', make_form_field_id('hello'));
+                            assertEqual('fe_hi', make_form_field_id('hi', null));
+                            assertEqual('fe_howdy_2', make_form_field_id('howdy', '_2'));
+                          }},
+
+                        // the editIDsInEventAttr function has been moved to fields_table
+                        //     and rendered obsolete by changes in the way repeating lines
+                        //     are created -->  lm, 1/7/08
+                        //testEditIDsInEventAttr: function() { with(this) {
+                        //  var oldIDs = new Array('predef', 'predef_exp_cond_name',
+                        //    'predef_exp_expression', 'predef_exp_cond_def_fld', 'predef_exp');
+                        //  var newIDs = new Array('predef_2', 'predef_exp_cond_name_2',
+                        //    'predef_exp_expression_2', 'predef_exp_cond_def_fld_2', //'predef_exp_2');
+
+                        //  // Test that an ID that is the prefix of another ID does not mess things
+                        //  // up.
+                        //  assertEqual('("predef_2", "predef_exp_cond_def_fld_2"',
+                        //   editIDsInEventAttr('("predef", "predef_exp_cond_def_fld"',
+                        //    oldIDs, newIDs));
+                        //  // Test an ID in single quotes
+                        //  assertEqual("'predef_2'", editIDsInEventAttr("'predef'",
+                        //    oldIDs, newIDs));
+                        //  // Test an ID with an fe_ prefix
+                        //  assertEqual("'fe_predef_exp_2'", editIDsInEventAttr("'fe_predef_exp'",
+                        //    oldIDs, newIDs));
+                        //  // Test an ID with a deferred_fetch postfix.  These are objects, and //don't
+                        //  // need quotes.
+                        //  assertEqual(', fe_predef_exp_2_deferred_fetch)',
+                        //   editIDsInEventAttr(', fe_predef_exp_deferred_fetch)',
+                        //    oldIDs, newIDs));
+                        //}},
+
+
+                        testExpColSection: function() { with(this) {
+                            // Test preconditions
+                            assertEqual("none", $('something_expcol').style.display,
+                            'something_expcol');
+                            assertEqual("none", $('inner_expcol').style.display, 'inner_expcol');
+                            assertEqual("none", $('other_expcol').style.display, 'other_expcol');
+                            assertEqual(true,
+                            $('something_expcol_button').hasClassName('group_collapsed'));
+                            assertEqual(true,
+                            $('inner_expcol_button').hasClassName('group_collapsed'));
+                            assertEqual(true,
+                            $('other_expcol_button').hasClassName('group_collapsed'));
+                            assertEqual('expColSection("something_expcol")',
+                            $('something_expcol_button').readAttribute('onclick'),
+                            'something_expcol');
+                            assertEqual('expColSection("inner_expcol")',
+                            $('inner_expcol_button').readAttribute('onclick'), 'inner_expcol');
+                            assertEqual('expColSection("other_expcol")',
+                            $('other_expcol_button').readAttribute('onclick'), 'other_expcol');
+
+                            // Expand the outer section
+                            expColSection('something_expcol');
+                            // Test the state again
+                            assertEqual("block", $('something_expcol').style.display,
+                            'something_expcol');
+                            assertEqual("block", $('inner_expcol').style.display, 'inner_expcol');
+                            assertEqual("none", $('other_expcol').style.display, 'other_expcol');
+                            assertEqual(true,
+                            $('something_expcol_button').hasClassName('group_expanded'));
+                            assertEqual(true,
+                            $('inner_expcol_button').hasClassName('group_expanded'));
+                            assertEqual(true,
+                            $('other_expcol_button').hasClassName('group_collapsed'));
+
+                            // Collapse the inner section
+                            expColSection('inner_expcol');
+                            // Test the state again
+                            assertEqual("block", $('something_expcol').style.display,
+                            'something_expcol');
+                            assertEqual("none", $('inner_expcol').style.display, 'inner_expcol');
+                            assertEqual("none", $('other_expcol').style.display, 'other_expcol');
+                            assertEqual(true,
+                            $('something_expcol_button').hasClassName('group_expanded'));
+                            assertEqual(true,
+                            $('inner_expcol_button').hasClassName('group_collapsed'));
+                            assertEqual(true,
+                            $('other_expcol_button').hasClassName('group_collapsed'));
+                          }},
+
+                        testPartialHtmlEncode: function() { with(this) {
+                            // In the test string, I am intentionally using "center"
+                            // instead of "script" for the first tag, so that we can test
+                            // that tags with attributes are encoded even if they would not
+                            // be encoded without attributes.
+                            // Also, because CDATA sections (like the one containing this script)
+                            // end at the first encounter of a closing
+                            // tag symbol, we need to escape them and use prototype's unescape.
+                            var testStr =
+                              '<center type="text/javascript" src=\'somewhere\'>&hi;';
+                            testStr +=  '&lt;/script>'.unescapeHTML();
+                            var expectedStr =
+                              '&lt;center type=&quot;text/javascript&quot; src=&#39;somewhere&#39;'+
+                              '&gt;&amp;hi;&lt;/script&gt;';
+                            assertEqual(expectedStr, Def.partialHtmlEncode(testStr, "0"));
+                            // Test with an invalid htmlParseLevel.
+                            assertEqual(expectedStr, Def.partialHtmlEncode(testStr, "22"));
+
+                            // Now add some tags that should be not be encoded at level 1, and
+                            // test level 1.
+                            var extra = '<b><i><center>';
+                            extra += '&lt;/u>'.unescapeHTML();
+                            expectedStr = extra + expectedStr;
+                            testStr = extra + testStr;
+                            assertEqual(expectedStr, Def.partialHtmlEncode(testStr, "1"));
+                          }},
+
+
+                        testUniqueValuesByField: function(){with(this){
+                            var soundManager = {
+                              play: function(str){
+                                return str;
+                              }
+                            }
+                            var ele = $("fe_unique_field_1");
+                            var uniqueFieldValuesHash = {"unique_field":["howdy"]};
+
+                            ele.value = "Hi";
+                            var passedValidation = Def.Validation.checkUniqueness(ele, uniqueFieldValuesHash);
+                            assert(passedValidation);
+                            var hasTooltip = hasVisibleTooltip(ele);
+                            assert(!hasTooltip);
+
+                            ele.value = "howdy";
+                            passedValidation = Def.Validation.checkUniqueness(ele, uniqueFieldValuesHash);
+                            assert(!passedValidation);
+                            hasTooltip = hasVisibleTooltip(ele);
+                            assert(hasTooltip);
+                          }} ,
+
+
+                        testDeepClone: function() { with(this){
+                            var a = [1, 2, {3: 4}];
+                            b = Def.deepClone(a);
+                            a[1] = 5;
+                            assertEqual(2, b[1]);
+                            a[2][3] = 6;
+                            assertEqual(4, b[2][3]);
+                            a = {1: 2, 3: {4: 5}};
+                            b = Def.deepClone(a);
+                            a[1] = 6;
+                            assertEqual(2, b[1]);
+                            a[3][4] = 7;
+                            assertEqual(5, b[3][4]);
+                          }},
+
+
+                        testIncrementString: function() { with(this) {
+                            assertEqual('A', incrementString('Z'));
+                            assertEqual('a', incrementString('z', false));
+                            assertEqual('1', incrementString('0', false));
+                            assertEqual('0', incrementString('9', true));
+                            assertEqual('A9a', incrementString('A8z', true));
+                            assertEqual('B9a', incrementString('A8z', false));
+                            assertEqual('a4Y', incrementString('a4X', true));
+                            assertEqual('b5Y', incrementString('a4X', false));
+                            assertEqual('97A', incrementString('96Z', true)) ;
+                            assertEqual('07A', incrementString('96Z', false)) ;
+                          }},
+
+                        testSetFieldVal: function() { with(this) {
+                            var notInputField = $("fe_sfv_not_input_field_1");
+                            var inputField = $("fe_sfv_input_field_1");
+                            var newVal = null;
+                            var evtExpected = false;
+
+                            // Test a non-input field
+                            notInputField.innerHTML = "";
+                            // When htmlParseLevel = 1
+                            notInputField.setAttribute('htmlParseLevel', 1);
+                            // When new value is a string
+                            newVal = "one<br>two<script>";
+                            expectedVal = 'one<br>two&lt;script&gt;';
+                            // Reset change event monitor
+                            Def.changeEventTriggered_ = false;
+                            evtExpected = true;
+                            // Run test
+                            Def.setFieldVal(notInputField, newVal);
+                            assert(Def.changeEventTriggered_ === evtExpected);
+                            assertEqual(expectedVal, notInputField.innerHTML);
+                            // When newVal is the same as above and
+                            // htmlParseLevel = 0
+                            notInputField.setAttribute('htmlParseLevel', 0)
+                            expectedVal = 'one&lt;br&gt;two&lt;script&gt;';
+                            // Run the test
+                            Def.setFieldVal(notInputField, newVal);
+                            assertEqual(expectedVal, notInputField.innerHTML);
+                            // When newVal is null
+                            newVal = null;
+                            expectedVal = '';
+                            // Run the test
+                            Def.setFieldVal(notInputField, newVal);
+                            assertEqual(expectedVal, notInputField.innerHTML);
+                            // When newVal is a boolean
+                            newVal = true;
+                            expectedVal = 'true';
+                            // Run the test
+                            Def.setFieldVal(notInputField, newVal);
+                            assertEqual(expectedVal, notInputField.innerHTML);
+                            // When newVal is a number
+                            newVal = 123;
+                            expectedVal = '123';
+                            // Run the test
+                            Def.setFieldVal(notInputField, newVal);
+                            assertEqual(expectedVal, notInputField.innerHTML);
+
+
+                            // Test an input field
+                            inputField.value = "input field value";
+                            // When new value is a null
+                            newVal = null;
+                            expectedVal = "";
+                            // Reset change event monitor before testing
+                            Def.changeEventTriggered_ = false;
+                            evtExpected = true;
+                            Def.setFieldVal(inputField, newVal);
+                            assertEqual(expectedVal, Def.getFieldVal(inputField));
+                            assert(Def.changeEventTriggered_ === evtExpected);
+                            // When new value is a boolean
+                            newVal = false;
+                            expectedVal = "false";
+                            Def.setFieldVal(inputField, newVal);
+                            assertEqual(expectedVal, Def.getFieldVal(inputField));
+
+                            // When new value is a number
+                            newVal = 456;
+                            expectedVal = "456";
+                            Def.setFieldVal(inputField, newVal);
+                            assertEqual(expectedVal, Def.getFieldVal(inputField));
+                            // When new value is a new string
+                            newVal = "new input field value";
+                            expectedVal = newVal;
+                            Def.setFieldVal(inputField, newVal);
+                            assertEqual(expectedVal, Def.getFieldVal(inputField));
+                            // When new value is the same as the existing field value
+                            var existingFldVal = Def.getFieldVal(inputField);
+                            newVal = existingFldVal;
+                            expectedVal = existingFldVal;
+                            // Reset the change event monitor before testing
+                            Def.changeEventTriggered_ = false;
+                            evtExpected = false;
+                            Def.setFieldVal(inputField, newVal);
+                            assert(Def.changeEventTriggered_ === evtExpected);
+                            assertEqual(expectedVal, Def.getFieldVal(inputField));
+                            // When there is a tip value for this field
+                            var tip = "tip of the input field" ;
+                            inputField.tipValue = tip;
+                            newVal = null;
+                            expectedVal = tip;
+                            Def.setFieldVal(inputField, newVal);
+                            assertEqual(tip, inputField.value);
+                          }}
+
+                      }, "testlog");
+                      // ]]>
+                    </script>
+                    </body>
+                    </html>

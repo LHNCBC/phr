@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medical Contacts Email</h1>
+	<p>
+	Enter the email address of the medical contact. 
+	</p>  
+
+<!--#include virtual="help_footer.shtml" -->

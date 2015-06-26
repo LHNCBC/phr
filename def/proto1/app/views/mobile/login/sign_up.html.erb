@@ -1,0 +1,53 @@
+
+
+<%= form_tag_wo_ajax account_sign_up_path, :method=>:post %>
+
+<%#= fd_fieldset(@p.fds['signup_policy']) do %>
+<%# end %>
+<% instr2 = @p.fds['instructions2'].default_value %>
+<%= fd_popup_button("signup_policy",  @p.fds['signup_policy'].display_name, instr2 ) %>
+<%= fd_checkbox_m(@p.fds['agree_chbox'], @p.data, @p.form_obj, '_1') %>
+
+
+<%= fd_collapsible( @p.fds['signup_account'].display_name ) do
+     fd_text_field_m(@p.fds['user_name'], @p.data, {}, @p.form_obj, '_1')+
+     fd_password_m(@p.fds['password'], {}, @p.form_obj, '_1')+
+     fd_password_m(@p.fds['confirm_password'], {}, @p.form_obj, '_1')
+ end %>
+
+<%= fd_collapsible( @p.fds['signup_quest'].display_name ) do  %>
+
+<%#= fd_fieldset_m(@p.fds['signup_quest']) do %>
+    <%#= link_to_m_legend @p.fds['signup_quest'].display_name, "#" %>
+  <% [1,2].each do |num| %>
+  <p>
+    <%= @p.fds['su_fix_quest'].display_name = "Provided question #{num}";
+      fd_prefetched_list_m(@p.fds['su_fix_quest'], @p.data, @p.question_list, false,
+      @p.form_obj, "_1_#{num}", false) %> &nbsp;
+    <%= @p.fds['su_fixansw'].display_name = "Answer to provided question #{num}";
+       fd_text_field_m(@p.fds['su_fixansw'], @p.data, {}, @p.form_obj, "_1_#{num}") %>
+  </p>
+
+  <% end %>
+  <%# [1,2].each do |num| %>
+  <% [1].each do |num| %>
+  <p>
+    <%= @p.fds['su_selfquest'].display_name = "Your question #{num}";
+      fd_text_field_m(@p.fds['su_selfquest'], @p.data, {}, @p.form_obj, "_1_#{num}") %>
+    &nbsp;
+    <%= @p.fds['su_selfansw'].display_name = "Answer to your question #{num}";
+       fd_text_field_m(@p.fds['su_selfansw'], @p.data, {}, @p.form_obj, "_1_#{num}") %>
+  </p>
+  <% end %>
+<% end %>
+
+<%= fd_collapsible( @p.fds['email_grp'].display_name ) do  %>
+<%#= fd_fieldset_m(@p.fds['email_grp']) do %>
+  <p class="instructions"><%= fd_static_text(@p.fds['email_instr1']) %></p>
+  <div><%= fd_text_field_m(@p.fds['email'], @p.data, {}, @p.form_obj, '_1') %></div>
+  <div><%= fd_text_field_m(@p.fds['sec_email'], @p.data, {}, @p.form_obj, '_1') %></div>
+<% end %>
+<hr>
+<%= submit_tag_m 'Save' %>
+<%= link_to_m 'Cancel', login_path %>
+</form>

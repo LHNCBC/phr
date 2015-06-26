@@ -1,0 +1,471 @@
+/*
+    Document   :  horizontalFieldGroup
+    Created on :  Feb 3, 2012, 2:54:31 PM
+    Author     :  lmericle
+    Description:  CSS for horizontal field groups.  Note that field groups
+                  can be either horizontal or vertical.  This is only for
+                  the horizontal field groups.  General CSS for field groups
+                  is in style.css.
+
+                  Since controlled edit tables are only in horizontal field
+                  groups, the CSS for them is also in this file.
+
+                  This should not contain CSS that is specific to a form.
+*/
+
+
+/** table level **/
+
+.fieldGroup table {
+  /* background-color: #d8ebfc; */
+  border-collapse: collapse;
+  border-color: #73a0c8;
+  padding: 0;
+}
+
+table.fieldsTable {
+	width: 100%;
+	table-layout: fixed;
+}
+
+/* ====================================================================*/
+
+/* Guidance (Text used to provide a short sentence related to the group.) */
+
+.guidance {
+  color: #333333;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 5px;
+  text-align: right;
+}
+
+.guidance + div.field {
+	margin-top: 1em;
+}
+
+/* ====================================================================*/
+
+/* Headers */
+
+/* group header */
+.fieldsTable h3.groupHeader {
+	background: #458AC5 !important;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+.fieldsTable tr.embeddedRow .groupHeader {
+  margin: 0;
+  width: auto;
+}
+
+td div.fieldGroup div.no_group_hdr.fieldGroup div.fieldExpColDiv {
+  border-top: 0;
+}
+
+/* header rows */
+.fieldsTableHeader {
+  background: none repeat scroll 0 0 #E3E3E3;
+  border-bottom: 1px solid #FFF;
+  color: #666;
+  font-size: 13px;
+  font-weight: 400;
+  left: 0;
+  padding: 5px 0;
+}
+
+table.fieldsTable thead tr {
+	border-bottom: none;
+}
+
+/* header columns */
+
+th.fieldsTableHeader {
+  background: none repeat scroll 0 0 #e8e8e8;
+  border: 0;
+  padding-left: 5px;
+  text-align: left !important;
+}
+
+/*
+table table th.fieldsTableHeader {
+  background: none repeat scroll 0 0 #F2F2F2;
+  border: 1px solid #CACACA !important;
+}
+*/
+/* needs to be more specific, or move it to common.css or generated.css */
+/* --ye 2/10/2012 */
+th {
+  text-align: left;
+  vertical-align: top ;
+  overflow: hidden;
+}
+
+
+/* ====================================================================*/
+
+/* Data section */
+
+/* rows */
+tr.selected_row {
+  background-color:#FFE ; /*!important; */
+}
+
+tr.removed {
+  display: none;
+}
+
+
+/* columns */
+/* needs to be more specific, or move it to common.css or generated.css */
+/* --ye 2/10/2012 */
+td {
+  overflow: hidden;
+}
+
+td label {
+  float: none;
+  font-size: 90%;
+  font-weight: 700;
+}
+
+.fieldsTable tr td {
+  /*background: #fff !important;*/
+  border: 0;
+  border-left: 1px solid #ced5d9;
+  color: #333333;
+  font-size: 12px;
+  padding: 6px 7px;
+}
+
+.fieldsTable tr td:first-child {
+  border-left: 0;
+}
+
+td .static_text {
+  text-align: left;
+}
+
+td.errReqOutline {
+  padding-right: 4px;
+}
+
+.deleted {
+  background-color: #f4dee0;
+  color: #b22222;
+}
+
+td.noDataCell {
+  font-size : 13px !important;
+  font-weight : bold !important;
+}
+
+/* Put in a strike-through for deleted records.  For some reason it is
+   necessary to include ".deleted td span" (rather than relying on the row),
+   or it doesn't show up correctly. */
+
+table.fieldsTable tr.deleted,
+table.fieldsTable .deleted td,
+.deleted td span,
+.deleted td div,
+.deleted {
+  color: #b22222 !important;
+  text-decoration: none;
+}
+
+.deleted td span span,
+.deleted td div,
+.deleted {
+  text-decoration: line-through;
+}
+
+.deleted td.rowid span span {
+  text-decoration: none;
+}
+/*
+tr.saved_row.deleted:hover td {
+  background-color: #f4dee0 !important;
+}
+*/
+
+tr.saved_row > td,
+tr.saved_row span,
+tr.saved_row div {
+  vertical-align: middle; /*top;*/
+}
+
+.fieldsTable tr:not(.saved_row) td {
+  padding: 2px; /*!important;*/
+}
+
+.fieldsTable tr td.cet_edit {
+  padding: 2px;
+}
+
+/* alternating colors for table rows */
+/* new rows (every rows) */
+.fieldsTable tr:nth-of-type(2n) {
+  background-color: #e8efe7;
+}
+.fieldsTable tr:nth-of-type(2n+1) {
+  background-color: #f0f5ef;
+}
+/* saved rows */
+.fieldsTable tr.saved_row:nth-of-type(2n) {
+  background-color: #ecf3f8;
+}
+.fieldsTable tr.saved_row:nth-of-type(2n+1) {
+  background-color: #ffffff;
+}
+
+/*
+table.fieldsTable > tr:last-child > td {
+  background: #f0f5ef !important;
+}*/
+
+.fieldsTable tr.embeddedRow > td:first-child {
+  padding: 0;
+}
+/* moved to test.css, only affects test panel groups --ye */
+/*
+.fieldsTable tr.embeddedRow > td:first-child .fieldGroup {
+  border: 7px solid #D9E6F0;
+  margin: 0 0 10px;
+  padding: 5px;
+}
+*/
+
+.fieldsTable tr.embeddedRow > td:first-child .fieldGroup .fieldGroup {
+  background: #ECF3F8;
+  border: 0 none;
+  padding: 0
+}
+/*
+.fieldsTable tr.embeddedRow > td:first-child .fieldGroup .fieldGroup td {
+  background: #ECF3F8;
+}
+*/
+
+.fieldsTable tr.embeddedRow > td:first-child .fieldExpColDiv {
+  background: #ecf3f8;
+  border: none;
+  /*margin-bottom: 10px;*/ /* not needed --ye */
+}
+
+.fieldsTable tr.embeddedRow > td:first-child .embeddedRow  > td:first-child {
+  padding-bottom: 0;
+  border: 0;
+}
+
+tr.repeatingLine > td.rowEditText {
+	vertical-align: middle; /*top;*/ /*make it all middle for consistency --ye*/
+}
+
+/*
+tr.repeatingLine.saved_row > td.rowEditText,
+tr.repeatingLine.labeled_fields > td.rowEditText,
+tr.saved_row .fieldExpColDiv {
+  background-color:transparent;
+}
+*/
+
+/* input fields (except date fields - see date.css for those) */
+
+/* Alignment style for row numbers */
+/* more specific to override the td .static_text style */
+td div.rowid,
+td.rowid {
+  text-align: center;
+}
+
+tr.saved_row input {
+	vertical-align: middle; /*top;*/
+}
+
+/* Initial style for textarea fields in tables */
+textarea.wrap {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: 1px solid #BFBFBF;
+  /* CANNOT set as !important here otherwise the height could not be adjusted by users */
+  height: 24px; /*!important;*/
+  min-height: 14px;  /* needs to be 14px in order for firefox aurora to work correctly */
+  margin: 0;
+  overflow: hidden;
+  padding: 4px;
+  width: 100%;
+}
+
+div.fieldGroup tr div.field {
+  margin: 0;
+}
+
+tr.labeled_fields > td > input {
+	width: 50%;
+	border: 1px solid #73a0c8;
+}
+
+table.fieldsTable tr td input[type="text"] {
+   box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   border: 1px solid #BFBFBF; /* !important;*/
+   color: #333333; /*!important;*/
+   height: 24px;
+   margin: 0;
+   overflow: hidden;
+   padding: 4px;
+   width: 100% !important;
+}
+
+table.fieldsTable .dateField input[novalue="true"] {
+	font-size: 9px !important;
+}
+
+.field input[type=text]:focus,
+.field input[type=password]:focus,
+.field textarea:focus,
+.fieldsTable tr td input[type=text]:focus,
+.fieldsTable tr td textarea:focus,
+.fieldsTable tr td input[type=password]:focus {
+  background-color: #FFF8C6  !important;
+  color: #333;
+  font-weight: 700;
+}
+.fieldsTable tr td input[type=text].no_match:focus,
+.fieldsTable tr td textarea.no_match:focus,
+.fieldsTable tr td input[type=password].no_match:focus {
+  background-color: #ffd7b7 !important;
+  color:#333;
+  font-weight:700;
+}
+
+.fieldsTable tr td textarea {
+  resize: vertical;
+}
+
+
+tr.repeatingLine > td > input,
+tr.repeatingLine > td > span > input,
+tr.repeatingLine > td > div > input,
+tr.repeatingLine > td > span > span > input {
+  border: 0;
+  width: 100%;
+}
+
+/* inline fields show up in group headers as well as in the test panel groups */
+span.inline_fields {
+	font-size: medium;
+	font-weight: 400;
+}
+
+span.inline_fields div,
+span.inline_fields button {
+	display: inline;
+	margin-left: 3em;
+}
+
+/* hover styles on rows */
+.fieldsTable tr.repeatingLine:hover {
+  background-color: #d0e1f0 !important;
+}
+.fieldsTable tr.repeatingLine.deleted:hover {
+  background-color: #f4dfdf !important;
+}
+.fieldsTable tr.repeatingLine.selected_row:hover {
+  background-color: #ffffee !important;
+}
+
+
+/* ====================================================================*/
+
+
+/**  test panel specific */
+
+/* moved to test.css, only affects test panel groups --ye */
+/*
+div.panelGroupContainer.fieldGroup {
+  border-width: 0;
+  margin: 0;
+  padding-top: 0;
+}
+*/
+
+tr.panel_header td:first-child + td + td .static_text {
+	text-decoration: underline;
+	font-weight: 700;
+}
+
+tr.embeddedRow div.panelTest {
+  padding-top: 0;
+}
+
+div.panel_buttons {
+  display: none;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+div.panel_buttons div.fieldExpColDiv {
+  border: 0 !important;
+}
+
+table.fieldsTable .panel_buttons button.show_more,
+table.fieldsTable .panel_buttons button.show_less {
+  padding: 0 12px 0 6px;
+  text-align: left;
+}
+
+table.fieldsTable .panel_buttons button.show_more span,
+table.fieldsTable .panel_buttons button.show_less span {
+  color: #457FC0;
+  font-family: Arial;
+  font-size: 13px;
+  font-weight: normal;
+  height: auto;
+  text-transform: capitalize;
+}
+
+div.panelTest.no_group_hdr.fieldGroup tr.test_required {
+	display: table-row;
+}
+
+div.panelTest.no_group_hdr.fieldGroup tr.containsRecovered {
+	display: table-row !important;
+}
+
+div.panelTest.no_group_hdr.fieldGroup th.img_button_col,
+div.panelTest.no_group_hdr.fieldGroup td.img_button_col
+{
+	border-right-width:0;
+	vertical-align:middle;
+}
+
+div.panelTest.no_group_hdr.fieldGroup,
+.fieldGroup table.dateField {
+  margin: 0;
+}
+
+div.panelTest thead tr th:first-child + th + th,
+.right_aligned {
+  text-align: right;
+}
+
+div.panelGroupContainer.fieldGroup > .groupHeader,
+div.panelTest.no_group_hdr.fieldGroup tr.test_optional {
+	display:none;
+}
+
+div.panelGroupContainer.fieldGroup > div.fieldExpColDiv,
+div.panelTest.no_group_hdr.fieldGroup > div.fieldExpColDiv {
+  border-width: 0;
+}
+
+/* sort table */
+th > a.sortheader {
+  color: #666666;
+  text-decoration: none;
+}
+th:hover > a.sortheader {
+  background-color: #D0E1F0; /* #E78C00; */
+}

@@ -1,0 +1,26 @@
+<!--#include virtual="help_header.shtml" -->
+	
+		<h1>Sharing a PHR</h1>
+		<p>
+The PHR system allows you to share any PHR with a trusted family member or physician by sending them an invitation using their email address. PHRs that are shared can only be viewed by the invitee. Invitees do not have permission to change any of the data in your PHR. </p>
+<p>
+To ensure confidentiality of shared PHRs, the invitee’s email address must be the same address they will use to access the shared PHR and to create a PHR account (if they do not already have one). If the invitee already has a PHR account, the invitation address used to send the invitation must match the email address associated with their existing PHR account.</p>
+<p>
+To share a PHR: 
+<ol> <li>From the <b>PHR Home</b> page, expand the PHR either by clicking on the name of PHR or by clicking the yellow expand button. </li>
+<li>Click the <b>Share Access to this PHR</b> button. A pop-up window will open that will allow you to send an email invitation to another person. The person does not need to have an existing PHR account, however, they will be asked to create an account if they do not already have one.</li>
+<li>
+View or edit the invitation before sending it by clicking the <b>Click to view the invitation and add a personal note</b> link in the popup window.</li>
+<li>Click the <b>Send Invitation</b> button to send the invitation to the email address you entered.</li>
+</ol>
+The invitee will receive the invitation via email and they will be able to click on the <b>Yes, I accept the invitation</b> link within the email to accept your invitation. The invitee has 30 days to accept the invitation before it expires. You will have resend a new invitation if the old invitation expires before they accept it. If the invitee tries to accept the invitation after 30 days, they will be informed that the invitation has expired and asked to request another invitation from you. </p>
+<p>
+If the user already has an existing PHR account using the email address used to send the invitation, they will be redirected to the <b>PHR Welcome</b> page and asked to log in to the PHR system. </p>
+<p>
+If the user does not have an existing account, they will be directed to the <b>PHR Welcome</b> page and invited to register for a PHR account. <i>Note that the user must use the same email account used to send the invitation to sign up for their PHR account. The invitee cannot change their email address and still retain access to the PHR shared by you.</i> Once the user has created a PHR account, they can login and view the PHR shared by you. </p>
+<p>
+When the invitee has successfully created an account and logged in to the PHR, the invitation has been fully accepted and you will receive an email notifying you that the invitation has been accepted. You can confirm that the invitee has access by expanding the PHR on the <b>PHR Welcome</b> page and clicking the <b>See Others with Access</b> button. </p> 
+<p>
+The invitee will see the PHR you shared in a section of their <b>PHR Welcome</b> page under the <b>PHRs I can Access</b> section of their <b>PHR Home</b> page. 
+		
+<!--#include virtual="help_footer.shtml" -->

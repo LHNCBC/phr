@@ -1,0 +1,20 @@
+<p><%=recaptcha_tag(:challenge,{:display=>{:theme=>"white"}, :ssl=>true }).html_safe%></p>
+<script type="text/javascript">
+  var loadFunc= function(){
+    Def.addBackground();
+     <%# required field setup %>
+    <% if required %>
+       <%# add recaptcha field into our required field validation system when the 
+       window finished loading %>
+      var captcha_input = $('recaptcha_response_field') ;
+      <%# Add "required" together with other classNames to the field %>
+      captcha_input.addClassName('<%= class_names%>');
+      <%# Because when dom was loaded, the recaptcha field was not marked as
+       required. Therefore it won't be treated as a required field. We have to 
+       manually add it when window was loaded %>
+      Def.Validation.RequiredField.Functions.insertNewReqFlds([captcha_input]);
+    <% end %>
+    };
+  window.addEventListener("load", loadFunc, false);
+
+</script>

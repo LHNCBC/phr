@@ -1,0 +1,16 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Allergy Type</h1>
+		<p>
+		Indicate the general class of allergy you have. The PHR classifies substances that cause allergic or dangerous reactions as:</p>
+<p>
+			<ol>
+				<li><b>Food</b> (e.g., nuts, shellfish)</li>
+                                <li><b>Medication classes</b> (e.g., sulfa drugs, penicillin and derivatives)
+                                <li><b>Medications specific</b> (e.g., Amoxicillin, Codeine)</li>
+				
+				<li><b>Other</b> (e.g., latex, ragweed)</li>
+			</ol>
+</p>
+		<p>
+		Select one of these allergy types from the drop-down list. </p>
+<!--#include virtual="help_footer.shtml" -->

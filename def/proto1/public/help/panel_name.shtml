@@ -1,0 +1,9 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Name</h1>
+		<p>
+    The names of the measurements taken as part of the test panel or health tracker are displayed here. These names are often abbreviated 
+	on laboratory test forms. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

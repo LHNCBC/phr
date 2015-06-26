@@ -1,0 +1,25 @@
+<%= link_to 'Create New PHR', new_phr_record_path %></div>
+
+<% if @phr_records.length > 0 %>
+<h2>Saved PHR Records</h2>
+<table border="1">
+<% @phr_records.each do |phr_record| %>
+  <tr> 
+    <th><%= phr_record.phr.pseudonym %></th>
+    <td><%= link_to 'View/Edit', phr_record, :id=>phr_record.id_shown %></td>
+    <td><%= link_to 'Change PHR Record Basics', edit_phr_record_path(phr_record) %></td>
+    <td><%= link_to 'Export', export_phr_record_path(phr_record)%></td>
+    <td><%= button_to_wo_js 'Archive', archive_phr_record_url(phr_record), :method=>:put %></td>
+  </tr>
+<% end %>
+</table>
+<% end # if there are saved PHR records %>
+
+<% if @user.has_archived_phr_records %>
+<div id ="archived">
+  <%= link_to 'View Archived PHR Records', archived_phr_records_path %>
+</div>
+<% end %>
+
+<div id="mode_notice">Current page mode:  Basic HTML.
+<%=link_to 'Standard mode', '/phr_home'%></div>

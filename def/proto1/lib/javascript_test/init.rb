@@ -1,0 +1,1 @@
+require "#{directory}/lib/javascript_test.rb"

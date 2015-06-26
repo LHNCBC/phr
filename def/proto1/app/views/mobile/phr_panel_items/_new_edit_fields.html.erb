@@ -1,0 +1,16 @@
+<%# For editing the panel item information fields  %>
+<div><%= fd_prefetched_list_mb @fds['tp_test_value'], @data_rec, @value_list %>
+  <%= phr_hidden_field @data_rec, 'loinc_num' %></div>
+<% if @data_rec.new_record? %>
+    <div><%= fd_labeled_text_value @fds['tp_test_lastvalue_date'], @data_rec %></div>
+<% end %>
+<% if !@value_list || @value_list.size == 0  # no units if the values are from a list%>
+    <div><%= fd_prefetched_list_mb @fds['tp_test_unit'], @data_rec, @unit_list %></div>
+<% end %>
+<div><%= fd_text_field_mb @fds['tp_test_range'], @data_rec %></div>
+<br>
+<%= submit_tag_m 'Save' %>
+<%#= button_to_wo_js('Delete',
+                    phr_record_phr_panel_item_path(@phr_record, @data_rec.obr_order.id, @data_rec),
+                    :confirm => 'Are you sure?', :method => :delete, "data-icon"=>"delete","class"=>"ui-icon-right") if @data_rec %>
+<%= link_to_m  'Cancel', phr_record_phr_panel_items_path(@phr_record, @data_rec.obr_order_id) %>

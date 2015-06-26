@@ -1,0 +1,255 @@
+# Create a profile to use for this test
+| open | /phr_home |
+| setTimeout | 35000 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+| click | add_new |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'info_buttons1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2002/01 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2002 Jan |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| pause | 500 |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# Fill in two rows in each table that has info buttons.
+# Start with the medical problems table.
+| selectByContent | fe_problem_1 | Juvenile rheumatoid arthritis (JRA) |
+| selectByContent | fe_problem_2 | Cellulitis |
+# Add a third condition - pilonidal cyst, and then blank out its code.  
+# We need this to test the display of a popup page with multiple options for
+# the user to choose from.
+| selectByContent | fe_problem_3 | Pilonidal cyst |
+| waitForValue | fe_problem_C_3 | 9408 |
+| fireEvent | fe_problem_C_3 | focus |
+| type | fe_problem_C_3 | |
+| fireEvent | fe_problem_C_3 | change |
+| fireEvent | fe_problem_C_3 | blur |
+| waitForValue | fe_problem_C_3 | |
+
+# Fill in the drugs table
+| selectByContent | fe_name_and_route_1 | Propranolol (Oral Pill) |
+| selectByContent | fe_drug_use_status_1 | Active |
+| waitForElementPresent | fe_name_and_route_2 |
+| selectByContent | fe_name_and_route_2 | Aspirin EC (Oral Pill) |
+| selectByContent | fe_drug_use_status_2 | Active |
+
+# Fill in the surgeries table.
+| selectByContent | fe_surgery_type_1 | Cardiac pacemaker |
+| waitForElementPresent | fe_surgery_type_2 |
+| selectByContent | fe_surgery_type_2 | Resuscitation after cardiac arrest |
+
+# Fill in the allergies table - 3 three rows for allergies because there are
+# three different sources of info (at least)
+# (Egg)
+| selectByIndex | fe_allergy_name_1 | 3 |
+# (Latex)
+| selectByIndex | fe_allergy_name_2 | 28 |
+# (Cold Weather)
+| selectByIndex | fe_allergy_name_3 | 23 |
+
+# Don't forget the immunizations - I specifically chose topics that do NOT
+# return a pdf document, because that causes an intermediate window to come 
+# up ("what do you want to do with this?") that we can't handle here.
+# (Tetanus toxoid)
+| selectByIndex | fe_immune_name_1 | 48 |
+# (Lyme disease)
+| selectByIndex | fe_immune_name_2 | 42 |
+
+# Test the conditions info buttons before saving.  We can't really test where 
+# the pop-up window is, because we don't have permission to read its location
+# object's properties, but we can check that it opened.
+# Set the pop-up window reference to null before opening it.
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ = null} | null |
+| waitForVisible | fe_mplus_health_topics_1 |
+| pause | 2000 |
+| click | fe_mplus_health_topics_1 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/juvenilerheumatoidarthritis.html |
+
+# Close the popup
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+| click | fe_mplus_health_topics_2 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/cellulitis.html |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Now try the multi option popup 
+| click | fe_mplus_health_topics_3 |
+| waitForExpression | javascript{testWindow_.MplusDialog_ != null} | true |
+| waitForExpression | javascript{testWindow_.$J('.ui-dialog-title').html() != null; } | true |
+#| waitForExpression | javascript{testWindow_.document.getElementById('ui-dialog-title-1').innerHTML != null; } | true |
+| storeExpression | javascript{testWindow_.$J('.ui-dialog-title').html();} | title |
+#| storeExpression | javascript{testWindow_.document.getElementById('ui-dialog-title-1').innerHTML;} | title |
+| waitForExpression | javascript{storedVars['title'] == 'MedlinePlus Pages Related to: Pilonidal cyst';} | true |
+| storeExpression | javascript{testWindow_.document.getElementById('item1').getAttribute('alt') ; } | href1 |
+| waitForExpression | javascript{storedVars['href1'] == 'http://www.nlm.nih.gov/medlineplus/tailbonedisorders.html' ; } | true |
+| storeExpression | javascript{testWindow_.document.getElementById('item2').getAttribute('alt') ; } | href2 |
+| waitForExpression | javascript{storedVars['href2'] == 'http://www.nlm.nih.gov/medlineplus/ency/article/003253.htm' ; } | true |
+| pause | 1000 |
+
+# Test the drug info buttons
+| click | fe_mplus_drug_topics_1 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://search.nlm.nih.gov/medlineplus/query?MAX=500&SERVER1=server1&SERVER2=server2&DISAMBIGUATION=true&FUNCTION=search&PARAMETER=Propranolol |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+| click | fe_mplus_drug_topics_2 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/druginfo/meds/a682878.html |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Test the surgeries info button, as far as we are able.
+| click | fe_surgery_info_1 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/pacemakersandimplantabledefibrillators.html |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+| click | fe_surgery_info_2 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/cpr.html |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Test the allergies info buttons
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_ = null} | null |
+| click | fe_allergy_info_1 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://www.foodallergy.org/allergens/egg-allergy |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_ = null} | null |
+
+| click | fe_allergy_info_2 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://www.nlm.nih.gov/medlineplus/latexallergy.html |
+| waitForExpression | javascript{window.focus(); true} | true |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+| click | fe_allergy_info_3 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://www.mayoclinic.com/health/cold-urticaria/DS01160 |
+| waitForExpression |javascript{window.focus(); true} | true |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+# Test the immunizations info buttons
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_ = null} | null |
+| click | fe_immune_info_1 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://cdc.gov/vaccines/vpd-vac/rubella/default.htm |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_ = null} | null |
+
+| click | fe_immune_info_2 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://www.cdc.gov/japaneseencephalitis/vaccine/vaccineChildren.html |
+| waitForExpression |javascript{window.focus(); true} | true |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+# Save the form
+| click | fe_save_1 |
+| waitForVisible | saved_notice |
+
+# Repeat the info button tests
+# Test the conditions info buttons.
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ = null} | null |
+| click | fe_mplus_health_topics_2 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/cellulitis.html |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+| click | fe_mplus_health_topics_1 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/juvenilerheumatoidarthritis.html |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Now try the multi option popup 
+| click | fe_mplus_health_topics_3 |
+| waitForExpression | javascript{testWindow_.MplusDialog_ != null} | true |
+| waitForExpression | javascript{testWindow_.$J('.ui-dialog-title').html() == 'MedlinePlus Pages Related to: Pilonidal cyst';} | true |
+#| waitForExpression | javascript{testWindow_.document.getElementById('ui-dialog-title-1').innerHTML == 'MedlinePlus Pages Related to:<br>Pilonidal cyst';} | true |
+| storeExpression | javascript{testWindow_.document.getElementById('item1').getAttribute('alt') ; } | href1 |
+| waitForExpression | javascript{storedVars['href1'] == 'http://www.nlm.nih.gov/medlineplus/tailbonedisorders.html' ; } | true |
+| storeExpression | javascript{testWindow_.document.getElementById('item2').getAttribute('alt') ; } | href2 |
+| waitForExpression | javascript{storedVars['href2'] == 'http://www.nlm.nih.gov/medlineplus/ency/article/003253.htm' ; } | true |
+
+# Test the drug info buttons
+| click | fe_mplus_drug_topics_2 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/druginfo/meds/a682878.html |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+| click | fe_mplus_drug_topics_1 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://search.nlm.nih.gov/medlineplus/query?MAX=500&SERVER1=server1&SERVER2=server2&DISAMBIGUATION=true&FUNCTION=search&PARAMETER=Propranolol |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Test the surgeries info button, as far as we are able.
+| click | fe_surgery_info_1 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/pacemakersandimplantabledefibrillators.html |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+| click | fe_surgery_info_2 |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_ != null} | true |
+| waitForExpression | javascript{testWindow_.MPlusPreviousUrl_} | http://www.nlm.nih.gov/medlineplus/cpr.html |
+| waitForExpression | javascript{testWindow_.MPlusWindowObjectReference_.close(); testWindow_.MPlusWindowObjectReference_ = null} | null |
+
+# Test the allergies info button
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_ = null} | null |
+| click | fe_allergy_info_1 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://www.foodallergy.org/allergens/egg-allergy |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_ = null} | null |
+
+| click | fe_allergy_info_2 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://www.nlm.nih.gov/medlineplus/latexallergy.html |
+| waitForExpression |javascript{window.focus(); true} | true |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+| click | fe_allergy_info_3 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://www.mayoclinic.com/health/cold-urticaria/DS01160 |
+| waitForExpression |javascript{window.focus(); true} | true |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+# Test the immunizations info buttons
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_ = null} | null |
+| click | fe_immune_info_1 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://cdc.gov/vaccines/vpd-vac/rubella/default.htm |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_ = null} | null |
+
+| click | fe_immune_info_2 |
+| waitForExpression | javascript{testWindow_.Def.lastInfoURL_} | http://www.cdc.gov/japaneseencephalitis/vaccine/vaccineChildren.html |
+| waitForExpression |javascript{window.focus(); true} | true |
+| waitForExpression | javascript{testWindow_.Def.lastPopupWindow_.close(); true;} | true |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |

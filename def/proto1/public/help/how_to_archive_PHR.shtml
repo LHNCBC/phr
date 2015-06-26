@@ -1,0 +1,17 @@
+<!--#include virtual="help_header.shtml" -->
+  <h1>Make a PHR Inactive or Prepare It for Deletion</h1>
+<p>
+PHRs that you are no longer using can be made inactive to keep them permanently or to prepare them for deletion. Inactive PHRs will be moved to the <b>Inactive PHRs</b> list at the bottom of the <b>PHR Home</b> page and will no longer appear in the list of PHRs in the <b>My Personal Health Records</b> section. Inactive PHRs can also be made active again. 
+</p>
+<h3>
+To move a PHR to the <b>Inactive PHRs</b> section of the <b>PHR Home</b> page 
+</h3>
+<p>
+<ol>
+<li>Click the <b>Make Inactive</b> button below the PHR name on the <b>PHR Home</b> page. </li>	
+<li>Select the PHR you wish to make inactive from the list in the <b> PHR Record Name</b> field. </li>
+<li>Click the <b>Go</b> button.</li>
+<li>The PHR will appear in the list of inactive PHRs in the <b>Inactive PHRs</b> section at the bottom of the <b>PHR Home</b> page. 
+</ol>
+</p>
+<!--#include virtual="help_footer.shtml" -->

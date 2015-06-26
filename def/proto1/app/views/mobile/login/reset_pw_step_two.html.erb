@@ -1,0 +1,20 @@
+fsfsdfdafdsfasf
+<%= form_tag_wo_ajax reset_password_step_two_path, :method=>:post %>
+  <div><%= @p.fds['user_name'].display_name %>: <%= @p.possible_user_name %></div>
+  <p>You can either choose to have an email sent to you with a link to the
+    reset password page, or you can choose to answer the security questions below
+    and go to the reset page directly.  Select the option using the radio
+    buttons below, and fill the answers to the questions if that is the option
+    you are choosing.</p>
+
+  <%= fd_radio_group @p.fds['email_option_radio'], @p.data, @p.form_obj, '_1_1' %>
+
+  <div><%= @p.fds['ch_quest1'].display_name %>:  <%= @p.fixed_question %></div>
+  <div><%= fd_text_field_m(@p.fds['ch_answ1'], nil, {}, @p.form_obj, '_1_1_1') %></div>
+
+  <div><%= @p.fds['ch_quest2'].display_name %>:  <%= @p.user_question %></div>
+  <div><%= fd_text_field_m(@p.fds['ch_answ2'], nil, {}, @p.form_obj, '_1_1_1') %></div>
+
+<%= submit_tag_m 'Submit' %>
+<%= link_to_m 'Cancel', login_path %>
+</form>

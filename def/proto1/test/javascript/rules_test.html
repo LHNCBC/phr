@@ -1,0 +1,839 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+</head>
+<body>
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>rules.js</strong>.
+    </p>
+  </div>
+
+  <!-- Log output -->
+  <div id="testlog"> </div>
+
+<!-- Test content for findFields -->
+<div style="visibility: hidden">
+  <table>
+  <tr rowid="0"><td>
+  <input type="text" id="fe_patient_0" />
+  </td></tr>
+  </table>
+  <input type="text" id="fe_patient_1"/>
+  <input type="text" id="fe_patient_11"/>
+  <input type="text" id="fe_height_1"/>
+  <input type="text" id="fe_patient_2"/>
+  <input type="text" id="fe_patient_1_2"/>
+  <input type="text" id="fe_patient_1_22"/>
+  <input type="text" id="fe_patient_1_1"/>
+  <input type="text" id="fe_patient_1_33"/>
+  <input type="text" id="fe_patient_1_3_1"/>
+  <input type="text" id="fe_patient_1_3_2"/>
+  <input type="text" id="fe_apple_1"/>
+  <input type="text" id="fe_orange"/>
+  <input type="text" id="fe_apple_hdr_1"/>
+
+  <div id="fe_cholesterol_1_0">Hi</div>
+
+<!-- these fields also used for test set val testing and to test
+     hiding -->
+  <div class="field">
+  <label for="fe_test_defval_textarea_1_1">Test text area: </label>
+  <textarea id="fe_test_defval_textarea_1_1" value="text area default value"
+   rows="5" cols="40" seqno="70" formno="0">text area default value</textarea>
+  <br clear="left"/>
+  </div>
+
+</div><!-- End test content for findFields-->
+
+<!-- Test content that should be visible -->
+<div>
+<input type="text" onblur="Def.Rules.runRules(this)" name="fe[pregnant_1_1]" id="fe_pregnant_1_1" class="has_rules ansList eventsHandled" autocomplete="off" seqno="73" formno="0"/>
+<input type="text" name="fe[due_date_1_1]" id="fe_due_date_1_1" autocomplete="off"/>
+<input type="text" name="fe[birth_year_1]" id="fe_birth_year_1" autocomplete="off"  onchange="Def.Rules.runRules(this)" value="1908"/>
+<input type="text" name="fe[gender_1]" id="fe_gender_1" autocomplete="off"  onchange="Def.Rules.runRules(this)" value="male"/>
+<div id="fe_pap_1_0" class="fieldGroup"></div>
+<div id="fe_preg_hdr_1_0" class="fieldGroup"></div>
+<div id="fe_mammogram_1_0" class="fieldGroup"></div>
+
+<input type="text" name="fe[smoke_1_1]" id="fe_smoke_1_1" autocomplete="off"  onchange="Def.Rules.runRules(this)" value="2 - No"/>
+<input type="text" name="fe[pack_years_1_1]" id="fe_pack_years_1_1" autocomplete="off"  onchange="Def.Rules.runRules(this)"/>
+
+<table><tr><td style="width: 20%;">Field Type:
+  <input id="fe_field_type_1" class="has_rules ansList eventsHandled"
+   type="text" style="width: 50%;" value='TX - text data'
+   onfocus="hideTheList(this)"
+   onblur="Def.Rules.runRules(this)"
+   name="fe[field_type_1]" autocomplete="off" seqno="37" formno="0"/></td>
+
+   <td class="hidden_field" style="width: 0pt; display: none;">Control Type:
+   <input id="fe_control_type_1" class="hidden_field has_rules" type="text"
+    style="width: 50%;"
+    onchange="Def.Rules.runRules(this)"
+    name="fe[control_type_1]" seqno="38" formno="0"/></td>
+</tr></table>
+<script type="text/javascript">
+</script>
+<!--</td> -->
+
+<input type="text" id="fe_hcl" value="20"/>
+<input type="text" id="fe_case_rule_one_case1_field"/>
+<input type="text" id="fe_case_rule_one_case2_field"/>
+<input type="text" id="fe_case_rule_one_case3_field"/>
+
+<div id='fe_initially_hidden_div'><input type="text" id="field_in_hidden_div"
+  value="5"/></div>
+
+
+</div> <!-- Test content that should be visible -->
+
+<!-- fields for parseFieldVal test -->
+
+<!-- a static_text field -->
+<div class="field has_rules">
+<div id="fe_not_yet_msg_5_1" class="static_text" onchange="Def.Rules.runRules(this)">
+<center>
+You have jumped ahead!
+<br/>
+Field type
+<b>Message Button</b>
+is not supported
+<br/>
+- yet. No access here.
+</center>
+</div> <!-- fe_not_yet_msg_5_1 -->
+<br clear="left"/>
+</div> <!-- class -->
+
+<!-- a checked checkbox -->
+<div id="ctd_class_hidden_4_1_1_div" class="field" style="display: block;">
+Hide this field?:
+<input id="fe_ctd_class_hidden_4_1_1" type="checkbox" value="hidden_field" name="fe[ctd_class_hidden_4_1_1]" checked="true" seqno="295" formno="0"/>
+<input type="hidden" value="''" name="fe[ctd_class_hidden_4_1_1]" seqno="296" formno="0"/>
+<br clear="left"/>
+</div> <!-- ctd_class_hidden_4_1_1_div -->
+
+<!-- an unchecked checkbox -->
+<div id="ctd_class_hidden_3_1_1_div" class="field" style="display: block;">
+Hide this field?:
+<input id="fe_ctd_class_hidden_3_1_1" type="checkbox" value="hidden_field" name="fe[ctd_class_hidden_3_1_1]" seqno="236" formno="0"/>
+<input type="hidden" value="''" name="fe[ctd_class_hidden_3_1_1]" seqno="237" formno="0"/>
+<br clear="left"/>
+</div> <!-- ctd_class_hidden_3_1_1 -->
+
+<!-- a regular text field -->
+<div class="field" style="display: block;">
+<label for="fe_d_text_field_default_value_4_1_1">\n Default Value:  </label>
+<input id="fe_d_text_field_default_value_4_1_1" type="text" style="width: 50%;"
+ onfocus="hideTheList(this)" name="fe[d_text_field_default_value_4_1_1]"
+ seqno="278" formno="0" value="George"/>
+<br clear="left"/>
+</div> <!-- class=field -->
+
+<!-- a numeric field (integer) -->
+<div class="field" style="display: block;">
+<label for="fe_a_numeric_field_6_1">\n An integer:  </label>
+<input id="fe_a_numeric_field_6_1" type="text" style="width: 50%;"
+ onfocus="hideTheList(this)" name="fe[a_numeric_field_6_1]"
+ seqno="278" formno="0" value="12"/>
+<br clear="left"/>
+</div> <!-- class=field -->
+
+<!-- a numeric field (float) -->
+<div class="field" style="display: block;">
+<label for="fe_a_float_field_6_1">\n An integer:  </label>
+<input id="fe_a_float_field_6_1" type="text" style="width: 50%;"
+ onfocus="hideTheList(this)" name="fe[a_float_field_6_1]"
+ seqno="280" formno="0" value="12.5634"/>
+<br clear="left"/>
+</div> <!-- class=field -->
+
+<!-- a button -->
+<div id="splitButton" style="visibility: hidden">
+      <input id="splitButtonControl" type="button"
+       onclick="changeSplitDirection(this)"
+       value='Horizontal Split'
+       class='noNav'/>
+</div> <!-- splitButton -->
+
+<!-- Test content for extract_values_from_fields -->
+    <input type="text" id="extract_1" value="v1"/>
+    <input type="text" id="extract_2" value="v2"/>
+    <input type="text" id="extract_3" value="v3"/>
+    <input type="text" id="extract_4" value="v4"/>
+<!-- End of Test content for extract_values_from_fields -->
+
+<!-- test findFields() on test panel or loinc panel -->
+<input id="fe_tp1_test_value_1_1_1_1" />
+<input id="fe_tp1_test_loinc_num_1_1_1_1" value="1234-5"/>
+
+<input id="fe_tp1_test_value_1_1_1_2" />
+<input id="fe_tp1_test_loinc_num_1_1_1_2" value="1234-6"/>
+
+<input id="fe_tp2_test_value_1_1_1_1" />
+<input id="fe_tp2_test_loinc_num_1_1_1_1" value="2234-5"/>
+
+<input id="fe_tp2_test_value_1_1_1_2" />
+<input id="fe_tp2_test_loinc_num_1_1_1_2" value="2234-6"/>
+<!-- end of findFields() for test panel -->
+
+<!-- begin of testFillMessageTemplate()  -->
+<input id="fe_foo_1_1_1" value ="fooVal"/>
+<input id="fe_bar_1_1_1" value ="barVal"/>
+<!-- end of testFillMessageTemplate()  -->
+</div> <!-- content -->
+
+  <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+  <script src="assets/effects.js?body=1" type="text/javascript"></script>
+  <script src="assets/controls.js?body=1" type="text/javascript"></script>
+  <script src="assets/stacktrace.js" type="text/javascript"></script>
+  <script src="assets/application_phr.js?body=1" type="text/javascript"></script>
+  <script src="assets/navigation.js?body=1" type="text/javascript"></script>
+  <script src="assets/logger.js?body=1" type="text/javascript"></script>
+  <script src="assets/fieldOps.js?body=1" type="text/javascript"></script>
+  <script src="assets/fieldEvents.js" type="text/javascript"></script>
+  <script src="assets/rules.js?body=1" type="text/javascript"></script>
+  <script src="assets/idCache.js?body=1" type="text/javascript"></script>
+  <script src="assets/taffy.js?body=1" type="text/javascript"></script>
+  <script src="assets/data_model.js?body=1" type="text/javascript"></script>
+  <script src="assets/unittest.js" type="text/javascript"></script>
+  <script src="assets/autosave.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompBase.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompPrefetch.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompSearch.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/date.js?body=1" type="text/javascript"></script>
+  <script src="assets/dateTimeCalcs.js?body=1" type="text/javascript"></script>
+  <script src="assets/dateUtils.js?body=1"    type="text/javascript"></script>
+  <script src="assets/testpanel.js?body=1" type="text/javascript"></script>
+  <script src="assets/browser_detect.js?body=1" type="text/javascript"></script>
+  <script src="assets/usageMonitor.js?body=1" type="text/javascript"></script>
+
+<script type="text/javascript">
+// <![CDATA[
+// Rule scripts
+Def.Rules.fieldRules_ = {hcl: ["case_rule_one"], pregnant: ["not_pregnant"],
+  birth_year: ["age","hide_pap", "case_rule_one"],
+  gender: ["female", "male", "hide_pap"],
+  smoke: ["smokes"],
+  field_type: ["is_text_area_field"]};
+
+Def.Rules.ruleActions_ = {
+  'case_rule_one.1': [["hide", "case_rule_one_case1_field", {}]],
+  'case_rule_one.2': [["hide", "case_rule_one_case2_field", {}]],
+  'case_rule_one.3': [["hide", "case_rule_one_case3_field", {}]],
+  hide_pap: [["hide", "pap", {}]], smokes: [["show", "pack_years", {}]],
+  not_pregnant: [["hide", "due_date", {}]], male: [["hide", "mammogram", {}],
+                ["hide", "preg_hdr", {}], ["show", "initially_hidden_div", {}]],
+  is_text_area_field: [["set_value", "control_type", {value: "text_area"}]]};
+
+Def.Rules.formRules_ = ["case_rule_one", "age", "smokes", "not_pregnant", "female", "male", "hide_pap", "is_text_area_field",
+"get_sysbp"];
+
+Def.Rules.ruleTrigger_ = {case_rule_one: 'hcl', age: 'birth_year', smokes: 'smoke', not_pregnant: 'pregnant', female: 'gender', male: 'gender', is_text_area_field: 'field_type',
+get_sysbp: 'tp_test_value:1234-5'};
+
+Def.Rules.loincFieldRules_ = { "tp_test_value:1234-5": ["get_sysbp"]}
+
+Def.Rules.caseRules_ = {case_rule_one: 1}
+
+Def.Rules.fetchRules_ = {}
+
+Def.Rules.dataRules_ = []
+
+Def.Rules.rule_age = function(prefix, suffix, depFieldIndex) {
+  var birth_year_val = Def.DateUtils.getEpochTime(selectField(prefix,'birth_year',suffix,depFieldIndex).value);
+  return Def.Rules.RuleFunctions.time_in_years(Def.Rules.RuleFunctions.today() - birth_year_val);
+}
+
+Def.Rules.rule_smokes = function(prefix, suffix, depFieldIndex) {
+  var smoke_val = parseFieldVal(selectField(prefix,'smoke',suffix,depFieldIndex));
+  return smoke_val == "1 - yes";
+}
+
+Def.Rules.rule_not_pregnant = function(prefix, suffix, depFieldIndex) {
+  var pregnant_val = parseFieldVal(selectField(prefix,'pregnant',suffix,depFieldIndex));
+  return pregnant_val == "2 - no";
+}
+
+Def.Rules.rule_female = function(prefix, suffix, depFieldIndex) {
+  var gender_val = parseFieldVal(selectField(prefix,'gender',suffix,depFieldIndex));
+  return gender_val == "female";
+}
+
+Def.Rules.rule_male = function(prefix, suffix, depFieldIndex) {
+  var gender_val = parseFieldVal(selectField(prefix,'gender',suffix,depFieldIndex));
+  return gender_val == "male";
+}
+
+Def.Rules.rule_hide_pap = function(prefix, suffix, depFieldIndex) {
+  return Def.Rules.Cache.getRuleVal('male', suffix, depFieldIndex) || Def.Rules.Cache.getRuleVal('age', suffix, depFieldIndex)<20 || Def.Rules.Cache.getRuleVal('age', suffix, depFieldIndex)>65;
+}
+
+Def.Rules.rule_is_text_area_field = function(prefix, suffix, depFieldIndex) {
+  var field_type =
+      parseFieldVal(selectField(prefix, 'field_type', suffix, depFieldIndex));
+  return field_type == "tx - text data";
+}
+
+Def.Rules.rule_get_sysbp = function(prefix, suffix, depFieldIndex){
+ // loinc fields with same target field should have different rules based on
+  // their loinc numbers
+  // test runForms
+  if(!document.processedRules) document.processedRules = {};
+  if(!document.processedRules["get_sysbp"])
+    document.processedRules["get_sysbp"]= [];
+  document.processedRules["get_sysbp"].push(
+    ["done", prefix, suffix, depFieldIndex].join("/"));
+
+  // test runRules
+  if(document.rule_sysbp_count ==null) document.rule_sysbp_count = 0;
+  document.rule_sysbp_count +=1;
+
+  return Def.FieldOps.getVal_loincFn("1234-5","tp_test_value");
+}
+
+Def.Rules.rule_case_rule_one = function(prefix, suffix) {
+  var rtn = null;
+  var depFieldIndex = 0;
+  var exclusion = 1>2;
+  if (!exclusion) {
+    var birth_year_field_val = parseFieldVal(selectField(prefix,'birth_year',suffix,depFieldIndex));
+    if (birth_year_field_val>1920) {
+      rtn = this.processCaseActions('case_rule_one', [1,2,3], 1, prefix, suffix, null);
+    }
+    else {
+      if (birth_year_field_val>1950) {
+        rtn = this.processCaseActions('case_rule_one', [1,2,3], 2, prefix, suffix, null);
+      }
+      else {
+        rtn = this.processCaseActions('case_rule_one', [1,2,3], 3, prefix, suffix, null);
+      }
+    }
+  }
+  return rtn;
+}
+
+Def.Rules.ruleCaseVal_case_rule_one_1 = function(prefix, suffix, depFieldIndex) {
+  var hcl_field_val = parseFieldVal(selectField(prefix,'hcl',suffix,depFieldIndex));
+  return hcl_field_val+30;
+}
+
+Def.Rules.ruleCaseVal_case_rule_one_2 = function(prefix, suffix, depFieldIndex) {
+  var hcl_field_val = parseFieldVal(selectField(prefix,'hcl',suffix,depFieldIndex));
+  return hcl_field_val+20;
+}
+
+Def.Rules.ruleCaseVal_case_rule_one_3 = function(prefix, suffix, depFieldIndex) {
+  var hcl_field_val = parseFieldVal(selectField(prefix,'hcl',suffix,depFieldIndex));
+  return Math.log(hcl_field_val);
+}
+
+// runRules function will rely on taffyDb
+var formData = [
+  {"obx_observations":
+      [{"record_id":0,"loinc_num":"1234-5"},
+       {"record_id":1,"loinc_num":"1234-6"}]}, // data_tables_
+  {"fe_tp1_test_value_1_1_1_1":["obx_observations", "test_value", 1],//id mappinig
+   "fe_tp1_test_value_1_1_1_2":["obx_observations", "test_value", 2]},
+  {},//table mapping
+  [], []];
+Def.DataModel.setup(formData);
+
+  new Test.Unit.Runner({
+
+    // replace this with your real tests
+
+    setup: function() {
+      //this.testWin =
+      //  window.open('http://localhost:3000/form/show/phr', 'testwin');
+    },
+
+    teardown: function() {
+
+    },
+
+    testSplitFullFieldID: function() { with(this) {
+      var parts = Def.IDCache.splitFullFieldID('fe_first_name_1_23_45');
+      assertEqual(3, parts.length);
+      assertEqual('fe_', parts[0]);
+      assertEqual('first_name', parts[1]);
+      assertEqual('_1_23_45', parts[2]);
+      parts = Def.IDCache.splitFullFieldID('fe_first_name');
+      assertEqual(3, parts.length);
+      assertEqual('fe_', parts[0]);
+      assertEqual('first_name', parts[1]);
+      assertEqual('', parts[2]);
+      parts = Def.IDCache.splitFullFieldID('something');
+      assertEqual('', parts[0]);
+      assertEqual('something', parts[1]);
+      assertEqual('', parts[2]);
+    }},
+
+    testFindFields: function() { with(this) {
+      // Test an exact match (with possible descendant matches)
+      var fields = findFields('fe_', 'patient', '_1');
+      assertEqual(1, fields.size(), 'fe_patient_1');
+      assertEqual('fe_patient_1', fields[0].id);
+
+      // Test another exact match (with possible parent matches)
+      fields = findFields('fe_', 'patient', '_1_2');
+      assertEqual(1, fields.length, 'fe_patient_1_2');
+      assertEqual('fe_patient_1_2', fields[0].id);
+
+      // Test a parent match (one matching element)
+      fields = findFields('fe_', 'patient', '_1_2_1_3');
+      assertEqual(1, fields.length, 'fe_patient_1_2_1_3');
+      assertEqual('fe_patient_1_2', fields[0].id);
+
+      // Test a child list match
+      fields = findFields('fe_', 'patient', '_1_3');
+      assertEqual(2, fields.length, 'fe_patient_1_3');
+      assertEqual('fe_patient_1_3_1', fields[0].id);
+      assertEqual('fe_patient_1_3_2', fields[1].id);
+
+      // Test a no match
+      fields = findFields('fe_', 'green', '_1_3');
+      assertEqual(0, fields.length);
+
+      // Test that model rows are not returned
+      fields = findFields('fe_', 'patient', '');
+      assertNotEqual('fe_patient_0', fields[0].id);
+
+      // Test that we don't find a field with that starts with another field's
+      // target name.  In the tests below, we shouldn't find fe_apple_hdr_1.
+      fields = findFields('fe_', 'apple', '')
+      assertEqual(1, fields.length);
+      assertEqual('fe_apple_1', fields[0].id);
+
+      // Test that a div element can be found
+      fields = findFields('fe_', 'cholesterol', '_1');
+      assertEqual('fe_cholesterol_1_0', fields[0].id);
+
+      // Test that a field without a suffix can be found when a suffix
+      // is given.
+      fields = findFields('fe_', 'orange', '_1_2');
+      assertEqual(1, fields.length);
+      assertEqual('fe_orange', fields[0].id);
+
+      // Test that a textarea input element can be found
+      fields = findFields('fe_', 'test_defval_textarea', '_1_1');
+      assertEqual(1, fields.length, 'test_defval_textarea');
+      assertEqual('fe_test_defval_textarea_1_1', fields[0].id,
+                  'test_defval_textarea');
+
+      // Test when the trigger field is in the same column of the same panel
+      // with the field to be found. findFields() should adjust the suffix auto-
+      // matically
+      fields = findFields("fe_", "tp_test_value:1234-6", "_1_1_1_1");
+      assertEqual(1, fields.length);
+      assertEqual("fe_tp1_test_value_1_1_1_2", fields[0].id)
+    }},
+
+
+    /**
+     *  Tests that add_message actions get queued rather than being run
+     *  immediately.
+     */
+    testQueueMessage:  function() { with(this) {
+      Def.Rules.messageQueue_ = [];
+
+      Def.Rules.ruleAction(4, 'add_message', {message: 'hi'}, $('fe_patient_1'),
+         $('fe_patient_2'));
+      assertEqual(1, Def.Rules.messageQueue_.size());
+    }},
+
+
+    /**
+     *  Tests that the rules were run when the page loaded.
+     */
+    testRulesRan: function() { with(this) {
+      var ruleVals = $H(Def.Rules.Cache.ruleVals_); // See Prototype, $H
+      var ruleKeys = ruleVals.keys();
+      assertEqual(9, ruleKeys.length, 'ruleKeys.length');
+
+      assert(Def.Rules.Cache.getRuleVal('age') >=75.5, 'age rule val < 75.5');
+      // Since we don't want to change this each time the current year changes,
+      // we can't check an exact age.  Instead, check an upper bound.
+      assert(Def.Rules.Cache.getRuleVal('age') <=176, 'age rule val > 176');
+      // Check the effect of the hide_pap rule, which did not have a field
+      // trigger.
+      assert(isHiddenOrDisabled($('fe_pap_1_0')), 'fe_pap_1_0 is not hidden');
+
+      // Test the show action
+      assert(isHiddenOrDisabled($('fe_pack_years_1_1')),
+                                'fe_pack_years_1_1 is not hidden');
+      assert(!isHiddenOrDisabled($('fe_initially_hidden_div')),
+                                'fe_pack_years_1_1 is still hidden');
+
+      // Test the case rule
+      assertEqual(Math.log(20), Def.Rules.Cache.getRuleVal('case_rule_one'),
+                  'case_rule_one not right');
+      assert(isHiddenOrDisabled($('fe_case_rule_one_case3_field')),
+                                'fe_case_rule_one_case3_field is not hidden');
+      assert(!isHiddenOrDisabled($('fe_case_rule_one_case2_field')),
+                                 'fe_case_rule_one_case2_field is hidden');
+      assert(!isHiddenOrDisabled($('fe_case_rule_one_case1_field')),
+                                 'fe_case_rule_one_case1_field is hidden');
+
+      // Test the set_value action
+      assert(Def.Rules.Cache.getRuleVal('is_text_area_field') == true,
+             'is_text_area_field rule failed, field_type value is ' +
+             $('fe_field_type_1').value);
+      assertEqual('text_area', $('fe_control_type_1').value,
+                  'control_type not set to text_area, is ' +
+                  $('fe_control_type_1').value) ;
+
+    }},
+
+
+    testEvaluateRule: function() { with(this) {
+      assertEqual(5,
+        Def.Rules.evaluateRule('someRule', function() {return 5;}));
+      assertEqual(5, Def.Rules.Cache.ruleVals_['someRule'], 'cache value');
+
+      var caughtExcep = false;
+      try {
+        Def.Rules.evaluateRule('someRule', 'null+++++5');
+      }
+      catch (e) {
+        caughtExcep = true;
+      }
+      assert(caughtExcep, 'syntax error');
+      assertNull(Def.Rules.Cache.ruleVals_['someRule']);
+
+      Def.Rules.Cache.ruleVals_['someRule'] = 15;
+      assert(Def.Rules.evaluateRule('someRule',
+             function() {throw new Def.Rules.Exceptions.NoVal()}) instanceof
+             Def.Rules.Exceptions.NoVal, 'test of NaN return');
+      assertNull(Def.Rules.Cache.ruleVals_['someRule'], 'value after NaN');
+
+      Def.Rules.Cache.ruleVals_['someRule'] = 15;
+      assert(Def.Rules.evaluateRule('someRule', null) instanceof
+             Def.Rules.Exceptions.NoVal, 'test of null return');
+      assertNull(Def.Rules.Cache.ruleVals_['someRule'], 'value after null');
+    }},
+
+
+    testSelectField: function() { with(this) {
+      var field = selectField('fe_', 'patient', '_1_3', 0);
+      assertEqual('fe_patient_1_3_1', field.id);
+      field = selectField('fe_', 'patient', '_1_3', 1);
+      assertEqual('fe_patient_1_3_2', field.id);
+
+      // Test that the depFieldIndex parameter is ignored when there
+      // is just one field.
+      field = selectField('fe_', 'patient', '_1_2', 5);
+      assertEqual('fe_patient_1_2', field.id);
+    }},
+
+
+    /**
+     *  Tests fillMessageTemplate.
+     */
+    testFillMessageTemplate: function() { with(this) {
+      // Load the cache will some values.
+      Def.Rules.Cache.setRuleVal('rule_one', 4.0/3);
+      Def.Rules.Cache.setRuleVal('rule_two', 10.5);
+      var template = 'a: ${rule_two}, b: ${rule_two;*.2}, c: ${rule_two;*.0},'+
+        ' d: ${rule_one;*.1}';
+      var message = Def.Rules.fillMessageTemplate(template);
+      assertEqual('a: 10.5, b: 10.50, c: 11,'+
+        ' d: 1.3', message);
+
+      var triggerField = $("fe_bar_1_1_1");
+      template = 'sib:{foo}'
+      message = Def.Rules.fillMessageTemplate(template, [triggerField]);
+      assertEqual('fooVal', message);
+
+      template = 'http://www.msn.com/index.html';
+      message = Def.Rules.fillMessageTemplate(template);
+      assertEqual('<a href="javascript:void(0)"'+
+        ' onclick="otherwin = openPopup(null, \'http://www.msn.com/index.html\','+
+        ' null, \'resizable=yes,scrollbars=yes,width=700,' +
+        'height=550,screenX=10,screenY=50\', \'reminderSubWin\', true); ' +
+        'otherwin.focus(); Event.stop(event); ' +
+        'return false;" >http://www.msn.com/index.html</a>', message);
+      options = {};
+      options['affected_field'] = 'reminders' ;
+      message = Def.Rules.fillMessageTemplate(template, null, options);
+      assertEqual('<a href="javascript:void(0)" ' +
+        'onclick="Def.UsageMonitor.add(\'reminders_url\', ' +
+        '{\'reminder_url\':\'http://www.msn.com/index.html\'}); ' +
+        'otherwin = openPopup(null, \'http://www.msn.com/index.html\', ' +
+        'null, \'resizable=yes,scrollbars=yes,width=700,height=550,screenX=10,' +
+        'screenY=50\', \'reminderSubWin\', true); otherwin.focus(); Event.stop(event); return ' +
+        'false;" >http://www.msn.com/index.html</a>', message);
+
+    }},
+
+    /**
+     *  Tests parseFieldVal
+     */
+    testParseFieldVal: function() { with(this){
+
+      var field = selectField('fe_', 'not_yet_msg', '_5_1', 0);
+      val = parseFieldVal(field, true) ;
+      assertEqual('<center>\nYou have jumped ahead!\n<br>\nField ' +
+                  'type\n<b>Message Button</b>\nis not supported\n<br>' +
+                  '\n- yet. No access here.\n</center>', val) ;
+      val = parseFieldVal(field, false) ;
+      assertEqual('<center>\nyou have jumped ahead!\n<br>\nfield ' +
+                  'type\n<b>message button</b>\nis not supported\n<br>' +
+                  '\n- yet. no access here.\n</center>', val) ;
+
+
+      field = selectField('fe_', 'ctd_class_hidden', '_4_1_1', 0) ;
+      val = parseFieldVal(field, true) ;
+      assertEqual(true, val) ;
+
+      field = selectField('fe_', 'ctd_class_hidden', '_3_1_1', 0) ;
+      val = parseFieldVal(field, true) ;
+      assertEqual(false, val) ;
+
+      field = selectField('fe_', 'd_text_field_default_value', '_4_1_1', 0);
+      val = parseFieldVal(field, true) ;
+      assertEqual('George', val) ;
+      val = parseFieldVal(field, false) ;
+      assertEqual('george', val) ;
+
+      field = selectField('fe_', 'a_numeric_field', '_6_1', 0) ;
+      val = parseFieldVal(field, true) ;
+      assertEqual(12, val) ;
+
+      field = selectField('fe_', 'a_float_field', '_6_1', 0) ;
+      val = parseFieldVal(field, false) ;
+      assertEqual(12.5634, val) ;
+
+      field = selectField('', 'splitButtonControl', '', 0) ;
+      val = parseFieldVal(field, false) ;
+      assertEqual('horizontal split', val) ;
+
+    }},
+
+
+    /**
+     * Test get_drug_set
+     *
+     **/
+    test_get_drug_set: function() { with(this){
+        var set_of_statin_drugs = {drugA:1, drugB:1};
+        Def.Rules.hashSets_= { statin_drug_set: set_of_statin_drugs };
+
+        var expected = set_of_statin_drugs;
+        var actual = Def.Rules.RuleFunctions.get_drug_set("statin_drug_set");
+        assertEqual(expected, actual);
+    }},
+
+    /**
+     * Test intersect_with_set
+     *
+     **/
+    test_intersect_with_set: function() { with(this){
+        var list = ["a", "b", "c"];
+        var set = {a:1, c:1, d:1}
+
+        var expected =["a","c"];
+        var actual = Def.Rules.RuleFunctions.intersect_with_set(list, set);
+        assertEqual(Object.toJSON(expected), Object.toJSON(actual));
+    }},
+
+    /**
+     * Test extract_values_from_fields
+     *
+     **/
+    test_extract_values_from_fields: function() { with(this){
+        var fields = $$('input[id^=extract_]');
+        var expected =["v1","v2","v3","v4"];
+        var actual = Def.Rules.RuleFunctions.extract_values_from_fields(fields);
+        assertEqual(Object.toJSON(expected), Object.toJSON(actual));
+    }},
+
+    /**
+     * Test findFields on loinc/test-panel fields
+     **/
+    testFindFieldsb: function(){with(this){
+        var actual = findFields("fe_", "tp_test_value", "");
+        var expected = [
+          $("fe_tp1_test_value_1_1_1_1"),
+          $("fe_tp1_test_value_1_1_1_2")
+        ]
+        assertEqual(expected.inspect(), actual.inspect());
+
+        var actual = findFields("fe_", "tp1_test_value", "");
+        var expected = [
+          $("fe_tp1_test_value_1_1_1_1"),
+          $("fe_tp1_test_value_1_1_1_2")
+        ]
+        assertEqual(expected.inspect(), actual.inspect());
+    }},
+
+    /**
+     * Test field in a loinc column should run it's own rules based on it's
+     * loinc number
+     **/
+    testRunLoincFormRules: function(){with(this){
+        // When rule get_sysbp gets executed, it will log some rule info into
+      // document.processedRules, this way we can check how many times this
+      // rule was executed with some trigger field info
+        var actual = document.processedRules["get_sysbp"];
+        expected = ['done/fe_/_1_1_1_1/'];
+        assertEqual(1, expected.length);
+        assertEqual(expected.inspect(), actual.inspect());
+    }},
+
+  /**
+   * Test runRules for the loinc fields
+   **/
+  testRunRules: function(){with(this){
+      // the field has sysbp rule associated with it
+      // document.rule_sysbp_count will count the times this rule gets executed
+      var ruleCount = document.rule_sysbp_count || 0;
+      var testFieldId = "fe_tp1_test_value_1_1_1_1";
+      Def.Rules.messageQueueing_ = false;
+      Def.Rules.messageQueue_ = [];
+      Def.Rules.runRules($(testFieldId));
+      var actual = document.rule_sysbp_count;
+      var expected = ruleCount + 1;
+      assertEqual(expected, actual );
+
+      // get new sysbp count
+      // sysbp count won't change since it is not associated with this field
+      ruleCount = document.rule_sysbp_count;
+      testFieldId = "fe_tp1_test_value_1_1_1_2";
+
+      Def.Rules.runRules($(testFieldId));
+      actual = document.rule_sysbp_count;
+      expected = ruleCount;
+      assertEqual(expected, actual  );
+  }},
+
+  testFindMonth: function(){with(this){
+    var d, expected, actual;
+
+    d = Date.parseDayString("2007 July 04");
+    expected = Def.Rules.RuleFunctions.find_month(d);
+    actual = 7;
+    assertEqual(expected, actual );
+
+    d = ("2007 July 04");
+    expected = Def.Rules.RuleFunctions.find_month(d);
+    actual = 7;
+    assertEqual(expected, actual );
+
+    d = ("2007/07/04");
+    expected = Def.Rules.RuleFunctions.find_month(d);
+    actual = 7;
+    assertEqual(expected, actual );
+
+    d = ("2007 July 004");
+    actual = "unknow input for find_month();";
+    var errorException = null;
+    try{
+      Def.Rules.RuleFunctions.find_month(d);
+    }
+    catch(er){
+      errorException = er;
+    }
+    assertEqual(actual, errorException);
+
+  }},
+
+  testFindYear: function(){with(this){
+    var d = Date.parseDayString("2008 July 04");
+    var expected = Def.Rules.RuleFunctions.find_year(d);
+    var actual = 2008;
+    assertEqual(expected, actual );
+  }},
+
+  testToDate: function(){with(this){
+    var dString, actual, expeceted,
+    dString = "2008 Jul 11";
+    actual = Def.Rules.RuleFunctions.to_date(dString).toString();
+    expected = Date.parseDayString("2008/07/11").toString();
+    assertEqual(expected, actual );
+
+    actual = Def.Rules.RuleFunctions.to_date("2008", "07","11").toString();
+    expected = Date.parseDayString("2008/07/11").toString();
+    assertEqual(expected, actual );
+  }},
+
+  testIsBlank: function(){with(this){
+    var actual, expected, tString;
+    // when the input is an empty string
+    dString = "";
+    assert( Def.Rules.RuleFunctions.is_blank(tString));
+    // when the input is null
+    dString = null;
+    assert( Def.Rules.RuleFunctions.is_blank(tString));
+    // when the input is undefined
+    assert( Def.Rules.RuleFunctions.is_blank(undefined));
+    // when the input is an exception
+    dString = new Def.Rules.Exceptions.NoVal();
+    assert( Def.Rules.RuleFunctions.is_blank(tString));
+
+
+    // test case when it is not blank
+    dString = "not empty";
+    assert( !Def.Rules.RuleFunctions.is_blank(dString));
+  }},
+
+  testYearsElapsedSince: function(){with(this){
+    var monthDiff, yearDiff, sYear, sMonth;
+    var expected, actual;
+
+    var today = new Date();
+    var currYear = today.getYear() + 1900;
+    var currMonth = today.getMonth() + 1;
+
+    //3 months back
+    monthDiff = 3;
+    sYear = currYear;
+    sMonth = currMonth - monthDiff;
+    if( sMonth < 1){ sYear -= 1; sMonth += 12;}
+    sMonth = Date.parse(sYear + "/" + sMonth).toString("MM");
+
+    actual = Def.Rules.RuleFunctions.years_elapsed_since(sYear, sMonth);
+    expected = monthDiff/12;
+    assert(expected, actual);
+
+    // 9 months back
+    monthDiff = 9;
+    sYear = currYear;
+    sMonth = currMonth - monthDiff;
+    if(sMonth < 1){ sYear -= 1; sMonth +=12;}
+    sMonth = Date.parse(sYear + "/" + sMonth).toString("MM");
+
+    actual = Def.Rules.RuleFunctions.years_elapsed_since(sYear, sMonth);
+    expected = monthDiff/12;
+    assert(expected, actual);
+
+    // 60 years back
+    yearDiff = 60;
+    sYear = currYear - yearDiff;
+    sMonth = Date.parse(sYear + "/" + sMonth).toString("MM");
+
+    actual = Def.Rules.RuleFunctions.years_elapsed_since(sYear, sMonth);
+    expected = yearDiff;
+    assert(expected, actual);
+  }}
+
+
+  }, "testlog");
+
+  Event.observe(window, 'load', function(){ Def.Rules.runFormRules();} );
+// ]]>
+
+</script>
+</body>
+</html>

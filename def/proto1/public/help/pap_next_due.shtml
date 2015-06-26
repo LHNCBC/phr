@@ -1,0 +1,7 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Pap Test Due Date</h1>
+		
+		<p>Enter the date the next Pap test is due.</p>
+<p>To view a complete list of your drug refill dates, immunization and appointment reminders, and test due dates, click the <b>Date Reminders</b> link at the top of the PHR page. </p>
+		<p><a href="/help/entering_dates_help.shtml">How to enter dates in the PHR</a></p>
+	<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Your session is about to expire!</title>
+ <script src="javascripts/prototype.js" type="text/javascript"></script>
+ <script src="javascripts/idle_popup.js" type="text/javascript"></script>
+
+</head>
+<body bgcolor="white" onload="onPageOpen()">
+    <p align="center">
+        <span id="msg">There has been no server activity
+        for an extended period of time.<br />
+        </span>
+    </p>
+    <p align="center">
+        Click OK to continue your session, or click Cancel to end it.
+    </p>
+    <p align="center">
+        <a href="#" onclick="stillHere()">OK</a>&nbsp;&nbsp;
+		<a href="#" onclick="goAway()">Cancel</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+item-a:
+  id: -1
+  loinc_num: 8480-6
+
+item-b:
+  id: -2
+  loinc_num: 34566-0

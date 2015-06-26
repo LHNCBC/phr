@@ -1,0 +1,51 @@
+<div data-role="navbar">
+  <ul>
+    <li> <%= link_to 'Back to Panel View', phr_record_phr_panel_path(@phr_record, @obr), "class" => "ui-btn" %></li>
+
+    <li>
+      <% if @all %> <%= link_to 'Show Fewer Panel Values',
+                                phr_record_phr_panel_items_path(@phr_record, @obr), "class" => "ui-btn" %>
+      <% else %> <%= link_to 'Show All Panel Values',
+                             phr_record_phr_panel_items_path(@phr_record, @obr, :more => true), "class" => "ui-btn" %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+
+<div>ss</div>
+<div>
+  <ul data-role="listview">
+    <% @test_info.each do |level, name, obx, loinc_num| %>
+        <% indent=(level-2)*1.5 %>
+        <% if !loinc_num %>
+            <li data-role="list-divider">
+              <% htag = "h#{level+2}" %>
+              <span align="left" colspan="4"><<%= htag %> style="padding-left: <%= indent %>
+                em"><%= name %></<%= htag %></span>
+              <span>Sub-Panel</span>
+            </li>
+        <% else %>
+            <li class="ui-btn">
+              <div style="padding-left: <%=indent%>em">
+                <% displayname = "<h>#{name}</h>".html_safe %>
+                <% if obx %>
+                    <% ext = "<p>" %>
+                    <% ext += "/ Value: #{obx.obx5_value} #{obx.obx6_1_unit}" if !obx.obx5_value.blank? %>
+                    <% ext += "/ Range: #{obx.obx7_reference_ranges}" if !obx.obx7_reference_ranges.blank? %>
+                    <% ext += "/ Type: Value </p>" %>
+
+                    <% displayname += ext.html_safe %>
+                <% end %>
+                <%= link_to displayname, (obx.nil? ?
+                        new_phr_record_phr_panel_item_path(@phr_record, @obr, :loinc_num => loinc_num) :
+                        edit_phr_record_phr_panel_item_path(@phr_record, @obr, obx)) %>
+                <%#= button_to_wo_js('Delete',
+                                  phr_record_phr_panel_item_path(@phr_record, @obr.id, obx),
+                                  :confirm => 'Are you sure?', :method => :delete, "data-icon"=>"delete","class"=>"ui-icon-right") if obx %>
+              </div>
+            </li>
+        <% end %>
+    <% end %>
+  </ul>
+</div>
+

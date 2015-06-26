@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medical Contacts Telephone</h1>
+	<p>
+	Enter the telephone number of the medical contact. 
+	</p>  
+
+<!--#include virtual="help_footer.shtml" -->

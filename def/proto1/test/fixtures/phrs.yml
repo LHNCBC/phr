@@ -1,0 +1,242 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+Self_old:
+  id: -1
+  latest: 0
+  profile_id: -10
+  birth_date: 1960
+  gender: "Female"
+  race_or_ethnicity: "Asian"
+  pregnant: "2 - No"
+Self:
+  id: -20
+  profile_id: -10
+  latest: 1
+  birth_date: 1960
+  gender: "Female"
+  race_or_ethnicity: "Asian"
+  pregnant: "2 - No"
+Father:
+  id: -2
+  latest: 1
+  profile_id: -11
+  pseudonym: father
+  birth_date: 1935
+  gender: "Male"
+  race_or_ethnicity: "Asian"
+Mother:
+  id: -3
+  latest: 1
+  profile_id: -12
+  birth_date: 1939
+  gender: "Female"
+  race_or_ethnicity: "White"
+  pregnant: "2 - No"
+Son1:
+  id: -4
+  birth_date: "1985"
+  gender: "Male"
+  race_or_ethnicity: "White"
+Son2:
+  id: -5
+  birth_date: 1988
+  gender: "Male"
+  race_or_ethnicity: "White"
+Son3:
+  id: -6
+  birth_date: 1992
+  gender: "Male"
+  race_or_ethnicity: "White"
+Daughter1:
+  id: -7
+  birth_date: 1983
+  gender: "Female"
+  race_or_ethnicity: "White"
+  pregnant: "1 - Yes"
+  due_date: "7/18/2008"
+Daughter2:
+  id: -8
+  birth_date: 1987
+  gender: "Female"
+  race_or_ethnicity: "White"
+  pregnant: "2 - No"
+Daughter1:
+  id: -7
+  birth_date: 1991
+  gender: "Female"
+  race_or_ethnicity: "White"
+  pregnant: "2 - No"
+  
+temp_profile_1a:
+  id: -101
+  profile_id: -20
+
+temp_profile_1b:
+  id: -102
+  profile_id: -20
+
+temp_profile_2a:
+  id: -103
+  profile_id: -21
+
+temp_profile_2b:
+  id: -104
+  profile_id: -21
+
+temp_profile_3a:
+  id: -105
+  profile_id: -22
+
+temp_profile_3b:
+  id: -106
+  profile_id: -22
+
+standard_profile_1a:
+  id: -107
+  profile_id: -23
+
+standard_profile_1b:
+  id: -108
+  profile_id: -23
+
+standard_profile_2a:
+  id: -109
+  profile_id: -24
+
+standard_profile_2b:
+  id: -110
+  profile_id: -24
+
+# phrs used by the phr_home  and share_invitation tests
+
+standard_profile_3:
+  id: -34
+  profile_id: -34
+  latest: true
+  birth_date: 1947/07/04
+  pseudonym: Old Cat
+  gender: Female
+  gender_C: F
+  race_or_ethnicity: Asian
+  race_or_ethnicity_C: LA6156-9
+
+phr_home_active_profile_1:
+  id: -40
+  profile_id: -40
+  latest: true
+  birth_date: 1987/07/04
+  pseudonym: Liberty
+  gender: Female
+  gender_C: F
+  race_or_ethnicity: Asian
+  race_or_ethnicity_C: LA6156-9
+
+phr_home_active_profile_2:
+  id: -41
+  profile_id: -41
+  latest: true
+  birth_date: 1915/03/15
+  pseudonym: "Ides of March"
+  gender: Male
+  gender_C: M
+  race_or_ethnicity: "American Indian or Alaska Native"
+  race_or_ethnicity_C: LA6155-1
+
+phr_home_active_profile_3:
+  id: -42
+  profile_id: -42
+  latest: true
+  birth_date: 1935/11/28
+  pseudonym: Thankful
+  gender: Female
+  gender_C: F
+  race_or_ethnicity: "Black or African-American"
+  race_or_ethnicity_C: LA6162-7
+
+phr_home_removed_profile_1:
+  id: -43
+  profile_id: -43
+  latest: true
+  birth_date: 1973/05/10
+  pseudonym: "Formerly Spring"
+  gender: Male
+  gender_C: M
+  race_or_ethnicity: "Hispanic or Latino"
+  race_or_ethnicity_C: LA6214-6
+
+phr_home_removed_profile_2:
+  id: -44
+  profile_id: -44
+  latest: true
+  birth_date: 1967/02/28
+  pseudonym: "Long Gone"
+  gender: Male
+  gender_C: M
+  race_or_ethnicity: "Native Hawaiian or Pacific Islander"
+  race_or_ethnicity_C: LA6266-6
+
+phr_home_removed_profile_3:
+  id: -45
+  profile_ID: -45
+  latest: true
+  birth_date: 2000/08/13
+  pseudonym: "Just a blur"
+  gender: Female
+  gender_C: F
+  race_or_ethnicity: "White"
+  race_or_ethnicity_C: LA4457-3
+  
+phr_home_active_profile_4:
+  id: -46
+  profile_id: -46
+  latest: true
+  birth_date: 1967/01/01
+  pseudonym: Happy New Year
+  gender: Female
+  gender_C: F
+  race_or_ethnicity: White
+  race_or_ethnicity_C: LA4457-3
+
+phr_home_active_profile_5:
+  id: -47
+  profile_id: -47
+  latest: true
+  birth_date: 1925/04/15
+  pseudonym: "Teddy Taxes"
+  gender: Male
+  gender_C: M
+  race_or_ethnicity: "American Indian or Alaska Native"
+  race_or_ethnicity_C: LA6155-1
+
+phr_home_removed_profile_4:
+  id: -48
+  profile_id: -48
+  latest: true
+  birth_date: 1953/08/10
+  pseudonym: "Hot Hot Hot"
+  gender: Male
+  gender_C: M
+  race_or_ethnicity: "Hispanic or Latino"
+  race_or_ethnicity_C: LA6214-6
+
+phr_home_removed_profile_5:
+  id: -49
+  profile_id: -49
+  latest: true
+  birth_date: 1976/02/02
+  pseudonym: "Ground Hog Harry"
+  gender: Male
+  gender_C: M
+  race_or_ethnicity: "Native Hawaiian or Pacific Islander"
+  race_or_ethnicity_C: LA6266-6
+
+phr_home_removed_profile_6:
+  id: -50
+  profile_ID: -50
+  latest: true
+  birth_date: 1985/06/03
+  pseudonym: "Gemini"
+  gender: Female
+  gender_C: F
+  race_or_ethnicity: "White"
+  race_or_ethnicity_C: LA4457-3
+

@@ -1,0 +1,133 @@
+<% # Template for a single other profile listing on the phr_home page %>
+
+
+
+    <% tr_id = "other_profile_line_" + row_s %>
+    <tr id="<%= tr_id %>" class="profile_row">
+
+      <% td_id = "o_icon_cell_" + row_s %>
+      <td id="<%= td_id%>" class="icon_column">
+        <%= profile_icon(profile, row_s, false, 'o_')  %>
+      </td>
+
+      <% td_id = "o_wedgie_" + row_s %>
+      <td id="<%= td_id %>" class="wedgie_column">
+        <%= wedgie_icon(row_s, 'o_') %>
+      </td>
+
+
+      <% td_id = "o_name_cell_" + row_s %>
+      <td id="<%= td_id %>" class="name_column">
+        <%= name_age_gender(profile, row_s, false, 'o_') %>
+      </td>
+
+      <% td_id = "o_last_updated_cell_" + row_s %>
+      <td id="<%= td_id %>" class="updated_column">
+        <%= last_updated(profile, row_s, 'o_') %>
+      </td>
+
+      <% td_id = "o_envelope_cell_" + row_s %>
+      <td id="<%= td_id%>" class="envelope_column">
+        <%= envelope_icon(row_s, 'o_')  %>
+      </td>
+
+      <% td_id = "o_health_reminders_cell_" + row_s %>
+      <td id="<%= td_id %>" class="health_reminders_column" >
+        <%= health_reminders_link(row_s, 'o_') %>
+      </td>
+
+      <% td_id = "o_calendar_cell_" + row_s %>
+      <td id="<%= td_id %>" class="calendar_column" >
+        <%= calendar_icon(profile, row_s, 'o_') %>
+      </td>
+
+      <% td_id = "o_date_reminders_cell_" + row_s %>
+      <td id="<%= td_id %>" class="date_reminders_column" >
+        <%= date_reminders_link(profile, row_s, 'o_') %>
+      </td>
+
+      <% td_id = "owner_cell_" + row_s %>
+      <td id="<%= td_id %>" class="owner_column" >
+        <%= owner_link(profile, row_s) %>
+      </td>
+    </tr>
+
+    <%  tr_class = "o_links_line_" + row_s %>
+    <tr class="<%= tr_class %> task_line" style="display: none;">
+
+      <td class="blank_column">  </td>
+      <td class="blank_column">&nbsp;</td>
+
+      <% td_id = "o_links_cell_" + row_s + "_1" %>
+      <td id="<%= td_id %>"  class="link_column">
+        <%= detail_link(profile.id_shown, row_s, 'o_') %>
+      </td>
+
+      <% td_id = "o_links_cell_" + row_s + "_2" %>
+      <td id="<%= td_id %>" class="link_button_column updated_column">
+        <%= export_link(profile, row_s, 'o_') %>
+      </td>
+
+      <td class="blank_column">  </td>
+      
+     <% td_id = "o_access_cell_" + row_s %>
+      <td id="<%= td_id %>" class="name_column access_cell" colspan="4">
+        <%= access_level_text(profile, row_s) %>
+      </td>
+
+
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+
+    </tr>
+
+    <%  tr_class = "o_links_line_" + row_s %>
+    <tr class="<%= tr_class %> task_line" style="display: none;">
+
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+
+      <% td_id = "o_links_cell_" + row_s + "_3" %>
+      <td id="<%= td_id %>" class="link_column">
+        <%= tests_link(profile.id_shown, row_s, 'o_') %>
+      </td>
+
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+
+      <% td_id = "o_links_cell_" + row_s + "_4" %>
+      <td id="<%= td_id %>" class="link_button_column col3_btn" colspan="4">
+        <%= remove_my_access_link(profile.id_shown, row_s) %>
+      </td>
+
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+    </tr>
+
+    <%  tr_class = "o_links_line_" + row_s %>
+    <tr class="<%= tr_class %> task_line" style="display: none;">
+
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+
+      <% td_id = "o_links_cell_" + row_s + "_5" %>
+      <td id="<%= td_id %>" class="link_column" colspan="5">
+        <%= demographics_link(profile, row_s, 'o_') %>
+      </td>
+
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+      <td class="blank_column">  </td>
+    </tr>
+ 
+
+
+ 
+
+
+
+  

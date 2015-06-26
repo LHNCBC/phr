@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Colon Cancer Screening</h1>
+	<p>
+	Colon cancer screening is recommended for men and women ages 50 to 75. Screening options include having a colonoscopy every 10 years, flexible sigmoidoscopy every 5 years, or fecal occult blood testing (FOBT) every year. 
+</p>
+<p>To read more about colon cancer screening, go to <a href="http://www.ahrq.gov/clinic/uspstf/uspscolo.htm" target="_blank">
+http://www.ahrq.gov/clinic/uspstf/uspscolo.htm</a>.
+</p>
+<!--#include virtual="help_footer.shtml" -->

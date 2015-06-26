@@ -1,0 +1,3413 @@
+---
+panel:
+- obr:
+    profile_id: 3312
+    record_id: 1
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 55417-0
+    test_place: 
+    test_date: 
+    test_date_ET: 
+    test_date_HL7: 
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Short blood pressure panel
+    test_date_time: 
+    single_test: false
+    version_date: 2009-11-30 10:54:54.000000000 -05:00
+    deleted_at: 
+  obx: []
+- obr:
+    profile_id: 3312
+    record_id: 2
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 55418-8
+    test_place: 
+    test_date: 
+    test_date_ET: 
+    test_date_HL7: 
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Weight & Height tracking panel
+    test_date_time: 
+    single_test: false
+    version_date: 2009-11-30 10:54:54.000000000 -05:00
+    deleted_at: 
+  obx: []
+- obr:
+    profile_id: 3312
+    record_id: 4
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 53764-7
+    test_place: 
+    test_date: 
+    test_date_ET: 
+    test_date_HL7: 
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: PSA panel
+    test_date_time: 
+    single_test: false
+    version_date: 2009-11-30 10:54:54.000000000 -05:00
+    deleted_at: 
+  obx: []
+other:
+  phr_allergies:
+  - profile_id: 3312
+    record_id: 3
+    latest: true
+    reaction_C: AL-REACT-12
+    reaction_date_HL7: 2008/10/28
+    reaction_date_ET: 1225169960960
+    allergy_name_C: OTHR-5
+    reaction_date: 2008 Oct 28
+    reaction: Rash
+    allergy_name: Cold Weather
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 8
+    latest: true
+    reaction_C: AL-REACT-14
+    reaction_date_HL7: 2009/01/26
+    reaction_date_ET: 1232950001664
+    allergy_name_C: FOOD-10
+    reaction_date: 2009 Jan 26
+    reaction: Tongue swelling
+    allergy_name: Pork
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 9
+    latest: true
+    reaction_C: AL-REACT-3
+    reaction_date_HL7: 2008/10/20
+    reaction_date_ET: 1224479997952
+    allergy_name_C: FOOD-15
+    reaction_date: 2008 Oct 20
+    reaction: Collapse
+    allergy_name: Vegetables
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 10
+    latest: true
+    reaction_C: AL-REACT-12
+    reaction_date_HL7: 2009/01/23
+    reaction_date_ET: 1232689954816
+    allergy_name_C: OTHR-11
+    reaction_date: 2009 Jan 23
+    reaction: Rash
+    allergy_name: Ragweed
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 13
+    latest: true
+    reaction_C: AL-REACT-13
+    reaction_date_HL7: 2008/06/07
+    reaction_date_ET: 1212810002432
+    allergy_name_C: OTHR-2
+    reaction_date: 2008 Jun 7
+    reaction: Throat swelling
+    allergy_name: Latex
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 15
+    latest: true
+    reaction_C: AL-REACT-12
+    reaction_date_HL7: 2008/06/06
+    reaction_date_ET: 1212719955968
+    allergy_name_C: OTHR-9
+    reaction_date: 2008 Jun 6
+    reaction: Rash
+    allergy_name: Nickel
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 18
+    latest: true
+    reaction_C: '24882'
+    reaction_date_HL7: 2006/12/11
+    reaction_date_ET: 1165809942528
+    allergy_name_C: FOOD-10
+    reaction_date: 2006 Dec 11
+    reaction: Cough
+    allergy_name: Pork
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 20
+    latest: true
+    reaction_C: AL-REACT-1
+    reaction_date_HL7: 2008/10/07
+    reaction_date_ET: 1223350026240
+    allergy_name_C: FOOD-15
+    reaction_date: 2008 Oct 7
+    reaction: Abdominal cramps
+    allergy_name: Vegetables
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 21
+    latest: true
+    reaction_C: AL-REACT-14
+    reaction_date_HL7: 2008/06/18
+    reaction_date_ET: 1213760012288
+    allergy_name_C: OTHR-12
+    reaction_date: 2008 Jun 18
+    reaction: Tongue swelling
+    allergy_name: Semen
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 4
+    latest: true
+    reaction_C: '24880'
+    reaction_date_HL7: 2008/10/18
+    reaction_date_ET: 1224300036096
+    allergy_name_C: MED-1
+    reaction_date: 2008 Oct 18
+    reaction: Blackout
+    allergy_name: ACE inhibitors
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 17
+    latest: true
+    reaction_C: '24882'
+    reaction_date_HL7: 2007/10/29
+    reaction_date_ET: 1193629974528
+    allergy_name_C: MED-3
+    reaction_date: 2007 Oct 29
+    reaction: Cough
+    allergy_name: Aminoglycosides
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 5
+    latest: true
+    reaction_C: '24887'
+    reaction_date_HL7: 2008/10/19
+    reaction_date_ET: 1224389951488
+    allergy_name_C: MED-4
+    reaction_date: 2008 Oct 19
+    reaction: Hives
+    allergy_name: Aminosalicylic Acid (ASA)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 1
+    latest: true
+    reaction_C: '24885'
+    reaction_date_HL7: 2006/08/10
+    reaction_date_ET: 1155180003328
+    allergy_name_C: MED-10
+    reaction_date: 2006 Aug 10
+    reaction: Dizziness
+    allergy_name: BACTRIM  (Sulfamethoxazol/trimethaprim)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 14
+    latest: true
+    reaction_C: AL-REACT-12
+    reaction_date_HL7: 2008/02/16
+    reaction_date_ET: 1203140034560
+    allergy_name_C: MED-16
+    reaction_date: 2008 Feb 16
+    reaction: Rash
+    allergy_name: CARDIZEM  (Diltizzam)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 6
+    latest: true
+    reaction_C: AL-REACT-14
+    reaction_date_HL7: 2008/04/01
+    reaction_date_ET: 1207020027904
+    allergy_name_C: MED-20
+    reaction_date: 2008 Apr 1
+    reaction: Tongue swelling
+    allergy_name: COLACE (Docusate Sodium)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 16
+    latest: true
+    reaction_C: '24885'
+    reaction_date_HL7: 2008/02/17
+    reaction_date_ET: 1203219988480
+    allergy_name_C: MED-21
+    reaction_date: 2008 Feb 17
+    reaction: Dizziness
+    allergy_name: COMPAZINE (Prochlorperazine Maleate)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 22
+    latest: true
+    reaction_C: '24880'
+    reaction_date_HL7: 2008/02/17
+    reaction_date_ET: 1203219988480
+    allergy_name_C: MED-21
+    reaction_date: 2008 Feb 17
+    reaction: Blackout
+    allergy_name: COMPAZINE (Prochlorperazine Maleate)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 25
+    latest: true
+    reaction_C: '24882'
+    reaction_date_HL7: 2006/08/22
+    reaction_date_ET: 1156220059648
+    allergy_name_C: MED-23
+    reaction_date: 2006 Aug 22
+    reaction: Cough
+    allergy_name: DALMANE  (Flurazepam)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 7
+    latest: true
+    reaction_C: '24883'
+    reaction_date_HL7: 2008/04/01
+    reaction_date_ET: 1207020027904
+    allergy_name_C: MED-25
+    reaction_date: 2008 Apr 1
+    reaction: Diarrhea
+    allergy_name: VALIUM (Diastat)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 19
+    latest: true
+    reaction_C: AL-REACT-3
+    reaction_date_HL7: 2006/05/03
+    reaction_date_ET: 1146630045696
+    allergy_name_C: MED-25
+    reaction_date: 2006 May 3
+    reaction: Collapse
+    allergy_name: VALIUM (Diastat)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 11
+    latest: true
+    reaction_C: AL-REACT-11
+    reaction_date_HL7: 2006/08/11
+    reaction_date_ET: 1155270049792
+    allergy_name_C: MED-28
+    reaction_date: 2006 Aug 11
+    reaction: Mental confusion
+    allergy_name: DULCOLAX (Bisacodyl)
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 24
+    latest: true
+    reaction_C: '24885'
+    reaction_date_HL7: 2008/06/06
+    reaction_date_ET: 1212719955968
+    allergy_name_C: FOOD-5
+    reaction_date: 2008 Jun 6
+    reaction: Dizziness
+    allergy_name: Fish
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 12
+    latest: true
+    reaction_C: AL-REACT-11
+    reaction_date_HL7: 2008/06/06
+    reaction_date_ET: 1212719955968
+    allergy_name_C: MED-34
+    reaction_date: 2008 Jun 6
+    reaction: Mental confusion
+    allergy_name: Horse Sera
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 2
+    latest: true
+    reaction_C: '24885'
+    reaction_date_HL7: 2009/01/26
+    reaction_date_ET: 1232950001664
+    allergy_name_C: FOOD-9
+    reaction_date: 2009 Jan 26
+    reaction: Dizziness
+    allergy_name: Peanut
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  - profile_id: 3312
+    record_id: 23
+    latest: true
+    reaction_C: AL-REACT-10
+    reaction_date_HL7: 2007/07/12
+    reaction_date_ET: 1184209960960
+    allergy_name_C: FOOD-13
+    reaction_date: 2007 Jul 12
+    reaction: Itching
+    allergy_name: Soy
+    version_date: 2011-07-15 16:16:27.000000000 -04:00
+    deleted_at: 
+    allergy_comment: 
+  phr_doctor_questions:
+  - profile_id: 3312
+    record_id: 1
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: Medication question 1?
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 2
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232600039424
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/22
+    question_answer: 
+    question: Supplies question 1?
+    date_entered: 2009 Jan 22
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 3
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232169992192
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/17
+    question_answer: 
+    question: Equipment question 1?
+    date_entered: 2009 Jan 17
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 4
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Symptoms
+    category_C: QUE-0
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: Symptoms question 1?
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 6
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Need for Surgery
+    category_C: QUE-2
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: Need for Surgery question 1?
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 7
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 2
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 8
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 3
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 9
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 4
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 10
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 5
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 11
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 6
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 12
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 7
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 14
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 9
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 15
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 10
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 16
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 11
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 17
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 12
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 18
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 13
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 19
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 14
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 20
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 15
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 21
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 16
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 22
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 17
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 23
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 18
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 24
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 19
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 25
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 20
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 26
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 1
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 27
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su1
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 29
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su3
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 31
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su5
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 32
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su6
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 33
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su7
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 34
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su8
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 35
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su9
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 36
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su10
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 37
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: eq1
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 38
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: eq2
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 39
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: eq3
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 28
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su2
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 30
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Supplies
+    category_C: QUE-1
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: su4
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 40
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: eq4
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 41
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: eq5
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 42
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: eq6
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 43
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: eq7
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 44
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: eq8
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 45
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: eq9
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 46
+    latest: true
+    question_status: Asked
+    date_entered_ET: 1232950001664
+    category: Equipment
+    category_C: QUE-4
+    question_status_C: '2'
+    date_entered_HL7: 2009/01/26
+    question_answer: answer eq10
+    question: eq10
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 47
+    latest: true
+    question_status: Asked
+    date_entered_ET: 1232950001664
+    category: Symptoms
+    category_C: QUE-0
+    question_status_C: '2'
+    date_entered_HL7: 2009/01/26
+    question_answer: answer sy1
+    question: sy1
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 49
+    latest: true
+    question_status: Asked
+    date_entered_ET: 1232950001664
+    category: Need for Surgery
+    category_C: QUE-2
+    question_status_C: '2'
+    date_entered_HL7: 2009/01/26
+    question_answer: answer nfs1
+    question: nfs1
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 50
+    latest: true
+    question_status: Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '2'
+    date_entered_HL7: 2009/01/26
+    question_answer: answer mq50
+    question: mq50
+    date_entered: 2009 Jan 26
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 13
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Medications
+    category_C: QUE-3
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: mq 8
+    date_entered: 2009 Jan 26
+    version_date: 2009-11-30 10:54:54.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 5
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1232950001664
+    category: Disease Course
+    category_C: QUE-5
+    question_status_C: '1'
+    date_entered_HL7: 2009/01/26
+    question_answer: 
+    question: Course of Disease question 1?
+    date_entered: 2009 Jan 26
+    version_date: 2010-04-02 18:30:02.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 48
+    latest: true
+    question_status: Asked
+    date_entered_ET: 1232950001664
+    category: Disease Course
+    category_C: QUE-5
+    question_status_C: '2'
+    date_entered_HL7: 2009/01/26
+    question_answer: answer cod1
+    question: cod1
+    date_entered: 2009 Jan 26
+    version_date: 2010-04-02 18:30:02.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 51
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 
+    category: Disease Course
+    category_C: QUE-5
+    question_status_C: '1'
+    date_entered_HL7: 
+    question_answer: 
+    question: what?
+    date_entered: 
+    version_date: 2010-04-02 18:30:50.000000000 -04:00
+    deleted_at: 
+  phr_drugs:
+  - profile_id: 3312
+    record_id: 6
+    latest: true
+    drug_strength_form_C: '310292'
+    why_stopped: 
+    expire_date_ET: 1271299964928
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/15
+    drug_use_status_C: DRG-A
+    name_and_route: Fentanyl (Other)
+    why_stopped_C: 
+    expire_date: 2010 Apr 15
+    drug_strength_form: Lozenge - 0.1 MG
+    instructions: instr. for fentanyl
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '9351'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 7
+    latest: true
+    drug_strength_form_C: '750100'
+    why_stopped: 
+    expire_date_ET: 1276140060672
+    drug_use_status: Active
+    expire_date_HL7: 2010/06/10
+    drug_use_status_C: DRG-A
+    name_and_route: GEL-KAM (Other)
+    why_stopped_C: 
+    expire_date: 2010 Jun 10
+    drug_strength_form: Mouthwash - 6.3 MG/ML
+    instructions: instr. for gel-kam
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '6255'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 11
+    latest: true
+    drug_strength_form_C: '284476'
+    why_stopped: 
+    expire_date_ET: 1276140060672
+    drug_use_status: Active
+    expire_date_HL7: 2010/06/10
+    drug_use_status_C: DRG-A
+    name_and_route: KALETRA (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Jun 10
+    drug_strength_form: Caps - 133-33.3 MG
+    instructions: instr. kaletra
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: 
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 17
+    latest: true
+    drug_strength_form_C: '630307'
+    why_stopped: 
+    expire_date_ET: 1262750007296
+    drug_use_status: Active
+    expire_date_HL7: 2010/01/06
+    drug_use_status_C: DRG-A
+    name_and_route: QUALA (Other)
+    why_stopped_C: 
+    expire_date: 2010 Jan 6
+    drug_strength_form: Mouthwash - 16.4 MG/ML
+    instructions: instr. quala
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '773'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 21
+    latest: true
+    drug_strength_form_C: '799803'
+    why_stopped: 
+    expire_date_ET: 1279860015104
+    drug_use_status: Active
+    expire_date_HL7: 2010/07/23
+    drug_use_status_C: DRG-A
+    name_and_route: URO-JECT (Other)
+    why_stopped_C: 
+    expire_date: 2010 Jul 23
+    drug_strength_form: Prefilled Applicator - 0.02 MG/MG
+    instructions: instr. uro-ject
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: 
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 37
+    latest: true
+    drug_strength_form_C: '617624'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: FLUORIDEX (Other)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: Toothpaste - 0.011 MG/MG
+    instructions: instr. fluoridex
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '11984'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 51
+    latest: true
+    drug_strength_form_C: '349294'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Remove
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-R
+    name_and_route: Brain natriuretic peptide (Injectable)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: Sol - 0.006 MG/ML
+    instructions: instr. brain natrinretic peptide
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: 
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 2
+    latest: true
+    drug_strength_form_C: '731536'
+    why_stopped: 
+    expire_date_ET: 1310699945984
+    drug_use_status: Active
+    expire_date_HL7: 2011/07/15
+    drug_use_status_C: DRG-A
+    name_and_route: ADVIL (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2011 Jul 15
+    drug_strength_form: 100 mg Chewable Tabs
+    instructions: instr. for advil
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '12526'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 1
+    latest: true
+    drug_strength_form_C: '753095'
+    why_stopped: 
+    expire_date_ET: 1294979956736
+    drug_use_status: Active
+    expire_date_HL7: 2011/01/14
+    drug_use_status_C: DRG-A
+    name_and_route: ALICLEN (Other)
+    why_stopped_C: 
+    expire_date: 2011 Jan 14
+    drug_strength_form: 60 mg/ml Medicated Shampoo
+    instructions: instr. for aliclen
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '785'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 3
+    latest: true
+    drug_strength_form_C: '260688'
+    why_stopped: 
+    expire_date_ET: 1319339950080
+    drug_use_status: Active
+    expire_date_HL7: 2011/10/23
+    drug_use_status_C: DRG-A
+    name_and_route: BETADINE (Other)
+    why_stopped_C: 
+    expire_date: 2011 Oct 23
+    drug_strength_form: 100 mg/ml Douche
+    instructions: instr. for betadine
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '8141'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 29
+    latest: true
+    drug_strength_form_C: '827654'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: DEBROX (Otic)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 65 mg/ml Sol
+    instructions: instr. debrox
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '13249'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 25
+    latest: true
+    drug_strength_form_C: '208562'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: DECASPRAY (Topical)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 0.4 mg/ml Spray
+    instructions: instr. decaspray
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '4269'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 4
+    latest: true
+    drug_strength_form_C: '210498'
+    why_stopped: 
+    expire_date_ET: 1261720043520
+    drug_use_status: Active
+    expire_date_HL7: 2009/12/25
+    drug_use_status_C: DRG-A
+    name_and_route: DENOREX (Other)
+    why_stopped_C: 
+    expire_date: 2009 Dec 25
+    drug_strength_form: 90 mg/ml Medicated Shampoo
+    instructions: instr. for denorex
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '13413'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 31
+    latest: true
+    drug_strength_form_C: '206514'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: EAR-EZE (Otic)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 10-3.5-10000 var units Sol
+    instructions: instr. ear-eze
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '13537'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 30
+    latest: true
+    drug_strength_form_C: '208853'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: EFFEXOR (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 75 mg Tabs
+    instructions: instr. effexor
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '3251'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 5
+    latest: true
+    drug_strength_form_C: '213268'
+    why_stopped: 
+    expire_date_ET: 1280889978880
+    drug_use_status: Active
+    expire_date_HL7: 2010/08/04
+    drug_use_status_C: DRG-A
+    name_and_route: EFUDEX (Topical)
+    why_stopped_C: 
+    expire_date: 2010 Aug 4
+    drug_strength_form: 50 mg/ml Sol
+    instructions: instr. for efudex
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '13949'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 32
+    latest: true
+    drug_strength_form_C: '706467'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: ELESTRIN (Topical)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 0.0006 mg/mg Gel
+    instructions: instr. elestrin
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '1246'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 33
+    latest: true
+    drug_strength_form_C: '545751'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: EPIDRI (Other)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 1.9 mg Pellet
+    instructions: instr. epidri
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '7473'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 34
+    latest: true
+    drug_strength_form_C: '542501'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: EYEMYD (Ophthalmic)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 10 mg/ml Sol
+    instructions: instr. eyemyd
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '7532'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 35
+    latest: true
+    drug_strength_form_C: '211162'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: EZOL (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 325-50-40 mg Caps
+    instructions: instr. ezol
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '716'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 36
+    latest: true
+    drug_strength_form_C: '212073'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: FA-8 (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 0.8 mg Tabs
+    instructions: instr. fa-8
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '6678'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 39
+    latest: true
+    drug_strength_form_C: '212734'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: FEEN-A-MINT (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 97.2 mg Tabs
+    instructions: instr. feen-a-mint
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '11157'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 40
+    latest: true
+    drug_strength_form_C: '727544'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: Filgrastim (Injectable)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 0.6 mg/ml Prefilled Syringe 0.8 ml
+    instructions: instr. filgrastim
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '2869'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 38
+    latest: true
+    drug_strength_form_C: '797783'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: FLEET (Topical)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 120-10 mg/ml Medicated Pad
+    instructions: instr. fleet
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '12462'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 46
+    latest: true
+    drug_strength_form_C: '667136'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: FLUXID (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 20 mg Disintegrating Tabs
+    instructions: instr. fluxid
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '2373'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 41
+    latest: true
+    drug_strength_form_C: '198641'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: Folate (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 0.8 mg Tabs
+    instructions: instr. folate
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '10618'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 42
+    latest: true
+    drug_strength_form_C: '313982'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: Fosinopril (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 40 mg Tabs
+    instructions: instr. fosinopril
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '8497'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 44
+    latest: true
+    drug_strength_form_C: '213049'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: GALZIN (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 25 mg Caps
+    instructions: instr. galzin
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '4785'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 45
+    latest: true
+    drug_strength_form_C: '310445'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: Gatifloxacin (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 200 mg Tabs
+    instructions: instr. gatifloxacin
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '5738'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 43
+    latest: true
+    drug_strength_form_C: '210066'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: GAVISCON (Oral-liquid)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 31.7-119.5 mg/5ml Susp
+    instructions: instr. gaviscon
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '2207'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 8
+    latest: true
+    drug_strength_form_C: '206357'
+    why_stopped: 
+    expire_date_ET: 1309669982208
+    drug_use_status: Active
+    expire_date_HL7: 2011/07/03
+    drug_use_status_C: DRG-A
+    name_and_route: HI-COR (Topical)
+    why_stopped_C: 
+    expire_date: 2011 Jul 3
+    drug_strength_form: 10 mg/ml Cream
+    instructions: instr. hi-cor
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '5131'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 9
+    latest: true
+    drug_strength_form_C: '207295'
+    why_stopped: 
+    expire_date_ET: 1276140060672
+    drug_use_status: Active
+    expire_date_HL7: 2010/06/10
+    drug_use_status_C: DRG-A
+    name_and_route: INTAL (Inhalant)
+    why_stopped_C: 
+    expire_date: 2010 Jun 10
+    drug_strength_form: 10 MG/ML Sol
+    instructions: instr. intal
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '6080'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 10
+    latest: true
+    drug_strength_form_C: '547239'
+    why_stopped: 
+    expire_date_ET: 1271299964928
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/15
+    drug_use_status_C: DRG-A
+    name_and_route: JE-VAX (Injectable)
+    why_stopped_C: 
+    expire_date: 2010 Apr 15
+    drug_strength_form: 0.0000000385 mg/ml Sol
+    instructions: instr. je-vax
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '11956'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 26
+    latest: true
+    drug_strength_form_C: '260391'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: KEY-PRED (Injectable)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 25 mg/ml Susp
+    instructions: instr. key-pred
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '10643'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 49
+    latest: true
+    drug_strength_form_C: '212040'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: LEGATRIN PM (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 500-12.5 mg Tabs
+    instructions: instr. legatrin pm
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '13978'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 12
+    latest: true
+    drug_strength_form_C: '404331'
+    why_stopped: 
+    expire_date_ET: 1261720043520
+    drug_use_status: Active
+    expire_date_HL7: 2009/12/25
+    drug_use_status_C: DRG-A
+    name_and_route: LMX 4 (Topical)
+    why_stopped_C: 
+    expire_date: 2009 Dec 25
+    drug_strength_form: 40 mg/ml Cream
+    instructions: instr. lmx 4
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '9835'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 13
+    latest: true
+    drug_strength_form_C: '807283'
+    why_stopped: 
+    expire_date_ET: 1271299964928
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/15
+    drug_use_status_C: DRG-A
+    name_and_route: MIRENA (Other)
+    why_stopped_C: 
+    expire_date: 2010 Apr 15
+    drug_strength_form: 0.000833 mg/hr Drug Implant
+    instructions: instr. mirena
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '12294'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 50
+    latest: true
+    drug_strength_form_C: '208787'
+    why_stopped: Intended for short term
+    expire_date_ET: 1271650058240
+    drug_use_status: Stopped
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-I
+    name_and_route: NERVINE (Oral-pill)
+    why_stopped_C: STP-2
+    expire_date: 2010 Apr 19
+    drug_strength_form: 25 mg Tabs
+    instructions: instr. nervine
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '13823'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 14
+    latest: true
+    drug_strength_form_C: '201201'
+    why_stopped: 
+    expire_date_ET: 1271220011008
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/14
+    drug_use_status_C: DRG-A
+    name_and_route: NORPLANT (Other)
+    why_stopped_C: 
+    expire_date: 2010 Apr 14
+    drug_strength_form: 36 mg Drug Implant
+    instructions: instr. norplant
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '14739'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 48
+    latest: true
+    drug_strength_form_C: '809586'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: NUPRIN BACKACHE (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 467 mg Tabs
+    instructions: instr. nuprin backache
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '6549'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 15
+    latest: true
+    drug_strength_form_C: '213402'
+    why_stopped: 
+    expire_date_ET: 1267419971584
+    drug_use_status: Active
+    expire_date_HL7: 2010/03/01
+    drug_use_status_C: DRG-A
+    name_and_route: OPCON-A (Ophthalmic)
+    why_stopped_C: 
+    expire_date: 2010 Mar 1
+    drug_strength_form: 0.27-3.15 mg/ml Sol
+    instructions: instr. opcon-a
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '1390'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 16
+    latest: true
+    drug_strength_form_C: '806774'
+    why_stopped: 
+    expire_date_ET: 1271820058624
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/21
+    drug_use_status_C: DRG-A
+    name_and_route: PAPFYLL (Topical)
+    why_stopped_C: 
+    expire_date: 2010 Apr 21
+    drug_strength_form: 5-32.6-100 mg/ml Foam
+    instructions: instr. papfyll
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '674'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 47
+    latest: true
+    drug_strength_form_C: '213413'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: PEPCID (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 20 mg Disintegrating Tabs
+    instructions: instr. pepcid
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '11707'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 28
+    latest: true
+    drug_strength_form_C: '206275'
+    why_stopped: 
+    expire_date_ET: 1271650058240
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/19
+    drug_use_status_C: DRG-A
+    name_and_route: QUIBRON (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Apr 19
+    drug_strength_form: 180-300 mg Caps
+    instructions: instr. quibron
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '4673'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 18
+    latest: true
+    drug_strength_form_C: '629948'
+    why_stopped: 
+    expire_date_ET: 1272079974400
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/24
+    drug_use_status_C: DRG-A
+    name_and_route: RADRI (Other)
+    why_stopped_C: 
+    expire_date: 2010 Apr 24
+    drug_strength_form: 0.5-1.9 mg Pellet
+    instructions: instr. radri
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '8920'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 19
+    latest: true
+    drug_strength_form_C: '261190'
+    why_stopped: 
+    expire_date_ET: 1263099969536
+    drug_use_status: Active
+    expire_date_HL7: 2010/01/10
+    drug_use_status_C: DRG-A
+    name_and_route: STADOL (Nasal)
+    why_stopped_C: 
+    expire_date: 2010 Jan 10
+    drug_strength_form: 10 mg/ml Spray
+    instructions: instr. stadol
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '5907'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 20
+    latest: true
+    drug_strength_form_C: '665409'
+    why_stopped: 
+    expire_date_ET: 1262750007296
+    drug_use_status: Active
+    expire_date_HL7: 2010/01/06
+    drug_use_status_C: DRG-A
+    name_and_route: Talc (Other)
+    why_stopped_C: 
+    expire_date: 2010 Jan 6
+    drug_strength_form: 100 mg/ml Pwdr Spray
+    instructions: instr. talc
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '3858'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 27
+    latest: true
+    drug_strength_form_C: '102740'
+    why_stopped: 
+    expire_date_ET: 1271739973632
+    drug_use_status: Active
+    expire_date_HL7: 2010/04/20
+    drug_use_status_C: DRG-A
+    name_and_route: TICAR (Injectable)
+    why_stopped_C: 
+    expire_date: 2010 Apr 20
+    drug_strength_form: 385 mg/ml Sol
+    instructions: instr. ticar
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '3976'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 22
+    latest: true
+    drug_strength_form_C: '210139'
+    why_stopped: 
+    expire_date_ET: 1267419971584
+    drug_use_status: Active
+    expire_date_HL7: 2010/03/01
+    drug_use_status_C: DRG-A
+    name_and_route: VELBAN (Injectable)
+    why_stopped_C: 
+    expire_date: 2010 Mar 1
+    drug_strength_form: 0.2 mg/ml Sol
+    instructions: instr. velban
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '1902'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 23
+    latest: true
+    drug_strength_form_C: '284421'
+    why_stopped: 
+    expire_date_ET: 1265519951872
+    drug_use_status: Active
+    expire_date_HL7: 2010/02/07
+    drug_use_status_C: DRG-A
+    name_and_route: WELCHOL (Oral-pill)
+    why_stopped_C: 
+    expire_date: 2010 Feb 7
+    drug_strength_form: 625 mg Tabs
+    instructions: instr. welchol
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '2347'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 24
+    latest: true
+    drug_strength_form_C: '315175'
+    why_stopped: 
+    expire_date_ET: 1280889978880
+    drug_use_status: Active
+    expire_date_HL7: 2010/08/04
+    drug_use_status_C: DRG-A
+    name_and_route: Yellow phenolphthalein (Other)
+    why_stopped_C: 
+    expire_date: 2010 Aug 4
+    drug_strength_form: 97.2 mg Chewing Gum
+    instructions: instr. yellow phenolphthalein
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '2392'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 52
+    latest: true
+    drug_strength_form_C: 
+    why_stopped: 
+    expire_date_ET: 
+    drug_use_status: Active
+    expire_date_HL7: 
+    drug_use_status_C: DRG-A
+    name_and_route: WYMOX (Oral-pill)
+    why_stopped_C: 
+    expire_date: 
+    drug_strength_form: 
+    instructions: 
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '4394'
+    drug_start: 
+    drug_start_ET: 
+    drug_start_HL7: 
+    version_date: 2011-07-15 16:16:28.000000000 -04:00
+    deleted_at: 
+  phr_immunizations: []
+  phr_conditions:
+  - profile_id: 3312
+    record_id: 1
+    latest: true
+    present: Active
+    when_started_HL7: 2008/11/14
+    problem_C: 
+    when_started_ET: 1226640064512
+    present_C: DRG-A
+    prob_desc: comments for renal artery stenosis
+    problem: Renal Artery Stenosis
+    when_started: 2008 Nov 14
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 2
+    latest: true
+    present: Active
+    when_started_HL7: 2008/10/18
+    problem_C: 
+    when_started_ET: 1224300036096
+    present_C: DRG-A
+    prob_desc: comments for kidney stones
+    problem: Kidney Stones
+    when_started: 2008 Oct 18
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 3
+    latest: true
+    present: Active
+    when_started_HL7: 2007/06/06
+    problem_C: 
+    when_started_ET: 1181100015616
+    present_C: DRG-A
+    prob_desc: comments for ankle/foot pain
+    problem: Ankle/Foot Pain
+    when_started: 2007 Jun 6
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 4
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/25
+    problem_C: 
+    when_started_ET: 1232859955200
+    present_C: DRG-A
+    prob_desc: comments for talus fracture
+    problem: Talus Fracture
+    when_started: 2009 Jan 25
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 5
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/24
+    problem_C: 
+    when_started_ET: 1232770039808
+    present_C: DRG-A
+    prob_desc: comments for sarcoma
+    problem: Sarcoma
+    when_started: 2009 Jan 24
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 6
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/23
+    problem_C: 
+    when_started_ET: 1232689954816
+    present_C: DRG-A
+    prob_desc: comments for unstable angina
+    problem: Unstable Angina
+    when_started: 2009 Jan 23
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 7
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/22
+    problem_C: 
+    when_started_ET: 1232600039424
+    present_C: DRG-A
+    prob_desc: comments for gastric varices
+    problem: Gastric Varices
+    when_started: 2009 Jan 22
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 8
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/21
+    problem_C: 
+    when_started_ET: 1232509992960
+    present_C: DRG-A
+    prob_desc: comments for warts
+    problem: Warts
+    when_started: 2009 Jan 21
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 9
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/20
+    problem_C: 
+    when_started_ET: 1232430039040
+    present_C: DRG-A
+    prob_desc: comments for xanthoma
+    problem: Xanthoma
+    when_started: 2009 Jan 20
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 10
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/19
+    problem_C: 
+    when_started_ET: 1232339992576
+    present_C: DRG-A
+    prob_desc: comments for jaundice
+    problem: Jaundice
+    when_started: 2009 Jan 19
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 11
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/18
+    problem_C: 
+    when_started_ET: 1232249946112
+    present_C: DRG-A
+    prob_desc: comments for zollinger ellison syndrome
+    problem: Zollinger Ellison Syndrome
+    when_started: 2009 Jan 18
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 13
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/15
+    problem_C: 
+    when_started_ET: 1231999991808
+    present_C: DRG-A
+    prob_desc: comments for bladder mass
+    problem: Bladder Mass
+    when_started: 2009 Jan 15
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 14
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/14
+    problem_C: 
+    when_started_ET: 1231909945344
+    present_C: DRG-A
+    prob_desc: comments for cellulitis
+    problem: Cellulitis
+    when_started: 2009 Jan 14
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 15
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/13
+    problem_C: 
+    when_started_ET: 1231820029952
+    present_C: DRG-A
+    prob_desc: comments for antrum deformed
+    problem: Antrum Deformed
+    when_started: 2009 Jan 13
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 16
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/12
+    problem_C: 
+    when_started_ET: 1231739944960
+    present_C: DRG-A
+    prob_desc: comments for pleural effusion
+    problem: Pleural Effusion
+    when_started: 2009 Jan 12
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 17
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/11
+    problem_C: 
+    when_started_ET: 1231650029568
+    present_C: DRG-A
+    prob_desc: comments for false teeth
+    problem: False Teeth
+    when_started: 2009 Jan 11
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 18
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/10
+    problem_C: 
+    when_started_ET: 1231559983104
+    present_C: DRG-A
+    prob_desc: comments for glaucoma
+    problem: Glaucoma
+    when_started: 2009 Jan 10
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 19
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/09
+    problem_C: 
+    when_started_ET: 1231480029184
+    present_C: DRG-A
+    prob_desc: comments for hiv exposure
+    problem: HIV Exposure
+    when_started: 2009 Jan 9
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 20
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/08
+    problem_C: 
+    when_started_ET: 1231389982720
+    present_C: DRG-A
+    prob_desc: comments for jaundice
+    problem: Jaundice
+    when_started: 2009 Jan 8
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 21
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/07
+    problem_C: 
+    when_started_ET: 1231299936256
+    present_C: DRG-A
+    prob_desc: comments for siadh
+    problem: SIADH
+    when_started: 2009 Jan 7
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 22
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/06
+    problem_C: 
+    when_started_ET: 1231219982336
+    present_C: DRG-A
+    prob_desc: comments for kidney cancer
+    problem: Kidney cancer
+    when_started: 2009 Jan 6
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 23
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/05
+    problem_C: 
+    when_started_ET: 1231129935872
+    present_C: DRG-A
+    prob_desc: comments for laceration
+    problem: Laceration
+    when_started: 2009 Jan 5
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 24
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/04
+    problem_C: 
+    when_started_ET: 1231049981952
+    present_C: DRG-A
+    prob_desc: comments for morbid obesity
+    problem: Morbid Obesity
+    when_started: 2009 Jan 4
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 25
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/03
+    problem_C: 
+    when_started_ET: 1230959935488
+    present_C: DRG-A
+    prob_desc: comments for calcified hilar node
+    problem: Calcified Hilar Node
+    when_started: 2009 Jan 3
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 26
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/02
+    problem_C: 
+    when_started_ET: 1230870020096
+    present_C: DRG-A
+    prob_desc: comments for optic atrophy
+    problem: Optic Atrophy
+    when_started: 2009 Jan 2
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 27
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/01
+    problem_C: 
+    when_started_ET: 1230789935104
+    present_C: DRG-A
+    prob_desc: comments for plantar fasciitis
+    problem: Plantar Fasciitis
+    when_started: 2009 Jan 1
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 28
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/30
+    problem_C: 
+    when_started_ET: 1230609973248
+    present_C: DRG-A
+    prob_desc: comments for quadriplegia
+    problem: Quadriplegia
+    when_started: 2008 Dec 30
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 29
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/29
+    problem_C: 
+    when_started_ET: 1230530019328
+    present_C: DRG-A
+    prob_desc: comments for rabies
+    problem: Rabies
+    when_started: 2008 Dec 29
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 30
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/28
+    problem_C: 
+    when_started_ET: 1230439972864
+    present_C: DRG-A
+    prob_desc: comments for sleep apnea
+    problem: Sleep Apnea
+    when_started: 2008 Dec 28
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 31
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/27
+    problem_C: 
+    when_started_ET: 1230350057472
+    present_C: DRG-A
+    prob_desc: comments for hemothorax
+    problem: Hemothorax
+    when_started: 2008 Dec 27
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 32
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/26
+    problem_C: 
+    when_started_ET: 1230269972480
+    present_C: DRG-A
+    prob_desc: comments for upper respiratory infection
+    problem: Upper Respiratory Infection
+    when_started: 2008 Dec 26
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 33
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/25
+    problem_C: 
+    when_started_ET: 1230180057088
+    present_C: DRG-A
+    prob_desc: comments for vomiting
+    problem: Vomiting
+    when_started: 2008 Dec 25
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 34
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/24
+    problem_C: 
+    when_started_ET: 1230090010624
+    present_C: DRG-A
+    prob_desc: comments for weight loss
+    problem: Weight Loss
+    when_started: 2008 Dec 24
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 35
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/23
+    problem_C: 
+    when_started_ET: 1230010056704
+    present_C: DRG-A
+    prob_desc: comments for xanthelasma
+    problem: Xanthelasma
+    when_started: 2008 Dec 23
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 36
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/22
+    problem_C: 
+    when_started_ET: 1229920010240
+    present_C: DRG-A
+    prob_desc: comments for atrial septal defect
+    problem: Atrial Septal Defect
+    when_started: 2008 Dec 22
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 37
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/21
+    problem_C: 
+    when_started_ET: 1229840056320
+    present_C: DRG-A
+    prob_desc: comments for alkaptonuria
+    problem: Alkaptonuria
+    when_started: 2008 Dec 21
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 38
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/20
+    problem_C: 
+    when_started_ET: 1229750009856
+    present_C: DRG-A
+    prob_desc: comments for amnesia
+    problem: Amnesia
+    when_started: 2008 Dec 20
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 39
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/19
+    problem_C: 
+    when_started_ET: 1229659963392
+    present_C: DRG-A
+    prob_desc: comments for lymphoma
+    problem: Lymphoma
+    when_started: 2008 Dec 19
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 40
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/18
+    problem_C: 
+    when_started_ET: 1229580009472
+    present_C: DRG-A
+    prob_desc: comments for amnesia
+    problem: Amnesia
+    when_started: 2008 Dec 18
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 41
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/17
+    problem_C: 
+    when_started_ET: 1229489963008
+    present_C: DRG-A
+    prob_desc: comments for neralgia
+    problem: Neuralgia
+    when_started: 2008 Dec 17
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 42
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/16
+    problem_C: 
+    when_started_ET: 1229400047616
+    present_C: DRG-A
+    prob_desc: comments for hip pain
+    problem: Hip Pain
+    when_started: 2008 Dec 16
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 43
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/15
+    problem_C: 
+    when_started_ET: 1229319962624
+    present_C: DRG-A
+    prob_desc: comments for back pain
+    problem: Back Pain
+    when_started: 2008 Dec 15
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 44
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/14
+    problem_C: 
+    when_started_ET: 1229230047232
+    present_C: DRG-A
+    prob_desc: comments for chest pain
+    problem: Chest Pain
+    when_started: 2008 Dec 14
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 45
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/13
+    problem_C: 
+    when_started_ET: 1229140000768
+    present_C: DRG-A
+    prob_desc: comments for arm pain
+    problem: Arm Pain
+    when_started: 2008 Dec 13
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 46
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/12
+    problem_C: 
+    when_started_ET: 1229060046848
+    present_C: DRG-A
+    prob_desc: comments for leg pain
+    problem: Leg Pain
+    when_started: 2008 Dec 12
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 47
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/11
+    problem_C: 
+    when_started_ET: 1228970000384
+    present_C: DRG-A
+    prob_desc: comments for muscle spasm
+    problem: Muscle Spasm
+    when_started: 2008 Dec 11
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 48
+    latest: true
+    present: Active
+    when_started_HL7: 2008/12/10
+    problem_C: 
+    when_started_ET: 1228890046464
+    present_C: DRG-A
+    prob_desc: comments for joint pain
+    problem: Joint pain
+    when_started: 2008 Dec 10
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 49
+    latest: true
+    present: Inactive
+    when_started_HL7: 2008/12/09
+    problem_C: 
+    when_started_ET: 1228800000000
+    present_C: DRG-I
+    prob_desc: comments for jaw pain
+    problem: Jaw Pain
+    when_started: 2008 Dec 9
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 50
+    latest: true
+    present: Remove
+    when_started_HL7: 2008/12/08
+    problem_C: 
+    when_started_ET: 1228709953536
+    present_C: DRG-R
+    prob_desc: comments for finger pain
+    problem: Finger Pain
+    when_started: 2008 Dec 8
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2009-01-27 11:53:39.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 12
+    latest: true
+    present: Active
+    when_started_HL7: 2009/01/17
+    problem_C: '2296'
+    when_started_ET: 1232169992192
+    present_C: DRG-A
+    prob_desc: comments for abscess
+    problem: Abscess
+    when_started: 2009 Jan 17
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2010-06-15 17:00:39.000000000 -04:00
+    deleted_at: 
+  phrs:
+  - profile_id: 3312
+    latest: true
+    birth_date: 2000 Apr 30
+    pregnant: 
+    due_date_HL7: 
+    pseudonym: Self
+    pregnant_C: 
+    gender: 
+    birth_date_HL7: '20000430'
+    race_or_ethnicity: 
+    due_date: 
+    gender_C: 
+    birth_date_ET: 957067200000
+    race_or_ethnicity_C: 
+    due_date_ET: 
+    version_date: 2010-04-30 10:58:35.000000000 -04:00
+    deleted_at: 
+  phr_surgical_histories:
+  - profile_id: 3312
+    record_id: 3
+    latest: true
+    surgery_comments: comments for lung transplant
+    surgery_type: Lung transplant
+    surgery_when_HL7: 2008/12/17
+    surgery_type_C: SURG-30
+    surgery_when: 2008 Dec 17
+    surgery_when_ET: 1229489963008
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 1
+    latest: true
+    surgery_comments: comments for colon removal
+    surgery_type: Colon removal (colectomy)
+    surgery_when_HL7: 2009/01/06
+    surgery_type_C: SURG-15
+    surgery_when: 2009 Jan 6
+    surgery_when_ET: 1231219982336
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 2
+    latest: true
+    surgery_comments: comments for kidney removal
+    surgery_type: Kidney removal (nephrectomy)
+    surgery_when_HL7: 2009/01/17
+    surgery_type_C: SURG-27
+    surgery_when: 2009 Jan 17
+    surgery_when_ET: 1232169992192
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 4
+    latest: true
+    surgery_comments: comments for hip replacement
+    surgery_type: Hip replacement
+    surgery_when_HL7: 2002/12/27
+    surgery_type_C: SURG-26
+    surgery_when: 2002 Dec 27
+    surgery_when_ET: 1040970022912
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 5
+    latest: true
+    surgery_comments: comments for knee replacement
+    surgery_type: Knee replacement
+    surgery_when_HL7: 2000/11/09
+    surgery_type_C: SURG-28
+    surgery_when: 2000 Nov 9
+    surgery_when_ET: 973746012160
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 6
+    latest: true
+    surgery_comments: comments for prostate removal
+    surgery_type: Prostate removal (prostatectomy)
+    surgery_when_HL7: 1998/02/13
+    surgery_type_C: SURG-33
+    surgery_when: 1998 Feb 13
+    surgery_when_ET: 887345971200
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 7
+    latest: true
+    surgery_comments: comments for anesthesia reaction
+    surgery_type: Anesthesia reaction
+    surgery_when_HL7: 2008/04/01
+    surgery_type_C: SURG-02
+    surgery_when: 2008 Apr 1
+    surgery_when_ET: 1207020027904
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 8
+    latest: true
+    surgery_comments: comments for appendectomy
+    surgery_type: Appendectomy
+    surgery_when_HL7: 2007/12/23
+    surgery_type_C: SURG-04
+    surgery_when: 2007 Dec 23
+    surgery_when_ET: 1198389985280
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 9
+    latest: true
+    surgery_comments: comments for bladder removal
+    surgery_type: Bladder removal (cystectomy)
+    surgery_when_HL7: 2007/11/03
+    surgery_type_C: SURG-05
+    surgery_when: 2007 Nov 3
+    surgery_when_ET: 1194060021760
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 10
+    latest: true
+    surgery_comments: comments for bone marrow transplant
+    surgery_type: Bone marrow transplant
+    surgery_when_HL7: 2007/10/04
+    surgery_type_C: SURG-07
+    surgery_when: 2007 Oct 4
+    surgery_when_ET: 1191470039040
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 11
+    latest: true
+    surgery_comments: comments for brain surgery
+    surgery_type: Brain Surgery (craniotomy)
+    surgery_when_HL7: 2007/09/24
+    surgery_type_C: SURG-08
+    surgery_when: 2007 Sep 24
+    surgery_when_ET: 1190609944576
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 12
+    latest: true
+    surgery_comments: comments for carotid surgery
+    surgery_type: Carotid surgery (endarterectomy)
+    surgery_when_HL7: 2007/09/14
+    surgery_type_C: SURG-11
+    surgery_when: 2007 Sep 14
+    surgery_when_ET: 1189740019712
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 13
+    latest: true
+    surgery_comments: comments for cesarean section
+    surgery_type: Cesarean section
+    surgery_when_HL7: 2007/09/04
+    surgery_type_C: SURG-14
+    surgery_when: 2007 Sep 4
+    surgery_when_ET: 1188880056320
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 14
+    latest: true
+    surgery_comments: comments for coronary artery bypass surgery
+    surgery_type: Coronary artery bypass surgery
+    surgery_when_HL7: 2007/08/25
+    surgery_type_C: SURG-17
+    surgery_when: 2007 Aug 25
+    surgery_when_ET: 1188010000384
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 15
+    latest: true
+    surgery_comments: comments for esophageal surgery
+    surgery_type: Esophageal surgery
+    surgery_when_HL7: 2007/08/15
+    surgery_type_C: SURG-18
+    surgery_when: 2007 Aug 15
+    surgery_when_ET: 1187150036992
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 16
+    latest: true
+    surgery_comments: comments for gall bladder removal
+    surgery_type: Gall bladder removal (cholecystectomy)
+    surgery_when_HL7: 2007/08/05
+    surgery_type_C: SURG-19
+    surgery_when: 2007 Aug 5
+    surgery_when_ET: 1186289942528
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 17
+    latest: true
+    surgery_comments: comments for head and neck surgery for cancer
+    surgery_type: Head and neck surgery for cancer
+    surgery_when_HL7: 2007/07/26
+    surgery_type_C: SURG-20
+    surgery_when: 2007 Jul 26
+    surgery_when_ET: 1185420017664
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 18
+    latest: true
+    surgery_comments: comments for heart pacemker implant
+    surgery_type: Heart pacemaker implant
+    surgery_when_HL7: 2007/07/16
+    surgery_type_C: SURG-22
+    surgery_when: 2007 Jul 16
+    surgery_when_ET: 1184560054272
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 19
+    latest: true
+    surgery_comments: comments for heart valve replacement
+    surgery_type: Heart valve replacement
+    surgery_when_HL7: 2007/07/06
+    surgery_type_C: SURG-23
+    surgery_when: 2007 Jul 6
+    surgery_when_ET: 1183689998336
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 20
+    latest: true
+    surgery_comments: comments for hernia repair
+    surgery_type: Hernia repair
+    surgery_when_HL7: 2007/06/26
+    surgery_type_C: SURG-25
+    surgery_when: 2007 Jun 26
+    surgery_when_ET: 1182830034944
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 21
+    latest: true
+    surgery_comments: comments for ovary removal
+    surgery_type: Ovary removal
+    surgery_when_HL7: 2007/06/16
+    surgery_type_C: SURG-32
+    surgery_when: 2007 Jun 16
+    surgery_when_ET: 1181969940480
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 22
+    latest: true
+    surgery_comments: comments for spine fusion, back
+    surgery_type: Spine fusion, back
+    surgery_when_HL7: 2007/06/06
+    surgery_type_C: SURG-34
+    surgery_when: 2007 Jun 6
+    surgery_when_ET: 1181100015616
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 23
+    latest: true
+    surgery_comments: comments for thyroid removal
+    surgery_type: Thyroid removal (thyroidectomy)
+    surgery_when_HL7: 2007/05/27
+    surgery_type_C: SURG-36
+    surgery_when: 2007 May 27
+    surgery_when_ET: 1180240052224
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 24
+    latest: true
+    surgery_comments: comments for tooth implant
+    surgery_type: Tooth implant
+    surgery_when_HL7: 2007/05/07
+    surgery_type_C: SURG-38
+    surgery_when: 2007 May 7
+    surgery_when_ET: 1178510032896
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  - profile_id: 3312
+    record_id: 25
+    latest: true
+    surgery_comments: comments for uterus removal
+    surgery_type: Uterus removal, Total (hysterectomy)
+    surgery_when_HL7: 2007/06/06
+    surgery_type_C: SURG-41
+    surgery_when: 2007 Jun 6
+    surgery_when_ET: 1181100015616
+    version_date: 2009-01-27 11:53:40.000000000 -05:00
+    deleted_at: 
+  phr_medical_contacts: []
+  date_reminders: []
+  reminder_options: []
+  phr_notes: []

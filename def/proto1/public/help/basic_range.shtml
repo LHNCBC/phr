@@ -1,0 +1,19 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Range</h1>
+		<p>
+    Enter or select the normal range for the test value, if known. </p>
+<p>Reference ranges or "reference intervals" 
+	define the values that are either statistically abnormal or not healthy. 
+	Test results within the range are considered normal. </p>
+<p>
+     
+<ul>
+                 <li>Either a blank field, a standard normal range, or a drop-down list of appropriate ranges will be displayed. 
+<li>If only one normal range is possible, the form field will be pre-filled and you will not be able to type within the field.</li>
+ <li>If the field contains a drop-down list of ranges, select the units reported in the test results from the list. Begin typing the range measurement to see a list of commonly 
+		used measurement units. </li>
+<li>You may also enter your own reference range for the test by clicking on the field and entering your own range. 
+</ul>
+</p>
+<!--#include virtual="help_footer.shtml" -->

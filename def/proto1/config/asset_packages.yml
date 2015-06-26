@@ -1,0 +1,12 @@
+--- 
+stylesheets: 
+- base:
+  - common
+  - validation
+  - button
+  - lgeditbox
+  - calendar-system
+  - auto_completion
+  - horizontalFieldGroup
+  - date
+  - panel

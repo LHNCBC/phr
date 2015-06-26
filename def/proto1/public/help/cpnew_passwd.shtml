@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>New Password</h1>
+		<p>
+		Please enter your new password. See
+		<a href="/help/password.shtml"> password assistance </a> 
+		for password guidelines. 
+    </p>  
+	<p>
+	<a href="/help/no_personal_identifiers.shtml">Please do not enter personal identifiers in this field.</a>
+	</p>
+
+    
+<!--#include virtual="help_footer.shtml" -->

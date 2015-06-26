@@ -1,0 +1,713 @@
+/**
+ * Main CSS file for the Data Entry Framework generated forms.
+ */
+ 
+ /*** General Settings **/
+ 
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.screen_reader_only {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  position: fixed;
+  left: -1000px;
+  top: -1000px;
+}
+
+/* The flash movie for the sound manager, which takes up 1 square pixel. */
+.movieContainer {
+  top: 0;
+  z-index: -1;
+}
+
+.flash_object {
+  height: 0;
+}
+
+#formContent.full_banner {
+  background-color: #FFF;
+  background: #fff url(<%= asset_path "phr-body-gradient.png" %>) 0 0 repeat-x;
+  margin: 0;
+}
+#formContent.simple_banner {
+  background-color: #FFF;
+  background: #fff url(<%= asset_path "phr-body-gradient.png" %>) 0 -44px repeat-x;
+  margin: 0;
+}
+
+
+/* Default Font.  We include the textarea to override the fixed width default
+*/
+body,
+input,
+textarea {
+  font-size: 14.4px;
+  font-family: Arial;
+  margin: 0;
+} 
+
+h1, 
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.noborder {
+border: 0 solid #73A0C8;
+}
+
+
+
+/**** Page Banner components that are included on all but the login page. ****/
+
+/* Includes the installation logo on the white background that runs across
+   the top of the page.  Does NOT include the form header that runs across the 
+   very top (see fe_form_header) nor the text on the right hand side of the
+   banner (see hdr_banner_img)
+ */
+div#form_hdr_phr.full_banner {
+  background: url(<%= asset_path "org_banner.png" %>) 40px 15px no-repeat;
+  display: block;
+  height: 96px;
+  margin: 0 0 10px;
+}
+div#form_hdr_phr.simple_banner {
+  background: url(<%= asset_path "org_banner_s.png" %>) 20px 2px no-repeat;
+  display: block;
+  height: 48px;
+  margin: 0 0 20px 20px;
+}
+
+/* Header banner that includes the text on the right hand side of the
+   banner - Personal Health Record, etc.  Overlays the form_hdr_phr banner
+   on the right hand side.
+ */
+div#form_hdr_phr.full_banner #hdr_banner_img {
+  background: url(<%=  asset_path "phr_banner.png" %>) 96% 25px no-repeat;
+  height: 100%;
+  width: 100%;
+}
+div#form_hdr_phr.simple_banner #hdr_banner_img {
+  background: url(<%=  asset_path "phr_banner_s.png" %>) 96% no-repeat;
+  height: 100%;
+  width: 100%;
+}
+div#form_hdr_phr.full_banner #hdr_banner_img.demo {
+  background: url(<%=  asset_path "phr_banner_d.png" %>) 96% 25px no-repeat;
+}
+div#form_hdr_phr.simple_banner #hdr_banner_img.demo {
+  background: url(<%=  asset_path "phr_banner_d_s.png" %>) 96% no-repeat;
+}
+
+/* Contains the banner text and image. Overlays the form_hdr_phr banner.
+ */
+div#hdr_banner {
+  position: relative;  
+  height: 100%;
+  width: 420px;
+  float:right;
+  margin-right: 40px;
+}
+
+/* Text describing the banner.  For 508 compliance
+ */
+#hdr_banner_text {
+  position: fixed;
+  top: -200px;
+}
+
+
+/*** Miscellaneous components that are not part of the page form ***/
+
+/* Link that allows a user using a page reader (e.g. JAWS) to skip to 
+   the main content of the page.  508 compliance
+ */
+#skip_link {
+  position: fixed;
+  top: -5em;  
+}
+
+/* Page section that overlays the form.  It is activated - brought to
+   the front - when we are displaying a modal box and don't want the 
+   user to be making changes to the form that generated the modal box.
+*/
+#blinder {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  color: #26A;
+  z-index: -1;
+  opacity: 1;
+  filter: '';
+  background-color: transparent;
+}
+
+#blinder.activeBlinder {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  color: #26A;
+  z-index: 10;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  background-color: #AAA;
+}
+
+/* This is the notice that is displayed over the blinder when the blinder
+   is active, and lets the user know why they can't access the underlying form.
+ */
+#modalNotice {
+  position: fixed;
+  width: 450px;
+  height: 90px;
+  /*left: 35%;
+  top: 35%; */
+  left: 50% ;
+  margin-left: -240px ;
+  /*margin-right: auto ;*/
+  top: 50% ;
+  margin-top: -80px ;
+  background: #FFF;
+  border: 2px solid #26A;
+  font-size: 150%;
+  font-weight: 700;
+  color: #26A;
+  text-align: center;
+  z-index: 20;
+  padding: 20px;
+}
+
+/* box notifying the user that the current account is temporary */
+#temp_type_hdr {
+  text-align:center;
+  color:#FFF;
+  background:#73a0c8;
+  margin-left: 32px;
+  margin-right: 32px;
+  font-size: 120%;
+  padding: 5px;
+}
+
+
+/** Form styles **/
+
+#formContent {
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+}
+
+div#formContent ul {
+  list-style-image: none;
+}
+
+/* Style for the 'Saving ... Please Wait' box that is displayed while
+   a user-initiated save is being performed.  This is also used to display
+   the 'Loading ...' message.
+   Note 1: that the display style value is dynamically controlled.
+   Note 2: width (400) and height (80) are used in application.js and form.rhtml
+           to calculate the position of the msg box
+   Note 3: margin values are copied from previous implementation (see form.rhtml
+           on line 81)
+   Note 4: the z-index is set quite high so that the boxes do not get overlaid
+           by the jquery blinder when a jquery dialog box is in use.  lm 2/20/14
+ */
+#savingNotice, #loading_msg {
+  z-index: 125;
+  position: absolute;
+  width: 400px;
+  height: 80px;
+  margin-left: -222px;
+  margin-top: -62px;
+  left: 50%;
+  top: 50%;
+  background: #FFF;
+  border: 2px solid #26A;
+  font-size: 200%;
+  font-weight: 700;
+  color: #26A;
+  text-align: center;
+  padding: 20px;
+}
+
+/* titles */
+#form_title {
+  background-color: transparent;
+}
+#main_title {
+  font-family: "Ubuntu",Arial;
+  font-size: 28px;
+  font-weight: 400;
+  color: #333333;
+  margin-bottom: 5px;
+}
+#sub_title {
+  color: #666666;
+  font-family: "Ubuntu",Arial;
+  font-size: 14px;
+  padding: 0 0 0 2px;
+}
+
+/* form title for phr forms (phr, panel, due date and etc) */
+.fieldGroup.phr_title {
+  border: none;
+  margin: -35px 0 0 0
+}
+.fieldGroup.phr_title .field.phr_detail .static_text{
+  color: #666666;
+  font-family: "Ubuntu",Arial;
+  font-size: 15px;
+  padding: 0.4em 0 0 0;
+}
+.fieldGroup.phr_title .field.phr_name .static_text{
+  color: #333333;
+  font-family: "Ubuntu",Arial;
+  font-size: 28px;
+  margin-top: -15px;
+  padding: 0;
+}
+
+#fe_access_notice_1_1, #fe_access_notice_1 {
+  color: red;
+  font-family: "Ubuntu",Arial;
+  font-size: 15px !important;
+  font-weight: bold;
+}
+
+#fe_access_notice_1_1 {
+  margin-top: -8px;
+}
+
+div.access_notice {
+  padding-left: 0 !important;
+}
+
+/* buttons at the bottom of most pages*/
+/* save, save & close, cancel buttons at BOTTOM of page */
+#fe_button_grp_0_expcol,
+#fe_phr_save_button_grp_0_expcol{
+  border: 0 none;
+  margin-top: 30px;
+  text-align: center;
+}
+
+
+#main_form {
+  background-color: #FFF;
+  border: 7px solid rgba(0, 0, 0, 0.03);
+  border-bottom: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px 5px 0 0;
+  width: auto;
+  margin: 0 25px;
+  padding: 25px;
+}
+
+/* Expand/Collapse all section that works on the entire form */
+.expcolall{
+  clear: both;
+  color: #333333;
+  float: right;
+  font-family: "Ubuntu",Arial;
+/*  margin-bottom: 48px; */ /* changed --ye */
+  margin-top: -16px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  /*z-index: 999; */
+}
+
+.expcol_button{
+  cursor:pointer;
+}
+
+.expcol_button img{
+  margin-left:5px;
+  margin-right:10px;
+  margin-top:7px;
+}
+
+
+/***  Formatting for general field groups ***/
+
+/* Field groups can be horizontal or vertical.  See the horizontalFieldGroup.css
+   file for css specific to that type of field group.  Styles common to all
+   field groups are here.
+ */
+.fieldGroup {
+  border-top: 0 solid #73a0c8;
+  border-bottom: 0 solid #73a0c8;
+  border-left: 0 solid #73a0c8;
+  border-right: 0 solid #73a0c8;
+/* it needs to static for the answer list within a subgroup to position itself correctly. 6/7/2012, Ye */
+/*  position: relative; */
+  margin: 30px 0;
+}
+
+
+.embeddedRow .fieldGroup {
+  /*padding-top: 8px;8/
+  /*margin: 0 16px 8px 20px;*/
+  margin: 0;
+}
+
+
+.fieldGroup .fieldGroup {
+  margin-bottom: 0;
+}
+
+.fieldGroup .fieldGroup:first-child {
+  margin-top: 0;
+}
+
+.groupHeader {
+  background-color: #458AC5 !important;
+  border: 1px solid #DBDBDB;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  clear: both;
+  color: #FFF;
+  font-family: "Ubuntu",Arial;
+  font-size: 21px;
+  overflow: hidden;
+/*    width: 99.8%; */ /* why 99.8%? --ye */
+  padding: 7px 0 7px 0px;
+}
+
+/* Usually contains the top bar of the group, which includes the title and
+   often other elements.
+ */
+.groupHeader span {
+  font-weight: normal;
+  padding-left: 10px;
+}
+
+/* contains the hide/show button, sometimes other info */
+.groupHeader div.hide_show_button {
+  position: relative;
+  font-size: 15px;
+  font-weight: normal;
+} 
+
+/* Embedded groups */
+h3.groupHeader {
+  padding-bottom: 3px;
+  padding-top: 3px;
+  margin-bottom: 20px;
+}
+
+/* hide & show links in group headers - used to expand/collapse the group */
+div.hide_show_button {
+  float: right;
+  cursor: pointer;
+}
+div.hide_show_button img {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+div.hide_show_button:hover img {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.fieldExpColDiv {
+  background-color: none;
+  clear: both;
+  margin: 0;
+  padding: 0px;
+}
+
+/*
+.fieldExpColDiv .fieldExpColDiv{
+ border:2px solid #73a0c8; 
+  margin-top:0;
+  margin-bottom:0;
+}
+*/
+/*
+div.fieldGroup div.no_group_hdr.fieldGroup div.fieldExpColDiv {
+  border-top: 2px solid #73a0c8;
+}
+*/
+
+div.no_group_hdr.fieldGroup .groupHeader,
+div.no_group_hdr.fieldGroup span.inline_fields {
+  display: none;
+}
+
+/* ===================================================== */
+
+/* General input field specifications, not specific to horizontal tables or 
+   other special constructs
+ */
+
+label {
+  margin-left: 0;
+  float: left;
+  text-align: right;
+  position: relative;
+  left: 0;
+  margin-right: 0;
+  z-index: 0;
+  font-size: 100%;
+}
+
+/* overrides font-size and font-weight above */
+div.field label {
+  font-size: 90%;
+  font-weight: 700;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+input, textarea {
+  background-color: #FFFFFF;
+  border: 1px solid #bfbfbf;
+  color: #333;
+  font-size: 90%;
+  font-weight: 700;
+  left: 0;
+  margin-left: 0;
+  padding: 0;
+  /* it needs to static for the answer list within a subgroup to position itself correctly. 7/3/2012, Ye */
+  /*  position: relative; */
+  z-index: 0;
+}
+
+div.field {
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  margin-left: 0;
+  text-align: left;
+  clear: left;
+}
+
+div.field input,
+div.field textarea {
+  font-family: Arial;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+div.field input[type=checkbox] {
+  background-color: transparent;
+  padding: 2px;
+  margin-right: 5px;
+}
+
+
+/*
+div.field textarea {
+  max-width: 85%; 
+  width: 70%;
+}
+*/
+
+/* This first input background specifier overrides a browser's attempt to 
+ * indicate fields that the browser thinks it can auto-complete.  In Firefox
+ * those fields are indicated by a yellow background.  Since those don't really 
+ * seem applicable here, we're setting the initial background color of all input 
+ * fields to white.
+ */
+input[type=text], input[type=password] {
+  background-color: #FFF !important;
+/*border: 1px solid #bfbfbf;*/
+  width: 20em;
+}
+
+input.readonly_field,
+input.readonly_field:focus {
+  background-color: transparent;
+  color: #333;
+  border: none;
+  font-weight: 400;
+}
+
+.static_text {
+  font-size: 100%;
+}
+
+.field .static_text {
+  padding: 0.4em;
+}
+
+/* Static text fields in vertical field groups need display:inline so that 
+   the help icons don't get pushed to the next line.
+ */
+.fieldGroup > .fieldExpColDiv > .static_text {
+  display: inline;
+}
+
+/* Styles used to indicate various field states */
+
+/* The style for input fields with invalid input.  */
+.invalid {
+  border: 2px solid red !important;
+}
+
+/* need modification - what?  the field?  this spec?   lm 2/6/12  */
+.error_field {
+  border: 5px solid #DC143C;
+}
+
+textarea.errReqOutline,input.errReqOutline {
+  border: 2px solid red !important;
+  padding: 3px;
+}
+
+input[type=checkbox].errReqOutline {
+  outline: 2px solid red;
+}
+
+/* outline for recovered fields */
+.recovered {
+  border: 3px solid green !important;
+  visibility: visible;
+}
+
+input.readonly_field {
+  font-weight: 400;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+/* ===================================================== */
+
+/* Tooltip specs */
+
+div.tooltip {
+  border: 0 transparent;
+  background: transparent;
+  color: InfoText;
+  font: 9pt small-caps arial, geneva, sans-serif;
+  font-style: italic;
+  text-align: left;
+  position: absolute;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+}
+
+.tipMessage {
+  background-color: #FFF;
+  position: absolute;
+  overflow: hidden;
+  font-size: .75em;
+  color: gray;
+  line-height: 150%;
+  text-align: left;
+  text-indent: 2px;
+  left: 0;
+  width: 98%;
+  height: 88%;
+  border-style: solid;
+  border-width: 1px 0 0 1px;
+  padding: 0;
+}
+
+/* div.helpImgFollows span div.tipMessage */ 
+/* could not find helpImgFollows, so removed it */
+div span div.tipMessage {
+  width: 90%;
+}
+
+div div.tipMessage,div span div.tipMessage,td span span.tipMessage {
+  width: 98%;
+}
+
+/* ===================================================== */
+
+/* Context Menu - available in horizontal tables AND in others 
+   such as the Flowsheet, which includes tables that are not generated
+   as horizontal tables.  I think.   2/6/12  lm 
+ */
+body ul.cm_default, body ul.cm_default ul {
+  border: 1px solid #838383;
+  border-radius: 3px;
+  background: #fff;
+  padding: 1px;
+}
+body ul.cm_default li {
+  background: 0;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1px solid #dfdfdf;
+  padding: 4px 17px;
+}
+body ul.cm_default li:hover {
+  background: #d0e1f0;
+}
+body ul.cm_default li:last-child {
+  border: 0;
+}
+body ul.cm_default li.separator {
+  display: none
+}
+
+/* ===================================================== */
+
+/* bullet lists, currently used by the edit form rule and edit case rule forms */
+
+div.bullet_list_column{
+  float: left;
+}
+
+div.bullet_list_column ul{
+  margin-top: 0;
+}
+
+/* ===================================================== */
+
+/* Displayed at the bottom of the field, explains symbol used to flag 
+   required fields.
+ */
+p.reqNotice {
+  float: right;
+  margin: 0 5% 0 0;
+  position: relative;
+  top: -35px;
+}
+
+/* And here's that symbol! */
+img.requiredImg {
+  border: 0 none;
+  vertical-align: middle;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+/* sort arrow */
+span.sortarrow img {
+  padding-left: 12px;
+}
+
+/* inline buttons (Research Studies, All Previous Values for test panels)*/
+span.inline_fields > button {
+  float: right;
+  height: 25px;
+  text-align: center;
+  width: 150px;
+  margin: 0px 30px 0 0;
+  padding: 0;
+}

@@ -1,0 +1,21 @@
+<%= form_tag login_path(:format=>:basic), :method=>:post%>
+  <input type="hidden" value="basic" name="page_type" />
+  <div><%=basic_text_field @login_labels['user_name'], 'fe', 'user_name_1_1'%></div>
+  <div><%=basic_password_field 'Password', 'fe', 'password_1_1'%></div>
+  <%=submit_tag 'Sign in' %>
+</form>
+<div><%= link_to 'Forgot your account ID?', recover_account_id_step_one_path %> 
+ &nbsp; <%= link_to 'Forgot your password?', reset_password_step_one_path %></div>
+<div>New to PHR? <%= link_to 'Register', account_sign_up_path %> for an account.
+<div><%= fd_static_text @login_fds['splash'] %></div>
+
+
+<div id="footer"><%= help_button '/help/user_agreement.shtml', 'User Agreement' %> &nbsp;
+ <%= help_button '/help/privacy_policy.shtml', 'Privacy Policy' %> &nbsp;
+ <%= help_button '/help/general.shtml', 'Help' %> &nbsp;
+<%= link_to 'PHR Support', new_contact_us_path %></div>
+
+<div id="mode_notice">Current page mode:  Basic HTML.
+<%=link_to 'Standard mode', login_path(:format=>'default')%>
+<%=link_to 'Mobile mode', login_path(:format=>'mobile')%></div>
+<div id="page_view" style="display:none">basic</div>

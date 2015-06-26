@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+get_next_page_url_test_one:
+  id: -1
+  redirect_url: /one/:id;edit
+get_next_page_url_test_two:
+  id: -2
+  redirect_url: /one/two
+handle_post_test_one:
+  id: -3
+  current_url:  /profiles/new
+  conditions: save_and_close=>1
+  redirect_url:  /profiles
+

@@ -1,0 +1,7 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>LOINC Number</h1>
+		<p>
+		Enter the LOINC test number if known. LOINC numbers are used by test laboratories 
+		to order and record laboratory test results. 
+	</p>
+<!--#include virtual="help_footer.shtml" -->

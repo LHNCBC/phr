@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>I Can't Remember My PHR Account ID</h1>
+<p>If you have forgotten your PHR Account ID, we can send it to the email address you supplied when you created your PHR Account. </p>
+<h3>To have your PHR Account ID sent to your email address</h3>
+<p>
+<ol>
+<li>Click the <b>Forgot your account ID?</b> link in the middle of the PHR login page and follow the steps to recover your Account ID.</li>
+<li>Supply the answers to the security questions you created answered when you established your account. </li>
+<li>If you do not have access to the email address associated with the account, send an email to us using the <b>PHR Support</b> link at the bottom of the PHR page. </li>
+</ol>
+</p>
+<!--#include virtual="help_footer.shtml" -->

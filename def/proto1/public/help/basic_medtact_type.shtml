@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medical Contact Type</h1>
+
+	<p>
+	Select a medical specialist from the list or type your own specialist description in the next field. 
+	</p> 
+	 
+
+<!--#include virtual="help_footer.shtml" -->

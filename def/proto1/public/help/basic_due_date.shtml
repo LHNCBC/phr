@@ -1,0 +1,7 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Due Date</h1>
+	
+	<p>Enter the pregnancy due date.</p>
+	
+<!--#include virtual="help_footer.shtml" -->

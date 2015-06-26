@@ -1,0 +1,21 @@
+<p>Help us keep spammers out and keep your account safe.  If you are able to read
+the two words in the picture below, please enter them in the "Challenge answer"
+field and press the "Submit" button.  If you can see the words but cannot tell
+what they are, you can use the "Get another image" link below to get a new one
+which might be more readable.  If you cannot see the images at all, use the
+"Get an audio challenge" link to get a link to an audio challege.</p>
+
+<img src="<%= @captcha_info.image_url %>"/><br>
+
+<%= form_tag captcha_answer_path, :method=>:post %>
+  <%= label_tag 'answer', 'Challenge answer' %>
+  <%= text_field_tag 'answer' %>
+  <%= hidden_field_tag 'challenge_key', @captcha_info.challenge_key %>
+  <%= submit_tag_m 'Submit' %>
+  <%= link_to_m 'Cancel', "/" %>
+</form>
+<div>
+  <%= link_to 'Get another image', captcha_path %></br>
+  <%= link_to 'Get an audio challege', captcha_audio_path %></br>
+  <%= link_to 'Help (ReCaptcha)', 'http://www.google.com/recaptcha/help', :target=>'_blank'%>
+</div>

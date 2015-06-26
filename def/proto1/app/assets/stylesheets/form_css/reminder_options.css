@@ -1,0 +1,19 @@
+/* 
+    Document   :  date_reminders
+    Created on :  Feb 9, 2012, 11:00:45 AM
+    Author     :  lmericle
+    Description:  CSS specific to the date_reminders form
+*/
+
+.fieldsTable tr.repeatingLine:nth-of-type(2n) td {
+  background: #ffffff !important;
+}
+.fieldsTable tr.repeatingLine:nth-of-type(2n+1) td {
+  background: #ecf3f8 !important;
+}
+
+.fieldsTable tr.repeatingLine td {
+  color: #333333;
+  font-size: 12px;
+  padding: 8px 7px;
+}

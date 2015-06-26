@@ -1,0 +1,26 @@
+phrs:
+  data_table: phrs
+
+phr_allergies:
+  data_table: phr_allergies
+
+phr_conditions:
+  id: -30
+  data_table: phr_conditions
+
+phr_doctor_questions:
+  data_table: phr_doctor_questions
+
+phr_drugs:
+  data_table: phr_drugs
+
+phr_immunizations:
+  data_table: phr_immunizations
+
+phr_medical_contacts:
+  data_table: phr_medical_contacts
+
+phr_surgical_histories:
+  data_table: phr_surgical_histories
+
+

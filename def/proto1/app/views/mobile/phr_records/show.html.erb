@@ -1,0 +1,19 @@
+
+<div>
+<ul data-role="listview">
+  <li><%= link_to 'Health Reminders', phr_record_reminders_path(@phr_record)  %></li>
+  <li><%= link_to 'Date Reminders', phr_record_date_reminders_path(@phr_record)  %></li>
+  <li><%= link_to 'Medical Conditions', phr_record_phr_conditions_path(@phr_record) %></li>
+  <li><%= link_to 'Drug Records', phr_record_phr_drugs_path(@phr_record) %></li>
+  <li><%= link_to 'Allergies and Other Dangerous Reactions', phr_record_phr_allergies_path(@phr_record) %></li>
+  <li><%= link_to 'Major Surgeries & Implants', phr_record_phr_surgical_histories_path(@phr_record) %></li>
+  <li><%= link_to 'Vaccinations', phr_record_phr_immunizations_path(@phr_record) %></li>
+  <li><%= link_to 'Medical Contacts', phr_record_phr_medical_contacts_path(@phr_record) %></li>
+  <li><%= link_to 'Questions to Ask Your Doctor', phr_record_phr_doctor_questions_path(@phr_record) %></li>
+  <li><%= link_to 'Notes', phr_record_phr_notes_path(@phr_record) %></li>
+  <% if @phr_record.phr.gender_C == 'F' %>
+  <li><%= link_to 'Pregnancy Status', edit_phr_phr_record_path(@phr_record) %></li>
+  <% end %>
+  <li><%= link_to PhrPanelsController::PANELS_SECTION_TITLE, phr_record_phr_panels_path(@phr_record) %></li>
+</ul>
+    </div>

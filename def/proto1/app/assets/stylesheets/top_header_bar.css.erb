@@ -1,0 +1,114 @@
+/* 
+    Document   : top_header_bar
+    Created on : Feb 2, 2012, 3:46:52 PM
+    Author     : lmericle
+    Description: css specs for the top header bar that appears on most PHR 
+                 forms - generated and non-generated.
+    This goes with the _header_template.erb file in views/form,
+    which specifies the link for it so that it's only included for forms
+    with a top header.
+*/
+
+/* Makes room for the top header bar.  Without this the banner starts
+   somewhere behind the top header bar.  Used to be in 'with_header.css'
+ */
+body {
+  margin: 30px 0 0; /* Needed in FireFox (Not sure why) (sm 9/29/09) */
+}
+
+#fe_form_header_0_expcol {
+  background: url(<%= asset_path "phr-page-header-gradient.gif" %>) repeat-x 
+              scroll 0 100% #2870AE; 
+  color: #FFF;
+  font-family: Arial;
+  font-size: 13px;
+  padding-bottom: 15px;
+  padding-top: 10px;
+	border: none;
+  z-index: 1020;
+}
+
+/* Although the .form_hdr_grp class is only applied to fe_form_header_0_expcol,
+   combining these two sets of specs doesn't seem to work. It would be great
+   if someone could make it work.   :)
+ */
+.form_hdr_grp {
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1020;
+  margin-top: 0px  !important;
+  margin-left: 0px  !important;
+  margin-right: 0px  !important;
+}
+
+/* This is the section that shows the installation and user names.
+ */
+#fe_form_header_0_expcol > div {
+  float: left;
+  margin: 0 0 0 30px;
+}
+
+/* top_utility_nav is the vertical list that shows the load time message
+   (briefly), the profile info (where applicable) and the navigation links.
+ */
+#fe_form_header_0_expcol ul.top_utility_nav {
+	float: right;
+	margin: 0;
+}
+
+#fe_form_header_0_expcol ul.top_utility_nav li {
+	background: url(<%= asset_path "phr-divider-blue.gif" %>) 100% 2px no-repeat;
+	float: left;
+	list-style: none outside none;
+	margin-right: 10px;
+	padding-right: 10px;
+  overflow: visible;
+}
+
+/* I am not convinced that this actually exists anymore, but am leaving it
+   here for now.  We should find out whether or not it really does and, 
+   if it doesn't, remove it.
+ */
+#load_time_msg {
+	font-size: 160%;
+	font-weight: 700;
+	color: #000;
+	background-color: orange;
+	padding-left: 2px;
+	padding-right: 2px;
+	position: fixed;
+	top: 6px;
+	left: 200px;
+	z-index: 5;
+	margin: 0;
+}
+
+/* This shows the time it took to load the page */
+#fe_load_time_td.load_time_msg_loaded {
+	font-size: 80%;
+	background-color: lightgray;
+}
+
+#fe_form_header_0_expcol ul.top_utility_nav li:last-child {
+	background: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* The links in the top nav bar.  I tried referencing this with 
+   #fe_form_header_0_expcol ul.top_utitlity_nav li > a but it didn't work.
+ */
+.form_hdr_fld a {
+  color: #fff;
+/*  cursor: pointer; */
+  padding-right: 0.5em;
+/*  text-decoration: underline; */
+}
+.form_hdr_fld a:hover {
+  color: #f4b000;
+  cursor: pointer;
+  text-decoration: underline;
+}
+

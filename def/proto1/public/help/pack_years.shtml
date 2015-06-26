@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Pack Years</h1>
+		<p>
+		Calculate a smoker&#39s pack years by multiplying the number of packs of cigarettes smoked per day (on average) by the number of years the patient has smoked. For example, a patient who has smoked two packs of cigarettes per day for 15 years would have smoked for 30 pack years. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

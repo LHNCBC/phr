@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>Admin: <%= controller.action_name %></title>
+  
+  <%= javascript_include_tag "manifest_jquery"%>
+  <%= javascript_include_tag "manifest_jquery_sparkline"%>
+  <%= javascript_include_tag "manifest_page_timer"%>
+  
+  <%= stylesheet_link_tag 'load_time' %>
+
+</head>
+<body id="page_timer">
+  <script type="text/javascript" charset="utf-8">
+    window._token = '<%= form_authenticity_token -%>';
+  </script>
+  <div id="main">
+  <% if flash[:notice] -%>
+    <div id="notice"><%= flash[:notice] %></div>
+  <% end -%>
+    <%= yield :layout %>
+
+  </div>
+</body>
+</html>

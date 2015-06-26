@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Question</h1>
+
+	<p>
+	Record the entire question or as much as you need to remind you about the question you want to ask.
+	</p>  
+	<p>
+		<a href="/help/no_personal_identifiers.shtml">Please do not enter personal identifiers in this field.</a>
+	</p>
+
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>Opening and Closing Sections in the PHR</h1>
+<p>
+	Expand or collapse all sections or the PHR by clicking <b>Show All</b> or <b>Hide All</b> 
+	links near the top right of the <b>Health Summary</b> page. </p>
+<p>Show or hide individual sections by clicking the <b>Show</b> or <b>Hide</b> links in the top right corner of each section.
+</p>
+<!--#include virtual="help_footer.shtml" -->

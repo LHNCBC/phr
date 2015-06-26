@@ -1,0 +1,162 @@
+# Tests to make sure the blinders are working correctly for modal popups
+# Create a new profile
+| setTimeout | 35000 |
+| open | /phr_home|
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'blinders1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 1940 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 1940 |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# open the add new test window from PHR form
+| waitForExpression | javascript{mainTestWindow = testWindow_; true} | true |
+| waitForVisible | fe_add_new_test_1_1 |
+| click | fe_add_new_test_1_1 |
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0;} | true |
+| waitForExpression | javascript{popupTestWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | true |
+
+#| waitForExpression | javascript{popupTestWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_ = popupTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *popup |
+
+# return to the PHR form and make sure the blinder comes down
+| waitForVisible | fe_close |
+| click | fe_close |
+| waitForExpression | javascript{testWindow_ = mainTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *edit |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | false |
+
+# Now try bringing it up and then cancelling the request before it completely loads
+| waitForVisible | fe_add_new_test_1_1 |
+| click | fe_add_new_test_1_1 |
+| waitForExpression | javascript{testWindow_.Def.Popups.popupWindow_.close(); true;} | true |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | false |
+
+# Now try it with the timeline/flowsheet form
+| waitForExpression | javascript{mainTestWindow = testWindow_; true} | true |
+| waitForVisible | fe_test_panel_timeline_1_1 |
+| click | fe_test_panel_timeline_1_1 |
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0;} | true |
+| waitForExpression | javascript{popupTestWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | true |
+
+| waitForExpression | javascript{testWindow_ = popupTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *popup |
+
+# return to the PHR form and make sure the blinder comes down
+| waitForVisible | fe_return_button |
+| click | fe_return_button |
+| waitForExpression | javascript{testWindow_ = mainTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *edit |
+| verifyExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | false |
+
+# Now try bringing it up and then cancelling the request before it completely loads
+# While we're here, try the operation of the blinder
+| waitForVisible | fe_test_panel_timeline_1_1 |
+| click | fe_test_panel_timeline_1_1 |
+| waitForExpression | javascript{testWindow_.Def.Popups.popupWindow_.close(); true;} | true |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | false |
+
+# Next - bring up timeline/flowsheet, then add new, check premature exit on add new
+| waitForVisible | fe_test_panel_timeline_1_1 |
+| click | fe_test_panel_timeline_1_1 |
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0;} | true |
+| waitForExpression | javascript{timelineWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | true |
+
+| waitForExpression | javascript{testWindow_ = timelineWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *popup |
+
+| waitForVisible | fe_add_new_test |
+| click | fe_add_new_test |
+| waitForExpression | javascript{testWindow_.Def.Popups.popupWindow_.close(); true;} | true |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | false |
+
+# return to the PHR form and make sure the blinder comes down
+| waitForVisible | fe_return_button |
+| click | fe_return_button |
+| waitForExpression | javascript{testWindow_ = mainTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *edit |
+| verifyExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | false |
+
+# And one more thing.  Test the blinder when going from the timeline/flowsheet
+# page when it's brought up from the phr home page.
+| waitForVisible | fe_close_top_1_1 |
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForTextPresent | Loaded in |
+
+| waitForVisible | wedgie_1 |
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | show_tests_1 |
+
+# Make sure we're on the timeline/flowsheet page
+| waitForVisible | loading_msg |
+| waitForExpression | javascript{testWindow_.location.href} | */panels |
+| waitForTextPresent | Loaded in |
+
+# bring up the add new test popup
+| waitForVisible | fe_add_new_test |
+| click | fe_add_new_test |
+
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0;} | true |
+| waitForExpression | javascript{addNewWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | true |
+| waitForExpression | javascript{timelineWindow = testWindow_; true;} | true |
+
+| waitForExpression | javascript{testWindow_ = addNewWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *popup |
+
+# now close the add new test popup
+| waitForVisible | fe_close |
+| click | fe_close |
+| waitForExpression | javascript{testWindow_ = timelineWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | */panels |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | false |
+
+# back on the timeline/flowsheet window - click on add new again and then cancel it
+| waitForVisible | fe_add_new_test |
+| click | fe_add_new_test |
+| waitForExpression | javascript{testWindow_.Def.Popups.popupWindow_.close(); true;} | true |
+| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | false |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_return_button |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |

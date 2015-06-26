@@ -1,0 +1,22 @@
+    <tr class="repeatingLine<% if @read_only_mode%> saved_row<%end
+     if labeled_fields %> labeled_fields<%end%>"
+     rowId="<%=row_id%>" 
+     suffix="<%=row_suffix%>" style="<% if row_id==0
+     %>display: none; <% end %>width: 99%">
+      <% row_fields.each_with_index do |rf, i| %>
+              
+      <td <% if hidden_cols[i] %> style="width: 0; display: none;"<%end%>
+         <% if !tagAttrs[i].empty? %>
+            <% tagAttrs[i].each do |k, v| %> <%=k%>="<%=v%>" <%end end
+          %> ><%= rf %></td>
+      <% end %>
+    </tr>
+    <% embedded_rows.each do |er| %>
+    <tr class="embeddedRow<% if @read_only_mode%> saved_row<%end%>"
+     rowId="<%=row_id%>"<% if row_id==0 %> style="display: none"<% end %>>
+     <td colspan="<%= num_cols %>">
+       <%= er %>
+     </td>
+    </tr>
+    <% end %>
+

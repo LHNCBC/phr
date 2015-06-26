@@ -1,0 +1,38 @@
+/* CSS for the rxterms_demo form - which is an NLM level form */
+#form_title, #load_time_msg, #fe_drugs_0 h2, #splitButton {
+  display: none;
+}
+
+#fe_drugs_0_expcol, #vFormPane, #formContent {
+  border: none;
+}
+
+#fe_drugs_0_tbl {
+  width: 100%;
+}
+
+#formContent {
+  margin: 0px;
+}
+
+#header td {
+  border: 0;
+}
+
+body {
+  width: auto;
+  height: auto;
+}
+
+#query {
+  width: auto;
+  font-weight: normal;
+  font-size: 11px;
+  color: black !important;
+  background-color: white !important;
+}
+
+#main_form {
+  border: 0;
+  padding: 0;
+}

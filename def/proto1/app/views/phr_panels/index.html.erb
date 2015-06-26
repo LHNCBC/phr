@@ -1,0 +1,32 @@
+<%= link_to 'New', new_phr_record_phr_panel_path(@phr_record) %>
+&nbsp;
+<%= link_to 'Flowsheet', flowsheet_phr_record_phr_panels_path(@phr_record) %>
+&nbsp;
+<%= link_to 'Back to PHR', phr_record_path(@phr_record)%>
+&nbsp;
+<%= help_button get_help_url(@section_fd) %>
+
+<% if @saved_panel_info %>
+  <ul>
+    <% @saved_panel_info.each do |sp| %>
+      <li><%= link_to sp.panel_name,
+                phr_record_phr_panels_path(:panel=>sp.loinc_num) %>
+        <% if @order_loinc_num && @order_loinc_num==sp.loinc_num %>
+          <table border="1">
+          <thead><tr><th>Date</th><th>View / Edit</th><th>Delete?</th>
+            </tr></thead><tbody>
+          <% @panel_orders.each do |obr| %>
+              <tr>
+                <td><%= obr.test_date %></td>
+                <td><%= link_to 'View / Edit', phr_record_phr_panel_path(@phr_record, obr) %></td>
+                <td><%= button_to_wo_js 'Delete', phr_record_phr_panel_path(
+                     @phr_record, obr),
+                     :confirm => 'Are you sure?', :method => :delete %></td>
+              </tr>
+          <% end  %>
+          </tbody></table>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,163 @@
+#!/depot/packages/ruby1.9/bin/ruby
+require 'fileutils'
+
+RAILS_VERSION = ARGV[0]
+KEEP_MYSQL = ARGV[1]=='--keep_mysql' # whether to uninstall the existing mysql
+
+def show_message(msg)
+  puts "######### " + msg
+end
+
+
+def process_step(str, &blk)
+  show_message str
+  question = "\tDo you want to do it now (default is yes)? y(es), n(o):"
+  print question
+  ans = $stdin.gets
+  ans_c = ans.strip.downcase
+  if ans_c == "y" or ans_c == "yes" or ans == "\n"
+    yield 
+  else
+    show_message "This process was skipped."
+  end
+end
+
+
+def switch_db_adapter (msg)
+  new_adapter = "mysql" + (RAILS_VERSION == "2" ? "" : "2")
+  show_message msg + " ; new adapter is: #{new_adapter}"
+  path = File.expand_path("../../config/database.yml", __FILE__)
+  str = File.read(path).split("\n").map do |row|
+     row.match(/^\s*adapter:/) ? "  adapter: #{new_adapter}" : row
+  end.join("\n")
+  File.write(path,  str)
+end
+
+
+def env_setup msg
+  env_info = "Rails version is: "
+  env_info <<  `rails -v`  
+  show_message env_info
+  question = "Is the Rails version correct? Y(es); N(o): "
+  print question
+  ans = $stdin.gets
+  puts
+  ans_c = ans.strip.downcase
+  if ans_c == "y" or ans_c == "yes" or ans == "\n"
+    puts "Continue switching processes ..." 
+  else
+    show_message "Please run following scripts to setup environment:  tsch; source $DEF_DIR/cshrc.def; rails -v;"
+    raise "Rails environment needs to be refreshed."
+  end
+end
+
+
+def db_switch(msg)
+  show_message msg 
+  
+  # reload the base db
+  str = "cd $DEF_DIR/proto1; bundle exec rake def:reload_db"
+  show_message str    
+  system(str)
+  
+  # run db:migrate
+  str = "cd $DEF_DIR/proto1; bundle exec rake db:migrate"
+  show_message str    
+  system(str)
+  
+  # install third_party stuffs
+  str = "cd $DEF_DIR/proto1; bundle exec rake def:third_party"
+  show_message str    
+  system(str)
+end
+
+
+def install_mysql msg
+  show_message msg
+  if !KEEP_MYSQL
+    sys_command = %w(sudo rpm -ev --allmatches 
+            MySQL-devel-5.5.28-1.rhel5 
+            MySQL-shared-compat-5.5.28-1.rhel5 
+            MySQL-client-5.5.28-1.rhel5 
+            MySQL-shared-5.5.28-1.rhel5).join(" ")
+    show_message "removing existing MySQL ... \n #{sys_command}"
+    system(sys_command)
+  end
+  
+  # install 32 or 64 bit mysql
+  if RAILS_VERSION == "2" 
+    bit, b = "32", "i386"
+  elsif RAILS_VERSION == "3"
+    bit, b = "64", "x86_64"
+  else
+   raise "Unknow Rails version :#{RAILS_VERSION}"    
+  end
+  
+  %w(client devel shared shared-compat).each do |e|
+    sys_command = ("sudo rpm -i /proj/defExtra/mysql_rpms/MySQL-#{e}-5.5.28-1.rhel5.#{b}.rpm")
+#    sys_command = ("sudo rpm -i ~/Downloads/MySQL-#{e}-5.5.28-1.rhel5.#{b}.rpm")
+    show_message "install #{bit} bit MySQL #{sys_command}"
+    system(sys_command)
+  end
+end
+
+def stop_apache msg
+  show_message msg
+  sys_cmd = "$DEF_DIR/apache/apache.sh stop"
+  puts sys_cmd
+  system(sys_cmd) 
+end
+
+def start_apache msg
+  show_message msg
+  sys_cmd = "$DEF_DIR/apache/apache.sh start"
+  puts sys_cmd
+  system(sys_cmd)
+end
+
+def rebuild_index msg
+  show_message msg
+  cmd = "cd $DEF_DIR/proto1; bundle exec rake def:rebuild_ferret_index"
+  puts cmd
+  system(cmd)
+end
+
+# Switches between rails 2.3 and 3.2 modes
+rails_ver = case RAILS_VERSION 
+when"2" 
+  "2.3"
+when "3"
+  "3.2.3"
+else
+  raise "NO RAILS VERSION ERROR FOUND: Please specify the version parameter as  script/switch_rails_version 2"
+end
+
+show_message "switching to Rails #{rails_ver} now ..."
+case RAILS_VERSION 
+when "3"
+  stop_apache "Stopping the server ..."
+  env_setup "Set up environment"  
+  install_mysql "Install MySQL now ..."
+  switch_db_adapter "Switch database adapter ..."
+  db_switch "Reload database, run db:migrate and install third_party stuffs ..."
+  # rebuild_index "Rebuilding ferret index ..."
+  start_apache "Starting the server ..."
+  puts 
+  puts "Remember to run rehash to update your paths for ruby, rake, etc."
+when "2"
+  install_mysql "Install MySQL now ..."
+  switch_db_adapter "Switch database adapter ..."
+  puts "Please do the following things after checkout rails 2 branch: "
+  puts " 1) source $DEF_DIR/cshrc.def"
+  puts " 2) rake def:reload_db"
+  puts " 3) rake db:migrate"
+  puts " 4) rake def:third_party"
+  puts " 5) rehash"
+  puts " 6) $DEF_DIR/apache/apache.sh stop; $DEF_DIR/apache/apache.sh start"
+  puts '... or, as one long command:  git checkout [branchname]; source $DEF_DIR/cshrc.def; rake def:reload_db; rake db:migrate; rake def:third_party; rehash; $DEF_DIR/apache/apache.sh stop; $DEF_DIR/apache/apache.sh start'
+end
+  
+
+  
+
+

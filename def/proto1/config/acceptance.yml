@@ -1,0 +1,4 @@
+# Configuration for the Acceptance Test Controller
+
+# The port used for reporting results to the "rake acceptance_tests" command.
+report_port: 4203

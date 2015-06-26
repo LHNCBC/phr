@@ -1,0 +1,5 @@
+  <div><%=fd_date_field @fds['note_date'], @data_rec %></div>
+  <div><%=fd_text_field @fds['note_text'], @data_rec %></div>
+  <br>
+  <%= submit_tag 'Save' %>
+  <%= link_to 'Cancel', phr_record_phr_notes_path %>

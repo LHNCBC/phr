@@ -1,0 +1,145 @@
+/* CSS for the resisable button.  Based on:
+ * http://www.filamentgroup.com/lab/update_styling_the_button_element_with_css_sliding_doors_now_with_image_spr/
+ */
+
+/* REQUIRED BUTTON STYLES: */
+button {
+  border: 0 none;
+  cursor: pointer;
+  overflow: visible; /* removes extra side padding in IE */
+  padding: 0;
+  position: relative;
+}
+
+button[disabled] {
+  cursor: auto;
+}
+
+button::-moz-focus-inner {
+  border: none;  /* overrides extra padding in Firefox */
+  padding: 0px;
+  margin: 0px;
+}
+
+button span {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+}
+
+/* OPTIONAL BUTTON STYLES for applying custom look and feel: */
+/* The basic rounded button style.  Includes some jquery classes to override
+   buttons that have those. */
+button.rounded,
+button.rounded.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+  border: 1px solid #1D577B;
+  border-radius: 5px;
+  background-color: #F49E00;
+  background: linear-gradient(#FEA600 0%, #F49E00 50%, #F39300 51%, #E68C00 100%);
+  text-align: center;
+  padding: 0;
+}
+
+button.rounded span {
+  border: 1px solid #F7DB9F;
+  border-radius: 4px;
+  color: #fff;
+  font-family: "Ubuntu",Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0.25em 1em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+button.rounded:hover,
+button.submitBtnHover,
+button.rounded.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:hover,
+button.rounded.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only:focus,
+button.rounded:focus { /* the redundant class is used to apply the hover state with a script */
+  border-color: #9FA4A6;
+  background-color: #D98C00;
+  background: linear-gradient(#E39300 0%, #D98C00 50%, #D68100 51%, #CB7900 100%);
+}
+
+button.rounded:hover span,
+button.submitBtnHover,
+button.rounded:focus span {
+  border-color: #FDDDA8;
+}
+
+button.rounded[disabled] { /* the redundant class is used to apply the hover state with a script */
+  border-color: #9FA4A6;
+  background-color: #B5B7B7;
+  background: linear-gradient(#B9BABB 0%, #B5B7B7 50%, #B0B0B0 51%, #AEAEAE 100%);
+}
+
+button.rounded[disabled] span {
+  border-color: #E9E9E9;
+}
+
+/* Styles for the button that appears in header bars (e.g. Research Studies) */
+button.header_button {
+  border: 2px solid #9AB4C8; /* color speficied without alpha for browsers that cannot do that */
+  border-color: rgba(154, 180, 200, 0.5);
+  background-color: #285C87;
+  background-image: linear-gradient(#376A92 0%, #346891 50%, #285C87 51%, #265A86 100%);
+}
+
+button.header_button:hover, button.header_button:focus {
+  border-color: #FDD48C;
+  background-color: #EA8F00;
+  background-image: linear-gradient(#FAA91B 0%, #EE9A18 50%, #EA8F00 51%, #E88D03 100%);
+}
+
+button.header_button > span {
+  color: #FFF;
+  font-family: "Ubuntu",Arial;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  height: auto;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+/* End of styles for the button that appears in header bars (e.g. Research Studies) */
+
+.hdr_url_btn {
+  background: transparent ;
+}
+.hdr_url_btn span {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 80% ;
+  font-weight: bold ;
+}
+
+label.radio_button {
+  float: none;
+  margin-right: 20px;
+}
+input.radio_button {
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+
+/* buttons in the group header */
+.groupHeader span button {
+  margin-right: 65px !important;
+}
+
+
+/* superscript for message numbers*/
+.super {
+  color: red;
+  display: inline;
+  font-size: 80%;
+  position: relative;
+  top: -0.5em;
+  font-weight: bold;
+  padding-right: 3px;
+}

@@ -1,0 +1,9 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Pregnant</h1>
+		<p>
+		Select a pregnancy status by choosing <b>Yes</b> or <b>No</b> from the drop-down list. </p>
+<p>See NLM's MedlinePlus Web page for trusted information on <a href="http://www.nlm.nih.gov/medlineplus/pregnancy.html">pregnancy</a>.
+</p> 
+    
+<!--#include virtual="help_footer.shtml" -->

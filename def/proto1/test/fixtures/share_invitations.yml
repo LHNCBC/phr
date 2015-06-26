@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+invite_1:
+  id: -1
+  profile_id: -40
+  issuing_user_id: -15
+  target_email: anew@email.uyr
+  date_issued: 2014-08-20 14:10:29
+  expiration_date: 2014-09-19 10:15:56
+  access_level: 3
+  issuer_name: Howard
+  target_name: Gleeson
+  accept_key:  iw9234hg02i34u1hf
+

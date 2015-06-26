@@ -1,0 +1,137 @@
+# Create a new class type by clicking new page button
+| setTimeout | 31000 |
+| open | /class_types |
+| click | fe_new |
+
+# Type/select  new class type info and save
+| waitForExpression | javascript{testWindow_.location.href} | */new |
+| waitForVisible | fe_name_1 |
+| type | fe_name_1 | javascript{"class_type_name_"+ new Date().getTime()} |
+
+| fireEvent | fe_list_field_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_list_field_1'} | true |
+| selectByContent | fe_list_field_1 | Loinc Items |
+| click | fe_save |
+
+# Create two new classes
+| waitForExpression | javascript{testWindow_.location.href} | */class_types |
+| waitForExpression | javascript{testWindow_.findFields("fe_","children").reverse()[1].click(); true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *;parent_id |
+
+# -Create class_a
+| waitForVisible | fe_new |
+| click | fe_new |
+| waitForExpression | javascript{testWindow_.location.href} | */new |
+# --Type/select  new class info and save
+| waitForVisible | fe_name_1 |
+| type | fe_name_1 | class_a |
+| type | fe_name_C_1 | class_code_a |
+| fireEvent | fe_list_field_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_list_field_1'} | true |
+| selectByContent | fe_list_field_1 | Loinc Items |
+| click | fe_save |
+| waitForExpression | javascript{testWindow_.location.href} | *;parent_id |
+
+
+# -Create class_b
+| waitForVisible | fe_new |
+| click | fe_new |
+| waitForExpression | javascript{testWindow_.location.href} | */new |
+
+# --Type/select  new class info and save
+| waitForVisible | fe_name_1 | 
+| type | fe_name_1 | class_b |
+| type | fe_name_C_1 | class_code_b |
+| fireEvent | fe_list_field_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_list_field_1'} | true |
+| selectByContent | fe_list_field_1 | Loinc Items |
+| click | fe_save |
+| waitForExpression | javascript{testWindow_.location.href} | *;parent_id |
+
+# Edit class_a with duplicated code
+| waitForVisible | fe_edit_1 |
+| click | fe_edit_1 |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+# -Type duplicated class code 
+| waitForVisible | fe_name_C_1 | 
+| type | fe_name_C_1 | class_code_b |
+| click | fe_save |
+| waitForExpression | javascript{testWindow_.$("page_errors").innerHTML.indexOf("Class code has already been taken") > 0 } | true |
+
+| waitForVisible | fe_name_C_1 |  
+| type | fe_name_C_1 | class_code_a0 |
+| click | fe_save |
+| waitForExpression | javascript{testWindow_.location.href} | *;parent_id |
+
+# Create sub classes
+| waitForVisible | fe_children_1 |  
+| click | fe_children_1 |
+| waitForExpression | javascript{testWindow_.$$('.classification_link')[0].innerHTML.split("&gt;").last() == "class_a"} | true |
+
+# -Create sub class a
+| waitForVisible | fe_new |  
+| click | fe_new |
+| waitForExpression | javascript{testWindow_.location.href} | */new |
+# --Type/select  new sub class info and save
+| waitForVisible | fe_name_1 |  
+| type | fe_name_1 | subclass_a |
+| type | fe_name_C_1 | subclass_code_a |
+| fireEvent | fe_list_field_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_list_field_1'} | true |
+| selectByContent | fe_list_field_1 | Loinc Items |
+
+| click | fe_save |
+| waitForExpression | javascript{testWindow_.location.href} | *;parent_id |
+
+# Create sub class b
+| waitForVisible | fe_new | 
+| click | fe_new | 
+| waitForExpression | javascript{testWindow_.location.href} | */new |
+
+# -Type/select  new sub class info and save
+| waitForVisible | fe_name_1 | 
+| type | fe_name_1 | subclass_b |
+| type | fe_name_C_1 | subclass_code_b |
+| fireEvent | fe_list_field_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_list_field_1'} | true |
+| selectByContent | fe_list_field_1 | Loinc Items |
+
+| click | fe_save |
+| waitForExpression | javascript{testWindow_.location.href} | *;parent_id |
+
+# Create class items
+| waitForVisible | fe_children_1 | 
+| click | fe_children_1 | 
+| waitForExpression | javascript{testWindow_.$$('.classification_link')[0].innerHTML.split("&gt;").last() == "subclass_a"} | true |
+
+# -Create class item a
+| waitForVisible | fe_new_item | 
+| click | fe_new_item | 
+| waitForExpression | javascript{testWindow_.location.href} | */new_item |
+
+# --Type and select  new class item info and save
+| waitForVisible | fe_name_1 |
+| type | fe_name_1 | ba |
+| fireEvent | fe_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_1'} | true |
+| selectByContent | fe_name_1 | Bathing |
+
+| click | fe_save |
+| waitForExpression | javascript{testWindow_.location.href} | *;parent_id |
+
+# -Create class item b
+| waitForVisible | fe_new_item | 
+| click | fe_new_item | 
+| waitForExpression | javascript{testWindow_.location.href} | */new_item |
+
+# --Type and select  new class item info and save
+| waitForVisible | fe_name_1 |
+| fireEvent | fe_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_1'} | true |
+| selectByContent | fe_name_1 | Feeding or eating |
+| waitForExpression | javascript{testWindow_.$("fe_name_C_1").value == '46484-2'} | true |
+| click | fe_save |
+| waitForExpression | javascript{testWindow_.location.href} | *;parent_id |
+
+
+

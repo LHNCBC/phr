@@ -1,0 +1,15 @@
+    <h1>PHR Feedback</h1>
+    <p>The following information was submitted from the PHR at
+      <%=  sanitize(@host) %>:</p>
+    <p>Contact name:  <%= sanitize(@form_data[:con_name]) %> </p>
+    <p>Email:  <%= sanitize(@form_data[:con_email]) %> </p>
+    <p>Phone:  <%= sanitize(@form_data[:con_phone]) %> </p>
+    <% if @form_data[:issue_page_url] %>
+    <p>Page URL: <%= sanitize(@form_data[:issue_page_url]) %>
+    <% end %>
+    <p>Feedback type:  <%= sanitize(@form_data[:feedback_type]) %> </p>
+    <% if @form_data[:most_liked] %>
+    <p>Most liked: <%= sanitize(simple_format(@form_data[:most_liked])) %>
+    <p>Least liked: <%= sanitize(simple_format(@form_data[:least_liked])) %>
+    <% end %>
+    <p>Comments:  <%= sanitize(simple_format(@form_data[:contact_comment])) %> </p>

@@ -1,0 +1,33 @@
+<%= link_to 'Panel Flowsheet', flowsheet_phr_record_phr_panels_path(@phr_record) %> /
+<%= help_button get_help_url(@section_fd) %>
+<form class="ui-filterable">
+  <input id="myFilter" data-type="search">
+</form>
+<% if @saved_panel_info %>
+    <ul data-role="listview" data-filter="true" data-input="#myFilter" data-mini="true" data-autodividers="true" data-inset="true">
+      <% @saved_panel_info.each do |sp| %>
+          <li><%= link_to sp.panel_name,
+                          phr_record_phr_panels_path(:panel => sp.loinc_num) %>
+            <% if @order_loinc_num && @order_loinc_num==sp.loinc_num %>
+                <% if @panel_orders.length > 0 %>
+                    <table class="loinc_tests" tbody>
+                      <% @panel_orders.each do |obr| %>
+                          <tr>
+                            <td><%= obr.test_date %>
+                            </td>
+                            <td><%= link_to_m "View/Edit", phr_record_phr_panel_path(@phr_record, obr) %>
+                            </td>
+                            <td><%= button_to_wo_js_m 'Delete', phr_record_phr_panel_path(@phr_record, obr), :confirm => 'Are you sure?', :method => :delete %>
+                            </td>
+                          </tr>
+                      <% end %>
+                      </tbody></table>
+                <% end %>
+
+            <% end %>
+          </li>
+      <% end %>
+    </ul>
+<% end %>
+
+

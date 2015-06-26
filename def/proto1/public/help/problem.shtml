@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Medical Condition</h1>
+		<p>
+		Begin by entering the names of all medical conditions.  Include all long-term conditions (e.g., diabetes mellitus, congestive heart failure) 	whether or not they are currently active or being treated (i.e., you should enter leukemia even if it is in remission). </p>
+<p>
+You should also record serious short-term conditions (e.g., a fracture, diabetes during pregnancy), as well as a major symptom if the cause of the symptom is unknown (e.g., fatigue, shortness of breath). </p>
+<p>
+Include as much detail as you prefer, using your judgment to determine what is important to record in your personal health record.</p>
+		<p>
+		<a href="/help/using_long_lists_help.shtml">More about how to find 
+		and select items from the medical conditions list</a>
+		</p>
+
+<!--#include virtual="help_footer.shtml" -->	

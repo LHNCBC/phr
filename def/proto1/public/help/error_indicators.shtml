@@ -1,0 +1,11 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>Fixing Input Errors</h1>
+<p>
+	If you enter information that the PHR does not understand &#40;such as a date in an 
+	incorrect format&#41;, the system will sound a soft beep, highlight the field in red and shake 
+	the field from right to left &#40;as in <q>no</q>&#41;.
+<p>
+To make changes to an item that has already been saved, click on the <img alt="Paper and Pencil" src="/assets/blank.gif" class="sprite_icons-doc_edit"> icon at the beginning of the row to edit or delete the item. Note that fields prefixed with a <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields.
+</p>
+
+<!--#include virtual="help_footer.shtml" -->

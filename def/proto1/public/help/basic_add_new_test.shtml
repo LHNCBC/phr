@@ -1,0 +1,18 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>Adding New Tests Results and Health Trackers</h1>
+
+<h3>To add new test results or health trackers or add a new result to a test or tracker:</h3>
+<ol>
+<li>Click the <b>Tests & Measures</b> link on the <b>PHR Record</b> page.</li>
+<li>On the <b>Tests and Procedures</b> page, click the <b>New</b> link. </li>
+<ul>
+<li>Either begin typing the name of the medical test or health tracker you want to add in the search box and then click the <b>Search</b> button, or </li>
+<li>Click the <b>list of panels</b> link to browse the list of panels. </li>
+</ul>
+</ol>
+
+<h3>How do I ...</h3>
+<p>
+<a href="basic_edit_flowsheet_data.shtml">Edit existing test results or trackers?</a></p>
+<!--#include virtual="help_footer.shtml" -->
+		

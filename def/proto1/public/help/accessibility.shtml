@@ -1,0 +1,9 @@
+<!--#include virtual="help_header.shtml" -->
+
+<h1>Accessibility</h1>
+<p>The PHR application is heavily dependent on JavaScript, graphics, and CSS for its user interface.  If you have difficulty using it, we recommend you try the <a href="/accounts/login.basic" target="_blank" onclick="window.opener.document.location='/accounts/login.basic'; window.close(); return false">Basic HTML Mode</a>.  The Basic mode provides nearly the same functionality but with a simpler (and plainer) user interface.
+</p>
+<p><b>Note:</b> When accessing the PHR, users should avoid opening more than one instance of the PHR at the same time. Using multiple windows to view and enter data within the PHR may result in unexpected behavior such as errors when attempting to save data. This applies to both the basic and standard versions of the PHR.</p>
+<a href="trouble_reading_text.shtml">How to adjust the size of PHR text in Internet Explorer, Firefox, Chrome, and Safari.</a></p>
+
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,5 @@
+<%= form_tag send('phr_record_'+@table.singularize+'_path',
+    :phr_record_id=>@phr_record), :method=>:put %>
+  <%= render 'basic/dup_warning_section' if @dup_warning_data %>
+  <%= render 'new_edit_fields' %>
+</form>

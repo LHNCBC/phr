@@ -1,0 +1,19 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>How Can I Adjust the Size of the PHR Text?</h1>
+
+<h2>Adjust the zoom level of Internet Explorer, Firefox, Chrome, and Safari as follows:</h2>
+
+<h3>Keyboard</h3>
+<p>
+<ul>
+<li>To zoom in, increasing the size of the text, press and hold <b>CTRL</b> while pressing <b>+</b>.</li>
+<li>To zoom out, decreasing the size of the text, press and hold <b>CTRL</b> while pressing <b>-</b>.</li>
+<li>To reset the size back to normal, press and hold <b>CTRL</b> while pressing <b>0</b>.</li>
+</ul>
+</p>
+<h3>Mouse</h3>
+<p>
+
+If your mouse has a scroll wheel, press and hold <b>CTRL</b> while scrolling up to zoom in and down to zoom out. 
+</p>
+<!--#include virtual="help_footer.shtml" -->

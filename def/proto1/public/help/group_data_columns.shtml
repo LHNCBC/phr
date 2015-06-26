@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Group Data Columns</h1>
+
+<p>
+You may optionally group test results by week, month, or year which will allow you to view only the last value from a specific time period.</p>
+<p>
+For example, if you have entered your weight every day for the last year but want to see the trend over the year, you could select either the <b>By Week</b> or <b>By Month</b> option so that you will only see the last value recorded in each week or month, respectively.</p>
+<p><b>Note:</b> <i>You will not be able to edit results on the results timeline page if you group test results by week, month, or year. You must select <b>None</b> (which is the default option) to enable editing of results on the results timeline page.</i></p>  
+	
+	
+<!--#include virtual="help_footer.shtml" -->

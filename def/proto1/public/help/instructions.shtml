@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Instructions</h1>
+		<p>
+		Use this space to record the instructions given by your physician or pharmacist about how to take the medication. For example, <q>Take 1 tablet twice a day for 14 days</q> or <q>Take 1 tablet every 4 
+		hours as needed for pain.</q>
+    </p>  
+    
+
+<!--#include virtual="help_footer.shtml" -->

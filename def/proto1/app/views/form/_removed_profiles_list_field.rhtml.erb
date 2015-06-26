@@ -1,0 +1,28 @@
+<% # Template for new PHR Home page removed profile listings section %>
+
+
+<table id="removed_profiles_list" >
+
+  <% if !@removed_profiles.nil? %>
+    <% row = 0 %>
+    <% @removed_profile_ids_shown = {} %>
+    <% @removed_profiles.each do |rem_profile| %>
+
+      <% row += 1 %>
+      <% row_s = row.to_s %>
+      <% @removed_profile_ids_shown[rem_profile.id_shown] = row %>
+
+        <%= render({:partial =>'form/removed_profile_listing.rhtml',
+                    :handlers =>[:erb],
+                    :locals=>{:row_s=>row_s, :profile=>rem_profile}}).html_safe %>
+
+    <% end %> <!-- end removed_profiles.each -->
+  <% end %> <!-- if !@removed_profiles.nil? -->
+</table>
+
+
+ 
+
+
+
+  

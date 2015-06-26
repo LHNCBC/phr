@@ -1,0 +1,10 @@
+<% if forms.size>0 %>
+  <h2><%= title %></h2>
+  <ul>
+    <% forms.each do |f| %>
+      <li><a href="/form/show/<%=f.form_name%>"><%=f.form_title%></a>
+          &nbsp;&nbsp;<a href="/forms/<%=f.form_name%>/rules">[rules]</a></li>
+    <% end %>
+  </ul>
+<% end %>
+

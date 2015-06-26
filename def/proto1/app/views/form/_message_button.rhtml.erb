@@ -1,0 +1,9 @@
+        <!-- A Message Button -->
+        <input id="<%=button_id%>" type="button" 
+               value="<%=fd.display_name%>"
+               onclick="this.messageManager.showAllMessages('<%=fd.getParam('msg_title')%>');">
+        <script type="text/javascript">
+                $('<%=button_id%>').messageManager = 
+                  new Def.MessageManager($('<%=button_id%>'));
+        </script><noscript>Javascript Required</noscript>
+        <!-- leave formatting in so that html file is readable -->

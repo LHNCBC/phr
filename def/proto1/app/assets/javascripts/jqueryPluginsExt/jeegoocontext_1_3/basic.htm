@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Jeegoocontext, a jQuery context menu plugin</title>
+    <link href="style.css" rel="Stylesheet" type="text/css" />
+    
+    <!-- Context menu blue skin -->
+    <link href="jeegoocontext/skins/cm_blue/style.css" rel="Stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="jeegoocontext/jquery.jeegoocontext.min.js"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function(){
+            $('.context').jeegoocontext('menu');
+        });
+        //]]>
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <div id="header">
+            <h1><span class="jg_red">J</span><span class="jg_green">ee</span><span class="jg_yellow">g</span><span class="jg_blue">oo</span>context, <span style="font-size:.7em">a jQuery context menu plugin</span></h1>
+            <h2>Copyright &copy; 2009 - 2010 Erik van den Berg, <a href="http://www.planitworks.nl/jeegoocontext" target="_blank">http://www.planitworks.nl/jeegoocontext</a></h2>
+        </div>          
+        <div id="content">
+            <h2 class="context">Basic context menu</h2>
+            <p class="context">
+               Right-click this area to open a basic context menu.
+            </p>  
+            <br />
+            <a href="opera.htm">Opera compatibility &gt;&gt;</a>      
+        </div>                
+    </div>
+       
+    <!--  Context menu -->
+    <ul id="menu" class="jeegoocontext cm_blue">
+        <li>Option A</li>
+        <li>Option B</li>
+        <li>Option C</li>
+        <li>Option D</li> 
+    </ul>    
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Date Range</h1>
+
+<p>
+By default, all dates for previously entered test results and health trackers are displayed; however, you can limit the range of dates you wish to display. For example, if you only want to see information from the past year, choose the <b>Last 1 Year</b> option from the drop-down list of date ranges.</p>
+<p>
+If you want to show the information from a specific time period, choose <b>Customize</b> from the drop-down list and enter the beginning and end dates for the information you want to see.</p>
+
+	
+	
+<!--#include virtual="help_footer.shtml" -->

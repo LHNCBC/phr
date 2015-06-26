@@ -1,0 +1,9 @@
+<br><br>
+<p align="right">
+  <button class="rounded" type="button" onclick="self.close()">
+    <span>Close</span>
+  </button>
+</p>
+<!--#include virtual="help_page_js.shtml" -->
+</body>
+</html>

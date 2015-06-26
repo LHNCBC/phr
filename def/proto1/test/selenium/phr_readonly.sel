@@ -1,0 +1,825 @@
+| setTimeout | 35000 |
+
+# ------------- Create first user for this test with one profile -------------
+| open | /accounts/logout |
+# Make sure we are in standard mode
+| open | /accounts/login.default |
+| waitForTextPresent | Sign in |
+| open | /accounts/new |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| verifyExpression | javascript{testWindow_.$('fe_instructions2_1').scrollTop = testWindow_.$('fe_instructions2_1').scrollHeight; 1} | 1 |
+| click | fe_agree_chbox_1 |
+
+| fireEvent | fe_user_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1'} | true |
+| typeText |  fe_user_name_1 | javascript{'bypass_activation_'+new Date().getTime()}  |
+| fireEvent | fe_user_name_1 | change |
+| fireEvent | fe_user_name_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_user_name_1').value} | user1Name |
+
+| fireEvent | fe_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1'} | true |
+| type |  fe_password_1 | 'TT_0987&' |
+| fireEvent | fe_password_1 | change |
+| fireEvent | fe_password_1 | blur |
+
+| fireEvent | fe_confirm_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_confirm_password_1'} | true |
+| type |  fe_confirm_password_1 | 'TT_0987&' |
+| fireEvent | fe_confirm_password_1 | change |
+| fireEvent | fe_confirm_password_1 | blur |
+
+# first question
+| fireEvent | fe_su_fix_quest_1_1 | focus |
+| typeKeys | fe_su_fix_quest_1_1 | 1 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_1 | \9 |
+| fireEvent | fe_su_fix_quest_1_1 | blur |
+| waitForValue | fe_su_fix_quest_1_1 | In what city was your mother born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').autocomp.hasFocus} | false |
+
+# second question
+| fireEvent | fe_su_fix_quest_1_2 | focus |
+| typeKeys | fe_su_fix_quest_1_2 | 2 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_2 | \9 |
+| fireEvent | fe_su_fix_quest_1_2 | blur |
+| waitForValue | fe_su_fix_quest_1_2 | In what city were you born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').autocomp.hasFocus} | false |
+
+| fireEvent | fe_su_fixansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_1'} | true |
+| type |  fe_su_fixansw_1_1 | 1 |
+| fireEvent | fe_su_fixansw_1_1 | change |
+| fireEvent | fe_su_fixansw_1_1 | blur |
+
+| fireEvent | fe_su_fixansw_1_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_2'} | true |
+| type |  fe_su_fixansw_1_2 | 1 |
+| fireEvent | fe_su_fixansw_1_2 | change |
+| fireEvent | fe_su_fixansw_1_2 | blur |
+
+| fireEvent | fe_su_selfquest_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfquest_1_1'} | true |
+| typeText |  fe_su_selfquest_1_1 | 1 |
+| fireEvent | fe_su_selfquest_1_1 | change |
+| fireEvent | fe_su_selfquest_1_1 | blur |
+
+| fireEvent | fe_su_selfansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfansw_1_1'} | true |
+| typeText |  fe_su_selfansw_1_1 | 1 |
+| fireEvent | fe_su_selfansw_1_1 | change |
+| fireEvent | fe_su_selfansw_1_1 | blur |
+
+| fireEvent | fe_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1'} | true |
+| typeText |  fe_email_1 | javascript{storedVars['user1Name'] + '@notadomain.qrt'} |
+| fireEvent | fe_email_1 | change |
+| fireEvent | fe_email_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_email_1').value} | user1Email |
+
+| fireEvent | fe_sec_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_sec_email_1'} | true |
+| typeText |  fe_sec_email_1 | javascript{storedVars['user1Name'] + '@notadomain.qrt'} |
+| fireEvent | fe_sec_email_1 | change |
+| fireEvent | fe_sec_email_1 | blur |
+
+| fireEvent | recaptcha_response_field | focus |
+| type |  recaptcha_response_field | correct_response |
+| fireEvent | recaptcha_response_field | change |
+| fireEvent | recaptcha_response_field | blur |
+
+# Save the form
+| click | fe_signup_1 |
+| waitForVisible | savingNotice |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/login |
+| waitForVisible | fe_user_name_1_1 |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+#| waitForTextPresent | was created successfully. |
+| waitForTextPresent | Thanks for signing up |
+
+# ------------- New account activation ---------------------
+| open | /accounts/email_verification?verification_token=abc |
+| waitForVisible | fe_user_name_1 |
+| typeText | fe_user_name_1 | javascript{storedVars['user1Name']} |
+| waitForVisible | fe_password_1 |
+| typeText | fe_password_1 | TT_0987& |
+| click | fe_submit_button_1 |
+| waitForVisible | fe_user_name_1_1 |
+| waitForTextPresent | has been activated successfully |
+
+# ------------- login -------------
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| typeText | fe_user_name_1_1 | javascript{storedVars['user1Name']} |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| typeText | fe_password_1_1 | 'TT_0987&' |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+| click | fe_login_1_1 |
+
+| waitForVisible | main_title |
+| waitForValue | main_title | Your Computer Is Not Recognized |
+| fireEvent | fe_user_answ_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_answ_1_1'} | true |
+| typeText | fe_user_answ_1_1 | 1 |
+| fireEvent | fe_user_answ_1_1 | change |
+| fireEvent | fe_user_answ_1_1 | blur |
+| click | fe_submit_1 |
+# ------------- end of login -------------
+
+# ------------- add a new person -------------
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home* |
+| waitForVisible | add_new |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.warningDialog_, testWindow_.Def.PHRHome.NO_PROFILES_TITLE)} | true |
+| verifyValue | ui-id-1 | javascript{testWindow_.Def.PHRHome.NO_ACTIVE_PROFILES_MSG} |
+| click | warningOKBtn |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{'person1_'+new Date().getTime()}  |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | person1Name |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText |  fe_birth_date_1_1 | javascript{Def.PhrHomeTest.getPrevDate(22,0,0)}  |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| storeExpression | javascript{'22 years old'} | person1Age |
+
+| fireEvent | fe_gender_1_1 | focus |
+| selectByIndex |  fe_gender_1_1 | 0 |
+| waitForValue | fe_gender_C_1_1 | F |
+
+| fireEvent | fe_race_or_ethnicity_1_1 | focus |
+| selectByContent |  fe_race_or_ethnicity_1_1 | Hispanic or Latino |
+| waitForValue | fe_race_or_ethnicity_C_1_1 | LA6214-6 |
+
+| click | editSaveBtn |
+
+# -- goes to main phr page
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['person1Name']} |
+| click | fe_close_top_1_1 |
+
+# -- return to phr home page
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+# -- logout so we can create a second user
+| click | fe_logout |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/logout |
+| waitForVisible | fe_user_name_1_1 |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+# ------------- end add the first user and profile -------------
+
+# ------------- Create second user for this test with one profile -------------
+
+| open | /accounts/new |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| verifyExpression | javascript{testWindow_.$('fe_instructions2_1').scrollTop = testWindow_.$('fe_instructions2_1').scrollHeight; 1} | 1 |
+| click | fe_agree_chbox_1 |
+
+| fireEvent | fe_user_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1'} | true |
+| typeText |  fe_user_name_1 | javascript{'bypass_activation_'+new Date().getTime()}  |
+| fireEvent | fe_user_name_1 | change |
+| fireEvent | fe_user_name_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_user_name_1').value} | user2Name |
+
+| fireEvent | fe_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1'} | true |
+| type |  fe_password_1 | 'TT_0987&' |
+| fireEvent | fe_password_1 | change |
+| fireEvent | fe_password_1 | blur |
+
+| fireEvent | fe_confirm_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_confirm_password_1'} | true |
+| type |  fe_confirm_password_1 | 'TT_0987&' |
+| fireEvent | fe_confirm_password_1 | change |
+| fireEvent | fe_confirm_password_1 | blur |
+
+# first question
+| fireEvent | fe_su_fix_quest_1_1 | focus |
+| typeKeys | fe_su_fix_quest_1_1 | 1 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_1 | \9 |
+| fireEvent | fe_su_fix_quest_1_1 | blur |
+| waitForValue | fe_su_fix_quest_1_1 | In what city was your mother born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').autocomp.hasFocus} | false |
+
+# second question
+| fireEvent | fe_su_fix_quest_1_2 | focus |
+| typeKeys | fe_su_fix_quest_1_2 | 2 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_2 | \9 |
+| fireEvent | fe_su_fix_quest_1_2 | blur |
+| waitForValue | fe_su_fix_quest_1_2 | In what city were you born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').autocomp.hasFocus} | false |
+
+| fireEvent | fe_su_fixansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_1'} | true |
+| type |  fe_su_fixansw_1_1 | 1 |
+| fireEvent | fe_su_fixansw_1_1 | change |
+| fireEvent | fe_su_fixansw_1_1 | blur |
+
+| fireEvent | fe_su_fixansw_1_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_2'} | true |
+| type |  fe_su_fixansw_1_2 | 1 |
+| fireEvent | fe_su_fixansw_1_2 | change |
+| fireEvent | fe_su_fixansw_1_2 | blur |
+
+| fireEvent | fe_su_selfquest_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfquest_1_1'} | true |
+| typeText |  fe_su_selfquest_1_1 | 1 |
+| fireEvent | fe_su_selfquest_1_1 | change |
+| fireEvent | fe_su_selfquest_1_1 | blur |
+
+| fireEvent | fe_su_selfansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfansw_1_1'} | true |
+| typeText |  fe_su_selfansw_1_1 | 1 |
+| fireEvent | fe_su_selfansw_1_1 | change |
+| fireEvent | fe_su_selfansw_1_1 | blur |
+
+| fireEvent | fe_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1'} | true |
+| typeText |  fe_email_1 | javascript{storedVars['user2Name'] + '@notadomain.qrt'} |
+| fireEvent | fe_email_1 | change |
+| fireEvent | fe_email_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_email_1').value} | user2Email |
+
+| fireEvent | fe_sec_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_sec_email_1'} | true |
+| typeText |  fe_sec_email_1 | javascript{storedVars['user2Name'] + '@notadomain.qrt'} |
+| fireEvent | fe_sec_email_1 | change |
+| fireEvent | fe_sec_email_1 | blur |
+
+| fireEvent | recaptcha_response_field | focus |
+| type |  recaptcha_response_field | correct_response |
+| fireEvent | recaptcha_response_field | change |
+| fireEvent | recaptcha_response_field | blur |
+
+# Save the form
+| click | fe_signup_1 |
+| waitForVisible | savingNotice |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/login |
+| waitForVisible | fe_user_name_1_1 |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+#| waitForTextPresent | was created successfully. |
+| waitForTextPresent | Thanks for signing up |
+
+# ------------- New account activation ---------------------
+| open | /accounts/email_verification?verification_token=abc |
+| waitForVisible | fe_user_name_1 |
+| typeText | fe_user_name_1 | javascript{storedVars['user2Name']} |
+| waitForVisible | fe_password_1 |
+| typeText | fe_password_1 | TT_0987& |
+| click | fe_submit_button_1 |
+| waitForVisible | fe_user_name_1_1 |
+| waitForTextPresent | has been activated successfully |
+
+# ------------- login -------------
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| typeText | fe_user_name_1_1 | javascript{storedVars['user2Name']} |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| typeText | fe_password_1_1 | 'TT_0987&' |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+| click | fe_login_1_1 |
+
+| waitForVisible | main_title |
+| waitForValue | main_title | Your Computer Is Not Recognized |
+| fireEvent | fe_user_answ_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_answ_1_1'} | true |
+| typeText | fe_user_answ_1_1 | 1 |
+| fireEvent | fe_user_answ_1_1 | change |
+| fireEvent | fe_user_answ_1_1 | blur |
+| click | fe_submit_1 |
+# ------------- end of login -------------
+
+# ------------- add a new person for user2 -------------
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home* |
+| waitForVisible | add_new |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.warningDialog_, testWindow_.Def.PHRHome.NO_PROFILES_TITLE)} | true |
+| verifyValue | ui-id-1 | javascript{testWindow_.Def.PHRHome.NO_ACTIVE_PROFILES_MSG} |
+| click | warningOKBtn |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| typeText |  fe_pseudonym_1_1 | javascript{'person2_'+new Date().getTime()}  |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | person2Name |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText |  fe_birth_date_1_1 | javascript{Def.PhrHomeTest.getPrevDate(22,0,0)}  |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| storeExpression | javascript{'42 years old'} | person2Age |
+| storeExpression | javascript{testWindow_.$('fe_birth_date_1_1').value} | person2birthdate |
+
+| fireEvent | fe_gender_1_1 | focus |
+| selectByIndex |  fe_gender_1_1 | 1 |
+| waitForValue | fe_gender_C_1_1 | M |
+
+| fireEvent | fe_race_or_ethnicity_1_1 | focus |
+| selectByContent |  fe_race_or_ethnicity_1_1 | Hispanic or Latino |
+| waitForValue | fe_race_or_ethnicity_C_1_1 | LA6214-6 |
+
+| click | editSaveBtn |
+
+# -- goes to main phr page
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['person2Name']} |
+
+# -- while we're here, put in some data
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+| waitForVisible | fe_name_and_route_1 |
+| fireEvent | fe_name_and_route_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_name_and_route_1'} | true |
+| typeText | fe_name_and_route_1 | ADDERALL XR (Oral Pill) |
+| fireEvent | fe_name_and_route_1 | blur |
+| fireEvent | fe_name_and_route_1 | change |
+| fireEvent | fe_drug_use_status_1 | focus |
+| typeText | fe_drug_use_status_1 | Active |
+| fireEvent | fe_drug_use_status_1 | blur |
+| fireEvent | fe_drug_use_status_1 | change |
+| fireEvent | fe_drug_strength_form_1 | focus |
+| typeText | fe_drug_strength_form_1 | 1.25-1.25-1.25-1.25 mg 24 Hrs XR Cap |
+| fireEvent | fe_drug_strength_form_1 | blur |
+| fireEvent | fe_drug_strength_form_1 | change |
+| fireEvent | fe_expire_date_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_expire_date_1'} | true |
+| typeText | fe_expire_date_1 | t + 28 |
+| fireEvent | fe_expire_date_1 | blur |
+| fireEvent | fe_expire_date_1 | change |
+| click | fe_save_1 |
+
+# Go to add tests & trackers and add a daily mood log
+| storeExpression | javascript{testWindow_} | mainWindow |
+| click | fe_add_new_test_1_1 |
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | addTestsWindow |
+| waitForExpression | javascript{testWindow_ = storedVars['addTestsWindow']; true;} | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined} | true |
+
+| fireEvent | fe_panel_class_1 | focus |
+| selectByIndex | fe_panel_class_1 | 0 |
+| fireEvent | fe_panel_class_1 | change |
+| fireEvent | fe_panel_class_1 | blur |
+| fireEvent | fe_panel_in_class_1 | focus |
+| selectByContent | fe_panel_in_class_1 | Daily Mood Log |
+| fireEvent | fe_panel_in_class_1 | change |
+| fireEvent | fe_panel_in_class_1 | blur |
+
+| click | fe_add_panel_b_1 |
+
+| waitForVisible | fe_tp1_panel_testdate_1_1 |
+| fireEvent | fe_tp1_panel_testdate_1_1 | focus |
+| typeText | fe_tp1_panel_testdate_1_1 | t |
+| fireEvent | fe_tp1_panel_testdate_1_1 | change |
+| fireEvent | fe_tp1_panel_testdate_1_1 | blur |
+
+| waitForVisible | fe_tp1_test_value_1_1_1 |
+| fireEvent | fe_tp1_test_value_1_1_1 | focus |
+| selectByIndex | fe_tp1_test_value_1_1_1 | 2 |
+| fireEvent | fe_tp1_test_value_1_1_1 | change |
+| fireEvent | fe_tp1_test_value_1_1_1 | blur |
+
+| fireEvent | fe_save | focus |
+| click | fe_save |
+| waitForNotButtonEnabled | fe_save |
+
+| fireEvent | fe_close | focus |
+| click | fe_close |
+| waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true;} | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined} | true |
+
+# -- save it and return to the phr home page
+| click | fe_save_1 |
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+| waitForVisible | add_new |
+
+# go back and verify owner/write status display items
+| click | profile_icon_btn_1 |
+| waitForVisible | links_cell_1_1 |
+| click | show_phr_form_1 |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_pseudonym_alias_1_1 |
+| waitForValue | fe_pseudonym_alias_1_1 | javascript{storedVars['person2Name']} |
+
+# Open up the form again
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# make sure the access notice is blank
+| waitForExpression | javascript{testWindow_.$('fe_access_notice_1_1').innerHTML == "";} | true |
+
+# check for the add tests & trackers button
+| verifyVisible | fe_add_new_test_1_1 |
+
+# check the text on the flowsheet button
+| verifyVisible | fe_test_panel_timeline_1_1 |
+| waitForExpression | javascript{testWindow_.$('fe_test_panel_timeline_1_1').innerHTML == '<span>View &amp; Edit Results Timeline</span>';} | true |
+
+# check for the save button at the top and bottom
+| verifyVisible | fe_save_top_1_1 |
+| verifyVisible | fe_save_1 |
+
+# make sure the tests section is visible - at least the header
+| verifyVisible | fe_tests_lbl_0 |
+
+# check for a blank input line at the end of the section that has data
+# we added a drug, so check the first for a value and the second for a blank
+| verifyValue | fe_name_and_route_1 | ADDERALL XR (Oral Pill) |
+| verifyValue | fe_name_and_route_2 | |
+
+# blank input line for a section with no data - medical conditions
+| verifyValue | fe_problem_1 | |
+
+# make sure there's an edit button on empty and populated lines, and
+# for all sections
+| verifyVisible | fe_problems_header_edit_1 |
+| verifyVisible | fe_drugs_edit_1 |
+| verifyVisible | fe_drugs_edit_2 |
+| verifyVisible | fe_allergies_edit_1 |
+| verifyVisible | fe_surgical_history_edit_1 |
+| verifyVisible | fe_immunizations_edit_1 |
+| verifyVisible | fe_medicontact_edit_1 |
+| verifyVisible | fe_doctor_questions_edit_1 |
+| verifyVisible | fe_notes_edit_1 |
+
+# make sure the right-click edit menus exist on the form
+| verifyElementPresent | fe_problems_header_0_menu |
+| verifyElementPresent | fe_drugs_0_menu |
+| verifyElementPresent | fe_allergies_0_menu |
+| verifyElementPresent | fe_surgical_history_0_menu |
+| verifyElementPresent | fe_immunizations_0_menu |
+| verifyElementPresent | fe_medicontact_0_menu |
+| verifyElementPresent | fe_doctor_questions_0_menu |
+| verifyElementPresent | fe_notes_0_menu |
+
+# make sure the add more button is there for the previously saved mood tracker.
+| storeExpression | javascript{testWindow_.$('saved_panels').rows[1].cells[1].children[1];} | addMoreBtn |
+| waitForExpression | javascript{storedVars['addMoreBtn'].firstChild.data == "(Add more)"; | true |
+
+# go to the flowsheet page
+| waitForExpression | javascript{mainTestWindow = testWindow_; true} | true |
+| click | fe_test_panel_timeline_1_1 |
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0;} | true |
+| waitForExpression | javascript{flowsheetWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_ = flowsheetWindow; true} | true |
+| waitForVisible | fe_show_record_too_1 |
+
+# check the header that shows over the phr name to make sure it contains "& EDIT"
+| waitForExpression | javascript{testWindow_.$('fe_panel_detail_1').innerHTML.indexOf(' EDIT') > 0;} | true |
+
+# check the section header (only one on the page) to make sure it contains "/Edit"
+| verifyExpression | javascript{testWindow_.$('fe_panel_list_grp_lbl_0').innerHTML.indexOf('/Edit') > 0;} | true |
+
+# check the access notice to make sure its content is blank
+| verifyExpression | javascript{testWindow_.$('fe_access_notice_1').innerHTML.length == 0;} | true |
+
+# make sure the Add Test Results & Trackers button is on the page
+| verifyVisible | fe_add_new_test |
+
+# It would be good to check the panel view section - which is what is shown when
+# the user clicks on "Show Results Timeline".  We would verify that the right
+# click button opens the context menu for editing and that hovering over
+# the date column header shows the edit icon.   But nothing in that section
+# has IDs and trying to trace down through it is too complicated for now.
+
+# go back to the Health Summary page
+| click | fe_return_button |
+| waitForExpression | javascript{testWindow_ = mainTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+
+# go to the Date Reminders page
+| waitForVisible | fe_date_reminder_1_1 |
+| click | fe_date_reminder_1_1 |
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0;} | true |
+| waitForExpression | javascript{dateRemindersWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_ = dateRemindersWindow; true} | true |
+| waitForVisible | fe_date_reminders_0_expcol |
+
+# check the access notice to make sure its content is blank
+| verifyExpression | javascript{testWindow_.$('fe_access_notice_1').innerHTML.length == 0;} | true |
+
+# check the instructions text to make sure it's visible
+| verifyVisible | fe_date_reminders_ins_0 |
+
+# make sure the Hide column is there - header and detail line
+| verifyVisible | fe_hide_me_hd |
+| verifyVisible | fe_hide_me_1 |
+
+# make sure the show all hidden date reminders field is there
+| verifyVisible | fe_rmd_show |
+
+# make sure the Date Reminders Settings button is there
+| verifyVisible | fe_cutoff_days_1 |
+
+# go back to the Health Summary page
+| click | fe_close_button_1 |
+| waitForExpression | javascript{testWindow_ = mainTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+
+# go back to phr_home page
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+# invite user1 to have access to this person
+
+# ------------- open up the task lines -----------
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_7 |
+| click | share_invite_1 |
+| waitForVisible | fe_email_1_1 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.shareInviteDialog_, testWindow_.Def.PHRHome.SHARE_INVITE_DIALOG_TITLE)} | true |
+
+# --- fill in the invitation
+| fireEvent | fe_email_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1_1'} | true |
+| typeText |  fe_email_1_1 | javascript{storedVars['user1Email']} |
+| fireEvent | fe_email_1_1 | change |
+| fireEvent | fe_email_1_1 | blur |
+
+| fireEvent | fe_confirm_target_email_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_confirm_target_email_1_1'} | true |
+| typeText |  fe_confirm_target_email_1_1 | javascript{storedVars['user1Email']} |
+| fireEvent | fe_confirm_target_email_1_1 | change |
+| fireEvent | fe_confirm_target_email_1_1 | blur |
+
+| fireEvent | fe_target_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_target_name_1_1'} | true |
+| typeText |  fe_target_name_1_1 | George |
+| fireEvent | fe_target_name_1_1 | change |
+| fireEvent | fe_target_name_1_1 | blur |
+| waitForExpression | javascript{storedVars['targetName'] = 'George'; true;} | true |
+
+| fireEvent | fe_issuer_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_issuer_name_1_1'} | true |
+| typeText |  fe_issuer_name_1_1 | Harriet |
+| fireEvent | fe_issuer_name_1_1 | change |
+| fireEvent | fe_issuer_name_1_1 | blur |
+| waitForExpression | javascript{storedVars['issuerName'] = 'Harriet'; true' | true |
+
+| click | fe_invite_preview_btn_1_1 |
+| waitForVisible | fe_personalized_msg_1_1_1 |
+
+| fireEvent | fe_personalized_msg_1_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_personalized_msg_1_1_1'} | true |
+| typeText |  fe_personalized_msg_1_1_1 | A personal message. |
+| fireEvent | fe_personalized_msg_1_1_1 | change |
+| fireEvent | fe_personalized_msg_1_1_1 | blur |
+
+# Send the invitation and make sure that we get a success message
+| click | shareInviteBtn |
+| waitForExpression | javascript{testWindow_.$('notification').textContent == testWindow_.Def.PHRHome.SHARE_INVITE_SUCCESS.replace('<name>', storedVars['targetName']);} | true |
+
+# log out, log back in as user 1
+| click | fe_logout |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/logout |
+| waitForVisible | fe_user_name_1_1 |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| pause | 500 |
+
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| typeText | fe_user_name_1_1 | javascript{storedVars['user1Name']} |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| typeText | fe_password_1_1 | 'TT_0987&' |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+| click | fe_login_1_1 |
+
+| waitForVisible | main_title |
+| waitForValue | main_title | Your Computer Is Not Recognized |
+| fireEvent | fe_user_answ_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_answ_1_1'} | true |
+| typeText | fe_user_answ_1_1 | 1 |
+| fireEvent | fe_user_answ_1_1 | change |
+| fireEvent | fe_user_answ_1_1 | blur |
+| click | fe_submit_1 |
+# ------------- end of login -------------
+
+# ------------- accept the invitation -------------
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home* |
+| waitForVisible | add_new |
+
+# we should have the pending invitations box pop up here.  Make sure it
+# shows up, then click ask later so we can try again with the button
+
+| waitForVisible | fe_pending_invitations_1_0 |
+| click | defer_id_1 |
+| click | pendingInviteBtn |
+| waitForNotVisible | fe_pending_invitations_1_0 |
+
+| click | fe_other_invitations |
+| waitForVisible | fe_pending_invitations_1_0 |
+| click | accept_id_1 |
+| click | pendingInviteBtn |
+
+# --------------- look at the health record for this one ----------------
+| waitForVisible | o_name_string_1 |
+| click | o_name_string_1 |
+| waitForVisible | o_show_phr_form_1 |
+| click | o_show_phr_form_1 |
+
+# do all the tests again, but this time make sure things are NOT shown or
+# don't exist or whatever, as appropriate for read-only access
+
+# make sure the access notice is not blank
+| waitForExpression | javascript{testWindow_.$('fe_access_notice_1_1').innerHTML == "";} | false |
+
+# check for the add tests & trackers button - it should not be here
+| verifyNotVisible | fe_add_new_test_1_1 |
+
+# check the text on the flowsheet button - it should not include "& Edit"
+| verifyVisible | fe_test_panel_timeline_1_1 |
+| waitForExpression | javascript{testWindow_.$('fe_test_panel_timeline_1_1').innerHTML == '<span>View Results Timeline</span>';} | true |
+
+# check for the save button at the top and bottom - they should be gone
+| verifyNotVisible | fe_save_top_1_1 |
+| verifyNotVisible | fe_save_1 |
+
+# make sure the tests section is NOT visible - at least the header
+| verifyNotVisible | fe_tests_lbl_0 |
+
+# check for NO blank input line at the end of the section that has data
+# we added a drug, so check the first for a value and the second for a blank
+| verifyValue | fe_name_and_route_1 | ADDERALL XR (Oral Pill) |
+| verifyNotElementPresent| fe_name_and_route_2 | |
+
+# blank input line for a section with no data - medical conditions
+| storeExpression | javascript{testWindow_.$('fe_problems_header_0_tbl').lastElementChild.rows[1].cells[0].innerHTML;} | noMedData |
+| verifyExpression |javascript{storedVars['noMedData'] == 'No <i>Medical Conditions</i> data has been entered for this PHR';} | true |
+
+# make sure there isn't an edit button on empty and populated lines, and
+# for all sections
+| verifyNotElementPresent | fe_problems_header_edit_1 |
+| verifyNotElementPresent | fe_drugs_edit_1 |
+| verifyNotElementPresent | fe_drugs_edit_2 |
+| verifyNotElementPresent | fe_allergies_edit_1 |
+| verifyNotElementPresent | fe_surgical_history_edit_1 |
+| verifyNotElementPresent | fe_immunizations_edit_1 |
+| verifyNotElementPresent | fe_medicontact_edit_1 |
+| verifyNotElementPresent | fe_doctor_questions_edit_1 |
+| verifyNotElementPresent | fe_notes_edit_1 |
+
+# make sure the right-click edit menus do not exist on the form
+| verifyNotElementPresent | fe_problems_header_0_menu |
+| verifyNotElementPresent | fe_drugs_0_menu |
+| verifyNotElementPresent | fe_allergies_0_menu |
+| verifyNotElementPresent | fe_surgical_history_0_menu |
+| verifyNotElementPresent | fe_immunizations_0_menu |
+| verifyNotElementPresent | fe_medicontact_0_menu |
+| verifyNotElementPresent | fe_doctor_questions_0_menu |
+| verifyNotElementPresent | fe_notes_0_menu |
+
+# make sure the add more button is not there for the previously saved mood tracker.
+| waitForExpression | javascript{testWindow_.$('saved_panels').rows[1].cells[1].children.length == 1;} | true |
+
+# go to the flowsheet page
+| waitForExpression | javascript{mainTestWindow = testWindow_; true} | true |
+| click | fe_test_panel_timeline_1_1 |
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0;} | true |
+| waitForExpression | javascript{flowsheetWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_ = flowsheetWindow; true} | true |
+| waitForVisible | fe_show_record_too_1 |
+
+# check the header that shows over the phr name to make sure it does not
+# contain "& EDIT"
+| waitForExpression | javascript{testWindow_.$('fe_panel_detail_1').innerHTML.indexOf(' EDIT') < 0;} | true |
+
+# check the section header (only one on the page) to make sure it does not
+# contain "/Edit"
+| verifyExpression | javascript{testWindow_.$('fe_panel_list_grp_lbl_0').innerHTML.indexOf('/Edit') < 0;} | true |
+
+# check the access notice to make sure its content is not blank
+| verifyExpression | javascript{testWindow_.$('fe_access_notice_1').innerHTML.length > 0;} | true |
+
+# make sure the Add Test Results & Trackers button is on the page
+| verifyNotVisible | fe_add_new_test |
+
+# go back to the Health Summary page
+| click | fe_return_button |
+| waitForExpression | javascript{testWindow_ = mainTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+
+# go to the Date Reminders page
+| waitForVisible | fe_date_reminder_1_1 |
+| click | fe_date_reminder_1_1 |
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0;} | true |
+| waitForExpression | javascript{dateRemindersWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_ = dateRemindersWindow; true} | true |
+| waitForVisible | fe_date_reminders_0_expcol |
+
+# check the access notice to make sure its content is not blank
+| verifyExpression | javascript{testWindow_.$('fe_access_notice_1').innerHTML.length > 0;} | true |
+
+# check the instructions text to make sure it's not visible
+| verifyNotVisible | fe_date_reminders_ins_0 |
+
+# make sure the Hide column is not there - header and detail line
+| verifyNotElementPresent | fe_hide_me_hd |
+| verifyNotElementPresent | fe_hide_me_1 |
+
+# make sure the show all hidden date reminders field is not there
+| verifyNotElementPresent | fe_rmd_show |
+
+# make sure the Date Reminders Settings button is not there
+| verifyNotElementPresent | fe_cutoff_days_1 |
+
+# go back to the Health Summary page
+| click | fe_close_button_1 |
+| waitForExpression | javascript{testWindow_ = mainTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+
+# go back to the phr home page and check the demographics box
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | o_wedgie_1 |
+
+# open the task lines and click on the demographics button
+| click | o_wedgie_1 |
+| waitForVisible | o_edit_demographics_1 |
+| click | o_edit_demographics_1 |
+
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_VIEW_TITLE)} | true |
+
+| waitForValue | fe_pseudonym_1_1 | javascript{storedVars['person2Name']} |
+| waitForExpression | javascript{testWindow_.$('fe_pseudonym_1_1').disabled == true;} | true |
+
+| verifyValue | fe_birth_date_1_1 | javascript{storedVars['person2birthdate']} |
+| verifyExpression | javascript{testWindow_.$('fe_birth_date_1_1').disabled == true; | true |
+
+| verifyValue | fe_gender_1_1 | Male |
+| verifyExpression | javascript{testWindow_.$('fe_gender_1_1').disabled == true; | true |
+
+| verifyValue | fe_race_or_ethnicity_1_1 | Hispanic or Latino |
+| verifyExpression | javascript{testWindow_.$('fe_race_or_ethnicity_1_1').disabled == true; | true |
+
+| verifyExpression | javascript{testWindow_.$('access_text').textContent.substr(0,12) == testWindow_.Def.PHRHome.READ_ONLY_NOTICE.substr(0,12);} | true |
+| verifyNotVisible | editSaveBtn |
+| verifyExpression | javascript{testWindow_.$('editCancelBtn').firstElementChild.innerHTML == 'Close';} | true |
+
+# logout and log back in as the test_admin user, since that's the account
+# most of the acceptance tests are using
+| click | fe_logout |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/log* |
+| waitForVisible | fe_user_name_1_1 |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| pause | 500 |
+
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| typeText | fe_user_name_1_1 | test_admin |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| typeText | fe_password_1_1 | I'm a test admin account |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+| click | fe_login_1_1 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */admin_home |

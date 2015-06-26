@@ -1,0 +1,12 @@
+var <%=id%>_autoComp =
+  new Def.Autocompleter.TablePrefetch('<%= id %>', <%= matchListValue %>,
+    <%= join_string.html_safe %>, <%= headers.html_safe %>, <%= optList.to_json.html_safe %>,
+    <%= code_vals.to_json.html_safe %>,
+    <% if dataUrl %>
+       new Def.RecordDataRequester($('<%= id %>'), '<%=dataUrl.html_safe%>',
+         <%=dataReqInput.to_json.html_safe%>, <%=dataReqOutput.to_json.html_safe%>,
+         <%=outputToSameGroup%>)
+    <% else %>
+      null
+    <% end %> );
+

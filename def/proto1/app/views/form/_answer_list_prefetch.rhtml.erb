@@ -1,0 +1,32 @@
+var opts = {};<% if dataUrl %>
+opts['dataRequester']= new Def.RecordDataRequester($('<%= id %>'), '<%=dataUrl.html_safe%>',
+  <%=dataReqInput.to_json.html_safe%>, <%=raw dataReqOutput.to_json%>, <%=outputToSameGroup%>)<%end
+%><% if !matchListValue.nil? %>
+opts['matchListValue']=<%= matchListValue.html_safe %><%end
+%><% if !add_seqnum.nil? %>
+opts['addSeqNum']=<%= add_seqnum.html_safe %><%end
+%><% if !code_vals.nil? %>
+opts['codes']=<%= code_vals.to_json.html_safe %><%end
+%><% if !item_to_heading.nil? %>
+opts['itemToHeading']=<%= item_to_heading.to_json.html_safe %><%end
+%><% if !suggestionMode.nil? %>
+opts['suggestionMode']=<%= suggestionMode %><%end
+%><% if !default_value.nil? %>
+opts.defaultValue='<%= default_value %>';<%end
+%><% if !auto_fill.nil? %>
+opts['autoFill']=<%= auto_fill %><%end%>
+var <%=id%>_autoComp = new Def.Autocompleter.Prefetch('<%= id %>', <%=
+  optList.to_json.html_safe %>, opts);
+<% if is_user_data %>
+function refresh_<%=id%>_list() {
+  new Ajax.Request('<%=user_data_url.html_safe%>', {method: 'GET',
+    onSuccess: function(transport) {
+    var array_json = transport.responseText ;
+    var array = eval(array_json);
+    <%=id%>_autoComp.setListAndField(array[0],array[1]);
+    },
+    asynchronous: false
+  });
+}
+refresh_<%=id%>_list() ;
+<% end %>

@@ -1,0 +1,153 @@
+/* 
+    Document   :  date
+    Created on :  Feb 3, 2012, 2:30:38 PM
+    Author     :  lmericle
+    Description:  Contains CSS for date fields.
+                  Note that the CSS for the calendar component is in the
+                  separate calendar.css file.
+*/
+
+/* from style.css - now generated.css */
+
+div.field table.dateField {
+	width:20.3em;
+}
+
+div.field table.dateField input {
+  /*width:100%;*/ /* it is always redefined by other css files -- ye */
+  margin-top: 0px !important; /* temp changes on the dob field on phr_index page --ye*/
+}
+/* temp changes on the dob field on phr_index page --ye*/
+#fe_birth_date_lbl_1_1 {
+  padding-top: 5px;
+}
+
+table.dateField div
+{
+	width:100%;
+	font-size: 100%;
+}
+.dateField {
+  font-size: 100%;
+  padding: 0;
+}
+
+div.ui-datepicker {
+  font-size: 80%;
+}
+
+.hasTooltip {
+  // Primarily a place holder to identify PHR tooltip container. Intended to be
+  // used in Def.Validation.tooltip.add() in navigation.js. Could be used to
+  // customize the styling too. -Ajay 04/22/2013
+}
+
+div.date_container {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  float: left;
+  position: relative;
+  z-index: 5;
+  box-sizing: border-box;
+}
+
+div.date_container > input.hasDatepicker {
+  border: 1px solid #bfbfbf;
+}
+
+div.date_container > img.ui-datepicker-trigger {
+  border: 0 none;
+  margin: 0;
+  padding-top: 0;
+  vertical-align: middle;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  z-index: 101;
+}
+
+div.date_container > img.ui-datepicker-trigger:hover {
+  cursor: pointer;
+}
+
+th.in_edit > div.date_container {
+  width: auto;
+}
+
+th.in_edit > div.date_container > input.hasDatepicker {
+  height: 22px;
+  padding-left: 2px;
+}
+
+.dateField input{
+  width:auto;
+}
+
+
+/* Style for jscalendar button
+ */
+img.ffar_calendar{
+  border: 0 none;
+  margin: 0;
+  padding-top: 0;
+  vertical-align: middle;
+}
+
+img.ffar_calendar:hover {
+  cursor: pointer;
+}
+
+/* Styles for the date fields
+ */
+tr > td.dateField > * {
+  padding-top:2px;
+}
+tr > td.dateField > .static_text {
+  padding-top: 0;
+}
+tr > td.dateField table.dateField {
+  padding-top:0;
+  /*background color is set by the ancester (tr or other)'s background color. */
+  background-color: transparent; /*background-color:#FFF;*/
+  height:16px;
+}
+:not(table.dateField > tr > td) {
+  padding: 0 !important;
+}
+
+tr > td.dateField table.dateField tr {
+  background-color: transparent !important;
+}
+
+td div.dateField .tipMessage {
+  width: 88%;
+  max-height: 2em;
+}
+
+table.dateField td {
+  border-width: 0;
+}
+
+tr.repeatingLine > td > table.dateField input,
+tr.repeatingLine > td > span > table.dateField input {
+  border: 1px solid #BFBFBF; /* 0; */
+  width: 100%;
+}
+
+tr.repeatingLine > td > table.dateField {
+  border: 0;
+  width: 100%;
+}
+
+/* from phr.css */
+td.dateField .dateField {
+  margin-left: 0;
+  width: 100%;
+}
+td.dateField .dateField input{
+  width: 90% !important;
+}
+tr.deleted img.ffar_calendar {
+  display: none;
+}

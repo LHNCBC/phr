@@ -1,0 +1,74 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+    name: Anthrax vaccine - AVA
+    id: -1
+    synonyms:
+    
+two:
+    name: Tuberculosis (TB) vaccine - BCG
+    id: -2
+    synonyms:
+
+three:
+    name: Diphtheria/Tetanus vaccine - DT or Td
+    id: -3
+    synonyms:
+
+four:
+    name: Diphtheria/Tetanus/Pertussis vaccine - DtaP or Tdap
+    id: -4
+    synonyms:
+
+    
+five:
+    name: Tetanus vaccine - TT
+    id: -5
+    synonyms:
+
+six:
+    name: Haemophilus influenza type b vaccine - Hib
+    id: -6
+    synonyms:
+
+    
+seven:
+    name: Hepatitis A vaccine - HAV
+    id: -7
+    synonyms:
+
+    
+eight:
+    name: Hepatitis B vaccine - HBV
+    id: -8
+    synonyms:
+
+nine:
+    name: Human papilloma virus vaccine - HPV
+    id: -9
+    synonyms:
+
+ten:
+    name: Polio vaccine, oral (not used in US since 2000) - OPV
+    id: -10
+    synonyms:
+
+eleven:
+    name: Polio vaccine, injected - IPV
+    id: -11
+    synonyms:
+
+twelve:
+    name: Japanese encephalitis vaccine - JE
+    id: -12
+    synonyms:
+
+thirteen:
+    name: Influenza vaccine, inhaled - LAIV
+    id: -13
+    synonyms: FluMist
+
+fourteen:
+    name: Influenza vaccine, injected - TIV
+    id: -14
+    synonyms: Flu shot
+

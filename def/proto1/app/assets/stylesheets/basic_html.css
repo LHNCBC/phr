@@ -1,0 +1,41 @@
+/* A minimalistic style for the Basic HTML mode.  Pages must be readable when
+these styles are turned off. */
+.scrolling_text {
+  overflow: auto;
+  border: 1px solid gray;
+  padding: 0.5em;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.5em;
+}
+
+/* On flowsheet, make the row th's not centered or bold.
+   For some reason this is not needed on other pages. */
+table.panel_timeline th.test_name {
+  text-align: left;
+  font-weight: normal;
+}
+
+fieldset {
+  margin-bottom: 1em;
+}
+
+th > h1,th > h2,th > h3,th > h4,th > h5,th > h6,th > h7,th > h8,th > h9,
+td > h1,td > h2,td > h3,td > h4,td > h5,td > h6,td > h7,td > h8,td > h9{
+  font-size: 100%;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+td > form {
+  margin-bottom: 0;
+}
+
+#page_errors {
+  font-weight: bold;
+}

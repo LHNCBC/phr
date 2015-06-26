@@ -1,0 +1,13 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Notes</h1>
+
+	<p>
+	Use this area of the PHR to record any additional health notes for yourself, your caregivers, or your health providers. 
+	</p>  
+	<p>
+		<a href="/help/no_personal_identifiers.shtml">Please do not enter personal identifiers in this field.</a>
+	</p>
+
+<!--#include virtual="help_footer.shtml" -->
+

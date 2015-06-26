@@ -1,0 +1,17 @@
+/* 
+    Document   :  class_mgmt
+    Created on :  Feb 6, 2012, 10:30:52 AM
+    Author     :  lmericle
+    Description:  Styles specific to the ClassMgmt page
+      
+*/
+
+.classification_link {
+	font-size: 12px;
+}
+
+.classification_title {
+	padding-top: 20px;
+	font-size: 16px;
+}
+

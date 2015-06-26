@@ -1,0 +1,28 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: -1
+  predef_type: HL7
+  field_type: "ST - string data"
+  form_builder: 1
+  control_type: "text_field"
+  hl7_code: "ST"
+  
+two:
+  id: -2
+  predef_type: HL7
+  field_type: "NM - numeric"
+  form_builder: 1
+  control_type: "text_field"
+  hl7_code: "NM"
+    
+group_header:
+  id: -24
+  field_type: "Group Header"
+  form_builder: 1
+  control_type: "group_header"
+
+static_text:
+  id: -25
+  field_type: "Label/Display Only"
+  form_builder: 1
+  control_type: "static_text"

@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>PHR Record Name</h1>
+		<p>
+    To create a new PHR, enter a PHR Record Name for the person whose data is to be 
+	entered into this Personal Health Record. </p>
+
+        <p> Please avoid using
+			<a href="/help/no_personal_identifiers.shtml"> personal identifiers</a> in this field.
+			You may wish to use an alias or invented name such as "Self", "Son 1", or 
+			"Father" to maximize your privacy. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

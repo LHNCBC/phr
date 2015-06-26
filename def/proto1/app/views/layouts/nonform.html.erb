@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%#
+# A layout for pages that don't use the FFAR form generation system.
+%>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag "manifest_base_package"%>
+    <%= stylesheet_link_tag  'non_generated'  %>
+    <%= stylesheet_link_tag_for_vendor "/vendor_assets/autocomp/auto_completion.css", :media => "screen" %>
+    <title><%=  @title %></title>
+  </head>
+  <body>
+   <% if !@show_header.nil? && @show_header %>
+      <%= render({:partial=>'form/header_template.rhtml', :handlers=>[:erb]}) %>
+    <% end  %>
+    <div id="pageContent">
+      <h1 style="margin: 0 auto"><%= @title %></h1>
+      <% unless flash[:notice].blank? %>
+        <div id="notification"><%= flash[:notice] %></div>
+      <% end %>
+      <% unless flash[:error].blank? %>
+        <div id="error"><%= flash[:error] %></div>
+      <% end %>
+      <div id="formContent">
+        <%= yield :layout %>
+        <div id="searchResults" style="visibility: hidden" class="form_auto_complete">
+          <div id="completionOptionsScroller">
+            <span id="completionOptions" class="auto_complete" style="display: block; width: 261px;">
+            </span>
+          </div>
+          <div id="moreResults" style="display: none;">See more items (Ctl Ret)</div>
+          <div id="searchCount" style="display: none;">Search Results<!-- place holder for result count,
+           needed for height calculation--></div>
+          <div id="searchHint">Search Hint<!--place holder--></div>
+        </div>
+      </div>
+    </div>
+    <%= javascript_include_tag 'manifest_jquery_show' %>
+    <%= javascript_include_tag 'manifest_page_bottom' %>
+    <script type="text/javascript">
+      //<!-- define a dojo constant we use, to avoid pulling in all of dojo. -->
+      dojo = {}; dojo.keys = {}; dojo.keys.F2 = 113;
+
+      Def.FieldDefaults = {};
+      Def.Rules.fieldRules_ = {};
+      // Set up change event observers to run when code fields are updated.
+      Def.fieldObservers_ = {};
+      Def.fieldValidations_ = {};
+
+      document.observe("dom:loaded", function() {
+        Def.Navigation.setUpNavKeys();
+        // sets up user session timeout
+        <% if !@user.blank? %>
+          Def.Idle.initEvents();
+        <% end %>
+
+        <% if Rails.env != 'test' %>
+          Def.UsageMonitor.setTimer();
+        <% end %>
+      });
+
+      <% if !@show_header.nil? && @show_header && !@user.nil? %>
+           document.observe("dom:loaded", function() {
+             $('fe_user_name').innerHTML = '<%= @user.name %>' ;
+      });
+      <% end%>
+     window._token = '<%= form_authenticity_token -%>';
+    </script>
+    <%= yield :page_specific_js %>
+  </body>
+</html>

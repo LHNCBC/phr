@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>fields_table.js</strong>.
+    </p>
+  </div>
+
+  <!-- Log output -->
+  <div id="testlog"> </div>
+
+  <!-- Test content.  This may eventually be a mini version of the PHR form. -->
+  <div id="testcontent">
+
+    <div id="listAreaContent">
+      <div style="visibility: visible;" id="splitButton">
+        <input type="button" class="noNav" value="Horizontal Split" onclick="changeSplitDirection(this)" id="splitButtonControl"/>
+      </div>
+      <div style="margin: auto; display: none;" class="reqNotice" id="listReqNotice">
+        <img src="/icons/bullet_star.png"/> indicates required information
+      </div>
+      <div id="searchResults" style="visibility: hidden; top: 189px;">
+        <div id="searchCount" style="display: none;">Search Results<!-- place holder for result count,
+         needed for height calculation--></div>
+        <div id="searchHint" style="display: none;">Search Hint<!--place holder--></div>
+        <span id="completionOptions" class="auto_complete" style="display: block; height: auto;"><ul><li class="">1 - Female</li><li class="">2 - Male</li></ul></span>
+      </div>
+    </div>
+
+    <form id="main_form" method="post" action="/app/phr/get_action">
+      <div id="fe_demographics_0" class="fieldGroup">
+        <div class="field has_rules">
+        <label for="fe_birth_year_1">
+        Year of Birth:&nbsp;&nbsp;</label><span class="dateField" style="position: relative;"><input style="z-index: 2; opacity: 0;" formno="0" seqno="2" class="has_rules" onchange="Def.Rules.runRules(this); makeFormatJS(this,'fe_birth_year_ET_1','fe_birth_year_HL7_1', 'CCYY','yyyy MMM d','yyyy MMM','yyyy','Year of Birth','Enter date in the following format CCYY') ;; if (this.value.trim().length > 0 ) {var min = Date.parse('t-100Y');var max = Date.parse('t');dateRangeCheck(this,'Year of Birth',min,max,Date.parse(this.value));}" onblur=" ; toggleTipMessages(this.parentNode) ;" onfocus="hideTheList(this) ; this.style.opacity = '1.0' ; " autocomplete="off" id="fe_birth_year_1" name="fe[birth_year_1]" size="15" type="text"><span style="left: 0px; top: 0px; z-index: 1; opacity: 1; visibility: visible;" class="tipMessage" name="fe_birth_year_TIP"> CCYY </span></span>
+        <br clear="left"></div>
+
+        <div class="field hidden_field">
+        <input formno="0" seqno="3" class="hidden_field" id="fe_birth_year_ET_1" name="fe[birth_year_ET_1]" onfocus="hideTheList(this)" size="30" type="text">
+        <br clear="left"></div>
+
+        <div class="field hidden_field">
+        <input formno="0" seqno="4" class="hidden_field" id="fe_birth_year_HL7_1" name="fe[birth_year_HL7_1]" onfocus="hideTheList(this)" size="30" type="text">
+        <br clear="left"></div>
+
+        <div class="field has_rules">
+
+          <label for="fe_gender_1">
+          Gender:&nbsp;&nbsp;</label><input formno="0" seqno="5" autocomplete="off" class="has_rules ansList eventsHandled" id="fe_gender_1" name="fe[gender_1]" onblur="Def.Rules.runRules(this)" onfocus="hideTheList(this)" size="30" type="text">
+
+        <br clear="left"></div>
+
+        <div class="field hidden_field">
+        <input formno="0" seqno="6" class="hidden_field" id="fe_gender_code_1" name="fe[gender_code_1]" onfocus="hideTheList(this)" size="30" type="text">
+        <br clear="left"></div>
+
+        <div class="field">
+
+        <label for="fe_race_or_ethnicity_1">
+        Race or ethnicity:&nbsp;&nbsp;</label><input formno="0" seqno="7" autocomplete="off" class="ansList eventsHandled" id="fe_race_or_ethnicity_1" name="fe[race_or_ethnicity_1]" onfocus="hideTheList(this)" size="30" type="text">
+        </div>
+      </div>
+
+
+      <!-- Test content for testFindModelRows -->
+      <table id ="testFindModelRows">
+        <tr id="headerRow"></tr>
+        <tr id="firstModelLine" rowid="0"></tr>
+        <tr id="secondModelLine" rowid="0"></tr>
+        <tr id="firstRowLine" rowid="1"></tr>
+        <tr id="secondRowLine" rowid="1"></tr>
+      </table>
+   </form>
+
+  </div>
+</div>
+  <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+  <script src="assets/unittest.js" type="text/javascript"></script>
+
+  <script src="assets/effects.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/controls.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/application_phr.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/logger.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/idCache.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/navigation.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/fields_table.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompBase.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompPrefetch.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompSearch.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/rules.js?body=1"
+          type="text/javascript"></script>
+
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+
+
+
+<script type="text/javascript">//<![CDATA[
+          Def.FieldDefaults = {};
+          var fe_gender_1_autoComp =
+          new Def.Autocompleter.Prefetch('fe_gender_1', ['Female', 'Male']);
+          //]]>
+          </script>
+<script type="text/javascript">//<![CDATA[
+        var fe_race_or_ethnicity_1_autoComp =
+        new Def.Autocompleter.Prefetch('fe_race_or_ethnicity_1',
+          ['American Indian or Alaska Native', 'Asian', 'Black or African-American', 'Hispanic or Latino', 'Native Hawaiian or Pacific Islander', 'White', 'Unknown']);
+    //]]>
+        </script>
+<script type="text/javascript">
+// <![CDATA[
+  new Test.Unit.Runner({
+
+    // replace this with your real tests
+
+    setup: function() {
+
+    },
+
+    teardown: function() {
+
+    },
+
+    testTabBetweenVerticalFields: function() { with(this) {
+      // There was a bug where if the birth year field was blank, and you
+      // tabbed to the gender field below it, an exception would be raised.
+      var birth_year = $('fe_birth_year_1');
+      birth_year.value = ''; // so skipBlankLine actually does something
+      var rtn = Def.FieldsTable.skipBlankLine(birth_year);
+      // The birth_year field is not in a table, so the return value should
+      // be false (line not skipped).
+      assert(!rtn);
+    }},
+
+
+    /**
+     *  Tests the findModelRows function.
+     */
+    testFindModelRows: function() { with(this) {
+      var table = $('testFindModelRows');
+      var modelRows = Def.FieldsTable.findModelRows(table);
+      assertEqual(2, modelRows.length);
+      assertEqual('firstModelLine', modelRows[0].id);
+      assertEqual('secondModelLine', modelRows[1].id);
+    }}
+
+  }, "testlog");
+// ]]>
+</script>
+</body>
+</html>

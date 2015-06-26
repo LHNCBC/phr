@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+gender:
+  id: -1
+  list_name: MDS_16
+  list_desc: Gender
+race:
+  id: -2
+  list_name: MDS_29
+  list_desc: Race/Ethnicity
+

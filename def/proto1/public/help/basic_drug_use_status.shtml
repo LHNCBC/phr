@@ -1,0 +1,13 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medication Status</h1>
+		<p>
+		Indicate whether or not you are currently 
+		taking the medication you have entered. If you are currently taking it, select the <b>Active</b> status from the drop-down menu.
+		If you have entered a medication that you have taken in the past, 
+		and are no longer taking, select the 
+		<b>Stopped</b> status.  
+   </p>
+		
+    
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,186 @@
+| open | /phr_home |
+| setTimeout | 35000 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+# Check rule functioning on a non-autocompleter field
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'phr_date1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+#
+# Check error when age > 150
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText | fe_birth_date_1_1 | t-151Y |
+
+# Makes first attempt to leave the invalid field
+| fireEvent | fe_birth_date_1_1 | change, blur |
+| keyDown | fe_birth_date_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| verifyExpression | javascript{testWindow_.$('fe_birth_date_1_1').hasClassName('invalid')} | true |
+| verifyExpression | javascript{testWindow_.$('fe_birth_date_1_1').invalid} | true |
+| pause | 2000 |
+
+# valid date
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| typeText | fe_birth_date_1_1 | 2009 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| pause | 1000 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| pause | 1000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# Temporarily commenting out this part of the test, as the DOM structure
+# has changed.  Sumeet will make this less dependent on the DOM structure,
+#	|dom=document.body.childNodes[8].childNodes[0].childNodes[0].childNodes[1].childNodes[2]|
+#	|dom=document.body.childNodes[8].childNodes[0].childNodes[0].childNodes[1].childNodes[2]|
+# or if that is not feasible, will fix it.
+
+| click | fe_problem_1 |
+| typeText | fe_problem_1 | fe |
+| waitForVisible | searchResults |
+| selectByIndex | fe_problem_1 | 1 |
+
+# Test use of the calendar image to enter a date.
+| click | javascript{testWindow_.$('fe_when_started_1').next()} |
+| pause | 500 |
+| waitForExpression | javascript{testWindow_.$$('table.ui-datepicker-calendar')[0].getStyle('display') == 'table'} | true |
+| click | javascript{testWindow_.$$('table.ui-datepicker-calendar td.ui-datepicker-today')[0]} |
+# | mouseDown | css=table.ui-datepicker-calendar td[colspan="4"] |
+# | mouseUp | css=div.calendar td[colspan="4"] | 
+| verifyValue | fe_when_started_1 | javascript{ Date.parse('t').toString('yyyy MMM dd') } |
+| fireEvent | fe_when_started_1 | blur |
+
+# Now test use of the calendar image on a subsequent line.
+| click | fe_problem_2 |
+| typeText | fe_problem_2 | ge |
+| waitForVisible | searchResults |
+| selectByIndex | fe_problem_2 | 1 |
+| click | fe_when_started_2 |
+| pause | 500 |
+| waitForExpression| javascript{testWindow_.$$('table.ui-datepicker-calendar')[0].getStyle('display') == 'table'} | true |
+| click | javascript{testWindow_.$$('table.ui-datepicker-calendar td.ui-datepicker-today')[0]} |
+#| mouseDown | css=div.calendar td[colspan="4"] |
+#| mouseUp | css=div.calendar td[colspan="4"] |
+| waitForValue | fe_when_started_2 | javascript{ Date.parse('t').toString('yyyy MMM dd') } |
+| fireEvent | fe_when_started_2 | blur |
+
+# Now test entering dates manually in various formats
+| fireEvent | fe_name_and_route_1 | focus |
+| typeText | fe_name_and_route_1 | ar |
+| waitForVisible | searchResults |
+| selectByIndex | fe_name_and_route_1 | 1 |
+| keyDown | fe_name_and_route_1 | \9 |
+| waitForVisible | fe_drug_use_status_1 | 
+| fireEvent | fe_expire_date_1 | focus |
+| typeText | fe_expire_date_1 | Jan 12, 08 |
+| fireEvent | fe_expire_date_1 | change |
+| fireEvent | fe_expire_date_1 | blur |
+| verifyValue | fe_expire_date_1 | 2008 Jan 12 |
+
+| pause | 500 |
+| type | fe_expire_date_1 | |
+| fireEvent | fe_expire_date_1 | focus |
+| typeText | fe_expire_date_1 | 12 12 08 |
+| fireEvent | fe_expire_date_1 | change |
+| fireEvent | fe_expire_date_1 | blur |
+| verifyValue | fe_expire_date_1 | 2008 Dec 12 |
+
+| pause | 500 |
+| type | fe_expire_date_1 | |
+| fireEvent | fe_expire_date_1 | focus |
+| typeText | fe_expire_date_1 | April 9 10 |
+| fireEvent | fe_expire_date_1 | change |
+| fireEvent | fe_expire_date_1 | blur |
+| verifyValue | fe_expire_date_1 | 2010 Apr 09 |
+
+
+| pause | 500 |
+| type | fe_expire_date_1 | |
+| fireEvent | fe_expire_date_1 | focus |
+| typeText | fe_expire_date_1 | 12 13 14 |
+| fireEvent | fe_expire_date_1 | change |
+| fireEvent | fe_expire_date_1 | blur |
+| verifyValue | fe_expire_date_1 | 2014 Dec 13 |
+
+| pause | 500 |
+| type | fe_expire_date_1 | |
+| fireEvent | fe_expire_date_1 | focus |
+| typeText | fe_expire_date_1 | 12 15 |
+|fireEvent | fe_expire_date_1 | change |
+| fireEvent | fe_expire_date_1 | blur |
+| verifyValue | fe_expire_date_1 | 2015 Dec 01|
+
+# Verify HL7 date formats etc
+| mouseDown | fe_tp1_panel_testdate_1_1_1 |
+| fireEvent | fe_tp1_panel_testdate_1_1_1 | focus |
+| type | fe_tp1_panel_testdate_1_1_1 | Apr 10 2010 |
+| fireEvent | fe_tp1_panel_testdate_1_1_1 | change |
+| pause | 500 |
+| fireEvent | fe_tp1_panel_testdate_1_1_1 | blur |
+| verifyValue | fe_tp1_panel_testdate_HL7_1_1_1 | 20100410 |
+| verifyValue | fe_tp1_panel_testdate_ET_1_1_1 | 1270915200000 |
+| mouseDown | fe_tp1_panel_testdate_time_1_1_1 |
+| fireEvent | fe_tp1_panel_testdate_time_1_1_1 | focus |
+| type | fe_tp1_panel_testdate_time_1_1_1 | 12:34p |
+| fireEvent | fe_tp1_panel_testdate_time_1_1_1 | change |
+| pause | 500 |
+| verifyValue | fe_tp1_panel_testdate_time_1_1_1 | 12:34 PM |
+| type | fe_tp1_panel_testdate_time_1_1_1 | 12:34a |
+| fireEvent | fe_tp1_panel_testdate_time_1_1_1 | change |
+| pause | 500 |
+| verifyValue | fe_tp1_panel_testdate_time_1_1_1 | 12:34 AM |
+| type | fe_tp1_panel_testdate_time_1_1_1 | 0:34a |
+| fireEvent | fe_tp1_panel_testdate_time_1_1_1 | change |
+| pause | 500 |
+| verifyValue | fe_tp1_panel_testdate_time_1_1_1 | 12:34 AM |
+| type | fe_tp1_panel_testdate_time_1_1_1 | 11 |
+| fireEvent | fe_tp1_panel_testdate_time_1_1_1 | change |
+| pause | 500 |
+| verifyValue | fe_tp1_panel_testdate_time_1_1_1 | 11:00 AM |
+| fireEvent | fe_tp1_panel_testdate_time_1_1_1 | blur |
+| verifyValue | fe_tp1_panel_testdate_HL7_1_1_1 | 201004101100 |
+| verifyValue | fe_tp1_panel_testdate_ET_1_1_1 | 1270911600000 |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |

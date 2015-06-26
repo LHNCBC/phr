@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Dose Number</h1>
+	<p>
+	Select the dose number in the vaccine series. Some vaccines only need one dose (e.g., meningitis), while others need to be given in a series of up to five doses (e.g., DTaP). Therefore, for meningitis you would record the dose number as <b>1st</b>, whereas if this is the third dose of DTaP out of five, you would record the dose number as <b>3rd</b>.
+	</p>
+
+<!--#include virtual="help_footer.shtml" -->

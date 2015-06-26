@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+gender_list_1:
+  id: -1
+  answer_text: UTD
+gender_list_2:
+  id: -2
+  answer_text: Male
+gender_list_3:
+  id: -3
+  answer_text: Female
+rase_list_9:
+  id: -9
+  answer_text: None
+

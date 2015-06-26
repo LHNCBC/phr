@@ -1,0 +1,86 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# these contain fields that are not in the table as of 7/8/10
+#Self-1:
+#  id: -1
+#  patient_id: -501
+#  row_num: 1
+#  immune_name: "Anthrax vaccine - AVA"
+#  dose_form: 1st
+#  vaccine_date: "1/1/2001"
+#Self-2:
+#  id: -2
+#  patient_id: -501
+#  row_num: 2
+#  immune_name: "Measles/Mumps/Rubella vaccine - MMR"
+#  dose_form: 2nd
+#  vaccine_date: "1/15/2002"
+#Son-1:
+#  id: -3
+#  patient_id: -504
+#  row_num: 1
+#  immune_name: "Hepatitis B vaccine - HBV"
+#  dose_form: "3rd"
+#  vaccine_date: "7/6/2006"
+#Son-1:
+#  id: -4
+#  patient_id: -504
+#  row_num: 2
+#  immune_name: "Hepatitis B vaccine - HBV"
+#  dose_form: "2nd"
+#  vaccine_date: "1/7/2006"
+#Son-1:
+#  id: -5
+#  patient_id: -504
+#  row_num: 3
+#  immune_name: "Hepatitis B vaccine - HBV"
+#  dose_form: "1st"
+#  vaccine_date: "12/10/2005"
+#Father:
+#  id: -6
+#  patient_id: -502
+#  row_num: 1
+#  immune_name: "Influenza vaccine, injected - TIV"
+#  dose_form: "1st"
+#  vaccine_date_3: "10/09/2007"
+# 
+temp_profile_1a:
+  id: -101
+  profile_id: -20
+
+temp_profile_1b:
+  id: -102
+  profile_id: -20
+
+temp_profile_2a:
+  id: -103
+  profile_id: -21
+
+temp_profile_2b:
+  id: -104
+  profile_id: -21
+
+temp_profile_3a:
+  id: -105
+  profile_id: -22
+
+temp_profile_3b:
+  id: -106
+  profile_id: -22
+
+standard_profile_1a:
+  id: -107
+  profile_id: -23
+
+standard_profile_1b:
+  id: -108
+  profile_id: -23
+
+standard_profile_2a:
+  id: -109
+  profile_id: -24
+
+standard_profile_2b:
+  id: -110
+  profile_id: -24
+
+

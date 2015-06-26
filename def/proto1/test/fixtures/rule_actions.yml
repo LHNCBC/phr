@@ -1,0 +1,46 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: -1001
+  rule_part_id: -1001
+  rule_part_type: Rule
+  action: hide
+  affected_field: first_name
+two:
+  id: -1002
+  rule_part_id: -1001
+  rule_part_type: Rule
+  action: hide
+  affected_field: last_name
+
+rc1_c1_action1:
+  id: -1004
+  rule_part_id: -1002
+  rule_part_type: RuleCase
+  action: hide
+  affected_field: total_chol
+
+# Fields to test change_target_field
+change_parameters:
+  id: -1070
+  rule_part_id: -1030
+  rule_part_type: RuleCase
+  action: set_value
+  parameters: value=>to_be_changed
+  affected_field: no_change
+  
+change_affected_field:
+  id: -1071
+  rule_part_id: -1031
+  rule_part_type: Rule
+  action: set_value
+  parameters: value=>no_change
+  affected_field: to_be_changed
+
+change_both:
+  id: -1072
+  rule_part_id: -1030
+  rule_part_type: RuleCase
+  action: set_value
+  parameters: value=>to_be_changed
+  affected_field: to_be_changed
+  

@@ -1,0 +1,183 @@
+#!/proj/def/bin/ruby
+# This script is used for posting notices on the public web site machines.
+
+PROJECT_DIR = '/proj'
+DEF_PROJECT_DIR = "#{PROJECT_DIR}/def"
+WEB_DOC_ROOT = "#{DEF_PROJECT_DIR}/proto1/public"
+NOTICE_DIR = WEB_DOC_ROOT
+LOGIN_PAGE_NOTICE_FILE = 'loginNotice.txt'
+URGENT_NOTICE_FILE = 'urgentNotice.txt'
+# When running rake in production mode, for some reason we need to include
+# the require config/environment part or it can't find model classes.
+RAKE = '/proj/def/bin/rake --require config/environment'
+RUBY = '/proj/def/bin/ruby'
+
+require 'rubygems'
+require 'net/sftp'
+require 'net/ssh'
+require 'fileutils'
+require 'optparse'
+
+
+
+# Prints out the system call and then runs it.  Returns the return value of the
+# system call.
+def echo_system(cmd)
+  puts cmd
+  rtn = system(cmd)
+  puts '(Completed)' if rtn
+  return rtn
+end
+
+
+
+
+# Listens to the terminal for user password input
+def get_password
+  pass=nil
+  begin
+    system "stty -echo"
+    pass = gets.chomp
+  ensure
+    system "stty echo"
+  end
+  puts
+  return pass
+end
+
+
+# Gets an SSH connection for the specified machine, for user USER.
+# Gives the user 5 attempts, and then raises an exception.
+#
+# Parameters:
+# * machine - the machine to connect to
+# * user - the user name to log in as
+def get_ssh_connection(machine, user)
+  attempt_count = 1
+  ssh = nil
+
+  while !ssh && attempt_count <= 5
+    begin
+      print "Enter password for #{user} on #{machine}:  "
+      pass = get_password
+      ssh = Net::SSH.start(machine, user, :password => pass)
+    rescue
+      puts $!
+      attempt_count = attempt_count + 1
+    end
+  end
+  ssh.loop
+  return ssh
+end
+
+
+# Executes a command on a given ssh session and waits for it to complete
+#
+# Parameters:
+# * session - the SSH session to use
+# * cmd - the command to execute
+#
+# Returns all output of the command (from STDOUT and STDERR).
+def exec_and_wait(session, cmd)
+  rtn_buffer = []
+  # The exec! command on the session waits for the command to complete;
+  # however it does not get a pty (interactive terminal) so it won't run sudo.
+  puts "On host #{session.host}, running command #{cmd}"
+  cmd_channel = session.open_channel do |channel|
+    channel.request_pty do |ch, success|
+      raise "Could not obtain pty (i.e. an interactive ssh session)" if !success
+    end
+    channel.exec(cmd) do |ch, success|
+      abort "could not execute command" unless success
+      output_notice = false
+      channel.on_data do |ch, data|
+        if !output_notice
+          puts "Output from #{session.host} follows"
+          output_notice = true
+        end
+        print data
+        rtn_buffer << data
+        if data.include?('PASSCODE') || data.include?('pass phrase:')
+          input = get_password
+          channel.send_data "#{input}\n"
+        end
+      end
+      channel.on_extended_data do |ch, data|
+        print "[session.host ERROR]: #{data}";
+        rtn_buffer << data
+      end
+    end
+  end
+  cmd_channel.wait
+  puts "(command on host #{session.host} completed)"
+  return rtn_buffer.join
+end
+
+
+# Main program
+#
+# An array of the names of the web application machine(s)
+webapp_machines = nil
+
+# Whether or not the notice should appear on all pages
+all_pages = false
+
+# The notice message (or blank if the message is to be removed)
+message = nil
+
+option_parser = OptionParser.new do |opts|
+  opts.on("-d", "--destination machine1,machine2,...",
+          'the web application machines on which the notice should be posted.',
+          Array) {
+    |list| webapp_machines=list
+  }
+  opts.on("-a", "--all_pages",
+    'whether this is an urgent message that should appear on all pages') {
+    all_pages = true
+  }
+  opts.on("-m", "--message text", 'the text of the notice') {|m|
+    message = m
+  }
+  opts.on("-h", "This help message") {
+    puts opts
+    puts <<EXAMPLES
+Examples:
+  postNotice -d machine1,machine2 -m 'Take a survey':  This will post the
+    mesage 'Take a survey' to the login page only, on machines machine1 and
+    machine2.
+  postNotice -d machine1,machine2 -m 'System update in one hour' -a:  With the
+    -a option, this message will appear on all pages.  Additionally, a user
+    who remains on the same page for more than a few minutes will get a pop-up
+    with the notice.
+  postNotice -d machine1,machine2:  Without the -m, this will clear a message
+    that was set for the login page.
+  postNotice -d machine1,machine2 -a:  Without the -m, but with the -a, this will
+    clear a message that was showing on all pages.  (Note:  The two types
+    of notices are different, and both can be present.  The -a toggles which
+    notice is being set/unset.)
+EXAMPLES
+    exit
+  }
+end
+option_parser.parse!
+
+raise 'The -d option is required' if !webapp_machines
+if (!message.nil?)
+  # escape things in the message that might confuse the shell
+  message.gsub!(/(["'])/, '\\\\\1')
+end
+
+notice_file = all_pages ? URGENT_NOTICE_FILE : LOGIN_PAGE_NOTICE_FILE
+notice_pathname = File.join([NOTICE_DIR, notice_file])
+user = `id -nu`.chomp
+webapp_machines.each do |machine|
+  session = get_ssh_connection(machine, user)
+  if (message.nil?)
+    exec_and_wait(session,
+      "sudo -u TBD-updateForYourSystem sh -c 'rm #{notice_pathname}'")
+  else
+    exec_and_wait(session,
+      "sudo -u TBD-updateForYourSystem sh -c 'echo \"#{message}\" > #{notice_pathname}'; sudo chmod a+r #{notice_pathname}")
+  end
+end
+

@@ -1,0 +1,8 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>New Panel</h1>
+	<p>
+	Please select a panel from the panel list.
+	</p>  
+
+<!--#include virtual="help_footer.shtml" -->

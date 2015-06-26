@@ -1,0 +1,6 @@
+<%= form_tag_wo_ajax send('phr_record_'+@table+'_path', :phr_record_id=>@phr_record), :method=>:post %>
+  <%= render 'mobile/dup_warning_section' if @dup_warning_data %>
+  <%#= render "new_edit_fields" %>
+  <%= render "mobile/#{@table}/new_edit_fields"  %>
+  <%#= render "#{@table}/new_edit_fields" %>
+</form>

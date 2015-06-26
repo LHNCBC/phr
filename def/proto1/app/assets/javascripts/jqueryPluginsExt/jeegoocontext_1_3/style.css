@@ -1,0 +1,26 @@
+﻿*{margin:0; padding:0}
+body, html{height:100%}
+body{font-family:Arial, Sans-Serif; font-size:.8em; line-height:1.4em; color:#000; background:#333}
+table{border-collapse:collapse}
+p{padding-bottom:15px}
+a img{border:0}
+ul, ol{list-style-position:inside}
+.clear{clear:both}
+#outer{position:relative; width:900px; margin:0 auto; min-height:100%; background:#fff}
+* html #outer{height:100%}
+/*Header*/
+#header{position:relative; padding:45px 30px 50px 30px; background:#d7e1eb; border-bottom:solid 5px #0c3961}
+#header h1{font-size:2em; font-style:italic; color:#235a8b}
+#header h1 span.jg_red{color:#b90f14}
+#header h1 span.jg_green{color:#90b141}
+#header h1 span.jg_yellow{color:#e9a407}
+#header h1 span.jg_blue{color:#549bdd}
+#header h2{position:absolute; right:10px; bottom:3px; font-size:1em; font-weight:normal; color:#00294d}
+/*Content*/
+#content{padding:30px}
+#content h2{color:#8b2323; font-size:1.4em; padding-bottom:10px}
+/*Active context*/
+.active{background:#d2ffa6}
+.context{border:solid 0 #6c0}
+/* button */
+input.button{margin:0 20px 20px 0; padding:5px 10px}

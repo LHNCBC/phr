@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Jeegoocontext, a jQuery context menu plugin</title>
+    <link href="style.css" rel="Stylesheet" type="text/css" />
+    
+     <!-- Context menu default skin -->
+    <link href="jeegoocontext/skins/cm_default/style.css" rel="Stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="jquery.livequery.js"></script>
+    <script type="text/javascript" src="jeegoocontext/jquery.jeegoocontext.min.js"></script>
+    <script type="text/javascript">
+         //<![CDATA[
+        $(function(){
+            $('.button').jeegoocontext('menu', {
+                widthOverflowOffset: 0,
+                heightOverflowOffset: 1,
+                submenuLeftOffset: -4,
+                submenuTopOffset: -2,
+                event: 'click',
+                openBelowContext: true 
+            });
+        });
+        //]]>
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <div id="header">
+            <h1><span class="jg_red">J</span><span class="jg_green">ee</span><span class="jg_yellow">g</span><span class="jg_blue">oo</span>context, <span style="font-size:.7em">a jQuery context menu plugin</span></h1>
+            <h2>Copyright &copy; 2009 - 2010 Erik van den Berg, <a href="http://www.planitworks.nl/jeegoocontext" target="_blank">http://www.planitworks.nl/jeegoocontext</a></h2>
+        </div>          
+        <div id="content">
+            <h2>Opening the menu by clicking a button.</h2>
+            <p>The menu can be opened by a button(or other element) by configuring the following options:</p>
+            <ul>
+                <li><strong>openBelowContext: true</strong>, this causes the contextmenu to open at the lowerleft corner of the context.</li>
+                <li><strong>event: click</strong>, this is the event used to open the menu, i.e. clicking the button.</li>
+            </ul>
+            <br /> 
+            <p>The options.startLeftOffset and option.startTopOffset properties can be used to offset the position of the menu<br />relative to the lowerleft corner of it's context.</p>
+            <input id="button1" class="button" type="button" value="Click me" />
+            <br />
+            <br />  
+            <a href="suckerfish.htm" style="float:right">Dropdown menu &gt;&gt;</a> 
+            <a href="multiple_single.htm">&lt;&lt; onShow callback alternative</a>       
+        </div>                
+    </div>
+       
+     <!--  Context menu -->
+    <ul id="menu" class="jeegoocontext cm_default">
+        <li class="font">
+            Item 1
+            <ul>
+                <li>
+                    Item 1.1
+                    <ul>
+                        <li>Item 1.1.1</li>
+                        <li>Item 1.1.2</li>
+                    </ul>
+                </li>
+                <li>
+                    Item 1.2
+                    <ul>
+                        <li>Item 1.2.1</li>
+                        <li>Item 1.2.2</li>
+                    </ul>
+                </li>
+                <li>
+                    Item 1.3
+                    <ul>
+                        <li>Item 1.3.1</li>
+                        <li>Item 1.3.2</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            Item 2
+            <ul>
+                <li>Item 2.1</li>
+                <li>Item 2.2</li>
+                <li>Item 2.3</li>
+            </ul>
+        </li>
+        <li>
+            Item 3
+            <ul>
+                <li>Item 3.1</li>
+                <li>Item 3.2</li>
+                <li>Item 3.3</li>
+                <li>Item 3.4</li>
+            </ul>
+        </li>
+        <li>
+            Item 4
+            <ul>
+                <li>Item 4.1</li>
+                <li>Item 4.2</li>
+                <li>Item 4.3</li>
+                <li>Item 4.4</li>
+                <li>Item 4.5</li>
+            </ul>
+        </li>
+    </ul>    
+</body>
+</html>

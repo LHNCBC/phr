@@ -1,0 +1,15 @@
+<!--#include virtual="help_header.shtml" -->
+
+<h1>Export File Formats</h1>
+
+<p>The data in a Personal Health Record may be exported either as a comma-separated values (CSV) file or as a Microsoft Excel file. 
+<ul>			
+
+<li>Choose CSV format to save your PHR data in a plain-text file comma separated file format. This will allow your PHR data to be imported into many other software applications. </li>
+<li>Choose Excel format to save your PHR data using the Microsoft Excel commercial spreadsheet application. </li>
+
+</ul>
+</p>	
+
+    
+<!--#include virtual="help_footer.shtml" -->

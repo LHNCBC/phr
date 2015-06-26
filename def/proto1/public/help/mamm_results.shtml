@@ -1,0 +1,7 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Mammogram Results</h1>
+		
+		<p>
+		Enter the mammogram results by choosing a result from the drop down list or by typing in your own text. 
+		</p>
+	<!--#include virtual="help_footer.shtml" -->

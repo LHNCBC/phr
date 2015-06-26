@@ -1,0 +1,30 @@
+/* Styles for the demo login page */
+
+/* check boxes */
+/* to be consistent to the cookie_checkbox in the recaptcha group */
+#agree_chbox_1_div {
+  padding: 10px;
+  background-color: #E6EFF5;
+}
+
+#agree_chbox_1_div img {
+  margin: 5px;
+}
+
+/* footer */
+#fe_footer li {
+  display: inline;
+  margin-right: 0.5em;
+}
+
+#fe_instructions2_1.big_static_text{
+  height: 250px;
+  background-color: #EFF5F9;
+  padding: 10px;
+  overflow: auto;
+}
+
+div.field {
+  margin-bottom: 0;
+  margin-top: 0;
+}

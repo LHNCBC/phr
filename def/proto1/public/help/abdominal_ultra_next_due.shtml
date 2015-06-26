@@ -1,0 +1,9 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Abdominal Ultrasound Due Date</h1>
+		
+		<p>
+		<p>Enter the date your next abdominal ultrasound is due. Please note, unless there was an abnormal result on the first ultrasound, screening abdominal ultrasounds usually are not repeated.</p>
+                    <p>To view a complete list of your drug refill dates, immunization and appointment reminders, and test due dates, click the <b>Date Reminders</b> link next to the PHR name on the <b>PHR Home</b> page.</p>
+		<p><a href="/help/entering_dates_help.shtml">How to enter dates in the PHR</a></p>
+		</p>
+	<!--#include virtual="help_footer.shtml" -->

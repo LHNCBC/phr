@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Note</h1>
+
+	<p>
+	Record any additional health notes for yourself, your caregivers, or your health providers here. 
+	</p>  
+	<p>
+		<a href="/help/no_personal_identifiers.shtml">Please do not enter personal identifiers in this field.</a>
+	</p>
+
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag "manifest_form_layout_common"%>
+
+<!-- <div id="formContent" class="<%=@banner_class%>"> -->
+
+    <div id="form_hdr_phr" class="<%=@banner_class%>">
+      <div id="hdr_banner">
+        <div id="hdr_banner_text">
+          <%= BANNER_ALT_TEXT.html_safe %>
+        </div>
+        <div id="hdr_banner_img" class=<%=DEMO_SYSTEM ? "demo" : ""%>></div>
+        <%# banner specified as background image in style.css %>
+        <%# prevents horizontal bar from appearing just for the banner. %>
+      </div>
+      <br/>
+    </div>
+
+<div class="notice_box">
+  <h1>You Now Have Access</h1>
+  <br>
+<p>You now have <%= @access_level %> access to <%= @prof_name_possessive %>
+   health information.</p>
+<p>You will see <%= @prof_name_possessive %> PHR listed under 
+   "Other PHRs I Can Access" when you log into the <%= @system_name %>.</p>
+   
+<p>If you're not currently logged into the system, but would like to log
+   in now, click <a href="https://<%= @host %>">here</a>.</p>
+
+<p>If you are currently logged in, <%= @prof_name_possessive %> PHR will show
+   up in the "Other PHRs I Can Access" section when you next go to (or reload)
+   your PHR Home page.
+</p>
+
+
+ </div>

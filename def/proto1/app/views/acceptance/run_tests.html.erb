@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>Acceptance Test Runner</title>
+    <%= stylesheet_link_tag 'atr' %>
+  </head>
+  <body>
+    <div id="banner">
+      <h1>Acceptance Test Runner</h1>
+    </div>
+
+    <table><tr><td valign="top">
+
+      <div id="test_names">
+        <canvas id="stop" width="26" height="26"></canvas>
+        <button class="button_success" onclick="ATR.handleRunAll()">Run
+         All</button>
+        <button class="button_success" onclick="ATR.handleRunFromNext()">Run
+         From Next</button>
+        <% @test_commands.keys.sort.each do |test_file| %>
+          <% test_name = test_file.sub(/\.[^\.]*/, '') %>
+          <button class="button_not_run"
+           onclick="ATR.handleTestButton('<%=test_file%>')"
+           id="<%=test_file%>_button"><%= test_name %></button>
+        <% end %>
+      </div>
+    </td>
+
+    <td>
+    <% @test_commands.keys.sort.each do |test_file| %>
+      <div class="command_list_section" id="<%=test_file%>_section">
+        <div class="command_list_title"><%= test_file %></div>
+        <table border="1" id="<%=test_file%>_cmd_list" class="command_list">
+          <% @test_commands[test_file].each_with_index do |cmd, i| %>
+            <% if cmd[0] == 'comment' %>
+              <tr class="comment">
+                <td><%= cmd.delete_at(1) %></td>
+                <td colspan="3"><%= cmd[1] %></td>
+                <% @test_commands[test_file][i] = nil %>
+            <% else %>
+              <tr id="<%=test_file%>_cmd_<%= i %>">
+                <td><%= cmd.delete_at(0) %></td>
+                <% cmd.each do |cmd_part| %>
+                  <%# Output the command part, but add some whitespace to
+                      let the line wrap. %>
+                  <td><%= cmd_part.gsub(/,([^\s])/, ', \1').gsub(/(['"])\)/, '\1 )').gsub(/\(([^\)])/, '( \1') %></td>
+                <% end %>
+            <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+
+
+    <%= javascript_include_tag 'manifest_acceptance_test' %>
+    
+    <script type="text/javascript">
+
+      <% if @auto_run %>
+        Event.observe(window, 'load', function(){ATR.handleRunAll()});
+      <% end %>
+
+      /**
+       *  A hashmap of test script file names to commands for each test script.
+       */
+      ATR.testCommands_ = <%= @test_commands.to_json.html_safe%>
+
+      // Also store the keys of the testCommands_ hash into an array, so we
+      // can more easily keep track of where we are in the running of the
+      // tests.
+      /**
+       *  An array of the test script file names.
+       */
+      ATR.testSuiteFiles_ = <%= @test_commands.keys.sort.to_json.html_safe%>
+
+    </script>
+
+
+    <%# Use onload to set a flag indicating that the test window has been
+      # loaded.  This is not in the HTML 4 specification, however according
+      # to http://www.dyn-web.com/tutorials/iframes/, it is supported by most
+      # browsers. %>
+    <iframe width="100%" height="500" id="testWinFrame" name="testWin"
+            onload="ATR.setWindowLoaded()"></iframe>
+    </td></tr></table>
+
+    <script type="text/javascript">
+      /**
+       *  The window in which the page being tested is displayed.
+       */
+      window.testWindow_ = window.frames['testWin'];
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+/*
+ * help.css -> help popups style definitions
+ *
+ * $Id: help.css,v 1.6 2010/11/03 22:56:00 taof Exp $
+ * $Source: /proj/cvs/def/proto1/public/stylesheets/help.css,v $
+ * $Author: taof $
+ *
+ * $Log: help.css,v $
+ * Revision 1.6  2010/11/03 22:56:00  taof
+ * add show more or less feature to reminder messages
+ *
+ * Revision 1.5  2009/03/16 18:51:35  dbennett
+ * updated fonts for help files
+ *
+ * Revision 1.4  2008/02/29 20:33:02  wangye
+ * updated new css files
+ *
+ * Revision 1.4  2008/02/29 15:08:30  wangye
+ * recreated the file to include necessary rules only
+ 
+ * Revision 1.3  2007/08/13 13:52:58  lmericle
+ * form builder mods
+ *
+ * Revision 1.2  2007/04/11 20:57:15  lmericle
+ * fix font in help box
+ *
+ * Revision 1.1  2007/04/11 20:14:56  lmericle
+ * changes for upgraded help box
+ * taken from the bioethics project; modified as needed
+ *
+ */
+
+/* The help buttons - also see sprites.css.scss */
+img.help {
+  vertical-align: middle;
+}
+
+th > img.help {
+  vertical-align: top;
+}
+h2 > img.help {
+  vertical-align: baseline;
+}
+
+.fieldsTable tr th img.help {
+  margin-top: 0 !important;
+}
+
+img.help:hover,
+img.info_button:hover,
+img.cet_action:hover
+{
+  cursor: pointer;
+}

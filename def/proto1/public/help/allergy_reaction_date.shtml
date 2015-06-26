@@ -1,0 +1,14 @@
+<!--#include virtual="help_header.shtml" -->
+
+		<h1>Date of Last Allergic Reaction</h1>
+		<p>
+		Enter the date when you or the patient last experienced the reaction.</p>
+		<p>
+		You may type the date in the space or click on the calendar 
+		to the left of the space and select the date from the pop-up calendar.</p>
+<p>
+		<a href="/help/entering_dates_help.shtml">How to 
+		enter dates in the PHR</a>
+	</p>
+
+<!--#include virtual="help_footer.shtml" -->

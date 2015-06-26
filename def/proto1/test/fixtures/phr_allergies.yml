@@ -1,0 +1,78 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# these contain fields that are not in the table as of 7/8/10
+#Self-1:
+#  id: -1
+#  patient_id: -501
+#  row_num: 1
+#  allergy: "Fruit"
+#  reaction: "Itchiness"
+#  reaction_date: "1 year ago"
+#Self-2:
+#  id: -2
+#  patient_id: -501
+#  row_num: 2
+#  allergy: "Nuts"
+#  reaction: "Mental confusion"
+#  reaction_date: "2 years ago"
+#Mother:
+#  id: -3
+#  patient_id: -503
+#  row_num: 1
+#  allergy: "Bactrim"
+#  reaction: "Vomiting"
+#  reaction_date: "8/13/2005"
+#Son1-1:
+#  id: -4
+#  patient_id: -504
+#  row_num: 1
+#  allergy: "Chocolate"
+#  reaction: "Throat swelling"
+#  reaction_date: "5/02/2007"
+#Son1-2:
+#  id: -5
+#  patient_id: -504
+#  row_num: 2
+#  allergy: "Peanuts"
+#  reaction: "Collapse"
+#  reaction_date: "12/15/2006"
+
+temp_profile_1a:
+  id: -101
+  profile_id: -20
+
+temp_profile_1b:
+  id: -102
+  profile_id: -20
+
+temp_profile_2a:
+  id: -103
+  profile_id: -21
+
+temp_profile_2b:
+  id: -104
+  profile_id: -21
+
+temp_profile_3a:
+  id: -105
+  profile_id: -22
+
+temp_profile_3b:
+  id: -106
+  profile_id: -22
+
+standard_profile_1a:
+  id: -107
+  profile_id: -23
+
+standard_profile_1b:
+  id: -108
+  profile_id: -23
+
+standard_profile_2a:
+  id: -109
+  profile_id: -24
+
+standard_profile_2b:
+  id: -110
+  profile_id: -24
+

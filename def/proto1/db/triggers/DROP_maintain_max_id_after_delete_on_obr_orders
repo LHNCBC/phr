@@ -1,0 +1,1 @@
+DROP TRIGGER IF EXISTS maintain_max_id_after_delete_on_obr_orders

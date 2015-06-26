@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>JavaScript unit test file</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+    <link rel="stylesheet" href="../../public/stylesheets/help.css" type="text/css" />
+  </head>
+  <body>
+    <div id="content">
+      <div id="header">
+        <h1>JavaScript unit test file</h1>
+        <p>
+          This file tests <strong>htmlTruncator.js</strong>.
+        </p>
+      </div>
+
+      <!-- Log output -->
+      <div id="testlog"> </div>
+      <div class="group_title">Messages</div>
+      <div class="truncatable"><div class="r_title">Zoster (Shingles) Vaccine</div><div class="r_text">anAlien has not received the zoster (shingles) vaccine. CDC guidelines recommend the shingles vaccine for adults 60 and older
+          (see <a href="http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-shingles.pdf" onclick="otherwin = openPopup(null, 'http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-shingles.pdf', null, 'resizable=yes,scrollbars=yes,width=700,height=550,screenX=10,screenY=50', 'reminderSubWin', true); otherwin.focus(); return false;">
+            http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-shingles.pdf
+          </a>). The vaccine can reduce the risk of shingles by up to 50%; however, it is a live vaccine, so people with a weakened immune system or those who have close contact with infants should usually avoid it. If he has already received the shingles vaccine, please enter it into his record; otherwise, he should ask his doctor about whether to get the vaccine.
+      </div></div>
+
+      <div class="truncatable"><div class="r_title">Colon Cancer Screening</div><div class="r_text">anAlien has never had colon cancer screening. The U.S. Preventive Services Task Force recommends routine colon cancer screening for people 50 to 75 years old
+          (see <a href="http://www.uspreventiveservicestaskforce.org/uspstf/uspscolo.htm" onclick="otherwin = openPopup(null, 'http://www.uspreventiveservicestaskforce.org/uspstf/uspscolo.htm', null, 'resizable=yes,scrollbars=yes,width=700,height=550,screenX=10,screenY=50', 'reminderSubWin', true); otherwin.focus(); return false;">
+            http://www.uspreventiveservicestaskforce.org/uspstf/uspscolo.htm
+          </a>) because it reduces death from colon cancer in this age group. If he has had a recent screening test (colonoscopy, flexible sigmoidoscopy, or fecal occult blood test), please enter it into his record; otherwise, he should ask his doctor about colon cancer screening.
+      </div></div>
+
+      <div class="truncatable"><div class="r_title">Pneumococcal Vaccine</div><div class="r_text">anAlien has congestive heart failure, which is a risk factor for pneumococcal infection, but has not received his pneumococcal vaccine ("pneumonia shot"). CDC guidelines recommend the pneumococcal vaccine (PPSV) for people between the ages of 2 and 64 with a chronic condition such as congestive heart failure (see
+          <a href="http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf" onclick="otherwin = openPopup(null, 'http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf', null, 'resizable=yes,scrollbars=yes,width=700,height=550,screenX=10,screenY=50', 'reminderSubWin', true); otherwin.focus(); return false;">
+            http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf
+          </a>).  PPSV protects against 23 types of pneumococcal bacteria which can cause serious infections including pneumonia, blood infection, and meningitis. If he has already received PPSV, please enter it in his record; otherwise, he should ask his doctor about whether to get the pneumonia shot.
+      </div></div>
+
+      <div class="truncatable"><div class="r_title">Pneumococcal Vaccine (with truncating marker at location A )</div><div class="r_text"> anAlien has congestive heart failure, (location A)(more)which is a risk factor for pneumococcal infection, but has not received his pneumococcal vaccine ("pneumonia shot"). CDC guidelines recommend the pneumococcal vaccine (PPSV) for people between the ages of 2 and 64 with a chronic condition such as congestive heart failure (see
+          <a href="http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf" onclick="otherwin = openPopup(null, 'http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf', null, 'resizable=yes,scrollbars=yes,width=700,height=550,screenX=10,screenY=50', 'reminderSubWin', true); otherwin.focus(); return false;">
+            http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf
+          </a>).  PPSV protects against 23 types of pneumococcal bacteria which can cause serious infections including pneumonia, blood infection, and meningitis. If he has already received PPSV, please enter it in his record; otherwise, he should ask his doctor about whether to (location B)get the pneumonia shot.
+      </div></div>
+
+      <div class="truncatable"><div class="r_title">Pneumococcal Vaccine (with truncating marker at location B)</div><div class="r_text"> anAlien has congestive heart failure, (location A) which is a risk factor for pneumococcal infection, but has not received his pneumococcal vaccine ("pneumonia shot"). CDC guidelines recommend the pneumococcal vaccine (PPSV) for people between the ages of 2 and 64 with a chronic condition such as congestive heart failure (see
+          <a href="http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf" onclick="otherwin = openPopup(null, 'http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf', null, 'resizable=yes,scrollbars=yes,width=700,height=550,screenX=10,screenY=50', 'reminderSubWin', true); otherwin.focus(); return false;">
+            http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf
+          </a>).  PPSV protects against 23 types of pneumococcal bacteria which can cause serious infections including pneumonia, blood infection, and meningitis. If he has already received PPSV, please enter it in his record; otherwise, he should ask his doctor about whether to (location B)(more)get the pneumonia shot.
+      </div></div>
+
+    </div> <!-- content -->
+
+    <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+    <script src="assets/effects.js?body=1" type="text/javascript"></script>
+    <script src="assets/controls.js?body=1" type="text/javascript"></script>
+    <script src="assets/application_phr.js?body=1" type="text/javascript"></script>
+    <script src="assets/logger.js?body=1" type="text/javascript"></script>
+    <script src="assets/fieldOps.js?body=1" type="text/javascript"></script>
+    <script src="assets/rules.js?body=1" type="text/javascript"></script>
+    <script src="assets/htmlTruncator.js?body=1" type="text/javascript"></script>
+    <script src="assets/unittest.js" type="text/javascript"></script>
+    <script src="assets/browser_detect.js?body=1" type="text/javascript"></script>
+    <script src="assets/usageMonitor.js?body=1" type="text/javascript"></script>
+    <script type="text/javascript">
+      new Test.Unit.Runner({
+        // replace this with your real tests
+        setup: function() {
+          //this.testWin =
+          //  window.open('http://localhost:3000/form/show/phr', 'testwin');
+        },
+
+
+        teardown: function() {
+
+        },
+
+
+        testTruncate: function(){with(this){
+            HtmlTruncator.truncate({max_length:200});
+            var parts = document.getElementsByClassName(HtmlTruncator.TRUNCATABLE_CLASS);
+            parts = $A(parts);
+
+            // five visible "...more" links and five hidden "less" links
+            var hiddenText = parts.collect(function(n){
+              return n.visible() ? "" : $A(n.getElementsByTagName("a")).last().textContent;
+            }).join("");
+            
+            var shownText = parts.collect(function(n){
+              return n.visible() ? $A(n.getElementsByTagName("a")).last().textContent : "";
+            }).join("");
+
+            assertEqual( hiddenText, "(less)(less)(less)(less)(less)");
+            assertEqual( shownText, "(more)(more)(more)(more)(more)");
+        
+            // click each link will toggle between (more) and (less) statues
+            var truncatedTextNodes = parts.select(function(n){
+              return n.style.display != "none";
+            });
+
+            for(var i=0, max =truncatedTextNodes.length; i< max; i++){
+              var truncatedText = truncatedTextNodes[i];
+
+              // click more link to hide truncated text and show the full text
+              truncatedText.onclick();
+              assertEqual( truncatedText.visible(), false);
+              var fullText = truncatedText.previous();
+              assertEqual(fullText.visible(), true);
+
+              // click less link to show truncated text and hide the full text
+              fullText.onclick();
+              assertEqual( fullText.visible(), false);
+              truncatedText = fullText.next();
+              assertEqual(truncatedText.visible(), true);
+            }
+
+            // test truncating mark "(more)"
+            var actual = truncatedTextNodes.last().previous().previous().textContent;
+            actual = actual.replace(/\s+/g, ' ');
+            var expected =
+              "Pneumococcal Vaccine (with truncating marker at location A ) anAlien has congestive heart failure, (location A) ... (more)"
+            assertEqual(expected, actual);
+
+
+            actual = truncatedTextNodes.last().textContent;
+            actual = actual.replace(/\s+/g, ' ');
+            expected =
+              'Pneumococcal Vaccine (with truncating marker at location B) anAlien has congestive heart failure, (location A)'+
+              ' which is a risk factor for pneumococcal infection, but has not received his pneumococcal vaccine ("pneumonia shot").'+
+              ' CDC guidelines recommend the pneumococcal vaccine (PPSV) for people between the ages of 2 and 64 with a'+
+              ' chronic condition such as congestive heart failure (see http://www.cdc.gov/vaccines/pubs/vis/downloads/vis-ppv.pdf ).'+
+              ' PPSV protects against 23 types of pneumococcal bacteria which can cause serious infections including pneumonia,'+
+              ' blood infection, and meningitis. If he has already received PPSV, please enter it in his record; otherwise,'+
+              ' he should ask his doctor about whether to (location B) ... (more)'
+            assertEqual(expected, actual);
+          }}
+
+      }, "testlog");
+    </script>
+  </body>
+</html>

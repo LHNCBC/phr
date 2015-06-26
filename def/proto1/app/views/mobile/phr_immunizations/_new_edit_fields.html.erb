@@ -1,0 +1,14 @@
+<div><%=fd_labeled_text_value @fds['immune_name'], @data_rec %>
+  <%= phr_hidden_field @data_rec, 'immune_name' %>
+  <% if @data_rec.immune_name_C %>
+      <%= phr_hidden_field @data_rec, 'immune_name_C' %>
+  <% end %>
+</div>
+<div><%=fd_date_field_mb @fds['vaccine_date'], @data_rec %></div>
+<div><%=fd_date_field_mb @fds['immune_duedate'], @data_rec %></div>
+<div><%=fd_text_field_mb @fds['imm_comment'], @data_rec %></div>
+<br>
+<%= submit_tag_m 'Save' %>
+<%= link_to_m 'Cancel', phr_record_phr_immunizations_path %>
+
+

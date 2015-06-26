@@ -1,0 +1,16 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Select Security Questions</h1>
+		<p>
+		Please select and answer two security questions from the question 
+		list.</p>
+<p>When you forget your PHR Account ID 
+		or password we will ask you to answer the questions to verify your identity. 
+		Be sure to select questions that have answers you will remember over time. 
+	 </p>
+		<p>
+		Provide your answer to each question in the space to the right.
+	</p>
+		
+    
+<!--#include virtual="help_footer.shtml" -->

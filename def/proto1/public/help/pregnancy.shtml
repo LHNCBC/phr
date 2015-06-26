@@ -1,0 +1,33 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Pregnancy</h1>
+		<p>
+		Women of child-bearing age are asked about pregnancy 
+		because it is important to minimize certain treatments, medications,  
+		and tests (like x-rays) during pregnancy.  
+        </p>
+<h2>What do I need to know about the Pregnancy section of the PHR?</h2>
+<p>Informing your health care providers of your pregnancy status is an essential step in helping them determine the appropriate medical screenings and treatment of your pregnancy and medical conditions. 
+</p>
+<h2>What kind of information should I enter?</h2>
+
+<table style="border-spacing:20px 5px">
+			<tr valign="top" ><td ><a href="/help/name_and_route.shtml">Pregnant</a></td><td>Select <b>Yes</b> or <b>No</b> from the drop-down list. </td></tr>
+<tr valign="top" ><td ><a href="/help/name_and_route.shtml">Due Date</a></td><td>If known, enter the date the baby is due.</td></tr>
+
+</table>
+<h2>Why is this important?</h2>
+<p>
+If you are pregnant, think you may be pregnant, or planning to get pregnant, talk to your health care provider about steps you can take for a healthy pregnancy and a healthy baby. See NLM's MedlinePlus Web page for trusted information on <a href="http://www.nlm.nih.gov/medlineplus/pregnancy.html">Pregnancy</a>.
+</p>
+<h2> How do I ...</h2>
+<p></br>
+                <a href="/help/using_long_lists_help.shtml">Use the drop down lists to enter data?</a></br>
+                  <a href="/help/bypassing_drop_downs.shtml">Enter my own data not found in the drop down list?</a></br>
+                  <a href="/help/entering_dates_help.shtml">Enter dates?</a></br>
+                  <a href="/help/opening_closing_help.shtml">Open and close sections of the PHR?</a></br>
+                  <a href="/help/error_indicators.shtml">Fix input errors?</a></li>
+                </br>
+</p>
+    
+<!--#include virtual="help_footer.shtml" -->

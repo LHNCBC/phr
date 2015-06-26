@@ -1,0 +1,19 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Vaccination Date</h1>
+
+	<p>For most vaccines, record your best recollection of the month and year the vaccination was done. If you do not remember the month, record only the year.</p>
+<p>The date must be entered in the following format: YYYY/mm/dd. The system will accept the following types of dates: 
+<ul>
+<li>the exact date, </li>
+		<li>the year and month, or </li>
+<li>only the year</li>
+</ul>
+		</p>
+<p>
+If you are recording your children's vaccines, we recommend that you record the precise date for two important reasons: 
+<ol>
+<li>For children's vaccines, the interval between two doses is usually specified by number of weeks, and if the exact date that the vaccine was given is not recorded, it will not be possible to figure out when the next dose is due.</li>
+<li>Prior to enrollment, most daycare centers and schools (including colleges) require you to provide a vaccine or immunization record with exact vaccination dates. </p>
+	
+<!--#include virtual="help_footer.shtml" -->

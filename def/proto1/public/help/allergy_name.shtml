@@ -1,0 +1,19 @@
+<!--#include virtual="help_header.shtml" -->
+	
+		<h1>Allergy Name</h1>
+		<p>
+		Enter the name of the substance that causes the 
+		allergy or dangerous reaction. For medicines, use the medication class
+		rather than the brand name. For instance, if you are allergic to penicillin V, 
+		you are allergic to all penicillins, so you should enter <b>Penicillin and Derivatives</b> 
+		as the name.</p>
+		<p>
+		If you do not find the specific substance you are allergic to in the master 
+		list, simply type the name as you know it.
+		</p>
+<p>
+		<a href="/help/using_long_lists_help.shtml">How to find and select 
+		items from the list</a>
+    </p>  
+		
+<!--#include virtual="help_footer.shtml" -->

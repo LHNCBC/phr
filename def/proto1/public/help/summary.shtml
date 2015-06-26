@@ -1,0 +1,11 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Summary</h1>
+		<p>
+    Use this field to summarize the results of the tests, 
+	either instead of, or in addition to, entering the exact results. 
+	If the laboratory provides an overall summary of the meaning of the  
+	observations taken together, you can also enter that information here. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

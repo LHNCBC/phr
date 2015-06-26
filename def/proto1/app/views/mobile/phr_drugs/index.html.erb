@@ -1,0 +1,13 @@
+<h1>Drug Records for <%=@phr_record.phr.pseudonym%></h1>
+
+<%= link_to 'Add another drug', new_phr_record_phr_drug_path(@phr_record)%>
+
+<table>
+  <tr><th>Name and Route</th><th>Delete?</th><th>Status</th><th>Strength</th><th>Instructions</th></tr>
+  <% @phr_drugs.each do |d| %>
+    <tr><th><a href="<%=edit_phr_record_phr_drug_path(@phr_record, d)%>"><%=d.name_and_route%></a></th>
+     <td><%= link_to 'Delete', phr_record_phr_drug_path(@phr_record, d), :confirm => 'Are you sure?', :method => :delete %></td>
+     <td><%=d.drug_use_status%></td>
+     <td><%=d.instructions%></td></tr>
+  <% end %>
+</table>

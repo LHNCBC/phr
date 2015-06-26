@@ -1,0 +1,35 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Fetch Rules</h1>
+		<p>
+			Fetch rules derive their result in two steps:<ol>
+        <li>a set of <b>items</b>, or records, is retrieved from the database,
+            using selection criteria that you specify to define which items
+            should be included in the set; and</li>
+        <li>the items are compared to <b>comparison criteria</b> that you
+            specify, and the rule value is derived from the results of the
+            comparison.</li>
+      </ol>
+    </p>
+    <p>
+      The rule may be assigned one of three values:<ol>
+        <li><b>no value</b>, which is assigned when no items are retrieved in
+            step 1;</li>
+        <li><b>true</b>, which is assigned when one or more items are retrieved
+            in step 1 and the comparison criteria specified in step 2 are met;
+            or</li>
+        <li><b>false</b>, which is assigned when one or more items are retrieved
+            in step 1 but the comparison criteria specified in step 2 are not
+            met.</li>
+      </ol>
+		</p>
+    <p>
+      The result of the rule is passed to the <b>rule action</b> that you
+      specify.  An <b>affected field</b> must be specified for each action,
+      and is the field that gets the results of the action.  For example,
+      a <u>hide</u> action will hide the affected field if the rule evaluates
+      to true, or show it if the rule evalutes to false.  Some rule actions
+      require parameters, while others do not.  See the rule actions section
+      for more information.
+    </p>
+
+	<!--#include virtual="help_footer.shtml" -->

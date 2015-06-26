@@ -1,0 +1,13 @@
+*SVN*
+
+* Add JavaScriptTest namespace wrapper
+
+* Added test for JavaScript test runner
+
+* Issue headers that prevent caching, #6218 [voidlock]
+
+* Allow for manual execution of tests by manually providing an assets symlink (see README)
+
+* Updated CSS and generator to more Railsy layout and colors, borrowed from Tom Werners' #6036 default error pages patch
+
+* Add more info to README, add this CHANGELOG

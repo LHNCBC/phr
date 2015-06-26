@@ -1,0 +1,24 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>View All Tests and Procedure Results</h1>
+
+		<p>The <b>Flowsheet</b> page allows you to display a summary of all of your test and procedure results. You and your health care provider can quickly and easily track 
+test results such as blood pressure, cholesterol, weight, and others over time.</p>
+                <h2>To view results from your saved tests and procedures:
+                 </h2>
+<p>
+                <ol>
+                    <li>Click the <b>Flowsheet</b> link on the <b>Tests & Procedures</b> page.</li>
+                    <li>Click the checkbox next to one or more of the listed tests or procedures. If you wish to see data for multiple test results, select the checkbox next to each set of results you wish to display.
+                       </li>
+                    <li>If desired, select any of the optional display settings. 
+                    <li>Click the <b>Show Results Timeline</b> button to display the selected test results. </li>
+</ol>
+</p>
+                
+<h3>How do I ...</h3>
+<p>
+<li> <a href="basic_add_new_test.shtml">Add new tests or procedures?</a></li>
+                        <li> <a href="basic_edit_flowsheet_data.shtml">Edit existing test or procedure results?</a></li>
+</p>
+		
+	<!--#include virtual="help_footer.shtml" -->

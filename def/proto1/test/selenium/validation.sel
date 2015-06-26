@@ -1,0 +1,173 @@
+# Validation
+| open | /phr_home |
+| setTimeout | 35000 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+# Date Field Validation on birth_year field
+| fireEvent | fe_birth_date_1_1 | focus |
+| typeText | fe_birth_date_1_1 | abcde |
+# * Makes first attempt to leave the invalid field
+# As of Firefox 17.0.3esr, firing a tab event will no longer fire change and blur.
+#| keyDown | fe_birth_date_1_1 | \9 |
+| verifyExpression |javascript{testWindow_.Def.Navigation.focusedField_ = null; 1} | 1 |
+| fireEvent | fe_birth_date_1_1 | change,blur |
+| waitForExpression |javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_birth_date_1_1').hasClassName("invalid")} | true |
+| assertExpression | javascript{testWindow_.$('fe_birth_date_1_1').invalid} | true |
+# ** Shows an invalid error message which is under the input field
+| assertExpression | javascript{testWindow_.hasVisibleTooltip(testWindow_.$('fe_birth_date_1_1'))} | true |
+| verifyExpression | javascript{testWindow_.hasVisibleTooltip(testWindow_.$('fe_birth_date_1_1'))} | true |
+| assertValue | fe_birth_date_1_1 | abcde |
+# * Makes second attempt to leave the invalid field
+| keyDown | fe_birth_date_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | false |
+| verifyExpression | javascript{testWindow_.$('fe_birth_date_1_1').hasClassName("invalid")} | false |
+| verifyExpression | javascript{testWindow_.$('fe_birth_date_1_1').hasClassName("errReqOutline")} | true |
+| verifyExpression | javascript{testWindow_.$('fe_birth_date_1_1').invalid} | true |
+# ** Clears the input field and the invalid error message
+| assertExpression | javascript{testWindow_.Def.getFieldVal(testWindow_.$('fe_birth_date_1_1')) == ""} | true |
+| assertExpression | javascript{testWindow_.$('fe_birth_date_1_1').parentNode.next() == null} | true |
+# ** Show the tipMessage inside the input box
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForExpression | javascript{testWindow_.$('fe_birth_date_1_1').title == ''} | false |
+# Date Field Validation on when_done field of blood pressure panel
+| open | /form/test/PHR |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+| fireEvent | fe_tp1_panel_testdate_1_1_1 | focus |
+| typeText | fe_tp1_panel_testdate_1_1_1 | vwxyz |
+# * Makes first attempt to leave the invalid field
+# As of Firefox 17.0.3esr, firing a tab event will no longer fire change and blur.
+#| keyDown | fe_tp1_panel_testdate_1_1_1 | \9 |
+| verifyExpression |javascript{testWindow_.Def.Navigation.focusedField_ = null; 1} | 1 |
+| fireEvent | fe_tp1_panel_testdate_1_1_1 | change,blur |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_1_1_1'} | true |
+| verifyExpression |javascript{testWindow_.$('fe_tp1_panel_testdate_1_1_1').hasClassName('invalid')} | true |
+| verifyExpression | javascript{testWindow_.$('fe_tp1_panel_testdate_1_1_1').invalid} | true |
+| assertValue | fe_tp1_panel_testdate_1_1_1 | vwxyz |
+# * Makes second attempt to leave the invalid field
+| keyDown | fe_tp1_panel_testdate_1_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_1_1_1'} | false |
+| verifyExpression | javascript{testWindow_.$('fe_tp1_panel_testdate_1_1_1').hasClassName('invalid')} | false |
+| verifyExpression | javascript{testWindow_.$('fe_tp1_panel_testdate_1_1_1').invalid} | false |
+| assertValue | fe_tp1_panel_testdate_1_1_1 |
+# Required Field Validation
+# type in medical condition and tab once to get default value for status field
+| fireEvent | fe_problem_1 | focus |
+| typeKeys | fe_problem_1 | a |
+| keyDown | fe_problem_1 | \9 |
+| waitForValue | fe_problem_1 | a |
+# Close the suggestion box, and tab away again
+| waitForVisible | css=.ui-dialog-titlebar-close |
+| fireEvent | css=.ui-dialog-titlebar-close | click |
+| waitForNotVisible | css=.ui-dialog-titlebar-close |
+| keyDown | fe_problem_1 | \9 |
+# clear medical condition field, then tab away from the field
+| type | fe_problem_1 ||
+| fireEvent | fe_problem_1 | change |
+| keyDown | fe_problem_1 | \9 |
+# the field will be outlined indicating its an invalid field (because the default status is filled in)
+| assertExpression | javascript{testWindow_.$('fe_problem_1').hasClassName('errReqOutline')} | true |
+| assertExpression | javascript{testWindow_.$('fe_problem_1').next() == null} | true |
+# and a tooltip will popup when the field gets mouseover
+| fireEvent | fe_problem_1 | mouseover |
+| assertExpression | javascript{testWindow_.hasVisibleTooltip(testWindow_.$('fe_problem_1'))} | true |
+| verifyExpression | javascript{testWindow_.hasVisibleTooltip(testWindow_.$('fe_problem_1'))} | true |
+# mouseout will remove the popup tooltip
+| fireEvent | fe_problem_1 | mouseout |
+| assertExpression | javascript{testWindow_.$('fe_problem_1').next() == null} | true |
+# refill the field, the outline should disappear
+| fireEvent | fe_problem_1 | focus |
+| typeKeys | fe_problem_1 | a |
+| keyDown | fe_problem_1 | \9 |
+| waitForVisible | css=.ui-dialog-titlebar-close |
+| fireEvent | css=.ui-dialog-titlebar-close | click |
+| waitForNotVisible | css=.ui-dialog-titlebar-close |
+| waitForExpression | javascript{testWindow_.$('fe_problem_1').hasClassName('errReqOutline')} | false |
+# clear the field again to bring back the red outline
+| type | fe_problem_1 ||
+| fireEvent | fe_problem_1 | change |
+| keyDown | fe_problem_1 | \9 |
+#| waitForVisible | close_for_suggestionDialog |
+#| fireEvent | close_for_suggestionDialog | click |
+#| waitForNotVisible | close_for_suggestionDialog |
+| assertExpression | javascript{testWindow_.$('fe_problem_1').hasClassName('errReqOutline')} | true |
+# clear the entire row by clearing the neighbor field (ie. status field)
+# the red outline should disappear
+| type | fe_present_1 ||
+| fireEvent | fe_present_1 | change |
+| keyDown | fe_problem_1 | \9 |
+| assertExpression | javascript{testWindow_.$('fe_problem_1').hasClassName('errReqOutline')} | false |
+# Yellow error message box will appear after clicking the save button if there is an invalid required field
+# - add a new problem
+| fireEvent | fe_problem_2 | focus |
+| selectByContent | fe_problem_2 | Chest pain |
+| keyDown | fe_problem_2 | \9 |
+| selectByContent | fe_present_2 | Active |
+| keyDown | fe_present_2 | \9 |
+# - make the problem field invalid
+| fireEvent | fe_problem_2 | focus |
+| type | fe_problem_2 ||
+| keyDown | fe_problem_2 | \9 |
+| assertExpression | javascript{testWindow_.$('fe_problem_2').hasClassName('errReqOutline')} | true |
+| assertExpression | javascript{testWindow_.Def.Validation.RequiredField.ErrDisplay.messagesVisible()} | false |
+# - click the save button and close the yellow error message box by filling out the invalid field
+| fireEvent | fe_save_1 | click | 
+| assertExpression | javascript{testWindow_.$('fe_problem_2').hasClassName('errReqOutline')} | true |
+| assertExpression | javascript{testWindow_.Def.Validation.RequiredField.ErrDisplay.messagesVisible()} | true |
+| fireEvent | fe_problem_2 | focus |
+| selectByContent | fe_problem_2 | Chest pain |
+| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length > 0} | true |
+| keyDown | fe_problem_2 | \9 |
+| assertExpression | javascript{testWindow_.$('fe_problem_2').hasClassName('errReqOutline')} | false |
+| assertExpression | javascript{testWindow_.Def.Validation.RequiredField.ErrDisplay.messagesVisible()} | false |
+# - make the invalid required field again
+| fireEvent | fe_problem_2 | focus |
+| type | fe_problem_2 ||
+| keyDown | fe_problem_2 | \9 |
+| assertExpression | javascript{testWindow_.$('fe_problem_2').hasClassName('errReqOutline')} | true |
+| assertExpression | javascript{testWindow_.Def.Validation.RequiredField.ErrDisplay.messagesVisible()} | false |
+
+# Do a test of the duplicate warning event observation capability.  This is
+# not exactly validation, but it is a convenient place to test it without
+# adding another test file for just a few lines of code.
+# Set up the callback
+| assertExpression | javascript{testWindow_.Def.FieldsTable.ControlledEditTable.observeDuplicateWarnings('problem', function(){console.log('called once'); ++storedVars['callbackCount']}); 1} | 1|
+| storeExpression | javascript{0} | callbackCount |
+| selectByContent | fe_problem_2 | Chest pain |
+| waitForVisible | fe_problem_3 | |
+| assertExpression | javascript{storedVars['callbackCount']} | 0 |
+| selectByContent | fe_problem_3 | Chest pain |
+| waitForExpression | javascript{storedVars['callbackCount']} | 1 |
+
+
+# test regex validators 
+| open | /form/test/regex_validators_test |
+| type | fe_user_name | u |
+| fireEvent | fe_user_name | change | 
+| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | true |
+| type | fe_user_name | valid_user |
+| fireEvent | fe_user_name | change | 
+| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | false |
+# - user name should have 6-32 characters
+| type | fe_user_name | abcdefghijklmnopqrstuvwxyz1234567 |
+| fireEvent | fe_user_name | change | 
+| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | true |
+| type | fe_user_name | abcdefghijklmnopqrstuvwxyz123456 |
+| fireEvent | fe_user_name | change | 
+| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | false |
+| type | fe_user_name | abcde |
+| fireEvent | fe_user_name | change | 
+| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | true |
+| type | fe_user_name | abcdef |
+| fireEvent | fe_user_name | change | 
+| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | false |

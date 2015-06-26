@@ -1,0 +1,64 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>Age- & Gender-based Health Screenings</h1>
+		<p>
+		Age- and gender-based health screenings include routine screening tests performed because of your age, gender, or other conditions. Examples are mammograms to detect early breast cancer, and colonoscopies to detect early colon cancer.</p>
+                <h2>
+                What do I need to know about age- and gender-based health screenings? </h2>
+<p>
+                <ul>
+                    <li>
+                    The PHR will help you keep track of these preventive tests and remind you when you are due for each of them. You can view your reminders by clicking on the <b>Health Reminders</b> link at the top of the <b>Health Record Details</b> page of the PHR. The PHR offers reminders as a cue to you and your doctor about these preventive services, not as the final statement about which test is required and which is not. 
+                    </li>
+                    <li>
+Only the most common preventive tests and screenings are displayed in this section of the PHR. Most other medical tests and health trackers can be recorded in your PHR using the <b>Add Tests Results & Trackers</b> link at the top of the <b>Health Record Details</b> page. Once a test or tracker has been added to a PHR using the <b>Add Tests Results & Trackers</b> link, the most recent recorded result for that test or tracker will be displayed in the <b>Previously Saved Tests & Trackers</b> section of the <b>Health Record Details</b> page. </li>
+                    <li>
+                     We use the recommendations of the <a href="http://www.ahrq.gov/CLINIC/uspstfix.htm">U.S. Preventive Services Task Force</a> and other esteemed sources for preventives tests and screenings. We provide links to these sources you can click on to explore the evidence for these recommendations. 
+                    </li>
+ <li>
+                     In some cases, not all fields within the tests are displayed by default. If more fields are available, a <b>Show More</b> arrow will appear below the data entry line in the form. Click the <b>Show More</b> arrow to view additional fields or the <b>Show Less</b> arrow to hide additional fields. </li>
+ <li>
+                     Only the latest test results are displayed for each test. To view all previous results, click the <b>All Previous Values</b> button at the top of the test panel or select the <b>View Tests and Measures</b> link at the top of the <b>Health Record Details</b> page. The date of the last test done is displayed in the <b>Previous</b> field. 
+                    </li> 
+<li>
+To add another test result for the same test, click the <b>Add More</b> button at the top of the test or tracker. </li> 
+              </ul>
+</p>
+                <h2>What kind of information should I enter? </h2>
+
+                <p>
+                 The system will automatically populate this section of the PHR with recommended preventive tests and screenings based on your age, gender, and medical conditions. If you have had these tests performed, enter as much of the information as you know. </p>
+<p>
+All fields highlighted with <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields. </p>
+		<table style="border-spacing:25px 5px">
+            <tr valign="top" ><td><a href="/help/when_done.shtml"><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required">Date Done</a></td><td>Enter the date the observation, test, or specimen was collected.</td></tr>
+			<tr valign="top"><td><a href="/help/when_done_time.shtml">Time Done</a></td><td>Enter the time of day the test was done.</td></tr>
+			<tr valign="top"><td><a href="/help/where_done.shtml">Where Done</a></td><td>Enter the location where the test was performed. You may enter general names, like <b>Home</b>, <b>Hospital</b>, <b>Doctor’s Office</b> or specific names of locations. </td></tr>
+			<tr valign="top"><td><a href="/help/summary.shtml">Comment</a></td><td>Summarize the results of the test.  If the laboratory provides an overall summary of the meaning of the test results taken together, you may also enter that information here.</td></tr>
+                        <tr valign="top"><td><a href="/help/due_date_test.shtml">Next Due</a></td><td>Enter the date the next test is due.</td></tr>
+                        <tr valign="top"><td><a href="/help/panel_name.shtml">Name</a></td><td>Displays the names of the measurements taken as part of this test panel. </td></tr>
+                        <tr valign="top"><td><a href="/help/value.shtml">Value</a></td><td>The value of the test or result. Some test results have numeric values, some are either <b>positive</b> or <b>negative</b>, and others may have free text as their result.</td></tr>
+                        <tr valign="top"><td><a href="/help/previous.shtml">Previous</a></td><td>Displays the value and date of the most recent test recorded prior to this entry session.  </td></tr>
+                        <tr valign="top"><td><a href="/help/units.shtml">Units</a></td><td>If the field contains a drop-down list of units of measurement, select the units reported in the test results from the list. Begin typing the unit abbreviation to see a list of commonly used measurement units.You may also enter your own units of measure in this field.
+ </td></tr>
+                        <tr valign="top"><td><a href="/help/range.shtml">Range</a></td><td>Enter the reference range for the test. Reference ranges define the values that are either statistically abnormal or not healthy. Test results within the range are considered normal.</td></tr>
+		</table>
+                <h2>
+                Why is this important?</h2>
+                <p>
+               Decisions about preventive tests and screenings are the responsibility of you and your doctor. Your doctor will know things about you and your health that could require these tests more frequently than the reminders might suggest. On the other hand, he or she will also know if there are reasons the test is not appropriate for you.
+                </p>
+                <h2>How to add or edit test results</h2>
+<p>
+                <a href="/help/add_new_test.shtml">Adding new test or health tracker results</a><br>
+                <a href="/help/edit_flowsheet_data.shtml">Editing existing test or tracker results</a></br>
+</p>
+        <h2> How do I ...</h2>
+<p>
+                <a href="/help/using_long_lists_help.shtml">Use the drop down lists to enter data?</a><br>
+                <a href="/help/bypassing_drop_downs.shtml">Enter my own data not found in the drop down list?</a><br>
+                <a href="/help/entering_dates_help.shtml">Enter dates?</a><br>
+                <a href="/help/opening_closing_help.shtml">Open and close sections of the PHR?</a><br>
+                <a href="/help/error_indicators.shtml">Fix input errors?</a>
+</p>
+		
+	<!--#include virtual="help_footer.shtml" -->

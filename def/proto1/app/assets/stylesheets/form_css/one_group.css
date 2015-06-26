@@ -1,0 +1,10 @@
+/* CSS forms with just one field group and maybe a line of static text
+   at the top. */
+
+form#main_form >  div.field {
+  background-color: white;
+}
+
+div.fieldGroup {
+  margin-top: 0;
+}

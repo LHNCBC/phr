@@ -1,0 +1,356 @@
+| open | /accounts/logout |
+# Make sure we are in standard mode
+| open | /accounts/login.default |
+| waitForTextPresent | Sign in |
+| open | /accounts/new |
+##| waitForTextPresent | PHR Sign Up |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| verifyExpression | javascript{testWindow_.$('fe_instructions2_1').scrollTop = testWindow_.$('fe_instructions2_1').scrollHeight; 1} | 1 |
+| fireEvent | fe_agree_chbox_1 | focus |
+| click | fe_agree_chbox_1 |
+
+
+| fireEvent | fe_user_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1'} | true |
+| type |  fe_user_name_1 | phr_prototype |
+| fireEvent | fe_user_name_1 | change |
+| fireEvent | fe_user_name_1 | blur |
+
+
+| fireEvent | fe_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1'} | true |
+| type |  fe_password_1 | 'TT_0987&' |
+| fireEvent | fe_password_1 | change |
+| fireEvent | fe_password_1 | blur |
+
+
+| fireEvent | fe_confirm_password_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_confirm_password_1'} | true |
+| type |  fe_confirm_password_1 | 'TT_0987&' |
+| fireEvent | fe_confirm_password_1 | change |
+| fireEvent | fe_confirm_password_1 | blur |
+
+# Now pick a valid value and make sure the match/invalid indicators clear.
+# - no - phasing out temporary accounts.  8/9/12 lm
+#| fireEvent | fe_experimental_1_1 | focus |
+#| typeKeys | fe_experimental_1_1 | 2 |
+
+# Test the correct account type is set
+#| waitForExpression | javascript{testWindow_.$('fe_experimental_1_1').hasClassName('no_match')} | false |
+#| waitForExpression | javascript{testWindow_.$('completionOptions').down().childNodes.length} | 1 |
+#| keyDown | fe_experimental_1_1 | \9 |
+#| fireEvent | fe_experimental_1_1 | blur |
+#| waitForValue | fe_experimental_1_1 | Temporary |
+#| waitForExpression | javascript{testWindow_.$('fe_experimental_1_1').autocomp.hasFocus} | false |
+#| verifyExpression | javascript{testWindow_.$('fe_experimental_1_1').hasClassName('invalid')} | false |
+#| verifyExpression | javascript{testWindow_.$('fe_experimental_1_1').hasClassName('no_match')} | false |
+
+
+# first question
+| fireEvent | fe_su_fix_quest_1_1 | focus |
+| typeKeys | fe_su_fix_quest_1_1 | 1 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_1 | \9 |
+| fireEvent | fe_su_fix_quest_1_1 | blur |
+| waitForValue | fe_su_fix_quest_1_1 | In what city was your mother born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_1').autocomp.hasFocus} | false |
+
+# second question
+| fireEvent | fe_su_fix_quest_1_2 | focus |
+| typeKeys | fe_su_fix_quest_1_2 | 2 |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').hasClassName('no_match')} | false |
+| keyDown | fe_su_fix_quest_1_2 | \9 |
+| fireEvent | fe_su_fix_quest_1_2 | blur |
+| waitForValue | fe_su_fix_quest_1_2 | In what city were you born? |
+| waitForExpression | javascript{testWindow_.$('fe_su_fix_quest_1_2').autocomp.hasFocus} | false |
+
+| fireEvent | fe_su_fixansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_1'} | true |
+| type |  fe_su_fixansw_1_1 | 1 |
+| fireEvent | fe_su_fixansw_1_1 | change |
+| fireEvent | fe_su_fixansw_1_1 | blur |
+
+| fireEvent | fe_su_fixansw_1_2 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_fixansw_1_2'} | true |
+| type |  fe_su_fixansw_1_2 | 1 |
+| fireEvent | fe_su_fixansw_1_2 | change |
+| fireEvent | fe_su_fixansw_1_2 | blur |
+
+| fireEvent | fe_su_selfquest_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfquest_1_1'} | true |
+| type |  fe_su_selfquest_1_1 | 1 |
+| fireEvent | fe_su_selfquest_1_1 | change |
+| fireEvent | fe_su_selfquest_1_1 | blur |
+
+| fireEvent | fe_su_selfansw_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_su_selfansw_1_1'} | true |
+| type |  fe_su_selfansw_1_1 | 1 |
+| fireEvent | fe_su_selfansw_1_1 | change |
+| fireEvent | fe_su_selfansw_1_1 | blur |
+
+| fireEvent | fe_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1'} | true |
+| type |  fe_email_1 | phr@TBD.address.here |
+| fireEvent | fe_email_1 | change |
+| fireEvent | fe_email_1 | blur |
+
+| fireEvent | fe_sec_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_sec_email_1'} | true |
+| type |  fe_sec_email_1 | phr@TBD.address.here |
+| fireEvent | fe_sec_email_1 | change |
+| fireEvent | fe_sec_email_1 | blur |
+
+#| fireEvent | fe_dob_1 | focus |
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_dob_1'} | true |
+#| type |  fe_dob_1 | 2000/01/01 |
+#| fireEvent | fe_dob_1 | change |
+#| fireEvent | fe_dob_1 | blur |
+#| waitForValue | fe_dob_1 | 2000 Jan 01 |
+
+#| fireEvent | fe_pin_1 | focus |
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pin_1'} | true |
+#| type |  fe_pin_1 | 1111 |
+#| fireEvent | fe_pin_1 | change |
+#| fireEvent | fe_pin_1 | blur |
+
+| fireEvent | recaptcha_response_field | focus |
+# Delete the check for the focusedField_ being recorded as the recaptcha_response_field.
+# It's not working, and per the note from Paul on sha b68f158a, there's a problem
+# with it in the phr_home_page.sel test also.  lm 4/21/14
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'recaptcha_response_field'} | true |
+| type |  recaptcha_response_field | correct_response |
+| fireEvent | recaptcha_response_field | change |
+| fireEvent | recaptcha_response_field | blur |
+
+# Save the form
+| click | fe_signup_1 |
+| waitForVisible | savingNotice |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/new |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| waitForTextPresent | This email address is already associated with an account.|
+| waitForTextPresent | The specified Account ID is already being used.|
+
+# Before focusing fe_user_name_1, wait for the recaptcha plugin to focus
+# its field. Nope - per above 4/21/14
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_} | recaptcha_response_field |
+| waitForVisible | fe_user_name_1 |
+| fireEvent | fe_user_name_1 | focus |
+| storeExpression | javascript{'bypass_activation_' +new Date().getTime()} | var_user_name |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1'} | true |
+| type |  fe_user_name_1 | javascript{storedVars['var_user_name']} |
+| fireEvent | fe_user_name_1 | change |
+| fireEvent | fe_user_name_1 | blur |
+
+# Clear our email first
+| fireEvent | fe_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1'} | true |
+| type |  fe_email_1 |  |
+
+| fireEvent | fe_sec_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_sec_email_1'} | true |
+| type |  fe_sec_email_1 |  |
+
+
+| storeExpression | javascript{'test_temp_' +new Date().getTime()+'@TBD.address.here'} | var_email_addr |
+| fireEvent | fe_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_email_1'} | true |
+| type |  fe_email_1 | javascript{storedVars['var_email_addr']}  |
+| fireEvent | fe_email_1 | change |
+| fireEvent | fe_email_1 | blur |
+
+
+| fireEvent | fe_sec_email_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_sec_email_1'} | true |
+| type |  fe_sec_email_1 | javascript{storedVars['var_email_addr']} |
+| fireEvent | fe_sec_email_1 | change |
+| fireEvent | fe_sec_email_1 | blur |
+
+| fireEvent | recaptcha_response_field | focus |
+# Commented out. Now the unregister of all focus event observers here, makes this fail
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'recaptcha_response_field'} | true |
+| type |  recaptcha_response_field | correct_response |
+| fireEvent | recaptcha_response_field | change |
+| fireEvent | recaptcha_response_field | blur |
+
+# Save the form
+| click | fe_signup_1 |
+| waitForVisible | savingNotice |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/login |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+| waitForTextPresent | Thanks for signing up |
+# ------------- New account activation ---------------------
+| open | /accounts/email_verification?verification_token=abc |
+| waitForVisible | fe_user_name_1 |
+| typeText | fe_user_name_1 | javascript{storedVars['var_user_name']} |
+| waitForVisible | fe_password_1 |
+| typeText | fe_password_1 | TT_0987& |
+| click | fe_submit_button_1 |
+| waitForVisible | fe_user_name_1_1 |
+| waitForTextPresent | has been activated successfully |
+
+
+# Test the two factor authentication page in the basic mode, which broke in
+# a way the resulted in the page being hidden.
+| open | /accounts/login.basic |
+| fireEvent | fe_user_name_1_1 | focus |
+| type | fe_user_name_1_1 | javascript{storedVars['var_user_name']} |
+| fireEvent | fe_password_1_1 | focus |
+| type | fe_password_1_1 | 'TT_0987&' |
+| assertExpression | javascript{testWindow_.document.forms[0].submit(); 1} | 1 |
+| waitForTextPresent | Your Computer Is Not Recognized |
+| waitForVisible | fe_user_name_1_1 |
+| typeKeys | fe_user_answ_1_1 | 1 |
+| click | fe_cookie_checkbox_1_1 |
+| click | fe_submit_1 |
+| waitForTextPresent | PHR Management |
+# Now log out
+| open | /accounts/logout |
+# Change back to standard mode
+| open | /accounts/login.default |
+
+| open | /accounts/forgot_password |
+
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/forgot_password |
+| waitForTextPresent | Loaded in |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| fireEvent | fe_user_name_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1'} | true |
+| type |  fe_user_name_1 | javascript{storedVars['var_user_name']} |
+| fireEvent | fe_user_name_1 | change |
+| fireEvent | fe_user_name_1 | blur |
+
+| fireEvent | recaptcha_response_field | focus |
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'recaptcha_response_field'} | true |
+| type |  recaptcha_response_field | correct_response |
+| fireEvent | recaptcha_response_field | change |
+| fireEvent | recaptcha_response_field | blur |
+
+| click | fe_submit_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/forgot_password |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+| waitForVisible | fe_email_option_radio_2R_1_1 |
+| click | fe_email_option_radio_2R_1_1 |
+| waitForVisible | fe_select_on_grp_1_0 |
+
+| fireEvent | fe_ch_answ1_1_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_ch_answ1_1_1_1'} | true |
+| type |  fe_ch_answ1_1_1_1 | 1 |
+| fireEvent | fe_ch_answ1_1_1_1 | change |
+| fireEvent | fe_ch_answ1_1_1_1 | blur |
+
+| fireEvent | fe_ch_answ2_1_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_ch_answ2_1_1_1'} | true |
+| type |  fe_ch_answ2_1_1_1 | 1 |
+| fireEvent | fe_ch_answ2_1_1_1 | change |
+| fireEvent | fe_ch_answ2_1_1_1 | blur |
+
+# Save the form
+| click | fe_submit_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/change_password |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+| waitForVisible | fe_cpnew_passwd_1 |
+| fireEvent | fe_cpnew_passwd_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_cpnew_passwd_1'} | true |
+| type |  fe_cpnew_passwd_1 | "TT907_&*" |
+| fireEvent | fe_cpnew_passwd_1 | change |
+| fireEvent | fe_cpnew_passwd_1 | blur |
+
+| fireEvent | fe_cpconfm_passwd_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_cpconfm_passwd_1'} | true |
+| type |  fe_cpconfm_passwd_1 | "TT907_&*" |
+| fireEvent | fe_cpconfm_passwd_1 | change |
+| fireEvent | fe_cpconfm_passwd_1 | blur |
+
+| click | fe_submit_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/login |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| type | fe_user_name_1_1 | javascript{storedVars['var_user_name']} |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| type | fe_password_1_1 | "TT907_&*" |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+
+| fireEvent | fe_login_1_1 | focus |
+| click | fe_login_1_1 |
+
+# Test the account delete function
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
+| waitForVisible | fe_settings |
+| fireEvent | fe_settings | focus |
+| pause | 100 |
+| fireEvent | fe_settings | click |
+
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0} | true |
+| waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR[0].location.href} | */accounts/change?from=popup |
+| storeExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.last()} | popupTestWindow |
+| storeExpression | javascript{testWindow_} | mainTestWindow |
+| waitForExpression | javascript{testWindow_ = storedVars['popupTestWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.Def !== undefined } | true |
+
+# Now supply the password
+| waitForVisible | fe_password_1_1 |
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| type | fe_password_1_1 | "TT907_&*" |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+| fireEvent | fe_submit_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_submit_1'} | true |
+| click | fe_submit_1 |
+
+| waitForValue | main_title | Account Settings |
+| waitForVisible | fe_delete_account_1 |
+| fireEvent | fe_delete_account_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_delete_account_1'} | true |
+| click | fe_delete_account_1 |
+
+# wait for the password input field to be visible on the jquery dialog box
+| waitForVisible | delete_password |
+| fireEvent | delete_password | focus |
+| pause | 100 |
+| type | delete_password | "TT907_&*" |
+| fireEvent | delete_password | change |
+| fireEvent | delete_password | blur |
+
+| storeExpression | javascript{testWindow_.document.getElementsByClassName('ui-button')} | buttons |
+| storeExpression | javascript{for (i=0; i<storedVars['buttons'].length && storedVars['buttons'][i].textContent != 'Cancel'; i++) ; i ; | cancel_index |
+| storeExpression | javascript{for (i=0; i<storedVars['buttons'].length && storedVars['buttons'][i].textContent != 'Delete Account'; i++) ; i ; | delete_index |
+
+| fireEvent | javascript{storedVars['buttons'][storedVars['cancel_index']]} | focus |
+| pause | 100 |
+| click | javascript{storedVars['buttons'][storedVars['cancel_index']]} |
+| waitForNotVisible | javascript{storedVars['buttons'][storedVars['cancel_index']]} |
+
+# request the delete again
+| waitForVisible | fe_delete_account_1 |
+| fireEvent | fe_delete_account_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_delete_account_1'} | true |
+| click | fe_delete_account_1 |
+
+# wait for the password input field to be visible on the jquery dialog box
+| waitForVisible | delete_password |
+| fireEvent | delete_password | focus |
+| pause | 100 |
+| type | delete_password | "TT907_&*" |
+| fireEvent | delete_password | change |
+| fireEvent | delete_password | blur |
+
+ fireEvent | javascript{storedVars['buttons'][storedVars['delete_index']]} | focus |
+| pause | 100 |
+| click | javascript{storedVars['buttons'][storedVars['delete_index']]} |
+| waitForNotVisible | javascript{storedVars['buttons'][storedVars['cancel_index']]} |
+
+
+| waitForExpression | javascript{testWindow_ = storedVars['mainTestWindow']; true; } | true |
+| waitForExpression | javascript{testWindow_.location.href} | */accounts/logout |
+| waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |

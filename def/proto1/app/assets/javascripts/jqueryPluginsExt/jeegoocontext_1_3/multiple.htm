@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>jQuery jeegoocontext plugin</title>
+    <link href="style.css" rel="Stylesheet" type="text/css" />
+    
+     <!-- Context menu default skin -->
+    <link href="jeegoocontext/skins/cm_default/style.css" rel="Stylesheet" type="text/css" />
+       
+    <!-- Context menu blue skin -->
+    <link href="jeegoocontext/skins/cm_blue/style.css" rel="Stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="jeegoocontext/jquery.jeegoocontext.min.js"></script>
+    <script type="text/javascript">
+         //<![CDATA[
+        $(function(){
+            // Context menu 1
+            $('.context_1').jeegoocontext('menu_1', {
+                widthOverflowOffset: 0,
+                heightOverflowOffset: 3,
+                submenuLeftOffset: -4,
+                submenuTopOffset: -5,                
+                onSelect: function(e, context){
+                    switch($(this).attr('id'))
+                    {
+                        case 'style_italic':
+                        $(context).css('fontStyle', 'italic');
+                        break;
+                        case 'style_normal':
+                        $(context).css('fontStyle', 'normal');
+                        break;
+                        case 'weight_bold':
+                        $(context).css('fontWeight', 'bold');
+                        break;
+                        case 'weight_normal':
+                        $(context).css('fontWeight', 'normal');
+                        break;
+                        case 'size_large':
+                        $(context).css('fontSize', '1.5em');
+                        break;
+                        case 'size_normal':
+                        $(context).css('fontSize', '1em');
+                        break;
+                        default:
+                        return false;
+                    }
+                }
+            });
+            // Context menu 2
+            $('.context_2').jeegoocontext('menu_2', {
+                submenuLeftOffset: -1,
+                onSelect: function(e, context){
+                    switch($(this).attr('id'))
+                    {
+                        case 'red':
+                        $(context).css('color', 'Red');
+                        break;
+                        case 'green':
+                        $(context).css('color', 'Green');
+                        break;
+                        case 'blue':
+                        $(context).css('color', 'Blue');
+                        break;
+                        default:
+                        return false;
+                    }
+                }
+            });
+            // Context menu 3 
+            $('.context_3').jeegoocontext('menu_3', {
+                submenuLeftOffset: -1,
+                onSelect: function(e, context){
+                    switch($(this).attr('id'))
+                    {
+                        case '0px':
+                        $(context).css('padding', '0');
+                        break;
+                        case '10px':
+                        $(context).css('padding', '10px');
+                        break;
+                        case '30px':
+                        $(context).css('padding', '30px');
+                        break;
+                        case '50px':
+                        $(context).css('padding', '50px');
+                        break;
+                        default:
+                        return false;
+                    }
+                }
+            });
+        });
+        //]]>
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <div id="header">
+            <h1><span class="jg_red">J</span><span class="jg_green">ee</span><span class="jg_yellow">g</span><span class="jg_blue">oo</span>context, <span style="font-size:.7em">a jQuery context menu plugin</span></h1>
+            <h2>Copyright &copy; 2009 - 2010 Erik van den Berg, <a href="http://www.planitworks.nl/jeegoocontext" target="_blank">http://www.planitworks.nl/jeegoocontext</a></h2>
+        </div>          
+        <div id="content">
+            <h2 class="context_1">Multiple context menus on a single page.</h2>
+            <p><strong>Each area except for this one is bound to a different context menu.</strong></p>
+            <p class="context_2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elementum dui nec lectus tempor vel porttitor purus malesuada. Morbi id sapien magna, eu consequat mauris. Nunc placerat convallis gravida. Nam tincidunt blandit quam, at congue justo tristique et.
+            </p>
+            <p class="context_3">
+                Duis justo leo, consequat sed molestie et, mollis nec sapien. Suspendisse vel arcu tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus vestibulum fringilla enim, vel porta justo accumsan sed. Duis risus ipsum, vulputate et porttitor non, laoreet quis libero. Donec tincidunt felis ullamcorper purus faucibus ac viverra urna pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit eros, tempus vel sagittis ac, blandit vel magna. Suspendisse erat libero, fermentum eu condimentum sit amet, ornare ac ligula. Vivamus non vestibulum turpis.
+            </p>
+            <br />
+            <a href="multiple_single.htm" style="float:right">onShow callback alternative &gt;&gt;</a> 
+            <a href="behavior.htm">&lt;&lt; Customized behavior</a>      
+        </div>                
+    </div>
+       
+    <!--  Context menu 1 -->
+    <ul id="menu_1" class="jeegoocontext cm_default">
+        <li>
+            Font-style
+            <ul>
+                <li id="style_italic">Italic</li>
+                <li id="style_normal">Normal</li>
+            </ul>
+        </li>
+        <li>
+            Font-weight
+            <ul>
+                <li id="weight_bold">Bold</li>
+                <li id="weight_normal">Normal</li>
+            </ul>
+        </li>
+        <li>
+            Font-size
+            <ul>
+                <li id="size_large">Large</li>
+                <li id="size_normal">Normal</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <!--  Context menu 2 -->
+    <ul id="menu_2" class="jeegoocontext cm_blue">
+        <li>
+            Color
+            <ul>
+                <li id="red">Red</li>
+                <li id="green">Green</li>
+                <li id="blue">Blue</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <!--  Context menu 3 -->
+    <ul id="menu_3" class="jeegoocontext cm_blue">
+        <li>
+            Padding
+            <ul>
+                <li id="0px">0</li>
+                <li id="10px">10 px</li>
+                <li id="30px">30 px</li>
+                <li id="50px">50 px</li>
+            </ul>
+        </li>
+    </ul>    
+</body>
+</html>

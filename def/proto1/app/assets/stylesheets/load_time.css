@@ -1,0 +1,31 @@
+/* plot chart */
+#tp_overview_table {
+  margin-top:1em;
+  margin-bottom: 1em;
+}
+#tp_overview_table td {
+  border: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+#tp_overview_ph {
+  width:400px;
+  height:50px;
+}
+
+#tp_chart_wrap {
+  width: 1000px;
+  height: 950px;
+  overflow-y: auto;
+}
+div.tp_chart {
+  margin-top:1em;
+  width:880px;
+  height:150px;
+}
+div.tp_legend {
+  margin-left:1em;
+}
+div.tp_legend td {
+  border: 0;
+}

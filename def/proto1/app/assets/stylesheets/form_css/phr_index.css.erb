@@ -1,0 +1,142 @@
+/* welcome messages are same as #sub_title */
+#fe_greeting, #fe_new_user_greeting {
+  color: #666666;
+  font-family: "Ubuntu",Arial;
+  font-size: 14px;
+  padding: 0 0 0 2px;
+}
+
+/* buttons */
+#fe_saved_phrs_0_expcol button,
+#fe_arch_profiles_0_expcol button{
+  padding-right: 25px;
+  margin-top: 1em;
+  margin-left: 30%;
+  margin-right: auto;
+}
+#fe_new_phr_1, #fe_do_action_1, #fe_do_arch_action_1 {
+  display: block;
+}
+
+/* margin is auto
+#fe_do_action_1 {
+	margin-left: 25%;
+}
+*/
+ #fe_restart_serv_1,#fe_data_rules_1, #fe_data_list_1, #fe_phrs_1,
+#fe_manage_class_1 {
+  margin-top: 1em;
+  margin-left: 1.8em;
+  margin-right: auto;
+  display: block;
+}
+
+
+#fe_saved_phrs_0,
+#fe_arch_profiles_0 {
+    background: url(<%= asset_path("phr-bottom-border-white-gray.gif") %>) repeat-x scroll 0 100% #ECF3F9;
+    padding: 0 0 10px;
+}
+#fe_saved_phrs_0_expcol,
+#fe_arch_profiles_0_expcol{
+  margin: 30px auto 20px;
+  width: 800px;
+}
+#fe_saved_phrs_0_expcol .field {
+  width: 100%;
+}
+#fe_saved_phrs_0_expcol .field label,
+#fe_arch_profiles_0_expcol .field label{
+  color: #333333;
+  font-size: 100%;
+  font-weight: bold;
+  text-align: right;
+  width: 215px;
+}
+
+#fe_saved_phrs_0_expcol .field  input,
+#fe_arch_profiles_0_expcol .field input{
+  width: 300px;
+}
+
+#fe_saved_phrs_0_expcol .field .dateField  input {
+	/*width: 535px;*/  /* removed by ye */
+	/* margin-right: 5px; */ /* Removed by Ajay */
+}
+
+#fe_saved_phrs_0_expcol button span,
+#fe_arch_profiles_0_expcol button span{
+  padding-left: 45px;
+  padding-right: 15px;
+}
+
+#fe_demographics_1_0_expcol table {
+  background: none !important;
+}
+#fe_demographics_1_0_expcol button#fe_save_1_1{
+  margin-left: 25%;
+}
+
+#fe_demographics_1_0_expcol button#fe_cancel_1_1{
+  margin-left: auto;
+}
+#fe_demographics_1_0_expcol button {
+  margin-top: 25px;
+}
+
+
+#fe_saved_phrs_0_expcol .fieldExpColDiv,
+#fe_arch_profiles_0_expcol .fieldExpColDiv{
+	border: 0;
+}
+
+#fe_arch_profiles_link a {
+  color: #457FC0;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0 0 0 15px;
+  text-decoration: none;
+}
+
+/* the separator lines */
+#fe_demographics_1_0 .groupHeader,
+#fe_file_option_1_0 .groupHeader {
+  height: 0;
+  border-width: 1px 0;
+  padding: 0;
+  margin: 20px 0;
+}
+
+/* This is the part of the title bar that contains the descriptive form title
+   to be merged with silimiar settings in phr.css and panel_view.css
+ */
+
+#fe_phr_title_grp_0.no_group_hdr {
+	border-style: none;
+	border-width: 0;
+	margin: -30px auto 0;
+}
+
+#fe_phr_title_grp_0 #fe_phr_title_grp_0_expcol {
+	border: 0;
+}
+
+#fe_phr_title_grp_0.no_group_hdr #fe_phr_detail_1 {
+	font-family: "Ubuntu",Arial;
+	font-size: 15px;
+	color: #666;
+	float: left;
+}
+
+#fe_phr_title_grp_0.no_group_hdr #fe_greeting_1,
+#fe_phr_title_grp_0.no_group_hdr #fe_new_user_greeting_1 {  
+  clear: left;
+  color: #333333;
+  float: left;
+  font-family: "Ubuntu",Arial;
+  font-size: 28px;
+  margin-top: -15px;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}

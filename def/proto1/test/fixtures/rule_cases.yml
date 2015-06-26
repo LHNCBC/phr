@@ -1,0 +1,38 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+rc1_case1:
+  id: -1001
+  rule_id: -1005
+  sequence_num: 1
+  case_expression: birth_date>1920
+  computed_value: hcl+30
+  
+rc1_case3:
+  id: -1002
+  rule_id: -1005
+  sequence_num: 3
+  computed_value: log(hcl)
+
+# test fields for test_change_target_field in field_description_test.rb
+
+change_case_expression:
+  id: -1030
+  rule_id: -1030
+  sequence_num: 1
+  case_expression: to_be_changed='true'
+  computed_value: no_change+30
+  
+change_computed_value:
+  id: -1031
+  rule_id: -1030
+  sequence_num: 2
+  case_expression: no_change='true'
+  computed_value: to_be_changed+30
+  
+change_both:  
+  id: -1032
+  rule_id: -1030
+  sequence_num: 3
+  case_expression: to_be_changed='true'
+  computed_value: to_be_changed+30  
+  

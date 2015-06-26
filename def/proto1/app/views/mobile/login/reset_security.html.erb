@@ -1,0 +1,39 @@
+<%= form_tag_wo_ajax reset_account_security_url, :method=>:post %>
+
+<div>Change only the sections you wish to update. It is
+not necessary to enter new values for settings you do not wish to change.
+</div>
+
+<%= fd_fieldset(@p.fds['cpchngpas_grp']) do %>
+  <div><%= fd_password(@p.fds['cpnew_passwd'], {}, @p.form_obj, '_1_1') %></div>
+  <div><%= fd_password(@p.fds['cpconfm_passwd'], {}, @p.form_obj, '_1_1') %></div>
+<% end %>
+
+<%= fd_fieldset(@p.fds['sqsecquest_grp']) do %>
+  <% [1,2].each do |num| %>
+  <p>
+    <%= @p.fds['cp_fixquest'].display_name = "Provided question #{num}";
+      fd_prefetched_list(@p.fds['cp_fixquest'], @p.data, @p.question_list, false,
+      @p.form_obj, "_1_#{num}", false) %> &nbsp;
+    <%= @p.fds['cp_fixansw'].display_name = "Answer to provided question #{num}";
+       fd_text_field(@p.fds['cp_fixansw'], @p.data, {}, @p.form_obj, "_1_#{num}") %>
+  </p>
+
+  <% end %>
+  <%# [1,2].each do |num| %>
+  <% [1].each do |num| %>
+  <p>
+    <%= @p.fds['cp_selfquest'].display_name = "Your question #{num}";
+      fd_text_field(@p.fds['cp_selfquest'], @p.data, {}, @p.form_obj, "_1_#{num}") %>
+    &nbsp;
+    <%= @p.fds['cp_selfansw'].display_name = "Answer to your question #{num}";
+       fd_text_field(@p.fds['cp_selfansw'], @p.data, {}, @p.form_obj, "_1_#{num}") %>
+  </p>
+  <% end %>
+<% end %>
+
+<input type="hidden" name="password_verified_token"
+ value="<%=@password_verified_token%>">
+<%= submit_tag_m 'Submit', :name=>"#{FORM_OBJ_NAME}[save_changes]" %>
+<%= link_to_m 'Cancel', phr_records_path %>
+</form>

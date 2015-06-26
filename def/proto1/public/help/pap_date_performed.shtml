@@ -1,0 +1,8 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Pap Test Date</h1>
+		
+		<p>Enter the date the Pap test was performed.
+		</p>
+		<p><a href="/help/entering_dates_help.shtml">How to enter dates in the PHR</a>
+		</p>
+	<!--#include virtual="help_footer.shtml" -->

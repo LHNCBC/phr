@@ -1,0 +1,47 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Major Surgery and Implants</h1>
+    <p>
+                <b>Major Surgery</b> includes any operation you have had that included the use of anesthesia or respiratory assistance while you were undergoing surgery.</p>
+<p><b>Implants</b> include any medical device (such as a pacemaker, artificial heart valve, or a hip prosthesis), tissue, or other artificial substance that has been inserted or implanted into your body.</p>
+                <h2>
+                What do I need to know about the Major Surgery and Implants list? </h2>
+<p>
+                <ul>
+                    <li>
+                    As you type, the system will suggest surgery and implant procedures and their synonyms to you. 
+                    </li>
+                    <li>
+                    If you do not find the specific surgery or implant you have had in the selection list, simply type the name as you know it. 
+                    </li>
+                    <li>The PHR system will provide you with an <img alt="Information" src="/assets/blank.gif" class="sprite_icons-info"> button next to many of the surgeries and implants you list. Click this button for additional reliable consumer health information from the National Institutes of Health and other trusted sources.</li>
+                   </ul>
+</p>
+                <h2>What kind of information should I enter? </h2>
+<p>
+All fields highlighted with <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields. </p>
+		<table style="border-spacing:20px 5px">
+			<tr valign="top" ><td ><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"><a href="/help/surgery_type.shtml">Surgery</a></td><td>Enter the name of your surgical procedure</tr>
+			<tr valign="top"><td><a href="/help/surgery_when.shtml">When Done</a></td><td>Enter the date when the surgery or implant was performed</td></tr>
+			<tr valign="top"><td><a href="/help/surgery_comments.shtml">Comments</a></td><td>Enter any comments about the surgery or implant</td></tr>
+			
+		</table>
+</p>
+                <h2>
+                Why is this important?</h2>
+                <p>
+                Information about major surgeries may be important to the diagnosis of future conditions and may influence the preventive care you need. For example, if you have had a total colectomy, which includes removal of the entire large bowel, you do not need further colonoscopy screenings.</p>
+<p>
+Be sure to include procedures that resulted in implants, such as pacemakers, artificial heart valves, or hip replacement, because these have many implications for your doctor's choice of treatments and diagnostic procedures. For example, if you have a cardiac pacemaker, you cannot undergo magnetic resonance imaging.
+                </p>
+                <h2> How do I ...</h2>
+<p></br>
+                <ul>
+                  <li><a href="/help/using_long_lists_help.shtml">Use the drop down lists to enter data?</a></li>
+                  <li><a href="/help/bypassing_drop_downs.shtml">Enter my own data not found in the drop down list?</a></li>
+                  <li><a href="/help/entering_dates_help.shtml">Enter dates?</a></li>
+                  <li><a href="/help/opening_closing_help.shtml">Open and close sections of the PHR?</a></li>
+                  <li><a href="/help/error_indicators.shtml">Fix input errors?</a></li>
+                </ul>
+  </p>  
+<!--#include virtual="help_footer.shtml" -->

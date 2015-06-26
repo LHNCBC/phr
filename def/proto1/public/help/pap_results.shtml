@@ -1,0 +1,8 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Pap Test Results</h1>
+		
+		<p>
+		Enter the results from the pap test by choosing a result 
+		from the drop down list or by entering your own text. 
+		</p>
+	<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,497 @@
+div.panel_timeline {
+  background-color: #D9E6F0;
+  margin: 15px 15px 0 15px;
+  padding: 0;
+  white-space: nowrap;
+}
+div.panel_timeline td.fixed_col {
+  width:400px; /* 330px, check box +18 */
+}
+
+div.panel_timeline table{
+  /* very import to have this to make vertical scrollbar on the 2nd table to
+     appear correctly
+  */
+  table-layout: fixed;
+  border: 1px solid #ccc;
+}
+div.panel_timeline td {
+/*  background: #f5f5f5; */
+  padding: 0px;
+  vertical-align:top;
+}
+
+div.panel_timeline {
+  background-color: #f5f5f5;
+}
+
+div.panel_def {
+  position:relative;
+  width:100%;  /* 400px, check box +18 */
+  height:auto;
+  top:0px;
+}
+
+div.panel_def table {
+/*  background-color: #d8ebfc; */
+  border-collapse: separate; 
+  border-spacing: 0;
+  padding:  0px;
+  border-color: #CCCCCC;
+  border: 0;
+  width:100%;  /* 400px, check box +18 */
+}
+
+div.panel_def th {
+  background: none repeat scroll 0 0 #E9E9E9;
+  padding: 1px 4px 1px 0;
+  text-align: left;
+}
+
+div.panel_def .test_name {
+  width: 100%; /* 240px; */
+}
+
+div.panel_def .sparkline_chart {
+  width: 88px; /* check box +18 */
+}
+
+div.sparkline {
+  cursor: pointer;
+}
+
+div.panel_def input[type='checkbox'] {
+  float: left;
+  margin:0px;
+  height:16px;
+}
+/* to be consistant to the groups on the phr form
+#fe_panel_list_grp_0 {
+  margin: 5px;
+}
+*/
+
+div.panel_timeline_grp {
+  background-color: #D9E6F0;
+  border: 0;
+  margin: 0 0 30px;
+  padding: 5px 0 15px 0;
+}
+div.test_data_table_wrapper {
+  height:auto;
+  width:100%;
+  border-width:2px;
+}
+div.test_data_table {
+  overflow:auto;
+  height:auto;
+  width:100%;
+}
+div.test_data_table table {
+  /* do not use collapse so that we can control the special borders added
+  for grouped columns */
+  border-collapse: separate; /*collapse; */
+  border-spacing: 0;
+  empty-cells:show;
+  padding: 0;
+  table-layout: fixed;
+  text-align: left;
+  white-space: nowrap;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+}
+div.test_data_table table td {
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  font-size: 13px !important;
+  padding: 6px;  
+} 
+div.test_data_table th {
+  background: none repeat scroll 0 0 #E9E9E9; 
+  border-left: 1px solid #CCCCCC;
+  font-size: 13px !important;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+  white-space: nowrap;
+  width: 5em; /*60px;*/
+  padding-top: 6px;
+  padding-bottom: 6px;
+  
+}
+
+div.test_data_table tr:first-child th {
+  padding-top: 12px;
+  padding-bottom: 0;
+}
+div.test_data_table tr:nth-child(3) th{
+  padding-bottom: 11px;
+  padding-top: 0;
+  border-bottom: 1px solid #CCCCCC;	
+}
+div.test_data_table td.no_data {
+  text-align:center;
+  white-space:nowrap;
+}
+
+div.test_data_table input.flag.readonly_field {
+  color: #B12121;
+  text-align: right;
+  width:1.5em;
+  margin-right:2px;
+}
+
+tr.panel_l2 td:first-child {
+  padding-left: 10px;
+}
+tr.panel_l3 td:first-child {
+  padding-left: 20px;
+}
+tr.panel_l4 td:first-child {
+  padding-left: 30px;
+}
+tr.panel_l5 td:first-child {
+  padding-left: 40px;
+}
+
+#fe_panel_selector_grp_0_tbl {
+  width: 60%;
+}
+div.panel_def tr.panel_header td,
+div.test_data_table td.panel_header {
+  background: #e9e9e9;
+}
+div.panel_def tr.panel_header.panel_l1 td,
+div.test_data_table td.panel_header.panel_l1 {
+  vertical-align: bottom;
+  font-size: 105%;
+}
+
+div.panel_def tr.panel_header {
+  background-color:transparent;
+  font-weight: bold;
+  vertical-align: baseline;
+}
+div.panel_def tr.panel_header td.test_name{
+  padding-left: 10px;
+}
+
+tr.panel_header.panel_l2 td.test_name,
+tr.panel_header.panel_l3 td.test_name,
+tr.panel_header.panel_l4 td.test_name,
+tr.panel_header.panel_l5 td:test_name {
+  text-decoration:underline;
+}
+
+td.fixed_col div.panel_def table tr:first-child,
+td.fixed_col div.panel_def table tr:nth-child(2),
+td.fixed_col div.panel_def table tr:nth-child(3){
+  display: none;
+}
+
+td.sparkline_chart {
+  border-left: 1px solid #ccc;
+  padding-left: 10px;
+}
+td.sparkline_chart input {
+  margin-right: 10px !important;
+}
+tr.panel_header.panel_l1 .sparkline_chart {
+  border-left: 0;
+}
+div.panel_def table td {
+  border-bottom: 1px solid #CCCCCC;
+  font-family: Arial;
+ /* font-size: 13px !important; */
+  padding: 6px;
+  vertical-align: middle;
+}
+div.panel_def .panel_header td{
+  border-bottom: 1px solid #CCCCCC;
+}
+
+/* hide/show grouped columns */
+.rec {
+  display:none;
+}
+div.test_data_table td.rec.first,
+div.test_data_table th.rec.first {
+  border-left: 3px solid #CCCCCC;
+}
+div.test_data_table td.sum,
+div.test_data_table th.sum {
+  border-left: 3px solid #CCCCCC;
+}
+img.exp_column:hover {
+  cursor:pointer;
+  
+}
+
+/* redefine group margin/padding */
+div.fieldGroup.no_group_hdr {
+  margin-left:0px;
+  margin-right:0px;
+}
+/*
+div.fieldGroup.no_group_hdr div.fieldGroup.no_group_hdr {
+  margin-left:20px;
+  margin-right:20px;
+}
+*/
+#in_one_grid_1_div {
+  display: inline;
+  margin-right: 20px;
+}
+
+#include_all_1_div {
+  display: inline;
+}
+
+div.test_data_table col.selected_col {
+  background-color: #D9E6F0; /*#ECF3F8;*/ /*#FFFFEE; */
+}
+
+.deleted.selected_col {
+  background-color: #FFCCCC;
+}
+
+/*
+td.in_edit input {
+  font-size: 100%;
+}
+th.in_edit input {
+  font-size: 100%;
+}
+*/
+
+input.test_value_edit {
+  min-width: 30px;
+  max-width: 200px;
+  width:110px;
+  text-align: left;
+  border-left:0;
+  border-top:0;
+  border-bottom:0;
+  border-right:0;
+/* to restore when test unit editable box is restored
+  border-right:1px solid #73A0C8;
+*/
+}
+
+input.test_value_edit.without_units {
+  width:190px;
+}
+
+
+div.test_data_table input, 
+div.test_data_table textarea {
+  height: 100%;
+}
+   
+input.test_unit_edit {
+  min-width: 30px;
+  width:74px; /*80px; */
+  text-align: left;
+  border-left:1px;
+  border-top:0;
+  border-bottom:0;
+  border-right:0;
+}
+
+
+div.panel_def, div.test_data_table {
+  font-size: 90%;
+}
+
+div.no-panel {
+  padding: 20px;
+}
+
+/* plot chart */
+#tp_chart_ph {
+  margin-bottom:1em;
+  width:780px;
+  height:300px;
+}
+#tp_overview_table {
+  margin-top:1em;
+  margin-bottom: 1em;
+}
+#tp_overview_table td {
+  border: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+#tp_overview_ph {
+  width:400px;
+  height:50px;
+}
+#tp_legend_ph {
+  margin-left:1em;
+}
+#tp_legend_ph td {
+  border: 0;
+}
+
+/* stacked plot chart */
+#tp_chart_wrap {
+  width: 830px;
+  height: 400px;
+  overflow-y: auto;
+}
+div.tp_chart {
+  margin-top:1em;
+  width:780px;
+  height:120px;
+}
+div.tp_legend {
+  margin-left:1em;
+}
+div.tp_legend td {
+  border: 0;
+}
+
+#fe_option_grp_1_0{
+  margin-bottom:-10px;
+}
+
+
+#fe_include_grp_1_0 {
+  float:left;
+  margin-left:15px;
+  margin-top:-5px;
+/*  
+  width:300px;
+  font-size:14px;
+  color:#333;
+  padding:0;
+*/
+}
+
+#fe_include_grp_1_0 #fe_include_grp_1_0_expcol
+{
+  border:0 none;
+  float:left;
+  padding:0;
+}
+
+div.placeholder {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+#fe_panel_list_grp_0_expcol {
+  background: #ecf3f8;
+  padding-bottom: 70px;
+}
+
+#fe_panel_list_grp_0_expcol #fe_panel_list_1 > table {
+  background: none;
+  width: 98% !important;
+  margin: 0 auto 30px;
+}
+
+#fe_panel_list_grp_0_expcol #fe_panel_list_1 > table th {
+  width: 30% !important;
+  margin-right: 5px;
+}
+
+#fe_panel_list_grp_0_expcol #fe_panel_list_1 > table td {
+  background: none repeat scroll 0 0 #FFF;
+  border: 1px solid #C1C1C1;
+  color: #333;
+  font-weight: 700;
+  padding: 5px;
+}
+
+#fe_panel_list_grp_0_expcol #fe_panel_list_1 > table td .listNum {
+  color: #4e903e;
+}
+
+#fe_panel_list_grp_0_expcol #fe_show_record_too_1 {
+  clear: none;
+  float: left;
+  margin-left: 25%;
+}
+
+#fe_option_grp_1_0_expcol {
+  border: none;
+  border-top: 1px solid #CED5D9;
+  width: 500px; /*77%;*/
+  margin: 0 auto;
+  padding: 10px 0 30px 0;
+}
+#fe_option_grp_1_0_expcol label {
+  width: 14em;
+}
+/* hide the empty row in the data table right to the panel header --ye*/
+div.test_data_table table tr:nth-child(4) {
+  display: none;
+}
+
+/* in edit mode */
+div.test_data_table table td.in_edit,
+div.test_data_table table th.in_edit {
+  padding: 2px;
+  text-align: left;
+}
+
+div.test_data_table td.in_edit input,
+div.test_data_table input.time.test_value_edit{
+  padding: 3px;
+  border: 1px solid #CCCCCC;
+}
+div.test_data_table td.in_edit input.test_unit_edit.readonly_field {
+  border: 0;
+}
+
+/* dateField. temp to be merged with date.css */
+div.test_data_table table.dateField,
+div.test_data_table table.dateField td {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+div.test_data_table th table.dateField td {
+  background-color: transparent;
+}
+
+table.dateField input.test_value_edit {
+  padding: 3px;
+  border: 1px solid #CCCCCC;
+  width: 92px;
+}
+div.test_data_table table.dateField input.test_value_edit.without_units {
+  width: 170px;
+}
+
+/* unifiy all rows heights */
+div.test_data_table table tr {
+  height: 29px;
+}
+
+div.test_data_table table.dateField tr {
+  height: 20px;
+}
+
+div.panel_def table tr {
+  height: 29px;
+}
+div.panel_def tr.panel_header.panel_l1:nth-child(4) {
+  font-weight: bold;
+  height: 87px;
+}
+
+div.test_data_table col.hover {
+  background-color: #D0E1F0;
+}
+
+#doc_edit_icon {
+  margin: 0 0 0 -22px;
+  position: absolute;
+/*  padding: 5px; */
+  cursor: pointer;
+}

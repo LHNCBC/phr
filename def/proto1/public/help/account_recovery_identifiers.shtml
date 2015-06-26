@@ -1,0 +1,7 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Account Recovery Identifiers</h1>
+		<p>
+In the event that you need to call us to recover your account information, we ask you to supply us with your email address. We will ask you for this information to help confirm your identity when you place a call to our Help Desk. </p>
+
+<!--#include virtual="help_footer.shtml" -->

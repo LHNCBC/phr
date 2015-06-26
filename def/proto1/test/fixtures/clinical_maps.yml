@@ -1,0 +1,12 @@
+oral-pill:
+  lookup_field: Oral-pill
+  id: -1
+  patient_text: By Mouth
+  clinician_text: PO
+
+oral-liquid:
+  lookup_field: Oral-liquid
+  id: -24
+  patient_text: By Mouth
+  clinician_text: PO
+

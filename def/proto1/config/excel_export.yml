@@ -1,0 +1,442 @@
+# Specifies the format for the Excel export of a profile.
+# Notes:
+# * Don't put a hidden field (width 0) as the first field of a table,
+#   or the first column will get hidden, which will also hide the sheet title
+#   and any "text" content.
+#
+# Format Notes:
+# - Three different font formats can be specified, page_title (for titles at the
+#   top of sheets), column_header (for field labels), and normal_text (for
+#   other text).  Supported attributes are "size" and "weight".
+# - "sheets" is an array of information about the sheets, in the order in which
+#   they should appear in the workbook.  Sheets have two attributes,
+#   sheet_title (the text appearing at the top of the sheet an also on
+#   the tab at the bottom of the workbook) and "rows" which specifies the
+#   content.
+# - "rows" is an array of information about the contents of the sheet (other
+#   than the sheet title), in the order in which the content should appear.
+#   There are three types of content (which you can repeat as often as you
+#   like), "blank" (which specifies a number of blank rows to skip over),
+#   "text" (which specifies some text to enter in the first and only
+#   cell in a row), and "table" which specifies how information from one
+#   of the user's profile's data tables should be presented.
+# - "table" allows either a vertical layout or a horizonal layout.  For a
+#   vertical layout, there is assumed to be only one record corresponding
+#   to the profile.  This type of layout is spefied with the attribute
+#   "vertical" set to true; if vertical is absent the horizonal layout will
+#   be used.  The horizonal layout is a typical table layout with a row
+#   of header field names and rows of data underneath.  Both layouts include
+#   the field names as well as the layouts, though the field names are in a
+#   hidden row/column so as not to bother the user with information that would
+#   probably only be useful if we were to reimport the exported file.  Other
+#   attributes of "table" are name (the data table name), "fields", and "sort".
+# - "fields" is a list of data fields from the data table specifying which
+#   fields from the table should be included and in what order.  Each entry
+#   is a hash with one key, the name of a field, and the key's value is a
+#   hash with two possible attributes, "width" and "label".
+# - "width" controls the column width for a horizontal layout and is roughly
+#   a number of a characters.  For a vertical layout, the maximum width
+#   for all fields listed is used as the width for the column containing the
+#   field labels.  If the width is set to zero, the column (for horizontal
+#   layouts) or row (for vertical layouts) containing that field is hidden.
+# - "label" is optional but if set will specify the label or column header
+#   for the field.  If it is not set, the processing code will attempt to find
+#   one, and if it can't find one, will use the field name as a last resort.
+# - "sort" (an attribute of "table") is optional but specifies a sort order
+#   for the records.  Its value should be an array of field numbers (starting
+#   at 1) into the "fields" array indicating which field takes priority in the
+#   sort.
+#   For example, if "test_name" is the second field (index 1) and "date" is
+#   the fourth field (index three), and you wanted to sort first by test name
+#   and then within each test name by date, you would list the "2" first
+#   and then the "4", e.g.:
+#     sort:
+#     - 2
+#     - 4
+#   A negative field number is a signal to sort in reverse order using the
+#   non-negated index value.
+---
+page_title:
+  size: 12
+  weight: bold
+column_header:
+  size: 10
+  weight: bold
+normal_text:
+  size: 10
+sheets:
+- sheet_title:  Record Information
+  rows:
+  - table:
+      name: phrs
+      vertical: true
+      fields:
+      - pseudonym:
+          label: Record Name
+          width: 30
+      - profile_id:
+          width: 0
+      - gender:
+          label: Gender
+          width: 8
+      - gender_C:
+          width: 0
+      - birth_date:
+          label: Birth Date
+          width: 12
+      - birth_date_ET:
+          width: 0
+      - birth_date_HL7:
+          width: 0
+      - race_or_ethnicity:
+          width: 30
+      - race_or_ethnicity_C:
+          width: 0
+      - pregnant:
+          width: 5
+      - pregnant_C:
+          width: 0
+      - due_date:
+          width: 12
+      - due_date_ET:
+          width: 0
+      - due_date_HL7:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+  - blank: 1
+  - text: Click on the other sheets to see the data tables for this profile.
+
+- sheet_title:  Medical Conditions
+  rows:
+  - table:
+      name: phr_conditions
+      fields:
+      - problem:
+          width: 30
+      - problem_C:
+          width: 0
+      - present:
+          width: 8
+      - present_C:
+          width: 0
+      - when_started:
+          width: 12
+      - when_started_ET:
+          width: 0
+      - when_started_HL7:
+          width: 0
+      - cond_stop:
+          width: 12
+      - cond_stop_ET:
+          width: 0
+      - cond_stop_HL7:
+          width: 0
+      - prob_desc:
+          width: 45
+      - record_id:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+
+- sheet_title: Drugs
+  rows:
+  - table:
+      name: phr_drugs
+      fields:
+      - name_and_route:
+          width: 25
+      - name_and_route_C:
+          width: 0
+      - long_code:
+          width: 0
+          label: RxNorm-based Code for Drug Name
+      - drug_use_status:
+          width: 8
+      - drug_use_status_C:
+          width: 0
+      - drug_strength_form:
+          width: 15
+      - drug_strength_form_C:
+          width: 0
+          label: RxNorm Code
+      - instructions:
+          width: 30
+      - drug_start:
+          width: 12
+      - drug_start_ET:
+          width: 0
+      - drug_start_HL7:
+          width: 0
+      - stopped_date:
+          width: 12
+      - stopped_date_ET:
+          width: 0
+      - stopped_date_HL7:
+          width: 0
+      - why_stopped:
+          width: 28
+      - why_stopped_C:
+          width: 0
+      - expire_date:
+          width: 12
+      - expire_date_ET:
+          width: 0
+      - expire_date_HL7:
+          width: 0
+      - record_id:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+
+- sheet_title: Allergies and Other Dangerous Reactions
+  rows:
+  - table:
+      name: phr_allergies
+      fields:
+      - allergy_name:
+          width: 25
+      - allergy_name_C:
+          width: 0
+      - reaction:
+          width: 30
+      - reaction_C:
+          width: 0
+      - reaction_date:
+          width: 12
+      - reaction_date_ET:
+          width: 0
+      - reaction_date_HL7:
+          width: 0
+      - allergy_comment:
+          width: 30
+      - record_id:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+
+- sheet_title: Surgeries
+  rows:
+  - table:
+      name: phr_surgical_histories
+      fields:
+      - surgery_type:
+          width: 30
+      - surgery_type_C:
+          width: 0
+      - surgery_when:
+          width: 12
+      - surgery_when_ET:
+          width: 0
+      - surgery_when_HL7:
+          width: 0
+      - surgery_comments:
+          width: 40
+      - record_id:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+
+- sheet_title: Immunizations
+  rows:
+  - table:
+      name: phr_immunizations
+      fields:
+      - immune_name:
+          width: 45
+      - immune_name_C:
+          width: 0
+      - vaccine_date:
+          width: 12
+      - vaccine_date_ET:
+          width: 0
+      - vaccine_date_HL7:
+          width: 0
+      - immune_duedate:
+          width: 12
+      - immune_duedate_ET:
+          width: 0
+      - immune_duedate_HL7:
+          width: 0
+      - imm_comment:
+          width: 40
+      - record_id:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+
+- sheet_title: Medical Contacts
+  rows:
+  - table:
+      name: phr_medical_contacts
+      fields:
+      - medcon_type:
+          width: 35
+      - medcon_type_C:
+          width: 0
+      - name:
+          width: 30
+      - phone:
+          width: 13
+      - fax:
+          width: 13
+      - email:
+          width: 21
+      - next_appt:
+          width: 12
+      - next_appt_time:
+          width: 11
+      - next_appt_ET:
+          width: 0
+      - next_appt_HL7:
+          width: 0
+      - comments:
+          width: 40
+      - record_id:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+
+- sheet_title: Questions to Ask Your Doctor
+  rows:
+  - table:
+      name: phr_doctor_questions
+      fields:
+      - category:
+          width: 25
+      - category_C:
+          width: 0
+      - question_status:
+          width: 10
+      - question_status_C:
+          width: 0
+      - question:
+          width: 30
+      - date_entered:
+          width: 13
+      - date_entered_ET:
+          width: 0
+      - date_entered_HL7:
+          width: 0
+      - question_answer:
+          width: 40
+      - record_id:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+
+- sheet_title: Notes
+  rows:
+  - table:
+      name: phr_notes
+      fields:
+      - note_date:
+          width: 13
+      - note_date_ET:
+          width: 0
+      - note_date_HL7:
+          width: 0
+      - note_text:
+          width: 40
+      - record_id:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+
+- sheet_title: Tests & Measures
+  rows:
+  - table:
+      name: obx_observations
+      sort:   # sort by panel name, then panel date, then obr_order_id, then test name
+      - 1
+      - -5 # - numbers mean sort in reverse order (so the newest date first)
+      - 2
+      - 7
+      fields:
+      - panel_name:
+          width: 15
+      - obr_order_id:
+          width: 0
+      - panel_test_date:
+          width: 12
+          label: Panel Date
+      - panel_test_date_time:
+          width: 10
+          label: Panel Time
+      - panel_test_date_ET:
+          width: 0
+      - panel_test_date_HL7:
+          width: 0
+      - obx3_2_obs_ident:
+          width: 30
+      - loinc_num:
+          width: 0
+      - panel_loinc_num:
+          width: 0
+      - obx5_value:
+          filter: nil
+          width: 40
+          horizontal_align: right
+      - obx2_value_type:
+          width: 0
+      - obx5_1_value_if_coded:
+          width: 0
+      - value_score:
+          width: 0
+      - obx6_1_unit:
+          width: 8
+      - unit_code:
+          width: 0
+      - obx7_reference_ranges:
+          width: 7
+      - test_normal_low:
+          width: 0
+      - test_normal_high:
+          width: 0
+      - test_danger_low:
+          width: 0
+      - test_danger_high:
+          width: 0
+      - value_real:
+          width: 0
+      - obx8_abnormal_flags:
+          width: 0
+          label: Abnormal Flags
+      - test_date:
+          width: 12
+          label: Test Date
+      - test_date_time:
+          width: 10
+          label: Test Time
+      - test_date_ET:
+          width: 0
+      - test_date_HL7:
+          width: 0
+      - record_id:
+          width: 0
+      - version_date:
+          width: 0
+          label: Updated At  # because each update results in a new table record
+      - panel_test_place:
+          width: 10
+          label: Test place
+      - panel_summary:
+          width: 20
+          label: Summary
+      - panel_due_date:
+          width: 12
+      - panel_due_date_ET:
+          width: 0
+      - panel_due_date_HL7:
+          width: 0
+      - panel_version_date:
+          width: 0

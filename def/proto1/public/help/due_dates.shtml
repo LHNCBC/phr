@@ -1,0 +1,29 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Date Reminders</h1>
+    <p>
+    The <b>Date Reminders</b> list displays upcoming or past due event reminders as defined by the time period set in the PHR's <b>Date Reminder Settings</b>.</p>
+<p>
+A date reminder is generated when you enter due dates into some sections of the PHR. Due dates that have passed will continue to show up on the <b>Date Reminders</b> list until the
+    <b>Hide</b> checkbox for the due date is checked or until new dates are entered in the PHR. </p>
+
+<p>The Date Reminders list generates the following reminder types: 
+<table border="1.5">
+<tr><th>User enters</th><th>in PHR section</th><th>to get date reminder type</th></tr>
+<tr><td>Resupply Date</td><td>Drugs</td><td>Active drugs resupply date</td></tr>
+<tr><td>Next Appt.<td>Medical Contacts</td><td>Medical appointments Next Appt.</td</tr>
+<tr><td>Next Due</td><td>Test Results & Trackers<td>Test Results & Trackers Next Due</td></tr>
+<tr><td>Next Due</td><td>Vaccinations</td><td>Vaccination Next Due<td></tr>
+</table>
+</ul>
+
+</p>
+ <p>Date reminder settings may be viewed and changed by clicking on the Date Reminders link at the top of the Health Record Details page and then clicking on the Date Reminder Settings button at the bottom of the Date Reminders page.</p>
+    
+
+<p> Any dates that have been entered but not yet saved
+    will not be included in the list.</p>
+<p> Both the <b>Date Reminders</b>  and <b>Date Reminder Settings</b> lists can be sorted by clicking any of the column headings in the lists.</p>
+    
+<p><a href="/help/entering_dates_help.shtml">How to enter dates in the PHR</a></p>
+ 
+<!--#include virtual="help_footer.shtml" -->

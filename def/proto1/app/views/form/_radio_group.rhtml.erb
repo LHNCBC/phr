@@ -1,0 +1,10 @@
+<!-- radio button group -->
+<div id="<%=grp_id%>" class="<%=classes%>">
+  <% buttons.each do |radio_button| %>
+    <label for="<%=radio_button['id'] %>" class="radio_button">
+      <input type="radio" class="radio_button" name="<%=grp_name%>" id="<%=radio_button['id']%>"
+           value="<%=radio_button['value']%>"></input><%=radio_button['label']%>
+    </label>
+    <% if orientation == 'vertical' %> <br/> <% end %>
+  <% end %>
+</div>

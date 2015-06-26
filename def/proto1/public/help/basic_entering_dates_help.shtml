@@ -1,0 +1,19 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Shortcuts for Entering Dates in the PHR</h1>
+		
+<p>
+			<ul>		
+				<li>Enter today&#39;s date by typing <b>T</b> or <b>today</b> 
+				(either upper or lower case).</li>
+<li> You can also type the words <b>tomorrow</b> or <b>yesterday</b> as a substitute for entering numeric dates. </li>
+<li>The letters <b>D</b>, <b>W</b>, <b>M</b>, and <b>Y</b> (either upper or lower case) can be used as shorthand to for the words <b>days</b>, <b>weeks</b>, <b>months</b> (30 days), or <b>years</b> (365 days).</li> 
+<li> You can enter days of the week by entering the full name of the day or an abbreviation for the day such as <b>mon</b>,<b>tue</b>, <b>wed</b>, <b>thur</b>, or <b>fri</b>.</li>
+<li>The letters <b>D</b>, <b>W</b>, <b>M</b>, and <b>Y</b> (either upper or lower case) can be used in conjunction with a whole number <i>n</i>, and a plus or minus sign (<b>+</b> or <b>-</b>) or the words <b>next</b> or <b>last</b> as shorthand to for the words <b>days</b>, <b>weeks</b>, <b>months</b> (30 days), or <b>years</b> (365 days). For example,</li>
+<ul>
+<li>To enter dates in the future, you can use a plus sign (<b>+</b>) or the word <b>next</b>. Typing <b>T+</b><i>n</i> (<b>D</b>,<b>W</b>,<b>M,</b> <b>Y</b>) will allow you to enter a specific number of days, weeks, months, and years in the future. For example, entering <b>T+3M</b> will input a date that is exactly three months from today&#39;s date. Entering <b> next y</b> will input a date one year from today's date.</li>
+						<li>For dates in the past use a minus sign (<b>-</b>) or the word <b>last</b>. Typing <b>T-</b><i>n</i> (<b>D</b>,<b>W</b>,<b>M,</b> <b>Y</b>) will allow you to enter a specific number of days, weeks, months, or years in the past. For example, entering <b>T-1W</b> or <b>T-7D</b> or the words <b> last w</b> will enter a date of one week ago. Entering <b>last m</b> will input a date exactly one month ago.</li>
+<li><I>Please note that entering the letters <b>D</b>, <b>W</b>, <b>M</b>, or <b>Y</b> alone will input the current date. </i> For example, entering the letter <b>y</b> will input today's date; however,  entering <b>yesterday</b> will input yesterday's date. The fastest way to ener yesterday's date is by entering <b>t-1</b>.</li></ul>
+							<ul>
+
+</p>
+		<!--#include virtual="help_footer.shtml" -->

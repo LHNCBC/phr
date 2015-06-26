@@ -1,0 +1,17 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Stopped Date</h1>
+	<p>
+		Unless you are still taking the medication, enter the date you stopped taking the medication using your preferred date format. Once you type your entry, the PHR will convert the date to the standard format used by the PHR sytem. </p>
+<p>Enter the exact date if known; however, the system will accept the following types of dates: 
+<ul>
+<li>the exact date, or</li>
+		<li>the year and month</li>
+</ul>
+		</p>
+	<p>
+		For date formatting tips and date formatting shortcuts, see <a href=" /help/entering_dates_help.shtml">how to 
+		enter dates in the PHR</a>.
+	</p>
+    
+<!--#include virtual="help_footer.shtml" -->

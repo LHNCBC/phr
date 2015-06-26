@@ -1,0 +1,46 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Allergies and Other Dangerous Reactions</h1>
+		<p>
+                An <b>allergy</b> is a negative response by your immune system to something (e.g., cat hair, pollen, bee sting) that does not bother most other people. Allergies can cause mild reactions, including runny nose, sneezing, itching, and rash, or severe ones, such as difficulty breathing and low blood pressure (i.e., anaphylactic shock).</p>
+                <h2>
+                What do I need to know about the PHR allergies list? </h2>
+<p>
+                <ul>
+                    <li>
+                    Many drugs may cause mild side effects, such as nausea, constipation, sleepiness, or dry mouth. These are effects of the drug - not allergies - and should not be listed here.
+                    </li>
+                    <li>
+                    If you enter medication allergies, the PHR will display a list of brand name drugs in capital letters along with the generic drug name displayed in mixed case next to each drug.  </li>
+                    <li>
+                    If you do not find the specific allergy you have in the selection list, simply type the name of the allergy as you know it. 
+                    <li>The PHR system will provide you with an <img alt="Information" src="/assets/blank.gif" class="sprite_icons-info"> button next to many of the allergies you list. Click this button for additional reliable consumer health information from the National Institutes of Health and other trusted sources.</li>
+                     </li></ul>
+</p>
+        
+                <h2>
+                What kind of information should I enter? </h2>
+<p>
+All fields highlighted with <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields. </p>
+<p>
+		<table style="border-spacing:20px 5px">
+			<tr valign="top"><td><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"><a href="/help/allergy_name.shtml">Name</a></td><td>Enter the name of the substance (i.e. allergen) that causes your allergy </td></tr>
+			<tr valign="top"><td><a href="/help/allergy_reaction.shtml">Reaction</a></td><td>Describe the physical reaction caused by the substance</td></tr>
+			<tr valign="top"><td><a href="/help/reaction_date.shtml">Started</a></td><td>The date when you or the patient first experienced symptoms of an allergic or dangerous reaction to the substance. </td></tr>
+			<tr valign="top"><td><a href="/help/allergy_comment.shtml">Comments</a></td><td>Additional information or comments you have regarding the allergic reaction. </td></tr>
+		</table>
+</p>
+                <h2>
+                Why is this important?</h2>
+                <p style="margin-left:25px">
+                A complete list of your known allergies will provide your doctor with important information concerning treatment options and the need for follow-up. </p>
+                <h2> How do I ...</h2>
+<p>
+                <ul>
+                <li><a href="/help/using_long_lists_help.shtml">Use the drop down lists to enter data?</a></li>
+                <li><a href="/help/bypassing_drop_downs.shtml">Enter my own data not found in the drop down list?</a></li>
+                <li><a href="/help/entering_dates_help.shtml">Enter dates?</a></li>
+                <li><a href="/help/opening_closing_help.shtml">Open and close sections of the PHR?</a></li>
+                <li><a href="/help/error_indicators.shtml">Fix input errors?</a></li>
+                </ul>
+</p>
+	<!--#include virtual="help_footer.shtml" -->

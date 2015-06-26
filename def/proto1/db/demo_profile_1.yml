@@ -1,0 +1,1989 @@
+---
+panel:
+- obr:
+    profile_id: 10060
+    record_id: 1
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 55418-8
+    test_place: MD Office
+    test_date: 2012 Aug 20
+    test_date_ET: 1345435200000
+    test_date_HL7: '20120820'
+    summary: Wasn't too cooperative
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Weight & height tracking panel
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88190
+    profile_id: 10060
+    record_id: 1
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body weight
+    obx5_value: '28'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: pounds
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 29463-7
+    is_panel: 
+    test_date: 2012 Aug 20
+    test_date_ET: 1345435200000
+    test_date_HL7: '20120820'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '2776'
+    test_danger_high: '300'
+    test_danger_low: '70'
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88190
+    profile_id: 10060
+    record_id: 3
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body mass index (BMI) [Ratio]
+    obx5_value: '21.87'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kg/m2
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 18.5 - 25
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 39156-5
+    is_panel: 
+    test_date: 2012 Aug 20
+    test_date_ET: 1345435200000
+    test_date_HL7: '20120820'
+    test_normal_high: '25'
+    test_normal_low: '18.5'
+    required_in_panel: true
+    unit_code: '5790'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88190
+    profile_id: 10060
+    record_id: 2
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body height
+    obx5_value: '30'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: inches
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 8302-2
+    is_panel: 
+    test_date: 2012 Aug 20
+    test_date_ET: 1345435200000
+    test_date_HL7: '20120820'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5564'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10060
+    record_id: 2
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 5671-3
+    test_place: Lab
+    test_date: 2011 Aug
+    test_date_ET: 1312171200000
+    test_date_HL7: '201108'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Lead test
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88191
+    profile_id: 10060
+    record_id: 1
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Lead test
+    obx5_value: '1'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mcg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 0 - 10
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 5671-3
+    is_panel: 
+    test_date: 2011 Aug
+    test_date_ET: 1312171200000
+    test_date_HL7: '201108'
+    test_normal_high: '10'
+    test_normal_low: '0'
+    required_in_panel: true
+    unit_code: '4882'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:35:23.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10060
+    record_id: 3
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 5671-3
+    test_place: Lab
+    test_date: 2012 Sep
+    test_date_ET: 1346472000000
+    test_date_HL7: '201209'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Lead test
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88193
+    profile_id: 10060
+    record_id: 1
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Lead test
+    obx5_value: '0'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mcg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 0 - 10
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 5671-3
+    is_panel: 
+    test_date: 2012 Sep
+    test_date_ET: 1346472000000
+    test_date_HL7: '201209'
+    test_normal_high: '10'
+    test_normal_low: '0'
+    required_in_panel: true
+    unit_code: '4882'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '1'
+    lastvalue_date: 1  [1.3 years ago]
+    last_date: 2011 Aug
+    last_date_ET: 1312171200000
+    last_date_HL7: '201108'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:35:49.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10060
+    record_id: 4
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 57128-1
+    test_place: 
+    test_date: 2010 Sep
+    test_date_ET: 1283313600000
+    test_date_HL7: '201009'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Newborn metabolic screen result
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:36:29.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88196
+    profile_id: 10060
+    record_id: 1
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: New born screening report - overall interpretation
+    obx5_value: All screening is normal
+    obx5_1_value_if_coded: LA12428-1
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 57130-7
+    is_panel: 
+    test_date: 2010 Sep
+    test_date_ET: 1283313600000
+    test_date_HL7: '201009'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: LA12428-1
+    version_date: 2012-11-08 21:36:29.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10060
+    record_id: 5
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 54111-0
+    test_place: Hospital
+    test_date: 2010 Aug
+    test_date_ET: 1280635200000
+    test_date_HL7: '201008'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Newborn hearing screen result
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:37:00.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88199
+    profile_id: 10060
+    record_id: 2
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Newborn hearing screen - left
+    obx5_value: Pass
+    obx5_1_value_if_coded: LA10392-1
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 54108-6
+    is_panel: 
+    test_date: 2010 Aug
+    test_date_ET: 1280635200000
+    test_date_HL7: '201008'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: LA10392-1
+    version_date: 2012-11-08 21:37:00.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88199
+    profile_id: 10060
+    record_id: 1
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Newborn hearing screen - right
+    obx5_value: Pass
+    obx5_1_value_if_coded: LA10392-1
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 54109-4
+    is_panel: 
+    test_date: 2010 Aug
+    test_date_ET: 1280635200000
+    test_date_HL7: '201008'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: LA10392-1
+    version_date: 2012-11-08 21:37:00.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10060
+    record_id: 6
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: X1310-1
+    test_place: 
+    test_date: 2010 Dec
+    test_date_ET: 1291179600000
+    test_date_HL7: '201012'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Developmental milestone record
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:38:18.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88202
+    profile_id: 10060
+    record_id: 1
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Fine motor skills
+    obx5_value: Puts hands together
+    obx5_1_value_if_coded: '2'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1312-1
+    is_panel: 
+    test_date: 2010 Dec
+    test_date_ET: 1291179600000
+    test_date_HL7: '201012'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '2'
+    version_date: 2012-11-08 21:38:18.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88202
+    profile_id: 10060
+    record_id: 2
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Language
+    obx5_value: Coos (ooh, aah)
+    obx5_1_value_if_coded: '1'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1313-1
+    is_panel: 
+    test_date: 2010 Dec
+    test_date_ET: 1291179600000
+    test_date_HL7: '201012'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '1'
+    version_date: 2012-11-08 21:38:18.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88202
+    profile_id: 10060
+    record_id: 3
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Personal-social
+    obx5_value: Smiles responsively
+    obx5_1_value_if_coded: '2'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1314-1
+    is_panel: 
+    test_date: 2010 Dec
+    test_date_ET: 1291179600000
+    test_date_HL7: '201012'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '2'
+    version_date: 2012-11-08 21:38:18.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10060
+    record_id: 7
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: X1310-1
+    test_place: 
+    test_date: 2011 Jun
+    test_date_ET: 1306900800000
+    test_date_HL7: '201106'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Developmental milestone record
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88205
+    profile_id: 10060
+    record_id: 1
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Gross motor skills
+    obx5_value: Pulls to stand
+    obx5_1_value_if_coded: '4'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1311-1
+    is_panel: 
+    test_date: 2011 Jun
+    test_date_ET: 1306900800000
+    test_date_HL7: '201106'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '4'
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88205
+    profile_id: 10060
+    record_id: 2
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Fine motor skills
+    obx5_value: Pincer grasp
+    obx5_1_value_if_coded: '6'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1312-1
+    is_panel: 
+    test_date: 2011 Jun
+    test_date_ET: 1306900800000
+    test_date_HL7: '201106'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: Puts hands together
+    lastvalue_date: Puts hands together  [1.9 years ago]
+    last_date: 2010 Dec
+    last_date_ET: 1291179600000
+    last_date_HL7: '201012'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '6'
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88205
+    profile_id: 10060
+    record_id: 3
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Language
+    obx5_value: Makes consonant sounds
+    obx5_1_value_if_coded: '4'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1313-1
+    is_panel: 
+    test_date: 2011 Jun
+    test_date_ET: 1306900800000
+    test_date_HL7: '201106'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: Coos (ooh, aah)
+    lastvalue_date: Coos (ooh, aah)  [1.9 years ago]
+    last_date: 2010 Dec
+    last_date_ET: 1291179600000
+    last_date_HL7: '201012'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '4'
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88205
+    profile_id: 10060
+    record_id: 4
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Personal-social
+    obx5_value: Waves bye-bye
+    obx5_1_value_if_coded: '4'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1314-1
+    is_panel: 
+    test_date: 2011 Jun
+    test_date_ET: 1306900800000
+    test_date_HL7: '201106'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: Smiles responsively
+    lastvalue_date: Smiles responsively  [1.9 years ago]
+    last_date: 2010 Dec
+    last_date_ET: 1291179600000
+    last_date_HL7: '201012'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '4'
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10060
+    record_id: 8
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: X1310-1
+    test_place: 
+    test_date: 2011 Sep
+    test_date_ET: 1314849600000
+    test_date_HL7: '201109'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Developmental milestone record
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88206
+    profile_id: 10060
+    record_id: 5
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Gross motor skills
+    obx5_value: First steps
+    obx5_1_value_if_coded: '5'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1311-1
+    is_panel: 
+    test_date: 2011 Sep
+    test_date_ET: 1314849600000
+    test_date_HL7: '201109'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '5'
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88206
+    profile_id: 10060
+    record_id: 6
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Fine motor skills
+    obx5_value: Makes tower of 2 blocks
+    obx5_1_value_if_coded: '8'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1312-1
+    is_panel: 
+    test_date: 2011 Sep
+    test_date_ET: 1314849600000
+    test_date_HL7: '201109'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: Puts hands together
+    lastvalue_date: Puts hands together  [1.9 years ago]
+    last_date: 2010 Dec
+    last_date_ET: 1291179600000
+    last_date_HL7: '201012'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '8'
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88206
+    profile_id: 10060
+    record_id: 7
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Language
+    obx5_value: Says 2 words (other than mama/dada)
+    obx5_1_value_if_coded: '6'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1313-1
+    is_panel: 
+    test_date: 2011 Sep
+    test_date_ET: 1314849600000
+    test_date_HL7: '201109'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: Coos (ooh, aah)
+    lastvalue_date: Coos (ooh, aah)  [1.9 years ago]
+    last_date: 2010 Dec
+    last_date_ET: 1291179600000
+    last_date_HL7: '201012'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '6'
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88206
+    profile_id: 10060
+    record_id: 8
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Personal-social
+    obx5_value: Plays gesture games (e.g. peek-a-boo)
+    obx5_1_value_if_coded: '5'
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X1314-1
+    is_panel: 
+    test_date: 2011 Sep
+    test_date_ET: 1314849600000
+    test_date_HL7: '201109'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: Smiles responsively
+    lastvalue_date: Smiles responsively  [1.9 years ago]
+    last_date: 2010 Dec
+    last_date_ET: 1291179600000
+    last_date_HL7: '201012'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: '5'
+    version_date: 2012-11-08 21:40:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10060
+    record_id: 9
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 24484-8
+    test_place: MD Office
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: RAST 6 common food allergy test
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+  obx: []
+- obr:
+    profile_id: 10060
+    record_id: 10
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 49222-3
+    test_place: MD Office
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Allergy antibody test for 11 common food allergies
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88210
+    profile_id: 10060
+    record_id: 7
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Corn IgE Ab [Units/volume] in Serum
+    obx5_value: '0'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kU/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 6087-1
+    is_panel: 
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5030'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88210
+    profile_id: 10060
+    record_id: 1
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Egg white IgE Ab [Units/volume] in Serum
+    obx5_value: '23'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kU/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 6106-9
+    is_panel: 
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5044'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88210
+    profile_id: 10060
+    record_id: 2
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Peanut IgE Ab [Units/volume] in Serum
+    obx5_value: '46'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kU/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 6206-7
+    is_panel: 
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5101'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88210
+    profile_id: 10060
+    record_id: 8
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Shrimp IgE Ab [Units/volume] in Serum
+    obx5_value: '0'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kU/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 6246-3
+    is_panel: 
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5124'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88210
+    profile_id: 10060
+    record_id: 6
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Soybean IgE Ab [Units/volume] in Serum
+    obx5_value: '0'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kU/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 6248-9
+    is_panel: 
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5126'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88210
+    profile_id: 10060
+    record_id: 4
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Walnut IgE Ab [Units/volume] in Serum
+    obx5_value: '5'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kU/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 6273-7
+    is_panel: 
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5140'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88210
+    profile_id: 10060
+    record_id: 3
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Wheat IgE Ab [Units/volume] in Serum
+    obx5_value: '2'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kU/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 6276-0
+    is_panel: 
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5142'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88210
+    profile_id: 10060
+    record_id: 5
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Cow milk IgE Ab [Units/volume] in Serum
+    obx5_value: '0'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kU/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 7258-7
+    is_panel: 
+    test_date: 2012 Feb
+    test_date_ET: 1328072400000
+    test_date_HL7: '201202'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5326'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:42:50.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+other:
+  phr_allergies:
+  - profile_id: 10060
+    record_id: 1
+    latest: true
+    reaction_C: AL-REACT-19
+    reaction_date_HL7: '201201'
+    reaction_date_ET: 1325394000000
+    allergy_name_C: FOOD-9
+    reaction_date: 2012 Jan
+    reaction: Anaphylaxis
+    allergy_name: Peanut
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+    allergy_comment: difficulty breathing and lip/eye swelling after PBJ sandwich.
+  - profile_id: 10060
+    record_id: 2
+    latest: true
+    reaction_C: AL-REACT-17
+    reaction_date_HL7: '201110'
+    reaction_date_ET: 1317441600000
+    allergy_name_C: FOOD-4
+    reaction_date: 2011 Oct
+    reaction: Vomiting
+    allergy_name: Egg
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+    allergy_comment: vomiting after scrambled eggs.
+  phr_doctor_questions:
+  - profile_id: 10060
+    record_id: 1
+    latest: true
+    question_status: Not Asked
+    date_entered_ET: 1352350800000
+    category: Disease Course
+    category_C: QUE-5
+    question_status_C: '1'
+    date_entered_HL7: '20121108'
+    question_answer: 
+    question: Should we do an egg challenge sometime?
+    date_entered: 2012 Nov 08
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  phr_drugs:
+  - profile_id: 10060
+    record_id: 1
+    latest: true
+    drug_strength_form_C: '630208'
+    why_stopped: 
+    expire_date_ET: 1354424400000
+    drug_use_status: Active
+    expire_date_HL7: '20121202'
+    drug_use_status_C: DRG-A
+    name_and_route: Albuterol (Inhalant)
+    why_stopped_C: 
+    expire_date: 2012 Dec 02
+    drug_strength_form: 0.83 mg/ml Sol
+    instructions: 1 neb every 4 hours as needed
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '19389'
+    drug_start: 2011 Feb
+    drug_start_ET: 1296536400000
+    drug_start_HL7: '201102'
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 2
+    latest: true
+    drug_strength_form_C: '616817'
+    why_stopped: 
+    expire_date_ET: 1354424400000
+    drug_use_status: Active
+    expire_date_HL7: '20121202'
+    drug_use_status_C: DRG-A
+    name_and_route: PULMICORT (Inhalant)
+    why_stopped_C: 
+    expire_date: 2012 Dec 02
+    drug_strength_form: 0.25 mg/ml Sol
+    instructions: Twice a day when wheezing
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '29039'
+    drug_start: 2011 Nov
+    drug_start_ET: 1320120000000
+    drug_start_HL7: '201111'
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 3
+    latest: true
+    drug_strength_form_C: '727386'
+    why_stopped: 
+    expire_date_ET: 1357362000000
+    drug_use_status: Active
+    expire_date_HL7: '20130105'
+    drug_use_status_C: DRG-A
+    name_and_route: EPIPEN (Injectable)
+    why_stopped_C: 
+    expire_date: 2013 Jan 05
+    drug_strength_form: 0.5 mg/ml Prefilled Syringe 0.3 ml
+    instructions: Repeat after 15 minutes if not better or ambulance not there
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '20257'
+    drug_start: 2012 Jan
+    drug_start_ET: 1325394000000
+    drug_start_HL7: '201201'
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 4
+    latest: true
+    drug_strength_form_C: '1085640'
+    why_stopped: 
+    expire_date_ET: 
+    drug_use_status: Active
+    expire_date_HL7: 
+    drug_use_status_C: DRG-A
+    name_and_route: Triamcinolone (Topical)
+    why_stopped_C: 
+    expire_date: 
+    drug_strength_form: 0.005 mg/mg Ointment
+    instructions: Twice a day as needed
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '25017'
+    drug_start: 2011 Mar
+    drug_start_ET: 1298955600000
+    drug_start_HL7: '201103'
+    version_date: 2012-11-09 17:16:07.000000000 -05:00
+    deleted_at: 
+  phr_immunizations:
+  - profile_id: 10060
+    record_id: 1
+    latest: true
+    vaccine_date_ET: 1287892800000
+    vaccine_date_HL7: '20101024'
+    vaccine_date: 2010 Oct 24
+    immune_duedate_HL7: 
+    immune_name_C: '120'
+    immune_duedate: 
+    immune_name: DTaP-IPV-Hib combination vaccine
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 2
+    latest: true
+    vaccine_date_ET: 1294030800000
+    vaccine_date_HL7: '20110103'
+    vaccine_date: 2011 Jan 03
+    immune_duedate_HL7: 
+    immune_name_C: '120'
+    immune_duedate: 
+    immune_name: DTaP-IPV-Hib combination vaccine
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 3
+    latest: true
+    vaccine_date_ET: 1299733200000
+    vaccine_date_HL7: '20110310'
+    vaccine_date: 2011 Mar 10
+    immune_duedate_HL7: 
+    immune_name_C: '120'
+    immune_duedate: 
+    immune_name: DTaP-IPV-Hib combination vaccine
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 4
+    latest: true
+    vaccine_date_ET: 1282536000000
+    vaccine_date_HL7: '20100823'
+    vaccine_date: 2010 Aug 23
+    immune_duedate_HL7: 
+    immune_name_C: '45'
+    immune_duedate: 
+    immune_name: Hepatitis B (HBV)
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 5
+    latest: true
+    vaccine_date_ET: 1287892800000
+    vaccine_date_HL7: '20101024'
+    vaccine_date: 2010 Oct 24
+    immune_duedate_HL7: 
+    immune_name_C: '45'
+    immune_duedate: 
+    immune_name: Hepatitis B (HBV)
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 6
+    latest: true
+    vaccine_date_ET: 1299733200000
+    vaccine_date_HL7: '20110310'
+    vaccine_date: 2011 Mar 10
+    immune_duedate_HL7: 
+    immune_name_C: '45'
+    immune_duedate: 
+    immune_name: Hepatitis B (HBV)
+    immune_duedate_ET: 
+    imm_comment: Last dose
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 7
+    latest: true
+    vaccine_date_ET: 1287892800000
+    vaccine_date_HL7: '20101024'
+    vaccine_date: 2010 Oct 24
+    immune_duedate_HL7: 
+    immune_name_C: '133'
+    immune_duedate: 
+    immune_name: Pneumococcal 13 (pediatric, introduced in 2010)
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 8
+    latest: true
+    vaccine_date_ET: 1294030800000
+    vaccine_date_HL7: '20110103'
+    vaccine_date: 2011 Jan 03
+    immune_duedate_HL7: 
+    immune_name_C: '133'
+    immune_duedate: 
+    immune_name: Pneumococcal 13 (pediatric, introduced in 2010)
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 9
+    latest: true
+    vaccine_date_ET: 1299733200000
+    vaccine_date_HL7: '20110310'
+    vaccine_date: 2011 Mar 10
+    immune_duedate_HL7: 
+    immune_name_C: '133'
+    immune_duedate: 
+    immune_name: Pneumococcal 13 (pediatric, introduced in 2010)
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 10
+    latest: true
+    vaccine_date_ET: 1314331200000
+    vaccine_date_HL7: '20110826'
+    vaccine_date: 2011 Aug 26
+    immune_duedate_HL7: 
+    immune_name_C: '133'
+    immune_duedate: 
+    immune_name: Pneumococcal 13 (pediatric, introduced in 2010)
+    immune_duedate_ET: 
+    imm_comment: Last dose
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 11
+    latest: true
+    vaccine_date_ET: 1314331200000
+    vaccine_date_HL7: '20110826'
+    vaccine_date: 2011 Aug 26
+    immune_duedate_HL7: 
+    immune_name_C: '3'
+    immune_duedate: 
+    immune_name: Measles/Mumps/Rubella (MMR)
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 12
+    latest: true
+    vaccine_date_ET: 1314331200000
+    vaccine_date_HL7: '20110826'
+    vaccine_date: 2011 Aug 26
+    immune_duedate_HL7: 
+    immune_name_C: '21'
+    immune_duedate: 
+    immune_name: Varicella (chickenpox)
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 13
+    latest: true
+    vaccine_date_ET: 1322542800000
+    vaccine_date_HL7: '20111129'
+    vaccine_date: 2011 Nov 29
+    immune_duedate_HL7: 
+    immune_name_C: '120'
+    immune_duedate: 
+    immune_name: DTaP-IPV-Hib combination vaccine
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 14
+    latest: true
+    vaccine_date_ET: 1322542800000
+    vaccine_date_HL7: '20111129'
+    vaccine_date: 2011 Nov 29
+    immune_duedate_HL7: 
+    immune_name_C: '85'
+    immune_duedate: 
+    immune_name: Hepatitis A (HAV)
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 15
+    latest: true
+    vaccine_date_ET: 1345435200000
+    vaccine_date_HL7: '20120820'
+    vaccine_date: 2012 Aug 20
+    immune_duedate_HL7: 
+    immune_name_C: '85'
+    immune_duedate: 
+    immune_name: Hepatitis A (HAV)
+    immune_duedate_ET: 
+    imm_comment: Last dose
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  phr_conditions:
+  - profile_id: 10060
+    record_id: 1
+    latest: true
+    present: Inactive
+    when_started_HL7: '201011'
+    problem_C: '4362'
+    when_started_ET: 1288584000000
+    present_C: I
+    prob_desc: Was on zantac from 3-9 months of age
+    problem: Esophageal reflux (GERD)
+    when_started: 2010 Nov
+    cond_stop: 2011 Jun
+    cond_stop_ET: 1306900800000
+    cond_stop_HL7: '201106'
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 3
+    latest: true
+    present: Inactive
+    when_started_HL7: '201102'
+    problem_C: '14676'
+    when_started_ET: 1296536400000
+    present_C: I
+    prob_desc: Hospitalized for 3 days
+    problem: RSV bronchiolitis
+    when_started: 2011 Feb
+    cond_stop: 2011 Feb
+    cond_stop_ET: 1296536400000
+    cond_stop_HL7: '201102'
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 4
+    latest: true
+    present: Active
+    when_started_HL7: '201102'
+    problem_C: '366'
+    when_started_ET: 1296536400000
+    present_C: A
+    prob_desc: Wheezing on/off since RSV episode. Mainly with colds in the winter.
+    problem: Asthma
+    when_started: 2011 Feb
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10060
+    record_id: 5
+    latest: true
+    present: Active
+    when_started_HL7: '201103'
+    problem_C: '2299'
+    when_started_ET: 1298955600000
+    present_C: A
+    prob_desc: needs fragrance-free products
+    problem: Eczema
+    when_started: 2011 Mar
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2012-11-09 17:16:07.000000000 -05:00
+    deleted_at: 
+  phrs:
+  - profile_id: 10060
+    latest: true
+    birth_date: 2010 Aug 22
+    pregnant: 
+    due_date_HL7: 
+    pseudonym: Demo_2010
+    pregnant_C: 
+    gender: Male
+    birth_date_HL7: '20100822'
+    race_or_ethnicity: Asian
+    due_date: 
+    gender_C: M
+    birth_date_ET: 1282449600000
+    race_or_ethnicity_C: LA6156-9
+    due_date_ET: 
+    version_date: 2012-11-08 21:12:55.000000000 -05:00
+    deleted_at: 
+  phr_surgical_histories:
+  - profile_id: 10060
+    record_id: 1
+    latest: true
+    surgery_comments: Ear tubes after 9 ear infections in as many months.
+    surgery_type: Ear tube (PE tube) insertion
+    surgery_when_HL7: '201210'
+    surgery_type_C: X117
+    surgery_when: 2012 Oct
+    surgery_when_ET: 1349064000000
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+  phr_medical_contacts:
+  - profile_id: 10060
+    record_id: 1
+    latest: true
+    medcon_type: Pediatrician
+    medcon_type_C: PEDI
+    name: Dr. Bear
+    phone: 111-222-3333
+    email: bear@peds.com
+    next_appt: 2012 Dec 06
+    next_appt_ET: 1354770000000
+    next_appt_HL7: '20121206'
+    comments: Asthma follow-up
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+    fax: 444-555-6666
+    next_appt_time: 
+  - profile_id: 10060
+    record_id: 2
+    latest: true
+    medcon_type: Allergist
+    medcon_type_C: ALLE
+    name: Dr. Epi
+    phone: 333-222-1111
+    email: peanut@allergy.com
+    next_appt: 2013 Jun 01
+    next_appt_ET: 1370059200000
+    next_appt_HL7: '201306'
+    comments: 
+    version_date: 2012-11-08 21:34:27.000000000 -05:00
+    deleted_at: 
+    fax: 666-555-4444
+    next_appt_time: 
+  date_reminders: []
+  reminder_options: []
+  phr_notes: []

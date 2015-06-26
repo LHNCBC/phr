@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+</head>
+<body>
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>controlled_edit_table.js</strong>,
+      and some functions in appSpecific.js.
+    </p>
+  </div>
+
+  <!-- Log output -->
+  <div id="testlog"> </div>
+
+  <!-- Test HTML for testGetRowsForID -->
+<form action="nowhere" name="form zero">
+<div id ="fe_getrows_test_0">
+<table id="fe_problems_header_0_tbl" class="fieldsTable sortable" cellspacing="0" cellpadding="0" border="1" nextid="5" style="table-layout: fixed;" suffix="_0">
+<thead>
+<tr>
+  <th id="fe_problems_header_hd" class="fieldsTableHeader hidden_field nosort" width="0%"/>
+  <th id="fe_problem_hd" class="fieldsTableHeader" width="24%"></th>
+</tr>
+</thead>
+<tbody>
+  <tr class="repeatingLine" rowid="0" suffix="_0" style="display: none; width: 99%;">
+    <td style="display: none; width: 0pt;">
+      <input class="hidden_field" id="fe_problems_header_id_0"
+      name="fe[problems_header_id_0]" type="text" />
+    </td>
+    <td style="width: 24%;">
+      <input class="has_rules" id="fe_problem_0"
+       name="fe[problem_0]" type="text" />
+    </td>
+    <td style="width: 24%;">
+      <input class="has_rules" id="fe_problem_C_0"
+       name="fe[problem_0]" type="text" />
+    </td>
+    <td style="width: 24%;">
+      <input class="has_rules" id="fe_present_0"
+       name="fe[problem_0]" type="text" />
+    </td>
+    <td style="width: 24%;">
+      <input class="has_rules" id="fe_present_C_0"
+       name="fe[problem_0]" type="text" />
+    </td>
+  </tr>
+  <tr class="repeatingLine embeddedRow" rowid="0" suffix="_0"
+   style="display: none; width: 99%;">
+    <td>model row embedded row 1</td>
+  </tr>
+  <tr class="repeatingLine embeddedRow" rowid="0" suffix="_0"
+   style="display: none; width: 99%;">
+    <td>model row embedded row 2</td>
+  </tr>
+
+  <tr class="saved_row repeatingLine" rowid="1" suffix="_1"
+   id="editTest" style="width: 99%;">
+    <td style="display: none; width: 0pt;">
+      <div class="hidden_field" id="fe_problems_header_id_1">3000</div>
+    </td>
+    <td style="width: 24%;">
+      <div class="static_text" id="fe_problem_1">Sleepy</div>
+    </td>
+  </tr>
+  <tr id="test1" class="saved_row repeatingLine embeddedRow" rowid="1" suffix="_1"
+   style="width: 99%;">
+    <td>first row embedded row 1</td>
+  </tr>
+  <tr class="saved_row repeatingLine embeddedRow" rowid="1" suffix="_1"
+   style="width: 99%;">
+    <td>first row embedded row 2</td>
+  </tr>
+
+  <tr class="saved_row repeatingLine" rowid="2" suffix="_2" style="width: 99%;">
+    <td style="display: none; width: 0pt;">
+      <div class="hidden_field" id="fe_problems_header_id_2">24</div>
+    </td>
+    <td style="width: 24%;">
+      <div class="static_text" id="fe_problem_2"></div>
+    </td>
+  </tr>
+  <tr  id="delete_test" class="saved_row repeatingLine embeddedRow" rowid="2" suffix="_2"
+   style="width: 99%;">
+    <td id="delete_row">second row embedded row 1</td>
+  </tr>
+  <tr id="test2" class="saved_row repeatingLine embeddedRow" rowid="2" suffix="_2"
+   style="width: 99%;">
+    <td>second row embedded row 2</td>
+  </tr>
+
+  <tr class="repeatingLine" rowid="3" suffix="_3"
+   style="width: 99%;">
+    <td style="display: none; width: 0pt;">
+      <input class="hidden_field" id="fe_problems_header_id_3"
+      name="fe[problems_header_id_3]" type="text" />
+    </td>
+    <td style="width: 24%;">
+      <input class="has_rules" id="fe_problem_3"
+       name="fe[problem_3]" type="text" />
+    </td>
+  </tr>
+  <tr class="repeatingLine embeddedRow" rowid="3" suffix="_3"
+   style="width: 99%;">
+    <td>third row embedded row 1</td>
+  </tr>
+  <tr class="repeatingLine embeddedRow" rowid="3" suffix="_3"
+   style="width: 99%;">
+    <td>third row embedded row 2</td>
+  </tr>
+
+  <tr id="selectByFieldCodeTest" class="repeatingLine" rowid="4" suffix="_4"
+   style="width: 99%;">
+    <td style="display: none; width: 0pt;">
+      <input class="hidden_field" id="fe_problems_header_id_4"
+      name="fe[problems_header_id_4]" type="text" />
+    </td>
+    <td style="width: 24%;">
+      <input class="has_rules" id="fe_status_4"
+       name="fe[problem_4]" type="text" value="A1" />
+    </td>
+  </tr>
+
+  <tr id ="testFindFieldInRowSet" class="repeatingLine" rowid="5" suffix="_5" style="display: none; width: 99%;">
+    <td style="display: none; width: 5pt;">
+      <input class="hidden_field" id="fe_problems_header_id_5"
+      name="fe[problems_header_id_5]" type="text" />
+    </td>
+    <td style="width: 24%;">
+      <input class="has_rules" id="fe_problem_5"
+       name="fe[problem_5]" type="text" />
+    </td>
+  </tr>
+  <tr class="repeatingLine embeddedRow" rowid="5" suffix="_5"
+   style="display: none; width: 99%;">
+    <td><div id="fe_embeddedRowField_C_5">code</div><div id="fe_embeddedRowField_5">model row embedded row 1</div></td>
+  </tr>
+  <tr id ="testFindFieldInRowSet2" class="repeatingLine embeddedRow" rowid="5" suffix="_5"
+   style="display: none; width: 99%;">
+    <td>model row embedded row 2</td>
+  </tr>
+
+  <tr id ="testSetListFieldByCode" class="repeatingLine" rowid="6" suffix="_6" style="display: none; width: 99%;">
+    <td style="display: none; width: 6pt;">
+      <div class="hidden_field" id="fe_problems_header_id_6"
+      name="fe[problems_header_id_6]" type="text"/>
+    </td>
+    <td style="width: 24%;">
+      <div class="has_rules" id="fe_problem_6"
+       name="fe[problem_0]" type="text"/>
+    </td>
+    <td style="width: 24%;">
+      <div class="has_rules" id="fe_problem_C_6"
+       name="fe[problem_0]" type="text"/>
+    </td>
+    <td style="width: 24%;">
+      <div class="has_rules" id="fe_present_6"
+       name="fe[problem_0]" type="text"/>
+    </td>
+    <td style="width: 24%;">
+      <div class="has_rules" id="fe_present_C_6"
+       name="fe[problem_0]" type="text"/>
+    </td>
+  </tr>
+
+  <tr id="setUpContextMenu" class="saved_row repeatingLine" rowid="7" suffix="_7"
+   style="width: 99%;">
+    <td style="display: none; width: 0pt;">
+      <div class="hidden_field" id="fe_problems_header_id_7">3000</div>
+    </td>
+    <td style="width: 24%;">
+      <div class="static_text" id="fe_problem_7">original problem</div>
+    </td>
+    <td style="width: 24%;">
+      <div class="static_text" id="fe_problem_C_7">original problem code</div>
+    </td>
+    <td style="width: 24%;">
+      <div class="static_text has_rules" id="fe_present_7">Active</div>
+    </td>
+    <td style="width: 24%;">
+      <div class="static_text has_rules" id="fe_present_C_7">A</div>
+    </td>
+  </tr>
+  <tr class="saved_row repeatingLine embeddedRow" rowid="7" suffix="_7"
+   style="width: 99%;">
+    <td>first row embedded row 7</td>
+  </tr>
+  <tr class="saved_row repeatingLine embeddedRow" rowid="7" suffix="_7"
+   style="width: 99%;">
+    <td>first row embedded row 2</td>
+  </tr>
+
+  <tr id="newRow" class="repeatingLine" rowid="8" suffix="_8"
+   style="width: 99%;">
+    <td style="display: none; width: 0pt;">
+      <input type="text" class="hidden_field" id="fe_problems_header_id_8"
+       value="3000" />
+    </td>
+    <td style="width: 24%;">
+      <input type="text"  id="fe_problem_8" value="original problem" />
+    </td>
+    <td style="width: 24%;">
+      <input type="text"  id="fe_problem_C_8" value="original problem code" />
+    </td>
+    <td style="width: 24%;">
+      <input type="text"  id="fe_present_8" value="Active" />
+    </td>
+    <td style="width: 24%;">
+      <input type="text"  id="fe_present_C_8" value="A" />
+    </td>
+  </tr>
+  <tr class="saved_row repeatingLine embeddedRow" rowid="8" suffix="_8"
+   style="width: 99%;">
+    <td>first row embedded row 7</td>
+  </tr>
+  <tr class="saved_row repeatingLine embeddedRow" rowid="8" suffix="_8"
+   style="width: 99%;">
+    <td>first row embedded row 2</td>
+  </tr>
+
+
+</tbody>
+</table>
+</div>
+</form>
+<!-- End Test HTML for testGetRowsForID -->
+
+<!-- Test HTML for testCheckForDuplicates -->
+<input id="drug_1" />
+<input id="drug_C_1" />
+<input id="drug_2" />
+<input id="drug_C_2" />
+<input id="drug_3" />
+<input id="drug_C_3" />
+<input id="drug_4" />
+<input id="drug_C_4" />
+<input id="drug_5" />
+<input id="drug_C_5" />
+<input id="drug_6" />
+<input id="drug_C_6" />
+<input id="drug_7" />
+<input id="drug_C_7" />
+<!-- End Test HTML for testCheckForDuplicates -->
+
+
+<!-- Test HTML for testCheckForDuplicateDrugSetVals -->
+<input type="text" id="fe_name_and_route_1" value="Simvastatin (Oral-pill)" />
+<input type="text" id="fe_name_and_route_C_1" value="5005" />
+<input type="text" id="fe_drug_use_status_C_1" />
+
+
+<!-- End test HTML for testCheckForDuplicateDrugSetVals -->
+
+
+<input id="status_C" value="A1" />
+<!-- Test HTML for testGetFieldContainerForHiding -->
+<div class="dateField" id="getFieldContainerForHiding2">
+<table>
+<tr><td>
+<img src="somewhere" />
+<input type="date" id ="getFieldContainerForHiding1" />
+</td></tr>
+</table>
+</div>
+<!-- Needed structures for autocompelters -->
+<span id ="completionOptions"/>
+<span id ="moreResults"/>
+<!-- End Needed structures for autocompelters -->
+</div>
+
+  <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+  <script src="assets/unittest.js" type="text/javascript"></script>
+
+  <script src="assets/effects.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/controls.js?body=1"
+          type="text/javascript"></script>
+  <!--script src="assets/subdojo/dojo/dojo.js.uncompressed.js"
+          type="text/javascript"></script-->
+  <script src="assets/jquery/jquery.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/jqueryPluginsExt/jeegoocontext_1_3/jeegoocontext/jquery.jeegoocontext.js"
+          type="text/javascript"></script>
+  <script src="assets/application_phr.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/logger.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/idCache.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/navigation.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/fields_table.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/observable.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/screenReaderLog.js" type="text/javascript"></script>
+  <script src="assets/autocomp/event.simulate.js"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompBase.js"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/fieldAlarms.js" type="text/javascript"></script>
+  <script src="assets/autocomp/bonk.js" type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompEvents.js"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompPrefetch.js"
+          type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompSearch.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/rules.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/tooltips.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/validation.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/controlled_edit_table/controlled_edit_table.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/controlled_edit_table/conflict_checker.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/app_specific/app_specific.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/app_specific/drug_conflict_checker.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/testpanel.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/lgEditBox.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/taffy.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/data_model.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/fieldEvents.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/browser_detect.js?body=1"
+          type="text/javascript"></script>
+  <script src="assets/def_autocomp.js"
+          type="text/javascript"></script>
+  <script src="test_js/cet.js"
+          type="text/javascript"></script>
+
+
+</body>
+</html>

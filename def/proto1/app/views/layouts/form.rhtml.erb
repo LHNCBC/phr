@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<% cache(Rails.env + '/layout_part1'+@form_cache_name) do %>
+<html lang="en">
+<head>
+  <%#= the X-UA-Compatible has to be on the top of headers other than meta, title headers %>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <script type="text/javascript">
+    var startLoad_ = new Date().getTime();
+  </script>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<% end # cache- layout part 1 %>
+<% if @profile_banner.nil?    %>
+  <title><%= @form_title || @form.form_title %></title>
+<% else %>
+  <title><%= @profile_banner %></title>
+<% end %>
+
+<% cache(Rails.env + '/layout_part2'+@form_cache_name) do %>
+  <%= stylesheet_link_tag_for_vendor "/vendor_assets/jquery-ui_css/jquery-ui", :media => "screen" %>
+  <%= stylesheet_link_tag_for_vendor "/vendor_assets/jeegoocontext_css/style", :media => "screen" %>
+  <%= stylesheet_link_tag_for_vendor "/vendor_assets/autocomp/auto_completion.css", :media => "screen" %>
+  <%= stylesheet_link_tag "manifest_base_package", :media => 'screen' %>
+  <%= stylesheet_link_tag "manifest_form_layout_common.css", :media => "screen" %>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin" media="all"/>
+  <% @form_style.each do |style| %>
+   <!-- <%= style %> -->
+    <%= stylesheet_link_tag style.strip, :media => "screen" %>
+  <% end %>
+
+
+  <% @print_style.each do |style| %>
+    <%= stylesheet_link_tag style.strip, :media => "print" %>
+  <% end %>
+  <%#= javascript_include_tag "manifest_page_top" %>
+  </head>
+
+
+ <body onmouseup="Def.hideSaveNotice()"
+       onkeydown="Def.hideSaveNotice()"
+	     onload="BrowserDetect.checkBrowserSupport()">
+
+  <div id="loading_msg" style="display:none">
+    Loading ... Please Wait<br/>
+    <%= image_tag("loader.gif", :alt=>"") %>
+  </div>
+  <!-- use javascript to turn display on for the loading_msg, so that
+       it doesn't obscure the "Javascript is Required" message for
+       instances where javascript is not enabled. -->
+  <script type="text/javascript">
+    var loadingMsg = document.getElementById('loading_msg');
+    // repostion the msg box to the center of the window
+    //loadingMsg.style.left = (window.innerWidth - (400+44))/2  + 'px';
+    //loadingMsg.style.top = (window.innerHeight - (60+44))/2 + 'px';
+    loadingMsg.style.display = 'block' ;
+  </script>
+<div id="content" style="display: none">
+  <a id="skip_link" href="#formContent">Skip to Main Content</a>
+<% end # cache- layout part 2 %>
+
+  <%= yield %>
+<script type="text/javascript" charset="utf-8">
+    window._token = '<%= form_authenticity_token -%>';
+</script>
+<% cache(Rails.env + '/layout_part3'+@form_cache_name) do %>
+  </div> <!-- end content -->
+  <div id="reader_log" class="screen_reader_only" aria-live='assertive'
+   aria-relevant='additions' role='log'></div>
+  <div id="reader_alert" class="screen_reader_only" aria-live='assertive'
+   role='alert'></div>
+  <div id="validation_errors" class="screen_reader_only errReqDiv">
+    <div class='closingLink'>
+      <a href='#label' onclick='Def.Validation.RequiredField.ErrDisplay.closeFloating();'>Close X</a>
+    </div>
+    <div id="validation_alert" role='alert' aria-live='assertive'
+     aria-relevant='additions' ></div>
+  </div>
+ <%# In most cases, there should be something output to the generated
+     javascript file. %>
+ <!-- need to reload generated js file when its content changed -->
+ <%# generate_form_js(@form_name, @form_cache_name) unless @using_cache_files %>
+  <!-- include both generated and form-specific javascript files if they exist -->
+ <%= javascript_include_tag_for_form @form_name, @form_cache_name %>
+  <script type="text/javascript">//<![CDATA[
+    // Put this here, after all other load event handlers have been set up,
+    // so it runs last.
+    Event.observe(window, 'load', function() {
+      $('content').style.display = 'block';
+      $('loading_msg').style.display = 'none' ;
+      var time = 'Loaded in ' +(new Date().getTime() - startLoad_)/1000 +
+       ' seconds';
+      var msgDiv = $('fe_load_time_td');
+      if (msgDiv) {
+        msgDiv.innerHTML = time;
+        setTimeout("$('fe_load_time_td').innerHTML=' '", 15000);
+      }
+      Def.pageLoadComplete_ = true;
+      //setTimeout(function() {Def.pageLoadComplete_ = true}, 500);
+    });
+	</script>
+
+  <noscript><br /><br /><center><font size=+3>Javascript is Required</font>
+  <br /><br /><p>Javascript must be enabled for your browser in order to
+  view and use the PHR pages effectively.  <br /><br />It does not seem to be
+  enabled for your browser at this time.  <br /><br />To enable Javascript check
+  the <b>help</b> information provided by your browser.&nbsp;  This is available
+  from<ul><li>the <b>Help</b> pulldown menu at the top of the page in the
+  Firefox browser,</li><li>from the help question mark button
+  <%= image_tag("help.png", :align=>"bottom",
+        :alt=>"blue circle with question mark inside") %>
+  at the top right of the tab line
+  on Microsoft's Internet Explorer,</li><li>and in similar locations on other
+  browsers.</li></ul></p></center>
+  </noscript>
+ <% end # cache- layout part 3 %>
+
+  <!-- We only need the browser_close stuff if the user is logged in -->
+  <!-- AND we're not testing -->
+  <% if Rails.env != 'test' && session[:user_id]%>
+    <%= javascript_include_tag "manifest_logged_in"%>
+  <% end %>
+</body>
+</html>

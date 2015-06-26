@@ -1,0 +1,19 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>What Type of Information Can I Record?</h1>
+<p>
+    <ul>
+		<li>Medical conditions</li>
+		<li>Medications</li>
+		<li>Allergies and other dangerous reactions</li>
+		<li>Major surgery and implants</li>
+		<li>Risk factors</li>
+		<li>Vaccinations</li>
+		<li>Questions to ask your doctor</li>
+		<li>Medical contacts</li>
+                <li>Laboratory tests and procedures</li>
+                <li>Personal health trackers
+	</ul>
+</p>
+    
+<!--#include virtual="help_footer.shtml" -->

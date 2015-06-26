@@ -1,0 +1,36 @@
+<p>Help us keep spammers out and keep your account safe.  Click the
+"Download the sound" link below and listen to it to find the spoken
+words (amidst background noise).  This test changes from time to time,
+but at the time of writing, what you will hear are three groups of
+single-digit numbers, which you should type as numbers into the answer
+box (and then press the "Submit" button).  Each group consists of three or four
+numbers, sometimes said very slowly and sometimes nearly overlapping
+each other, and you will hear plenty of distortion in the background.
+If you have trouble hearing the numbers, you may use the "Get
+another audio challenge" link to get a different sound file.  Also,
+see the "Tips" section below.</p>
+
+<p><%= link_to 'Download the sound', @captcha_info.audio_url, :target=>'_blank' %></p>
+
+<%= form_tag captcha_answer_path, :method=>:post %>
+  <%= label_tag 'answer', 'Challenge answer' %>
+  <%= text_field_tag 'answer' %>
+  <%= hidden_field_tag 'challenge_key', @captcha_info.challenge_key %>
+  <%= submit_tag 'Submit' %>
+</form>
+<div>
+  <%= link_to 'Get an image challege', captcha_path %> </br>
+  <%= link_to 'Get another audio challege', captcha_audio_path %> </br>
+  <%= link_to 'Help (ReCaptcha)', 'http://www.google.com/recaptcha/help', :target=>'_blank'%>
+</div>
+
+<h2>Tips for solving this audio test</h2>
+<ol>
+  <li>You will probably have to replay sections of the audio file several times
+    to hear some numbers.  Turning the volume up loud helps.</li>
+  <li>You only get one chance with each audio file.  After hitting Submit, if
+    your answer was not correct, you will need to use the download link again
+    to get the next audio file.</li>
+  <li>If all else fails, you can request help via the <%= link_to SUPPORT_PAGE_NAME,
+    new_contact_us_path %> page, and give us a way to contact you.</li>
+</ol>

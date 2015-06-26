@@ -1,0 +1,27 @@
+<!--#include virtual="help_header.shtml" -->
+
+   
+<h1>Edit the Demographics (Name, Birth Date, Gender, or Race) of a PHR Record</h1>
+<p>
+You can change the following demographic characteristics of a PHR record:
+<ol>
+<li><a href="record_name.shtml">PHR Record Name</a></li>
+<li><a href="birth_year.shtml">Date of Birth</a> </li>
+<li><a href="gender.shtml">Gender</a></li>
+<li><a href="race_or_ethnicity.shtml">Race or Ethnicity</a></li>
+</ol>
+</p>
+<p>
+To edit the basic demographic information in a PHR record:
+</p>
+<p>
+<ol>	
+<li> On the <b>PHR Home</b> page, click the link to the name of the PHR you wish to change. This will expand the PHR entry to display action buttons for the individual's PHR.</li>
+<li>
+Select the <b>Demographics</b> button beneath the PHR name you wish to change. </li>
+<li> In the pop-up window, edit one or more of the four demographic fields of the PHR record. </li>		
+<li> Click the <b>Save</b> button at the bottom of the form. 
+</ol>
+</p>
+	    
+<!--#include virtual="help_footer.shtml" -->

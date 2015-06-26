@@ -1,0 +1,7 @@
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+# This is here to maintain an empty packages directory
+# The packages directory ONLY contains softlinks to various packages,
+# and so starts out empty.  The user needs to add the softlinks.

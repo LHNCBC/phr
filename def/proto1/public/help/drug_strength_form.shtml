@@ -1,0 +1,15 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Strength</h1>
+		<p>
+		Select the medication strength, such as 250 mg, and the specific dosage form, such as tablet, capsule, or extended release.  The strength indicates the amount of medicine in a single pill or the concentration of the medicine in a liquid, such as 125 mg per teaspoon.
+	</p>
+		<p><b>Note:</b> <i>for oral pills, it is important to distinguish between standard pills, extended release, and slow release. The extended release forms have different actions, and for some medications, like nifedipine, they are safer than the standard release forms. Also, if you are 
+taking an oral liquid, indicate whether it is a solution, suspension, or elixir. Elixirs contain alcohol; solutions and suspensions do not. </i>
+	</p>
+		<p>
+		<a href="/help/using_long_lists_help.shtml">How to find and select 
+		items from the list</a>
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

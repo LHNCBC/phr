@@ -1,0 +1,88 @@
+# Create a profile that we can use for the rest of the test
+| open | /phr_home |
+| setTimeout | 35000 |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'phr_xss1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+# Enter data which has an html tag
+| waitForVisible | fe_problem_1 |
+| fireEvent | fe_problem_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_problem_1'} | true |
+| typeText | fe_problem_1 | da |
+| waitForVisible | searchResults |
+| selectByIndex | fe_problem_1 | 1 |
+| keyDown | fe_problem_1 | \9 |
+| fireEvent | fe_prob_desc_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_prob_desc_1'} | true |
+| typeKeys | fe_prob_desc_1 | <a> |
+| fireEvent | fe_prob_desc_1 | change |
+| waitForExpression | javascript{testWindow_.isHiddenOrDisabled(testWindow_.Def.Validation.Xss.dialog_.dialog_[0], true)} | false |
+| waitForExpression | javascript{testWindow_.Def.Validation.Xss.dialog_.hide(); true} | true |
+
+
+# Save_and_close then go back to this page to check the saved prob_desc value
+| click | fe_save_1 |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+| click | fe_close_1 |
+
+# wait for the do_ajax_save to finish
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+
+| waitForVisible | add_new |
+| goBack | 
+# wait for the goBack to finish
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+
+# Open up the form
+| waitForVisible | fe_expcol_all |
+| click | css=div#fe_expcol_all > span:first-child |
+
+| waitForVisible | fe_prob_desc_1 | 
+| waitForExpression | javascript{Def.getFieldVal(testWindow_.$("fe_prob_desc_1")) == "< a>"} | true |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |
+

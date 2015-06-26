@@ -1,0 +1,11 @@
+<!--#include virtual="help_header.shtml" -->
+    <h1>Comments</h1>
+		<p>
+    Enter any comments you have about the test or use this field to summarize the results of the test, 
+	either instead of, or in addition to, entering the exact results. </p>
+<p>
+	If the laboratory provides an overall summary of the meaning of the  
+	observations taken together, you can also enter that information here. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

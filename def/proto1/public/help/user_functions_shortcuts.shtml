@@ -1,0 +1,194 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>User Functions and Shortcut Keys</h1>
+<p>
+The following table of user functions and shortcut keys provides alternative methods of navigation and data input that will allow you to minimize typing when creating or updating PHRs. </p>
+<p>
+<table border="1">
+	<tr>
+		<th>Function</th>
+		<th>Click on(icon)</th>
+		<th>Key short cut</th>
+		<th>Comment</th>
+	</tr>
+	<tr>
+		<td colspan="4"><b>Information links</b></td>
+	</tr>
+	<tr>
+		<td>Access field help</td>
+		<td><img src="/assets/blank.gif" class="sprite_icons-help" alt="Help"></td>
+		<td>None</td>
+		<td>A <img src="/assets/blank.gif" class="sprite_icons-help" alt="Help">
+                    help icon appears adjacent to every field name. The system
+			will display a pop-up help text window when you click this icon.</td>
+	</tr>
+	<tr>
+		<td>Dismissing pop-ups; including field help, information buttons, and 
+			reminders </td>
+		<td>Close button<br>
+		  <img src="./cancel.png" alt="Red X"></td>
+		<td>Return, Tab or any alpha key.</td>
+		<td>&nbsp</td>
+	</tr>
+	<tr>
+		<td>Obtaining clinical information specific to a problem, drug, allergy
+			(and most other items chosen from a menu)</td>
+		<td><img src="/assets/blank.gif" class="sprite_icons-info" alt="Information"> button</td>
+		<td>None</td>
+		<td>Click the <img src="/assets/blank.gif" class="sprite_icons-info" alt="Information">
+                    button adjacent to the name of a medical condition, drug, test, allergen,
+			or other item selected from a menu and the system will link to a
+			page of information about the item.</td>
+	</tr>
+<tr>
+		<td>Editing previously saved health information</td>
+		<td><img alt="Paper and Pencil" src="/assets/blank.gif" class="sprite_icons-doc_edit"> </td>
+		<td>None</td>
+		<td>Click the <img alt="Paper and Pencil" src="/assets/blank.gif" class="sprite_icons-doc_edit">
+                    icon adjacent to the name of a medical condition, drug, test, allergen,
+			or other item selected to edit or delete the item. <i>Note: On the <b>View & Edit Results Timeline</b> page, the <img alt="Paper and Pencil" src="/assets/blank.gif" class="sprite_icons-doc_edit"> edit icon will appear at the top of the data column you wish to edit.</i></td>
+	</tr>
+	<tr>
+		<td colspan="4"><b>Navigation<b></td>
+	</tr>
+	<tr>
+		<td >Move to next (R to L) open field in form</td>
+		<td>Click on the field of interest with the mouse.</td>
+		<td>Return</br>
+			Tab</br>
+                        Ctrl+Right Arrow</td>
+		<td>Form navigation is from left to right and then down (as on a typewriter)</br>
+			When you get to the last viewable field on a given screen, the focus of the navigation
+			returns to the top field of the form.</td>
+	</tr>
+	<tr>
+		<td >Return (back up) to the previous field (L to R)</td>
+		<td>Click on the field of interest with the mouse.</td>
+		<td>Shift+Return</br>
+			Shift+Tab</br>
+			Ctrl+Left Arrow</td>
+		<td>&nbsp</td>
+	</tr>
+	<tr>
+		<td>Navigating through a table</td>
+		<td>Click on the field of interest with the mouse.</td>
+		<td >Use Ctrl+Arrow to move up down, right or left</td>
+		<td>&nbsp</td>
+	</tr>
+	<tr>
+		<td>Up one row in the same column</td>
+		<td>Click on the field of interest with the mouse.</td>
+		<td>Ctrl+Up Arrow</td>
+		<td>When in the top row, Ctrl+Up Arrow leaves the table and goes to closest
+			field before that table.</td>
+	</tr>
+	<tr>
+		<td>Move right one column in the same row</td>
+		<td>Click on the field of interest with the mouse.</td>
+		<td>Ctrl+Right Arrow</td>
+		<td>Moves right one column at a time across the table. When at the left-most
+			column, wraps to first column of the next row. When at the end of table, behaves like
+			a Tab.</td>
+	</tr>
+	<tr>
+		<td>Move down one row</td>
+		<td>Click on the field of interest with the mouse.</td>
+		<td>Ctrl+Down Arrow</td>
+		<td>Moves down one row at a time in the same column. When at the end of a table, jumps
+			to the first field after the table.</td>
+	</tr>
+	<tr>
+		<td>Move left</td>
+		<td>Click on the field of interest with the mouse.</td>
+		<td>Ctrl+Left Arrow</td>
+		<td>Moves left one column at a time across the table. When at the left-most
+			column, wraps to first column and last field of the row above. 
+			When at top left-most field, moves to the field immediately preceding that
+			table. Behaves like a Shift+Tab.</td>
+	</tr>
+	<tr>
+		<td>Select menu item</td>
+		<td>Click on the menu item.</td>
+		<td>Down Arrow moves the menu highlighting to the next lower menu
+			item</td>
+		<td>Pressing return places you on a highlighted menu item and selects it. </td>
+	</tr>
+	<tr>
+		<td>Select menu item</td>
+		<td>Click on the menu item.</td>
+		<td>Up Arrow moves the menu highlight to the preceding item in the
+			menu.</p>
+		<p>When you reach the top you wrap to the bottom of the list.</td>
+		<td>Pressing return selects that item and puts it in the current input
+			field.</td>
+	</tr>
+	<tr>
+		<td colspan="4"><b>Miscellaneous</b></td>
+	</tr>
+	<tr>
+		<td>Storing the information in a form</td>
+		<td>Press the <b>Save</b> button at the bottom of the form</td>
+		<td>Ctrl+Return (also used for enlarging field size)</td>
+		<td>&nbsp</td>
+	</tr>
+	<tr>
+		<td>Enlarging field size</td>
+		<td>&nbsp</td>
+		<td>F2 toggles between open and close. Press F2 once to open and once again to close</td>
+		<td>The field will open as large as it can to accommodate what you have
+			been typing. As you keep typing, the system adds additional lines as needed. </td>
+	</tr>
+	<tr>
+		<td>Adding hard returns within field</td>
+		<td>&nbsp</td>
+		<td>Ctrl+Return</td>
+		<td>Adds hard returns in a field.</td>
+	</tr>
+	<tr>
+		<td colspan="4"><b>Editing </b></td>
+	</tr>
+	<tr>
+		<td>Cut and paste</td>
+		<td>&nbsp</td>
+		<td>Highlight with shift keys, Ctrl+X to remove, Ctrl+C to copy, Ctrl+V to
+			paste somewhere else in the current form or another program.</td>
+		<td>&nbsp</td>
+	</tr>
+	<tr>
+		<td>Deleting Rows</td>
+		<td>Right-click mouse, select <b>Delete</b></td>
+		<td>&nbsp</td>
+		<td>Place your cursor in the row to be deleted, right-click the mouse, and select <b>Delete</b> from the list of actions.</td>
+	</tr>
+	<tr>
+		<td>Undo</td>
+		<td>Highlight the text with your mouse and press the Backspace key.</td>
+		<td>Ctrl+Z</td>
+		<td>Changes the contents of the field to the previous value.</td>
+	</tr>
+	<!--<tr>
+		<td>Display health guidance reminder</td>
+		<td>Reminder button</td>
+		<td>Ctrl+R</td>
+		<td>&nbsp</td>
+	</tr> -->
+	<!--<tr>
+		<td>Generate printed and other kinds of reports</td>
+		<td>Click on report button</td>
+		<td>Ctrl+R</td>
+		<td>&nbsp</td>
+	</tr> -->
+	
+	<tr>
+		<td>Sort by table column</td>
+		<td>Click on top of column</td>
+		<td>Not applicable</td>
+		<td>For columns that are sortable. Clicking on the header of that column
+			will sort the table by that column via an arrow icon in
+			the header. Clicking twice sorts in the other direction. This works for
+			tables in the form and for tables in the menu selection box.</td>
+	</tr>
+</table>
+</p>
+<p>Table of User Functions and Shortcut Keys.</p>
+
+<!--#include virtual="help_footer.shtml" -->

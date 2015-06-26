@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>JavaScript unit test file</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="assets/unittest.css" type="text/css" />
+</head>
+<body>
+
+<div id="content">
+
+  <div id="header">
+    <h1>JavaScript unit test file</h1>
+    <p>
+      This file tests <strong>fieldOps.js</strong>.
+    </p>
+  </div>
+
+  <!-- Log output -->
+  <div id="testlog"> </div>
+
+  <!-- Testing Content -->
+<div style="visibility: hidden" >
+<input type="text" id="fe_expr_id_1_1" value=""/>
+<input type="text" id="fe_expr_id_1_2" value="2"/>
+<input type="text" id="fe_expr_id_11" value="1"/>
+<input type="text" id="fe_expr_id_2" value="5"/>
+<input type="text" id="fe_expr_id_3"  value="3"/>
+<input type="text" id="fe_expr_id_4" value=""/>
+<input type="text" id="fe_green_4" value=""/>
+
+<!-- a table of values for the latest_from_table test -->
+<table>
+  <tr>
+    <td><input type="text" id="fe_when_1" value="12/1/1970"/></td>
+    <td><input type="text" id="fe_when_ET_1" value="227238930000000"/></td>
+    <td><input type="text" id="fe_hdl_1" value="42"/></td>
+    <td><input type="text" id="fe_ldl_1" value=""/></td>
+  </tr>
+  <tr>
+    <td><input type="text" id="fe_when_2" value="1990"/></td>
+    <td><input type="text" id="fe_when_ET_2" value="648014400000"/></td>
+    <td><input type="text" id="fe_hdl_2" value="32"/></td>
+    <td><input type="text" id="fe_ldl_2" value=""/></td>
+  </tr>
+  <tr>
+    <td><input type="text" id="fe_when_3" value="12/2/1970"/></td>
+    <td><input type="text" id="fe_when_ET_3" value="28962000000"/></td>
+    <td><input type="text" id="fe_hdl_3" value="52"/></td>
+    <td><input type="text" id="fe_ldl_3" value=""/></td>
+  </tr>
+  <tr>
+    <td><input type="text" id="fe_when_4" value="1995"/></td>
+    <td><input type="text" id="fe_when_ET_4" value="805780800000"/></td>
+    <td><input type="text" id="fe_hdl_4" value=""/></td>
+    <td><input type="text" id="fe_ldl_4" value=""/></td>
+  </tr>
+</table>
+
+<!-- values for testLatestFromForm -->
+<div id="testLatestFromForm" >
+<div id="fe_panel_blpr_1_0">
+  <input id="fe_blo_test_date_1_1" type=text value="2000/01/11" />
+  <input id="fe_blo_sybp_1_1_1" type=text value="106" />
+</div>
+<div id="fe_panel_blpr_2_0">
+  <input id="fe_blo_test_date_2_1" type=text value="2000/02/11" />
+  <input id="fe_blo_sybp_2_1_1" type=text value="99" />
+</div>
+<div id="fe_panel_blpr_3_0">
+  <input id="fe_blo_test_date_3_1" type=text  />
+  <input id="fe_blo_sybp_3_1_1" type=text value="107" />
+</div>
+<div id="fe_panel_blpr_4_0">
+  <input id="fe_blo_test_date_4_1" type=text value=" " />
+  <input id="fe_blo_sybp_4_1_1" type=text value="108" />
+</div>
+<div id="fe_panel_blpr_5_0">
+  <input id="fe_blo_test_date_5_1" type=text value="" />
+  <input id="fe_blo_sybp_5_1_1" type=text value="109" />
+</div>
+<div id="fe_panel_blpr_6_0">
+  <input id="fe_blo_test_date_6_1" type=text value="2001/10/11" />
+  <input id="fe_blo_sybp_6_1_1" type=text value="  " />
+</div>
+<div id="fe_panel_blpr_7_0">
+  <input id="fe_blo_test_date_7_1" type=text value="2001/11/11" />
+  <input id="fe_blo_sybp_7_1_1" type=text value="" />
+</div>
+<div id="fe_panel_blpr_8_0">
+  <input id="fe_blo_test_date_8_1" type=text value="2001/09/11" />
+  <input id="fe_blo_sybp_8_1_1" type=text  />
+</div>
+</div>
+<!--# End of values for testLatestFromForm -->
+
+
+<input type="text" id="fe_test_date_1" value="12/2/1999"/>
+<input type="text" id="fe_test_date_2" value="12/3/1998"/>
+<input type="text" id="fe_test_date_3" value="12/1/1999"/>
+<div id="completionOptions"></div> <!-- for the autocompleter -->
+
+
+<!--# test select_fields -->
+<table>
+    <tr>
+        <td>
+            <input type="text" id="fe_select_field_a_1" value="a1"/>
+        </td>
+        <td>
+            <input type="text" id="fe_select_field_b_1" value="Active"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="text" id="fe_select_field_a_2" value="a2"/>
+        </td>
+        <td>
+            <input type="text" id="fe_select_field_b_2" value="Inactive"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="text" id="fe_select_field_a_3" value="a3"/>
+        </td>
+        <td>
+            <input type="text" id="fe_select_field_b_3" value="Active"/>
+        </td>
+    </tr>
+</table>
+<!--# End of test select_fields -->
+
+<!-- For testHasList -->
+<div id='moreResults'></div>
+
+</div>
+<!--# End of hidden div -->
+
+  <script src="assets/prototype.js?body=1" type="text/javascript"></script>
+  <script src="assets/effects.js?body=1" type="text/javascript"></script>
+  <script src="assets/controls.js?body=1" type="text/javascript"></script>
+  <script src="assets/jquery/jquery.js" type="text/javascript"></script>
+  <script src="assets/jquery-ui/js/jquery-ui.min.js" type="text/javascript"></script>
+  <script type="text/javascript">jQuery.noConflict();</script>
+  <script src="assets/application_phr.js?body=1" type="text/javascript"></script>
+  <script src="assets/navigation.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/screenReaderLog.js" type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompBase.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/fieldAlarms.js" type="text/javascript"></script>
+  <script src="assets/autocomp/bonk.js" type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompPrefetch.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/autoCompSearch.js?body=1"type="text/javascript"></script>
+  <script src="assets/logger.js?body=1" type="text/javascript"></script>
+  <script src="assets/idCache.js?body=1" type="text/javascript"></script>
+  <script src="assets/rules.js?body=1" type="text/javascript"></script>
+  <script src="assets/testpanel.js?body=1" type="text/javascript"></script>
+  <script src="assets/date.js?body=1" type="text/javascript"></script>
+  <script src="assets/dateTimeCalcs.js?body=1" type="text/javascript"></script>
+  <script src="assets/dateUtils.js?body=1"    type="text/javascript"></script>
+  <script src="assets/fieldOps.js?body=1" type="text/javascript"></script>
+  <script src="assets/unittest.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+// <![CDATA[
+
+  new Test.Unit.Runner({
+
+    // replace this with your real tests
+
+    setup: function() {
+
+    },
+
+    teardown: function() {
+
+    },
+
+    testColumnMax: function() { with(this) {
+      assertEqual(5, Def.FieldOps.column_max('fe_expr_id_11', 'NM'));
+      var expected = Def.DateUtils.getEpochTime('12/2/1999');
+      assertEqual(expected, Def.FieldOps.column_max('fe_test_date_2', 'DT'));
+      // Confirm an exception is thrown if there is no value.
+      var gotException = false;
+      try {
+        Def.FieldOps.column_max('fe_ldl_1', 'when');
+      }
+      catch (e) {
+        gotException = true;
+      }
+      assert(gotException);
+    }},
+
+
+    testColumnBlank: function() { with(this) {
+      assertEqual(false, Def.FieldOps.column_blank('fe_expr_id_11', 'NM'));
+      assertEqual(false, Def.FieldOps.column_blank('fe_expr_id_1_1', 'NM'));
+      assertEqual(true, Def.FieldOps.column_blank('fe_green_4', 'NM'));
+    }},
+
+
+    testColumnContains: function() { with(this) {
+      assertEqual(true,
+        Def.FieldOps.column_contains('fe_test_date_1', 'DT', '12/3/1998'));
+    }},
+
+
+    testLatestFromTable: function() { with(this) {
+      assertEqual(32, Def.FieldOps.latest_from_table('fe_hdl_1', 'NM', 'when'));
+
+      // Also confirm that an exception is thrown if there is no value.
+      // assertRaise requires an exception with a "name" property, which we
+      // aren't using.
+      var gotException = false;
+      try {
+        Def.FieldOps.latest_from_table('fe_ldl_1', 'when');
+      }
+      catch (e) {
+        gotException = true;
+      }
+      assert(gotException);
+    }},
+
+
+    testLatestFromForm: function() { with(this) {
+
+      assertEqual(99,
+        Def.FieldOps.latest_from_form('fe_blo_sybp_1_1_1', '','blo_test_date'));
+
+      // Also confirm that an exception is thrown if there is no value.
+      // assertRaise requires an exception with a "name" property, which we
+      // aren't using.
+      var gotException = false;
+      try {
+        Def.FieldOps.latest_from_form('nonexist_field_id', '', 'blo_test_date');
+      }
+      catch (e) {
+        gotException = true;
+      }
+      assert(gotException);
+    }},
+
+    testHasList: function() { with(this) {
+      // Create an autocompleter on one of the test fields
+      var fieldID = 'fe_test_date_3';
+      window[fieldID + '_autoComp'] =
+        new Def.Autocompleter.Prefetch(fieldID,
+           ['Medicine', 'Food', 'Other'], {'matchListValue': false});
+
+      assert(Def.FieldOps.has_list(fieldID));
+
+      // Now give the autocompleter an empty list
+      window[fieldID + '_autoComp'].options.array = [];
+      assert(!Def.FieldOps.has_list(fieldID));
+
+      // Try a field that doesn't have an autocompleter
+      assert(!Def.FieldOps.has_list('fe_test_date_2'));
+    }},
+
+    testSelectFields: function() { with(this) {
+      // Will return the fields from field column by looking for strVal
+      // select all fields
+      var selectedRowBs = $$('input[id^=fe_select_field_b]');
+
+      actual = Def.FieldOps.select_fields("fe_select_field_b_1", null, "");
+      expected = selectedRowBs;
+      assertEqual(true, actual.inspect() == expected.inspect());
+
+      // select all the active fields
+      actual = Def.FieldOps.select_fields("fe_select_field_b_1", null, "active");
+      selectedRowBs[1]=null;
+      expected = selectedRowBs.compact();
+      assertEqual(true, actual.inspect() == expected.inspect());
+
+      // select fields by looking for non-existing value
+      actual = Def.FieldOps.select_fields("fe_select_field_b_1", null,
+                                          "Not existing value")
+      assertEqual(0, actual.length)
+
+      // repeat above three tests by adding candidateRows input so that will
+      // only return the fields in candidateRows
+      var candRows = [$('fe_select_field_a_2'), $('fe_select_field_a_3')];
+
+      actual = Def.FieldOps.select_fields("fe_select_field_b_1", null, "",
+                                           candRows)
+      expected = [$('fe_select_field_b_2'), $('fe_select_field_b_3')];
+      assertEqual(true, actual.inspect() == expected.inspect())
+
+      actual = Def.FieldOps.select_fields("fe_select_field_b_1", null, "Active",
+                                           candRows)
+      expected = [$('fe_select_field_b_3')];
+      assertEqual(true, actual.inspect() == expected.inspect())
+
+      actual = Def.FieldOps.select_fields("fe_select_field_b_1", null,
+                                            "Not existing value", candRows)
+      assertEqual(0, actual.length)
+    }},
+
+    test_column_conditions: function (){with(this){
+      var actual, expected, prefix, suffix;
+      var str1 = "field_a|field_b|field_c";
+      var str2 = " ('a1','a3')  | '34' |'asdfsda'  ";
+      actual = Def.FieldOps.column_conditions(prefix, suffix, str1, str2);
+      expected =
+        "field_a in ('a1','a3') and field_b = '34' and field_c = 'asdfsda'";
+      assertEqual(expected, actual);
+    }}
+  }, "testlog");
+// ]]>
+</script>
+</body>
+</html>

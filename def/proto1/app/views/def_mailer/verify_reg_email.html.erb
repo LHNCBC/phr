@@ -1,0 +1,34 @@
+<% link = email_verification_url(:verification_token => @email_token) %>
+<p>Dear <%= @user_name %>:</p>
+<p>You have entered <%= @email_addr %> as the contact email address for your TBD - YOUR SYSTEM NAME HERE account.  To complete the registration
+process, please verify that this email address belongs to you. Click this <%= link_to("link", link)%> to verify that
+this email address is correct and sign in to the TBD - YOUR SYSTEM NAME HERE with your account ID and password. If you are unable
+to click on the link, please copy and paste the URL into your browser.</p>
+<%= link %>
+<p>This link must be used within <%= EmailVerification::NEW_ACCOUNT_ACTIVATION_DAYS %> days to complete your registration. If the account verification link has expired,
+please re-register for an account at TBD - YOUR REGISTRATION PAGE LINK.</p>
+<p>Once you have verified your email address and confirmed your account, you will be able to:
+<ul>
+  <li>Organize the health information for your entire family, including children, elderly parents, and other dependents,
+in one place;
+  </li>
+  <li>Get customized health information from the world's largest medical library and other reliable sources;
+  </li>
+  <li>Track health history, medical conditions, medicines, allergies, vaccines, and lab tests;
+  </li>
+  <li>Receive personalized reminders for health screenings, vaccines, appointments, and prescription refills;
+  </li>
+  <li>Share your Personal Health Record with loved ones, physicians, and other health care providers;
+  </li>
+  <li>View the Personal Health Records of others who have personally invited you to view their health information.</li>
+</ul></p>
+<p>Wondering why you received this email?
+  This message was sent when someone used this email address to sign up for an account for the TBD - YOUR SYSTEM NAME
+HERE’s Personal Health record (PHR) at TBD - YOUR LINK HERE. Don’t worry if you didn’t create this account. Your
+email address cannot be used as a contact for this account unless you complete the verification process above.
+</p>
+<p>
+  Sincerely,</br>
+  TBD - YOUR INFO HERE</p><p>
+  Please do not reply to this message. If you have questions or comments, please email us at TBD - YOUR LINK HERE.
+</p>

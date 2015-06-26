@@ -1,0 +1,23 @@
+<!--#include virtual="help_header.shtml" -->
+
+   
+<h1>PHR Tasks</h1>
+	
+<h3>
+Learn how to...
+</h3>
+<p>
+<ul>			
+
+<li><a href="how_to_edit_PHR.shtml">View or edit an existing PHR</a></li>
+<li><a href="how_to_create_PHR.shtml">Create a new PHR</a></li>
+<li><a href="how_to_export_PHR.shtml">Download a PHR to a file</a></li>
+<li><a href="view_flowsheet.shtml">View test results and health trackers</a></li>
+<li><a href="how_to_archive_PHR.shtml">Make a PHR inactive or prepare it for deletion</a></li>
+<li><a href="edit_PHR_basics.shtml">Edit the demographics (name, birth date, gender, or race) of a PHR record</a></li>
+
+</ul>
+	
+</p>
+    
+<!--#include virtual="help_footer.shtml" -->

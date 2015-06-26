@@ -1,0 +1,6 @@
+<!-- Display Panel group-->
+<%= form_for form_obj  do |f| %>
+   <% panel_fields.each do |field| %>
+      <%= displayField(field, f, false, nil, suffix) %>
+   <% end %>
+<% end %>

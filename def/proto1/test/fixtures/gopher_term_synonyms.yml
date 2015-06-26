@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 100001
+  gopher_term_id: 100005
+  term_synonym: smoker
+two:
+  id: 100002
+  gopher_term_id: 100003
+  term_synonym: N meningitidis
+three:
+  id: 100003
+  gopher_term_id: 100003
+  term_synonym: Meningococcus
+

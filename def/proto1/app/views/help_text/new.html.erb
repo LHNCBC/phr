@@ -1,0 +1,161 @@
+<%# a template for creating or editing a help text %>
+
+<form action="/help_text/<%= params[:action] %><%if params[:id]%>/<%=
+  params[:id] %><% end %>" method="post">
+  <table>
+    <col width="30em" />
+    <col width="100%" />
+    <tbody>
+      <tr>
+        <td class="label"><label for="fe_mode">Installation&nbsp;Mode:</label
+         ></td>
+        <td><%= @installation_mode %>
+          <% if !@edit %>
+            <%= text_field(:fe, :mode_C, :size=>40, :autocomplete=>'off',
+                :class=>'hidden_field', :value=>@installation_mode_code) %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          Enter a file name below.  File names should generally end in ".shtml"
+          if you want to use the  standard server-side included header and
+          footer.  Also, note that if you are creating a new help file for a
+          particular installation (e.g. an alternate installation), the same help file will be
+          created for the other installations too (with the same file name, but
+          under a different installation directory).  You can edit the other
+          installations' help text after saving this initial version.
+        </td>
+      </tr>
+      <tr>
+        <td class="label"><label for="fe_file_name">File Name:</label></td>
+        <td
+         ><% if @edit %>
+            <%=h @file_name %>
+            <%= text_field(:fe, :file_name, :class=>'hidden_field',
+              :value=>@file_name) %>
+          <% else %>
+            <%= text_field(:fe, :file_name, :size=>30, :autocomplete=>'off',
+              :value=>@file_name) %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<style type="text/css">
+  table.border, table.border td {
+    border: 1px solid #73A0C8;
+    border-collapse: collapse;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 0;
+  }
+  .fillcell {
+    border: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFEE;
+  }
+
+</style>
+<table class="border" width="100%" style="height: 500px">
+  <thead><col width="50%" /><col width="50%" /></thead>
+  <tbody>
+    <tr>
+      <td style="height: 100%">
+        <%# put noNav on the textarea so we can use return and tab in the field %>
+        <textarea id="fe_help_html" name="fe[help_html]" class="fillcell noNav"
+                  ><%=h @help_html %></textarea>
+      </td><td>
+        <iframe id="preview" class="fillcell" style="background-color: #EEE"></iframe>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button id="view" name="view" class="rounded" type="button"
+ ><span>Preview</span></button>
+<button id="save" name="save" class="rounded" type="submit" disabled="true"
+ ><span>Save</span></button>
+<button id="cancel" name="cancel" class="rounded" type="button"
+ ><span>Cancel</span></button>
+
+  <input name="authenticity_token" type="hidden"
+     value="<%= form_authenticity_token -%>" />
+
+</form>
+
+<% content_for :page_specific_js do %>
+  <script type="text/javascript">
+    // The method to_json behaves differntly in Rails 2 and 3 which will cause 
+    // error when rendering this page. Solution is to turn the default value of
+    // ActiveSupport.escape_html_entities_in_json back to true as it was in 
+    // Rails 2. (see application.rb) 
+    window.helpHeader = <%= @help_header.to_json.html_safe %>;
+    window.helpFooter = <%= @help_footer.to_json.html_safe %>;
+    Def.FieldDefaults = {};
+    Def.Rules.fieldRules_ = {};
+    // Set up change event observers to run when code fields are updated.
+    Def.fieldObservers_['file_name'] = {
+      'change': [
+        function() {
+          Def.runValidations(this)
+        }],
+      'keyup': [
+        function() {
+          var disabled = $('fe_file_name').value == '';
+          $('view').disabled = disabled;
+          $('save').disabled = disabled;
+          $('fe_help_html').disabled = disabled;
+        }
+      ]
+    };
+    Def.fieldObservers_['help_html'] = {
+      'keypress': [function() {
+        $('save').disabled = false;
+      }]
+    };
+    Def.fieldValidations_["file_name"] =[["uniqueness"]];
+    Def.Validation.Base.UniqueValuesByField_ = <%= @unique_values_by_field.to_json.html_safe%>;
+    Event.observe('cancel', 'click', function(event) {
+      if ($('save').disabled ||
+          window.confirm("Discard changes and return to previous page?")) {
+        window.location = '/help_text';
+      }
+      else {
+        Event.stop(event);
+      }
+    });
+    Event.observe('view', 'click', function(event) {
+      var html = $('fe_help_html').value;
+      // Replace the standard footer & header includes if there are there.
+      var ssiTextToFileText = {
+        '<!--#include virtual="help_header.shtml" -->': window.helpHeader,
+        '<!--#include virtual="help_footer.shtml" -->': window.helpFooter};
+
+      for (var ssiText in ssiTextToFileText) {
+        var start = html.indexOf(ssiText);
+        if (start >= 0) {
+          html = html.substr(0, start) + ssiTextToFileText[ssiText] +
+            html.substr(start + ssiText.length);
+        }
+      }
+      $('preview').contentDocument.write(html);
+      $('preview').contentDocument.close();
+    });
+    document.observe("dom:loaded", function() {
+      // Make sure the buttons are disabled again, in case the user
+      // hit the back button.
+      if ($('fe_file_name').value == '') {
+        $('fe_help_html').disabled = true;
+        $('view').disabled = true;
+      }
+      $('preview').contentDocument.write(
+        'Click "Preview" to see here the HTML you have entered.');
+      $('preview').contentDocument.close();
+    });
+  </script>
+<% end %>

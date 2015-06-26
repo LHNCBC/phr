@@ -1,0 +1,631 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# PLEASE add a predefined_field_id, which is requried for each record
+one:
+  id: -1
+  form_id: -10
+  display_name: First Name
+  target_field: first_name
+  control_type: text_field
+  field_type: ST - string data
+  predefined_field_id: -1
+  control_type_detail: >
+   {"search_table":"drug_name_routes","fields_searched":["text"],
+   "fields_displayed":["text"],"no_button":1,
+   "data_req_input":{"one":"two","three":"four"},"auto":1}
+
+form_one_group_hdr:
+  id: -6199
+  form_id: -10
+  display_name: I'm a group header
+  target_field: some_hdr
+  control_type: group_hdr
+  predefined_field_id: -24
+  
+birth_date:
+  id : -6198
+  form_id: -10
+  target_field: birth_date
+  control_type: text_field
+  field_type: NM - numeric
+  predefined_field_id: -2
+
+hcl:
+  id : -6197
+  form_id: -10
+  target_field: hcl
+  control_type: text_field
+  field_type: NM - numeric
+  predefined_field_id: -2
+  
+more_reminders:
+  id : -6196
+  form_id: -10
+  target_field: more_reminders
+  #control_type: message_button
+  control_type: button  
+  predefined_field_id: -32
+
+two:
+  id: -2
+  field_type: unknown type
+  
+phr_drug_group:
+  id: -269
+  form_id: -8
+  target_field: drugs
+  control_type: group_header
+  predefined_field_id: -24
+
+phr_drug_name:
+  form_id: -8
+  default_value:
+  group_header_id: -269
+  control_type_detail: >
+    {"search_table":"drug_name_routes","fields_searched":["text"],
+    "fields_displayed":["text"],"no_button":1,"auto":1}
+  regex_validator_id:
+  help_text:
+  target_field: name_and_route
+  max_responses:
+  id: -441
+  data_size:
+  display_name: Drug Name
+  required:
+  field_type: ST - string data
+  display_order: 270
+  control_type: search_field
+  list_code_column: id
+  predefined_field_id: -1
+  data_req_output: >
+    {"code":["drug_code"],"id":["drug_name_route_id"],
+    "strength_form_list":["strength_and_form"],"patient_route":["route"]}
+
+phr_drug_code:
+  form_id: -8
+  group_header_id: -269
+  target_field: drug_code
+  control_type: text_field
+  predefined_field_id: -1
+
+phr_drug_name_route_id:
+  form_id: -8
+  group_header_id: -269
+  target_field: drug_name_route_id
+  control_type: text_field
+  predefined_field_id: -1
+
+phr_drug_route:
+  form_id: -8
+  group_header_id: -269
+  target_field: route
+  control_type: text_field
+  predefined_field_id: -1
+
+phr_drug_strength:
+  form_id: -8
+  default_value:
+  group_header_id: -269
+  control_type_detail: >
+    {"search_table":"drug_strength_forms","prefetch":true,
+    "list_placement":"split","match_list_value":false,
+    "fields_displayed":["text"],
+    "data_req_input":{"drug_name_route_id":"drug_name_route_id"}}
+  regex_validator_id:
+  help_text:
+  target_field: strength_and_form
+  max_responses:
+  id: -1105
+  data_size:
+  display_name: Strength
+  required:
+  field_type:
+  display_order: -271
+  control_type: text_field
+  predefined_field_id: -1
+  data_req_output:  >
+    {"amount_list":["dose"],"rxcui":["rxcui"]}
+  
+active_drugs:
+  id: -3
+  form_id: -7
+  display_order: 80
+  display_name: Active
+  target_field: active_drugs
+  control_type: check_box
+  control_type_detail: >
+    {checked: yes}
+  predefined_field_id: -27
+  
+unchecked_box:
+  id: -4
+  form_id: -7
+  display_order: 80
+  display_name: Unchecked checkbox
+  target_field: a_test_unchecked_box
+  control_type: check_box
+  control_type_detail:
+  predefined_field_id: -27
+
+required_field:
+  id: -501
+  form_id: -12
+  display_order: 1
+  display_name: A required field
+  target_field: a_required_field
+  control_type: text
+  required: true
+  max_responses: 1
+  
+optional_field:
+  id: -502
+  form_id: -12
+  display_order: 2
+  display_name: An optional field
+  target_field: an_optional_field
+  control_type: text
+  required: false
+  max_responses: 1  
+  
+absolute_range_field:
+  id: -600
+  form_id: -9
+  display_name: Field with absolute range
+  target_field: absolute_range_field
+  control_type_detail: >
+    {abs_min: 50, abs_max: 55}
+
+absolute_minimum_field:
+  id: -601
+  form_id: -9
+  display_name: Field with absolute minimum
+  target_field: absolute_minimum_field
+  control_type_detail: >
+    {abs_min: 50}
+
+absolute_maximum_field:
+  id: -602
+  form_id: -9
+  display_name: Field with absolute maximum
+  target_field: absolute_maximum_field
+  control_type_detail: >
+    {abs_max: 55}
+
+checkbox_1:
+  id: -610
+  form_id: -5
+  display_name: Starting Condition of the box
+  target_field: d_check_box_default_value
+  control_type: check_box
+  control_type_detail: >
+    {"stored_yes":true,"stored_no":false,"first":"FieldLabel"}
+  required: 0
+  max_responses: 1
+  help_text: Help text for checkbox_1
+  default_value: 'no'
+  field_type: Check Box
+  predefined_field_id: -27
+
+checkbox_2:
+  id: -611
+  form_id: -5
+  display_name: Display box in group's header area?
+  target_field: ctd_place
+  control_type: check_box
+  control_type_detail: >
+    {"stored_yes":"in_hdr","stored_no":null,"first":"CheckBox"}
+  required: 1
+  max_responses: 1
+  default_value: 'no'
+  field_type: Check Box
+  predefined_field_id: -27
+  
+checkbox_3:
+  id: -612
+  form_id: -5
+  display_name: Active
+  target_field: active_drugs
+  control_type: check_box
+  control_type_detail: >
+    {"class":["noNav"],"place":"in_hdr"}
+  default_value: 'yes'
+  field_type: Check Box
+  predefined_field_id: -27
+  
+checkbox_4:
+  id: -613
+  form_id: -5
+  display_name: Yes only
+  target_field: yes_only
+  control_type: check_box
+  control_type_detail: >
+    {stored_yes: Horatio}
+  default_value: 'yes'
+  field_type: Check Box
+  predefined_field_id: -27
+  
+checkbox_5:
+  id: -614
+  form_id: -5
+  display_name: No only
+  target_field: no_only
+  control_type: check_box
+  control_type_detail: >
+    {stored_no: Absolutely not}
+  default_value: 'no'
+  field_type: Check Box
+  predefined_field_id: 27
+  
+attributes_1:
+  id: -620
+  form_id: -6
+  display_name: has size and default
+  target_field: attributes_1
+  control_type: text_field
+  default_value: some default
+  
+attributes_2:
+  id: -621
+  form_id: -6
+  display_name: has edit and class
+  target_field: attributes_2
+  control_type: text_field
+  control_type_detail: >
+    {"edit": "0", "class": ["class1", "class2"]}
+
+# Fields for shared_fields_one
+shared_a_one:
+  id: -6001
+  form_id: -6
+  target_field: shared_a
+  control_type: text_field
+
+shared_b_one:
+  id: -6002
+  form_id: -6
+  target_field: shared_b
+  control_type: static_text # shouldn't be available for rules
+
+shared_c_one:
+  id: -6003
+  form_id: -6
+  target_field: shared_c
+  control_type: text_field
+
+not_shared_a_one:
+  id: -6004
+  form_id: -6
+  target_field: not_shared_a_one
+  control_type: text_field
+
+# Fields for shared_fields_two
+shared_a_two:
+  id: -6005
+  form_id: -7
+  target_field: shared_a
+  control_type: text_field
+
+shared_b_two:
+  id: -6006
+  form_id: -7
+  target_field: shared_b
+  control_type: static_text # shouldn't be available for rules
+
+shared_c_two:
+  id: -6007
+  form_id: -7
+  target_field: shared_c
+  control_type: text_field
+
+not_shared_a_two:
+  id: -6008
+  form_id: -7
+  target_field: not_shared_a_two
+  control_type: text_field
+
+# Fields for form 8
+
+data_hash_top_field:
+  id: -6100
+  form_id: -8
+  target_field: top_field
+  control_type: text_field
+
+data_hash_top_field_group:
+  id: -6101
+  form_id: -8
+  target_field: top_field_group
+  control_type: group_hdr
+  predefined_field_id: -24
+
+data_hash_group_field:
+  id: -6102
+  form_id: -8
+  target_field: group_field
+  control_type: text_field
+  group_header_id: -6101
+
+data_hash_group_field2:
+  id: -6103
+  form_id: -8
+  target_field: group_field2
+  control_type: text_field
+  group_header_id: -6101
+
+data_hash_sub_group:
+  id: -6104
+  form_id: -8
+  target_field: sub_group
+  control_type: group_hdr
+  group_header_id: -6101
+  predefined_field_id: -24
+
+data_hash_sub_group_field:
+  id: -6105
+  form_id: -8
+  target_field: sub_group_field
+  control_type: text_field
+  group_header_id: -6104
+
+data_hash_sub_table:
+  id: -6106
+  form_id: -8
+  target_field: sub_table
+  control_type: group_hdr
+  control_type_detail: >
+    {"orientation": "horizontal"}
+  group_header_id: -6101
+  predefined_field_id: -24
+
+data_hash_table_field:
+  id: -6107
+  form_id: -8
+  target_field: table_field
+  control_type: text_field
+  group_header_id: -6106
+  predefined_field_id: -150
+  field_type: ST - string data
+  predefined_field_id: -1
+
+data_hash_table_field2:
+  id: -6108
+  form_id: -8
+  target_field: table_field2
+  control_type: text_field
+  group_header_id: -6106
+
+# Fields to test change_target_field
+target_field_to_change:
+  id: -70
+  form_id: -7
+  target_field: to_be_changed
+  control_type: text_field
+  control_type_detail: >
+    {"not_changed": true}
+  predefined_field_id: -1
+  
+control_detail_at_beginning:
+  id: -71
+  form_id: -7
+  target_field: no_change
+  control_type: search_field
+  control_type_detail: >
+    {"search_table":"drug_name_routes",
+    "to_be_changed":"at_start","list_details_id":1000,
+    "superfluous_parameter":"at_end"}
+  predefined_field_id: -1
+  list_code_column: id
+  
+control_detail_at_end:
+  id: -72
+  form_id: -8
+  target_field: no_change
+  control_type: check_box
+  control_type_detail: >
+    {"superfluous_parameter": "at_start", "to_be_changed": "at_end"}
+  predefined_field_id: -1
+  
+control_detail_in_middle:
+  id: -73
+  form_id: -9
+  target_field: no_change
+  control_type: check_box
+  control_type_detail: >
+    {"superfluous_parameter": "at_start", "to_be_changed": "in_middle",
+    "more_superfluidity": "at_end"}
+  predefined_field_id: -1
+  
+target_and_control:
+  id: -74
+  form_id: -8
+  target_field: to_be_changed
+  control_type: text_area
+  control_type_detail: >
+    {"to_be_changed": "with_target_field"}
+  predefined_field_id: -1
+
+test_for_not_allowing_search1:
+  id: -75
+  form_id: -1234
+  target_field: something
+  control_type: text_field
+  control_type_detail: >
+    {"search_table": "users"}
+  predefined_field_id: -1
+
+test_for_not_allowing_search2:
+  id: -76
+  form_id: -1234
+  target_field: something
+  control_type: text_field
+  control_type_detail: >
+    {"search_table": "phrs"}
+  predefined_field_id: -1
+  
+test_for_allowing_search2:
+  id: -77
+  form_id: -13
+  target_field: something
+  control_type: text_field
+  control_type_detail: >
+    {"search_table":"user phrs","fields_displayed":["pseudonym"]}
+  data_req_output: >
+    {"id_shown":["visible_id"],"id":["real_id"]}
+  predefined_field_id: -1
+
+test_for_loinc_rule_parser0:
+  id: -78
+  form_id: -7
+  target_field: loinc_rule_parser0
+  control_type: loinc_panel
+  control_type_detail: >
+    {"panel_name": "loinc_panel_temp"}
+  predefined_field_id: -1
+
+test_for_loinc_rule_parser1:
+  id: -79
+  form_id: -14
+  target_field: tp_test_value
+  control_type: text_field
+  predefined_field_id: -1
+
+test_for_loinc_rule_parser2:
+  id: -80
+  form_id: -14
+  target_field: tp_panel_testdate
+  control_type: text_field
+  predefined_field_id: -1
+
+hidden_field:
+  id: -6220
+  target_field: hf_test1
+  control_type: text_field
+  predefined_field_id: -1
+  control_type_detail: >
+    {"class": "one hidden_field two"}
+
+non_hidden_field1:
+  id: -6221
+  target_field: hf_test2
+  control_type: text_field
+  predefined_field_id: -1
+  control_type_detail: >
+    {"class": "one two"}
+
+non_hidden_field2:
+  id: -6222
+  target_field: hf_test3
+  control_type: text_field
+  predefined_field_id: -1
+
+has_id_col1:
+  id: -6223
+  target_field: idc_test1
+  control_type: group_hdr
+  predefined_field_id: -1
+  control_type_detail: >
+    {"orientation": "horizontal"}
+
+has_id_col2:
+  id: -6224
+  target_field: idc_test1
+  control_type: group_hdr
+  predefined_field_id: -1
+  max_responses: 2
+  control_type_detail: >
+    {"orientation": "horizontal"}
+
+no_id_col1:
+  id: -6225
+  target_field: idc_test1
+  control_type: group_hdr
+  predefined_field_id: -1
+  max_responses: 1
+  control_type_detail: >
+    {"orientation": "horizontal"}
+
+no_id_col2:
+  id: -6226
+  target_field: idc_test1
+  control_type: group_hdr
+  predefined_field_id: -1
+
+
+data_req_params_test_grp:
+  id: -6300
+  form_id: -15
+  target_field: some_hdr
+  control_type: group_hdr
+  predefined_field_id: -24
+
+data_req_params_test_list_field:
+  id: -6301
+  form_id: -15
+  target_field: list_field1
+  group_header_id: -6300
+  control_type: text_field
+  predefined_field_id: -1
+  control_type_detail: >
+    {"data_req_input":{"m1":"other_list_field"}}
+  data_req_output: >
+    {"m2":["output1"]}
+
+data_req_params_test_output1:
+  id: -6302
+  form_id: -15
+  target_field: output1
+  group_header_id: -6300
+  control_type: text_field
+  predefined_field_id: -1
+
+data_req_params_test_list_field2:
+  id: -6303
+  form_id: -15
+  target_field: list_field2
+  group_header_id: -6300
+  control_type: text_field
+  predefined_field_id: -1
+  control_type_detail: >
+    {"data_req_input":{"m1":"other_list_field"}}
+  data_req_output: >
+    {"m2":["output1"],"m3":["output2"]}
+
+data_req_params_test_output2:
+  id: -6304
+  form_id: -15
+  target_field: output2
+  control_type: text_field
+  predefined_field_id: -1
+
+data_req_params_test_grp2:
+  id: -6305
+  form_id: -15
+  target_field: some_hdr2
+  control_type: group_hdr
+  predefined_field_id: -24
+
+data_req_params_test_list_field3:
+  id: -6306
+  form_id: -15
+  target_field: list_field2
+  group_header_id: -6300
+  control_type: text_field
+  predefined_field_id: -1
+  control_type_detail: >
+    {"data_req_input":{"m1":"other_list_field"}}
+  data_req_output: >
+    {"m2":["output1"],"m3":["output3"]}
+
+
+data_req_params_test_output3:
+  id: -63074
+  form_id: -15
+  target_field: output3
+  group_header_id: -6305
+  control_type: text_field
+  predefined_field_id: -1
+
+phr_condition_start:
+  db_field_description_id: -40
+
+phr_condition_stop:
+  db_field_description_id: -41

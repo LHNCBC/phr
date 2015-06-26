@@ -1,0 +1,20 @@
+<!--#include virtual="help_header.shtml" -->
+		<h1>Entering Times in the PHR</h1>
+		<p>
+		
+Enter times using either whole numbers (<i>hours</i>) or using <i>hours</i><b>:</b><i>minutes</i> format. 
+<ul>
+<li>Once you enter a time, the PHR will convert it to a standard time format with either an <b>AM</b> or <b>PM</b> designation.</li>		
+<li>If you enter the time using numbers between 1 and 12 and do not designate AM or PM, the time will be set to AM hours. </li>
+<li>Use the numbers 13 through 24 for PM hours or enter the time followed by <b>P</b> or <b>PM</b>.</li>
+		
+<li>You can enter a time of "now" by typing <b>N</b> or <b>Now</b> 
+				(case is not important).</li>				
+<li>For times in the future, use a plus sign(<b>+</b>). That is, <b>N+</b><i>n</i> would be the current time plus <i>n</i> number of minutes.</li>
+<li>For times in the past, use minus sign(<b>-</b>). That is, <b>N-</b><i>n</i> would be <i>n</i> minutes before the current time.</li>
+						
+					
+</ul>
+</p>
+			
+<!--#include virtual="help_footer.shtml" -->

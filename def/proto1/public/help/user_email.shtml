@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Email Address</h1>
+		<p>
+    Enter the email address you supplied when you registered for 
+	your PHR Account. </p>
+<p>A message containing your PHR account ID will be sent to your email address. 
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

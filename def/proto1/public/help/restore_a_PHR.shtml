@@ -1,0 +1,22 @@
+<!--#include virtual="help_header.shtml" -->
+
+<h1>Restore an Inactive PHR</h1>
+<p>
+Inactive PHRs are placed at the bottom of the <b>PHR Home</b> page under the <b>Inactive PHRs I Manage</b> section of the <b>PHR Home</b> page. Once a PHR is made inactive, it can either be restored or deleted permanently.</p>
+	
+  <h3>To restore a PHR </h3>
+<p>
+<ol>
+<li>On the <b>PHR Home</b> page, locate the <b>Inactive PHRs I Manage</b> section at the bottom of the page. </li>
+<li>Click the <b>Show</b> link at the right side of the section heading to display all inactive PHRs. </li>
+<li> Click the <b>Restore</b> button next to the PHR you would like to be restored. </li>
+
+<li>The PHR will be restored and placed back in the list of PHRs in the <b>Personal Health Records I Manage</b> section of the <b>PHR Home</b> page. </li>
+</ol>
+</p>
+<h3>How do I ...</h3>
+<p>
+<a href="remove_a_PHR.shtml">Make a PHR inactive?</a></br>
+<a href="how_to_delete_PHR.shtml">Permanently delete a PHR?</a>
+</p>
+<!--#include virtual="help_footer.shtml" -->

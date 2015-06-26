@@ -1,0 +1,46 @@
+<%= form_tag account_settings_path, :method=>:post %>
+
+<%= fd_fieldset(@p.fds['cechngmai_grp']) do %>
+  <div><%= fd_labeled_text_value(@p.fds['ceold_email'], @p.data, '_1') %></div>
+  <div><%= fd_text_field(@p.fds['cenew_email'], @p.data, {}, @p.form_obj, '_1_1') %></div>
+  <div><%= fd_text_field(@p.fds['cenew_semail'], @p.data, {}, @p.form_obj, '_1_1') %></div>
+<% end %>
+
+<%= fd_fieldset(@p.fds['cpchngpas_grp']) do %>
+  <div><%= fd_password(@p.fds['cpnew_passwd'], {}, @p.form_obj, '_1_1') %></div>
+  <div><%= fd_password(@p.fds['cpconfm_passwd'], {}, @p.form_obj, '_1_1') %></div>
+<% end %>
+
+<%= fd_fieldset(@p.fds['sqsecquest_grp']) do %>
+  <% [1,2].each do |num| %>
+  <p>
+    <%= @p.fds['cp_fixquest'].display_name = "Provided question #{num}";
+      fd_prefetched_list(@p.fds['cp_fixquest'], @p.data, @p.question_list, false,
+      @p.form_obj, "_1_#{num}", false) %> &nbsp;
+    <%= @p.fds['cp_fixansw'].display_name = "Answer to provided question #{num}";
+       fd_text_field(@p.fds['cp_fixansw'], @p.data, {}, @p.form_obj, "_1_#{num}") %>
+  </p>
+
+  <% end %>
+  <%# [1,2].each do |num| %>
+  <% [1].each do |num| %>
+  <p>
+    <%= @p.fds['cp_selfquest'].display_name = "Your question #{num}";
+      fd_text_field(@p.fds['cp_selfquest'], @p.data, {}, @p.form_obj, "_1_#{num}") %>
+    &nbsp;
+    <%= @p.fds['cp_selfansw'].display_name = "Answer to your question #{num}";
+       fd_text_field(@p.fds['cp_selfansw'], @p.data, {}, @p.form_obj, "_1_#{num}") %>
+  </p>
+  <% end %>
+<% end %>
+
+<%= fd_fieldset(@p.fds['delete_grp']) do %>
+  <%= fd_static_text(@p.fds['delete_instructions']) %>
+  <%= fd_button(@p.fds['delete_account'],"_1") %>
+<% end %>
+
+<input type="hidden" name="password_verified_token"
+ value="<%=@password_verified_token%>">
+<%= fd_button(@p.fds['save_changes'],"_1") %>
+<%= link_to 'Cancel', phr_records_path %>
+</form>

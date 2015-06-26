@@ -1,0 +1,6 @@
+   <p><%= sanitize(@form_data) %> </p>
+   <% link=accept_invitation_url(:email=>@sent_to, :invite_data=>@accept_key) %>
+   <a href="<%=link%>"><%= sanitize(@link_text).html_safe %></a>
+   <p>If clicking on the above link does not work, you can copy this:<br>
+     <%=link%><br>
+     and paste it into your browser's address bar.</p>

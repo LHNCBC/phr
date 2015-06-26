@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Next Appointment</h1>
+
+	<p>Enter the date of the next appointment using the format YYYY/MM/DD. <p>If you choose to enter an appointment date, an exact date is required. 
+</p>
+The PHR will remind you about upcoming medical appointments and medical screenings through the <b>Date Reminders</b> link at the top of the PHR form.
+</p>	
+
+<!--#include virtual="help_footer.shtml" -->

@@ -1,0 +1,42 @@
+<!--#include virtual="help_header.shtml" -->
+
+<h1>A title should be enclosed in the <b>H1</b> tags. You can have only one title.</h1>
+<p>Under the title, paragraphs are enclosed in the <b>P</b> tags. There could have no paragraphs at all, or have more than one paragraph, each enclosed in its own <b>P</b> tags.</p>
+<p>Here's an example of a long paragraph of text. It wraps automatically. It wraps automatically. It wraps automatically. It wraps automatically. It wraps automatically. It wraps automatically. It wraps automatically. It wraps automatically. It wraps automatically. It wraps automatically. It wraps automatically. </p>
+<p>A list could also be in this place. See below to see how to create a list.</p>
+<h2>A group header should be enclosed in the <b>H2</b> tags or in the <b>H3</b> tags.</h2>
+
+<p>Under the group header you can have paragraphs, lists, tables and images. </p>
+<p>There are two types of lists: ordered lists and unordered lists. Here are the examples.</p>
+<p>Ordered List:</p>
+<ol>
+  <li>The list is enclosed in the <b>OL</b> tags.</li>
+  <li>Each list item is enclosed in the <b>LI</b> tags.</li>
+  <li>Each list item starts with a sequential number.</li>
+</ol>
+
+<p>Unordered List:</p>
+<ul>
+  <li>The list is enclosed in the <b>UL</b> tags.</li>
+  <li>Each list item is enclosed in the <b>LI</b> tags.</li>
+  <li>Each list item starts with a bullet (a small circle).</li>
+</ul>
+<h3>Links</h3>
+<p>Links are enclosed in the <b>A</b> tags. Here's an example of the link to the general help: <a href="/help/general.shtml">General Help</a></p>
+<p>Links could be in the paragraphs, in the list items, or in the tables.</p>
+<h3>Tables</h3>
+<p>Tables could also be included in the help files.</p>
+<p>This is an example of how tables are used. <a href="/help/user_functions_shortcuts.shtml">User functions shortcuts</a></p>
+
+<h3>Note:</h3>
+<p>A list of notes:</p>
+<ul>
+  <li>No other H tags (H4, H5 and etc.) should be used in the help files. </li>
+  <li>Usually no css settings are allowed in the help files.</li>
+  <li>All text should be within tags.</li>
+  <li>No JavaScript code is allowed in the help files.</li>
+  <li><b>B</b> tags could be used anywhere within the text as appropriate.</li>
+  <li>Other tags such <b>IMG</b> may be added when it does not break the layout and the style of the help files.</li>
+  <li>Sometimes, you may need to set some attributes of a table, such as <b>colspan</b>, to control its format.</li>
+</ul>
+<!--#include virtual="help_footer.shtml" -->

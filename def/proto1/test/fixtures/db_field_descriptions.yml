@@ -1,0 +1,9 @@
+phr_conditions_start:
+  id: -40
+  db_table_description_id: -30
+  data_column: when_started
+
+phr_conditions_stop:
+  id: -41
+  db_table_description_id: -30
+  data_column: cond_stop

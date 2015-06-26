@@ -1,0 +1,7 @@
+<%= form_tag recover_account_id_step_one_path, :method=>:post %>
+  <div class="instructions"><%=@p.fds['email_grp'].instructions%></div>
+  <div><%= fd_text_field(@p.fds['user_email'], nil, {}, @p.form_obj, '_1') %></div>
+
+<%= submit_tag 'Submit' %>
+<%= link_to 'Cancel', login_path %>
+</form>

@@ -1,0 +1,21 @@
+<!--#include virtual="help_header.shtml" -->
+
+<h1>Delete a PHR</h1>
+	
+<h3>To permanently delete a PHR</h3>
+<p>
+<ol>
+<li>First, <a href="remove_a_PHR.shtml">make the PHR inactive</a> by navigating to the <b>PHR Home</b> page and clicking the <b>Make Inactive</b> button beneath the name of the PHR you wish to delete.</li>
+
+<li> Once the PHR has been made inactive, it will be moved to the <b>Inactive PHRs I Manage</b> section of the <b>PHR Home</b> page. </li>
+<li>Click the <b>Inactive PHRs</b> link at the bottom of the <b>PHR Home page</b> to see a list of all inactive PHRs.</li>
+	
+<li>Click the <b>Delete</b> button next to the name of the PHR you wish to delete.</li>
+
+<li>The system will prompt you to confirm deletion of the selected PHR.</li>
+</ol>
+</p>
+<h3>How do I ...</h3>
+<p>
+<a href="remove_a_PHR.shtml">Make a PHR inactive?</a></p>
+<!--#include virtual="help_footer.shtml" -->

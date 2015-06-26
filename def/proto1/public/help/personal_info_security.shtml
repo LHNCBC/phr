@@ -1,0 +1,50 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>How Secure Is My Personal Information?</h1>
+<p>The PHR is provided as a public service. The developers and administrators know that the confidentiality of your personal health information is exceedingly important. We respect your privacy and have taken the following measures to provide appropriate levels of security to protect your personal information. </p>
+     <h3> Secure protocols</h3>
+<p>
+     <ul>
+       <li>We deploy industry-standard computer security to protect information you provide to us using the Hyper Text Transfer Protocol Secure (HTTPS), a secure version of the Hyper Text Transfer Protocol (HTTP). Web browsers such as Internet Explorer and Firefox display a padlock icon in the address bar to indicate that the Web site is secure. When you connect to a Web site via HTTPS, the Web site encrypts the session with a digital certificate. You can tell when you are connected to a secure Web site if the website URL begins with "https" instead of "http". </li>
+       <li>We use digital certificates to electronically verify the PHR system to web users and to encrypt information between the site and its users.</li></ul>
+</p>
+ <h3>Cookies</h3>
+<p>
+      <ul>
+       <li>When you visit any Web site, it may place a small text file, known as a "cookie" on your computer. The cookie allows the Web site to remember specific information about your visit while you are connected or when you return to that site. The PHR uses a persistent (permanently stored) cookie only if you check the <b>Remember this machine</b> checkbox when logging in. 
+       <li>All other cookies are single session (temporary) cookies. Session cookies last only as long as your Web browser is open. Once you close your browser, the cookie disappears.</li>
+        <li>The PHR cannot be used without session cookies enabled in your web browser. </li></ul>
+      <h3>Data caching</h3>
+      <ul>
+       <li>Our servers do not cache user data on the client side. Caching is a feature that helps your computer respond faster by storing information you have recently accessed on the local computer’s hard drive. We disable caching of your data when using the PHR and force the web pages to expire immediately.</li>
+       <li> As long as you quit the browser when you are finished, no one who uses your computer after you have accessed the PHR will be able to view any of your data. </li></ul>
+</p>
+ <h3>Data collection</h3>
+<p>
+       <ul>
+       <li>During your visit to our Web site, we limit the collection of personal identifiers associated with your data. See our <a href="/help/privacy_policy.shtml">Privacy Policy</a> for complete information on what data we collect and how we protect your privacy.</li>
+       <li>For research purposes, we also collect information about how you use the site.  Please see our <a href="/help/user_agreement.shtml">User Agreement</a> for details about what de-identified information we may use.</li></ul> 
+</p>   
+     <h3>Session time out</h3>
+<p>
+     <ul>
+       <li>Sessions automatically time out after a period of inactivity and you will have to log in again to use the PHR. </li>
+       <li>Remember to log out of the PHR as soon as you have finished using it. Logging out of the PHR will eliminate the chance that others can access your data between the time you finish using the system and when the system ends the session due to inactivity.</li></ul>
+  </p>    
+     <h3>System security</h3>
+<p>
+       <ul>
+       <li>We routinely apply software patches to the computers that house the PHR application and associated data to fix security vulnerabilities and other software bugs. </li>
+       <li>For site security purposes and to ensure that this service remains available to all users, we use software programs to monitor traffic to identify unauthorized attempts to upload or change information, or otherwise cause damage. </li>
+     </ul>
+</p>
+     <h3>Protecting your personal information</h3>
+<p>
+<ul>
+        <li>Remember to regularly apply critical security patches to computer systems you use to access the PHR.  Use automatic software update features to ensure that you have the most secure versions of operating systems and browsers. 
+        <li><a href="/help/create_strong_passwords.shtml">How to create strong passwords</a></li>
+        <li><a href="safe_public_computers.shtml">Safety tips for using public computers</a></li>
+        <li><a href="/help/no_personal_identifiers.shtml">When using the PHR, limit the use of personal identifiers</a></li>
+</ul>
+</p>
+<!--#include virtual="help_footer.shtml" -->

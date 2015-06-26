@@ -1,0 +1,25 @@
+<table border=1>
+  <tr><th>Data Set</th><th>Average</th><th>Standard Deviation</th><th>Count</th></tr>
+  <tr><td><%= @page_url %><br><%= @remote_ip %><br><%= @user_agent %></td>
+      <td><%= @user_load_time_mean %></td><td><%= @user_load_time_SE %></td>
+      <td><%= @user_load_time_data_count %></td>
+  </tr>
+  <tr><td><%= @page_url %><br><%= @remote_ip %></td>
+      <td><%= @ip_load_time_mean %></td><td><%= @ip_load_time_SE %></td>
+      <td><%= @ip_load_time_data_count %></td>
+  </tr>
+  <tr><td><%= @page_url %></td>
+      <td><%= @load_time_mean %></td><td><%= @load_time_SE %></td>
+      <td><%= @load_time_data_count %></td>
+  </tr>
+</table>
+
+<% if (@user_load_time_hist) %>
+   <img src="<%= @user_load_time_hist %>" />
+<% end %>
+<% if (@ip_load_time_hist) %>
+   <img src="<%= @ip_load_time_hist %>" />
+<% end %>
+<% if (@load_time_hist) %>
+   <img src="<%= @load_time_hist %>" />
+<% end %>

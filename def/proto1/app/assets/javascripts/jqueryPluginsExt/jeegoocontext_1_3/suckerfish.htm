@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Jeegoocontext, a jQuery context menu plugin</title>
+    <link href="style.css" rel="Stylesheet" type="text/css" />
+    <style type="text/css">
+        #horizontal, #vertical{margin:10px 0}
+        #vertical{border-top:solid 1px #004284; width:171px}
+        #horizontal li, #vertical li{float:left; list-style-type:none}
+        #vertical li{float:none; display:block; list-style-position:outside}
+        #horizontal a, #vertical a{display:inline-block; padding:5px 20px 7px 20px; background:#4d88c4; border-left:solid 1px #76a5d5; border-right:solid 1px #004284; border-bottom:solid 1px #004284;text-decoration:none; color:#fff}
+        #vertical a{padding:4px 10px; border-bottom:solid 1px #004284; border-top:solid 1px #76a5d5; width:150px}
+    </style>
+    
+     <!-- Context menu default skin -->
+    <link href="jeegoocontext/skins/cm_blue/style.css" rel="Stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="jquery.livequery.js"></script>
+    <script type="text/javascript" src="jeegoocontext/jquery.jeegoocontext.min.js"></script>
+    <script type="text/javascript">
+         //<![CDATA[
+        $(function(){
+            var optionsHorizontal = {
+                openBelowContext: true,
+                event: 'mouseover',
+                ignoreHeightOverflow: true,
+                submenuLeftOffset: -1,
+                startTopOffset: -1,
+                fadeIn: 0,
+                autoHide: true
+            };
+            $('#mainmenu_1').jeegoocontext('submenu_1', optionsHorizontal);
+            $('#mainmenu_2').jeegoocontext('submenu_2', optionsHorizontal);
+            $('#mainmenu_3').jeegoocontext('submenu_3', optionsHorizontal);
+            $('#mainmenu_4').jeegoocontext('submenu_4', optionsHorizontal);
+            $('#mainmenu_5').jeegoocontext('submenu_5', optionsHorizontal);
+            $('#mainmenu_6').jeegoocontext('submenu_6', optionsHorizontal);
+            
+            var optionsVertical = {
+                openBelowContext: true,
+                event: 'mouseover',
+                submenuLeftOffset: -1,
+                startLeftOffset: 171,
+                startTopOffset: -28,
+                heightOverflowOffset: 10,
+                fadeIn: 0,
+                autoHide: true
+            };
+            
+            $('#mainmenu_2_1').jeegoocontext('submenu_2_1', optionsVertical);
+            $('#mainmenu_2_2').jeegoocontext('submenu_2_2', optionsVertical);
+            $('#mainmenu_2_3').jeegoocontext('submenu_2_3', optionsVertical);
+            $('#mainmenu_2_4').jeegoocontext('submenu_2_4', optionsVertical);
+            $('#mainmenu_2_5').jeegoocontext('submenu_2_5', optionsVertical);
+            $('#mainmenu_2_6').jeegoocontext('submenu_2_6', optionsVertical);
+        });
+        //]]>
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <div id="header">
+            <h1><span class="jg_red">J</span><span class="jg_green">ee</span><span class="jg_yellow">g</span><span class="jg_blue">oo</span>context, <span style="font-size:.7em">a jQuery context menu plugin</span></h1>
+            <h2>Copyright &copy; 2009 - 2010 Erik van den Berg, <a href="http://www.planitworks.nl/jeegoocontext" target="_blank">http://www.planitworks.nl/jeegoocontext</a></h2>
+        </div>          
+        <div id="content">
+            <h2 style="font-size:1.2em">Configuring the contextmenu as a dropdown "suckerfish" menu (not recommended usability-wise).</h2>
+            <p>
+                The menu can be easily configured as a horizontal or vertical dropdown menu. <br />
+                The two mainmenus on this page are simple unordered lists.<br />
+                Each of the links in a mainmenu is bound to a unique contextmenu which acts as the submenu.<br />
+            </p>
+            <!-- Horizontal main menu -->
+            <ul id="horizontal">
+                <li><a id="mainmenu_1" href="#">mainmenu 1</a></li>
+                <li><a id="mainmenu_2" href="#">mainmenu 2</a></li>
+                <li><a id="mainmenu_3" href="#">mainmenu 3</a></li>
+                <li><a id="mainmenu_4" href="#">mainmenu 4</a></li>
+                <li><a id="mainmenu_5" href="#">mainmenu 5</a></li>
+                <li><a id="mainmenu_6" href="#">mainmenu 6</a></li>
+            </ul>
+            <div style="clear:both"></div>
+            <br />
+            <p>The horizontal menu is configured with the following options (among others):</p>
+            <ul style="width:650px">
+                <li><strong>openBelowContext: true</strong>, this causes the contextmenu to open at the lowerleft corner of the context.</li>
+                <li><strong>event: mouseover</strong>, this is the event used to open the menu, i.e. hovering over the mainmenu items.</li>
+                <li><strong>ignoreHeightOverflow: true</strong>, setting this to true causes height(y) overflow to be ignored. We don't want overflowing submenus overlapping our mainmenu. </li>
+                <li><strong>fadeIn: 0</strong>, using fadeIn times bigger than 0 can cause multiple submenus to appear when moving rapidly from mainmenu item to mainmenu item.</li>
+                <li><strong>autoHide: true</strong>, setting autoHide to true causes the whole menu to hide when the mouse pointer exits the menu.
+                Notice that the menu doesn't automatically hide when moving the mouse from a mainmenu item to the area above/left from the mainmenu.
+                This is because the mainmenu isn't actually part of the contextmenus.
+                </li>
+            </ul>
+            <br />
+            <div style="width:650px; float:right"> 
+                <br />        
+                <p>The vertical menu is configured with the following options (among others):</p>
+                <ul>
+                    <li><strong>openBelowContext: true</strong>, same as the horizontal menu.</li>
+                    <li><strong>event: mouseover</strong>, same as the horizontal menu.</li>
+                    <li><strong>startLeftOffset: 170</strong>, setting openBelowContext to true causes the menu to open at the lowerleft corner of the context(mainmenu item). 
+                    In this case we want the menu to open at the upperright corner of it's context, which means it needs a horizontal offset as wide as the mainmenu.</li>
+                    <li><strong>startTopOffset: -28</strong>, same reason as startLeftOffset.
+                    We want the menu to open at the upperright corner of it's context, which means it needs a negative vertical offset as heigh as a mainmenu-item.</li>
+                    <li><strong>fadeIn: 0</strong>, same as the horizontal menu.</li>
+                    <li><strong>autoHide: true</strong>, same as the horizontal menu.</li>
+                </ul>
+            </div>
+            <!-- Vertical main menu -->
+            <ul id="vertical">
+                <li><a id="mainmenu_2_1" href="#">mainmenu 1</a></li>
+                <li><a id="mainmenu_2_2" href="#">mainmenu 2</a></li>
+                <li><a id="mainmenu_2_3" href="#">mainmenu 3</a></li>
+                <li><a id="mainmenu_2_4" href="#">mainmenu 4</a></li>
+                <li><a id="mainmenu_2_5" href="#">mainmenu 5</a></li>
+                <li><a id="mainmenu_2_6" href="#">mainmenu 6</a></li>
+            </ul>
+            <br />
+            <a href="dynamicallyaddeditems.htm" style="float:right">Dynamically added submenu items &gt;&gt;</a> 
+            <a href="button.htm">&lt;&lt; Open by button</a>       
+        </div>                
+    </div>
+       
+     <!--  Submenus -->
+    <ul id="submenu_1" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 1.1</a></li>
+        <li>
+            <a href="#">submenu 1.2</a>
+            <ul>
+                <li><a href="#">submenu 1.2.1</a></li>
+                <li><a href="#">submenu 1.2.2</a></li>
+                <li><a href="#">submenu 1.2.3</a></li>
+                <li><a href="#">submenu 1.2.4</a></li>
+                <li><a href="#">submenu 1.2.5</a></li>
+                <li><a href="#">submenu 1.2.6</a></li>
+                <li><a href="#">submenu 1.2.7</a></li>
+                <li>
+                    <a href="#">submenu 1.2.8</a>
+                    <ul>
+                        <li><a href="#">submenu 1.2.8.1</a></li>
+                        <li><a href="#">submenu 1.2.8.2</a></li>
+                        <li><a href="#">submenu 1.2.8.3</a></li>
+                        <li><a href="#">submenu 1.2.8.4</a></li>
+                        <li>
+                            <a href="#">submenu 1.2.8.5</a>
+                            <ul>
+                                <li><a href="#">submenu 1.2.8.5.1</a></li>
+                                <li><a href="#">submenu 1.2.8.5.2</a></li>
+                                <li><a href="#">submenu 1.2.8.5.3</a></li>
+                                <li><a href="#">submenu 1.2.8.5.4</a></li>
+                                <li><a href="#">submenu 1.2.8.5.5</a></li>
+                                <li><a href="#">submenu 1.2.8.5.6</a></li>
+                                <li><a href="#">submenu 1.2.8.5.7</a></li>
+                                <li><a href="#">submenu 1.2.8.5.8</a></li>
+                                <li><a href="#">submenu 1.2.8.5.9</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">submenu 1.2.8.6</a></li>
+                        <li><a href="#">submenu 1.2.8.7</a></li>
+                        <li><a href="#">submenu 1.2.8.8</a></li>
+                        <li><a href="#">submenu 1.2.8.9</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">submenu 1.2.9</a></li>
+            </ul>
+        </li>
+        <li><a href="#">submenu 1.3</a></li>
+        <li><a href="#">submenu 1.4</a></li>
+        <li><a href="#">submenu 1.5</a></li>
+        <li><a href="#">submenu 1.6</a></li>
+        <li><a href="#">submenu 1.7</a></li>
+    </ul>
+    <ul id="submenu_2" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 2.1</a></li>
+        <li><a href="#">submenu 2.2</a></li>
+        <li><a href="#">submenu 2.3</a></li>
+    </ul> 
+    <ul id="submenu_3" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 3.1</a></li>
+        <li><a href="#">submenu 3.2</a></li>
+        <li><a href="#">submenu 3.3</a></li>
+        <li><a href="#">submenu 3.4</a></li>
+    </ul> 
+    <ul id="submenu_4" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 4.1</a></li>
+        <li><a href="#">submenu 4.2</a></li>
+    </ul> 
+    <ul id="submenu_5" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 5.1</a></li>
+        <li><a href="#">submenu 5.2</a></li>
+        <li><a href="#">submenu 5.3</a></li>
+        <li><a href="#">submenu 5.4</a></li>
+    </ul> 
+    <ul id="submenu_6" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 6.1</a></li>
+        <li><a href="#">submenu 6.2</a></li>
+        <li><a href="#">submenu 6.3</a></li>
+        <li><a href="#">submenu 6.4</a></li>
+        <li><a href="#">submenu 6.5</a></li>
+        <li><a href="#">submenu 6.6</a></li>
+        <li><a href="#">submenu 6.7</a></li>
+        <li><a href="#">submenu 6.8</a></li>
+        <li><a href="#">submenu 6.9</a></li>
+        <li>
+            <a href="#">submenu 6.10</a>
+            <ul>
+                <li><a href="#">submenu 6.10.1</a></li>
+                <li><a href="#">submenu 6.10.2</a></li>
+                <li><a href="#">submenu 6.10.3</a></li>
+                <li><a href="#">submenu 6.10.4</a></li>
+                <li><a href="#">submenu 6.10.5</a></li>
+                <li><a href="#">submenu 6.10.6</a></li>
+                <li><a href="#">submenu 6.10.7</a></li>
+                <li><a href="#">submenu 6.10.8</a></li>
+                <li><a href="#">submenu 6.10.9</a></li>
+                <li><a href="#">submenu 6.10.10</a></li>
+                <li><a href="#">submenu 6.10.11</a></li>
+                <li><a href="#">submenu 6.10.12</a></li>
+                <li><a href="#">submenu 6.10.13</a></li>
+                <li><a href="#">submenu 6.10.14</a></li>
+            </ul>
+        </li>
+        <li><a href="#">submenu 6.11</a></li>
+        <li><a href="#">submenu 6.12</a></li>
+        <li><a href="#">submenu 6.13</a></li>
+        <li><a href="#">submenu 6.14</a></li>
+        <li><a href="#">submenu 6.15</a></li>
+        <li><a href="#">submenu 6.16</a></li>
+        <li><a href="#">submenu 6.17</a></li>
+        <li><a href="#">submenu 6.18</a></li>
+        <li><a href="#">submenu 6.19</a></li>
+        <li><a href="#">submenu 6.20</a></li>
+        <li><a href="#">submenu 6.21</a></li>
+    </ul>  
+    
+    <ul id="submenu_2_1" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 1.1</a></li>
+        <li>
+            <a href="#">submenu 1.2</a>
+            <ul>
+                <li><a href="#">submenu 1.2.1</a></li>
+                <li><a href="#">submenu 1.2.2</a></li>
+                <li><a href="#">submenu 1.2.3</a></li>
+                <li><a href="#">submenu 1.2.4</a></li>
+                <li><a href="#">submenu 1.2.5</a></li>
+                <li><a href="#">submenu 1.2.6</a></li>
+                <li><a href="#">submenu 1.2.7</a></li>
+                <li>
+                    <a href="#">submenu 1.2.8</a>
+                    <ul>
+                        <li><a href="#">submenu 1.2.8.1</a></li>
+                        <li><a href="#">submenu 1.2.8.2</a></li>
+                        <li><a href="#">submenu 1.2.8.3</a></li>
+                        <li><a href="#">submenu 1.2.8.4</a></li>
+                        <li>
+                            <a href="#">submenu 1.2.8.5</a>
+                            <ul>
+                                <li><a href="#">submenu 1.2.8.5.1</a></li>
+                                <li><a href="#">submenu 1.2.8.5.2</a></li>
+                                <li><a href="#">submenu 1.2.8.5.3</a></li>
+                                <li><a href="#">submenu 1.2.8.5.4</a></li>
+                                <li><a href="#">submenu 1.2.8.5.5</a></li>
+                                <li><a href="#">submenu 1.2.8.5.6</a></li>
+                                <li><a href="#">submenu 1.2.8.5.7</a></li>
+                                <li><a href="#">submenu 1.2.8.5.8</a></li>
+                                <li><a href="#">submenu 1.2.8.5.9</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">submenu 1.2.8.6</a></li>
+                        <li><a href="#">submenu 1.2.8.7</a></li>
+                        <li><a href="#">submenu 1.2.8.8</a></li>
+                        <li><a href="#">submenu 1.2.8.9</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">submenu 1.2.9</a></li>
+            </ul>
+        </li>
+        <li><a href="#">submenu 1.3</a></li>
+        <li><a href="#">submenu 1.4</a></li>
+        <li><a href="#">submenu 1.5</a></li>
+        <li><a href="#">submenu 1.6</a></li>
+        <li><a href="#">submenu 1.7</a></li>
+    </ul>
+    <ul id="submenu_2_2" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 2.1</a></li>
+        <li><a href="#">submenu 2.2</a></li>
+        <li><a href="#">submenu 2.3</a></li>
+    </ul> 
+    <ul id="submenu_2_3" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 3.1</a></li>
+        <li><a href="#">submenu 3.2</a></li>
+        <li><a href="#">submenu 3.3</a></li>
+        <li><a href="#">submenu 3.4</a></li>
+    </ul> 
+    <ul id="submenu_2_4" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 4.1</a></li>
+        <li><a href="#">submenu 4.2</a></li>
+    </ul> 
+    <ul id="submenu_2_5" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 5.1</a></li>
+        <li><a href="#">submenu 5.2</a></li>
+        <li><a href="#">submenu 5.3</a></li>
+        <li><a href="#">submenu 5.4</a></li>
+    </ul> 
+    <ul id="submenu_2_6" class="jeegoocontext cm_blue">
+        <li><a href="#">submenu 6.1</a></li>
+        <li><a href="#">submenu 6.2</a></li>
+        <li><a href="#">submenu 6.3</a></li>
+        <li><a href="#">submenu 6.4</a></li>
+        <li><a href="#">submenu 6.5</a></li>
+        <li><a href="#">submenu 6.6</a></li>
+        <li><a href="#">submenu 6.7</a></li>
+        <li><a href="#">submenu 6.8</a></li>
+        <li><a href="#">submenu 6.9</a></li>
+        <li>
+            <a href="#">submenu 6.10</a>
+            <ul>
+                <li><a href="#">submenu 6.10.1</a></li>
+                <li><a href="#">submenu 6.10.2</a></li>
+                <li><a href="#">submenu 6.10.3</a></li>
+                <li><a href="#">submenu 6.10.4</a></li>
+                <li><a href="#">submenu 6.10.5</a></li>
+                <li><a href="#">submenu 6.10.6</a></li>
+                <li><a href="#">submenu 6.10.7</a></li>
+                <li><a href="#">submenu 6.10.8</a></li>
+                <li><a href="#">submenu 6.10.9</a></li>
+                <li><a href="#">submenu 6.10.10</a></li>
+                <li><a href="#">submenu 6.10.11</a></li>
+                <li><a href="#">submenu 6.10.12</a></li>
+                <li><a href="#">submenu 6.10.13</a></li>
+                <li><a href="#">submenu 6.10.14</a></li>
+            </ul>
+        </li>
+        <li><a href="#">submenu 6.11</a></li>
+        <li><a href="#">submenu 6.12</a></li>
+        <li><a href="#">submenu 6.13</a></li>
+        <li><a href="#">submenu 6.14</a></li>
+        <li><a href="#">submenu 6.15</a></li>
+        <li><a href="#">submenu 6.16</a></li>
+        <li><a href="#">submenu 6.17</a></li>
+        <li><a href="#">submenu 6.18</a></li>
+        <li><a href="#">submenu 6.19</a></li>
+        <li><a href="#">submenu 6.20</a></li>
+        <li><a href="#">submenu 6.21</a></li>
+    </ul>  
+</body>
+</html>

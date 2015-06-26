@@ -1,0 +1,104 @@
+# New Test & Measure Popup window unload test
+# Tests to see if rule system will be refreshed after adding a new test
+# Create a new profile
+| setTimeout | 35000 |
+| open | /phr_home |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'new_tests1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForTextPresent | Loaded in |
+
+# verify latest_ldl_cholestrol rule value 
+| waitForExpression | javascript{testWindow_.Def.Rules.Cache.ruleVals_["Latest_ldl_cholestrol"] == null} | true |
+# open the new test window from PHR form 
+| waitForExpression | javascript{mainTestWindow = testWindow_; true} | true |
+| waitForVisible | fe_add_new_test_1_1 |
+| click | fe_add_new_test_1_1 |
+| pause | 5000 |
+| waitForExpression | javascript{popupTestWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| waitForExpression | javascript{testWindow_ = popupTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *popup |
+# add new ldl(bad) test
+| pause | 500 |
+# Initially there is an blank template on the form, which should be hidden by
+# JS.
+| waitForTextPresent | LOINC Panel Template |
+| assertValue | fe_tp1_loinc_panel_temp_lbl_1_0 | LOINC Panel Template |
+| waitForNotVisible | fe_tp1_loinc_panel_temp_1_0 |
+| fireEvent | fe_panel_class_1 | focus |
+| waitForVisible | searchResults |
+| selectByContent | fe_panel_class_1 | Common lab tests |
+| keyDown | fe_panel_class_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_panel_in_class_1'} | true |
+| waitForVisible | searchResults |
+| selectByContent | fe_panel_in_class_1 | Lipid (cholesterol) panel (includes LDL, HDL, VLDL and triglycerides) |
+| keyDown | fe_panel_in_class_1 | \9 |
+| click | fe_add_panel_b_1 |
+| waitForVisible | fe_tp1_panel_testdate_1_1 |
+# The newly visible panel should not be showing the template text.
+| assertNotValue | fe_tp1_loinc_panel_temp_lbl_1_0 | LOINC Panel Template |
+# go to when done
+| fireEvent | fe_tp1_panel_testdate_1_1 | focus |
+| type | fe_tp1_panel_testdate_1_1 | 2010/1/1 |
+| fireEvent | fe_tp1_panel_testdate_1_1 | change |
+| keyDown | fe_tp1_panel_testdate_1_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_1_1 | 2010 Jan 01 |
+# go to LDLc (Bad Cholesterol)
+| click | fe_tp1_test_value_1_1_3 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_1_3'} | true |
+| type | fe_tp1_test_value_1_1_3 | javascript{Math.round(Math.random(1)*1000)} |
+| fireEvent | fe_tp1_test_value_1_1_3 | change |
+| waitForButtonEnabled | fe_save |
+| storeExpression | javascript{testWindow_.$('fe_tp1_test_value_1_1_3').value} | ldlCholesterol |
+| click | fe_save |
+# verify updated latest_ldl_cholestrol rule value 
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+# Before closing, confirm that another (blank) panel has not been added after
+# the update by save code.
+| assertNotElementPresent | fe_tp1_loinc_panel_temp_lbl_2_0 |
+| click | fe_close |
+# return to the PHR form
+| waitForExpression | javascript{ testWindow_ = mainTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *edit |
+| waitForExpression | javascript{testWindow_.Def.Rules.Cache.ruleVals_["Latest_ldl_cholesterol"] == storedVars['ldlCholesterol']} | true |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |
+

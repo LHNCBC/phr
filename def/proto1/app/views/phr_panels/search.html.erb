@@ -1,0 +1,22 @@
+<% s_table_name = @table.singularize %>
+<%= form_tag send('search_phr_record_'+s_table_name+'_path', :phr_record_id=>@phr_record, :id=>'new'), :method=>'get' %>
+<% @search_text = h(@search_text) %>
+<%=basic_text_field 'Enter part of the name to look up', 'phr', 'search_text', nil, :value=>@search_text%>
+<%=submit_tag 'Search' %>
+<% if @displayed_data  %>
+<hr>
+  <% if @total_hits > 0 %>
+    Select a matching name from below, or search again:
+    <ul>
+    <% @displayed_data.each_with_index do |e, i| %>
+      <li><%= link_to e, send('new_phr_record_'+s_table_name+'_path')+'?code='+@item_codes[i] %></li>
+    <% end %>
+    </ul>
+  <% else %>
+    No matches were found.
+  <% end %>
+<% end %>
+    <p>You may also browse the <%= link_to 'list of panels', send('new_phr_record_'+
+    s_table_name+'_path')+'?browse=1' %> to select one.</p>
+</form>
+<%= link_to 'Cancel', send('phr_record_'+@table+'_path') %>

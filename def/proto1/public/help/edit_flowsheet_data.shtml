@@ -1,0 +1,26 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>Editing Test Results and Health Trackers</h1>
+<p>
+<h2>What do I need to know about editing my test results and health trackers?</h2>
+<p>Test result and health tracker data is only editable when the <b>Group Data Columns</b> option is not selected and when the <b>Combine records in one timeline table</b> and/or <b>Include test data from other panels</b> checkboxes are not selected.</p>
+<p>Click the <b>Show Panel Info</b> button to view and edit the <b>Comments</b>, <b>Where Done</b>, and <b>Due Date</b> fields.</p>
+<p>Click the <b>Show Empty Rows</b> button to view and edit rows that have no data in them.</p> 
+<h2>To edit test results or health trackers that have already been entered:</h2> 
+<p>
+                <ol>
+                    <li>Click the <b>View & Edit Results Timeline</b> link at the top of the PHR.  </li>
+
+                     <li>On the <b>View & Edit Results Timeline</b> page, select the checkbox next to the test results or health tracker data you want to edit and then click the <b>Show Results Timeline</b> button. </li>
+
+                    <li>Move your mouse over the column of test results you want to change. A <img alt="Paper and Pencil" src="/assets/blank.gif" class="sprite_icons-doc_edit"> edit icon will appear at the top of the data column. If the edit icon does not appear, make sure you have not selected the <b>Group Data Columns</b> option or checked the <b>Combine records in one timeline table</b> and/or <b>Include test data from other panels</b> checkboxes.
+                    <li>Right-click the <img alt="Paper and Pencil" src="/assets/blank.gif" class="sprite_icons-doc_edit"> edit icon and select <b>Revise</b> or <b>Delete</b> from the drop-down menu. 
+<li>Optionally, click the <b>Show Panel Info</b> button to view and edit the <b>Comments</b>, <b>Where Done</b>, and <b>Due Date</b> fields or click the <b>Show Empty Rows</b> button to view and edit empty rows.</li>
+<li>Make the changes needed or delete the test or tracker.</li>
+<li>Once you have finished editing, click the <b>Save</b> button at the bottom of the page.</li>
+</ol>
+</p>
+<h2>How do I ...</h2>
+<p>
+<a href="add_new_test.shtml">Add a new result to a test or health tracker?</a></br>
+<a href="delete_flowsheet_data.shtml">Delete a test result or health tracker?</a></p></p>
+<!--#include virtual="help_footer.shtml" -->

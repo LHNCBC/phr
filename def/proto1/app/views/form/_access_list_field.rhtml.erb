@@ -1,0 +1,50 @@
+<% # Template for the PHR Access List available from the PHR Home page %>
+
+<div id="access_list_box">
+
+  <table id="access_list_table">
+   <tr id="access_list_header_row">
+     <th>Name</th>
+     <th>Email Address</th>
+     <th>Access Level</th>
+     <th></th>
+   </tr>
+
+    <% if !@access_list.nil? %>
+      <% row = 0 %>
+      <% @access_list.each do |accessor| %>
+
+       <% row += 1 %>
+       <% row_s = row.to_s %>
+
+       <% row_id = "access_row_" + row_s %>
+       <tr id=<%= row_id %> >
+
+          <% accessor_name_id = "accessor_name_" + row_s %>
+          <td class="access_text_field">
+            <span id=<%= accessor_name_id %>><%= accessor.name %></span>
+          </td>
+
+          <% accessor_email_id = "accessor_email_" + row_s %>
+          <td class="access_text_field">
+            <span id=<%= accessor_email_id %> ><%= accessor.email %></span>
+          </td>
+
+          <% access_level_id = "access_level_" + row_s %>
+          <td class="access_text_field">
+            <span id=<%= access_level_id %>>
+            <%= accessor.access_level_text(prof_id) %></span>
+          </td>
+
+          <% remove_access_id = "remove_access_" + row_s %>
+          <td class="remove_access_link" id=<%= remove_access_id %>>
+            <%= remove_this_access_link(id_shown, accessor.id, row_s) %>
+          </td>
+        </tr>
+
+      <% end %> <!-- end access_list.each -->
+    <% end %> <!-- end if !@access_list.nil? -->
+   </table>
+  <span id="access_count" style="display:none"><%= @access_list_size %></span>
+  <span id="access_phr_name" style="display:none"><%= @prof_name %></span>
+</div> <!-- access_list_box -->

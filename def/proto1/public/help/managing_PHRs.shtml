@@ -1,0 +1,32 @@
+<!--#include virtual="help_header.shtml" -->
+
+<h1>Manage Your PHRs</h1> 
+<p>    
+You can create, store, share, deactivate, restore, and delete Personal Health Records (PHRs) for yourself and all of your family members using the PHR account you have created. 
+</p>
+<p>
+The <b>PHR Home</b> page initially provides you with only the option to create a new PHR using the <b>Add New Person</b> button.
+</p>
+<p>
+Once you have created a new PHR, you will see that the <b>PHR Home</b> page is divided into one or more sections. These sections will help you manage the PHRs you have created. 
+</p>
+<table cellspacing="14">
+<tr>
+<td nowrap="nowrap" valign="top"><b>Personal Health Records I Manage</b></td>
+<td>Contains all of the PHRs you have created. Click on any of the PHR links in this section to expand the selection and either view, edit, deactivate, or share the PHR. See <a href="how_to_create_PHR.shtml">How to Create a PHR</a> for more specific information.</td>
+</tr>
+<tr>
+<td nowrap="nowrap" valign="top"><b>Other PHRs I Can Access</b></td> 
+<td>This section will only appear if someone else has shared a PHR they created with you. To share a PHR to someone else, see <a href="share_PHR.shtml">Sharing a PHR.</a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap" valign="top"><b>Inactive PHRs I Manage</b></td> 
+<td>Contains any PHRs you have made inactive, either to keep them from appearing in the <b>Personal Health Records I Manage</b> section of the <b>PHR Home</b> page, or to prepare them for deletion. The PHRs in this section are hidden by default. View inactive PHRs by clicking the <b>Show</b> link on the right side of the section header. See <a href="remove_a_PHR.shtml">How to Make a PHR Inactive</a> and  </br>
+<a href="how_to_delete_PHR.shtml">How to Permanently Delete a PHR</a> for more information. </td>
+</tr>
+</table>
+</ul>
+</p>
+    
+<!--#include virtual="help_footer.shtml" -->

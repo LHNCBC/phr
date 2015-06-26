@@ -1,0 +1,17 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Why Stopped</h1>
+		<p>
+		Select the reason the medication was stopped. If you have stopped taking the medication, the medication should be 
+		marked with the 
+		<b>Stopped</b>
+		status. The system will provide you with suggested reasons, 
+		such as <b>Allergy</b>, <b>Could not tolerate side effects</b>, or <b>Problem gone</b>; however, 
+		you may type another explanation in the <b>Unlisted Why Stopped</b> field.
+        </p>
+		<p>
+		<a href="/help/using_short_lists_help.shtml">How to select 
+		items from the list</a>
+	</p>
+    
+<!--#include virtual="help_footer.shtml" -->

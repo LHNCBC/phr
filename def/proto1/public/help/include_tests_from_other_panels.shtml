@@ -1,0 +1,15 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Include Test Data from Other Panels</h1>
+
+<p>
+Test measurements can be added individually and can then be displayed as a result in more than one test panel. The PHR system'a default is to display the test as you originally entered it – either by itself or as part of the panel you chose. 
+</p>
+<p>For example, you can record a potassium test result by itself by selecting "Potassium" from the list of tests, or you can enter it using the "Basic metabolic panel" (“chem 7”) panel or even as part of the "Comprehensive metabolic panel" (“chem12”). If you enter one potassium result by itself and another as part of the basic metabolic panel, the system will display the two values separately as shown below:</p>
+<p><img alt="tests_from_one_panel" src="/help/tests_from_one_panel.png" /></p>
+<p>If you select the "Include test data from other panels" checkbox, the test will be displayed in all of the panels that contain a potassium result field. </p>
+<p><img alt="tests_from_other_panels" src="/help/tests_from_other_panels.png" /></p>
+<p>Note: <i>You will not be able to edit the test result that was entered individually or as part of another panel from within the related panel (e.g., in the example above, you will not be able to edit the single potassium value from within the basic metabolic panel). </i> </p>  
+	
+	
+<!--#include virtual="help_footer.shtml" -->

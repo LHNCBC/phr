@@ -1,0 +1,12 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Abdominal Ultrasound</h1>
+	
+<p>If you have had an abdominal ultrasound to look for an aortic aneurysm, or ballooning of the aorta, please enter the date of that 
+study. The U.S. Preventive Services Task Force recommends this study be done once for men between the ages of 65 and 75 who have ever smoked
+ because they are at higher risk for aneurysms. 
+ See <a href="http://www.ahrq.gov/clinic/uspstf/uspsaneu.htm" target="_blank">http://www.ahrq.gov/clinic/uspstf/uspsaneu.htm</a>.</p>
+
+<p><a href="/help/entering_dates_help.shtml">How to enter dates in the PHR</a></p>
+	
+<!--#include virtual="help_footer.shtml" -->

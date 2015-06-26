@@ -1,0 +1,11 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Vaccine Name</h1>
+	<p>
+	Please select a vaccine name from the list. </p>
+	<p>
+	<a href="/help/using_long_lists_help.shtml">
+	How to find and select items from the vaccinations list</a>
+	</p>
+
+<!--#include virtual="help_footer.shtml" -->

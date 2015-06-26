@@ -1,0 +1,32 @@
+$sprite_icons-show_more-position: 100%; /* put the sprite on the right side of the map */
+$sprite_icons-show_less-position: 100%;
+$sprite_icons-sprite-dimensions: true;
+@import "sprite_icons/*.png";
+@include all-sprite_icons-sprites;
+
+/* Adjustments for the show more/less arrows, which are right-aligned in the
+ * button */
+.show_more {
+  background-position: sprite-position($sprite_icons-sprites, show_more, 100%, -1px);
+}
+.show_less {
+  background-position: sprite-position($sprite_icons-sprites, show_less, 100%, -1px);
+}
+.show_more, .show_less {
+  background-image: sprite-url($sprite_icons-sprites);
+  background-repeat: no-repeat;
+  width: auto;
+  height: auto;
+}
+
+img.info_button {
+  @include sprite_icons-sprite(info);
+}
+
+img.help {
+  @include sprite_icons-sprite(help);
+}
+
+td.cet_action img.cet_action, #doc_edit_icon {
+  @include sprite_icons-sprite(doc_edit);
+}

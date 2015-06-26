@@ -1,0 +1,32 @@
+| open | /accounts/logout |
+
+| waitForTextPresent | Loaded in |
+| pause | 200 |
+
+| fireEvent | fe_user_name_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_user_name_1_1'} | true |
+| type | fe_user_name_1_1 | test_admi |
+| typeKeys | fe_user_name_1_1 | n |
+| pause | 200 |
+| fireEvent | fe_user_name_1_1 | change |
+| fireEvent | fe_user_name_1_1 | blur |
+
+| fireEvent | fe_password_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_password_1_1'} | true |
+| type | fe_password_1_1 | I'm a test admin accoun |
+| typeKeys | fe_password_1_1 | t |
+| pause | 200 |
+| fireEvent | fe_password_1_1 | change |
+| fireEvent | fe_password_1_1 | blur |
+
+| pause | 200 |
+| waitForExpression | javascript{testWindow_.createCookie('phr_user', '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81',365); true} | true |
+
+| pause | 500 |
+| waitForExpression | javascript{testWindow_.readCookie('phr_user');} | 3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81 |
+
+| pause | 200 |
+| click | fe_login_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */admin_home |
+
+

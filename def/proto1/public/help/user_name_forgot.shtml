@@ -1,0 +1,10 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Enter Your PHR Account ID</h1>
+		<p>
+		Enter your PHR account ID in the space provided.</p>
+<p> Your PHR account ID is the unique identifier 
+		you created when you first established your PHR account.
+    </p>  
+    
+<!--#include virtual="help_footer.shtml" -->

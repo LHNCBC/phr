@@ -1,0 +1,11 @@
+<!--#include virtual="help_header.shtml" -->
+<h1>Bypassing Drop-down Lists</h1>
+<p>
+	In most fields you can enter the information you want without selecting from the
+	drop-down lists. For example, if you do not find the name of a drug you are taking in the 
+	drop-down list, you may type it in yourself. The system will italicize the text and change the background of the field 
+	to orange to remind you that you are not choosing an item from the drop-down list; however, the system will still accept and store the text.</p>
+<p>
+In a few special fields, such as the <b>Status</b> field in the <b>Medical Conditions</b> section of the PHR, the system will limit your entry to one of the valid items from the list. Any invalid data you enter into the field will be deleted.
+</p>
+<!--#include virtual="help_footer.shtml" -->

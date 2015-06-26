@@ -1,0 +1,40 @@
+<!--#include virtual="help_header.shtml" -->	
+		<h1>View & Edit Results Timeline</h1>
+
+		<p>The <b>View & Edit Results Timeline</b> page allows you and your health care provider to quickly and easily track 
+test results such as blood pressure, cholesterol, weight, and others over time. Use this page to: 
+<ul>
+<li>Display a summary of your test results and trackers as either a timeline chart or a <a href="view_as_graph.shtml">graph</a>. </li>
+<li><a href="add_new_test.shtml">Add new test or tracker results</a> to your saved tests or health trackers</li>
+<li><a href="edit_flowsheet_data.shtml">Edit test or tracker results</a> you have previously entered</li>
+<li><a href="delete_flowsheet_data.shtml">Delete test or tracker results</a> you have previously entered</li>
+<li><a href="how_to_print_PHR.shtml">Print</a> all of your test results</li>
+</ul>
+</p>
+                <h2>
+                What do I need to know about viewing my test results and health trackers? </h2>
+<p>
+                <ul>
+                    <li>To view test results from all of your saved tests or health trackers, click the <b>Select All</b> checkbox or select one or more tests or health trackers from the list. 
+                       </li>
+                    <li>Click the <b>Show Results Timeline</b> button to display the selected results. </li>
+<li>Click on the graph icons next to individual measurement results to view them as a graph. <br>
+<a href="view_as_graph.shtml">Learn more about viewing test results as graphs.</a>
+<li>The <b>Show Panel Info</b> button allows you to view or hide the <b>Comments</b>, <b>Where Done</b>, and <b>Due Date</b> fields for tests and trackers. </li>
+<li>The <b>Show Empty Rows</b> button allows you to view or hide all empty test value rows within the test or tracker.</li>
+<li> The <b>Add Test Results & Trackers</b> button takes you to the <b>Add Test Results & Trackers</b> page to search or browse for new tests or trackers. </li>
+</ul>
+</p>           
+                 
+                <h2> How do I ...</h2>
+<p>
+<a href="view_as_graph.shtml">View test or tracker results as a graph?</a></br>
+<a href="edit_flowsheet_data.shtml">Edit existing test results or health trackers?</a></br>
+<a href="add_new_test.shtml">Add a new result to a test or health tracker?</a></br>
+<a href="delete_flowsheet_data.shtml">Delete tests or health trackers?</a></br>
+<a href="/help/entering_dates_help.shtml">Enter dates?</a></br>
+<a href="/help/error_indicators.shtml">Fix input errors?</a></br>
+<a href="/help/how_to_print_PHR.shtml">Print?</a>
+</p>		
+	<!--#include virtual="help_footer.shtml" -->
+

@@ -1,0 +1,125 @@
+<!-- The page that times the loading of the PHR page.-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xml:lang="en" lang="en">
+<head>
+<title>PHR Load Timer</title>
+<%= javascript_include_tag "manifest_page_bottom" %>
+
+<script type="text/javascript">
+
+/**
+ *  The URL for the page being timed.
+ */
+var timedUrl_ = "<%= PageTimerController::TIMED_PAGE %>";
+
+/**
+ *  This keeps track of which step we are on in the loading of PHR pages.
+ *  See the comments on waitForPHRLoad for the steps.
+ */
+var phrStepNum_ = 0;
+
+/**
+ *  An array of the windows opened by this script.
+ */
+var timerWins_ = [];
+
+
+/**
+ *  Set a minimum amount of time between page loads to avoid triggering the
+ *  Brake.
+ */
+var TIME_BETWEEN_PAGE_LOADS = 1500; // ms
+
+
+/**
+ *  Opens the login page by logging out (in case the browser is already logged
+ *  in.)
+ */
+function openLoginPage() {
+  window.timerWins = [];
+  timerWins_[0] = window.open('/accounts/logout', "_blank");
+  timerWins_[1] = window.open('about:blank', "_blank");
+  timerWins_[2] = window.open('about:blank', "_blank");
+  setTimeout('waitForLoginPage()', TIME_BETWEEN_PAGE_LOADS);
+}
+
+
+function waitForLoginPage(){
+  var d = timerWins_[0].document;
+  var elem = d.getElementById('fe_splash_1');//formtitle not found on css redesign 
+  if (elem==null || elem.innerHTML=='') {
+    // Try again a little later
+    setTimeout('waitForLoginPage()', 100);
+  }
+  else {
+    // cannot use querystring as the controller only allows post request
+    var u = d.getElementById('fe_user_name_1_1');
+    var p = d.getElementById('fe_password_1_1');
+    var f = d.getElementById('main_form');
+    u.value = "test_account_p1";
+    p.value = "Phrtest001";
+    f.submit();
+    setTimeout('waitForPHRLoad()', TIME_BETWEEN_PAGE_LOADS);
+  }
+}
+
+
+
+/**
+ *  Waits until the "Loaded in" message appears on the PHR or the PHR profiles
+ *  page, and then moves to the next step.  (The steps are first that we
+ *  load the profiles page, then we load the phr page in a new window to avoid
+ *  the onbeforeunload popup, and then in a new window we load the phr page
+ *  again and time that.)
+ */
+function waitForPHRLoad() {
+  var load_time_div = timerWins_[phrStepNum_].document.getElementById('fe_load_time_td');
+  if (load_time_div==null || load_time_div.innerHTML=='') {
+    // Try again a little later
+    setTimeout('waitForPHRLoad()', 100);
+  }
+  else {
+    if (phrStepNum_ < 2) {
+      load_time_div.innerHTML = ''; // So we don't mistake the first load for the second
+      // Now reload the page and time it.  We need to reload the page in a new
+      // window to avoid the onbeforeunload popup.
+      window.start = new Date().getTime();
+      timerWins_[phrStepNum_+1].location = timedUrl_
+      setTimeout('waitForPHRLoad()', TIME_BETWEEN_PAGE_LOADS);
+    }
+    else
+      saveLoadInfo(new Date().getTime() - start - TIME_BETWEEN_PAGE_LOADS);
+    phrStepNum_ += 1;
+  }
+}
+
+/**
+ *  Displays and stores the load time information
+ * @param loadTime the time it took the PHR to finish loading
+ */
+function saveLoadInfo(loadTime) {
+  var msg = "PHR loaded in " + loadTime/1000 + " seconds"
+  $('message').innerHTML = msg;
+
+  var tokenElem = timerWins_[phrStepNum_].$$('input[name=authenticity_token]')[0];
+  var token = tokenElem.readAttribute('value');
+  new Ajax.Request('save_load_time', {
+    parameters: {url: timedUrl_, load_time: loadTime, authenticity_token: token},
+    method: 'get',
+    onSuccess: function(transport) {
+      window.location = 'load_time';
+    }
+  });
+}
+
+</script>
+</head>
+<body onload="openLoginPage()">
+<h1 style="margin: auto">PHR Load Timer</h1>
+
+<div id="message">Loading...</div>
+
+<div id="analysis"></div>
+</body>
+</html>
+

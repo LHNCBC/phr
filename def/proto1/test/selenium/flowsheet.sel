@@ -1,0 +1,524 @@
+| setTimeout | 35000 |
+| open | /phr_home |
+
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | add_new |
+
+| click | add_new |
+| waitForVisible | fe_demographics_1_0 |
+| waitForExpression | javascript{Def.PhrHomeTest.verifyDialogBoxTitle(testWindow_.Def.PHRHome.demographicsDialog_, testWindow_.Def.PHRHome.DEMOGRAPHICS_DIALOG_NEW_TITLE)} | true |
+
+| fireEvent | fe_pseudonym_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_pseudonym_1_1'} | true |
+| type | fe_pseudonym_1_1 | javascript{'flowsheet1_'+new Date().getTime()} |
+| fireEvent | fe_pseudonym_1_1 | change |
+| fireEvent | fe_pseudonym_1_1 | blur |
+| storeExpression | javascript{testWindow_.$('fe_pseudonym_1_1').value} | recName |
+
+| fireEvent | fe_birth_date_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_birth_date_1_1'} | true |
+| type | fe_birth_date_1_1 | 2000 |
+| fireEvent | fe_birth_date_1_1 | change |
+| fireEvent | fe_birth_date_1_1 | blur |
+| waitForValue | fe_birth_date_1_1 | 2000 |
+
+| fireEvent | fe_gender_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_gender_1_1'} | true |
+| selectByContent | fe_gender_1_1 | Female |
+| fireEvent | fe_gender_1_1 | change |
+| fireEvent | fe_gender_1_1 | blur |
+| waitForValue | fe_gender_C_1_1 | F |
+
+# Save the profile
+| click | editSaveBtn |
+| waitForExpression | javascript{testWindow_.location.href} | *;edit |
+| waitForExpression | javascript{testWindow_.Def && testWindow_.Def.pageLoadComplete_} | true |
+
+# go back to the phr home page and load the flow sheet page
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | show_tests_1 |
+
+| waitForExpression | javascript{testWindow_.location.href} | *panels |
+| waitForTextPresent | Loaded in |
+
+# check it shows a message saying no test panels
+| waitForExpression | javascript{testWindow_.$(testWindow_.TestPanel.panelListOption.listID).down('div').hasClassName('no-panel')} | true |
+| verifyExpression | javascript{testWindow_.$(testWindow_.TestPanel.panelListOption.listID).down('div').innerHTML.substr(0,10)=='This page '} | true |
+
+# Check the doAutosave_ flag in the data model for this form.  It should be true
+| waitForExpression | javascript{testWindow_.Def.DataModel.doAutosave_ == true} | true |
+
+# check the navigation
+| click | fe_group_by_1_1 |
+| fireEvent | fe_group_by_1_1 | focus |
+| pause | 1000 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_group_by_1_1'} | true |
+| keyDown | fe_group_by_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_date_range_1_1'} | true |
+| keyDown | fe_date_range_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_show_record_too_1'} | true |
+| keyDown | fe_show_record_too_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_in_one_grid_1_1'} | true |
+| keyDown | fe_in_one_grid_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_include_all_1_1'} | true |
+| keyDown | fe_include_all_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_add_new_test'} | true |
+| keyDown | fe_add_new_test | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_return_button'} | true |
+| keyDown | fe_return_button | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_group_by_1_1'} | true |
+| keyDown | fe_group_by_1_1 | \9 |
+# open up the customized cut off date group
+| selectByContent | fe_date_range_1_1 | Customize |
+| waitForVisible | fe_start_date_1_1_1 |
+| waitForVisible | fe_end_date_1_1_1 |
+# check the two new fields are in navigation
+| keyDown | fe_date_range_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_start_date_1_1_1'} | true |
+| keyDown | fe_start_date_1_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_end_date_1_1_1'} | true |
+| keyDown | fe_end_date_1_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_show_record_too_1'} | true |
+# check the calendar field
+| fireEvent | fe_start_date_1_1_1 | focus |
+| type | fe_start_date_1_1_1 | 2010/12/25 |
+| fireEvent | fe_start_date_1_1_1 | change |
+| waitForValue | fe_start_date_1_1_1 | 2010 Dec 25 |
+
+# keep a copy of the testWindow_ variable
+| storeExpression | javascript{mainTestWindow = testWindow_; true} | true |
+
+# open add tests and measures page to add a few test panel data
+| click | fe_add_new_test |
+| pause | 5000 |
+# replace the testWindow_ with the popup window
+| storeExpression | javascript{popupTestWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| storeExpression | javascript{testWindow_ = popupTestWindow; true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | *popup |
+
+# Check the doAutosave_ flag in the data model for this form.  It should be true
+| waitForExpression | javascript{testWindow_.Def.DataModel.doAutosave_ == true} | true |
+
+# focus on class field
+| click | fe_panel_class_1 |
+| waitForVisible | searchResults |
+
+# add 2 weight and height panels by selecting class
+| selectByContent | fe_panel_class_1 | Personal wellness and disease monitoring tools |
+| keyDown | fe_panel_class_1 | \9 |
+
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_panel_in_class_1'} | true |
+| waitForVisible | searchResults |
+
+| selectByContent | fe_panel_in_class_1 | Weight & Height tracking panel |
+| keyDown | fe_panel_in_class_1 | \9 |
+| click | fe_add_panel_b_1 |
+| waitForVisible | fe_tp1_panel_testdate_1_1 |
+# panel field should be empty
+| waitForValue | fe_panel_in_class_1 | |
+| waitForVisible | fe_tp1_panel_testdate_1_1 |
+
+# type data for panel #1
+# when done
+| fireEvent | fe_tp1_panel_testdate_1_1 | focus |
+| type | fe_tp1_panel_testdate_1_1 | 2010/1/1 |
+| fireEvent | fe_tp1_panel_testdate_1_1 | change |
+| keyDown | fe_tp1_panel_testdate_1_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_1_1 | 2010 Jan 01 |
+# when done time
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_time_1_1'} | true |
+| type | fe_tp1_panel_testdate_time_1_1 | 1 |
+| fireEvent | fe_tp1_panel_testdate_time_1_1 | change |
+| keyDown | fe_tp1_panel_testdate_time_1_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_time_1_1 | 1:00 AM |
+# where done
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testplace_1_1'} | true |
+| selectByContent | fe_tp1_panel_testplace_1_1 | Home |
+| keyDown | fe_tp1_panel_testplace_1_1 | \9 |
+# go to body weight
+| keyDown | fe_tp1_panel_summary_1_1 | \9 |
+| keyDown | fe_tp1_panel_duedate_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_1_1'} | true |
+| type | fe_tp1_test_value_1_1_1 | 150 |
+| fireEvent | fe_tp1_test_value_1_1_1 | change |
+# body height
+| keyDown | fe_tp1_test_value_1_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_1_3'} | true |
+| type | fe_tp1_test_value_1_1_3 | 70 |
+| fireEvent | fe_tp1_test_value_1_1_3 | change |
+# bmi
+| keyDown | fe_tp1_test_value_1_1_3 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_1_4'} | true |
+| waitForValue | fe_tp1_test_value_1_1_4 | 21.52 |
+
+# add w/h panel #2
+# focus on class field
+| click | fe_panel_class_1 |
+| waitForVisible | searchResults |
+| selectByContent | fe_panel_class_1 | Personal wellness and disease monitoring tools |
+| keyDown | fe_panel_class_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_panel_in_class_1'} | true |
+| waitForVisible | searchResults |
+| selectByContent | fe_panel_in_class_1 | Weight & Height tracking panel |
+| keyDown | fe_panel_in_class_1 | \9 |
+| click | fe_add_panel_b_1 |
+| waitForVisible | fe_tp1_panel_testdate_1_1 |
+# panel field should be empty
+| waitForValue | fe_panel_in_class_1 | |
+| waitForVisible | fe_tp1_panel_testdate_2_1 |
+# type data for panel #2
+# when done
+| fireEvent | fe_tp1_panel_testdate_2_1 | focus |
+| type | fe_tp1_panel_testdate_2_1 | 2010/3/1 |
+| fireEvent | fe_tp1_panel_testdate_2_1 | change |
+| keyDown | fe_tp1_panel_testdate_2_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_2_1 | 2010 Mar 01 |
+# when done time
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_time_2_1'} | true |
+| type | fe_tp1_panel_testdate_time_2_1 | 3 |
+| fireEvent | fe_tp1_panel_testdate_time_2_1 | change |
+| keyDown | fe_tp1_panel_testdate_time_2_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_time_2_1 | 3:00 AM |
+# where done
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testplace_2_1'} | true |
+| selectByContent | fe_tp1_panel_testplace_2_1 | Hospital |
+| keyDown | fe_tp1_panel_testplace_2_1 | \9 |
+# go to body weight
+| keyDown | fe_tp1_panel_summary_2_1 | \9 |
+| keyDown | fe_tp1_panel_duedate_2_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_2_1_1'} | true |
+| type | fe_tp1_test_value_2_1_1 | 160 |
+| fireEvent | fe_tp1_test_value_2_1_1 | change |
+# body height
+| keyDown | fe_tp1_test_value_2_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_2_1_3'} | true |
+| type | fe_tp1_test_value_2_1_3 | 80 |
+| fireEvent | fe_tp1_test_value_2_1_3 | change |
+# bmi
+| keyDown | fe_tp1_test_value_2_1_3 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_2_1_4'} | true |
+| waitForValue | fe_tp1_test_value_2_1_4 | 17.58 |
+
+
+# add 2 Lipid panels by search
+# (do not use 'vital sign panel' (removed) and its replacement 'Blood pressure and other vital signs panel' (no formal loinc_num))
+# switch to search group
+| click | fe_search_option_2R_1 |
+| waitForVisible | fe_new_panel_list_1 |
+# focus on the search field to add panel #1
+| click | fe_new_panel_list_1 |
+| typeText | fe_new_panel_list_1 | Lipid |
+#| fireEvent | fe_new_panel_list_1 | change |
+| waitForVisible | searchResults |
+| selectByContent | fe_new_panel_list_1 | Lipid (cholesterol) panel (includes LDL, HDL, VLDL and triglycerides) (Panel) |
+| keyDown | fe_new_panel_list_1 | \9 |
+| waitForValue | fe_new_panel_list_C_1 | 24331-1 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_add_panel_1'} | true |
+
+| click | fe_add_panel_1 |
+| waitForVisible | fe_tp1_panel_testdate_3_1 |
+# panel field should be empty
+| waitForValue | fe_new_panel_list_C_1 | |
+| waitForVisible | fe_tp1_panel_testdate_3_1 |
+
+# type data for panel #1
+# when done
+| fireEvent | fe_tp1_panel_testdate_3_1 | focus |
+| type | fe_tp1_panel_testdate_3_1 | 2010/1/10 |
+| fireEvent | fe_tp1_panel_testdate_3_1 | change |
+| keyDown | fe_tp1_panel_testdate_3_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_3_1 | 2010 Jan 10 |
+# when done time
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_time_3_1'} | true |
+| type | fe_tp1_panel_testdate_time_3_1 | 1 |
+| fireEvent | fe_tp1_panel_testdate_time_3_1 | change |
+| keyDown | fe_tp1_panel_testdate_time_3_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_time_3_1 | 1:00 AM |
+# where done
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testplace_3_1'} | true |
+| selectByContent | fe_tp1_panel_testplace_3_1 | Lab |
+| keyDown | fe_tp1_panel_testplace_3_1 | \9 |
+# go to cholesterol total
+| keyDown | fe_tp1_panel_summary_3_1 | \9 |
+| keyDown | fe_tp1_panel_duedate_3_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_3_1_1'} | true |
+| type | fe_tp1_test_value_3_1_1 | 200 |
+| fireEvent | fe_tp1_test_value_3_1_1 | change |
+# HDL
+| keyDown | fe_tp1_test_value_3_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_3_1_2'} | true |
+| type | fe_tp1_test_value_3_1_2 | 80 |
+| fireEvent | fe_tp1_test_value_3_1_2 | change |
+# LDL
+| keyDown | fe_tp1_test_value_3_1_2 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_3_1_3'} | true |
+| type | fe_tp1_test_value_3_1_3 | 120 |
+| fireEvent | fe_tp1_test_value_3_1_3 | change |
+# Triglyceride
+| keyDown | fe_tp1_test_value_3_1_3 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_3_1_4'} | true |
+| type | fe_tp1_test_value_3_1_4 | 150 |
+| fireEvent | fe_tp1_test_value_3_1_4 | change |
+
+# focus on the search field to add panel #2
+| click | fe_new_panel_list_1 |
+| typeText | fe_new_panel_list_1 | Lipid |
+#| fireEvent | fe_new_panel_list_1 | change |
+| waitForVisible | searchResults |
+| selectByContent | fe_new_panel_list_1 | Lipid (cholesterol) panel (includes LDL, HDL, VLDL and triglycerides) (Panel) |
+| keyDown | fe_new_panel_list_1 | \9 |
+| waitForValue | fe_new_panel_list_C_1 | 24331-1 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_add_panel_1'} | true |
+
+| click | fe_add_panel_1 |
+| waitForVisible | fe_tp1_panel_testdate_3_1 |
+# panel field should be empty
+| waitForValue | fe_new_panel_list_C_1 | |
+| waitForVisible | fe_tp1_panel_testdate_4_1 |
+
+# type data for panel #2
+# when done
+| fireEvent | fe_tp1_panel_testdate_4_1 | focus |
+| type | fe_tp1_panel_testdate_4_1 | 2010/3/10 |
+| fireEvent | fe_tp1_panel_testdate_4_1 | change |
+| keyDown | fe_tp1_panel_testdate_4_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_4_1 | 2010 Mar 10 |
+# when done time
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_time_4_1'} | true |
+| type | fe_tp1_panel_testdate_time_4_1 | 3 |
+| fireEvent | fe_tp1_panel_testdate_time_4_1 | change |
+| keyDown | fe_tp1_panel_testdate_time_4_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_time_4_1 | 3:00 AM |
+# where done
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testplace_4_1'} | true |
+| selectByContent | fe_tp1_panel_testplace_4_1 | Home |
+| keyDown | fe_tp1_panel_testplace_4_1 | \9 |
+# go to Cholesterol total
+| keyDown | fe_tp1_panel_summary_4_1 | \9 |
+| keyDown | fe_tp1_panel_duedate_4_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_4_1_1'} | true |
+| type | fe_tp1_test_value_4_1_1 | 180 |
+| fireEvent | fe_tp1_test_value_4_1_1 | change |
+# HDL
+| keyDown | fe_tp1_test_value_4_1_1 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_4_1_2'} | true |
+| type | fe_tp1_test_value_4_1_2 | 70 |
+| fireEvent | fe_tp1_test_value_4_1_2 | change |
+# LDL
+| keyDown | fe_tp1_test_value_4_1_2 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_4_1_3'} | true |
+| type | fe_tp1_test_value_4_1_3 | 110 |
+| fireEvent | fe_tp1_test_value_4_1_3 | change |
+# Triglyceride
+| keyDown | fe_tp1_test_value_4_1_3 | \9 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_4_1_4'} | true |
+| type | fe_tp1_test_value_4_1_4 | 140 |
+| fireEvent | fe_tp1_test_value_4_1_4 | change |
+
+#| pause | 5000000 |
+# save the data
+| click | fe_save |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+#| pause | 5000 |
+| click | fe_close |
+| waitForExpression | javascript{popupTestWindow.closed} | true |
+
+# return to the flow sheet page
+# switch back the testWindow_
+| storeExpression | javascript{ testWindow_ = mainTestWindow; true} | true |
+
+# check it shows two test panels
+| waitForExpression | javascript{testWindow_.$(testWindow_.TestPanel.panelListOption.listID).select('input[type=checkbox]').length ==2} | true |
+| storeExpression | javascript{testWindow_.document.getElementsByClassName('selected_panel');} | the_checkboxes |
+| storeExpression | javascript{[]} | selected_values |
+| storeExpression | javascript{storedVars['selected_values'].push(storedVars['the_checkboxes'][0].parentNode.lastChild.textContent); true;} | true |
+| storeExpression | javascript{storedVars['selected_values'].push(storedVars['the_checkboxes'][1].parentNode.lastChild.textContent); true;} | true |
+| waitForExpression | javascript{storedVars['selected_values'].indexOf("Lipid (cholesterol) panel (includes LDL, HDL, VLDL and triglycerides)") > -1;} | true |
+| waitForExpression | javascript{storedVars['selected_values'].indexOf("Weight & height tracking panel") > -1;} | true |
+
+
+# *finish these tests later*
+# test group by, and its related buttons
+# no context menu
+
+# test cute off date
+# has context menu
+
+# test combine records in one timeline table
+# no context menu
+
+# test include test data from other panels
+# context menu only available on the records belong to the same panel
+
+
+# test normal one and its related buttons
+# get the flow sheet content
+#| click | fe_check_all | # it is now checked initially
+| waitForExpression | javascript{testWindow_.$('fe_check_all').checked == true} | true |
+# We need to wait until the other checkboxes are checked
+| waitForExpression | javascript{testWindow_.$J('.selected_panel')[1].checked} | true |
+| click | fe_show_record_too_1 |
+| waitForExpression | javascript{testWindow_.$('fe_panel_view').select('div.panel_timeline').length ==2} | true |
+
+# *finish these tests later *
+# has context menu
+
+# test cancel edit
+
+# test reopen canceled edit
+
+# test delete
+
+# test cancel delete
+
+# test re-delete canceled delete
+
+# test edit another one
+
+# save
+
+
+
+# wait 20 seconds to make sure that the autosave stuff has run for all the updates
+##| pause | 20000 |
+##| waitForExpression | javascript{testWindow_.Def.AutoSave.running_} | false |
+
+
+
+# wait to make sure that the autosave stuff has run for all the updates
+##| waitForExpression | javascript{testWindow_.Def.AutoSave.autoSaveNeeded()} | false |
+
+| click | fe_return_button |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+# check the autosave functionality on the flowsheet and add tests & measures
+# load the flow sheet page again  THIS STUFF IS TBD - to be done after we
+# get ids on the form fields.
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | show_tests_1 |
+
+| waitForExpression | javascript{testWindow_.location.href} | *panels |
+| waitForTextPresent | Loaded in |
+
+# Click on the Show Flowsheet button to display the 2 panels previously entered
+| waitForExpression | javascript{testWindow_.$(testWindow_.TestPanel.panelListOption.listID).select('input[type=checkbox]').length ==2} | true |
+| click | fe_show_record_too_1 |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_show_record_too_1'} | true |
+| waitForExpression | javascript{testWindow_.$('fe_panel_view').select('div.panel_timeline').length ==2} | true |
+
+# Now go back and bring up the main PHR window
+| fireEvent | fe_return_button | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_return_button';} | true |
+| click | fe_return_button | 
+| waitForTextPresent | Loaded in |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | show_phr_form_1 |
+
+| waitForExpression | javascript{testWindow_.location.href} | *;edit
+| waitForTextPresent | Loaded in |
+| waitForVisible | fe_test_panel_timeline_1_1 |
+
+# hold onto the window object for the phr window
+| storeExpression | javascript{phrTestWindow = testWindow_; true} | true |
+
+# now bring up the flowsheet in a popup
+| click | fe_test_panel_timeline_1_1 |
+| pause | 5000 |
+# hold onto the window object for the flowsheet popup
+| storeExpression | javascript{flowsheetWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last();true} | true |
+| storeExpression | javascript{testWindow_ = flowsheetWindow; true; } | true |
+| waitForExpression | javascript{testWindow_.location.href} | *popup |
+| waitForExpression | javascript{testWindow_.$('fe_return_button') != null; } | true |
+
+# Now bring up the Add Tests & Measures window so we can add a test
+| waitForVisible | fe_add_new_test |
+| fireEvent | fe_add_new_test | focus
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_add_new_test';} | true |
+| click | fe_add_new_test |
+| pause | 5000 |
+# get the window object for the Add Tests & Measures window & move to it
+| storeExpression | javascript{addTestsWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
+| storeExpression | javascript{testWindow_ = addTestsWindow; true; } | true |
+| waitForVisible | fe_add_panel_b_1 |
+
+# Now add a ? panel
+| fireEvent | fe_panel_class_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_panel_class_1';} | true |
+| click | fe_panel_class_1 |
+| waitForVisible | searchResults |
+| selectByContent | fe_panel_class_1 | MRI and Ultrasound |
+| keyDown | fe_panel_class_1 | \9 |
+
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_panel_in_class_1';} | true |
+| waitForVisible | searchResults |
+| selectByContent | fe_panel_in_class_1 | Ankle MRI |
+| keyDown | fe_panel_in_class_1 | \9 |
+| click | fe_add_panel_b_1 |
+
+# fill in the minimum - the test date and one test value
+| waitForVisible | fe_tp1_panel_testdate_1_1 |
+| fireEvent | fe_tp1_panel_testdate_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_panel_testdate_1_1';} | true |
+| type | fe_tp1_panel_testdate_1_1 | 2013/1/16 |
+| fireEvent | fe_tp1_panel_testdate_1_1 | change |
+| keyDown | fe_tp1_panel_testdate_1_1 | \9 |
+| waitForValue | fe_tp1_panel_testdate_1_1 | 2013 Jan 16 |
+
+| waitForVisible | fe_tp1_test_value_1_1_1 |
+| fireEvent | fe_tp1_test_value_1_1_1 | focus |
+| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'fe_tp1_test_value_1_1_1';} | true |
+| type | fe_tp1_test_value_1_1_1 | ouch! |
+| fireEvent | fe_tp1_test_value_1_1_1 | change |
+| keyDown | fe_tp1_test_value_1_1_1 | \9 |
+| waitForValue | fe_tp1_test_value_1_1_1 | ouch! |
+
+# save the data and go back to the flowsheet to see if the new panel shows
+# up on the list of all saved panels
+| click | fe_save |
+| waitForVisible | savingNotice |
+| waitForNotVisible | savingNotice |
+| click | fe_close |
+| waitForExpression | javascript{addTestsWindow.closed} | true |
+
+| storeExpression | javascript{testWindow_ = flowsheetWindow; true} | true |
+| waitForVisible | fe_panel_list_1 |
+| waitForExpression | javascript{testWindow_.$(testWindow_.TestPanel.panelListOption.listID).select('input[type=checkbox]').length == 3; } | true |
+| storeExpression | javascript{testWindow_.document.getElementsByClassName('selected_panel');} | the_checkboxes |
+| storeExpression | javascript{[]} | selected_values |
+| storeExpression | javascript{storedVars['selected_values'].push(storedVars['the_checkboxes'][0].parentNode.lastChild.textContent); true;} | true |
+| storeExpression | javascript{storedVars['selected_values'].push(storedVars['the_checkboxes'][1].parentNode.lastChild.textContent); true;} | true |
+| storeExpression | javascript{storedVars['selected_values'].push(storedVars['the_checkboxes'][2].parentNode.lastChild.textContent); true;} | true |
+| waitForExpression | javascript{storedVars['selected_values'].indexOf("Ankle MRI") > -1;} | true |
+
+# Close the flowsheet
+| click | fe_return_button |
+| pause | 500 |
+
+| storeExpression | javascript{testWindow_ = phrTestWindow; true} | true |
+| waitForVisible | fe_close_top_1_1 |
+
+# Go back to the phr home page and remove the profile so it doesn't get in the
+# way of profiles in other tests for this user
+| click | fe_close_top_1_1 |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | remove_profile_1 |

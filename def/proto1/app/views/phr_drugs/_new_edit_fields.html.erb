@@ -1,0 +1,18 @@
+  <div><%=fd_labeled_text_value @fds['name_and_route'], @phr_drug %>
+    <% if @phr_drug.new_record? %>
+      <%= phr_hidden_field @phr_drug, 'name_and_route' %>
+      <% if !@phr_drug.name_and_route_C.blank? %>
+        <%= phr_hidden_field @phr_drug, 'name_and_route_C' %>
+      <% end %>
+    <% end %>
+  </div>
+  <div><%=fd_prefetched_list(@fds['drug_use_status'], @phr_drug, @statuses, false)%></div>
+  <div><%=fd_prefetched_list(@fds['drug_strength_form'], @phr_drug, @strengths)%></div>
+  <div><%=fd_text_field @fds['instructions'], @phr_drug %></div>
+  <div><%=fd_date_field @fds['drug_start'], @phr_drug %></div>
+  <div><%=fd_date_field @fds['stopped_date'], @phr_drug %></div>
+  <div><%=fd_prefetched_list @fds['why_stopped'], @phr_drug, @reasons %></div>
+  <div><%=fd_date_field @fds['expire_date'], @phr_drug %></div>
+  <br>
+  <%= submit_tag 'Save' %>
+  <%= link_to 'Cancel', phr_record_phr_drugs_path %>

@@ -1,0 +1,17 @@
+/* 
+    Document   : ct_search
+    Created on : Apr 13, 2009, 7:16:30 PM
+    Author     : plynch
+    Description:
+        Stylesheet for the ct_search form.
+*/
+
+form {
+  background-color: #D8EBFC;
+  border: 4px solid #73A0C8;
+  padding: 1em;
+}
+
+#fe_search {
+  margin-top: 2em;
+}

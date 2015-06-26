@@ -1,0 +1,47 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+Father-1:
+  id: -1
+  patient_id: -502
+  row_num: 1
+  problem: "Amputation Above Knee"
+  beginning_date: "2/23/2007"
+  present: "Yes"
+  treatment: "Prothesis"
+  prob_desc: "was cancerous"
+Father-2:
+  id: -2
+  patient_id: -502
+  row_num: 2
+  problem: "Bone Biopsy"
+  beginning_date: "1/15/2007"
+  present: "No"
+  prob_desc: "positive for cancer; advanced stage"
+Self-1:
+  id: -3
+  patient_id: -501
+  row_num: 1
+  problem: "Arthritis Other"
+  beginning_date: "11/03/2004"
+  present: "Yes"
+  treatment: "none"
+  prob_desc: "arms, wrist, hands"
+Self-2:
+  id: -4
+  patient_id: -501
+  row_num: 2
+  problem: "Diabetes Mellitus"
+  beginning_date: "6/30/1992"
+  present: "Yes"
+  treatment: "insulin"
+Self-3:
+  id: -5
+  patient_id: -501
+  row_num: 3
+  problem: "Lower Back Pain"
+  beginning_date: "2/05/1996"
+  present: "No"
+  when_started: "8/2001"
+  treatment: "none"
+
+
+

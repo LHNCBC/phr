@@ -1,0 +1,5211 @@
+---
+panel:
+- obr:
+    profile_id: 10061
+    record_id: 1
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 55417-0
+    test_place: 
+    test_date: 2012 Nov 08
+    test_date_ET: 1352350800000
+    test_date_HL7: '20121108'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Short blood pressure panel
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88211
+    profile_id: 10061
+    record_id: 2
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Diastolic blood pressure
+    obx5_value: '76'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mm Hg
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 60 - 85
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 8462-4
+    is_panel: 
+    test_date: 2012 Nov 08
+    test_date_ET: 1352350800000
+    test_date_HL7: '20121108'
+    test_normal_high: '85'
+    test_normal_low: '60'
+    required_in_panel: true
+    unit_code: '5578'
+    test_danger_high: '130'
+    test_danger_low: '40'
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88211
+    profile_id: 10061
+    record_id: 1
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Systolic blood pressure
+    obx5_value: '128'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mm Hg
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 90 - 130
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 8480-6
+    is_panel: 
+    test_date: 2012 Nov 08
+    test_date_ET: 1352350800000
+    test_date_HL7: '20121108'
+    test_normal_high: '130'
+    test_normal_low: '90'
+    required_in_panel: true
+    unit_code: '5580'
+    test_danger_high: '200'
+    test_danger_low: '90'
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 2
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 55418-8
+    test_place: MD Office
+    test_date: 2012 Oct 02
+    test_date_ET: 1349150400000
+    test_date_HL7: '20121002'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Weight & height tracking panel
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88212
+    profile_id: 10061
+    record_id: 3
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body weight
+    obx5_value: '128'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: pounds
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 29463-7
+    is_panel: 
+    test_date: 2012 Oct 02
+    test_date_ET: 1349150400000
+    test_date_HL7: '20121002'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '2776'
+    test_danger_high: '300'
+    test_danger_low: '70'
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88212
+    profile_id: 10061
+    record_id: 5
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body mass index (BMI) [Ratio]
+    obx5_value: '23.41'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kg/m2
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 18.5 - 25
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 39156-5
+    is_panel: 
+    test_date: 2012 Oct 02
+    test_date_ET: 1349150400000
+    test_date_HL7: '20121002'
+    test_normal_high: '25'
+    test_normal_low: '18.5'
+    required_in_panel: true
+    unit_code: '5790'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88212
+    profile_id: 10061
+    record_id: 4
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body height
+    obx5_value: '62'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: inches
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 8302-2
+    is_panel: 
+    test_date: 2012 Oct 02
+    test_date_ET: 1349150400000
+    test_date_HL7: '20121002'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5564'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 3
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 24331-1
+    test_place: Lab
+    test_date: 2012 Oct 02
+    test_date_ET: 1349150400000
+    test_date_HL7: '20121002'
+    summary: 
+    due_date: 2013 Oct
+    due_date_ET: 1380600000000
+    due_date_HL7: '201310'
+    panel_name: Lipid (cholesterol) panel (includes LDL, HDL, VLDL and triglycerides)
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88213
+    profile_id: 10061
+    record_id: 8
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: LDLc (Bad Cholesterol)
+    obx5_value: '135'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 130
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 13457-7
+    is_panel: 
+    test_date: 2012 Oct 02
+    test_date_ET: 1349150400000
+    test_date_HL7: '20121002'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '360'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88213
+    profile_id: 10061
+    record_id: 7
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: HDLc (Good Cholesterol)
+    obx5_value: '50'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: '>=40'
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2085-9
+    is_panel: 
+    test_date: 2012 Oct 02
+    test_date_ET: 1349150400000
+    test_date_HL7: '20121002'
+    test_normal_high: '200'
+    test_normal_low: '35'
+    required_in_panel: true
+    unit_code: '1624'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88213
+    profile_id: 10061
+    record_id: 6
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Cholesterol Total
+    obx5_value: '173'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 200
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2093-3
+    is_panel: 
+    test_date: 2012 Oct 02
+    test_date_ET: 1349150400000
+    test_date_HL7: '20121002'
+    test_normal_high: '200'
+    test_normal_low: '140'
+    required_in_panel: true
+    unit_code: '1627'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88213
+    profile_id: 10061
+    record_id: 9
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Triglyceride
+    obx5_value: '144'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 150
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2571-8
+    is_panel: 
+    test_date: 2012 Oct 02
+    test_date_ET: 1349150400000
+    test_date_HL7: '20121002'
+    test_normal_high: '150'
+    test_normal_low: '0'
+    required_in_panel: true
+    unit_code: '2270'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 4
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: X0005-1
+    test_place: 
+    test_date: 2005 Mar
+    test_date_ET: 1109653200000
+    test_date_HL7: '200503'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Mammogram
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88214
+    profile_id: 10061
+    record_id: 10
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Mammogram Result
+    obx5_value: No evidence of malignancy
+    obx5_1_value_if_coded: MAM-0
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X0006-1
+    is_panel: 
+    test_date: 2005 Mar
+    test_date_ET: 1109653200000
+    test_date_HL7: '200503'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: MAM-0
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 5
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: X0020-1
+    test_place: 
+    test_date: 2012 Aug
+    test_date_ET: 1343793600000
+    test_date_HL7: '201208'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Risk Factors
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 11:16:12.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88215
+    profile_id: 10061
+    record_id: 1
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Smoked in last year?
+    obx5_value: 'No'
+    obx5_1_value_if_coded: LA32-8
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X0021-1
+    is_panel: 
+    test_date: 2012 Aug
+    test_date_ET: 1343793600000
+    test_date_HL7: '201208'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: LA32-8
+    version_date: 2012-11-09 11:16:12.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88215
+    profile_id: 10061
+    record_id: 2
+    latest: true
+    obx2_value_type: CWE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: On treatment for high blood pressure?
+    obx5_value: 'Yes'
+    obx5_1_value_if_coded: LA33-6
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: X0022-1
+    is_panel: 
+    test_date: 2012 Aug
+    test_date_ET: 1343793600000
+    test_date_HL7: '201208'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: LA33-6
+    version_date: 2012-11-09 11:16:12.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 6
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 24323-8
+    test_place: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Comprehensive metabolic panel (CMP/chem12; includes basic metabolic
+      panel and liver functions)
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 7
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Alanine aminotransferase [Enzymatic activity/volume] in Serum
+      or Plasma
+    obx5_value: '42'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: units/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 7 - 55
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 1742-6
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '55'
+    test_normal_low: '7'
+    required_in_panel: true
+    unit_code: '1075'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 6
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Albumin [Mass/volume] in Serum or Plasma
+    obx5_value: '3.6'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: g/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.5-5.5
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 1751-7
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '5.5'
+    test_normal_low: '3'
+    required_in_panel: true
+    unit_code: '1093'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 4
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Calcium [Mass/volume] in Serum or Plasma
+    obx5_value: '9.9'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 8.4 - 10.6
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 17861-6
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '10.6'
+    test_normal_low: '8.4'
+    required_in_panel: true
+    unit_code: '1149'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 8
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Aspartate aminotransferase [Enzymatic activity/volume] in Serum
+      or Plasma
+    obx5_value: '38'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: units/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 8 - 48
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 1920-8
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '48'
+    test_normal_low: '8'
+    required_in_panel: true
+    unit_code: '1291'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 12
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Carbon dioxide, total [Moles/volume] in Serum or Plasma
+    obx5_value: '26'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 21-30
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2028-9
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '30'
+    test_normal_low: '24'
+    required_in_panel: true
+    unit_code: '1432'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 11
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Chloride [Moles/volume] in Serum or Plasma
+    obx5_value: '100'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 98-106
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2075-0
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '106'
+    test_normal_low: '96'
+    required_in_panel: true
+    unit_code: '1617'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 3
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Creatinine [Mass/volume] in Serum or Plasma
+    obx5_value: '1'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 1.5
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2160-0
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '1.5'
+    test_normal_low: '0.4'
+    required_in_panel: true
+    unit_code: '1706'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 1
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Glucose (blood sugar) - lab specimen
+    obx5_value: '112'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 74-106
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2345-7
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '115'
+    test_normal_low: '70'
+    required_in_panel: true
+    unit_code: '1912'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 10
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Potassium (included in electrolyte and basic metabolic panel)
+    obx5_value: '4.2'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.5-5.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2823-3
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '5'
+    test_normal_low: '3.5'
+    required_in_panel: true
+    unit_code: '2645'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 5
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Protein [Mass/volume] in Serum or Plasma
+    obx5_value: '7.8'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: g/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 5.5-8.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2885-2
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '8.5'
+    test_normal_low: '6'
+    required_in_panel: true
+    unit_code: '2727'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 9
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Sodium [Moles/volume] in Serum or Plasma
+    obx5_value: '138'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 136-145
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2951-2
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '145'
+    test_normal_low: '136'
+    required_in_panel: true
+    unit_code: '2793'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88216
+    profile_id: 10061
+    record_id: 2
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Urea nitrogen [Mass/volume] in Serum or Plasma
+    obx5_value: '26'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 10 - 26
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 3094-0
+    is_panel: 
+    test_date: 2007 Jan 08
+    test_date_ET: 1168232400000
+    test_date_HL7: '20070108'
+    test_normal_high: '26'
+    test_normal_low: '10'
+    required_in_panel: true
+    unit_code: '3068'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 7
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 24323-8
+    test_place: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Comprehensive metabolic panel (CMP/chem12; includes basic metabolic
+      panel and liver functions)
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 18
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Albumin [Mass/volume] in Serum or Plasma
+    obx5_value: '4.2'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: g/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.5-5.5
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 1751-7
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '5.5'
+    test_normal_low: '3'
+    required_in_panel: true
+    unit_code: '1093'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 16
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Calcium [Mass/volume] in Serum or Plasma
+    obx5_value: '10'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 8.4 - 10.6
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 17861-6
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '10.6'
+    test_normal_low: '8.4'
+    required_in_panel: true
+    unit_code: '1149'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 19
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Bilirubin [Mass/volume] in Serum or Plasma
+    obx5_value: '.3'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 0.3-1.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 1975-2
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '1.2'
+    test_normal_low: '0.2'
+    required_in_panel: true
+    unit_code: '1369'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 23
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Carbon dioxide, total [Moles/volume] in Serum or Plasma
+    obx5_value: '29'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 21-30
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2028-9
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '30'
+    test_normal_low: '24'
+    required_in_panel: true
+    unit_code: '1432'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 22
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Chloride [Moles/volume] in Serum or Plasma
+    obx5_value: '105'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 98-106
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2075-0
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '106'
+    test_normal_low: '96'
+    required_in_panel: true
+    unit_code: '1617'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 15
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Creatinine [Mass/volume] in Serum or Plasma
+    obx5_value: '0.8'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 1.5
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2160-0
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '1.5'
+    test_normal_low: '0.4'
+    required_in_panel: true
+    unit_code: '1706'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 13
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Glucose (blood sugar) - lab specimen
+    obx5_value: '98'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 74-106
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2345-7
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '115'
+    test_normal_low: '70'
+    required_in_panel: true
+    unit_code: '1912'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 21
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Potassium (included in electrolyte and basic metabolic panel)
+    obx5_value: '4.1'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.5-5.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2823-3
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '5'
+    test_normal_low: '3.5'
+    required_in_panel: true
+    unit_code: '2645'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 17
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Protein [Mass/volume] in Serum or Plasma
+    obx5_value: '8'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: g/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 5.5-8.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2885-2
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '8.5'
+    test_normal_low: '6'
+    required_in_panel: true
+    unit_code: '2727'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 20
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Sodium [Moles/volume] in Serum or Plasma
+    obx5_value: '140'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 136-145
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2951-2
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '145'
+    test_normal_low: '136'
+    required_in_panel: true
+    unit_code: '2793'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88217
+    profile_id: 10061
+    record_id: 14
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Urea nitrogen [Mass/volume] in Serum or Plasma
+    obx5_value: '18'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 10 - 26
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 3094-0
+    is_panel: 
+    test_date: 2012 Sep 02
+    test_date_ET: 1346558400000
+    test_date_HL7: '20120902'
+    test_normal_high: '26'
+    test_normal_low: '10'
+    required_in_panel: true
+    unit_code: '3068'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 8
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 24323-8
+    test_place: Lab
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Comprehensive metabolic panel (CMP/chem12; includes basic metabolic
+      panel and liver functions)
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 31
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Alanine aminotransferase [Enzymatic activity/volume] in Serum
+      or Plasma
+    obx5_value: '34'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: units/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 7 - 55
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 1742-6
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '55'
+    test_normal_low: '7'
+    required_in_panel: true
+    unit_code: '1075'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 29
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Albumin [Mass/volume] in Serum or Plasma
+    obx5_value: '3.9'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: g/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.5-5.5
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 1751-7
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '5.5'
+    test_normal_low: '3'
+    required_in_panel: true
+    unit_code: '1093'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 27
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Calcium [Mass/volume] in Serum or Plasma
+    obx5_value: '9'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 8.4 - 10.6
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 17861-6
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '10.6'
+    test_normal_low: '8.4'
+    required_in_panel: true
+    unit_code: '1149'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 32
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Aspartate aminotransferase [Enzymatic activity/volume] in Serum
+      or Plasma
+    obx5_value: '49'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: units/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 8 - 48
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 1920-8
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '48'
+    test_normal_low: '8'
+    required_in_panel: true
+    unit_code: '1291'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 30
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Bilirubin [Mass/volume] in Serum or Plasma
+    obx5_value: '0.4'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 0.3-1.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 1975-2
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '1.2'
+    test_normal_low: '0.2'
+    required_in_panel: true
+    unit_code: '1369'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 36
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Carbon dioxide, total [Moles/volume] in Serum or Plasma
+    obx5_value: '28'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 21-30
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2028-9
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '30'
+    test_normal_low: '24'
+    required_in_panel: true
+    unit_code: '1432'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 35
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Chloride [Moles/volume] in Serum or Plasma
+    obx5_value: '100'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 98-106
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2075-0
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '106'
+    test_normal_low: '96'
+    required_in_panel: true
+    unit_code: '1617'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 26
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Creatinine [Mass/volume] in Serum or Plasma
+    obx5_value: '1.1'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 1.5
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2160-0
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '1.5'
+    test_normal_low: '0.4'
+    required_in_panel: true
+    unit_code: '1706'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 24
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Glucose (blood sugar) - lab specimen
+    obx5_value: '111'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 74-106
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2345-7
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '115'
+    test_normal_low: '70'
+    required_in_panel: true
+    unit_code: '1912'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 34
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Potassium (included in electrolyte and basic metabolic panel)
+    obx5_value: '3.9'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.5-5.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2823-3
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '5'
+    test_normal_low: '3.5'
+    required_in_panel: true
+    unit_code: '2645'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 28
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Protein [Mass/volume] in Serum or Plasma
+    obx5_value: '6.8'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: g/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 5.5-8.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2885-2
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '8.5'
+    test_normal_low: '6'
+    required_in_panel: true
+    unit_code: '2727'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 33
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Sodium [Moles/volume] in Serum or Plasma
+    obx5_value: '142'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mmol/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 136-145
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2951-2
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '145'
+    test_normal_low: '136'
+    required_in_panel: true
+    unit_code: '2793'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88218
+    profile_id: 10061
+    record_id: 25
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Urea nitrogen [Mass/volume] in Serum or Plasma
+    obx5_value: '22'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 10 - 26
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 3094-0
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '26'
+    test_normal_low: '10'
+    required_in_panel: true
+    unit_code: '3068'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 9
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 58410-2
+    test_place: Lab
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Complete blood count (CBC) without cell differential
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88219
+    profile_id: 10061
+    record_id: 39
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hematocrit [Volume Fraction] of Blood by Automated count
+    obx5_value: '39'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 38 - 51
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4544-3
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '51'
+    test_normal_low: '38'
+    required_in_panel: true
+    unit_code: '4378'
+    test_danger_high: '60'
+    test_danger_low: '21'
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88219
+    profile_id: 10061
+    record_id: 37
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Leukocytes [#/volume] in Blood by Automated count
+    obx5_value: '6.2'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 10^9/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 6690-2
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5173'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88219
+    profile_id: 10061
+    record_id: 38
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin [Mass/volume] in Blood
+    obx5_value: '12'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: g/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 12.0-16.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 718-7
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '18'
+    test_normal_low: '12.5'
+    required_in_panel: true
+    unit_code: '5317'
+    test_danger_high: '22'
+    test_danger_low: '5'
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88219
+    profile_id: 10061
+    record_id: 40
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Platelets [#/volume] in Blood by Automated count
+    obx5_value: '410'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 10^9/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 777-3
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5411'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 10
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 57021-8
+    test_place: 
+    test_date: 2010 Feb
+    test_date_ET: 1265000400000
+    test_date_HL7: '201002'
+    summary: Need to restart iron supplements
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Complete blood count (CBC) with auto (machine) cell differential
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88220
+    profile_id: 10061
+    record_id: 43
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hematocrit [Volume Fraction] of Blood by Automated count
+    obx5_value: '32.1'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 38 - 51
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4544-3
+    is_panel: 
+    test_date: 2010 Feb
+    test_date_ET: 1265000400000
+    test_date_HL7: '201002'
+    test_normal_high: '51'
+    test_normal_low: '38'
+    required_in_panel: true
+    unit_code: '4378'
+    test_danger_high: '60'
+    test_danger_low: '21'
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88220
+    profile_id: 10061
+    record_id: 41
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Leukocytes [#/volume] in Blood by Automated count
+    obx5_value: '5.8'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 10^9/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 6690-2
+    is_panel: 
+    test_date: 2010 Feb
+    test_date_ET: 1265000400000
+    test_date_HL7: '201002'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5173'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88220
+    profile_id: 10061
+    record_id: 42
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin [Mass/volume] in Blood
+    obx5_value: '10.7'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: g/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 12.0-16.0
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 718-7
+    is_panel: 
+    test_date: 2010 Feb
+    test_date_ET: 1265000400000
+    test_date_HL7: '201002'
+    test_normal_high: '18'
+    test_normal_low: '12.5'
+    required_in_panel: true
+    unit_code: '5317'
+    test_danger_high: '22'
+    test_danger_low: '5'
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88220
+    profile_id: 10061
+    record_id: 44
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Platelets [#/volume] in Blood by Automated count
+    obx5_value: '386'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 10^9/L
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 777-3
+    is_panel: 
+    test_date: 2010 Feb
+    test_date_ET: 1265000400000
+    test_date_HL7: '201002'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5411'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 2
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 11
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 4548-4
+    test_place: Lab
+    test_date: 2010 Feb
+    test_date_ET: 1265000400000
+    test_date_HL7: '201002'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Hemoglobin A1c
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88221
+    profile_id: 10061
+    record_id: 45
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin A1c
+    obx5_value: '9'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.8-6.4
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4548-4
+    is_panel: 
+    test_date: 2010 Feb
+    test_date_ET: 1265000400000
+    test_date_HL7: '201002'
+    test_normal_high: '6.9'
+    test_normal_low: '4.1'
+    required_in_panel: true
+    unit_code: '4386'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 12
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 4548-4
+    test_place: Lab
+    test_date: 2010 Jul
+    test_date_ET: 1277956800000
+    test_date_HL7: '201007'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Hemoglobin A1c
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88222
+    profile_id: 10061
+    record_id: 46
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin A1c
+    obx5_value: '8.6'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.8-6.4
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4548-4
+    is_panel: 
+    test_date: 2010 Jul
+    test_date_ET: 1277956800000
+    test_date_HL7: '201007'
+    test_normal_high: '6.9'
+    test_normal_low: '4.1'
+    required_in_panel: true
+    unit_code: '4386'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 13
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 4548-4
+    test_place: 
+    test_date: 2011 Jan
+    test_date_ET: 1293858000000
+    test_date_HL7: '201101'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Hemoglobin A1c
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88223
+    profile_id: 10061
+    record_id: 47
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin A1c
+    obx5_value: '8.1'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.8-6.4
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4548-4
+    is_panel: 
+    test_date: 2011 Jan
+    test_date_ET: 1293858000000
+    test_date_HL7: '201101'
+    test_normal_high: '6.9'
+    test_normal_low: '4.1'
+    required_in_panel: true
+    unit_code: '4386'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 14
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 4548-4
+    test_place: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Hemoglobin A1c
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88224
+    profile_id: 10061
+    record_id: 48
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin A1c
+    obx5_value: '6.3'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.8-6.4
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4548-4
+    is_panel: 
+    test_date: 2011 Jun 13
+    test_date_ET: 1307937600000
+    test_date_HL7: '20110613'
+    test_normal_high: '6.9'
+    test_normal_low: '4.1'
+    required_in_panel: true
+    unit_code: '4386'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:27:59.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 15
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 55418-8
+    test_place: 
+    test_date: 2012 Jul 04
+    test_date_ET: 1341374400000
+    test_date_HL7: '20120704'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Weight & height tracking panel
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88225
+    profile_id: 10061
+    record_id: 1
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body weight
+    obx5_value: '132'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: pounds
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 29463-7
+    is_panel: 
+    test_date: 2012 Jul 04
+    test_date_ET: 1341374400000
+    test_date_HL7: '20120704'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '2776'
+    test_danger_high: '300'
+    test_danger_low: '70'
+    value_real: 
+    last_value: '128'
+    lastvalue_date: 128  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88225
+    profile_id: 10061
+    record_id: 3
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body mass index (BMI) [Ratio]
+    obx5_value: '24.14'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kg/m2
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 18.5 - 25
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 39156-5
+    is_panel: 
+    test_date: 2012 Jul 04
+    test_date_ET: 1341374400000
+    test_date_HL7: '20120704'
+    test_normal_high: '25'
+    test_normal_low: '18.5'
+    required_in_panel: true
+    unit_code: '5790'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '23.41'
+    lastvalue_date: 23.41  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88225
+    profile_id: 10061
+    record_id: 2
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body height
+    obx5_value: '62'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: inches
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 8302-2
+    is_panel: 
+    test_date: 2012 Jul 04
+    test_date_ET: 1341374400000
+    test_date_HL7: '20120704'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5564'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '62'
+    lastvalue_date: 62  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 16
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 55418-8
+    test_place: 
+    test_date: 2012 Feb 11
+    test_date_ET: 1328936400000
+    test_date_HL7: '20120211'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Weight & height tracking panel
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88226
+    profile_id: 10061
+    record_id: 4
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body weight
+    obx5_value: '135'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: pounds
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 29463-7
+    is_panel: 
+    test_date: 2012 Feb 11
+    test_date_ET: 1328936400000
+    test_date_HL7: '20120211'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '2776'
+    test_danger_high: '300'
+    test_danger_low: '70'
+    value_real: 
+    last_value: '128'
+    lastvalue_date: 128  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88226
+    profile_id: 10061
+    record_id: 6
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body mass index (BMI) [Ratio]
+    obx5_value: '24.69'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kg/m2
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 18.5 - 25
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 39156-5
+    is_panel: 
+    test_date: 2012 Feb 11
+    test_date_ET: 1328936400000
+    test_date_HL7: '20120211'
+    test_normal_high: '25'
+    test_normal_low: '18.5'
+    required_in_panel: true
+    unit_code: '5790'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '23.41'
+    lastvalue_date: 23.41  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88226
+    profile_id: 10061
+    record_id: 5
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body height
+    obx5_value: '62'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: inches
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 8302-2
+    is_panel: 
+    test_date: 2012 Feb 11
+    test_date_ET: 1328936400000
+    test_date_HL7: '20120211'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5564'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '62'
+    lastvalue_date: 62  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 17
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 55418-8
+    test_place: 
+    test_date: 2011 Oct 02
+    test_date_ET: 1317528000000
+    test_date_HL7: '20111002'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Weight & height tracking panel
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88227
+    profile_id: 10061
+    record_id: 7
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body weight
+    obx5_value: '142'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: pounds
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 29463-7
+    is_panel: 
+    test_date: 2011 Oct 02
+    test_date_ET: 1317528000000
+    test_date_HL7: '20111002'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '2776'
+    test_danger_high: '300'
+    test_danger_low: '70'
+    value_real: 
+    last_value: '128'
+    lastvalue_date: 128  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88227
+    profile_id: 10061
+    record_id: 9
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body mass index (BMI) [Ratio]
+    obx5_value: '25.56'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kg/m2
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 18.5 - 25
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 39156-5
+    is_panel: 
+    test_date: 2011 Oct 02
+    test_date_ET: 1317528000000
+    test_date_HL7: '20111002'
+    test_normal_high: '25'
+    test_normal_low: '18.5'
+    required_in_panel: true
+    unit_code: '5790'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '23.41'
+    lastvalue_date: 23.41  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88227
+    profile_id: 10061
+    record_id: 8
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body height
+    obx5_value: '62.5'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: inches
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 8302-2
+    is_panel: 
+    test_date: 2011 Oct 02
+    test_date_ET: 1317528000000
+    test_date_HL7: '20111002'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5564'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '62'
+    lastvalue_date: 62  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 18
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 55418-8
+    test_place: 
+    test_date: 2007 Jul
+    test_date_ET: 1183262400000
+    test_date_HL7: '200707'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Weight & height tracking panel
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88228
+    profile_id: 10061
+    record_id: 10
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body weight
+    obx5_value: '148'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: pounds
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 29463-7
+    is_panel: 
+    test_date: 2007 Jul
+    test_date_ET: 1183262400000
+    test_date_HL7: '200707'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '2776'
+    test_danger_high: '300'
+    test_danger_low: '70'
+    value_real: 
+    last_value: '128'
+    lastvalue_date: 128  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88228
+    profile_id: 10061
+    record_id: 12
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body mass index (BMI) [Ratio]
+    obx5_value: '26.64'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: kg/m2
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 18.5 - 25
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 39156-5
+    is_panel: 
+    test_date: 2007 Jul
+    test_date_ET: 1183262400000
+    test_date_HL7: '200707'
+    test_normal_high: '25'
+    test_normal_low: '18.5'
+    required_in_panel: true
+    unit_code: '5790'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '23.41'
+    lastvalue_date: 23.41  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88228
+    profile_id: 10061
+    record_id: 11
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Body height
+    obx5_value: '62.5'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: inches
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 8302-2
+    is_panel: 
+    test_date: 2007 Jul
+    test_date_ET: 1183262400000
+    test_date_HL7: '200707'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '5564'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '62'
+    lastvalue_date: 62  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:30:11.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 19
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 24664-5
+    test_place: Hospital
+    test_date: 2010 Mar 02
+    test_date_ET: 1267506000000
+    test_date_HL7: '20100302'
+    summary: Given sling to wear for 2 weeks
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Collarbone (clavicle) x-ray
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 17:34:06.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88229
+    profile_id: 10061
+    record_id: 1
+    latest: true
+    obx2_value_type: TX/ED
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Collarbone (clavicle) x-ray
+    obx5_value: Broken left collarbone
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 24664-5
+    is_panel: 
+    test_date: 2010 Mar 02
+    test_date_ET: 1267506000000
+    test_date_HL7: '20100302'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:34:06.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 20
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 34534-8
+    test_place: MD Office
+    test_date: 2012 Aug 02
+    test_date_ET: 1343880000000
+    test_date_HL7: '20120802'
+    summary: Normal EKG
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Electrocardiogram (ECG/EKG)
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:34:06.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88230
+    profile_id: 10061
+    record_id: 2
+    latest: true
+    obx2_value_type: CE
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: EKG impression
+    obx5_value: Normal EKG
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: 
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 8601-7
+    is_panel: 
+    test_date: 2012 Aug 02
+    test_date_ET: 1343880000000
+    test_date_HL7: '20120802'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: 
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:34:06.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 21
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 11579-0
+    test_place: 
+    test_date: 2011 Sep 01
+    test_date_ET: 1314849600000
+    test_date_HL7: '20110901'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Thyrotropin (TSH) - 2nd generation
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 17:34:06.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88231
+    profile_id: 10061
+    record_id: 3
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Thyrotropin (TSH) - 2nd generation
+    obx5_value: '3.8'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mcU/mL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 11579-0
+    is_panel: 
+    test_date: 2011 Sep 01
+    test_date_ET: 1314849600000
+    test_date_HL7: '20110901'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '215'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:34:06.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 22
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 3024-7
+    test_place: 
+    test_date: 2011 Sep 01
+    test_date_ET: 1314849600000
+    test_date_HL7: '20110901'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Thyroxine (free T4)
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 17:34:06.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88232
+    profile_id: 10061
+    record_id: 4
+    latest: true
+    obx2_value_type: 
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Thyroxine (free T4)
+    obx5_value: '1.4'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: ng/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 0.55 - 1.83
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 3024-7
+    is_panel: 
+    test_date: 2011 Sep 01
+    test_date_ET: 1314849600000
+    test_date_HL7: '20110901'
+    test_normal_high: '1.83'
+    test_normal_low: '0.55'
+    required_in_panel: true
+    unit_code: '2943'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: 
+    lastvalue_date: 
+    last_date: 
+    last_date_ET: 
+    last_date_HL7: 
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:34:06.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 23
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 24331-1
+    test_place: 
+    test_date: 2010 Jul
+    test_date_ET: 1277956800000
+    test_date_HL7: '201007'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Lipid (cholesterol) panel (includes LDL, HDL, VLDL and triglycerides)
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88233
+    profile_id: 10061
+    record_id: 3
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: LDLc (Bad Cholesterol)
+    obx5_value: '150'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 130
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 13457-7
+    is_panel: 
+    test_date: 2010 Jul
+    test_date_ET: 1277956800000
+    test_date_HL7: '201007'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '360'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '135'
+    lastvalue_date: 135  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88233
+    profile_id: 10061
+    record_id: 2
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: HDLc (Good Cholesterol)
+    obx5_value: '38'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: '>=40'
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2085-9
+    is_panel: 
+    test_date: 2010 Jul
+    test_date_ET: 1277956800000
+    test_date_HL7: '201007'
+    test_normal_high: '200'
+    test_normal_low: '35'
+    required_in_panel: true
+    unit_code: '1624'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '50'
+    lastvalue_date: 50  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88233
+    profile_id: 10061
+    record_id: 1
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Cholesterol Total
+    obx5_value: '220'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 200
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2093-3
+    is_panel: 
+    test_date: 2010 Jul
+    test_date_ET: 1277956800000
+    test_date_HL7: '201007'
+    test_normal_high: '200'
+    test_normal_low: '140'
+    required_in_panel: true
+    unit_code: '1627'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '173'
+    lastvalue_date: 173  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88233
+    profile_id: 10061
+    record_id: 4
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Triglyceride
+    obx5_value: '150'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 150
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2571-8
+    is_panel: 
+    test_date: 2010 Jul
+    test_date_ET: 1277956800000
+    test_date_HL7: '201007'
+    test_normal_high: '150'
+    test_normal_low: '0'
+    required_in_panel: true
+    unit_code: '2270'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '144'
+    lastvalue_date: 144  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 24
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 4548-4
+    test_place: 
+    test_date: 2009 May
+    test_date_ET: 1241150400000
+    test_date_HL7: '200905'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Hemoglobin A1c
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88234
+    profile_id: 10061
+    record_id: 5
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin A1c
+    obx5_value: '8.7'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.8-6.4
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4548-4
+    is_panel: 
+    test_date: 2009 May
+    test_date_ET: 1241150400000
+    test_date_HL7: '200905'
+    test_normal_high: '6.9'
+    test_normal_low: '4.1'
+    required_in_panel: true
+    unit_code: '4386'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '6.3'
+    lastvalue_date: 6.3  [1.4 years ago]
+    last_date: 2011 Jun 13
+    last_date_ET: 1307937600000
+    last_date_HL7: '20110613'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 25
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 4548-4
+    test_place: 
+    test_date: 2002 Feb
+    test_date_ET: 1012539600000
+    test_date_HL7: '200202'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Hemoglobin A1c
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88235
+    profile_id: 10061
+    record_id: 6
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin A1c
+    obx5_value: '8'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.8-6.4
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4548-4
+    is_panel: 
+    test_date: 2002 Feb
+    test_date_ET: 1012539600000
+    test_date_HL7: '200202'
+    test_normal_high: '6.9'
+    test_normal_low: '4.1'
+    required_in_panel: true
+    unit_code: '4386'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '6.3'
+    lastvalue_date: 6.3  [1.4 years ago]
+    last_date: 2011 Jun 13
+    last_date_ET: 1307937600000
+    last_date_HL7: '20110613'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 26
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 24331-1
+    test_place: 
+    test_date: 2006 Oct 08
+    test_date_ET: 1160280000000
+    test_date_HL7: '20061008'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Lipid (cholesterol) panel (includes LDL, HDL, VLDL and triglycerides)
+    test_date_time: 
+    single_test: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88236
+    profile_id: 10061
+    record_id: 9
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: LDLc (Bad Cholesterol)
+    obx5_value: '160'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 130
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 13457-7
+    is_panel: 
+    test_date: 2006 Oct 08
+    test_date_ET: 1160280000000
+    test_date_HL7: '20061008'
+    test_normal_high: 
+    test_normal_low: 
+    required_in_panel: true
+    unit_code: '360'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '135'
+    lastvalue_date: 135  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88236
+    profile_id: 10061
+    record_id: 8
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: HDLc (Good Cholesterol)
+    obx5_value: '33'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: '>=40'
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2085-9
+    is_panel: 
+    test_date: 2006 Oct 08
+    test_date_ET: 1160280000000
+    test_date_HL7: '20061008'
+    test_normal_high: '200'
+    test_normal_low: '35'
+    required_in_panel: true
+    unit_code: '1624'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '50'
+    lastvalue_date: 50  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88236
+    profile_id: 10061
+    record_id: 7
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Cholesterol Total
+    obx5_value: '235'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 200
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2093-3
+    is_panel: 
+    test_date: 2006 Oct 08
+    test_date_ET: 1160280000000
+    test_date_HL7: '20061008'
+    test_normal_high: '200'
+    test_normal_low: '140'
+    required_in_panel: true
+    unit_code: '1627'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '173'
+    lastvalue_date: 173  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+  - obr_order_id: 88236
+    profile_id: 10061
+    record_id: 10
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Triglyceride
+    obx5_value: '150'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: mg/dL
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: < 150
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 2571-8
+    is_panel: 
+    test_date: 2006 Oct 08
+    test_date_ET: 1160280000000
+    test_date_HL7: '20061008'
+    test_normal_high: '150'
+    test_normal_low: '0'
+    required_in_panel: true
+    unit_code: '2270'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '144'
+    lastvalue_date: 144  [5.5 weeks ago]
+    last_date: 2012 Oct 02
+    last_date_ET: 1349150400000
+    last_date_HL7: '20121002'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 17:59:15.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 27
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 4548-4
+    test_place: 
+    test_date: 2012 Jun 25
+    test_date_ET: 1340596800000
+    test_date_HL7: '20120625'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Hemoglobin A1c
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 18:00:00.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88237
+    profile_id: 10061
+    record_id: 1
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin A1c
+    obx5_value: '5.8'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.8-6.4
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4548-4
+    is_panel: 
+    test_date: 2012 Jun 25
+    test_date_ET: 1340596800000
+    test_date_HL7: '20120625'
+    test_normal_high: '6.9'
+    test_normal_low: '4.1'
+    required_in_panel: true
+    unit_code: '4386'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '6.3'
+    lastvalue_date: 6.3  [1.4 years ago]
+    last_date: 2011 Jun 13
+    last_date_ET: 1307937600000
+    last_date_HL7: '20110613'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 18:00:00.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 28
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 4548-4
+    test_place: 
+    test_date: 2005 Apr
+    test_date_ET: 1112328000000
+    test_date_HL7: '200504'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Hemoglobin A1c
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 18:01:27.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88238
+    profile_id: 10061
+    record_id: 1
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin A1c
+    obx5_value: '9.2'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.8-6.4
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4548-4
+    is_panel: 
+    test_date: 2005 Apr
+    test_date_ET: 1112328000000
+    test_date_HL7: '200504'
+    test_normal_high: '6.9'
+    test_normal_low: '4.1'
+    required_in_panel: true
+    unit_code: '4386'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '5.8'
+    lastvalue_date: 5.8  [19.7 weeks ago]
+    last_date: 2012 Jun 25
+    last_date_ET: 1340596800000
+    last_date_HL7: '20120625'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 18:01:27.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+- obr:
+    profile_id: 10061
+    record_id: 29
+    latest: true
+    obr2_placer_order_number: 
+    obr3_filler_order_number: 
+    obr4_service_ident: 
+    obr13_relevant_clinical_info: 
+    obr36_scheduled_datetime: 
+    loinc_num: 4548-4
+    test_place: 
+    test_date: 2008 Dec
+    test_date_ET: 1228107600000
+    test_date_HL7: '200812'
+    summary: 
+    due_date: 
+    due_date_ET: 
+    due_date_HL7: 
+    panel_name: Hemoglobin A1c
+    test_date_time: 
+    single_test: true
+    version_date: 2012-11-09 18:01:27.000000000 -05:00
+    deleted_at: 
+  obx:
+  - obr_order_id: 88239
+    profile_id: 10061
+    record_id: 2
+    latest: true
+    obx2_value_type: PQ
+    obx3_1_obs_ident: 
+    obx3_3_obs_ident: 
+    obx3_2_obs_ident: Hemoglobin A1c
+    obx5_value: '8.2'
+    obx5_1_value_if_coded: 
+    obx5_3_value_if_coded: 
+    obx5_value_if_text_report: 
+    obx6_1_unit: '%'
+    obx6_2_unit: 
+    obx6_3_unit: 
+    obx7_reference_ranges: 3.8-6.4
+    obx8_abnormal_flags: 
+    obx11_result_status_code: 
+    obx19_analysis_datetime: 
+    obx23_performing_organization: 
+    obx24_performing_address: 
+    obx25_performing_director: 
+    display_order: 
+    code_system: 
+    loinc_num: 4548-4
+    is_panel: 
+    test_date: 2008 Dec
+    test_date_ET: 1228107600000
+    test_date_HL7: '200812'
+    test_normal_high: '6.9'
+    test_normal_low: '4.1'
+    required_in_panel: true
+    unit_code: '4386'
+    test_danger_high: 
+    test_danger_low: 
+    value_real: 
+    last_value: '5.8'
+    lastvalue_date: 5.8  [19.7 weeks ago]
+    last_date: 2012 Jun 25
+    last_date_ET: 1340596800000
+    last_date_HL7: '20120625'
+    is_panel_hdr: 
+    disp_level: 1
+    value_score: 
+    version_date: 2012-11-09 18:01:27.000000000 -05:00
+    deleted_at: 
+    test_date_time: 
+other:
+  phr_allergies:
+  - profile_id: 10061
+    record_id: 1
+    latest: true
+    reaction_C: AL-REACT-9
+    reaction_date_HL7: '1970'
+    reaction_date_ET: 18000000
+    allergy_name_C: DRUG-CLASS-1
+    reaction_date: '1970'
+    reaction: Hives
+    allergy_name: Penicillin and Derivatives
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    allergy_comment: haven't tried since
+  phr_doctor_questions: []
+  phr_drugs:
+  - profile_id: 10061
+    record_id: 1
+    latest: true
+    drug_strength_form_C: '1112233'
+    why_stopped: 
+    expire_date_ET: 1359694800000
+    drug_use_status: Active
+    expire_date_HL7: '201302'
+    drug_use_status_C: DRG-A
+    name_and_route: ALEVE (Oral Pill)
+    why_stopped_C: 
+    expire_date: 2013 Feb
+    drug_strength_form: 220 mg Cap
+    instructions: 1 pill as needed - WITH FOOD
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '28360'
+    drug_start: 2008 Nov 08
+    drug_start_ET: 1226120400000
+    drug_start_HL7: '20081108'
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 2
+    latest: true
+    drug_strength_form_C: '283511'
+    why_stopped: 
+    expire_date_ET: 1359694800000
+    drug_use_status: Active
+    expire_date_HL7: '201302'
+    drug_use_status_C: DRG-A
+    name_and_route: Methotrexate (Oral Pill)
+    why_stopped_C: 
+    expire_date: 2013 Feb
+    drug_strength_form: 5 mg Tab
+    instructions: 1 pill twice a day
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '26860'
+    drug_start: 2011 Feb
+    drug_start_ET: 1296536400000
+    drug_start_HL7: '201102'
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 3
+    latest: true
+    drug_strength_form_C: '860977'
+    why_stopped: 
+    expire_date_ET: 1354510800000
+    drug_use_status: Active
+    expire_date_HL7: '20121203'
+    drug_use_status_C: DRG-A
+    name_and_route: GLUCOPHAGE XR (Oral Pill)
+    why_stopped_C: 
+    expire_date: 2012 Dec 03
+    drug_strength_form: 500 mg 24 Hrs XR Tab
+    instructions: once a day
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '29035'
+    drug_start: 2011 Feb
+    drug_start_ET: 1296536400000
+    drug_start_HL7: '201102'
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 4
+    latest: true
+    drug_strength_form_C: '856457'
+    why_stopped: 
+    expire_date_ET: 1354510800000
+    drug_use_status: Active
+    expire_date_HL7: '20121203'
+    drug_use_status_C: DRG-A
+    name_and_route: Propranolol (Oral Pill)
+    why_stopped_C: 
+    expire_date: 2012 Dec 03
+    drug_strength_form: 20 mg Tab
+    instructions: twice a day
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '21226'
+    drug_start: 2002 Nov 08
+    drug_start_ET: 1036731600000
+    drug_start_HL7: '20021108'
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 5
+    latest: true
+    drug_strength_form_C: '199903'
+    why_stopped: 
+    expire_date_ET: 1359694800000
+    drug_use_status: Active
+    expire_date_HL7: '201302'
+    drug_use_status_C: DRG-A
+    name_and_route: Hydrochlorothiazide (Oral Pill)
+    why_stopped_C: 
+    expire_date: 2013 Feb
+    drug_strength_form: 12.5 mg Cap
+    instructions: once a day
+    stopped_date: 
+    stopped_date_ET: 
+    stopped_date_HL7: 
+    name_and_route_C: '28937'
+    drug_start: 2008 Nov 08
+    drug_start_ET: 1226120400000
+    drug_start_HL7: '20081108'
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  phr_immunizations:
+  - profile_id: 10061
+    record_id: 1
+    latest: true
+    vaccine_date_ET: 1349150400000
+    vaccine_date_HL7: '20121002'
+    vaccine_date: 2012 Oct 02
+    immune_duedate_HL7: 
+    immune_name_C: '121'
+    immune_duedate: 
+    immune_name: Zoster (shingles)
+    immune_duedate_ET: 
+    imm_comment: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  phr_conditions:
+  - profile_id: 10061
+    record_id: 1
+    latest: true
+    present: Active
+    when_started_HL7: '1995'
+    problem_C: '2311'
+    when_started_ET: 788936400000
+    present_C: A
+    prob_desc: Difficult to do daily tasks
+    problem: Rheumatoid arthritis (RA)
+    when_started: '1995'
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 2
+    latest: true
+    present: Active
+    when_started_HL7: '1982'
+    problem_C: '374'
+    when_started_ET: 378709200000
+    present_C: A
+    prob_desc: Good with meds
+    problem: High blood pressure (hypertension (HTN))
+    when_started: '1982'
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 3
+    latest: true
+    present: Active
+    when_started_HL7: '2001'
+    problem_C: '10180'
+    when_started_ET: 978325200000
+    present_C: A
+    prob_desc: Hospitalized once for low sugar - 2003
+    problem: Diabetes mellitus (DM) - type 2
+    when_started: '2001'
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 4
+    latest: true
+    present: Inactive
+    when_started_HL7: '2010'
+    problem_C: '9896'
+    when_started_ET: 1262322000000
+    present_C: I
+    prob_desc: Fell out of bed
+    problem: Clavicle fracture
+    when_started: '2010'
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 5
+    latest: true
+    present: Inactive
+    when_started_HL7: 
+    problem_C: '2929'
+    when_started_ET: 
+    present_C: I
+    prob_desc: Twice - 1982 and 1990
+    problem: Renal stone
+    when_started: 
+    cond_stop: 
+    cond_stop_ET: 
+    cond_stop_HL7: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  phrs:
+  - profile_id: 10061
+    latest: true
+    birth_date: 1938 Feb 14
+    pregnant: 
+    due_date_HL7: 
+    pseudonym: Demo_1938
+    pregnant_C: 
+    gender: Female
+    birth_date_HL7: '19380214'
+    race_or_ethnicity: Black or African-American
+    due_date: 
+    gender_C: F
+    birth_date_ET: -1006023600000
+    race_or_ethnicity_C: LA6162-7
+    due_date_ET: 
+    version_date: 2012-11-08 21:45:01.000000000 -05:00
+    deleted_at: 
+  phr_surgical_histories:
+  - profile_id: 10061
+    record_id: 1
+    latest: true
+    surgery_comments: for fibroids
+    surgery_type: Hysterectomy - vaginal
+    surgery_when_HL7: '2004'
+    surgery_type_C: X25
+    surgery_when: '2004'
+    surgery_when_ET: 1072933200000
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 2
+    latest: true
+    surgery_comments: Right eye
+    surgery_type: Cataract surgery
+    surgery_when_HL7: '20120802'
+    surgery_type_C: '3231'
+    surgery_when: 2012 Aug 02
+    surgery_when_ET: 1343880000000
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  phr_medical_contacts:
+  - profile_id: 10061
+    record_id: 1
+    latest: true
+    medcon_type: Rheumatologist
+    medcon_type_C: RHEU
+    name: Dr. Joints
+    phone: 123-455-6789
+    email: 
+    next_appt: 2013 Feb 01
+    next_appt_ET: 1359694800000
+    next_appt_HL7: '201302'
+    comments: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    fax: 
+    next_appt_time: 
+  - profile_id: 10061
+    record_id: 2
+    latest: true
+    medcon_type: Internist
+    medcon_type_C: INTE
+    name: Dr. Primary
+    phone: 
+    email: 
+    next_appt: 2012 Dec 08
+    next_appt_ET: 1354942800000
+    next_appt_HL7: '20121208'
+    comments: 
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+    fax: 
+    next_appt_time: 
+  date_reminders: []
+  reminder_options: []
+  phr_notes:
+  - profile_id: 10061
+    record_id: 1
+    latest: true
+    note_date: 2012 Nov 08
+    note_date_ET: 1352350800000
+    note_date_HL7: '20121108'
+    note_text: Make appointment for pneumonia shot!
+    version_date: 2012-11-08 21:58:09.000000000 -05:00
+    deleted_at: 
+  - profile_id: 10061
+    record_id: 2
+    latest: true
+    note_date: 2012 Nov 09
+    note_date_ET: 1352437200000
+    note_date_HL7: '20121109'
+    note_text: Call insurance to see if walker covered
+    version_date: 2012-11-09 17:17:17.000000000 -05:00
+    deleted_at: 

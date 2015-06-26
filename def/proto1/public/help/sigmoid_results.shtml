@@ -1,0 +1,7 @@
+	<!--#include virtual="help_header.shtml" -->	
+		<h1>Flexible Sigmoidoscopy Results</h1>
+		
+		<p>
+		Enter your flexible sigmoidoscopy results by choosing from the drop down list or by typing in your own text. 
+		</p>
+	<!--#include virtual="help_footer.shtml" -->

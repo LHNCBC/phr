@@ -1,0 +1,65 @@
+<!--#include virtual="help_header.shtml" -->
+
+    <h1>Medical Contacts</h1>
+
+<p>
+The <b>Medical Contacts</b> section of the PHR allows you to keep a complete list of medical providers, specialists, and institutions in a single location. It can be provided to health care personnel and caregivers as needed. The medical contacts list is also an easy way to keep track of your upcoming medical appointments.</p>
+
+<h2>What do I need to know about the medical contacts list?</h2>
+<p>
+		<ul>
+<li>The PHR will remind you about upcoming medical appointments through the <b>Date Reminders</b> link at the top of the PHR form. 
+ </li>
+</ul>
+</p>
+		<h2>What kind of information should I enter? </h2>
+<p>
+All fields highlighted with <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields. 
+<table style="border-spacing:20px 5px">
+<tr>
+				
+			<td><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"><a href="/help/mtact_name.shtml">Name</a>
+				</td>
+				<td>
+				The name of the medical contact. 
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="/help/medtact_type.shtml">Type</a>
+				</td>
+				<td>The type of medical specialist or institution.
+				</td>
+			</tr>
+			
+			<tr>
+				<td><a href="/help/medtact_ph.shtml">Telephone</a>
+				</td>
+				<td>The telephone number of the medical contact. 
+				</td>
+			</tr>
+                        <tr>
+				<td><a href="/help/medtact_ph.shtml">Fax</a>
+				</td>
+				<td>The fax number of the medical contact. 
+				</td>
+			</tr>
+			<tr>
+				<td><a href="/help/mtact_email.shtml">Email</a>
+				</td>
+				<td>The email address of the medical contact.
+			</tr>
+<tr>
+				<td><a href="/help/basic_mtact_next_appt.shtml">Next Appointment</a>
+				</td>
+				<td>The date of the next appointment with the medical contact.
+				</td>
+			</tr>
+		</table>
+</p>
+<h2>Why is this important?</h2>
+<p>You can easily provide your medical contacts list to your spouse, caregivers, physicians, and emergency personnel when needed.</p>
+                
+<!--#include virtual="help_footer.shtml" -->
+
+

@@ -1,0 +1,34 @@
+<%= link_to 'Back to Panel View', phr_record_phr_panel_path(@phr_record, @obr) %>
+&nbsp;
+<% if @all %> <%= link_to 'Show Fewer Panel Values',
+    phr_record_phr_panel_items_path(@phr_record, @obr)%>
+<% else %> <%= link_to 'Show All Panel Values',
+  phr_record_phr_panel_items_path(@phr_record, @obr, :more=>true)%>
+<% end %>
+<table ><thead><tr>
+      <th>Name</th><th>Value</th><th>Range</th><th>Delete?</th><th>Type</th>
+  </tr></thead>
+  <tbody>
+<% @test_info.each do |level, name, obx, loinc_num| %>
+    <tr>
+      <% indent=(level-2)*1.5 %>
+      <% if !loinc_num %>
+        <% htag = "h#{level+2}" %>
+      <th align="left" colspan="4"><<%=htag%> style="padding-left: <%=indent%>em"><%=name%></<%=htag%></th>
+      <td>Sub-Panel</td>
+      <% else %>
+      <th align="left"><div style="padding-left: <%=indent%>em"><%=link_to name,
+         obx.nil? ?
+           new_phr_record_phr_panel_item_path(@phr_record, @obr, :loinc_num=>loinc_num) :
+           edit_phr_record_phr_panel_item_path(@phr_record, @obr, obx) %></div></th>
+      <td><% if obx %> <%= obx.obx5_value %> <%= obx.obx6_1_unit %><%end%></td>
+      <td><%= obx.obx7_reference_ranges if obx %></td>
+      <td><%= button_to_wo_js('Delete',
+        phr_record_phr_panel_item_path(@phr_record, @obr.id, obx),
+          :confirm => 'Are you sure?', :method => :delete) if obx %></td>
+      <td>Value</td>
+      <% end %>
+    </tr>
+<% end %>
+  </tbody>
+</table>

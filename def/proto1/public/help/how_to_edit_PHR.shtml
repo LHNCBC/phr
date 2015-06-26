@@ -1,0 +1,25 @@
+  
+<!--#include virtual="help_header.shtml" -->
+  
+  <h1>View or Edit an Existing PHR</h1>
+  <h3>	To view or edit an existing PHR </h3>
+
+<p>
+On the <b>PHR Home</b> page, select the name of the profile you wish to edit from the list. Then, select one of the following links: 
+<ol>
+<li><b>Health Summary</b>  - to edit items on the <b>PHR Record Details</b> page including medical conditions, medications, allergies, surgeries, vaccinations, medical contacts, questions to ask your doctor, and notes sections.</li>
+<ul>
+<li>To view all of the sections of the PHR, click the <b>Show All</b> link on the top right of the <b>PHR Record Details</b> page.
+</li>	
+<li> To add new information to any section of the PHR, click on the heading of the PHR section you wish to edit and begin typing in the blank field. </li>
+<li>To make changes to an item that has already been saved, click on the <img alt="Paper and Pencil" src="/assets/blank.gif" class="sprite_icons-doc_edit"> icon at the beginning of the row to edit or delete the item.
+<li>
+To save your changes, click the <b>Save</b> button at the top or bottom of the page.</li>
+</ul>
+<li><b>Test Results & Trackers</b> - to edit existing test results and health trackers on the <b>View & Edit Results Timeline</b> page. <a href="edit_flowsheet_data.shtml">Learn more about editing test results and health trackers</a></li>
+
+<li><b>Demographics</b>  - to edit the person's name, date of birth, gender, or ethnicity. </li>
+</ul>
+</p>
+
+<!--#include virtual="help_footer.shtml" -->

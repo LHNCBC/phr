@@ -1,0 +1,32 @@
+
+<%= link_to 'Back to '+PhrPanelsController::PANELS_SECTION_TITLE,
+    phr_record_phr_panels_path(:panel=>@obr.loinc_num)%>
+
+<h2>Panel Information <%= link_to '(Edit)', edit_phr_record_phr_panel_path %></h2>
+<% @obr_form_fields.each do |f| %>
+<div><%= fd_labeled_text_value @fds[f], @obr %></div>
+<% end %>
+
+<h2>Panel Items (<%=link_to 'Edit',
+                 phr_record_phr_panel_items_path(@phr_record, @obr) %>)</h2>
+<table ><thead><tr>
+      <th>Name</th><th>Value</th><th>Range</th><th>Type</th>
+  </tr></thead>
+  <tbody>
+<% @p.test_info.each do |level, data| %>
+    <tr>
+      <% indent=(level-2)*1.5 %>
+      <% if data.class == String # a heading %>
+        <% htag = "h#{level+2}" %>
+      <th align="left" colspan="3"><<%=htag%> style="padding-left: <%=indent%>em"><%=data%></<%=htag%></th>
+      <td>Sub-Panel</td>
+      <% else %>
+      <th align="left"><div style="padding-left: <%=indent%>em"><%=data.obx3_2_obs_ident %></div></th>
+      <td><%= data.obx5_value %> <%= data.obx6_1_unit %></td>
+      <td><%= data.obx7_reference_ranges %></td>
+      <td>Value</td>
+      <% end %>
+    </tr>
+<% end %>
+  </tbody>
+</table>

@@ -1,0 +1,37 @@
+<!--#include virtual="help_header.shtml" -->
+
+		<h1>Medications</h1>
+		<p>
+<b>Medications</b> include all of the prescription medications as well as over-the-counter (non-prescription) medications, vitamins, nutritional supplements and herbal products that you take. </p>
+                <h2>
+                What do I need to know about the PHR medications list?</h2>
+<p>
+                <ul>
+                    <li>
+                    Medication names displayed in capital letters are brand name drugs and drug names displayed in mixed case are generic drug names. You may select either type of name. </li>
+                    <li>When searching for a medication, you may notice that the same medication name with different dosage forms may be displayed, for example penicillin (Oral-pill) and penicillin (Injectable). Be sure to pay attention to these distinctions. Penicillin (Oral-pill) refers to a pill taken by mouth, whereas penicillin (Injectable) refers to penicillin given by a shot or through an IV.</li>
+                    <li>If you do not find the specific medication you are using in the selection list, simply type the name and form of the medication as you know it.</li>
+                     <li>The PHR system will provide you with an <b>Info Page</b> link next to many of the medications you list. Click this link for additional reliable consumer health information from the National Institutes of Health and other trusted sources.</li>
+<li>The PHR system displays a list of all medications labeled as <b>Active</b> followed by all medicationss labeled as <b>Stopped</b>.  </ul>
+</p>
+                <h2>
+                What kind of information should I enter? </h2>
+<p>
+All fields highlighted with <img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"> are required fields. </p>
+		<table style="border-spacing:20px 5px">
+			<tr valign="top" ><td Nowrap="nowrap"><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"><a href="/help/name_and_route.shtml">Medication name</a></td><td>The name of all medications you are taking along with the correct dosage form. If you have been prescribed medications that you are not currently taking, enter them as well.  </tr>
+			<tr valign="top"><td><img alt="required field" src="/assets/blank.gif" class="sprite_icons-phr-required"><a href="/help/basic_drug_use_status.shtml">Status</a></td><td><b>Active</b> status means that you are currently taking the medication. If you have entered a medication that you have taken in the past, and are no longer taking, mark the status as <b>Stopped</b>.  </td></tr>
+			<tr valign="top"><td><a href="/help/basic_drug_strength_form.shtml">Strength</a></td><td>The strength and form (also known as the formulation) of the medication (e.g., 325 mg caps).  </td></tr>
+			<tr valign="top"><td><a href="/help/instructions.shtml">Instructions</a></td><td>Instructions that your doctor or pharmacist has provided regarding this medication (e.g., take with food).  </td></tr>
+			<tr valign="top"><td><a href="/help/basic_med_started.shtml">Started</a></td><td>The date you or the patient started taking the medication.</td></tr>
+<tr valign="top"><td><a href="/help/basic_med_stopped_date.shtml">Stopped</a></td><td>The date you or the patient stopped taking the medication. </td></tr>
+			<tr valign="top"><td><a href="/help/basic_why_stopped.shtml">Why Stopped</a></td><td>For a medication you are no longer taking, select the reason that you stopped taking it or enter your own. </td></tr>
+<tr valign="top"><td><a href="/help/basic_expire_date.shtml">Resupply</a></td><td>The date you or the patient will need a new supply of medication. </td></tr>
+		</table>
+</p>
+                <h2>
+                Why is this important?</h2>
+                <p>
+                A complete list of both your prescription and non-prescription medications will provide your doctor with information about your current symptoms, possible drug interactions, and the need for follow-up. </p>
+                
+<!--#include virtual="help_footer.shtml" -->

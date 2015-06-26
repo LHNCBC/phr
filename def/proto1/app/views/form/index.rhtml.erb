@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W#C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml:
+    xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>Data Entry Framework:  Index of Forms</title>
+</head>
+<body>
+  <h1>Index of Forms</h1>
+  <%= render(:partial=>'form_list.rhtml', :handlers=>[:erb], :locals=>{:forms=>@public_forms,
+             :title=>'Public Forms'}) %>
+  <%= render(:partial=>'form_list.rhtml', :handlers=>[:erb], :locals=>{:forms=>@protected_forms,
+             :title=>'Password Protected Forms'}) %>
+  <% if (@private_forms) %>
+    <%= render(:partial=>'form_list.rhtml', :handlers=>[:erb], :locals=>{:forms=>@private_forms,
+               :title=>'Internal (Private to TBD - your organization) Forms'}) %>
+  <% end %>
+</body>
+</html>

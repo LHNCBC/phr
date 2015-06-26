@@ -1,0 +1,8 @@
+<h2><%= sf_title %></h2>
+
+  <% fields.each do |field| %>
+    <%= displayField(field, form, nil, suffix, data) %>
+  <% end %>
+<p class="footer">
+  <a class="lbAction" rel="deactivate" href="#">Close</a>
+</p>
