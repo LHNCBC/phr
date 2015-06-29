@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="stylesheets/doc.css">
+    </head>
+    <body>
+      <div id="hdr_banner">
+        <div id="hdr_banner_img"></div>
+      </div>
+      <div id="target_name">LHNCBC PHR - Technical Documentation</div>
+      <div id="content">
+        <div id="main_title">Overview</div>
+
+        <p>
+          The PHR is a web-based system that can accomodate multiple users where
+          each user may maintain health data for multiple people.  Data is
+          maintained in a central database located on a server configured by the
+          person or organization running the system.  Certain file content needs
+          to be tailored to your specific installation.  Issues such as data
+          security, accessibility, and performance under load must be managed by
+          the controlling person or owner.  We provide a top-level description
+          of how we handle those issues.
+        </p>
+        <p>
+          <b>Server-side code is predominantly Ruby on Rails (RoR)</b>.  The standard
+          RoR file structure and naming conventions are followed, although the
+          code has evolved over time, and so some are followed more closely than
+          others.
+        </p>
+        <p>
+          <b>Javascript is used heavily for client-side processing</b>.  Extensive
+          caching of static content is used to lessen load times.  Various
+          third-party javascript libraries, e.g., jQuery, Prototype, etc., are
+          used to aid in creating javascript that is compatible with all current
+          browsers.
+        </p>
+        <p>
+          A <b>508-compliant version</b> ("basic mode") is available for users
+          with visual issues.  This version has been tested using JAWS.  It does not require javascript to be available on the client
+          system, and does not include some of the non-core functionality
+          available in the regular version (autosave, usage statistics, PHR
+          sharing, specialized navigation, client-side validation).
+        </p>
+        <p>
+          A <b>mobile mode</b> is also available, and is based on the "basic
+          mode" version as described above.
+        </p>
+        <p>
+          <b>Most of the forms used to present and acquire data are generated
+          dynamically</b>, by form and field descriptions contained in the SQL
+          database.  This allows for faster form generation and modifications
+          as well as consistent form element appearance and behaviors.
+        </p>
+        <p>
+          The system takes advantage of the <b>significant data resources of the
+          NIH as well as other trusted resources</b> in the form of references
+          to medical information specific to data entered for a health record,
+          e.g., medical conditions, medications, allergies, vaccinations, etc.
+        </p>
+        <p>
+          <b>Reminders</b> that are both health-specific (e.g., vaccine recommendations,
+          screenings related to medical conditions) and due date-specific (e.g.,
+          medication refill reminders, medical contact followup appointments, etc.)
+          are generated based on various factors entered into a person's health 
+          record.  Factors include things like age, gender, and current medical
+          conditions.
+        </p>
+        <p>
+          <b>Navigation</b> on the forms is dictated by which form elements are shown
+          at any particular time, what functions are available, and certain
+          data entry rules.  For example, the main Health Summary page lists
+          certain data previously entered, such as medical conditions,
+          medications, allergies, etc., while making sure that focus starts
+          at the first line at which data can be added.
+        </p>
+        <p>
+          <b>Data entry validation</b> is performed mostly on the client side and is
+          performed at the time of data entry for some fields, while at page
+          submission time for others, as appropriate.  Validation avoids
+          trapping a user in a field while enforcing validation rules where
+          appropriate.
+        </p>
+        <p>
+          <b>User assistance</b> is provided on a field-level basis via tooltips and
+          online help.  The online help also includes more general information
+          related to data entry tips for various field types and form-level help.
+        </p>
+        <p>
+          Users may <b>allow others to have read-only access to PHR records</b>
+          that they have created.  The other person must either already have an
+          account in the PHR system or create one, and the access to the
+          inviting user's PHR record is strictly restricted to read-only.
+        </p>
+        <p>
+          <b>User authentication</b> is performed at multiple levels, both at login and
+          at each request for user data.  Initial account creation requires
+          verification through the user's email address, which must be unique
+          within the PHR system.
+        </p>
+        <p>
+          The PHR provides an <b>autosave functionality</b> for much of the data entered
+          by the user.  This means that data entered into a form but not yet
+          saved is not lost if the system crashes or the user's session terminates
+          prematurely.
+        </p>
+        <p>
+          Certain <b>usage statistics</b> are maintained for a user, including page
+          accesses, session times, and the use of certain autocompleting lists.
+        </p>
+        <p>
+          The PHR codebase includes <b>test files</b> used to verify functionality
+          after code updates.  Following the Ruby on Rails convention, there are
+          unit tests, functional tests, integration tests and javascript tests.
+          There are also acceptance tests that use a system based on an older
+          version of Selenium.
+        </p>
+        <br>
+        Return to the <a href="index.html">main page.</a>
+      </div> <!-- end content -->
+    </body>
+</html>

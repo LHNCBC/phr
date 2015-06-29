@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="stylesheets/doc.css">
+    </head>
+    <body>
+      <div id="hdr_banner">
+        <div id="hdr_banner_img"></div>
+      </div>
+      <div id="target_name">LHNCBC PHR - Technical Documentation</div>
+      <div id="content">
+        <div id="main_title">Data</div>
+        <div id='database_contents'><h3>SQL Database Contents</h3>
+          <div id ='program_data'><h4>Program Data</h4>
+            Data used to support the system is contained in multiple tables.
+            The database dump file will both create and populate these tables.
+            <div id='form_definitions'><h5>Form Definitions</h5>
+              Most of the forms used by the PHR system are defined in the database:
+              <ul><li>the <b>forms</b> table</li>
+                <li>the <b>field_descriptions</b> table</li>
+                <li>the <b>db_table_descriptions</b> table</li>
+                <li>the <b>db_field_descriptions</b> table</li>
+                <li>the <b>sample_texts</b> table</li>
+              </ul>
+            </div> <!-- end form_definitions -->
+            <div id='content_lists'><h5>Content Lists</h5>
+              These tables provide the content for lists of drugs, medical
+              problems, vaccines, answers to questions such as gender, ethnicity,
+              etc.  Basically anything that is displayed as a list of choices
+              for the user.
+              <ul>
+                <li>the <b>answer_lists</b> table</li>
+                <li>the <b>answers</b> table</li>
+                <li>the <b>classifications</b> table</li>
+                <li>the <b>clinical_maps</b> table</li>
+                <li>the <b>data_classes</b> table</li>
+                <li>the <b>drug_name_route_codes</b> table</li>
+                <li>the <b>drug_name_routes</b> table</li>
+                <li>the <b>drug_routes</b> table</li>
+                <li>the <b>drug_strength_forms</b> table</li>
+                <li>the <b>gopher_term_synonyms</b> table</li>
+                <li>the <b>gopher_terms</b> table</li>
+                <li>the <b>gopher_terms_mplus_hts</b> table</li>
+                <li>the <b>gopher_to_meshes</b> table</li>
+                <li>the <b>icd9_codes</b> table</li>
+                <li>the <b>list_answers</b> table</li>
+                <li>the <b>list_descriptions</b> table</li>
+                <li>the <b>list_details</b> table</li>
+                <li>the <b>loinc_items</b> table</li>
+                <li>the <b>loinc_names</b> table</li>
+                <li>the <b>loinc_panels</b> table</li>
+                <li>the <b>loinc_units</b> table</li>
+                <li>the <b>mplus_drugs</b> table</li>
+                <li>the <b>routes</b> table</li>
+                <li>the <b>rxhub_frequencies</b> table</li>
+                <li>the <b>rxnorm_relations</b> table</li>
+                <li>the <b>rxnorm_to_mplus_drugs</b> table</li>
+                <li>the <b>rxterms_ingredients</b> table</li>
+                <li>the <b>text_list_items</b> table</li>
+                <li>the <b>text_lists</b> table</li>
+                <li>the <b>text_templates</b> table</li>
+                <li>the <b>united_heath_frequencies</b> table</li>
+                <li>the <b>vaccines</b> table</li>
+                <li>the <b>word_synonyms</b> table</li>
+                <li>the <b>versions</b> table</li>
+              </ul>
+            </div> <!-- end content_lists -->
+           <div id='rules_data'><h5>Rules Tables</h5>
+              These tables support the rules system that triggers various
+              reminders and other actions based on the current data for a
+              profile.
+              <ul>
+                <li>the <b>rules</b> table</li>
+                <li>the <b>rule_action_descriptions</b> table</li>
+                <li>the <b>rule_actions</b> table</li>
+                <li>the <b>rule_cases</b> table</li>
+                <li>the <b>rule_db_field_dependencies</b> table</li>
+                <li>the <b>rule_dependenices</b> table</li>
+                <li>the <b>rule_fetch_conditions</b> table</li>
+                <li>the <b>rule_fetches</b> table</li>
+                <li>the <b>rule_field_dependencies</b> table</li>
+                <li>the <b>rule_labels</b> table</li>
+                <li>the <b>rule_sets</b> table</li>
+                <li>the <b>rules_forms</b> table</li>
+                <li>the <b>loinc_field_rules</b> table</li>
+                <li>the <b>forms_rule_sets</b> table</li>
+                <li>the <b>expression_conditions</b> table</li>
+                <li>the <b>field_conditions</b> table</li>
+                <li>the <b>field_expression</b> table</li>
+                <li>the <b>comparison_operators</b> table</li>
+                <li>the <b>comparison_operators_predefined_fields</b> table</li>
+                <li>the <b>predefined_conditions</b> table</li>
+                <li>the <b>predefined_expressions</b> table</li>
+              </ul>
+            </div> <!-- end rules_data -->
+            <div id='validation_tables'><h5>Validation Tables</h5>
+              These tables support code that validates data entered by a user.
+              <ul>
+                <li>the <b>field_validation_conditions</b> table</li>
+                <li>the <b>field_validations</b> table</li>
+                <li>the <b>regex_validators</b> table</li>
+              </ul>
+            </div> <!-- end validation_tables -->
+            <div id='misc_support_tables'><h5>Miscellaneous Support Tables</h5>
+              <ul>
+                <li>the <b>schema_migrations</b> table</li>
+                <li>the <b>auto_increments</b> table</li>
+                <li>the <b>action_params</b> table</li>
+                <li>the <b>class_cache_versions</b> table</li>
+                <li>the <b>installation_changes</b> table</li>
+                <li>the <b>predefined_fields</b> table</li>
+                <li>the <b>form_builder_maps</b> table</li>
+              </ul>
+            </div> <!-- end misc_support_tables -->
+          </div> <!-- end program_data -->
+          <div id='user_data'>
+            <h4>User Data</h4>
+            Data entered by users is stored in multiple files.  The database
+            dump file will create these tables but will <b>not</b> populate them.
+            <div id='user_mgmt_data'><h5>User Management Tables</h5>
+              <ul>
+                <li>the <b>locks</b> table</li>
+                <li>the <b>users</b> table</li>
+                <li>the <b>open_id_auth_associations</b> table</li>
+                <li>the <b>open_id_auth_nonces</b> table</li>
+                <li>the <b>sessions</b> table</li>
+                <li>the <b>user_preferences</b> table</li>
+                <li>the <b>question_answers</b> table</li>
+                <li>the <b>two_factors</b> table</li>
+                <li>the <b>userid_guess_trials</b> table</li>
+                <li>the <b>email_verifications</b> table</li>
+              </ul>
+            </div> <!-- end user_mgmt_data -->
+            <div id='profile_mgmt_data'><h5>Profile Management Tables</h5>
+              <ul>
+                <li>the <b>profiles</b> table</li>
+                <li>the <b>profiles_users</b> table</li>
+                <li>the <b>deleted_profiles</b> table</li>
+                <li>the <b>share_invitations</b> table</li>
+              </ul>
+            </div> <!-- end profile_mgmt_data -->
+            <div id='profile_health_data'><h5>Profile Health Data Tables</h5>
+              <ul>
+                <li>the <b>phrs</b> table</li>
+                <li>the <b>phr_allergies</b> table</li>
+                <li>the <b>phr_doctor_questions</b> table</li>
+                <li>the <b>phr_drugs</b> table</li>
+                <li>the <b>phr_immunizations</b> table</li>
+                <li>the <b>phr_conditions</b> table</li>
+                <li>the <b>phr_surgical_histories</b> table</li>
+                <li>the <b>phr_medical_contacts</b> table</li>
+                <li>the <b>phr_notes</b> table</li>
+                <li>the <b>obr_orders</b> table</li>
+                <li>the <b>obx_observations</b> table</li>
+                <li>the <b>hist_phrs</b> table</li>
+                <li>the <b>hist_phr_allergies</b> table</li>
+                <li>the <b>hist_phr_doctor_questions</b> table</li>
+                <li>the <b>hist_phr_drugs</b> table</li>
+                <li>the <b>hist_phr_immunizations</b> table</li>
+                <li>the <b>hist_phr_conditions</b> table</li>
+                <li>the <b>hist_phr_surgical_histories</b> table</li>
+                <li>the <b>hist_phr_medical_contacts</b> table</li>
+                <li>the <b>hist_phr_notes</b> table</li>
+                <li>the <b>hist_obr_orders</b> table</li>
+                <li>the <b>hist_obx_observations</b> table</li>
+                <li>the <b>latest_obx_records</b> table</li>
+              </ul>
+            </div> <!-- end profile_health_data -->
+            <div id='reminders_data'><h5>Reminders Tables</h5>
+              <ul>
+                <li>the <b>date_reminders</b> table</li>
+                <li>the <b>health_reminders</b> table</li>
+                <li>the <b>reviewed_reminders</b> table</li>
+                <li>the <b>reminder_options</b> table</li>
+                <li>the <b>hist_date_reminders</b> table</li>
+                <li>the <b>hist_reminder_options</b> table</li>
+              </ul>
+            </div> <!-- end reminders_data -->
+            <div id='user_action_tracking'><h5>User Actions Tracking Tables</h5>
+              <ul>
+                <li>the <b>autosave_tmps</b> table</li>
+                <li>the <b>system_errors</b> table</li>
+                <li>the <b>audits</b> table</li>
+                <li>the <b>usage_stats</b> table</li>
+                <li>the <b>research_data</b> table</li>
+                <li>the <b>page_load_times</b> table</li>
+                <li>the <b>data_edits</b> table</li>
+              </ul>
+            </div> <!-- end user_action_tracking -->
+          </div> <!-- end user_data -->
+          </div> <!-- end database_contents -->
+           Return to the <a href="index.html">main page</a>
+      </div> <!-- end content -->
+    </body>
+</html>

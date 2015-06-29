@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="stylesheets/doc.css">
+    </head>
+    <body>
+      <div id="hdr_banner">
+        <div id="hdr_banner_img"></div>
+      </div>
+      <div id="target_name">LHNCBC PHR - Technical Documentation</div>
+      <div id="content">
+      <div id="main_title">Installation</div>
+        <p>
+        Creating a working version of the PHR requires download and installation
+        of the code, the third-party packages used by the PHR system, and
+        population of the database.
+        <p>
+        The PHR system assumes that all code and third-party packages are
+        located within a directory named <b>def</b>.
+        <div id='phr_repository'><h3>PHR Repository</h3>
+          <ul>
+            <li>Clone the PHR Repository from github.com</li>
+            <li>This should give you the <b>def</b> directory, which will
+              contain the following:<ul>
+                <li>a bashrc.def file</li>
+                <li>a <b>bin</b> subdirectory, which should contain a file
+                  and multiple softlinks.  The softlinks are mostly set
+                  to point to the <b>packages</b> subdirectory, which is
+                  where the softlinks should be adjusted to match your
+                  installation.  The following softlinks are found in the
+                  <b>bin</b> subdirectory:<br><ul>
+                    <li>bundle - points to the ruby bundle script</li>
+                    <li>gem - points to the ruby gem script</li>
+                    <li>irb - points to the ruby irb script</li>
+                    <li>node - points to your node directory</li>
+                    <li>npm - points to your npm directory</li>
+                    <li>rails - points to the rails script in your ruby/bin
+                        directory</li>
+                    <li>rake - points to the rake script in your ruby/bin
+                        directory</li>
+                    <li>ruby - points to the ruby script in your ruby/bin
+                        directory</li>
+                    <br>
+                    <li>mysql - points to your mysql executable - and is the
+                        only link that does not depend on links in the
+                        <b>packages</b> subdirectory</li>
+                  </ul><br>
+                  The git file, which is found the <b>bin</b> subdirectory is a
+                  script that we use to control how git commands are run.
+
+                </li><br>
+                <li>a cshrc.def file, which we use to set up various
+                    development environment variables.  You will certainly
+                    need to modify this for your environment.
+                </li>
+                <li>a dependencies.yaml file, which shows which versions
+                    various packages are using for the current code.
+                </li>
+                <li>a <b>packages</b> subdirectory, which will be empty.  This
+                    subdirectory will need to be populated with a combination
+                    of third-party package directories and softlinks to
+                    third-party packages, which you will need to supply as
+                    you install the packages:<ul>
+                      <li>autocomp - either the top-level directory of the
+                          autocomp-phr package or a softlink to it;</li>
+                      <li>javascript-stacktrace - either the top-level directory
+                          of the javascript-stacktrace code or a softlink to it;
+                      </li>
+                      <li>jquery - either the top-level directory of the
+                          jquery-1.9.1 code or a softlink to it;</li>
+                      <li>jquery-mobile - either the top-level directory of the
+                          jquery-mobile-1.4.2 code or a softlink to it;</li>
+                      <li>jqueryPlugins - either the top-level directory of
+                          the jqueryPlugins code or a softlink to it;</li>
+                      <li>jquery-ui - either the top-level directory of the
+                          jquery-ui-1.10.1 code or a softlink to it;</li>
+                      <li>node - either the top-level directory of the node.js
+                          code or a softlink to it;</li>
+                      <li>node_modules - either the top-level directory of the
+                          node.js modules or a softlink to it; and</li>
+                      <li>ruby - either the top-level directory of the ruby
+                          code or a softlink to it.</li>
+                    </ul>
+                </li>
+                <li>a <b>proto1</b> sudirectory, which contains the bulk of
+                    the PHR code, and follows the Rails directory hierarchy
+                    conventions.</li>
+            </ul></li>
+            
+          </ul>       
+        </div> <!-- end phr_repository -->
+
+
+        <div id='third_party_packages_to_install'>
+        <h3>Third-party Packages to be Installed</h3>
+
+        We have found that your web server and database system should be in
+        place before you try to install the other packages, particularly
+        Ruby on Rails.
+
+          <div id='mysql'><h4>MySQL or some other SQL database</h4>
+             <ul><li><a href='http://www.mysql.com'>http://www.mysql.com</a></li>
+                 <li>we are using MySQL version 5.6.6 (linux)</li>
+                 <li>the <i>def/bin</i> directory contains a
+                     <i>mysql</i> softlink to the <i>mysql</i> executable.  If
+                     this is not correct for your installation, update that
+                     softlink.</li>
+                 <li>make sure you set up a user before installing other
+                     packages</li>
+                 <li>we recommend specifying a secure installation, since the
+                     PHR system deals with sensitive information</li>
+             </ul>
+           </div> <!-- end mysql -->
+           <div id='apache'><h4>a webserver such as Apache</h4>
+              <ul><li><a href='http://httpd.apache.org'>
+                         http://httpd.apache.org</a></li></ul>
+           </div> <!-- end apache -->
+
+
+           <div id='ruby_on_rails'><h4>RubyOnRails</h4>
+              <ul><li><a href='http://rubyonrails.org'>
+                         http://rubyonrails.org</a></li>
+                <li>we are using
+                  <ul><li>ruby version 2.1</li>
+                  <li>rails version 4.1</li></ul>
+                </li>
+                <li>installation order that works for us:
+                  <ol><li>install ruby</li>
+                    <li>manually install the ruby gem named <i>bundler</i></li>
+                    <li>move the <i>Gemfile</i> from the <i>def</i> directory to your
+                    ruby directory</li>
+                    <li>issue the <b>bundle install</b> command to install
+                      the gems listed in the Gemfile.  When the installation
+                      completes successfully, you should have a Gemfile.lock
+                      file in your ruby directory (in addition to the Gemfile).
+                    </li></ol>
+                </li>
+                <li>create a softlink <i>ruby</i> in the <i>def/packages</i>
+                    directory that points to your ruby directory</li>
+                <li>update the <i>proto1/config/database.yml</i> file as
+                    appropriate for your database.</li>
+
+            </ul>
+           </div> <!-- end ruby_on_rails -->
+           <div id='node_js'><h4>node.js</h4>
+             <ul><li><a href='http://nodejs.org'>http://nodejs.org</a></li>
+               <li>we are using
+                 <ul><li>node-v0.10.24-linux-x64</li></ul>
+               </li>
+               <li>create a softlink <i>node</i> in the <i>def/packages</i>
+                   directory that points to your node directory</li>
+               <li>create a softlink <i>node_modules</i> in the <i>def/packages</i>
+                   directory that points to your node_modules directory</li>
+               <li><b>npm</b> - use the version that comes with your node.js
+                   distribution</li>
+             </ul>
+           </div> <!-- end node_js -->
+           <div id='jquery'><h4>jQuery</h4>
+             <ul><li><a href='http://jquery.com'>http://jquery.com</a></li>
+                 <li>we are using
+                   <ul><li>jquery-1.9.1, for which we create a directory that should
+                           contain the following files:
+                         <ul>
+                           <li>jquery-1.9.1.js and jquery-1.9.1.min.js, and
+                             <ul><li>softlink jquery.js should point to jquery-1.9.1.js</li>
+                               <li>softlink jquery.min.js should point to jquery-1.9.1.min.js</li>
+                             </ul>
+                           </li>
+                           <li>jquery.flot.js and jquery.flot.min.js</li>
+                           <li>jquery.flot.crosshair.js and jquery.flot.crosshair.min.js</li>
+                           <li>jquery.flot.selection.js and
+                               jquery.flot.crosshair.selection.min.js</li>
+                           <li>jquery.sparkline.js and jquery.sparkline.min.js</li>
+                         </ul>
+                       </li>
+
+                       <li>jquery-mobile-1.4.2, for which we create a directory that
+                           should contain the following files:
+                         <ul>
+                           <li>jquery.mobile-1.4.2.js and jquery.mobile-1.4.2.min.js, and
+                             <ul><li>softlink jquery.mobile.js should point to jquery.mobile-1.4.2.js</li>
+                               <li>softlink jquery.mobile.min.js should point to
+                                   jquery.mobile-1.4.2.min.js</li>
+                             </ul>
+                           </li>
+                           <li>jquery.mobile-1.4.2.css and jquery.mobile-1.4.2.min.css, and
+                             <ul><li>softlink jquery.mobile.css should point to jquery.mobile-1.4.2.css</li>
+                               <li>softlink jquery.mobile.min.css should point to
+                                   jquery.mobile-1.4.2.min.css</li>
+                             </ul>
+                           </li>
+                         </ul>
+                       </li>
+                       <li>jquery-ui-1.10.1.custom
+                         <ul><li><a href='http://jqueryui.com/download'>http://jqueryui.com/download</a></li>
+                 <li>select version 1.10.x</li>
+                 <li>at the bottom of the page, under Theme, select <i>Start</i> and <i>Download</i></li>
+                             <li>create a subdirectory in the home/phr/packages directory and extract the zip file to it.</li>
+                 <li>create a <i>jquery-ui</i> softlink to that directory</li></ul>
+                 <li>in the js subdirectory create 2 softlinks:<ul>
+                                 <li>jquery-ui.js that points to jquery-ui-1.10.x.custom.js; and</li>
+                                 <li>jquery-ui.min.js that points to jquery-ui-1-10.x.custom.min.js</li></ul>
+                           both of which are in that same subdirectory</li>
+                 <li>in the css/start subdirectory create 2 softlinks:<ul>
+                                 <li>jquery-ui.css that points to jquery-ui-1.10.x.custom.css; and</li>
+                                 <li>jquery-ui.min.css that points to jquery-ui-1.10.x.custom.css</li></ul>
+                                 both of which are in that same subdirectory</li>
+                       </li>
+                   </ul>
+                 </li>
+                 <li>the <i>def/packages</i> directory should contain the following
+                     softlinks to point to the corresponding jQuery directories:
+                   <ul><li>jquery</li>
+                       <li>jquery-mobile</li>
+                       <li>jquery-ui</li>
+                   </ul>
+                 </li>
+                 <li>the <i>def/proto1/public</i> directory should contain a
+                     jqueryPlugins subdirectory that contains a single softlink,
+                     <b>packages</b> that points to the same directory to which
+                     the <b>jqueryPlugins</b> softlink in the <i>def/packages</i>
+                     directory points.
+                 </li>
+             </ul>
+           </div> <!-- end jquery -->
+           <div id='autocomplete_lhc'><h4>autocomplete-lhc</h4>
+             <ul><li><a href='https://github.com/lhncbc/autocomplete-lhc.git'>
+                        https://github.com/lhncbc/autocomplete-lhc.git</a></li>
+                 <li>create a softlink <i>autocomp</i> in the <i>packages</i>
+                   directory that points to your autocomplete-lhc directory</li>
+             </ul>
+           </div> <!-- end autocomp_phr -->
+           <div id='javascript_stacktrace'><h4>javascript-stacktrace</h4>
+             <ul><li><a href='https://github.com/stacktracejs/stacktrace.js/'>
+                        https://github.com/stacktracejs/stacktrace.js/</a></li>
+                  <li>create a softlink <i>javascript-stacktrace</i> in the
+                      <i>packages</i> directory that points to your
+                      javascript-stacktrace directory</li>
+             </ul>
+           </div> <!-- end javascript_stacktrace -->
+
+        </div> <!-- end third_party_packages_to_install -->
+        <div id='third_party_packages_included'>
+        <h3>Third-party Packages Included with the PHR</h3>
+          <div id='maxlength'><h4>maxlength.js</h4>
+             <ul><li><a href='http://www.javascriptkit.com/script/script2/enforceform.shtml'>
+                        http://www.javascriptkit.com/script/script2/enforceform.shtml</a></li>
+                 <li>the <i>proto1/vendor/assets/javascripts</i>
+                     directory contains the <i>maxlength.js</i> file.</li>
+             </ul>
+           </div> <!-- end maxlength -->
+           <div id='prototype'><h4>prototype.js</h4>
+             <ul><li><a href='http://prototypejs.org'>http://prototypejs.org</a></li>
+                 <li>the <i>prototype.js</i> file is included in the
+                     <i>app/assets/javascripts</i> directory.
+             </ul>
+           </div> <!-- end apache -->
+           <div id='scriptaculous'><h4>script.aculo.us</h4>
+             <ul><li><a href='http://madrobby.github.io/scriptaculous/'>
+                        http://madrobby.github.io/scriptaculous/</a></li>
+                 <li>the following scriptaculous files are included
+                     in the <i>proto1/app/assets/javascripts</i> directory:
+                   <ul><li>controls.js</li>
+                       <li>dragdrop.js</li>
+                       <li>effects.js</li>
+                   </ul>
+                 </li>
+             </ul>
+           </div> <!-- end scriptaculous -->
+           <div id='jqueryConnect'><h4>jquery.connect.js</h4>
+             <ul><li>this file is contained in the
+                     <i>def/proto1/app/assets/javascripts/jqueryPluginsExt/jq_connect_2</i>
+                        directory, along with a test_jqconnect.html file</li>
+                 <li>there is a jquery.connect.js package on github, but it is not
+                   the same as what we use, and what we use is no longer available
+                   on the web (that we could find).</li>
+             </ul>
+           </div> <!-- end scriptaculous -->
+        </div> <!-- end third_party_packages_included -->
+        <div id='database_dump'><h3>Download and load the SQL Database</h3>
+          <ul><li>A dump of the database is available at
+              <a href="https://www.dropbox.com/s/olrm5d6u08d43yn/PHRDataDump.sql?dl=0">
+                https://www.dropbox.com/s/olrm5d6u08d43yn/PHRDataDump.sql?dl=0</a></li>
+              <li>The file was created using mysqldump</li>
+              <li><a href='http://dev.mysql.com/doc/refman/5.6/en/mysqldump.html'>
+                  http://dev.mysql.com/doc/refman/5.6/en/mysqldump.html</a></li>
+              <li>The dump file includes SQL statements to:
+                <ul><li>create all tables in the database; and</li>
+                    <li>load program data (non-user data) to the program tables.
+                        This includes form definitions, rules, etc.  See
+                        <a href="database.html">the database</a> descriptions for
+                        a description of the program data tables.</li>
+                </ul>
+              </li>
+              <li>The initial load of this will be slow, because of the way the
+                  dump file was created (using a separate insert statement for
+                  each row of data loaded to the tables).  Once you have established
+                  your database we recommend that you create a backup that uses
+                  a faster restoration method.</li>
+              <li>After the database is populated you need to build the indexes
+                  used to search some of the program data tables.  There is a
+                  rake task that will build those indexes:<br>
+                  <b>rake def:rebuild_indexes</b></li>
+              <li>The indexes will be built in a subdirectory of the def/proto1/index
+                  directory.</li>
+           </ul>
+        </div> <!-- end database_dump -->
+       <br>
+        Return to the <a href="index.html">main page</a>
+      </div> <!-- end content -->
+    </body>
+</html>

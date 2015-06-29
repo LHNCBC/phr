@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="stylesheets/doc.css">
+    </head>
+    <body>
+      <div id="hdr_banner">
+        <div id="hdr_banner_img"></div>
+      </div>
+      <div id="target_name">LHNCBC PHR - Technical Documentation</div>
+      <div id="content">
+        <div id="main_title">Configuration</div>
+        <div id='files_to_tailor'><h3>Files that require tailoring</h3>
+          Certain file content needs to be tailored to your specific
+          installation.
+          <div id='partial_file_tailoring'><h4>Elements Flagged for Change</h4>
+            Places where changes are needed are flagged with some variation of
+            <b>TBD - change for your installation</b>.  Basically, searching
+            for TBD in the following files should show you places where
+            tailoring is required.
+            <ul>
+              <li>app/models/def_mailer.rb</li>
+              <li>app/models/installation_change.rb</li>
+              <li>app/views/def_mailer/verify_reg_email.html.erb</li>
+              <li>app/views/form/index.rhtml.erb</li>
+              <li>app/views/help_text/index.html.erb</li>
+              <li>config/constants.rb</li>
+              <li>config/error_email.yml</li>
+              <li>lib/loinc_preparation.rb</li>
+              <li>lib/tasks/def.rake</li>
+              <li>script/postNotice</li>
+              <li>test/selenium/0accounts.sel</li>
+              <li>test/unit/captcha_presenter_test.rb</li>
+            </ul>
+          </div> <!-- end partial_file_tailoring -->
+          <div id='full_file_tailoring'><h4>Full-file Changes</h4>
+            Two files that support the ability to switch between installations
+            basically need to be tailored in their entirety, i.e., every
+            constant defined needs to be tailored.  Luckily they are not big
+            files.  They are:
+            <ul>
+              <li>config/installation/alternate/installation_config.rb; and</li>
+              <li>config/installation/default/installation_config.rb</li>
+            </ul>
+          </div> <!-- end full_file_tailoring -->
+        </div> <!-- end files_to_tailor -->
+        <div id='tables_to_tailor'><h3>Database tables that require tailoring</h3>
+          A few table rows in the database also require some tailoring.
+          <div id='field_descriptions'><h4>field_descriptions - 2 rows</h4>
+            <ol><li>Terms & Conditions on the registration form:
+                <ul><li>You'll need to get the id of the <i>signup</i> form
+                        in the <b>forms</b> table (the_form_id =
+                        Form.where(form_name: 'signup'))</li>
+                    <li>Then get the row in the field_descriptions table that
+                        contains the terms & conditions text that is shown on
+                        the signup form (FieldDescription.where(form_id:
+                        the_form_id, target_field: 'instructions2')).  The
+                        <i>default_value</i> column of that row contains the HTML
+                        for the terms and conditions for your site.  Replace
+                        what's in that column with your own text.</li>
+                </ul></li>
+                <li>Suport email address on the login_answer form
+                  <ul><li>Get the id of the <i>login_answer</i> form in the
+                          <b>forms</b> table.</li>
+                      <li>Get the row in the <b>field_descriptions</b> table
+                          that contains a PHR support email address
+                          (FieldDescription.where(form_id: the_form_id,
+                          target_field: 'login_instr4')).  The <i>default_value</i>
+                          column of that row contains an email address for
+                          PHR support.  Right now it is set to
+                          TBD@YOUR.SUPPORT.EMAIL.  You'll want to change that.</li>
+                  </ul>
+                </li>
+            </ol>
+          </div> <!-- end field_descriptions -->
+          <div id='installation_changes'><h4>installation_changes</h4>
+            <ul><li>This table contains rows used to change from a default
+                    installation to an alternate installation.  Each row in that 
+                    table (there will usually be 3 rows in that table,
+                    but there might be 6) needs to be changed.
+            </li></ul>
+          </div> <!-- end installation_changes -->
+        </div> <!-- end tables_to_tailor -->
+        Return to the <a href="index.html">main page</a>
+      </div> <!-- end content -->
+    </body>
+</html>
