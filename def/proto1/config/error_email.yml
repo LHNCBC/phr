@@ -5,4 +5,4 @@
 # The key "default" can be used to set a default email address to handle the remaining cases.
 
 # TBD - specify for your system
-default: 
+default: 'root@localhost'

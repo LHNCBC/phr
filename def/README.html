@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+          body {
+            margin: 25px;
+            padding: 25px;
+            font-family: "Ubuntu",Arial;
+            font-size: 16px;
+          }
+        </style>
+    </head>
+  <body>
+
+    <p>This directory is a sparse copy of the def directory hierarchy.
+
+    <p>It contains files that are specific to the VM version of the PHR, and are
+not used for the GitHub version.
+
+    <p>Contents are as follows:
+    <ul>
+      <li><b>etc_httpd</b> -  a directory that contains configuration files that
+        should be placed in the /etc/httpd directory on the VM.</li>
+      <li><b>Gemfile</b> - a file used in setting up the Ruby Gems on the VM.
+        It will be removed by the installation process.</li>
+      <li><b>LICENSE.md</b> - the markdown version of the License that needs to
+        go with the VM.</li>
+      <li><b>packages</b> - the def/packages directory for the VM. This contains
+        links to the external packages that are included in the VM.  The links
+        will appear as broken links on a development machine, but should be
+        valid on the VM.  (If they're not, there's a problem.)  This directory
+        should be copied to the main def directory on the safe branch before
+        creating a tar file of the safe branch for the VM.  (Once you do that,
+        check out the safe branch again to restore the overwritten directory.</li>
+      <li><b>proto1</b> - a sparse copy of the def/proto1 directory.  This
+         contains files that differ from the majority of the safe branch files.
+         These files should be copied to the proto1 directory of the safe branch
+         before creating a tar file of the safe branch for the VM.   (Once you
+         do that, check out the safe branch again to restore the overwritten
+         files).</li>
+       <li><b>README.html</b> - this file.  </li>
+    </ul>
+  </body>
+</html>

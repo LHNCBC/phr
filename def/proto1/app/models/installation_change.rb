@@ -2,12 +2,12 @@ class InstallationChange < ActiveRecord::Base
   # The installation mode name for the alternate installation
   INSTALLATION_NAME_ALTERNATE = 'alternate'
   # The installation display name for an alternate installation
-  INSTALLATION_DISPNAME_ALTERNATE = 'TBD - Alternate Installation name'
+  INSTALLATION_DISPNAME_ALTERNATE = 'Alternate Installation name'
 
   # The installation mode name for the default mode 
   INSTALLATION_NAME_DEFAULT = 'default'
   # The installation display name for the default mode 
-  INSTALLATION_DISPNAME_DEFAULT = 'TBD - Your organization name'
+  INSTALLATION_DISPNAME_DEFAULT = 'VM PHR '
 
   # The path to the file containing the name of the current installation mode.
   INSTALLATION_MODE_FILE = File.expand_path(

@@ -1,0 +1,10 @@
+
+cd /home/phr/def
+source cshrc.def
+set counter = 1
+while ( `ps -ef | grep RackApp` == "" && @counter < 10000) 
+  @counter++
+end
+if ( `ps -ef | grep -v grep | grep firefox` == "" ) then
+  firefox &
+endif

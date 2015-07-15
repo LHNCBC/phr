@@ -1,0 +1,5 @@
+This directory contains files that need to go in the VM's /etc/httpd directory
+structure.
+
+Place httpd.conf in the /etc/httpd/conf directory
+Place ssl.conf in the /etc/httpd/conf.d directory

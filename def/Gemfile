@@ -1,0 +1,47 @@
+# Edit this Gemfile to bundle your application's dependencies.
+source 'https://rubygems.org'
+
+gem 'rails', '~>4.1.0'
+gem 'mysql2'
+gem 'rack-recaptcha', :require => 'rack/recaptcha'
+gem 'ferret'
+gem 'acts_as_ferret'
+gem 'acts_as_tree' # used by drug_route.rb
+gem 'acts_as_reportable'
+gem 'activerecord-import'
+gem 'paper_trail', '>=3.0.0rc1'
+#gem 'webrick'
+gem 'thin'
+gem 'rubyzip'
+gem 'spreadsheet'
+gem 'dictionary' # used by form_data.rb
+gem 'passenger', '4.0.41'
+gem 'lrucache' # required by brake.rb
+gem 'net-sftp' # required by packUpdate script
+gem 'byebug' # an replacement for ruby-debug which has issue when step-over
+gem 'nokogiri', '1.6.0' # XML dom/xpath parser
+
+# features have been removed from rails4
+gem 'protected_attributes'
+gem 'rails-observers'
+gem 'activerecord-deprecated_finders', :require => 'active_record/deprecated_finders'
+gem 'activerecord-session_store'
+#gem 'actionpack-page_caching'
+#gem 'actionpack-action_caching'
+
+gem 'sass-rails', '4.0.2'
+gem 'compass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem 'yui-compressor'
+
+group :production do
+  gem 'therubyracer' # required by rails 3.1+
+end
+#group :test do 
+#  gem 'debugger'
+#end
+#group :development do
+#  gem 'debugger'
+#end
+

@@ -1,5 +1,5 @@
 {
-  "gid": "TBD - e.g., webserve",
-  "uid": "TBD - e.g., webserve",
+  "gid": "phr",
+  "uid": "phr",
   "uri": "http://localhost:3001/fetch_reminders"
 }
