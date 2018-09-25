@@ -22,7 +22,7 @@ class PhrRecordsControllerTest < ActionController::TestCase
     # The "edit" page broke-- confirm that that works
     session_data = {:user_id=>users(:PHR_Test).id, :cur_ip=>'127.11.11.11'}
     form_data = {:id=>@profile.id_shown}
-    get :edit, form_data, session_data
+    get :edit, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
 
@@ -36,14 +36,14 @@ class PhrRecordsControllerTest < ActionController::TestCase
     # While we're at it, also check update
     form_data = {:id=>@profile.id_shown, :phr=>{:birth_date=>'2012/4/5',
        :gender_C=>p.gender_C, :pseudonym=>p.pseudonym}}
-    post :update, form_data, session_data
+    post :update, params: form_data, session: session_data
     assert_redirected_to phr_records_path
     assert_nil flash[:error]
 
     # Test the create action
     # First test the creation with a missing required field
-    post :create, {:phr=>{:birth_date=>'2012/10/2',
-       :gender_C=>'M'}}, session_data
+    post :create, params: {:phr=>{:birth_date=>'2012/10/2',
+       :gender_C=>'M'}}, session: session_data
     # The create action above issues a redirect if the creation is successful
     # (so a :success response means the expected failure).
     assert_response :success
@@ -51,27 +51,27 @@ class PhrRecordsControllerTest < ActionController::TestCase
 
     # Also test creation with a missing birthdate field (which is a required
     # field, but was by some bug allowed to be blank.)
-    post :create, {:phr=>{
-       :gender_C=>'M', :pseudonym=>'Fred'}}, session_data
+    post :create, params: {:phr=>{
+       :gender_C=>'M', :pseudonym=>'Fred'}}, session: session_data
     assert_response :success
     assert_not_nil flash[:error]
 
     # Now test create with something that should work
     sleep 1 # Age the creation times a bit before creating a new one
-    post :create, {:phr=>{:birth_date=>'2012/10/2',
-       :gender_C=>'M', :pseudonym=>'Fred'}}, session_data
+    post :create, params: {:phr=>{:birth_date=>'2012/10/2',
+       :gender_C=>'M', :pseudonym=>'Fred'}}, session: session_data
     new_profile = Profile.order('created_at desc').first
     assert_redirected_to phr_record_path(new_profile.id_shown)
 
     # Test the view action for the created record.
-    get :show, {:id=>new_profile.id_shown}, session_data
+    get :show, params: {:id=>new_profile.id_shown}, session: session_data
     assert_response :success
 
     # Test the export
-    get :export, {:id=>new_profile.id_shown}, session_data
+    get :export, params: {:id=>new_profile.id_shown}, session: session_data
     assert_response :success
     assert !@response.body.index('Export').nil?
-    post :export, {:id=>new_profile.id_shown, :phr=>{:file_format=>'2'}}, session_data
+    post :export, params: {:id=>new_profile.id_shown, :phr=>{:file_format=>'2'}}, session: session_data
     assert_response :success
 
     # Test the handling of autosave data.  If there is autosave data,
@@ -83,14 +83,14 @@ class PhrRecordsControllerTest < ActionController::TestCase
       :form_name=>'phr', :base_rec=>false)
     assert @profile.has_autosave?
     # Attempt to view the profile
-    get :show, {:id=>@profile.id_shown}, session_data
+    get :show, params: {:id=>@profile.id_shown}, session: session_data
     # The page we get should say something about autosaved data
     assert @response.body.index('utosave') # The 'A' might be capital or lowercase
     # Ignore it and try again
-    get :show, {:id=>@profile.id_shown}, session_data
+    get :show, params: {:id=>@profile.id_shown}, session: session_data
     assert @response.body.index('utosave')
     # Now pass the paramater to drop the autosave data
-    get :show, {:id=>@profile.id_shown, :drop=>true}, session_data
+    get :show, params: {:id=>@profile.id_shown, :drop=>true}, session: session_data
     # Now the page should not say something about autosave
     assert @response.body.index('utosave').nil?
     # ...and the autosave data should be gone

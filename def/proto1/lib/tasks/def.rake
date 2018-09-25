@@ -289,6 +289,13 @@ namespace :def do
     end
   end
 
+  desc "Reloads the development database, irrespective of RAILS_ENV."
+  task :reload_dev_db => :environment do
+    e = Rails.env
+    Rails.env = 'development'
+    Rake::Task["def:reload_db"].invoke
+    Rails.env = e
+  end
 
   desc "Recreate MySQL triggers from files at db/triggers/"
   task :recreate_triggers => :environment do
@@ -652,6 +659,8 @@ namespace :def do
   desc "Install gems compatible with Ruby 2.0 on development machine"
   task :install_dev_gems => :environment do
     system("gem install --user-install timecop")
+    system("gem install --user-install rails-perftest")
+    system("gem install --user-install ruby-prof")
   end
 
   # Find and update any unassigned or incomplete captcha and login events

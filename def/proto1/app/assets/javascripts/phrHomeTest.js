@@ -78,14 +78,12 @@ Def.PhrHomeTest = {
 
 
  /**
-   * This function will go through an array of reminders and click on each one
+   * This function will go through an array of unread reminders and click on each one
    * so that all the reminders in the array are flagged as read. 
-   * 
-   * @param reminders_array an array of the reminder nodes to be "read"
    */
-  reviewHealthReminders: function(reminders_array) {
-    for (var i=0; i < reminders_array.length; i++) {
-      ATR.clickCmd([reminders_array[i]]);
+  reviewHealthReminders: function() {
+    for (var i = 0; i < testWindow_.document.getElementsByClassName('unread truncated_node').length; i++) {
+      ATR.clickCmd(['javascript{testWindow_.document.getElementsByClassName("unread truncated_node")[' + i + ']}']);
     }
     return true ;
   } ,

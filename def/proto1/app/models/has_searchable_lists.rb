@@ -1,12 +1,10 @@
 require 'acts_as_ferret'
-module ActsAsFerret
-  module InstanceMethods
-    # A patch for acts_as_ferret to prevent lock being generated when trying
-    # to delete a record from a table whose ferret index was disabled
-    def ferret_destroy_with_patch
-      ferret_enabled? ? ferret_destroy_without_patch : true
-    end
-    alias_method_chain :ferret_destroy, :patch
+ActsAsFerret::InstanceMethods.module_eval do
+  # A patch for acts_as_ferret to prevent lock being generated when trying
+  # to delete a record from a table whose ferret index was disabled
+  alias_method :ferret_destroy_old, :ferret_destroy
+  def ferret_destroy
+    ferret_enabled? ? ferret_destroy_old : true
   end
 end
 

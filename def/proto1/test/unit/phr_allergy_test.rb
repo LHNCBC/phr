@@ -11,7 +11,7 @@ class PhrAllergyTest < ActiveSupport::TestCase
       'db_field_descriptions', 'db_table_descriptions', 'forms', 'text_lists',
       'text_list_items'])
     p = PhrAllergy.new(:allergy_name_C=>'FOOD-9')
-    p.valid?
+    assert(p.valid?)
     assert_equal('FOOD-9', p.allergy_name_C)
     assert_equal('Peanut', p.allergy_name)
 

@@ -288,7 +288,7 @@ class PhrHomeController < ApplicationController
         UsageStat.create_stats(@user,
                                prof.id,
                                report_params,
-                               request.session_options[:id],
+                               request.session.id,
                                session[:cur_ip],
                                false)
       end
@@ -342,7 +342,7 @@ class PhrHomeController < ApplicationController
         UsageStat.create_stats(@user,
                                prof.id,
                                report_params,
-                               request.session_options[:id],
+                               request.session.id,
                                session[:cur_ip],
                                false)
       end
@@ -388,7 +388,7 @@ class PhrHomeController < ApplicationController
         UsageStat.create_stats(@user,
                                prof.id,
                                report_params,
-                               request.session_options[:id],
+                               request.session.id,
                                session[:cur_ip],
                                false)
       end

@@ -152,22 +152,22 @@
 
 # test regex validators 
 | open | /form/test/regex_validators_test |
-| type | fe_user_name | u |
-| fireEvent | fe_user_name | change | 
-| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | true |
-| type | fe_user_name | valid_user |
-| fireEvent | fe_user_name | change | 
-| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | false |
+| type | fe_test_user_name | u |
+| fireEvent | fe_test_user_name | change |
+| waitForExpression | javascript{testWindow_.$('fe_test_user_name').hasClassName('invalid');} | true |
+| type | fe_test_user_name | valid_user |
+| fireEvent | fe_test_user_name | change |
+| waitForExpression | javascript{testWindow_.$('fe_test_user_name').hasClassName('invalid');} | false |
 # - user name should have 6-32 characters
-| type | fe_user_name | abcdefghijklmnopqrstuvwxyz1234567 |
-| fireEvent | fe_user_name | change | 
-| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | true |
-| type | fe_user_name | abcdefghijklmnopqrstuvwxyz123456 |
-| fireEvent | fe_user_name | change | 
-| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | false |
-| type | fe_user_name | abcde |
-| fireEvent | fe_user_name | change | 
-| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | true |
-| type | fe_user_name | abcdef |
-| fireEvent | fe_user_name | change | 
-| waitForExpression | javascript{testWindow_.$('fe_user_name').hasClassName('invalid');} | false |
+| type | fe_test_user_name | abcdefghijklmnopqrstuvwxyz1234567 |
+| fireEvent | fe_test_user_name | change |
+| waitForExpression | javascript{testWindow_.$('fe_test_user_name').hasClassName('invalid');} | true |
+| type | fe_test_user_name | abcdefghijklmnopqrstuvwxyz123456 |
+| fireEvent | fe_test_user_name | change |
+| waitForExpression | javascript{testWindow_.$('fe_test_user_name').hasClassName('invalid');} | false |
+| type | fe_test_user_name | abcde |
+| fireEvent | fe_test_user_name | change |
+| waitForExpression | javascript{testWindow_.$('fe_test_user_name').hasClassName('invalid');} | true |
+| type | fe_test_user_name | abcdef |
+| fireEvent | fe_test_user_name | change |
+| waitForExpression | javascript{testWindow_.$('fe_test_user_name').hasClassName('invalid');} | false |

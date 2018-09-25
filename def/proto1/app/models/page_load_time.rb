@@ -4,7 +4,8 @@ class PageLoadTime < ActiveRecord::Base
 
 
   # This gets called when a record is saved
-  def validate
+  validate :validate_instance
+  def validate_instance
     # Make sure fields aren't blank
     [:url, :remote_ip, :user_agent, :when_recorded, :load_time].each do |field|
        errors.add(field, 'can not be blank') if self.send(field.to_s).blank?
@@ -174,8 +175,7 @@ class PageLoadTime < ActiveRecord::Base
   # get the unique values of one column in the table
   def self.unique_values(column_name)
 
-    records = PageLoadTime.find(:all, :select => "distinct(#{column_name})",
-        :order=>"#{column_name}")
+    records = PageLoadTime.select(column_name).distinct.order(column_name)
 
     records.map {|rec| rec.send(column_name)}
 

@@ -228,7 +228,7 @@ Def.PHRManagement = {
       },
       asynchronous: false ,
       onSuccess: function(transport) {
-        var formNames = eval('(' + transport.responseText + ')') ;
+        var formNames = JSON.parse(transport.responseText);
         if (formNames.length > 0) {
           var msg = "<center>You have pending changes that have not been saved " +
                     "or cancelled.<br><br>These changes are from your last " +
@@ -304,7 +304,7 @@ Def.PHRManagement = {
       },
       asynchronous: true ,
       onSuccess: function(transport) {
-        var formData = eval('(' + transport.responseText + ')') ;
+        var formData = JSON.parse(transport.responseText);
         if (formData && formData.length > 0) {
           Def.DataModel.setup(formData, false, null, false) ;
           Def.Rules.runFormRules();
@@ -384,7 +384,7 @@ Def.PHRManagement = {
 //          },
 //          asynchronous: true ,
 //          onSuccess: function(transport) {
-//            var ranOK = eval('(' + transport.responseText + ')') ;
+//            var ranOK = JSON.parse(transport.responseText) ;
 //            if (!ranOK) {
 //              alert('Error on clear_temp_profile_id, check server log') ;
 //              Def.endWaitState(false);
@@ -442,10 +442,10 @@ Def.PHRManagement = {
       action_conditions['action_C_1'] = '1' ;
     if (action_conditions['action_C_1'] == '1')
       Def.doSave(button, false, action_conditions,
-                 "Def.PHRManagement.registrationEditCleanup(true);") ;
+                 function(){Def.PHRManagement.registrationEditCleanup(true);}) ;
     else
      Def.doSave(button, true, action_conditions,
-               "Def.PHRManagement.registrationEditCleanup(true);") ;
+               function(){Def.PHRManagement.registrationEditCleanup(true);}) ;
   } ,
 
 

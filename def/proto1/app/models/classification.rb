@@ -78,18 +78,22 @@ class Classification < ActiveRecord::Base
   end
 
 
-  def validate
+  # We used to be able to define a "validate" method that would get called.
+  # That now causes a problem, so I am renaming them to "validate_instance" and
+  # registering that with the built-in "validate" method.
+  validate :validate_instance
+  def validate_instance
     # Class should have list source (except for the root class)
     if !is_root && list_description_id.blank?
       class_name_str = class_name.blank? ? "current class" : class_name
-      errors[:base]=("List source (i.e. List Field Name)"+
+      errors.add(:base, "List source (i.e. List Field Name)"+
                          " for class #{class_name_str} is missing")
     end
 
     # List source should not be changed when it has class item(s)
     if changed.include?("list_description_id") &&  data_classes.size > 0 &&
        !list_description_id.blank?
-      errors[:base]=(
+      errors.add(:base,
         "Cannot modify list source (i.e. List Field Name)"+
         " because it's being used by some class item")
     end
@@ -102,10 +106,10 @@ class Classification < ActiveRecord::Base
     class_code_err_msg = errors[:class_code]
     if !class_code_err_msg.nil?
       new_code = Classification.generate_unique_class_code(p_id)
-      errors[:base]=( " The new unique class code available is #{new_code}")
+      errors.add(:base,  " The new unique class code available is #{new_code}")
       if !new_record?
         ori_code = changes["class_code"][0]
-        errors[:base]=(" The original class code is #{ori_code}.")
+        errors.add(:base, " The original class code is #{ori_code}.")
       end
     end
   end

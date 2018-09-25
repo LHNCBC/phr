@@ -1,13 +1,13 @@
 class InstallationChange < ActiveRecord::Base
   # The installation mode name for the alternate installation
-  INSTALLATION_NAME_ALTERNATE = 'alternate'
+  INSTALLATION_NAME_ALTERNATE = 'TBD - alternate'
   # The installation display name for an alternate installation
   INSTALLATION_DISPNAME_ALTERNATE = 'TBD - Alternate Installation name'
 
   # The installation mode name for the default mode 
   INSTALLATION_NAME_DEFAULT = 'default'
   # The installation display name for the default mode 
-  INSTALLATION_DISPNAME_DEFAULT = 'TBD - Your organization name'
+  INSTALLATION_DISPNAME_DEFAULT = 'TBD - YOUR PHR NAME'
 
   # The path to the file containing the name of the current installation mode.
   INSTALLATION_MODE_FILE = File.expand_path(
@@ -50,8 +50,8 @@ class InstallationChange < ActiveRecord::Base
   # Returns true if the system is in the default installation mode (i.e.
   # not in the alternate mode, but the default mode.)
   def self.in_default_mode?
-    InstallationChange.count(:conditions=>{
-        :installation=>INSTALLATION_NAME_DEFAULT}) == 0
+    InstallationChange.where(
+        :installation=>INSTALLATION_NAME_DEFAULT).count == 0
   end
 
 
@@ -88,7 +88,7 @@ class InstallationChange < ActiveRecord::Base
     end
 
     val = value
-    if (rec.send(column_name).class == Fixnum)
+    if (rec.send(column_name).class == Integer)
       val = val.to_i
     end
     rec.send(column_name+'=', val)

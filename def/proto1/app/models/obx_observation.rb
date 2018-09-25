@@ -14,7 +14,8 @@ class ObxObservation < ActiveRecord::Base
   alias_attribute :obx6_1_unit_C, :unit_code
 
   # Validation method.  (Validates things needed for the basic mode.)
-  def validate
+  validate :validate_instance
+  def validate_instance
     # If the unit code changed, use that coded value set the range data, unless
     # the user also changed the range.
     range_changed = obx7_reference_ranges_changed?
@@ -219,7 +220,7 @@ class ObxObservation < ActiveRecord::Base
   # Override the default ignored_columns methods in user_data.rb
   # For Obx records with no test values, they are treated as empty records,
   # thus are not saved.
-  def self.ignored_columns
+  def self.phr_ignored_columns
     column_names - ['obx5_value','obx5_1_value_if_coded']
   end
 end

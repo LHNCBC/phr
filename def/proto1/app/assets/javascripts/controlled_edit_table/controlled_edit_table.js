@@ -663,7 +663,7 @@ var instanceMembers = {
     this.tableInfo_ =
       this.cetClass_.ceTableData_[targetField];
 
-    if (Def.accessLevel_ !== Def.READ_ONLY_ACCESS)
+    if (Def.formEditability_ !== Def.FORM_READ_ONLY_EDITABILITY)
       this.buildContextMenu(fieldGroupID);
 
     // Store a reference to this table on the field header node.

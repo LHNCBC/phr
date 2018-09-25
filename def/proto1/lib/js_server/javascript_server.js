@@ -8,10 +8,10 @@ Object.extend(global, prototype);
 
 // Name of the configuration file of the JavaScript Server
 var configFile = "./config.json";
-var configs = require(configFile);  
+var configs = require(configFile);
 
 /**
-* Lower the privilleges of node process to webserv for security concern 
+* Lower the privileges of node process to webserv for security concern
 */
 var process_group = configs.gid;
 var process_user = configs.uid;
@@ -26,24 +26,24 @@ if (process_user) {
 
 /**
  * List of variables needed for this JavaScript server:
- * 
+ *
  * 1) allowedHost: the host of any acceptable requests
  */
-var allowedHost = "localhost"; 
+var allowedHost = "localhost";
 
 /**
  * Variables retrieved from the JavaScript server configuration file (see the
  * variable configFile)
- * 
+ *
  * 1) hostname: host name of the JavaScript server
  * 2) port: port number of the JavaScript server
  * 3) urlPath: path of the uri for retrieving reminders from the JavaScript server
  */
-var urlParts = url.parse(configs.uri);   
+var urlParts = url.parse(configs.uri);
 var hostname = urlParts.hostname
    ,port = urlParts.port
    ,urlPath = urlParts.path;
-   
+
 
 /**
  * Creates a JavaScript server
@@ -53,33 +53,33 @@ http.createServer( function(req, res){
     // Only accept requests from specified host
     var reqHost = req.headers.host.split(":")[0];
     if ( !reqHost || reqHost != allowedHost)
-      throw "This request:[" + req.headers.host + req.url + "] is not allowed";
+      throw "This request is not allowed";
     var startTotal = new Date().getTime();
     // Only accept POST request
     if (req.method == 'POST') {
       console.log("[200] " + req.method + " to " + req.url);
-      var body = "";    
+      var body = "";
       req.on('data', function(chunk) {
         body += chunk;
       });
-    
+
       req.on('end', function() {
         var startParse = new Date().getTime();
         var data = qs.parse(body);
         var js_files = data.js_files;
         var profiles = data.profiles;
         // eval() won't work when the returned object is a Hash. But it works
-        // okay with an Array 
-        profiles = eval(profiles)[0]; 
+        // okay with an Array
+        profiles = JSON.parse(profiles)[0];
         var pageView = data.page_view;
         var debug = data.debug;
         var durationParse = (new Date().getTime() - startParse);
-        
+
         /////////////////////////////////////////////////////
         // Loads Javascript files including the generated one
         var startLib = new Date().getTime();
-        // The following two lines are used to replace the original application.js 
-        // file as it contains too much un-related codes and dependents on 
+        // The following two lines are used to replace the original application.js
+        // file as it contains too much un-related codes and dependents on
         // soundmanager2.js, and effects.js files
         Def = {};
         console.log("The page view is: " + pageView);
@@ -109,8 +109,8 @@ http.createServer( function(req, res){
         console.log("Loading external lib took " + durationLib  + " ms");
         // End of loading external js libs
         /////////////////////////////////////////////////////
-      
-        // Generates reminders  
+
+        // Generates reminders
         var rtn = '';
         if (profiles) {
           var rs = {};
@@ -120,12 +120,12 @@ http.createServer( function(req, res){
             // Loads Def.DataModel.taffy_db_ so that it can be used by the method
             // Def.DataModel.searchRecord used for running fetch rules
             var startT = new Date().getTime();
-            Def.DataModel.setupTaffyDb(dataTable); 
+            Def.DataModel.setupTaffyDb(dataTable);
             Def.DataModel.initialized_ = true;
             var durationTaffy = (new Date().getTime() - startT);
 
             var startR = new Date().getTime();
-            // Specifies non DOM environment so that we can get the reminders from 
+            // Specifies non DOM environment so that we can get the reminders from
             // Def.Rules.messageManager
             Def.Rules.nonDOM_ = true;
             Def.Rules.runDataRules();
@@ -154,15 +154,15 @@ http.createServer( function(req, res){
             rs[profile_key] = [rtn, creationDate, debugStr];
           }
           // Directly convert a stringified json hash back to object using
-          // JSON.parse not working, but it works okay with any stringified 
-          // array 
+          // JSON.parse not working, but it works okay with any stringified
+          // array
           rtn = JSON.stringify([rs]);
         }
         else {
           rtn = "User data is missing."
         }
         // Sends back the response to browser
-        res.end(rtn);    
+        res.end(rtn);
       });
     } else {
       console.log("[405] " + req.method + " to " + req.url);
@@ -172,11 +172,11 @@ http.createServer( function(req, res){
       res.end('<html><head><title>405 - Method not supported</title></head>'+
         '<body><h1>Method not supported.</h1></body></html>');
     }
-  } catch (e) { 
+  } catch (e) {
     console.log(e);
     res.end(e);
-  } 
+  }
 }).listen(port, hostname, urlPath);
 console.log('Server running at http://'+ hostname +':' + port +  urlPath);
 // end of creating a JavaScript server
-  
+

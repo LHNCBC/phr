@@ -822,11 +822,11 @@ function createPopupWithText(optsString, title, text, windowName, topOpt) {
   try {
     // If the text is a JSON string, then parse it to get the real text 
     // and the script assets. The script contains profile id information
-    var textOpts = text.evalJSON();    
+    var textOpts = JSON.parse(text);
     text = textOpts["text"];
     pdHtml += textOpts["script"]; 
   } catch(e) {
-    // If the text is not a JSON string, then text.evalJSON() will throw
+    // If the text is not a JSON string, then JSON.parse(text) will throw
     // exception. Neglect the exception and continue 
   }
 

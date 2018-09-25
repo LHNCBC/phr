@@ -1,9 +1,7 @@
 # A class for managing feedback from the user.  This
 # handles both the "PHR support" and "feedback" forms.
-require 'rack/recaptcha'
 class FeedbackController < ApplicationController
   helper FormHelper
-  include Rack::Recaptcha::Helpers
 
   # Displays a form for entering feedback
   def new
@@ -32,11 +30,11 @@ class FeedbackController < ApplicationController
         # for the email to be sent.
         Thread.new do
           DefMailer.contact_support(PHR_SUPPORT_EMAIL, template_data,
-            request.host).deliver
+            request.host).deliver_now
         end
       end
       if request.xhr?
-        render :text=>'' # i.e. no errors
+        render :plain=>'' # i.e. no errors
       else
         flash[:notice] = "Thank you for your feedback."
         is_contact_form = params[:type]=='contact_us'
@@ -49,7 +47,7 @@ class FeedbackController < ApplicationController
     else
       @page_errors << 'You forgot to enter your comments.'
       if request.xhr?
-        render :text=>@page_errors.join('  ')
+        render :plain=>@page_errors.join('  ')
       else
         render_requested_form
       end

@@ -1,8 +1,20 @@
 require 'tempfile'
+require "uglifier"
+require "digest"
+require 'fileutils'
+
+# Manages the creation and path information for our generated JavaScript files
 class JsGenerator
-  # Generates JavaScript file using the named specified by the constant 
-  # REMINDER_RULE_DATA_JS_FILE. The file should contain 
-  # rule data used for creating health reminders only. When a data rule was 
+  # True if we are using the minimized, fingerprinted assets under
+  # public/assets.
+  @@using_production_assets = (Rails.env != 'development')
+  @@production_asset_dir = Rails.root.join('public' +
+     Rails.application.config.assets.prefix) # prefix starts with /
+  @@development_js_dir = Rails.root.join('app/assets/javascripts')
+
+  # Generates JavaScript file using the named specified by the constant
+  # REMINDER_RULE_DATA_JS_FILE. The file should contain
+  # rule data used for creating health reminders only. When a data rule was
   # created/edited/deleted, this file should be cleared using the 'remove' method
   # (see rule_controller.rb#rule_change_callback)
   # Parameters:
@@ -14,25 +26,36 @@ class JsGenerator
     self.generate_with_lock(temp_file, basename)
     temp_file.close
   end
-  
-    
-  # Returns the full path of the inputting asset file based on different modes
-  # Parametes:
-  # * file_name name of a Javascript asset file 
+
+
+  # Returns the full path of an asset file, or nil if we are using production assets
+  # but a precompiled version is not found.  (For development assets, it is
+  # assumed that the file exists.)
+  # This method assumes that there is only one precompiled version available
+  # (which should be fine for our purposes, since we delete the old ones when
+  # there is a change).
+  #
+  # Parameters:
+  # * file_name - name of a Javascript asset file
   def self.get_asset_fullpath(file_name)
-    if Rails.application.config.assets.debug
-      env = Rails.application.assets
-      rs = env.find_asset(file_name)
-      rs && rs.pathname.to_s
+    rtn = nil
+    if @@using_production_assets
+      file_wo_ext = min_name = File.basename(file_name, '.js')
+      cwd = Dir.pwd
+      FileUtils.mkdir_p(@@production_asset_dir, {mode: 0755})
+      Dir.chdir @@production_asset_dir
+      matches = Dir.glob(file_wo_ext+'-'+('?'*32)+'.js')
+      file_name = matches && matches.length >= 1 && matches[0]
+      rtn = File.join(@@production_asset_dir, file_name) if file_name
+      Dir.chdir cwd
     else
-      manifest = Rails.application.asset_manifest
-      rs = manifest.assets[file_name]
-      rs && File.join(manifest.dir, rs)
+      rtn = File.join(@@development_js_dir, file_name)
     end
+    return rtn
   end
-  
-  
-  # Returns a tempfile containing rule data written in Javascript code. This file 
+
+
+  # Returns a tempfile containing rule data written in Javascript code. This file
   # will be used for creating health reminders only.
   def self.reminder_rule_data_tempfile
     # Loads the latest rule definition JavaScript codes into the generated files
@@ -58,39 +81,50 @@ class JsGenerator
   # * filename the name of the asset file needs to be removed
   def self.remove(filename)
     # remove assets in app/assets/javascripts directory
-    if asset = Rails.application.assets[filename]
-      rjs = asset.pathname.to_s
-      system("rm #{rjs}") if rjs
-    end
-    
+    path = Rails.root.join('app/assets/javascripts', filename)
+    File.delete(path) if File.exist?(path)
+
     # remove assets in public/assets directory
-    if !Rails.application.config.assets.debug
-        manifest = Rails.application.asset_manifest(true)
-        digested_file = manifest.assets[REMINDER_RULE_DATA_JS_FILE]
-        manifest.remove(digested_file) if digested_file
-        self.refresh_cached_assets("action_view")
-    end
+    remove_production(filename)
   end
 
+
+  # Removes the asset from the public/assets folder, if it exists
+  # Parameters:
+  # * filename the development name of the asset file needs to be removed
+  def self.remove_production(filename)
+    if @@using_production_assets
+      path = get_asset_fullpath(filename)
+      File.delete(path) if path and File.exist?(path)
+    end
+  end
 
   # Generates the specified JavaScript file based on the system mode
-  # 
+  #
   # Parameters:
-  # * temp_file - the temporary file which holds the content of the file to be 
+  # * temp_file - the temporary file which holds the content of the file to be
   #   generated
   # * basename - Base name of the file to be generated
+  # Returns - The result of generate_wo_lock
   def self.generate_with_lock(temp_file, basename)
     lockfile = AssetLockFile.convert_to_lockfile(basename)
-    AssetLockFile.run_with_lock(lockfile) do 
+    filename = nil
+    AssetLockFile.run_with_lock(lockfile) do
       # dynamically generates js file and compress it if in production mode
-      self.generate_wo_lock(temp_file,  basename)
-    end       
+      filename = self.generate_wo_lock(temp_file,  basename)
+    end
   end
 
-  
+
+  # Assumes that a lock file has already been created, and moves the file at
+  # temp_file into its place with the name provided in the "basename" parameter.
+  #
   # Parameters:
   # * temp_file a temp file
   # * basename the base name of the generated js file
+  # Returns:  nil for development mode; otherwise it returns the filename of the
+  #  the generated file.  This will include a fingerprint when the assets are in
+  #  production mode.
   def self.generate_wo_lock(temp_file, basename)
     generated_js = File.join(JS_ASSET, basename)
     system('mv', temp_file.path, generated_js)
@@ -98,44 +132,25 @@ class JsGenerator
     Rails.logger.debug("NewlyGeneratedFile: #{generated_js}")
     # set correct permission for the source asset file (non-compiled)
     File.chmod(0644, generated_js)
-    if !Rails.application.config.assets.debug
-      manifest = Rails.application.asset_manifest(true)
-      manifest.compile([basename])
-      self.refresh_cached_assets("action_view")
-      # set the correct permission for the compiled asset file
-      File.chmod(0644, self.get_asset_fullpath(basename))
+    filename = basename
+    if @@using_production_assets
+      remove_production(basename) # remove the old file
+      # Create minimized, fingerprinted file, not using Sprockets, which caches
+      # things in places not easy to reset.
+      minified_content = Uglifier.compile(File.read(generated_js))
+      fingerprint = Digest::MD5.hexdigest(minified_content)
+      filename = File.basename(basename, '.js') + '-' + fingerprint + '.js'
+      if (!File.exists?(@@production_asset_dir))
+        FileUtils.mkdir_p(@@production_asset_dir, {mode: 0755})
+      end
+      min_path = File.join(@@production_asset_dir, filename)
+      f = File.new(min_path, "w")
+      f.syswrite(minified_content)
+      f.close
+      File.chmod(0644, min_path)
     end
-  end
-
-
-  # A method for refreshing cached assets in different places
-  # Parameters:
-  # * scope the place where the assets were cached
-  def self.refresh_cached_assets(scope)
-    case scope
-      when "rails_env"
-        Rails.application.refresh_cached_assets
-      when "action_view"
-        env = Rails.application.assets
-        manifest_path = ActionView::Base.new.assets_manifest.dir
-        ActionView::Base.instance_eval do
-          # Need to fresh the assets_environment if the environment was cached in Sprockets::Index
-          if Rails.application.config.assets.compile
-            if Rails.application.assets.is_a? Sprockets::Index
-              self.assets_environment = env
-              self.assets_manifest    = Sprockets::Manifest.new(env, manifest_path)
-            end
-            # Replacing the existing static assets
-          else
-            self.assets_manifest = Sprockets::Manifest.new(manifest_path)
-          end
-        end
-      else
-        raise "Unknown input parameter for method JsGenerator.refresh_cached_assets"
-    end
+    return filename
   end
 
 
 end
-
-

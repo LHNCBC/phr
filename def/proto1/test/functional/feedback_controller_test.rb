@@ -16,13 +16,13 @@ class FeedbackControllerTest < ActionController::TestCase
     page_views.each do |page_view|
       # Feedback form
       session_data = {:cur_ip=>'127.0.0.1'}
-      get :new, {}, session_data
+      get :new, params: {}, session: session_data
       assert_response :success, page_view
       assert @response.body.index('action="'+feedback_path)
       assert !@response.body.index('action="'+contact_us_path)
 
       # Contact form
-      get :new, {:type=>'contact_us'}, session_data
+      get :new, params: {:type=>'contact_us'}, session: session_data
       assert_response :success, page_view
       assert @response.body.index('action="'+contact_us_path)
       assert !@response.body.index('action="'+feedback_path)
@@ -46,9 +46,9 @@ class FeedbackControllerTest < ActionController::TestCase
         form_data = {:fe=>{:contact_comment_1=>''}, :type=>type}
         # Use Ajax only for the standard mode's feedback page
         if page_view == 'default' && type == 'feedback'
-          xhr :post, :create, form_data, session_data
+          post :create, xhr: true, params: form_data, session: session_data
         else
-          post :create, form_data, session_data
+          post :create, params: form_data, session: session_data
         end
         err_msg = "#{page_view}, #{form}"
         assert_response :success, err_msg
@@ -59,10 +59,10 @@ class FeedbackControllerTest < ActionController::TestCase
       [:contact_comment_1, :most_liked_1, :least_liked_1].each do |field|
         form_data = {:fe=>{field=>'feedback_controller_test.rb, test_create'}}
         if page_view == 'default'
-          xhr :post, :create, form_data, session_data
+          post :create, xhr: true, params: form_data, session: session_data
           assert @response.body=''
         else
-          post :create, form_data, session_data
+          post :create, params: form_data, session: session_data
           err_msg = "#{page_view}, #{field}"
           assert_redirected_to phr_records_path, err_msg
           assert !error_message_present, err_msg
@@ -73,7 +73,7 @@ class FeedbackControllerTest < ActionController::TestCase
       # because it is not in a popup.
       form_data = {:fe=>{:contact_comment_1=>'feedback_controller_test.rb, test_create'},
         :type=>'contact_us'}
-      post :create, form_data, session_data
+      post :create, params: form_data, session: session_data
       assert !error_message_present, page_view
       assert_redirected_to '/'
     end

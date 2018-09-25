@@ -13,7 +13,7 @@ if (! $?DEF_DIR) then
   setenv DEF_DIR ~/def
 endif
 
-set path = ($DEF_DIR/bin /proj/def/bin /depot/bin /bin /usr/bin /usr/local/bin /usr/sbin /sbin /etc .)
+set path = ($DEF_DIR/bin /proj/def/bin /depot/bin /bin /usr/local/bin /usr/bin /usr/sbin /sbin /etc .)
 #setenv EDITOR /usr/bin/vim # no - should be set by each developer separately.
 #setenv MANPATH /usr/man
 setenv PRINTER csbcolorlaser

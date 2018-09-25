@@ -92,8 +92,7 @@ class LoincItem < ActiveRecord::Base
   def units_and_codes_and_ranges
     rtn = nil
     if !loinc_num.blank?
-      list = LoincUnit.find(:all, :conditions => ["loinc_num=?",loinc_num],
-        :order=>"id ASC")
+      list = LoincUnit.where(loinc_num: loinc_num).order('id ASC')
       if list.nil? || list.length <=0
         rtn = nil
       else
@@ -114,8 +113,7 @@ class LoincItem < ActiveRecord::Base
   def answers_and_codes
     rtn = nil
     if !answerlist_id.blank?
-      list = ListAnswer.find(:all, :conditions => ["answer_list_id=?",answerlist_id],
-        :order=>"sequence_num ASC")
+      list = ListAnswer.where(answer_list_id: answerlist_id).order('sequence_num ASC')
       if list.nil? || list.length <=0
         rtn = nil
       else
@@ -233,8 +231,7 @@ class LoincItem < ActiveRecord::Base
   #               
   def self.find_in_order(loinc_nums)
     loinc_num_to_rec = {}
-    LoincItem.find(:all,
-          :conditions=>["loinc_num in (?)", loinc_nums]).each {|lp|
+    LoincItem.where(loinc_num: loinc_nums).each {|lp|
       loinc_num_to_rec[lp.loinc_num] = lp
     }
     rtn = []

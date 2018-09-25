@@ -5,10 +5,6 @@
 if PUBLIC_SYSTEM || !HOSTS_WITHOUT_LOG_FILTER.include?(HOST_NAME)
   # Disable logging of parameters on the public machines
   Rails.application.config.filter_parameters << lambda do |k , v|
-    if v.duplicable?    
-      def v.inspect
-        "[FILTERED]"
-      end
-    end
+    v.is_a?(String) && v.replace("[FILTERED]")
   end
 end

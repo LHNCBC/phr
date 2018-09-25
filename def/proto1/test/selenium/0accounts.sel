@@ -114,18 +114,18 @@
 #| fireEvent | fe_pin_1 | change |
 #| fireEvent | fe_pin_1 | blur |
 
-| fireEvent | recaptcha_response_field | focus |
-# Delete the check for the focusedField_ being recorded as the recaptcha_response_field.
+| fireEvent | g-recaptcha-response | focus |
+# Delete the check for the focusedField_ being recorded as the g-recaptcha-response.
 # It's not working, and per the note from Paul on sha b68f158a, there's a problem
 # with it in the phr_home_page.sel test also.  lm 4/21/14
-#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'recaptcha_response_field'} | true |
-| type |  recaptcha_response_field | correct_response |
-| fireEvent | recaptcha_response_field | change |
-| fireEvent | recaptcha_response_field | blur |
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'g-recaptcha-response'} | true |
+| type |  g-recaptcha-response | correct_response |
+| fireEvent | g-recaptcha-response | change |
+| fireEvent | g-recaptcha-response | blur |
 
 # Save the form
 | click | fe_signup_1 |
-| waitForVisible | savingNotice |
+#| waitForVisible | savingNotice |
 | waitForExpression | javascript{testWindow_.location.href} | */accounts/new |
 | waitForExpression | javascript{testWindow_.Def.pageLoadComplete_} | true |
 
@@ -134,7 +134,7 @@
 
 # Before focusing fe_user_name_1, wait for the recaptcha plugin to focus
 # its field. Nope - per above 4/21/14
-#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_} | recaptcha_response_field |
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_} | g-recaptcha-response |
 | waitForVisible | fe_user_name_1 |
 | fireEvent | fe_user_name_1 | focus |
 | storeExpression | javascript{'bypass_activation_' +new Date().getTime()} | var_user_name |
@@ -167,12 +167,12 @@
 | fireEvent | fe_sec_email_1 | change |
 | fireEvent | fe_sec_email_1 | blur |
 
-| fireEvent | recaptcha_response_field | focus |
+| fireEvent | g-recaptcha-response | focus |
 # Commented out. Now the unregister of all focus event observers here, makes this fail
-#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'recaptcha_response_field'} | true |
-| type |  recaptcha_response_field | correct_response |
-| fireEvent | recaptcha_response_field | change |
-| fireEvent | recaptcha_response_field | blur |
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'g-recaptcha-response'} | true |
+| type |  g-recaptcha-response | correct_response |
+| fireEvent | g-recaptcha-response | change |
+| fireEvent | g-recaptcha-response | blur |
 
 # Save the form
 | click | fe_signup_1 |
@@ -222,11 +222,11 @@
 | fireEvent | fe_user_name_1 | change |
 | fireEvent | fe_user_name_1 | blur |
 
-| fireEvent | recaptcha_response_field | focus |
-#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'recaptcha_response_field'} | true |
-| type |  recaptcha_response_field | correct_response |
-| fireEvent | recaptcha_response_field | change |
-| fireEvent | recaptcha_response_field | blur |
+| fireEvent | g-recaptcha-response | focus |
+#| waitForExpression | javascript{testWindow_.Def.Navigation.focusedField_ == 'g-recaptcha-response'} | true |
+| type |  g-recaptcha-response | correct_response |
+| fireEvent | g-recaptcha-response | change |
+| fireEvent | g-recaptcha-response | blur |
 
 | click | fe_submit_1 |
 | waitForExpression | javascript{testWindow_.location.href} | */accounts/forgot_password |

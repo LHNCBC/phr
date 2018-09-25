@@ -2910,7 +2910,7 @@ var dataRuleFunctions = {
 
     function actOnSuccess(response){
       Def.endWaitState(false) ;
-      var prefetched_obx = eval('(' + response.responseText + ')');
+      var prefetched_obx = JSON.parse(response.responseText);
       var ruleToValues = prefetched_obx[0];
       var completeRules = prefetched_obx[1];
 

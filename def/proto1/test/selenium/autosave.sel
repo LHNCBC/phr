@@ -442,7 +442,7 @@
 
 # reload the page
 | waitForExpression | javascript{testWindow_.location.reload(); true} | true |
-| waitForVisible | loading_msg |
+#| waitForVisible | loading_msg |
 | waitForExpression | javascript{testWindow_.location.href} | *;edit |
 | waitForTextPresent | Loaded in |
 
@@ -621,15 +621,32 @@
 | fireEvent | fe_when_started_2 | blur |
 | waitForValue | fe_when_started_2 | 1984 |
 
-| click | fe_save_top_1_1 |
+# click on the close button first, to make sure the confirmation box is
+# displayed.  Then use the Save & Close button on that dialog to save the
+# changes.
+# Set the Def.inTestMode_ flag to false so that the confirmation box will
+# display.  Normally it doesn't in test mode.
+| waitForExpression | javascript{testWindow_.Def.inTestMode_= false; true} | true |
+| click | fe_close_top_1_1 |
+| waitForVisible | saveCloseConfirmBtn |
+| click | saveCloseConfirmBtn |
 | waitForVisible | savingNotice |
 | waitForNotVisible | savingNotice |
 
-# reload the page
-| waitForExpression | javascript{testWindow_.location.reload(); true} | true |
+| waitForExpression | javascript{testWindow_.location.href} | */phr_home |
+| waitForVisible | wedgie_1 |
+
+| click | wedgie_1 |
+| waitForExpression | javascript{testWindow_.$('wedgie_1').hasClassName('sprite_icons-phr-hide-all-orange')} | true |
+| waitForVisible | links_cell_1_1 |
+| click | show_phr_form_1 |
+
 | waitForVisible | loading_msg |
 | waitForExpression | javascript{testWindow_.location.href} | *;edit |
 | waitForTextPresent | Loaded in |
+
+# Reset the test mode flag
+| waitForExpression | javascript{testWindow_.Def.inTestMode_ = true; true} | true |
 
 # Open up the form again
 | waitForVisible | fe_expcol_all |

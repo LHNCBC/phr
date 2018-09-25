@@ -22,8 +22,8 @@ class HelperTestCase < Test::Unit::TestCase
   def setup
     super
 
-    @request    = ActionController::TestRequest.new
     @controller = StubController.new
+    @request    = ActionController::TestRequest.create(@controller.class)
     @controller.request = @request
 
     # Fake url rewriter so we can test url_for

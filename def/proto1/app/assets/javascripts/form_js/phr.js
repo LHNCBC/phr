@@ -167,7 +167,7 @@ Def.PHR = {
         try {
           // the 1st one is health reminders number, and the 2nd is due date
           // the process of the health reminders is done on client side for now.
-          var msg_numbers = eval('(' + t.responseText + ')');
+          var msg_numbers = JSON.parse(t.responseText);
           // find the two reminder buttons and attach a div after each button
           var date_reminder_button = $('fe_date_reminder_1_1');
           var date_reminder_num = msg_numbers[1];
@@ -206,7 +206,7 @@ Def.PHR = {
     function successAction(response){
       var anchor = $(Def.reminderButtonID_);
       var mm = anchor.messageManager;
-      mm.reviewedMessageKeys_ = eval('(' + response.responseText + ')');
+      mm.reviewedMessageKeys_ = JSON.parse(response.responseText);
       // verify the review status records in case of user data was updated not
       // through PHR form
       // update the unreviewed reminder number display on PHR form
@@ -271,7 +271,7 @@ Def.print = function() {
 // Set up a call to hideInactiveDataRows after the data has been loaded.
 jQuery.connect(Def.DataModel, 'setup', Def.PHR, 'setInactiveDataRowVisibility');
 // set classes for stripes on tests - if they're on the form
-if (Def.accessLevel_ < Def.READ_ONLY_ACCESS) {
+if (Def.formEditability_ !== Def.FORM_READ_ONLY_EDITABILITY) {
   jQuery.connect(Def.DataModel, 'setup', TestPanel, 'setStripeCssClass');
   // Add a left-click helper on the panel container element
   jQuery.connect(Def.DataModel, 'setup', TestPanel,'addLeftClickHelper');

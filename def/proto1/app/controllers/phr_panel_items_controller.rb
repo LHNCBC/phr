@@ -1,5 +1,5 @@
 class PhrPanelItemsController < BasicModeTableController
-  before_filter :load_obr, :except=>[:index]
+  before_action :load_obr, :except=>[:index]
 
   # A map from database record fields to form field names.
   DB_TO_FORM_FIELDS = {'obx5_value'=>'tp_test_value',

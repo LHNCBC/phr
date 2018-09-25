@@ -34,7 +34,7 @@
     // a call back function
     function showResponse(response) {
       // See Core JavaScript documentation on eval() function
-      var chartDataArray = eval('(' + response.responseText + ')');
+      var chartDataArray = JSON.parse(response.responseText);
       TestPanel.Flot.showPlotChart(chartDataArray,
           chartName, false, false, 'chart');
     }

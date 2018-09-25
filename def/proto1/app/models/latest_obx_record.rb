@@ -13,28 +13,18 @@ class LatestObxRecord < ActiveRecord::Base
       if profile_id.blank?
         # clean up the table first
         LatestObxRecord.delete_all
-        profiles = Profile.find(:all)
+        profiles = Profile.all
         # deal with each profile
         profiles.each do |profile|
-          loinc_nums = ObxObservation.find(:all,
-              :select => "distinct loinc_num",
-              :conditions => ["profile_id=? and latest=? and obx5_value is not null", profile.id, true]
-          )
+          loinc_nums = ObxObservation.where("profile_id=? and latest=? and obx5_value is not null", profile.id, true).
+              select(:loinc_num).distinct
           loinc_nums.each do |loinc_num|
             # first
-            first_obx_rec = ObxObservation.find(:first,
-                :conditions => ["profile_id=? and latest=? and loinc_num=?",
-                  profile.id, true, loinc_num.loinc_num],
-                :order => "test_date_ET ASC",
-                :limit => 1
-            )
+            first_obx_rec = ObxObservation.where("profile_id=? and latest=? and loinc_num=?", profile.id, true, loinc_num.loinc_num).
+                order('test_date_ET ASC').first
             # last
-            last_obx_rec = ObxObservation.find(:first,
-                :conditions => ["profile_id=? and latest=? and loinc_num=?",
-                  profile.id, true, loinc_num.loinc_num],
-                :order => "test_date_ET DESC",
-                :limit => 1
-            )
+            last_obx_rec  = ObxObservation.where("profile_id=? and latest=? and loinc_num=?", profile.id, true, loinc_num.loinc_num).
+                order('test_date_ET DESC').first
             LatestObxRecord.create!(
                 :profile_id => profile.id,
                 :loinc_num => loinc_num.loinc_num,
@@ -46,25 +36,15 @@ class LatestObxRecord < ActiveRecord::Base
       # update one profile's data
       else
         LatestObxRecord.delete_all(["profile_id=?", profile_id])
-        loinc_nums = ObxObservation.find(:all,
-            :select => "distinct loinc_num",
-            :conditions => ["profile_id=? and latest=? and obx5_value is not null", profile_id, true]
-        )
+        loinc_nums = ObxObservation.where("profile_id=? and latest=? and obx5_value is not null", profile_id, true).
+            select(:loinc_num).distinct
         loinc_nums.each do |loinc_num|
           # first
-          first_obx_rec = ObxObservation.find(:first,
-              :conditions => ["profile_id=? and latest=? and loinc_num=?",
-                profile_id, true, loinc_num.loinc_num],
-              :order => "test_date_ET ASC",
-              :limit => 1
-          )
+          first_obx_rec = ObxObservation.where("profile_id=? and latest=? and loinc_num=?", profile_id, true, loinc_num.loinc_num).
+              order('test_date_ET ASC').first
           # last
-          last_obx_rec = ObxObservation.find(:first,
-              :conditions => ["profile_id=? and latest=? and loinc_num=?",
-                profile_id, true, loinc_num.loinc_num],
-              :order => "test_date_ET DESC",
-              :limit => 1
-          )
+          last_obx_rec  = ObxObservation.where("profile_id=? and latest=? and loinc_num=?", profile_id, true, loinc_num.loinc_num).
+              order('test_date_ET DESC').first
           LatestObxRecord.create!(
               :profile_id => profile_id,
               :loinc_num => loinc_num.loinc_num,

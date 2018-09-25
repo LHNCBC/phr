@@ -23,8 +23,8 @@ class RuleControllerTest < ActionController::TestCase
     RuleAction.populate_actions_cache
 
 #    @controller = RuleController.new
-#    @request    = ActionController::TestRequest.new
-#    @response   = ActionController::TestResponse.new
+#    @request    = ActionController::TestRequest.create(@controller.class)
+#    @response   = ActionDispatch::TestResponse.new
     @request.env['HTTPS'] = 'on'  # Set the request to be SSL
     @user = users(:phr_admin)
 #    @phr_form_params = {:form_name => "PHR", :rendering_form => "edit_general_rule"}
@@ -32,7 +32,7 @@ class RuleControllerTest < ActionController::TestCase
   
   def test_show_rules
     # Confirm that you can get a rule summary page back successfully.
-    get :show_rules, {:form_name=>'PHR'},
+    get :show_rules, params: {:form_name=>'PHR'}, session:
       {:user_id=>users(:phr_admin).id}
     assert_response(:success)
   end
@@ -43,14 +43,14 @@ class RuleControllerTest < ActionController::TestCase
     # form
     params = default_params.merge({:form_name=>'data_rule_form', :id=>2})
     assert_raise(ActiveRecord::RecordNotFound) {
-      get :edit_rule, params, {:user_id=>users(:phr_admin).id}
+      get :edit_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     }
     
 #    copyDevelopmentTables
     
     # Confirm that you can edit a rule that is associated with the form.
     params = default_params.merge(:id=>8)
-    get :edit_rule, params, {:user_id=>users(:phr_admin).id}
+    get :edit_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_response(:success)
     
     # Check that the page is redirected following a successful save
@@ -59,7 +59,7 @@ class RuleControllerTest < ActionController::TestCase
     params[:fe] = {:rule_expression=>'age < 50 +2', :rule_name=>'hide_colon_header',
         :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations', :rule_action_id_1=>action_id}
-    put :edit_rule, params, {:user_id=>users(:phr_admin).id}
+    put :edit_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_redirected_to('/forms/PHR/rules')
     
     # Test for a bug in which the action fields are not edited but duplicated
@@ -73,7 +73,7 @@ class RuleControllerTest < ActionController::TestCase
         :rule_action_name_1=>'show', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations'}
 
-    put :edit_rule, params,{:user_id=>users(:phr_admin).id}
+    put :edit_rule, params: params, session:{:user_id=>users(:phr_admin).id}
     rule = Rule.find_by_name('hide_colon_header')
     assert_equal(2, rule.rule_actions.size)    
     assert_redirected_to('/forms/PHR/rules')
@@ -82,7 +82,7 @@ class RuleControllerTest < ActionController::TestCase
     params = default_params.merge(:id => 8)
     params[:fe]={:rule_expression=>'age < 50 +2', :rule_name=>'hide_colon_header',
         :rule_action_id_1=>action_id}
-    put :edit_rule, params, {:user_id=>users(:phr_admin).id}
+    put :edit_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     rule = Rule.find_by_name('hide_colon_header')
     assert_equal(1, rule.rule_actions.size)
     assert_redirected_to('/forms/PHR/rules')
@@ -91,10 +91,10 @@ class RuleControllerTest < ActionController::TestCase
     # Unfortunately, it does not seem possible to test this.  Test methods
     # are wrapped inside a transaction, and it seems that one can't rollback
     # a nested transaction.  In fact, the nested transaction has no effect.
-    #put :edit_rule, {:form_name=>'PHR', :id=>8,
+    #put :edit_rule, params: {:form_name=>'PHR', :id=>8,
     #  :fe=>{:rule_expression=>'age < 50 +3', :rule_name=>'hide_colon_header',
     #        :rule_action_1=>'hide', :rule_parameters_1=>'',
-    #        :rule_affected_field_1=>'another_field'}},
+    #        :rule_affected_field_1=>'another_field'}}, session:
     #  {:user_id=>users(:phr_admin).id}
     #assert_response(:success) # back to same page (with errors)
     #rule = Rule.find_by_name('hide_colon_header')      
@@ -106,10 +106,10 @@ class RuleControllerTest < ActionController::TestCase
 #    copyDevelopmentTables
 
     default_params = {:form_name=>'PHR', :rendering_form => "edit_general_rule",
-      :type => Rule::GENERAL_RULE
+      :type => Rule::GENERAL_RULE.to_s
     }
     # Check that a request for the blank new rule form returns successfully
-    get :new_rule, default_params, {:user_id=>users(:phr_admin).id}
+    get :new_rule, params: default_params, session: {:user_id=>users(:phr_admin).id}
     assert_response(:success)
   
     # Check that the page is redirected following a successful save
@@ -117,7 +117,7 @@ class RuleControllerTest < ActionController::TestCase
       :fe=>{:rule_expression=>'age < 50 +12', :rule_name=>'my_test_rule',
         :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations'})
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_redirected_to('/forms/PHR/rules')
     
     # Check that the rule was saved
@@ -131,7 +131,7 @@ class RuleControllerTest < ActionController::TestCase
       :fe=>{:rule_expression=>'age < 50 +3', :rule_name=>'my_test_rule',
         :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations'})
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_response(:success)  # not redirected
   end
 
@@ -141,7 +141,7 @@ class RuleControllerTest < ActionController::TestCase
 #    copyDevelopmentTables
 #
 #    # Check that a request for the blank new rule form returns successfully
-#    get :new_rule, {:form_name=>'PHR'}, {:user_id=>users(:phr_admin).id}
+#    get :new_rule, params: {:form_name=>'PHR'}, session: {:user_id=>users(:phr_admin).id}
 #    assert_response(:success)
 #
 #    @rule_expression = 'latest_from_form(blo_sybp, "blo_test_date")'
@@ -152,11 +152,11 @@ class RuleControllerTest < ActionController::TestCase
 #    @wrong_target_field= 'latest_from_form(wrong_target_field, "blo_test_date")'
 #
 #    # Check that the page is redirected following a successful save
-#    post :new_rule, {:form_name=>'PHR',
+#    post :new_rule, params: {:form_name=>'PHR',
 #      :fe=>{:rule_expression=> @rule_expression,
 #        :rule_name=> @rule_name,
 #        :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
-#        :affected_field_1=>'colon_header'}},
+#        :affected_field_1=>'colon_header'}}, session:
 #      {:user_id=>users(:phr_admin).id}
 #    assert_redirected_to('/forms/PHR/rules')
 #
@@ -211,11 +211,11 @@ class RuleControllerTest < ActionController::TestCase
     DatabaseMethod.copy_development_tables_to_test(
       ['loinc_items','loinc_panels','loinc_units'])
     default_params = {:form_name => "PHR", :rendering_form => "edit_general_rule",
-      :type => Rule::GENERAL_RULE
+      :type => Rule::GENERAL_RULE.to_s
     }
 
     # Check that a request for the blank new rule form returns successfully
-    get :new_rule, default_params, {:user_id=>users(:phr_admin).id}
+    get :new_rule, params: default_params, session: {:user_id=>users(:phr_admin).id}
     assert_response(:success)
     func_name = "getVal_loincFn"
     input_params  = '(8480-6, tp_test_value)'
@@ -232,7 +232,7 @@ class RuleControllerTest < ActionController::TestCase
         :rule_name=> rule_name,
         :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations'})
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
 
     assert_redirected_to('/forms/PHR/rules')
 
@@ -248,7 +248,7 @@ class RuleControllerTest < ActionController::TestCase
         :rule_name=>rule_name,
         :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations'})
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_response(:success)  # not redirected
 
     # Check that you can create a rule with the different name
@@ -259,7 +259,7 @@ class RuleControllerTest < ActionController::TestCase
         :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations'}
     )
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_redirected_to('/forms/PHR/rules')
 
     # Check that you can't create a rule with an unknown function name
@@ -270,7 +270,7 @@ class RuleControllerTest < ActionController::TestCase
         :rule_name=>rule_name_1,
         :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations'})
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     msg = "Rule expression  - "+
           "Target field #{unknown_func_name} does not exist on form 7"
     assert(@response.body.include?(msg))
@@ -283,7 +283,7 @@ class RuleControllerTest < ActionController::TestCase
         :rule_name=>rule_name_1,
         :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations'})
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_response(:success)  # not redirected
 
     # Check that you can't create a rule with a wrong loinc number
@@ -293,7 +293,7 @@ class RuleControllerTest < ActionController::TestCase
         :rule_name=>rule_name_1,
         :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
         :affected_field_1=>'immunizations'})
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_response(:success)  # not redirected
   end
   
@@ -302,9 +302,9 @@ class RuleControllerTest < ActionController::TestCase
 #    copyDevelopmentTables
 
     default_params = {:form_name=>'PHR', :rendering_form => "edit_case_rule",
-      :type=>Rule::CASE_RULE}
+      :type=>Rule::CASE_RULE.to_s}
     # Check that a request for the blank new rule form returns successfully
-    get :new_rule, default_params, {:user_id=>users(:phr_admin).id}
+    get :new_rule, params: default_params, session: {:user_id=>users(:phr_admin).id}
     assert_response(:success)
 
     # Check that the page is redirected following a successful save
@@ -320,7 +320,7 @@ class RuleControllerTest < ActionController::TestCase
         :rule_action_name_2_1=>'hide', :rule_action_parameters_2_1=>'',
         :affected_field_2_1=>'problems_header'
       })
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_redirected_to('/forms/PHR/rules')
 
     # Check that the rule was saved
@@ -343,7 +343,7 @@ class RuleControllerTest < ActionController::TestCase
         :computed_value_2=>'log(birth_date)',
         :rule_action_name_2_1=>'hide', :rule_action_parameters_2_1=>'',
         :affected_field_2_1=>'problems_header'})
-    post :new_rule, params, {:user_id=>users(:phr_admin).id}
+    post :new_rule, params: params, session: {:user_id=>users(:phr_admin).id}
     assert_response(:success)  # not redirected
   end # test_new_case_rule
 
@@ -358,7 +358,7 @@ class RuleControllerTest < ActionController::TestCase
 
     # Check the creation of a new rule with a rule_action are being audited
     Audit.delete_all
-    post :new_rule, params, {:user_id=>@user.id}
+    post :new_rule, params: params, session: {:user_id=>@user.id}
 
     # define newly created rule and rule_action
     rule = Rule.last
@@ -382,7 +382,7 @@ class RuleControllerTest < ActionController::TestCase
     # the destroy action of both rule and rule_action(s) will be audited with an
     # user_id
     Audit.delete_all
-    put :edit_rule, params, {:user_id=>@user.id}
+    put :edit_rule, params: params, session: {:user_id=>@user.id}
 
     action = "update"
     assert_equal(2, Audit.count)
@@ -396,8 +396,8 @@ class RuleControllerTest < ActionController::TestCase
     # user_id
     Audit.delete_all
     post :show_rules,
-      {:form_name=>'PHR', :fe=>{:delete_general_rule_1=>rule.id}},
-      {:user_id=>@user.id}
+      params: {:form_name=>'PHR', :fe=>{:delete_general_rule_1=>rule.id}},
+      session: {:user_id=>@user.id}
 
     action = "destroy"
     assert_equal(2, Audit.count)
@@ -426,7 +426,7 @@ class RuleControllerTest < ActionController::TestCase
     # Check when a new case rule was created with two rule_cases and each
     # rule_case has an rule_action
     Audit.delete_all
-    post :new_rule, params, {:user_id=>@user.id}
+    post :new_rule, params: params, session: {:user_id=>@user.id}
 
     # define newly created rule, rule_case, rule_action instances
     case_rule = Rule.last
@@ -463,7 +463,7 @@ class RuleControllerTest < ActionController::TestCase
 
     # Check when newly created case rule gets updated
     Audit.delete_all
-    put :edit_rule, params, {:user_id=>@user.id}
+    put :edit_rule, params: params, session: {:user_id=>@user.id}
 
     action = "update"
     assert_equal(6, Audit.count)

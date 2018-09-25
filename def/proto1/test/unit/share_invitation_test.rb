@@ -119,7 +119,7 @@ class ShareInvitationTest < ActiveSupport::TestCase
     invite_attributes[:accept_key] = 'rqopiu34'
 
     # test with all parameters specified
-    assert_nothing_raised(ActiveRecord::StatementInvalid) {
+    assert_nothing_raised {
       ShareInvitation.new(invite_attributes)
     }
     all_invite = ShareInvitation.where(issuing_user_id: -10).to_a

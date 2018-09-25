@@ -6,20 +6,19 @@ class ApplicationController < ActionController::Base
   # For the session timeout, cache the session's page view so we can keep
   # the user in the same view (e.g. basic HTML mode) when a new session is started.
   sliding_session_timeout SESSION_TIMEOUT.minutes, :cache_session_info
-  include Rack::Recaptcha::Helpers
-  after_filter :last_session, :except=>[:get_session_updates]
-  after_filter :set_last_session, :only=>[:get_session_updates]
+  after_action :last_session, :except=>[:get_session_updates]
+  after_action :set_last_session, :only=>[:get_session_updates]
   protect_from_forgery :except => :index
-  #before_filter :require_ssl # see comments for require_ssl method
-  before_filter :clean_sessions,  :only => [:login]
-  before_filter :set_to_popup
-  after_filter  :clear_login_token,  :only => [:login]
-  before_filter :slow_scanners, :except=>[:get_search_res_list]
-  after_filter :store_response_info, :except=>[:get_search_res_list]
-  before_filter :set_content_type
-  before_filter :set_cache_buster
+  #before_action :require_ssl # see comments for require_ssl method
+  before_action :clean_sessions,  :only => [:login]
+  before_action :set_to_popup
+  after_action  :clear_login_token,  :only => [:login]
+  before_action :slow_scanners, :except=>[:get_search_res_list]
+  after_action :store_response_info, :except=>[:get_search_res_list]
+  before_action :set_content_type
+  before_action :set_cache_buster
 
-  around_filter :session_data_checks
+  around_action :session_data_checks
 
   rescue_from Exception, :with => :rescue_action
 
@@ -90,7 +89,7 @@ end
     session.keys.each do |key|
       starting_sess_hash[key] = session[key]
     end
-    session_id = request.session_options[:id]
+    session_id = request.session.id
     yield
     mismatch = false
     session.keys.each do |key|
@@ -98,7 +97,7 @@ end
         mismatch = true
         break
       end
-    end 
+    end
     if mismatch == false
       if session_id
         db_session = ActiveRecord::SessionStore::Session.find_by_session_id(session_id)
@@ -131,12 +130,10 @@ end
   # using flash[:error] for a lot of pages.
   attr_reader :page_errors
 
-  hide_action :data_hash_from_params
-
   # start @flag_account_type out as nil.  If it's an experimental/test
   # account, we'll fill it in when the user logs in.
   @temp_account_type = nil
- 
+
   # After login, user can be forwarded to a URL fitting one of these patterns.
   @@regexWhiteList = ['\/registration\/[0-9a-zA-Z]*;edit\\z',
         '\/registration\/new\\z',
@@ -161,6 +158,9 @@ end
         '\/forms\/[a-zA-Z]*;edit\\z'
        ]
 
+  FORM_READ_ONLY_EDITABILITY = 'READ_ONLY'
+  FORM_READ_WRITE_EDITABILITY = 'READ_WRITE'
+
   RECOVERY_MSG = "We found unsaved data changes for this form.<br />" +
                  "The information on this page includes those changes, " +
                  "outlined in green." +
@@ -181,7 +181,7 @@ end
   def extend_session
     time_min = params[:extend_by]
     session[:expires_at] = time_min.to_f.minutes.from_now
-    render(:text=>"Your PHR session has been extended, and will expire "+
+    render(:plain=>"Your PHR session has been extended, and will expire "+
       "#{SESSION_TIMEOUT} minutes from now.")
   end
 
@@ -209,17 +209,17 @@ end
       render :file=>'public/400.html', :layout=>false, :status=>:bad_request
     else
       # Check to see if this is a request to build a read-only version of
-      # a form.  If so, set the access level flag and chop the indicator 
+      # a form.  If so, set the access level flag and chop the indicator
       # off the end of the form name
       idx = @form_name.index('_RO')
       if !idx.nil?
         @access_level = ProfilesUser::READ_ONLY_ACCESS
         @form_name = @form_name[0..(idx - 1)]
       end
-      
+
       # Set the action URL to be the current URL.  (This will give
       # handle_post the current URL so it can determine the next action.)
-      @action_url = request.url
+      @action_url = request.path
 
       # add data for taffy db
       # note: basically a second copy of the data are added. In the future, it
@@ -263,7 +263,7 @@ end
     end
   end # def show
 
-  
+
   # This method gets the url from a specified request object and removes the
   # authenticity token if one is included in the url.  This is written to be
   # used when we need to write the url to a usage stats event row, where we
@@ -379,49 +379,6 @@ end
 #  end
 
 
-  # Creates a data_hash like structure (the structure used to load data into
-  # the form fields by JavaScript) out of the parameters returned from a
-  # form submission.
-  #
-  # Note:  This method is public, and is therefore (potentially) callable
-  # as an action.  However, this method would immediately cause an exception
-  # if something tried to call it, because it requires arguments.  Leaving
-  # it public should be safe, and it allows us to write test code for it.
-  #
-  # Parameters:
-  # * form_params - the hash of key/value pairs returned for a form's fields
-  #   when a form is submitted (i.e., params[:fe]).
-  # * form - the Form instance or form name for the form that was submitted
-  #
-  # Returns:  The data_hash version of the parameters.
-  def data_hash_from_params(form_params, form)
-    form = Form.find_by_form_name(form) if form.class == String
-    # Create a hash map from target field names to the maximum row count
-    # (the last suffix component) for the field name.  This will help us
-    # in knowing how many rows of data to check for.
-    field_to_max_row = {}
-    form_params.keys.each do |k|
-      k = k.to_s # k might be a symbol
-      k =~ /\A(.*?)(_\d+)*_(\d+)\z/
-      target_field = $1
-      if (target_field)
-        row_num = $3.to_i
-      else
-        target_field = k
-        row_num = 1
-      end
-      max_row = field_to_max_row[target_field]
-      if (!max_row || max_row < row_num)
-        field_to_max_row[target_field] = row_num
-      end
-    end
-
-    data_hash =
-      load_data_hash_for_fields(form_params, form.top_fields, field_to_max_row)
-   return data_hash
-  end
-
-
   #
   # Called by convert_params_to_panel_records only
   # to return a hash map of one panel's data by matching the suffix string
@@ -490,22 +447,6 @@ end
     # out of the page (and hopefully speed loading time).
     @form_field_js = ''
 
-#    # Set the access level info here, before other things run.  Other
-#    # javascript that runs as the page is loaded, such as the controlled edit
-#    # table methods, needs this info.
-#    if !@access_level.nil?
-#      @form_field_js << "\n" + 'Def.accessLevel_ = ' + @access_level.to_s +
-#                       ';' + "\n"
-#    end
-#    @form_field_js << "\n" + 'Def.NO_PROFILE_ACTIVE = ' +
-#                      ProfilesUser::NO_PROFILE_ACTIVE.to_s + ';' + "\n"
-#    @form_field_js << "\n" + 'Def.OWNER_ACCESS = ' +
-#                      ProfilesUser::OWNER_ACCESS.to_s + ';' + "\n"
-#    @form_field_js << "\n" + 'Def.READ_WRITE_ACCESS = ' +
-#                      ProfilesUser::READ_WRITE_ACCESS.to_s + ';' + "\n"
-#    @form_field_js << "\n" + 'Def.READ_ONLY_ACCESS = ' +
-#                      ProfilesUser::READ_ONLY_ACCESS.to_s + ';' + "\n"
-    #
     # A hash containing all the functions binded to the form load event
     @form_onload_js = {}
 
@@ -538,24 +479,27 @@ end
       @access_level = ProfilesUser::NO_PROFILE_ACTIVE if @access_level.nil?
     end
 
-    if !@access_level.nil?
-      @form_field_js << "\n" + 'Def.accessLevel_ = ' + @access_level.to_s +
-                       ';' + "\n"
-    end
     @form_field_js << "\n" + 'Def.NO_PROFILE_ACTIVE = ' +
                       ProfilesUser::NO_PROFILE_ACTIVE.to_s + ';' + "\n"
-    @form_field_js << "\n" + 'Def.OWNER_ACCESS = ' +
+    @form_field_js << 'Def.OWNER_ACCESS = ' +
                       ProfilesUser::OWNER_ACCESS.to_s + ';' + "\n"
-    @form_field_js << "\n" + 'Def.READ_WRITE_ACCESS = ' +
+    @form_field_js << 'Def.READ_WRITE_ACCESS = ' +
                       ProfilesUser::READ_WRITE_ACCESS.to_s + ';' + "\n"
-    @form_field_js << "\n" + 'Def.READ_ONLY_ACCESS = ' +
+    @form_field_js << 'Def.READ_ONLY_ACCESS = ' +
                       ProfilesUser::READ_ONLY_ACCESS.to_s + ';' + "\n"
+
+    @form_field_js << 'Def.FORM_READ_ONLY_EDITABILITY = "' +
+                      FORM_READ_ONLY_EDITABILITY + '";' + "\n"
+    @form_field_js << 'Def.FORM_READ_WRITE_EDITABILITY = "' +
+                      FORM_READ_WRITE_EDITABILITY + '";' + "\n\n"
+
+
     if @form_subtitle.nil?
       @form_subtitle = @form.sub_title
     end
 
     if @access_level == ProfilesUser::READ_ONLY_ACCESS && !@profile.nil?
-      @access_notice_text = 
+      @access_notice_text =
         ProfilesUser::READ_ONLY_NOTICE % {owner: @profile.owner.name}
     else
       @access_notice_text = ''
@@ -600,6 +544,9 @@ end
       @form_cache_name = form_cache_name || form_name
       if @access_level == ProfilesUser::READ_ONLY_ACCESS
         @form_cache_name += '_RO'
+        @form_editability = FORM_READ_ONLY_EDITABILITY
+      else
+        @form_editability = FORM_READ_WRITE_EDITABILITY
       end
       #using_cache_files = read_fragment(:id=>'part1'+@form_name)
       @using_cache_files = read_fragment(Rails.env + '/layout_part3' +
@@ -722,12 +669,12 @@ end
     # stacktrace to the logs and that might contain PII data.
     if request.xhr? && !PUBLIC_SYSTEM
       render :status => :failed,
-        :text => {'errors' => @page_errors}.to_json
+        :plain => {'errors' => @page_errors}.to_json
     else
       is_routing_error = exception.class ==  ActionController::RoutingError ||
         exception.class == AbstractController::ActionNotFound
       if is_routing_error
-        # Routing errors don't go through the before_filters, so we add a
+        # Routing errors don't go through the before_actions, so we add a
         # needed call here to Brake.
         slow_scanners
       end
@@ -833,6 +780,15 @@ end
     'comparison_operators', 'rules', 'loinc_names', 'classifications',
     'data_classes'])
 
+  # Override the original method to facilitate the testing of codes where this
+  # method was used
+  def verify_recaptcha
+    if Rails.env =="test" || (!defined?(BYPASS_CAPTCHA).nil? && BYPASS_CAPTCHA == true)
+      return params['g-recaptcha-response'] == "correct_response"
+    else
+      super
+    end
+  end
 
   private
 
@@ -921,7 +877,7 @@ end
     unless !session[:user_id].blank? && @user = User.find_by_id(session[:user_id])
       # Store the original URI so we can take the user there after they log in,
       # but only if the request method was a GET (e.g. not a DELETE).
-      session[:original_uri] = request.fullpath if request.request_method == 'GET'
+      session[:original_uri] = request.path if request.request_method == 'GET'
       flash[:notice] = "Please log in."
       # It might be that the user accessed a basic mode URL, but were not
       # logged in yet.
@@ -1013,7 +969,7 @@ end
 
   # Sets class instance variable to show header template field.
   # Note: Whether to show header or not is decided by the 'show_toolbar' value
-  #   in the 'forms' table for each form. This method as a before_filter is
+  #   in the 'forms' table for each form. This method as a before_action is
   #   needed only because some pages are rendered with a 'noform' layout,
   #   thus the 'render_form' method, where @show_header is set, is not called.
   #   For pages with a 'noform' layout, a header tool bar is always needed.
@@ -1023,7 +979,7 @@ end
 
 
   # Sets the text to be displayed for experimental/test or demo accounts.
-  # Invoked with a before_filter directive in controllers where
+  # Invoked with a before_action directive in controllers where
   # appropriate
   # Not currently used for experimental/test accounts, 8/2012 lm
   def set_account_type_flag
@@ -1049,7 +1005,7 @@ end
   def verify_password
     form_params = params[:fe]
     rtn = false
-    @action_url = request.fullpath
+    @action_url = request.path
 
     if !@user
       # Not sure when this would happen
@@ -1137,20 +1093,20 @@ end
       @hide_account_settings = true
       render :template=>'basic/login/enter_pw', :layout=>'basic'
     else
-      @action_url = request.fullpath
+      @action_url = request.path
       render_form('verify_password')
     end
   end
 
 
-  # A before_filter method for checking to make sure the user is logged in as
+  # A before_action method for checking to make sure the user is logged in as
   # an admin user. If they are not logged in as an admin user, they are
   # redirected to the login page.
   # Returns:  true if the user can continue with the requested action
   def admin_authorize
     rtn = true
     if !is_admin_user?
-      session[:original_uri] = request.fullpath
+      session[:original_uri] = request.path
       flash[:notice] = "Please log in as an admin user."
       redirect_to(login_url)
       rtn = false
@@ -1416,7 +1372,7 @@ end
   #
   def get_profile(action_desc, min_access, id_shown, use_real=false)
     return @user.require_profile(get_url,
-                                 request.session_options[:id],
+                                 request.session.id,
                                  session[:cur_ip],
                                  action_desc,
                                  min_access,
@@ -1457,7 +1413,7 @@ end
     return the_url
   end
 
-  
+
   # This method performs the steps required to end a user session.  It is
   # used by the logout method of the login controller as well as the
   # check_for_data_overflow method in this controller.
@@ -1497,7 +1453,7 @@ end
       UsageStat.create_stats(@user,
                              profile_id ,
                              report_params,
-                             request.session_options[:id],
+                             request.session.id,
                              session[:cur_ip],
                              false)
     end # if no logout is being performed
@@ -1518,5 +1474,42 @@ end
     session[:page_view] = page_view
     @user = nil
   end # end_user_session
+
+  # Creates a data_hash like structure (the structure used to load data into
+  # the form fields by JavaScript) out of the parameters returned from a
+  # form submission.
+  #
+  # Parameters:
+  # * form_params - the hash of key/value pairs returned for a form's fields
+  #   when a form is submitted (i.e., params[:fe]).
+  # * form - the Form instance or form name for the form that was submitted
+  #
+  # Returns:  The data_hash version of the parameters.
+  def data_hash_from_params(form_params, form)
+    form = Form.find_by_form_name(form) if form.class == String
+    # Create a hash map from target field names to the maximum row count
+    # (the last suffix component) for the field name.  This will help us
+    # in knowing how many rows of data to check for.
+    field_to_max_row = {}
+    form_params.keys.each do |k|
+      k = k.to_s # k might be a symbol
+      k =~ /\A(.*?)(_\d+)*_(\d+)\z/
+      target_field = $1
+      if (target_field)
+        row_num = $3.to_i
+      else
+        target_field = k
+        row_num = 1
+      end
+      max_row = field_to_max_row[target_field]
+      if (!max_row || max_row < row_num)
+        field_to_max_row[target_field] = row_num
+      end
+    end
+
+    data_hash =
+        load_data_hash_for_fields(form_params, form.top_fields, field_to_max_row)
+    return data_hash
+  end
 
 end # application_controller

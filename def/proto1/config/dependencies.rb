@@ -1,9 +1,5 @@
 # begin of Rails 4 gems
-# protected_attributes gem should appear before active_support was loaded
-require 'protected_attributes'
-# requiring 'activerecord-session_store' gem
 require 'active_record/session_store'
-require 'active_record/deprecated_finders'
 # end of Rails 4 gems
 require 'active_support/all' # fix:cattr_accessor in acts_as_ferret is not working
 require "acts_as_ferret"
@@ -12,7 +8,7 @@ require "paper_trail"
 require  File.expand_path('../../app/models/has_searchable_lists', __FILE__)
 require 'ruport'
 require 'ruport/acts_as_reportable'
-require 'rack/recaptcha'
+require 'recaptcha'
 #require 'ruby-prof'
 require 'activerecord-import'
 require 'sass-rails'

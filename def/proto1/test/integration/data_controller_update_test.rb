@@ -23,7 +23,7 @@ class DataControllerUpdateTest < ActionDispatch::IntegrationTest
     # Make sure the user is redirected to the login page if they are not
     # an admin user.
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:PHR_Test).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:PHR_Test).name,
                             :password_1_1=>'A password'}}
     post '/data/update'
     assert_redirected_to('/accounts/login')
@@ -32,10 +32,10 @@ class DataControllerUpdateTest < ActionDispatch::IntegrationTest
 
     # Make sure the user can't update a table they aren't allowed to.
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
                             :password_1_1=>'A password'}}
     post '/data/update',
-      {:update_file=>fixture_file_upload("#{Rails.root}/test/fixtures/data_update_test1.txt")}
+      params: {:update_file=>fixture_file_upload("#{Rails.root}/test/fixtures/data_update_test1.txt")}
     assert_redirected_to('/data')
     follow_redirect!
     assert_equal('Updates of table "forms" are not permitted.',

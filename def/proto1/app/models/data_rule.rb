@@ -270,7 +270,7 @@ module DataRule
     def data_rule_helper
       exp_help_group = {}
 #      exp_help_group['expression_rules'] =
-#        Rule.find_all_by_rule_type([Rule::FETCH_RULE, Rule::VALUE_RULE]).map(&:name)
+#        Rule.where(rule_type: [Rule::FETCH_RULE, Rule::VALUE_RULE]).map(&:name)
       exp_help_group['expression_functions'] =
         Rule.math_methods + Rule.rule_functions[0..7]
       exp_help_group['expression_constants'] = Rule.math_vars
@@ -281,7 +281,7 @@ module DataRule
 
   def validate_combo_rules
     rule_parse_errs = parse_combo_rules
-    rule_parse_errs.map{|e| errors[:base]=(e)} unless rule_parse_errs.empty?
+    rule_parse_errs.map{|e| errors.add(:base, e)} unless rule_parse_errs.empty?
   end
 
 

@@ -549,7 +549,7 @@ class RxtermsUpdaterTest < ActiveSupport::TestCase
     dnr = DrugNameRoute.find_by_text('VANCENASE AQ DS (Nasal)')
     # This one should not have classes, because it is route "Nasal", which
     # is neither "systemic" nor "mixed".
-    assert_equal(nil, dnr.drug_class_codes)
+    assert_nil(dnr.drug_class_codes)
     assert_equal('|1347|', dnr.ingredient_rxcuis) # Beclomethasone
 
     # VANCERIL (Inhalant)
@@ -561,7 +561,7 @@ class RxtermsUpdaterTest < ActiveSupport::TestCase
     # The ingredients for this are not in the ingredient_names data, so there
     # should not be classes.
     dnr = DrugNameRoute.find_by_text('TONOCARD (Oral Pill)')
-    assert_equal(nil, dnr.drug_class_codes)
+    assert_nil(dnr.drug_class_codes)
     assert_equal('|42359|', dnr.ingredient_rxcuis) # Tocainide
 
     # ISUPREL HCL (Injectable)
@@ -569,8 +569,8 @@ class RxtermsUpdaterTest < ActiveSupport::TestCase
     # should not be classes.  Also, it is not in the "ingredient_data" list,
     # so there should not be ingredients.
     dnr = DrugNameRoute.find_by_text('ISUPREL HCL (Injectable)')
-    assert_equal(nil, dnr.drug_class_codes)
-    assert_equal(nil, dnr.ingredient_rxcuis)
+    assert_nil(dnr.drug_class_codes)
+    assert_nil(dnr.ingredient_rxcuis)
 
   end
 

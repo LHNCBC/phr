@@ -6,7 +6,7 @@ class Rule < ActiveRecord::Base
 
   acts_as_reportable # ruport gem
   has_paper_trail
-  
+
   validates_uniqueness_of :name, :case_sensitive => false
   validate :create_validation, :on => :create
 
@@ -106,7 +106,7 @@ class Rule < ActiveRecord::Base
 
   # The prefix used for renaming rule variable from rule name to a combination of
   # prefix and rule id. Purpose of doing that is to make sure any rule name change
-  # won't affect rule expressions which references the renamed rule through the 
+  # won't affect rule expressions which references the renamed rule through the
   # rule variable.
   RULEKEY_PREFIX = "%%rule"
 
@@ -172,7 +172,7 @@ class Rule < ActiveRecord::Base
       @@math_var_hash = {}
       @@math_vars = %w(PI E)
       @@math_vars.each { |v| @@math_var_hash[v] = 1 }
-      
+
       @@math_method_hash = {}
       @@math_methods = %w(abs ceil floor round exp pow sqrt log min max)
       @@math_methods.each {|m| @@math_method_hash[m] = 1}
@@ -322,15 +322,16 @@ class Rule < ActiveRecord::Base
       end
       rtn
     end
-    
+
     return downcase_label_value(expression, js_lines)
   end# end of combo_process_expression_part
 
 
   # This gets called to validate a rule when it is saved.
-  def validate
+  validate :validate_instance
+  def validate_instance
     if name.blank?
-      errors[:base]=('Rule Name must not be blank.')
+      errors.add(:base, 'Rule Name must not be blank.')
     elsif  name !~ /\A[[:alpha:]]\w*\z/
       errors.add(:name, 'must start with a letter, and contain only ' +
           'alphanumeric or _ characters.')
@@ -344,7 +345,7 @@ class Rule < ActiveRecord::Base
     # data rule_name should not conflict with any target_field
     tf_names = FieldDescription.all.map(&:target_field).uniq
     if tf_names.include?(name)
-      errors[:base]=("Rule name must not conflict with any target field")
+      errors.add(:base, "Rule name must not conflict with any target field")
     end
 
     if is_reminder_rule || is_value_rule
@@ -352,13 +353,13 @@ class Rule < ActiveRecord::Base
     elsif is_fetch_rule
       # Fetch rule does not use other rules
       if (!uses_rules.empty?)
-        errors[:base]=("Fetch rule can not have uses_rules")
+        errors.add(:base, "Fetch rule can not have uses_rules")
       end
     end
   end
 
 
-  # This is the original validate method for validating form rules 
+  # This is the original validate method for validating form rules
   def validate_form_rule
 
     if name
@@ -369,7 +370,7 @@ class Rule < ActiveRecord::Base
         # If Rule.lookup_field did not raise Exception, then it means there is
         # a rule whose name is same as some target_field in the same form.
         # We need to fail the validation
-        errors[:base]=("Rule name *#{name}* can not be the same as any"+
+        errors.add(:base, "Rule name *#{name}* can not be the same as any"+
             " target_field in the same form")
       rescue
         # do nothing
@@ -377,13 +378,13 @@ class Rule < ActiveRecord::Base
     end
 
     if (!is_case_rule && rule_cases.size > 0)
-      errors[:base]=('A rule that is not a case rule cannot have cases')
+      errors.add(:base, 'A rule that is not a case rule cannot have cases')
     end
     # We would like to test here that case rules must have cases, but
     # we can't easily do that, because rule actions need to validate in
     # a way that requires access to a saved rule.
     #elsif (is_case_rule && rule_cases.size == 0)
-    #  errors[:base]=('A case rule must have at least one case.')
+    #  errors.add(:base, 'A case rule must have at least one case.')
     #end
 
     # Check that for case rules, the sequence numbers must be unique, and that
@@ -476,7 +477,7 @@ class Rule < ActiveRecord::Base
       #            err_msg = "The rule of test panel [rule:#{self.name}, loinc_item:"+
       #              "#{ln.loinc_num}, target_field:#{fld.target_field}] is missing.\n"
       #            err_msg += "\nPlease run command >> rake def:rebuild_rules\n"
-      #            errors[:base]=(err_msg)
+      #            errors.add(:base, err_msg)
       #          end
       #        end
       #      end
@@ -567,7 +568,7 @@ class Rule < ActiveRecord::Base
   def create_validation
     unless is_data_rule
       if forms.nil? || forms.empty? #|| forms.size > 1
-        errors[:base]=(
+        errors.add(:base,
           'A rule must be associated with exactly one form when created.')
       else
         # Make sure a rule with this name does not already exist for this form.
@@ -743,7 +744,7 @@ class Rule < ActiveRecord::Base
     r.destroy
   end
 
-  
+
   # Constructs and returns the JavaScript function for this case rule,
   # as well as a set of referenced field names and a set of referenced rule
   # names.
@@ -931,7 +932,7 @@ class Rule < ActiveRecord::Base
     # will be included in the result without processing.
 
     ref_field_names = Set.new
-    # Tries to make sure rule trigger is a non-sub-field if non-sub-field is 
+    # Tries to make sure rule trigger is a non-sub-field if non-sub-field is
     # available (see comments for parameter ref_sub_field_names of method
     # process_expression_part for details)
     ref_sub_field_names = Set.new
@@ -958,7 +959,7 @@ class Rule < ActiveRecord::Base
       js_lines.concat(js)
       processed_parts = processed_parts.concat(quote_parts)
     end
- 
+
     # If a case statement was used, we assume here the whole thing is a case
     # statement, and add the closing break and default code
     if (uses_case)
@@ -1073,19 +1074,19 @@ class Rule < ActiveRecord::Base
   # Parameters:
   # * expression - the piece of the expression text to be processed.
   # * ref_field_names - a set of the field names encountered so far
-  # * ref_sub_field_names - a set of the sub-field names encountered so far. The 
-  #    reason to add this parameters is to avoid tp_test_value being treated as 
-  #    a trigger field during form loading period, 
-  #    For example, the show_when_done_field_only rule was unnecessaryly 
-  #    repeated for n times when calling runFormRules function on form loading 
-  #    (where n matches to the number of fields in tp_test_value column of a 
-  #    panel. The n can be >150 for some panel (e.g. searching it using keyword 
-  #    'uri' in add test and panel page). Sine the column tp_test_value was 
-  #    wrongly selected as the trigger, that rule has to be evaluated for each 
+  # * ref_sub_field_names - a set of the sub-field names encountered so far. The
+  #    reason to add this parameters is to avoid tp_test_value being treated as
+  #    a trigger field during form loading period,
+  #    For example, the show_when_done_field_only rule was unnecessaryly
+  #    repeated for n times when calling runFormRules function on form loading
+  #    (where n matches to the number of fields in tp_test_value column of a
+  #    panel. The n can be >150 for some panel (e.g. searching it using keyword
+  #    'uri' in add test and panel page). Sine the column tp_test_value was
+  #    wrongly selected as the trigger, that rule has to be evaluated for each
   #    field in tp_test_value column.
-  #    The fix here is trying to re-order the rule's field_descritpions list to 
-  #    change the trigger to non-column field (e.g. tp_panel_testdate). That way 
-  #    we can minimize the number of rule evalulation from n to 1 (also see 
+  #    The fix here is trying to re-order the rule's field_descritpions list to
+  #    change the trigger to non-column field (e.g. tp_panel_testdate). That way
+  #    we can minimize the number of rule evalulation from n to 1 (also see
   #    trigger method in rule.rb for details). - Frank
   # * ref_rule_names - a set of the rule names encountered so far
   # * rule_names - the set of names that should be regarded as rule names
@@ -1095,7 +1096,7 @@ class Rule < ActiveRecord::Base
   #
   # Returns: The edited expression part, and an array of javascript lines
   #   that declare variables needed by the javascript expression
-  def self.process_expression_part(expression, 
+  def self.process_expression_part(expression,
       ref_field_names, ref_sub_field_names, ref_rule_names, ref_loinc_params,
       rule_names, uses_case, form_id)
     # Make a regular expression that matches any name, and check that the
@@ -1113,7 +1114,7 @@ class Rule < ActiveRecord::Base
 
     expression.gsub!(name_regex) do |s|
       function_name = $2
-      var_name = $5 
+      var_name = $5
       var_names = $4
       rtn = s
       upcase_s = s.upcase
@@ -1165,7 +1166,7 @@ class Rule < ActiveRecord::Base
         # same way.
 
         if function_name =~ @@field_ops_regex
- 
+
           # A function NOT related to loinc panel fields
           if !function_name.include?(LOINC_FUNC_SUFFIX)
             if ["column_conditions","is_test_due"].include? function_name
@@ -1329,17 +1330,17 @@ class Rule < ActiveRecord::Base
       raise "The loinc number #{loinc_num} "+
         "does not exist in loinc_items table!" unless ln
 
-      # target_field which related to a loinc number NO LONGER being included 
+      # target_field which related to a loinc number NO LONGER being included
       # in the field_names (see the beginning of this function), thus it needs
       # to be validated here!!! - Frank   10-03-2011
-      # 
+      #
       # target_fields must exist because it has been checked at the beginning
       # of this function
       found_fields = self.find_fields(target_field, form_id)
       raise(
         "Rule #{rule.name} references field #{target_field}, which does not "+
           " exist on form #{form_id}") if found_fields.empty?
-   
+
       loinc_param_objs << [ln, found_fields[0]]
     end
 
@@ -1359,10 +1360,10 @@ class Rule < ActiveRecord::Base
       fields_from_other_forms(target_field, form_id) : [res]
   end
 
-  # A form displayed on a webpage(main form) consists of many fields of its own 
-  # and some fields coming from other forms. 
+  # A form displayed on a webpage(main form) consists of many fields of its own
+  # and some fields coming from other forms.
   # This method is to return a list of fields coming from other forms.
-  #  
+  #
   # Parameters:
   # * field_name - target field name
   # * form_id - ID of the main form
@@ -1553,7 +1554,7 @@ class Rule < ActiveRecord::Base
 
 
   # Returns a hash containing functions, constants, rules and fields on forms in
-  # form_list and which can be used in a new/existing rule 
+  # form_list and which can be used in a new/existing rule
   #
   # Parameters:
   # * form_list list of forms which own the rule being created/edited
@@ -1562,15 +1563,15 @@ class Rule < ActiveRecord::Base
   def self.form_rule_helper(form_list, rule_name=nil)
     exp_help_grp = {}
     exp_help_grp['expression_fields'] = Rule.common_expression_fields(form_list)
-    exp_help_grp['expression_rules'] = 
+    exp_help_grp['expression_rules'] =
       Rule.allowed_expression_rules(form_list, rule_name)
     exp_help_grp['expression_functions'] =
         Rule.math_methods + Rule.field_ops[0..3] + Rule.rule_functions[0..7]
     exp_help_grp['expression_constants'] = Rule.math_vars
     exp_help_grp
   end
-  
-    
+
+
   # Returns a a sorted list of fields that are on all of the forms in the
   # form_list and which can be used in an expression for a rule.
   #
@@ -1632,7 +1633,7 @@ class Rule < ActiveRecord::Base
     return common_rules.map(&:name).sort
   end
 
-  
+
   # Returns autocompleter list in an Array for fetch_rule_property field on
   # new_reminder_rule and new_value_rule forms
   def get_fetch_rule_properties
@@ -1701,7 +1702,7 @@ class Rule < ActiveRecord::Base
 
   # Overwrites js_function setter method so that it will convert the rule name
   # into a unique key with rule id
-  # 
+  #
   # Parameters:
   # * js_str a string of JavaScript codes translated from rule expression
   def js_function=(js_str)
@@ -1711,7 +1712,7 @@ class Rule < ActiveRecord::Base
       if r = Rule.find_by_name($1)
         "#{RULEKEY_PREFIX}_#{r.id}_rule_val"
       else
-        errors[:base]=("Rule name '#{$1}' is not valid.")
+        errors.add(:base, "Rule name '#{$1}' is not valid.")
         s
       end
     end
@@ -1722,7 +1723,7 @@ class Rule < ActiveRecord::Base
       if r = Rule.find_by_name($1)
         "getRuleVal('#{RULEKEY_PREFIX}_#{r.id}')"
       else
-        errors[:base]=("Rule name '#{$1}' is not valid.")
+        errors.add(:base, "Rule name '#{$1}' is not valid.")
         s
       end
     end
@@ -1733,7 +1734,7 @@ class Rule < ActiveRecord::Base
       if r = Rule.find_by_name($2)
         "addLabel('#{$1}', '#{RULEKEY_PREFIX}_#{r.id}', '#{$3}')"
       else
-        errors[:base]=("Rule name '#{$2}' is not valid.")
+        errors.add(:base, "Rule name '#{$2}' is not valid.")
         s
       end
     end
@@ -1753,7 +1754,7 @@ class Rule < ActiveRecord::Base
         if rule
           rule.name
         else
-          errors[:base]=("The rule referenced in js_function with id '#{$1}' is invalid.")
+          errors.add(:base, "The rule referenced in js_function with id '#{$1}' is invalid.")
           s
         end
       end
@@ -1788,24 +1789,24 @@ class Rule < ActiveRecord::Base
       raise "Cannot delete rule #{name} because it is used by other rules."
     end
   end
-    
-  # Returns the rule trigger to be used to run the runFormRules JavaScript 
+
+  # Returns the rule trigger to be used to run the runFormRules JavaScript
   # function on client side
   def trigger
     if trigger = field_descriptions[0]
-      trigger.target_field 
+      trigger.target_field
     else
       if lfr = loinc_field_rules[0]
         l = [lfr.field_description.target_field, lfr.loinc_item.loinc_num]
-        l.join(Rule::FIELD_LOINC_RULE_DELIMITER ) 
+        l.join(Rule::FIELD_LOINC_RULE_DELIMITER )
       end
     end
   end
-  
+
   private ################################################################
 
   # A recursive function used in the depth-first search to build an ordered
-  # set of rules.  This searches in the direction of rules that use or being 
+  # set of rules.  This searches in the direction of rules that use or being
   # used by the given rules.
   # (This is the "visit" function in a depth-first search, which is
   # being used to do a topological sort of the rules for this field.)
@@ -1815,7 +1816,7 @@ class Rule < ActiveRecord::Base
   # * rev_list - the list of rules to run, in reverse order of the order
   #   in which they should be run.  (The last element should be run first.)
   # * visited - a set of rules that have been visited.
-  # * association_method - relationship between the give rules and rules to be 
+  # * association_method - relationship between the give rules and rules to be
   # searched (e.g. used_by_rules, uses_rules)
   def self.rule_visit(rule, rev_list, visited, association_method)
     visited << rule
@@ -1898,10 +1899,10 @@ class Rule < ActiveRecord::Base
         ts_lp.root.display_name
       ts_ln = ts_lp.loinc_num
       scoring_lns = scoring_lps.map(&:loinc_num)
-      
+
       # build score rules based on:
       # 1) panel_name
-      # 2) loinc number of loinc panel for showing total score (ts_ln) 
+      # 2) loinc number of loinc panel for showing total score (ts_ln)
       # 3) loinc numbers of scoring loinc panels (scoring_lns)
       Rule.transaction do
         rule_name = panel_name.gsub(/(\.|\s+|-)/,"_")

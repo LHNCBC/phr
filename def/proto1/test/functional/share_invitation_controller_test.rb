@@ -10,8 +10,8 @@ class ShareInvitationControllerTest < ActionController::TestCase
 
   def setup
     @controller = ShareInvitationController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
+    @request    = ActionController::TestRequest.create(@controller.class)
+    @response   = ActionDispatch::TestResponse.new
     @request.env['HTTPS'] = 'on'  # Set the request to be SSL
     DatabaseMethod.copy_development_tables_to_test(['field_descriptions',
         'forms', 'db_table_descriptions', 'db_field_descriptions',
@@ -38,7 +38,7 @@ class ShareInvitationControllerTest < ActionController::TestCase
     prof_user = ProfilesUser.find_by_profile_id(the_profile.id)
 
     # Test posting with empty parameters.
-    xhr :post, :create, {}, {:user_id => the_user.id, :cur_ip => @cur_ip}
+    post :create, params: {}, session: {:user_id => the_user.id, :cur_ip => @cur_ip}, xhr: true
     assert_equal(500, @response.status)
     assert(JSON.parse(@response.body)["runtime_error"].include?(
            ShareInvitationController::NO_INVITE_DATA_RESP),
@@ -48,8 +48,8 @@ class ShareInvitationControllerTest < ActionController::TestCase
            'User Error response not returned')
   
     # Test posting with just an id_shown parameter
-    xhr :post, :create, {:id_shown=>the_profile.id_shown},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown},
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(500, @response.status)
     assert(JSON.parse(@response.body)["runtime_error"].include?(
            ShareInvitationController::NO_INVITE_DATA_RESP),
@@ -64,8 +64,8 @@ class ShareInvitationControllerTest < ActionController::TestCase
                    "personalized_msg" => "This is personal"}
 
     # Test posting with no id_shown parameter
-    xhr :post, :create, {:invite_data=>invite_data.to_json},
-                        {:user_id =>the_user.id, :cur_ip => @cur_ip}
+    post :create, xhr: true, params: {:invite_data=>invite_data.to_json},
+                        session: {:user_id =>the_user.id, :cur_ip => @cur_ip}
     assert_equal(500, @response.status)
     assert(JSON.parse(@response.body)["runtime_error"].include?(
            ShareInvitationController::NO_ID_SHOWN_RESP),
@@ -76,9 +76,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
 
     # Test posting with no target_email parameter
     invite_data.delete("target_email")
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(500, @response.status)
     assert(JSON.parse(@response.body)["runtime_error"].include?(
            ShareInvitationController::NO_EMAIL_RESP),
@@ -90,9 +90,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
     # Test posting with no target_name parameter
     invite_data.delete("target_name")
     invite_data["target_email"] = "hello@kitty.com"
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                       session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(500, @response.status)
     assert(JSON.parse(@response.body)["runtime_error"].include?(
            ShareInvitationController::NO_TARGET_NAME_RESP),
@@ -104,9 +104,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
     # Test posting with no issuer_name parameter
     invite_data.delete("issuer_name")
     invite_data["target_name"] = "Horatio"
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(500, @response.status)
     assert(JSON.parse(@response.body)["runtime_error"].include?(
            ShareInvitationController::NO_ISSUER_NAME_RESP),
@@ -118,9 +118,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
     # Test posting with no personalized_msg parameter
     invite_data.delete("personalized_msg")
     invite_data["issuer_name"] = "Horace"
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(500, @response.status)
     assert(JSON.parse(@response.body)["runtime_error"].include?(
            ShareInvitationController::NO_MSG_RESP),
@@ -131,9 +131,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
     invite_data["personalized_msg"] = "This is personal"
 
     # Test posting with an invalid id_shown parameter
-    xhr :post, :create, {:id_shown=>'xxxxxxxxxxxxxx',
+    post :create, xhr: true, params: {:id_shown=>'xxxxxxxxxxxxxx',
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                       session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(500, @response.status)
     assert(JSON.parse(@response.body)["security_error"].include?(
            ShareInvitationController::INVALID_ID_SHOWN_RESP),
@@ -147,9 +147,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
     non_owner_user = users(:standard_account_2)
     owner_user = the_user
     the_user = non_owner_user
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                       session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(500, @response.status)
     assert(JSON.parse(@response.body)["security_error"].include?(
            ShareInvitationController::INVALID_ID_SHOWN_RESP),
@@ -161,9 +161,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
 
    invite_data["target_email"] = "iam11@anemail.com"
     # test for request for target user who already has access
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                       session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(200, @response.status)
     assert(@response.body.include?(
            ShareInvitationController::ALREADY_HAS_ACCESS_RESP),
@@ -172,16 +172,16 @@ class ShareInvitationControllerTest < ActionController::TestCase
     # test for request for duplicate request
     # first for someone without an account - put in one invite
     invite_data["target_email"] = "hello@kitty.com"
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(200, @response.status)
     assert_equal(@response.body, "null")
 
     # now try to duplicate it
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     assert_equal(200, @response.status)
     resp = ShareInvitationController::PENDING_INVITE_RESP % {someone: "hello@kitty.com"}
     assert(@response.body.include?(resp),
@@ -198,9 +198,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
     # content of the email is tested in the defMailer unit test
     invite_data["target_email"] = "hello@doggy.com"
     assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-      xhr :post, :create, {:id_shown=>the_profile.id_shown,
+      post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                            :invite_data=>invite_data.to_json},
-                          {:user_id => the_user.id, :cur_ip => @cur_ip}
+                          session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     end
     invite_email = ActionMailer::Base.deliveries.last
     assert_equal 'Invitation to Share Personal Health Record (PHR) Information',
@@ -224,37 +224,37 @@ class ShareInvitationControllerTest < ActionController::TestCase
                    "target_name" => "Horatio",
                    "issuer_name" => "Horace",
                    "personalized_msg" => "This is personal"}
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
 
     invite1 = ShareInvitation.where(target_email: "hello@kitty.com").take
 
     # Use this to test for an invalid invitation.
     # First use invalid values for both parameters
-    post :accept_invitation, {:email => 'h@k.com', :invite_data => 'xyz'},
-                             {:user_id => nil, :cur_ip => @cur_ip}
+    post :accept_invitation, params: {:email => 'h@k.com', :invite_data => 'xyz'},
+                             session: {:user_id => nil, :cur_ip => @cur_ip}
     assert_template :reject_accept
     assert_template layout: 'layouts/nonform'
 
     # Next use invalid accept_key value
-    post :accept_invitation, {:email => invite1.target_email,
+    post :accept_invitation, params:  {:email => invite1.target_email,
                               :invite_data => 'xyz'},
-                             {:user_id => nil, :cur_ip => @cur_ip}
+                            session: {:user_id => nil, :cur_ip => @cur_ip}
     assert_template :reject_accept
     assert_template layout: 'layouts/nonform'
 
     # Now use an invalid email
-    post :accept_invitation, {:email => 'h@k.com',
+    post :accept_invitation, params:  {:email => 'h@k.com',
                               :invite_data => invite1.accept_key},
-                             {:user_id => nil, :cur_ip => @cur_ip}
+                            session: {:user_id => nil, :cur_ip => @cur_ip}
     assert_template :reject_accept
     assert_template layout: 'layouts/nonform'
 
     # Now test a valid accept message for a user who does not have an account
-    post :accept_invitation, {:email => invite1.target_email,
+    post :accept_invitation, params:  {:email => invite1.target_email,
                               :invite_data => invite1.accept_key},
-                             {:user_id => nil, :cur_ip => @cur_ip}
+                            session: {:user_id => nil, :cur_ip => @cur_ip}
     assert_template 'form/show.rhtml'
     assert_template layout: 'form.rhtml'
 
@@ -264,15 +264,15 @@ class ShareInvitationControllerTest < ActionController::TestCase
                    "target_name" => "Romeo",
                    "issuer_name" => "Horace",
                    "personalized_msg" => "second access invitation"}
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     invite2 = ShareInvitation.where(target_email: target_user.email).take
 
     # accept that invitation
-    post :accept_invitation, {:email => invite2.target_email,
+    post :accept_invitation, params:  {:email => invite2.target_email,
                               :invite_data => invite2.accept_key},
-                             {:user_id => nil, :cur_ip => @cur_ip}
+                            session: {:user_id => nil, :cur_ip => @cur_ip}
     assert_template :current_user_acceptance
     assert_template layout: 'layouts/nonform'
 
@@ -281,9 +281,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
     assert_not_nil(invite2.date_responded)
 
     # Try to accept it again
-    post :accept_invitation, {:email=>invite2.target_email,
+    post :accept_invitation, params:  {:email=>invite2.target_email,
                               :invite_data => invite2.accept_key},
-                             {:user_id => nil, :cur_ip => @cur_ip}
+                            session: {:user_id => nil, :cur_ip => @cur_ip}
     assert_template :previously_responded
     assert_template layout: 'layouts/nonform'
 
@@ -293,15 +293,15 @@ class ShareInvitationControllerTest < ActionController::TestCase
                    "target_name" => "Rowena",
                    "issuer_name" => "Horace",
                    "personalized_msg" => "third access invitation"}
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     invite3 = ShareInvitation.where(target_email: invite_data["target_email"]).take
     invite3.expiration_date = 3.months.ago
     invite3.save!
-    post :accept_invitation, {:email=>invite3.target_email,
+    post :accept_invitation, params:  {:email=>invite3.target_email,
                               :invite_data => invite3.accept_key},
-                             {:user_id => nil, :cur_ip => @cur_ip}
+                            session: {:user_id => nil, :cur_ip => @cur_ip}
     assert_template :invite_expire
     assert_template layout: 'layouts/nonform'
     
@@ -325,9 +325,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
                    "target_name" => "Horatio",
                    "issuer_name" => "Horace",
                    "personalized_msg" => "This is personal"}
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
 
     # First call implement_access with neither an invite nor an invite_key
     exception = assert_raises(NoMethodError) {
@@ -364,9 +364,9 @@ class ShareInvitationControllerTest < ActionController::TestCase
                    "target_name" => "Horatio",
                    "issuer_name" => "Emily",
                    "personalized_msg" => "This is also personal"}
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
     invite2 = ShareInvitation.where(target_email: invite_data["target_email"]).take
     # Now call implement_access.  This type of user will have the invitation
     # to pass in, but not the invite_key.
@@ -397,11 +397,11 @@ class ShareInvitationControllerTest < ActionController::TestCase
                    "issuer_name" => "Grace",
                    "personalized_msg" => "This is also SO personal"}
 
-    xhr :post, :create, {:id_shown=>the_profile.id_shown,
+    post :create, xhr: true, params: {:id_shown=>the_profile.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
 
-    xhr :get, :get_pending_share_invitations, {}, {:user_id => target.id,
+    get :get_pending_share_invitations, xhr: true, params: {}, session: {:user_id => target.id,
                                                    :cur_ip => @cur_ip}
     assert_template partial: "form/_pending_invites_field.rhtml"
     assert(@response.body.include?("You have received an invitation"))
@@ -425,15 +425,15 @@ class ShareInvitationControllerTest < ActionController::TestCase
                    "issuer_name" => "Grace",
                    "personalized_msg" => "This is also SO personal"}
 
-    xhr :post, :create, {:id_shown=>profile1.id_shown,
+    post :create, xhr: true, params: {:id_shown=>profile1.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
-    xhr :post, :create, {:id_shown=>profile2.id_shown,
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
+    post :create, xhr: true, params: {:id_shown=>profile2.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
-    xhr :post, :create, {:id_shown=>profile3.id_shown,
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
+    post :create, xhr: true, params: {:id_shown=>profile3.id_shown,
                          :invite_data=>invite_data.to_json},
-                        {:user_id => the_user.id, :cur_ip => @cur_ip}
+                        session: {:user_id => the_user.id, :cur_ip => @cur_ip}
 
     # accept one, decline one, and leave one alone
     invite_actions = {}
@@ -443,8 +443,8 @@ class ShareInvitationControllerTest < ActionController::TestCase
     # switch the user, since it's now the person who received the invites
     owner = the_user
     the_user = target
-    xhr :post, :update_invitations, {:invite_actions=>invite_actions.to_json},
-                                    {:user_id => the_user.id, :cur_ip => @cur_ip}
+    post :update_invitations, xhr: true, params: {:invite_actions=>invite_actions.to_json},
+                                    session: {:user_id => the_user.id, :cur_ip => @cur_ip}
 
     invites = ShareInvitation.where(issuing_user_id: owner.id,
                                     target_user_id: target.id)
@@ -475,8 +475,8 @@ class ShareInvitationControllerTest < ActionController::TestCase
     # now try to accept the one that was declined
     invite_actions[-41] = 'accept'
     invite_actions.delete(-40)
-    xhr :post, :update_invitations, {:invite_actions=>invite_actions.to_json},
-                                    {:user_id => the_user.id, :cur_ip => @cur_ip}
+    post :update_invitations, xhr: true, params: {:invite_actions=>invite_actions.to_json},
+                                    session: {:user_id => the_user.id, :cur_ip => @cur_ip}
 
     assert(JSON.parse(@response.body)["runtime_error"].include?(
            ShareInvitationController::INVALID_INVITE_ACTION_RESP),

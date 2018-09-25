@@ -24,7 +24,7 @@ class PhrNotesControllerTest < ActionController::TestCase
     session_data = {:user_id=>users(:PHR_Test).id, :cur_ip=>'127.11.11.11'}
 
     # Get an empty list of notes
-    get :index, form_data, session_data
+    get :index, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
     assert_nil flash[:notice]
@@ -39,15 +39,14 @@ class PhrNotesControllerTest < ActionController::TestCase
     # Create a note
     form_data[:phr] =
       {:note_text=>'Howdy', :note_date=>'2004/1/3'}
-    post :create, form_data, session_data
+    post :create, params: form_data, session: session_data
     assert_redirected_to :controller=>'phr_notes', :action=>:index
     assert_nil flash[:error]
     note = @profile.phr_notes.first
     assert_equal('Howdy', note.note_text)
 
     # Get a list of notes
-    flash[:notice] = nil
-    get :index, form_data, session_data
+    get :index, params: form_data, session: session_data, flash: {notice: nil}
     assert_response :success
     assert_nil flash[:error]
     assert_nil flash[:notice]
@@ -56,15 +55,15 @@ class PhrNotesControllerTest < ActionController::TestCase
     # Try an edit
     form_data[:id] = note.id
     form_data[:phr][:note_text] = 'Hello, sir'
-    post :update, form_data, session_data
-    note = @profile.phr_notes(true).first
+    post :update, params: form_data, session: session_data
+    note = @profile.phr_notes.reload.first
     assert_equal('Hello, sir', note.note_text)
 
     # Delete the note
-    post :destroy, {:phr_record_id=>@profile.id_shown, :id=>note.id}, session_data
+    post :destroy, params: {:phr_record_id=>@profile.id_shown, :id=>note.id}, session:session_data
     assert_nil flash[:error]
     assert_redirected_to :controller=>'phr_notes', :action=>:index
     assert_nil @response.body.index('Howdy')
-    assert_equal 0, @profile.phr_notes(true).size
+    assert_equal 0, @profile.phr_notes.reload.size
   end
 end

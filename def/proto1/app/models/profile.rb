@@ -24,7 +24,7 @@ class Profile < ActiveRecord::Base
 
   has_one :owner_prof_user, -> {where access_level: ProfilesUser::OWNER_ACCESS}, class_name: 'ProfilesUser'
   has_one :owner, through: :owner_prof_user, :source => :user
-  serialize :selected_panels
+  serialize :selected_panels, JSON
 
 
   # Returns the most recent ObrOrder of each type.  It also includes the

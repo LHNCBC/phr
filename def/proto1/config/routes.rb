@@ -86,7 +86,6 @@ Proto1::Application.routes.draw do
   get '/phr_records/:id/reminders'=>'phr_records#reminders', :as => "phr_record_reminders"
 
   get '/captcha/show'=>'captcha#show', :as => "captcha"
-  get '/captcha/audio'=>'captcha#audio', :as => "captcha_audio"
   post '/captcha/answer'=>'captcha#answer', :as => "captcha_answer"
   resources :phr_records, :as => "profiles", :controller=> "phr_records"
   ### End Basic HTML Mode URLs
@@ -149,7 +148,9 @@ Proto1::Application.routes.draw do
   ### End Account URLs
 
   # Acceptance test URLs
-  get '/acceptance/:action', :controller => 'acceptance', :as => "acceptance"
+  %w(run_tests report_results).each do |action_name|
+    get "/acceptance/#{action_name}", controller: 'acceptance', action: action_name, as: "acceptance_#{action_name}"
+  end
 
   ### URLs for Rule form pages
   match '/forms/:form_name/rules' => "rule#show_rules", :as => "rules",
@@ -180,7 +181,7 @@ Proto1::Application.routes.draw do
   match '/rules' =>'rule#index', :via => [:get, :post]
 
   # Get the rule names for a rule type
-  post '/rule/get_rule_name_list'
+  match '/rule/get_rule_name_list', :via => [:get, :post]
 
   # Gets data for combo fields used on rule pages.
   post '/form/handle_combo_field_change'
@@ -197,7 +198,7 @@ Proto1::Application.routes.draw do
     :via  => [:get, :put]
 
   # Route needed for search fields on the new fetch rule page
-  post 'form/handle_data_req_for_db_field'
+  match 'form/handle_data_req_for_db_field', :via => [:get, :post]
 
   # new reminder rule GET/POST request
   match '/reminder_rules/new' => "rule#new_data_rule",
@@ -212,11 +213,11 @@ Proto1::Application.routes.draw do
 
   # show all reminder rules
   get '/reminder_rules/show' => "rule#show_reminder_rules",
-    :readable_format => false
+    :readable_format => 'false'
 
   # show all reminder rules in readable format
   get '/reminder_rules/show_in_readable_format' => "rule#show_reminder_rules",
-    :readable_format => true
+    :readable_format => 'true'
 
   # new value rule GET/POST request
   match '/value_rules/new' => "rule#new_data_rule",
@@ -293,7 +294,8 @@ Proto1::Application.routes.draw do
     :node_type => Classification::CLASS_ITEM_NODE_TYPE, :via => [ :get, :put]
 
   # Gets the list needed by the new class item page
-  post '/form/get_search_res_list_by_list_desc'
+  match '/form/get_search_res_list_by_list_desc', :via => [ :get, :post]
+
 
   ###############################################
   ## end of New Class Management URLs
@@ -371,11 +373,12 @@ Proto1::Application.routes.draw do
   post '/form/get_loinc_panel_data'
 
   # Handling an Ajax request for additional data about a field value.
-  post '/form/handle_data_req'
+  match '/form/handle_data_req', :via => [:get, :post]
+
 
   # Getting a list of search results for a field
-  post '/form/get_search_res_list'
-  post '/form/get_search_res_table' # Currently only needed for tests
+  match '/form/get_search_res_list', :via => [:get, :post]
+  match '/form/get_search_res_table', :via => [:get, :post] # Currently only needed for tests
 
   # Updating a reminder record
   post '/form/update_a_reminder'

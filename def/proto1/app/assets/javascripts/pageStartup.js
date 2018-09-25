@@ -45,7 +45,7 @@ Def.Updater = {
     new Ajax.Request(this.URL_BASE+this.lastCheckTime_, {
       method: 'get',
       onSuccess: function(transport) {
-        var update = transport.responseText.evalJSON(true);
+        var update = JSON.parse(transport.responseText);
         var urgentNotice = update['urgent_notice'];
         if (urgentNotice) {
           window.alert(urgentNotice);

@@ -130,16 +130,16 @@ Def.AutoSave = {
         },
         asynchronous: false ,
         onSuccess: function(response) {
-          var evaled_resp = response.responseText.evalJSON() ;
+          var evaled_resp = JSON.parse(response.responseText) ;
           if (typeof evaled_resp[0] == "string") {
-            Def.AutoSave.origData_ = evaled_resp[0].evalJSON() ;
+            Def.AutoSave.origData_ = JSON.parse(evaled_resp[0]) ;
           }
           else {
             Def.AutoSave.origData_ = evaled_resp[0] ;        
           }
           if (getChanges) {
             if (evaled_resp[1] != null && typeof evaled_resp[1] == "string")
-              Def.AutoSave.changedData_ = evaled_resp[1].evalJSON() ;
+              Def.AutoSave.changedData_ = JSON.parse(evaled_resp[1]) ;
             else
               Def.AutoSave.changedData_ = evaled_resp[1] ;
           }
@@ -312,7 +312,7 @@ Def.AutoSave = {
           } , 
           onFailure: function(response) {
             Def.AutoSave.running_ = false ;
-            var evaled_resp = response.responseText.evalJSON() ;
+            var evaled_resp = JSON.parse(response.responseText) ;
             if (evaled_resp == 'do_logout')
               window.location = Def.LOGOUT_URL ;
             else {

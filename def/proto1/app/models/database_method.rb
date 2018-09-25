@@ -282,7 +282,7 @@ module DatabaseMethod
     end
 
     # Reconnect to the database so that the schema version can be updated
-    ActiveRecord::Base.establish_connection(strMode)
+    ActiveRecord::Base.establish_connection(strMode.to_sym)
 
   end
 
@@ -645,13 +645,13 @@ module DatabaseMethod
     tlist = tlist.reject {|t| !elist.member?(t)}
   end
 
-  
+
   # Returns the list of table names that are safe to copy into the
   # production database during an update.
   def self.get_copiable_tables
     uncopiable_tables = self.get_uncopiable_tables
     tables_to_copy =
-      ActiveRecord::Migration.tables.reject{|t| uncopiable_tables.member?(t)}
+      ActiveRecord::Migration.data_sources.reject{|t| uncopiable_tables.member?(t)}
     return tables_to_copy
   end
 
@@ -693,7 +693,7 @@ module DatabaseMethod
 
     tables_with_sequences = []
     to_env_tables = Set.new
-    ActiveRecord::Migration.tables.each {|t| to_env_tables << t}
+    ActiveRecord::Migration.data_sources.each {|t| to_env_tables << t}
 
     table_names.each do |copy_t|
       # Skip tables that do not exist in the target database
@@ -707,7 +707,7 @@ module DatabaseMethod
         # the order of columns is different between the development and test
         # systems.  (Not necessary, but that's the way it is.)
         column_names = self.get_quoted_table_col_names(copy_t)
-        col_name_str = column_names.join(',')
+        col_name_str = column_names.map{|e| "`#{e}`"}.join(',')
         table_cond = conditions[copy_t]
         table_cond = "where #{table_cond}" if table_cond
         ActiveRecord::Migration.execute(
@@ -822,7 +822,7 @@ module DatabaseMethod
   # Parameters:
   # * tables - a list of table names
   def self.clear_tables(table_names)
-    ActiveRecord::Base.establish_connection('test')
+    ActiveRecord::Base.establish_connection(:test)
     verbose =  ActiveRecord::Migration.verbose
     ActiveRecord::Migration.verbose = false
     table_names.each do |t|
@@ -836,11 +836,11 @@ module DatabaseMethod
   def self.copy_development_db_to_test
     # Recreate the test database, taking care the Rails.env is development;
     # when it is "test" the schema gets created from the test database!
-#    system('export Rails.env=development; rake db:test:clone')
-    system('export RAILS_ENV=development; rake db:test:clone')
-    ActiveRecord::Base.establish_connection('development')
+    # system('export Rails.env=development; rake db:test:clone')
+    system('export RAILS_ENV=development; export DISABLE_DATABASE_ENVIRONMENT_CHECK=1; rake db:test:prepare')
+    ActiveRecord::Base.establish_connection(:development)
     tables = ActiveRecord::Base.connection.tables
-    ActiveRecord::Base.establish_connection('test')
+    ActiveRecord::Base.establish_connection(:test)
     DatabaseMethod.copy_development_tables_to_test(tables)
   end
 

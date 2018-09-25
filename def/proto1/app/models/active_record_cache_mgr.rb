@@ -108,7 +108,7 @@ class ActiveRecordCacheMgr
         # Override find to provide support for find(:all) and maybe find(id)
         if fields_include_id
           else_code_for_find_id = "else\n"+
-                    "arg_zero = Integer(arg_zero) if !arg_zero.is_a?(Fixnum)\n"+
+                    "arg_zero = Integer(arg_zero) if !arg_zero.is_a?(Integer)\n"+
                     "rtn = @@id_to_#{self.name}[arg_zero]"
         else
           else_code_for_find_id = ''

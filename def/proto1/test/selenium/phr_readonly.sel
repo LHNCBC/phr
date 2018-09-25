@@ -85,10 +85,10 @@
 | fireEvent | fe_sec_email_1 | change |
 | fireEvent | fe_sec_email_1 | blur |
 
-| fireEvent | recaptcha_response_field | focus |
-| type |  recaptcha_response_field | correct_response |
-| fireEvent | recaptcha_response_field | change |
-| fireEvent | recaptcha_response_field | blur |
+| fireEvent | g-recaptcha-response | focus |
+| type |  g-recaptcha-response | correct_response |
+| fireEvent | g-recaptcha-response | change |
+| fireEvent | g-recaptcha-response | blur |
 
 # Save the form
 | click | fe_signup_1 |
@@ -269,10 +269,10 @@
 | fireEvent | fe_sec_email_1 | change |
 | fireEvent | fe_sec_email_1 | blur |
 
-| fireEvent | recaptcha_response_field | focus |
-| type |  recaptcha_response_field | correct_response |
-| fireEvent | recaptcha_response_field | change |
-| fireEvent | recaptcha_response_field | blur |
+| fireEvent | g-recaptcha-response | focus |
+| type |  g-recaptcha-response | correct_response |
+| fireEvent | g-recaptcha-response | change |
+| fireEvent | g-recaptcha-response | blur |
 
 # Save the form
 | click | fe_signup_1 |
@@ -672,7 +672,7 @@
 | verifyNotVisible | fe_add_new_test_1_1 |
 
 # check the text on the flowsheet button - it should not include "& Edit"
-| verifyVisible | fe_test_panel_timeline_1_1 |
+| waitForVisible | fe_test_panel_timeline_1_1 |
 | waitForExpression | javascript{testWindow_.$('fe_test_panel_timeline_1_1').innerHTML == '<span>View Results Timeline</span>';} | true |
 
 # check for the save button at the top and bottom - they should be gone

@@ -37,9 +37,9 @@ class ReminderOption < ActiveRecord::Base
     record_id = 1
     TABLES_NEED_REMINDERS.each do |table_name, option|
       db_table_id = DbTableDescription.find_by_data_table(table_name).id
-      option_rec = ReminderOption.find(:first, 
-          :conditions=>['profile_id=? AND db_table_description_id=? AND latest=?',
-          profile_id, db_table_id, true])
+      option_rec = ReminderOption.where(
+          'profile_id=? AND db_table_description_id=? AND latest=?',
+          profile_id, db_table_id, true).first
 
       if option_rec.nil?
         option['db_table_description_id'] = db_table_id

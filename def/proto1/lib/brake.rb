@@ -28,10 +28,10 @@ class Brake
   # A class instance variable to hold information about recent IP addresses.
   @ip_to_time_and_slow_factor = LRUCache.new(:max_size=>10000) # class instance variable
 
-  # A method intended to be used as a before_filter to slow down
+  # A method intended to be used as a before_action to slow down
   # requests from IPs that are sending us too many requests (e.g. web crawlers
   # and scanners).  This is meant to be used in conjunction with the
-  # store_response_info method (which is a after_filter).
+  # store_response_info method (which is a after_action).
   #
   # Parameters:
   # * request - the request object
@@ -64,8 +64,8 @@ class Brake
 
   # Another part of slowing down the scanners.  We need to check the response
   # type; if it is redirect we do not want to slow the next request.  This is
-  # meant to be called as an after_filter, and used in conjuction with
-  # slow_scanners (a before_filter).
+  # meant to be called as an after_action, and used in conjuction with
+  # slow_scanners (a before_action).
   #
   # Paramaters:
   # * response - the response object from the controller

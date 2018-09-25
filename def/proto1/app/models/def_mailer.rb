@@ -1,26 +1,27 @@
 class DefMailer < ActionMailer::Base
-  default :from => "donotreply@mail.nih.gov", 
+
+  default :from => "TBD - YOUR EMAIL FOR REPLIES",
     :date => Proc.new { Time.now },
     :content_type => "text/html"
- 
+
   # Used for creating a general email message.
-  #def message(email_addr, subject, message) 
+  #def message(email_addr, subject, message)
   # "message" is a reserved method, see delivery_methods.rb#83)
   def build_message(email_addr, subject, message)
     mail(:to => email_addr, 
-         :from => PHR_SUPPORT_EMAIL ,
+         :from => TBD - YOUR_SUPPORT_EMAIL ,
          :subject => subject) do |format|
-       format.text { render :text => message }
+       format.text { render :plain => message }
     end
   end
-  
+
   def deliver_message(email_addr, subject, message)
-    build_message(email_addr, subject, message).deliver
+    build_message(email_addr, subject, message).deliver_now
   end
 
   # Used for creating a message for sending a user their login ID.
   def uid_notice(user_id, email_addr)
-    @user = user_id 
+    @user = user_id
     subject =  'Confirmation of your Personal Health Record (PHR) Account ID'
     mail(:to => email_addr, :subject => subject)
   end
@@ -68,7 +69,7 @@ class DefMailer < ActionMailer::Base
     mail(:to => email_addr, :subject => subject)
   end
 
-  
+
    # Used for creating a message for notifying user of a password reset
   def password_reset(user_name,email_addr)
     subject = 'Your Personal Health Record (PHR) password has been changed'

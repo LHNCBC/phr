@@ -10,8 +10,8 @@ class UsageStatsControllerTest < ActionController::TestCase
 
   def setup
     @controller = UsageStatsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
+    @request    = ActionController::TestRequest.create(@controller.class)
+    @response   = ActionDispatch::TestResponse.new
     @request.env['HTTPS'] = 'on'  # Set the request to be SSL
   end
 
@@ -26,7 +26,7 @@ class UsageStatsControllerTest < ActionController::TestCase
     # Test posting an empty report.  Set the user id in the sessions object
     # for this first request.  We don't need to set it after that.
     report_obj = {}
-    post :create, {:report => report_obj.to_json}, {:user_id => @user.id}
+    post :create, params: {:report => report_obj.to_json}, session:{:user_id => @user.id}
     assert_response :success
     rep_data = @user.usage_stats
     assert_equal(0, rep_data.size)
@@ -49,7 +49,7 @@ class UsageStatsControllerTest < ActionController::TestCase
     # Send a request for an existing user with no profile specified
     occ_data << ['form_opened', js_date_time, {"form_name"=>"phr_home",
                                     "form_title"=>"My Personal Health Records"}]
-    post :create, {:report => occ_data.to_json},
+    post :create, params: {:report => occ_data.to_json}, session:
                   {:user_id => @user.id, :cur_ip => '123.4.5.6'}
     assert_response :success
 
@@ -61,7 +61,7 @@ class UsageStatsControllerTest < ActionController::TestCase
     occ_data << ['reminders_more', js_date_time, nil]
     occ_data << ['reminders_url', js_date_time, {"url" => "an@url.here"}]
 
-    post :create, {:id_shown => @profile.id_shown ,
+    post :create, params: {:id_shown => @profile.id_shown ,
                    :report => occ_data.to_json}
     assert_response :success
     # check database contents
@@ -90,7 +90,7 @@ class UsageStatsControllerTest < ActionController::TestCase
       when "valid_access"
         assert(date_time.strftime(DT_FORMAT) < row.event_time.strftime(DT_FORMAT))
         assert_equal(@profile.id, row.profile_id)
-        assert_equal("https://test.host/usage_stats?report=%7B%7D", row.data['url'])
+        assert_equal("https://test.host/usage_stats", row.data['url'])
       else
         puts "who is this?"
         puts row.to_json
@@ -109,7 +109,7 @@ class UsageStatsControllerTest < ActionController::TestCase
     sleep(1)
     occ_data << ['last_active', js_date_time, {'date_time' => la_time}]
 
-    post :create, {:id_shown => @profile.id_shown ,
+    post :create, params: {:id_shown => @profile.id_shown ,
                    :report => occ_data.to_json}
     assert_response :success
 
@@ -134,7 +134,7 @@ class UsageStatsControllerTest < ActionController::TestCase
     occ_data.clear
     occ_data << ['last_active', js_date_time, {'date_time' => la_time}]
 
-    post :create, {:id_shown => @profile.id_shown ,
+    post :create, params: {:id_shown => @profile.id_shown ,
                    :report => occ_data.to_json}
     assert_response :success
 

@@ -13,10 +13,10 @@
 # Disabled automatic ferret indexing.
 #
 # Revision 1.14  2010/08/03 15:48:12  lmericle
-# added before_filter set_to_popup to application_controller & header and banner settings; removed debugger from data_controller
+# added before_action set_to_popup to application_controller & header and banner settings; removed debugger from data_controller
 #
 # Revision 1.13  2010/06/25 13:59:38  lmericle
-# added before_filter for set_account_type_flag; added set_account_type_flag to application_controller
+# added before_action for set_account_type_flag; added set_account_type_flag to application_controller
 #
 # Revision 1.12  2010/06/10 21:28:26  mujusu
 # added header to data and rule forms
@@ -69,10 +69,11 @@ require 'csv'
 # The tables this controller is allowed to edit are controlled by the
 # DATA_CONTROLLER_TABLES constant specified in environment.rb.
 class DataController < ApplicationController
-  before_filter :admin_authorize
-  before_filter :table_check, :only=>[:export]
-  before_filter :show_header
-  
+  before_action :admin_authorize
+  before_action :table_check, :only=>[:export]
+  before_action :show_header
+  before_action :set_paper_trail_whodunnit
+
   @@allowed_data_tables = Set.new(DATA_CONTROLLER_TABLES)
 
   # Shows the main page
@@ -83,7 +84,7 @@ class DataController < ApplicationController
     render(:layout=>'nonform')
   end
 
-  
+
   # Shows the page for editing form form field help
   def help
     @form_names = []
@@ -99,7 +100,7 @@ class DataController < ApplicationController
   def export
     # If we got here through the filters, the table name and user should be
     # okay.
-    if params.size > 3
+    if params.keys.size > 3
       condition_params = params.clone
       # Remove the controller, action, and table_name parameters.  The
       # rest should be a specification of column values for limiting the
@@ -108,6 +109,7 @@ class DataController < ApplicationController
       condition_params.delete(:controller)
       condition_params.delete(:action)
       condition_params.delete(:format)
+      condition_params.permit!
     else
       condition_params = nil
     end
@@ -127,7 +129,7 @@ class DataController < ApplicationController
   def update
     # If we got here through the filters, the user should be
     # okay, but we still need to check the table.
-    
+
     if request.post?
       table_name = nil
       update_data = nil
@@ -166,7 +168,7 @@ class DataController < ApplicationController
           end
         end
       end
-      
+
       if table_name
         # lock_name is the name of a lock we use to prevent concurrent updates.
         # We used to allow concurrent updates for different tables, but tables
@@ -254,8 +256,8 @@ class DataController < ApplicationController
     end # if it was a post request
     redirect_to('/data')
   end # def update
-  
-  
+
+
   # An export method for exporting the label and instruction text for a form
   # via a CSV file.  Each row represents a field description to be updated.
   # The columns must contain (at least) id, help_text, and instructions.
@@ -269,13 +271,13 @@ class DataController < ApplicationController
 
 
   private
-    
-    # A before_filter that checks that the requested table is one the data
+
+    # A before_action that checks that the requested table is one the data
     # controller is allowed to modify.
     def table_check
       name = get_table_name
       unless @@allowed_data_tables.member?(name)
-        render(:text=>"#{name} is not a table that can be accesssed.")
+        render(:plain=>"#{name} is not a table that can be accesssed.")
       end
     end
 
@@ -290,7 +292,7 @@ class DataController < ApplicationController
       return params[:id]
     end
 
-   
+
     # Sends the given CSV data back to the browser
     def send_csv_data(csv)
       headers['Content-Type'] = 'text/csv'

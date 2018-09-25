@@ -81,7 +81,8 @@ class RuleFetchCondition < ActiveRecord::Base
   # Problems are documented via messages written to the errors object that
   # is automatically created for the class.
   #
-  def validate
+  validate :validate_instance
+  def validate_instance
 
     # validate the id of the parent fetch rule
     if rule_fetch_id.nil?
@@ -124,7 +125,7 @@ class RuleFetchCondition < ActiveRecord::Base
 #      errors.add(:source_field, "'#{source_field}' does not exist.") unless db_field_2
 #
 #      if (db_field_1 != db_field_2)
-#          errors[:base]=("Source field '#{source_field}' does not match source_field_C '#{source_field_C}'") # end of 1)
+#          errors.add(:base, "Source field '#{source_field}' does not match source_field_C '#{source_field_C}'") # end of 1)
 #      end
 #
 #      if db_field_1 == db_field_2
@@ -165,7 +166,7 @@ class RuleFetchCondition < ActiveRecord::Base
 #        end
 #      end
 
-   
+
     # validate the condition type and comparison type if this is a comparison
     check_required_column('condition_type')
 

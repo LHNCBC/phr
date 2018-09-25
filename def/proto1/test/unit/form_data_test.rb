@@ -26,7 +26,7 @@ class FormDataTest < ActiveSupport::TestCase
                                "race_or_ethnicity" => "Unknown",
                                "gender_C" => "F",
                                "due_date" => nil} }
-                            
+
     short_taffy << {"phrs" => {"pregnant" => true,
                                "race_or_ethnicity_C" => "4",
                                "due_date_ET" => nil,
@@ -108,7 +108,7 @@ class FormDataTest < ActiveSupport::TestCase
         "Thu, 18 Dec 1912 22:54:07 -0500".to_date))
     assert_equal('', FormData.short_age(nil))
   end # test_short_age
-  
+
   def test_unicode
     f = Form.create!(
       :form_name => 'English',
@@ -122,12 +122,12 @@ class FormDataTest < ActiveSupport::TestCase
     assert_equal('中文', f1.form_title)
     assert_equal('España', f1.form_description)
     assert_equal('ダウンロード達成記念', f1.sub_title)
-    
+
   end
   def test_mass_saving
 
     # setup testing data
-    # Since mass assignments not allowed on user object, the record needs to be 
+    # Since mass assignments not allowed on user object, the record needs to be
     # created by asigning individual values to the fields.
     @user = User.create()
     @user.salt = Time.object_id.to_s + rand.to_s
@@ -141,7 +141,7 @@ class FormDataTest < ActiveSupport::TestCase
 
     @profile = Profile.create()
     fd = FormData.new("phr")
-    
+
     # expose the private method mass_saving for testing purpose
     def fd.test_mass_saving(user, mass_inserts={}, mass_deletes={}, mass_updates={}, mass_update_fields={})
       @mass_inserts = mass_inserts
@@ -170,7 +170,7 @@ class FormDataTest < ActiveSupport::TestCase
     assert_equal next_last.obx5_value, "new value"
     assert_equal next_last.latest, true
 
-    
+
     original_count = ObxObservation.count
     last_obx.obx5_value = "changed value"
     options={"obx_observations" => [last_obx]}
@@ -188,36 +188,41 @@ class FormDataTest < ActiveSupport::TestCase
     assert_equal ObxObservation.count, original_count - 2
 
   end
-  
-    
+
+
   def test_xss_sanitize
     fd = FormData.new("phr")
-    # Exposes private method xss_santize for testing 
+    # Exposes private method xss_santize for testing
     def fd.test_xss_sanitize(a,b)
       xss_sanitize(a,b)
     end
-    testing_list =  %w(< %3C  &lt  &lt;  &LT  &LT;  
-&#60  &#060  &#0060  &#00060  &#000060  &#0000060  
-&#60;  &#060;  &#0060;  &#00060;  &#000060;  &#0000060;  
-&#x3c  &#x03c  &#x003c  &#x0003c  &#x00003c  &#x000003c  
-&#x3c;  &#x03c;  &#x003c;  &#x0003c;  &#x00003c;  &#x000003c;  
-&#X3c  &#X03c  &#X003c  &#X0003c  &#X00003c  &#X000003c  
-&#X3c;  &#X03c;  &#X003c;  &#X0003c;  &#X00003c;  &#X000003c; 
-&#x3C  &#x03C  &#x003C  &#x0003C  &#x00003C  &#x000003C  
-&#x3C;  &#x03C;  &#x003C;  &#x0003C;  &#x00003C;  &#x000003C;  
-&#X3C  &#X03C  &#X003C  &#X0003C  &#X00003C  &#X000003C  
-&#X3C;  &#X03C;  &#X003C;  &#X0003C;  &#X00003C;  &#X000003C;  
+    testing_list =  %w(< %3C  &lt  &lt;  &LT  &LT;
+&#60  &#060  &#0060  &#00060  &#000060  &#0000060
+&#60;  &#060;  &#0060;  &#00060;  &#000060;  &#0000060;
+&#x3c  &#x03c  &#x003c  &#x0003c  &#x00003c  &#x000003c
+&#x3c;  &#x03c;  &#x003c;  &#x0003c;  &#x00003c;  &#x000003c;
+&#X3c  &#X03c  &#X003c  &#X0003c  &#X00003c  &#X000003c
+&#X3c;  &#X03c;  &#X003c;  &#X0003c;  &#X00003c;  &#X000003c;
+&#x3C  &#x03C  &#x003C  &#x0003C  &#x00003C  &#x000003C
+&#x3C;  &#x03C;  &#x003C;  &#x0003C;  &#x00003C;  &#x000003C;
+&#X3C  &#X03C  &#X003C  &#X0003C  &#X00003C  &#X000003C
+&#X3C;  &#X03C;  &#X003C;  &#X0003C;  &#X00003C;  &#X000003C;
 \x3c  \x3C  \u003c  \u003C)
     data_value = testing_list.join("a")
     data_type = :string
     actual = fd.test_xss_sanitize(data_value, data_type)
     expected = testing_list.join(" a")
     assert_equal actual, expected
-    
+
     data_value = testing_list.join("=a")
     data_type = :string
     actual = fd.test_xss_sanitize(data_value, data_type)
     expected = data_value
+    assert_equal actual, expected
+
+    data_value = testing_list.join("<<<a")
+    actual = fd.test_xss_sanitize(data_value, data_type)
+    expected = testing_list.join(" < < < a")
     assert_equal actual, expected
   end
 

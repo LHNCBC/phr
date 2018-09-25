@@ -14,15 +14,12 @@
 # the browser also caches them, it's better to turn off that cache. In order 
 # to do so, we override the assets method so that it will always return the 
 # non-cached assets even when the attribute @asssets has been cached(see line#113 
-# of sprockets#railtie.rb). 
-module Rails
-  class Application
+# of sprockets#railtie.rb).
+module AssetPipelineExt
     # Return non-cached assets disregarding the cache_classes setting
-    def assets_with_cache_filtered
-      rtn = assets_without_cache_filtered
-      @assets_not_indexed ||= rtn
+    def assets
+      @assets_not_indexed ||= super
     end
-    alias_method_chain :assets, :cache_filtered
 
 #    # Refresh the cached assets if applicable
 #    def refresh_cached_assets
@@ -43,20 +40,18 @@ module Rails
         ActionView::Base.new.assets_manifest
       end
     end
-  end
 end
+Rails::Application.prepend(AssetPipelineExt)
 
 
 ## The javascript_include_tag method sometimes returns staled links. The 
 ## work-around is to clear the cache and index to make sure the returned asset 
 ## always up-to-date
-#module Sprockets
-#  class Environment < Base 
-#    def find_asset_with_nocache(*args)
+#module SprocketsEnvPhr
+#    def find_asset(*args)
 #      expire_index!
 #      self.cache = nil
-#      find_asset_without_nocache(*args)
+#      super(*args)
 #    end
-#    alias_method_chain :find_asset, :nocache
-#  end
 #end
+# Sprockets::Environment.prepend(SprocketsEnvPhr)

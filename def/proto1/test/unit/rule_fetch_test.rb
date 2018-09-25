@@ -91,12 +91,12 @@ class RuleFetchTest < ActiveSupport::TestCase
 
     q1id = r1fq1.id
     r1f.rule_fetch_conditions.delete(r1fq1)
-    assert_equal(nil, RuleFetchCondition.find_by_id(q1id))
+    assert_nil(RuleFetchCondition.find_by_id(q1id))
     assert_equal(true, r1f.has_conditions)
 
     q2id = r1fq2.id
     r1f.rule_fetch_conditions.delete(r1fq2)
-    assert_equal(nil, RuleFetchCondition.find_by_id(q2id))
+    assert_nil(RuleFetchCondition.find_by_id(q2id))
     assert_equal(false, r1f.has_conditions)
     rf.destroy
   end # test_has_conditions
@@ -237,8 +237,8 @@ class RuleFetchTest < ActiveSupport::TestCase
                               "qualifier_value_C"=>"4443"}]
                            }
     no_source = fetch.get_main_fetch_data(no_source_table_hash)
-    assert_equal(nil, no_source[:source_table])
-    assert_equal(nil, no_source[:source_table_C])
+    assert_nil(no_source[:source_table])
+    assert_nil(no_source[:source_table_C])
 
     no_comparison_hash = {"rule_name"=>"test_fetch",
                           "source_table"=>"Drugs",
@@ -287,7 +287,7 @@ class RuleFetchTest < ActiveSupport::TestCase
     fetch = RuleFetch.new
     mc = fetch.get_major_qualifier_data(@mc_data)
     assert_equal(1, mc.size)
-    assert_equal(nil, mc[0][:condition_id])
+    assert_nil(mc[0][:condition_id])
     assert_equal('M', mc[0][:condition_type])
     assert_equal('Medical Condition', mc[0][:source_field])
     assert_equal(@med.id, mc[0][:source_field_C])
@@ -300,7 +300,7 @@ class RuleFetchTest < ActiveSupport::TestCase
     dr = fetch.get_major_qualifier_data(@dr_data)
     assert_equal(2, dr.size)
     dr.each do |ch|
-      assert_equal(nil, ch[:condition_id])
+      assert_nil(ch[:condition_id])
       assert_equal('M', ch[:condition_type])
       case ch[:source_field]
       when 'Drug Classes'
@@ -334,7 +334,7 @@ class RuleFetchTest < ActiveSupport::TestCase
     mc = fetch.get_non_date_qualifiers_data(@mc_data)
     med = DbFieldDescription.find_by_display_name('Medical Condition')
     assert_equal(1, mc.size)
-    assert_equal(nil, mc[0][:condition_id])
+    assert_nil(mc[0][:condition_id])
     assert_equal('O', mc[0][:condition_type])
     assert_equal('Medical Condition', mc[0][:source_field])
     assert_equal(@med.id, mc[0][:source_field_C])
@@ -348,7 +348,7 @@ class RuleFetchTest < ActiveSupport::TestCase
     sta = DbFieldDescription.find_by_display_name('Status')
     assert_equal(2, dr.size)
     dr.each do |ch|
-      assert_equal(nil, ch[:condition_id])
+      assert_nil(ch[:condition_id])
       assert_equal('O', ch[:condition_type])
       case ch[:source_field]
       when 'Drug Classes'

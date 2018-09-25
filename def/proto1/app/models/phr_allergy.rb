@@ -4,8 +4,9 @@ class PhrAllergy < ActiveRecord::Base
   include TextListUserData
   extend TextListUserData::ClassMethods
 
-  def validate
-    super
+  validate :validate_text_list_user_data
+  validate :validate_instance
+  def validate_instance
     validate_cwe_field(:reaction)
   end
 

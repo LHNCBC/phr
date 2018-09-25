@@ -80,7 +80,7 @@ class RecoverIdStepTwoPresenter < PresenterBase
 
     # email account id if correct password or challenge answer is entered
     if (id_confirmed)
-      DefMailer.uid_notice(@possible_user.name, @possible_user.email).deliver
+      DefMailer.uid_notice(@possible_user.name, @possible_user.email).deliver_now
       @possible_user.reset_qa_answered_flag
       @possible_user.trial_update
       @possible_user.save!

@@ -1,7 +1,7 @@
-#!/proj/def/bin/ruby
+#!TBD-defPARENTDIRECTORY/def/bin/ruby
 # This script is used for posting notices on the public web site machines.
 
-PROJECT_DIR = '/proj'
+PROJECT_DIR = 'TBD - DIRECTORY CONTAINING YOUR def DIRECTORY'
 DEF_PROJECT_DIR = "#{PROJECT_DIR}/def"
 WEB_DOC_ROOT = "#{DEF_PROJECT_DIR}/proto1/public"
 NOTICE_DIR = WEB_DOC_ROOT
@@ -9,8 +9,8 @@ LOGIN_PAGE_NOTICE_FILE = 'loginNotice.txt'
 URGENT_NOTICE_FILE = 'urgentNotice.txt'
 # When running rake in production mode, for some reason we need to include
 # the require config/environment part or it can't find model classes.
-RAKE = '/proj/def/bin/rake --require config/environment'
-RUBY = '/proj/def/bin/ruby'
+RAKE = '#{PROJECT_DIR}/def/bin/rake --require config/environment'
+RUBY = '#{PROJECT_DIR}/def/bin/ruby'
 
 require 'rubygems'
 require 'net/sftp'

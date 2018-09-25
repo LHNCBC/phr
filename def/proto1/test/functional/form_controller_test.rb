@@ -26,8 +26,8 @@ class FormControllerTest < ActionController::TestCase
 
   def setup
     @controller = FormController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
+    @request    = ActionController::TestRequest.create(@controller.class)
+    @response   = ActionDispatch::TestResponse.new
     @request.env['HTTPS'] = 'on'  # Set the request to be SSL
 
     # Also copy the ferret index files
@@ -41,7 +41,7 @@ class FormControllerTest < ActionController::TestCase
 
   def test_load_rule_data
     # This tests some of the load_rule_data functionality.
-    get :show, {:form_name=>'PHR'}, {:user_id=>users(:PHR_Test).id}
+    get :show, params: {:form_name=>'PHR'}, session: {:user_id=>users(:PHR_Test).id}
 
     # Test that @rule_actions was set up correctly.
     assert_not_nil(assigns['rule_actions'])
@@ -58,8 +58,8 @@ class FormControllerTest < ActionController::TestCase
     # Define the user data table model classes
     DbTableDescription.define_user_data_models
 
-    get :handle_data_req, {:field_val=>'Aminobenzoate (Oral-liquid)',
-      :fd_id=>field_descriptions(:phr_drug_name).id},
+    get :handle_data_req, params: {:field_val=>'Aminobenzoate (Oral-liquid)',
+      :fd_id=>field_descriptions(:phr_drug_name).id}, session:
       {:user_id=>users(:PHR_Test).id}
    # expected = "{\"drug_code\": \"10001\", \"route\": \"By Mouth\", " +
    #   "\"drug_name_route_id\": 2, \"strength_and_form\":" +
@@ -80,14 +80,14 @@ class FormControllerTest < ActionController::TestCase
     assert_equal(expected, JSON.load(@response.body))
 
     # Now try the same thing but with a code value instead of a field value.
-    get :handle_data_req, {:code_val=>'-3',
-      :fd_id=>field_descriptions(:phr_drug_name).id},
+    get :handle_data_req, params: {:code_val=>'-3',
+      :fd_id=>field_descriptions(:phr_drug_name).id}, session:
       {:user_id=>users(:PHR_Test).id}
     assert_equal(expected, JSON.load(@response.body))
 
-    get :handle_data_req, :field_val=>'10 MG/ML Susp',
+    get :handle_data_req, params: {:field_val=>'10 MG/ML Susp',
       :fd_id=>field_descriptions(:phr_drug_strength).id,
-      :drug_name_route_id=>-3
+      :drug_name_route_id=>-3}
     #expected = "{\"rxcui\":581629,\"dose\":[\"1/2 Tsp\",\"1 Tsp\"]}"
     #assert_equal(expected, @response.body)
     expected = {"rxcui"=>581629,"dose"=>["1/2 Tsp","1 Tsp"]}
@@ -96,23 +96,23 @@ class FormControllerTest < ActionController::TestCase
     # Test that the user cannot search the users table.
     # Field Description 75 is configured to search the users table.
     assert_raise RuntimeError do
-      get :handle_data_req, {
-        :fd_id=>field_descriptions(:test_for_not_allowing_search1).id},
+      get :handle_data_req, params: {
+        :fd_id=>field_descriptions(:test_for_not_allowing_search1).id}, session:
         {:user_id=>users(:PHR_Test).id}
     end
 
     # Test that the user cannot search the phrs table.
     # Field Description 76 is configured to search the phrs table.
     assert_raise RuntimeError do
-      get :handle_data_req, {
-        :fd_id=>field_descriptions(:test_for_not_allowing_search2).id},
+      get :handle_data_req, params: {
+        :fd_id=>field_descriptions(:test_for_not_allowing_search2).id}, session:
         {:user_id=>users(:PHR_Test).id}
     end
 
     # Test that the user can search the phrs they own
-    get :handle_data_req, {
+    get :handle_data_req, params: {
       :fd_id=>field_descriptions(:test_for_allowing_search2).id,
-      :field_val=>'father'},
+      :field_val=>'father'}, session:
       {:user_id=>users(:PHR_Test).id}
     test_phr = phrs(:Father)
     expected = {"real_id"=>test_phr.id, "visible_id"=>test_phr.id_shown}
@@ -120,11 +120,24 @@ class FormControllerTest < ActionController::TestCase
     assert_equal(expected, actual)
   end
 
+  # Test that the autocompletion lookups is working on the PHR form
+  def test_get_search_res_list
+    get :get_search_res_list, xhr: true,
+        params: {:field_val => 'Aminobenzoate (Oral-liquid)',
+                 :fd_id => field_descriptions(:phr_drug_name).id, suggest: 1},
+        session: {:user_id => users(:PHR_Test).id}
+    assert_response(:success)
+    expected = [["607465", "596393", "607658", "590047", "605149"],
+                [["Aminobenzoate (Oral Liquid)"], ["Aminobenzoate (Oral-liquid)"], ["Aminobenzoic Acid (Oral Liquid)"],
+                 ["Aminobenzoic Acid (Oral-liquid)"], ["Aminobenzoate (Oral Pill)"]]]
+    actual = ActiveSupport::JSON.decode(@response.body)
+    assert_equal(expected, actual)
+  end
 
   # Tests mplus_health_topic_links.
   def test_mplus_health_topic_links
     # Test passing in the code
-    post :mplus_health_topic_links, {:problem_code=>gopher_terms(:one).key_id},
+    post :mplus_health_topic_links, params: {:problem_code=>gopher_terms(:one).key_id}, session:
       {:user_id=>users(:PHR_Test).id}
     assert_response(:success)
     expected = [['http://somewhere1', 'Page One'],
@@ -134,8 +147,8 @@ class FormControllerTest < ActionController::TestCase
 
     # Test passing in the problem name.  For some reason, we have to clear
     # the value of problem_code, which appears to get cached somehow.
-    post :mplus_health_topic_links, {:problem_name=>'Cigarette Smoker',
-      :problem_code=>nil},
+    post :mplus_health_topic_links, params: {:problem_name=>'Cigarette Smoker',
+      :problem_code=>nil}, session:
       {:user_id=>users(:PHR_Test).id}
     assert_response(:success)
     expected = [['http://somewhere3', 'Page Three']]
@@ -188,14 +201,14 @@ class FormControllerTest < ActionController::TestCase
 #      "test_date_ET"=>1262322000000, "profile_id"=>profile.id,
 #      "last_value"=>"Yes"})
 #
-#    post :export_profile, {"form_name"=>"phr",
+#    post :export_profile, params: {"form_name"=>"phr",
 #      "fe"=>{"action_1"=>"Export",
 #             "file_pwd_1_1"=>"a",
 #             "record_name_1"=>"female_1940",
 #             "record_name_C_1"=>profile.id_shown,
 #             "file_format_C_1_1"=>"2",
 #             "confirm_pwd_1_1"=>"a",
-#             "file_format_1_1"=>"Excel"}},
+#             "file_format_1_1"=>"Excel"}}, session:
 #      {:user_id=>user.id, :cur_ip=>'127.11.11.11'}
 #    assert_response(:success)
 #    assert_nil flash[:error]
@@ -240,7 +253,7 @@ class FormControllerTest < ActionController::TestCase
     # 1. valid user, profile id, minimum access level
     level, prof = our_user.require_profile(
                                     @controller.get_specified_url(@request),
-                                    @request.session_options[:id],
+                                    @request.session.id,
                                     session_data[:cur_ip],
                                     "testing User.require_profile",
                                     ProfilesUser::READ_ONLY_ACCESS,
@@ -251,7 +264,7 @@ class FormControllerTest < ActionController::TestCase
     # 2. valid user, profile_id_shown, minimum access level
     level, prof = our_user.require_profile(
                                     @controller.get_specified_url(@request),
-                                    @request.session_options[:id],
+                                    @request.session.id,
                                     session_data[:cur_ip],
                                     "testing User.require_profile",
                                     ProfilesUser::READ_WRITE_ACCESS,
@@ -264,7 +277,7 @@ class FormControllerTest < ActionController::TestCase
     assert_raise(SecurityError) {
       level, prof = sneaky_user.require_profile(
                                          @controller.get_specified_url(@request),
-                                         @request.session_options[:id],
+                                         @request.session.id,
                                          session_data[:cur_ip],
                                          "testing User.require_profile",
                                          ProfilesUser::READ_ONLY_ACCESS,
@@ -274,7 +287,7 @@ class FormControllerTest < ActionController::TestCase
     assert_raise(SecurityError) {
       level, prof = our_user.require_profile(
                                       @controller.get_specified_url(@request),
-                                      @request.session_options[:id],
+                                      @request.session.id,
                                       session_data[:cur_ip],
                                       "testing User.require_profile",
                                       ProfilesUser::OWNER_ACCESS,
@@ -284,7 +297,7 @@ class FormControllerTest < ActionController::TestCase
     assert_raise(SecurityError) {
       level, prof = our_user.require_profile(
                                       @controller.get_specified_url(@request),
-                                      @request.session_options[:id],
+                                      @request.session.id,
                                       session_data[:cur_ip],
                                       "testing User.require_profile",
                                       ProfilesUser::READ_WRITE_ACCESS,
@@ -295,7 +308,7 @@ class FormControllerTest < ActionController::TestCase
     assert_raise(SecurityError) {
        level, prof = read_only_user.require_profile(
                                       @controller.get_specified_url(@request),
-                                      @request.session_options[:id],
+                                      @request.session.id,
                                       session_data[:cur_ip],
                                       "testing User.require_profile",
                                       ProfilesUser::READ_WRITE_ACCESS,
@@ -319,7 +332,7 @@ class FormControllerTest < ActionController::TestCase
     # Now test missing parameters - make sure an exception is thrown
     assert_raise(RuntimeError) {
       prof = our_user.require_profile(nil,
-                                      @request.session_options[:id],
+                                      @request.session.id,
                                       session_data[:cur_ip],
                                       "testing User.require_profile",
                                       ProfilesUser::READ_ONLY_ACCESS,
@@ -341,7 +354,7 @@ class FormControllerTest < ActionController::TestCase
     Rails.application.routes.draw do
       get '/form/show'=>'form#show'
     end
-    get :show, {}
+    get :show, params: {}
     assert_equal(400, @response.status)
     # Also, there should be something for the user to see, in case a user
     # mistyped a URL.
@@ -363,7 +376,7 @@ class FormControllerTest < ActionController::TestCase
     # save the review status on server side after one reminder of the profile was reviewed by the user
     form_data={"profile_id"=> profile.id_shown, "reviewed_reminders"=>["msg_key_1"].to_json}
     session_data = {"user_id"=> user.id, "cur_ip" => "127.11.11.11" }
-    xhr :get, :update_reviewed_reminders, form_data, session_data
+    get :update_reviewed_reminders, xhr: true, params: form_data, session: session_data
     assert_response :success
 
     # server side table show that one reminder was reviewed

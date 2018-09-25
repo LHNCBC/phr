@@ -3,9 +3,9 @@ class AutosaveTmp < ActiveRecord::Base
   belongs_to :profiles
 
   TEST_PANEL_FORMS = ['panel_edit', 'panel_view']
-  
-                       
-  # This method determines if there is a change record in the autosave_tmps 
+
+
+  # This method determines if there is a change record in the autosave_tmps
   #  table for the user/profile/form name specified.
   # Parameters:
   # * profile_id - profile id
@@ -15,7 +15,7 @@ class AutosaveTmp < ActiveRecord::Base
   #   form name in the form_name parameter only.  This is currently used
   #   to prevent a form name in TEST_PANEL_FORMS from triggering a search
   #   for all form names in that array.
-  #   
+  #
   # Returns:
   # * if form_name is specified returns a boolean indicating whether or not
   #   there is change data for the specified form name - or for the test panel
@@ -25,8 +25,8 @@ class AutosaveTmp < ActiveRecord::Base
   #   names of the forms for which change data exists.  The array will be
   #   empty if there is no change data for the profile.
   #
-  def self.have_change_data(profile, 
-                            form_name, 
+  def self.have_change_data(profile,
+                            form_name,
                             named_form_only = false)
     have_changes = false
     profile_id = profile.id
@@ -75,14 +75,14 @@ class AutosaveTmp < ActiveRecord::Base
       change_rec = AutosaveTmp.where(profile_id: profile_id,
                                      form_name: form_name,
                                      base_rec: false).to_a
-      
-      # we have changes if we have a change record that has 
+
+      # we have changes if we have a change record that has
       # data in the data table.  If we have more than one change record
-      # there is a problem and we're returning false because we don't 
+      # there is a problem and we're returning false because we don't
       # want to use the current autosave data.  This should also cause
       # some kind of error notification, to be added when the error
       # checking is pulled out to be run separately.
-      have_changes = !change_rec.nil? && change_rec.size == 1 && 
+      have_changes = !change_rec.nil? && change_rec.size == 1 &&
                       change_rec[0].data_table != '{}'
 
     # Else no form name was specified.  We're checking to see if there are
@@ -128,7 +128,7 @@ class AutosaveTmp < ActiveRecord::Base
   # Although it should be checked before this is called, we check again for
   # safety.
   #
-  # NOTE that because this stores data to the database, the 
+  # NOTE that because this stores data to the database, the
   # check_for_data_overflow method in the application controller should be
   # called by whatever calls this on return from this method.
   #
@@ -302,7 +302,7 @@ class AutosaveTmp < ActiveRecord::Base
     return base_data_object.to_json
   end # add_base_data
 
-   
+
   # This method stores change data in the autosave table.  If there is
   # an existing change record, the data table is simply replaced with
   # the one passed in.  If there is no existing change record one is created.
@@ -312,7 +312,7 @@ class AutosaveTmp < ActiveRecord::Base
   # Although it should be checked before this is called, we check again for
   # safety.
   #
-  # NOTE that because this stores data to the database, the 
+  # NOTE that because this stores data to the database, the
   # check_for_data_overflow method in the application controller should be
   # called by whatever calls this on return from this method.
   #
@@ -377,8 +377,8 @@ class AutosaveTmp < ActiveRecord::Base
     end # if the current user has at least write access to the profile
   end # save_change_rec
 
-  
-  # This method merges a change record into the base record for a 
+
+  # This method merges a change record into the base record for a
   # profile/form and returns the merged data.  If something goes wrong
   # during the process, the change record is discarded, to avoid repeatedly
   # telling the user that something went wrong, etc.
@@ -397,14 +397,14 @@ class AutosaveTmp < ActiveRecord::Base
   #   added rows.  The entry consists of an array of row numbers for the rows
   #   that were added.
   #   2) recovered_fields - a hash that contains one entry for each table with
-  #   added rows.  The entry is a hash that contains one entry for every row 
+  #   added rows.  The entry is a hash that contains one entry for every row
   #   that was changed or added, and the entry for that is an array of the
   #   names of the fields that were changed.
   #
   def self.merge_changes(profile, form_name)
 
     form_name = form_name.downcase
-    begin 
+    begin
       #  Get all autosave records for this profile/form
       form_recs = AutosaveTmp.where(profile_id: profile.id,
                                     form_name: form_name).
@@ -431,7 +431,7 @@ class AutosaveTmp < ActiveRecord::Base
           logger.debug err_msg
           raise err_msg
         elsif form_recs.nil? || form_recs.length == 0
-          err_msg = 'No autosave changes found for profile_id ' + 
+          err_msg = 'No autosave changes found for profile_id ' +
                     profile.id.to_s  + '; form_name = ' + form_name +
                     '\nThis occurred in a call to ' +
                     'AutosaveTmp.merge_changes.\nSomething has gone wrong; ' +
@@ -468,7 +468,7 @@ class AutosaveTmp < ActiveRecord::Base
   #
   # Parameters
   # * profile - the profile object
-  # 
+  #
   # Returns
   # * data table hash with the merged data
   # * recovered fields array
@@ -496,7 +496,7 @@ class AutosaveTmp < ActiveRecord::Base
         end
         # handle a case of no base records
         if base_records.length == 0
-          err_msg = 'No base record found for profile_id ' + profile.id.to_s  + 
+          err_msg = 'No base record found for profile_id ' + profile.id.to_s  +
                     '; form_name in ' + TEST_PANEL_FORMS.to_json +
                     '\nThis occurred in a call to ' +
                     'AutosaveTmp.merge_tp_changes.\nAutosave WILL NOT WORK ' +
@@ -506,7 +506,7 @@ class AutosaveTmp < ActiveRecord::Base
         # and a case of too many base records
         elsif base_records.length > TEST_PANEL_FORMS.length
           err_msg = 'TOO MANY (' + base_records.length.to_s + ') base ' +
-                    'records were found for profile_id ' + profile.id.to_s  + 
+                    'records were found for profile_id ' + profile.id.to_s  +
                     '; form_name in '  + TEST_PANEL_FORMS.to_json +
                     '\nThis occurred in a call to AutosaveTmp.merge_tp_changes.\n' +
                     'Autosave WILL NOT WORK for this profile until this is fixed.'
@@ -523,7 +523,7 @@ class AutosaveTmp < ActiveRecord::Base
         # and a case of too many change records - there should only be one
         elsif forms_recs.length > 1
           err_msg = 'TOO MANY (' + forms_recs.length.to_s + ') change records '
-                    'were found for profile_id ' + profile.id.to_s  + 
+                    'were found for profile_id ' + profile.id.to_s  +
                     '; form_name in ' + TEST_PANEL_FORMS.to_json +
                     '\nThis occurred in a call to AutosaveTmp.merge_tp_changes.\n' +
                     'Something has gone wrong; this should not have been called.'
@@ -558,7 +558,7 @@ class AutosaveTmp < ActiveRecord::Base
           # for one of the test panels.  Throw an error.  It's happened.  I
           # don't know how, but it has.
           if (base_data_str == "{}")
-            err_msg = 'An autosave change record was found for profile_id ' + 
+            err_msg = 'An autosave change record was found for profile_id ' +
                       profile.id.to_s  + '; form_name in ' +
                       TEST_PANEL_FORMS.to_json + '\nBUT base records for the ' +
                       'forms were all empty.\nThis occurred in a call to ' +
@@ -572,7 +572,7 @@ class AutosaveTmp < ActiveRecord::Base
       # if we got this far without being bumped, call merge_change_hash
       ret = AutosaveTmp.merge_change_hash(base_data_str,
                                           forms_recs[0].data_table)
-                                         
+
     # If something went wrong, dump the change data.  The message the user
     # gets tells them that we've abandoned it, so go ahead and do just that.
     rescue Exception => e
@@ -599,7 +599,7 @@ class AutosaveTmp < ActiveRecord::Base
   #
   # NOTE that although this affects the amount of data stored in the database
   # for the current user, this method only REMOVES data.  So there is NO NEED
-  # to call the check_for_data_overflow method in the application controller 
+  # to call the check_for_data_overflow method in the application controller
   # from whatever calls this on return from this method.
   #
   # Parameters
@@ -619,7 +619,7 @@ class AutosaveTmp < ActiveRecord::Base
 
     if access_level >= ProfilesUser::READ_ONLY_ACCESS
       err_msg = "rollback_autosave_changes was called for profile with id = " +
-                profile.id + " but the current user only has " + 
+                profile.id + " but the current user only has " +
                 ProfilesUser::ACCESS_TEXT[access_level] +
                 " access for the profile."
       logger.debug err_msg
@@ -660,15 +660,15 @@ class AutosaveTmp < ActiveRecord::Base
   # * profile_id - profile id
   # * form_name - form name
   # * get_changes - flag to indicate whether or not the change has is to
-  #   be included in te returned data. 
+  #   be included in te returned data.
   def self.get_autosave_data_tables(profile,
                                     form_name,
                                     get_changes)
-                                     
+
     form_name = form_name.downcase
     if TEST_PANEL_FORMS.include?(form_name)
       search_form_name = TEST_PANEL_FORMS.clone
-      test_form = true 
+      test_form = true
       form_name_string = ' in ' + search_form_name.to_json
     else
       search_form_name = form_name
@@ -678,7 +678,7 @@ class AutosaveTmp < ActiveRecord::Base
     forms_recs = AutosaveTmp.where(profile_id: profile.id,
                                    form_name: search_form_name).
                                order('base_rec desc').to_a
-    
+
     if forms_recs.empty?
       err_msg = 'No autosave records found for profile_id ' + profile.id.to_s  +
                 '; form_name ' + form_name_string +
@@ -715,7 +715,7 @@ class AutosaveTmp < ActiveRecord::Base
       # a change record.
 
       # and a case of too many change records - there should only be one
-      elsif forms_recs.length > 1 
+      elsif forms_recs.length > 1
         err_msg = 'TOO MANY (' + forms_recs.length.to_s + ') change records '
                   'were found for profile_id ' + profile.id.to_s  +
                   '; form_name ' + form_name_string +
@@ -747,13 +747,13 @@ class AutosaveTmp < ActiveRecord::Base
         # If this is for a test panel form, merge the base records
         if test_form
           base_data_str = AutosaveTmp.merge_base_tp_records(base_records)
-        
+
           # Now check to see if we got an empty string back.  If we did, it
           # means both base records were empty BUT there is a change record
           # for one of the test panels.  Throw an error.  It's happened.  I
           # don't know how, but it has.
           if (base_data_str == "{}")
-            err_msg = 'An autosave change record was found for profile_id ' + 
+            err_msg = 'An autosave change record was found for profile_id ' +
                       profile.id.to_s  + '; form_name ' + form_name_string +
                       '.\nBUT base records for the forms were all empty.\n' +
                       'This occurred in a call to ' +
@@ -761,11 +761,11 @@ class AutosaveTmp < ActiveRecord::Base
             logger.debug err_msg
             raise err_msg
           end
-          base_records[0].data_table  = JSON.parse(base_data_str)
+          base_records[0].data_table  = base_data_str
         end # if we have a valid number of base and change rows
       end # if we found the base record
-    end # if we found the user id 
-    
+    end # if we found the user id
+
     # Set the change record return buffer based on whether or not we're
     # returning one.
     if get_changes && !forms_recs.empty? && !forms_recs[0].nil?
@@ -812,7 +812,7 @@ class AutosaveTmp < ActiveRecord::Base
   # This merges the change data into the base data.  Each set of data is stored
   # in the autosave_tmps table as a string that represents a hash.  The base
   # data hash contains entries for all user data displayed on the form when
-  # the form was loaded.  The change data hash contains entries only for fields 
+  # the form was loaded.  The change data hash contains entries only for fields
   # that were changed and rows that were added or deleted.  The format of each
   # mirrors the data_table_ in the Def.DataModel created when a form is loaded:
   #
@@ -830,17 +830,17 @@ class AutosaveTmp < ActiveRecord::Base
   #                ...}],
   #   ...}
   #
-  # Each table-level array contains one entry for every data row in the table 
+  # Each table-level array contains one entry for every data row in the table
   # in the base data.  Each data row entry in the base data MUST contain an
   # entry for every field in the row, or this will blow up.
-  # 
-  # The change data is a sparse hash and only contains data for changes, 
+  #
+  # The change data is a sparse hash and only contains data for changes,
   # additions and deletions.
   #
   # Parameters:
   # * base_data - the base record for this profile in the autosave_tmps table
   # * change_data - the corresponding change data record
-  # 
+  #
   # Returns:
   # * base_hash - the base data hash with the change data merged into it
   # * recovered_data - an array that contains two hash objects:
@@ -848,7 +848,7 @@ class AutosaveTmp < ActiveRecord::Base
   #   added rows.  The entry consists of an array of row numbers for the rows
   #   that were added.
   #   2) recovered_fields - a hash that contains one entry for each table with
-  #   added rows.  The entry is a hash that contains one entry for every row 
+  #   added rows.  The entry is a hash that contains one entry for every row
   #   that was changed or added, and the entry for that is an array of the
   #   names of the fields that were changed.
   # * is_test_data - optional flag that indicates whether or not we're merging
@@ -866,8 +866,8 @@ class AutosaveTmp < ActiveRecord::Base
 
     # Process the change_hash against the base_hash
     # ASSUMPTION:  All rows in the base_hash include all fields for the
-    #              row.  This will not be true for the change hash 
-    #              (unless all fields were changed), but must be true for 
+    #              row.  This will not be true for the change hash
+    #              (unless all fields were changed), but must be true for
     #              the base_hash.
     change_hash.each do |table_name, rows_hash|
 
@@ -877,9 +877,9 @@ class AutosaveTmp < ActiveRecord::Base
       removed_ct = 0
       rows_hash.each do |char_row_num, one_row_hash|
         row_num = char_row_num.to_i
-        
+
         # bypass removed rows
-        if (!one_row_hash['record_id'].nil? && 
+        if (!one_row_hash['record_id'].nil? &&
             one_row_hash['record_id'] == 'Removed')
           removed_ct += 1
         else
@@ -892,9 +892,9 @@ class AutosaveTmp < ActiveRecord::Base
           one_row_hash.each do |field_name, value|
             # Process a change for an existing (in the base_hash) row
             # by writing the field from the change hash to the base
-            # hash.  This will take care of updated, deleted, and 
+            # hash.  This will take care of updated, deleted, and
             # undeleted records (by the way the change hash is built).
-            # 
+            #
             # Note that test panel forms do NOT have an extra row at the
             # end of tables, and when a test panel is added, it's added to
             # the base record in the database and on the client Def.AutoSave
@@ -913,7 +913,7 @@ class AutosaveTmp < ActiveRecord::Base
               # end, and insert the new row where it wants to be.
               row_changed = true
               field_changed = true
-              base_hash[table_name][row_idx + 1] = 
+              base_hash[table_name][row_idx + 1] =
                                        Hash[base_hash[table_name][last_row_idx]]
 
               last_row_idx = row_idx + 1
@@ -947,7 +947,7 @@ class AutosaveTmp < ActiveRecord::Base
                 recovered_fields.delete(table_name)
               end
             end # end if we recorded anything for this table
-          end # if there were no real changes for this row       
+          end # if there were no real changes for this row
         end # if this is not a removed row
       end # do for each row hash in the change hash
     end # do for each table in the change hash
@@ -961,7 +961,7 @@ class AutosaveTmp < ActiveRecord::Base
     end
     return base_hash, recovered_data
   end  # merge_change_hash
-  
+
 
   # Merges multiple base records for test panel forms
   # Parameters:
@@ -971,21 +971,21 @@ class AutosaveTmp < ActiveRecord::Base
   #   merged data tables of each record in the base_records array
   #
   def self.merge_base_tp_records(base_records)
- 
+
     base_data_string = base_records[0].data_table
     base_records.delete_at(0)
-    base_data = ActiveSupport::JSON.decode(base_data_string) 
-    
+    base_data = ActiveSupport::JSON.decode(base_data_string)
+
     base_records.each do |next_base|
-      next_dt = ActiveSupport::JSON.decode(next_base.data_table) 
+      next_dt = ActiveSupport::JSON.decode(next_base.data_table)
       if !next_dt.empty?
-        next_dt['obr_orders'].each do |row_hash| 
+        next_dt['obr_orders'].each do |row_hash|
           if base_data['obr_orders'].nil?
             base_data['obr_orders'] = []
           end
           base_data['obr_orders'] << row_hash
         end
-        next_dt['obx_observations'].each do |row_hash|      
+        next_dt['obx_observations'].each do |row_hash|
           if base_data['obx_observations'].nil?
             base_data['obx_observations'] = []
           end
@@ -993,7 +993,7 @@ class AutosaveTmp < ActiveRecord::Base
         end
       end # if the next base record is not empty
     end # do for each subsequent base record
-    
+
     return base_data.to_json
   end # merge_base_tp_records
 

@@ -2166,7 +2166,7 @@ Def.PHRHome = {
         this.demographicsDialog_.dialogOpen = false ;
         this.demographicsDialog_.hide() ;
         this.demographicsDialogToFront();
-        var newLabels = response.responseText.evalJSON() ;
+        var newLabels = JSON.parse(response.responseText) ;
         //var  = response.responseText.split(',') ;
         // if there are 4 elements in the newLabels array, the name included
         // a comma.  Combine the first and second elements, and move the

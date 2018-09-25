@@ -24,7 +24,7 @@ class DateRemindersControllerTest < ActionController::TestCase
                     :cur_ip=>'127.11.11.11'}
     form_data = {:phr_record_id=>@profile.id_shown}
 
-    get :index, form_data, session_data
+    get :index, params: form_data, session: session_data
     assert_response :success
     assert_not_nil @response.body.index('no date reminders')
     access_det = UsageStat.where(['profile_id = ?', @profile.id]).order('event_time desc').load
@@ -36,7 +36,7 @@ class DateRemindersControllerTest < ActionController::TestCase
     @profile.phr_medical_contacts.create!(:name=>'Dr. Z',
       :next_appt=>3.days.from_now.strftime('%Y/%-m/%-d'))
 
-    get :index, form_data, session_data
+    get :index, params: form_data, session: session_data
     assert_response :success
     assert_nil @response.body.index('no date reminders') # there should be one
     assert_equal 1, @profile.date_reminders.size
@@ -44,27 +44,27 @@ class DateRemindersControllerTest < ActionController::TestCase
     # Hide the reminder
     reminder = @profile.date_reminders[0]
     form_data[:id] = reminder.id
-    post :hide, form_data, session_data
+    post :hide, params: form_data, session: session_data
     assert_redirected_to phr_record_date_reminders_path
-    assert_equal 0, @profile.date_reminders(true).size
+    assert_equal 0, @profile.date_reminders.reload.size
     assert_equal 1, @profile.hidden_date_reminders.size
 
     # Visit the hidden reminders page
     form_data.delete(:id)
-    get :hidden, form_data, session_data
+    get :hidden, params: form_data, session: session_data
     assert_response :success
     assert_nil @response.body.index('no date reminders') # there should be one
 
     # Unhide the reminder
     form_data[:id] = @profile.hidden_date_reminders[0].id
-    post :unhide, form_data, session_data
+    post :unhide, params: form_data, session: session_data
     assert_redirected_to hidden_phr_record_date_reminders_path
-    assert_equal 0, @profile.hidden_date_reminders(true).size
-    assert_equal 1, @profile.date_reminders(true).size
+    assert_equal 0, @profile.hidden_date_reminders.reload.size
+    assert_equal 1, @profile.date_reminders.reload.size
 
     # Check the hidden reminders page now to see what it looks like when empty
     form_data.delete(:id)
-    get :hidden, form_data, session_data
+    get :hidden, params: form_data, session: session_data
     assert_response :success
     assert_not_nil @response.body.index('no hidden date reminders')
   end

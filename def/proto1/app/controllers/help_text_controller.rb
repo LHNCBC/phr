@@ -1,7 +1,7 @@
 require 'restart_manager'
 
 class HelpTextController < ApplicationController
-  before_filter :admin_authorize
+  before_action :admin_authorize
 
   def index
     redirected = false

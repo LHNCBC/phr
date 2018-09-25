@@ -141,7 +141,7 @@ Def.ComboField = Class.create({
   onDataReqComplete: function(response) {
     try {
       // The response text should be a JSON object for a data hash map.
-      var fieldData = response.responseText.evalJSON();     
+      var fieldData = JSON.parse(response.responseText);
       this.removeOldFieldControls();
       this.assignNewFieldControls(fieldData);
     }

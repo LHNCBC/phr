@@ -134,10 +134,10 @@ Def.DateReminders = {
    *
    */
   customizeReminderTable: function() {
-    // Find the last row and delete it - IF this is not being displayed for
+    // Find the last row and delete it - IF this is being displayed for
     // read-only access.  The last empty rows are not generated for read-only
     // access (or else they're deleted before we get here).
-    if (Def.accessLevel_ !== Def.READ_ONLY_ACCESS) {
+    if (Def.formEditability_ !== Def.FORM_READ_ONLY_EDITABILITY) {
       var table = $('fe_date_reminders_0_tbl');
       var lastRow = table.rows[table.rows.length-1];
       // hide it

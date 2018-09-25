@@ -684,45 +684,50 @@ Def.Navigation = {
   * @param event the key event that caused this to be invoked.
   */
   handleNavKey: function(event) {
-
-    var eventElement = Event.element(event);
-    if (this.isNavKey(event, eventElement)) {
-      // Process a request to move to the next element in the form
-      if (event.keyCode == Event.KEY_RIGHT ||
-          (!event.shiftKey &&
-           (event.keyCode == Event.KEY_RETURN ||
-            event.keyCode == Event.KEY_TAB))) {
-        if (!Def.FieldsTable.skipBlankLine(eventElement))
-          this.moveToNextFormElem(eventElement) ;
-      }
-      // Process a request to move to the previous element in the form
-      else if (event.keyCode == Event.KEY_LEFT ||
-               (event.shiftKey &&
-                (event.keyCode == Event.KEY_RETURN ||
-                 event.keyCode == Event.KEY_TAB))) {
-        this.moveToPrevFormElem(eventElement) ;
-      }
-      // Handle the up and down arrows
-      else if (event.keyCode == Event.KEY_DOWN) {
-        if (this.inTable(eventElement)) {
-          this.downInTable(eventElement) ;
+    // See if the event is stopped (e.g. by the autocompleter) before proceeding.
+    // Handle both prototypejs and jQuery events in case we switch to jQuery
+    // events.
+    if (!event.stopped && (!event.isImmediatePropagationStopped ||
+        !event.isImmediatePropagationStopped())) {
+      var eventElement = Event.element(event);
+      if (this.isNavKey(event, eventElement)) {
+        // Process a request to move to the next element in the form
+        if (event.keyCode == Event.KEY_RIGHT ||
+            (!event.shiftKey &&
+             (event.keyCode == Event.KEY_RETURN ||
+              event.keyCode == Event.KEY_TAB))) {
+          if (!Def.FieldsTable.skipBlankLine(eventElement))
+            this.moveToNextFormElem(eventElement) ;
         }
-        else {
-          this.moveToNextFormElem(eventElement) ;
-        }
-      }
-      else { // KEY_UP
-        if (this.inTable(eventElement)) {
-          this.upInTable(eventElement) ;
-        }
-        else {
+        // Process a request to move to the previous element in the form
+        else if (event.keyCode == Event.KEY_LEFT ||
+                 (event.shiftKey &&
+                  (event.keyCode == Event.KEY_RETURN ||
+                   event.keyCode == Event.KEY_TAB))) {
           this.moveToPrevFormElem(eventElement) ;
         }
-      }
-      // Stop the event -- we've handled it here.
-      Event.stop(event);
+        // Handle the up and down arrows
+        else if (event.keyCode == Event.KEY_DOWN) {
+          if (this.inTable(eventElement)) {
+            this.downInTable(eventElement) ;
+          }
+          else {
+            this.moveToNextFormElem(eventElement) ;
+          }
+        }
+        else { // KEY_UP
+          if (this.inTable(eventElement)) {
+            this.upInTable(eventElement) ;
+          }
+          else {
+            this.moveToPrevFormElem(eventElement) ;
+          }
+        }
+        // Stop the event -- we've handled it here.
+        Event.stop(event);
 
-    } // end if this is a navigation key
+      } // end if this is a navigation key
+    }
   } , // handleNavKey
 
 

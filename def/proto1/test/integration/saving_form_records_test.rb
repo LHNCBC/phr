@@ -25,7 +25,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
 
     https! # Set the request to be SSL
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:PHR_Test).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:PHR_Test).name,
                             :password_1_1=>'A password'}}
     assert_redirected_to('/phr_home?logging_in=true')
 
@@ -46,7 +46,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
     params[:act_condition] = {:save=>"1", :action_C_1=>"1"}.to_json
     params[:message_map] = nil
 
-    xml_http_request :post, '/form/do_ajax_save', params
+    post '/form/do_ajax_save', params: params, xhr: true
     assert_response(:success)
     @response.body =~ %r{/profiles/([[:alnum:]]+);edit}
     assert_not_nil($1)
@@ -87,7 +87,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
     params[:act_condition] = {:save=>"1", :action_C_1=>"1"}.to_json
     params[:message_map] = nil
 
-    xml_http_request :post, '/form/do_ajax_save', params
+    post '/form/do_ajax_save', params: params, xhr: true
     assert_response(500)
     assert_equal(1, JSON.parse(@response.body)["errors"].length)
 
@@ -116,7 +116,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
     params[:act_condition] = {:save=>"1", :action_C_1=>"1"}.to_json
     params[:message_map] = nil
 
-    xml_http_request :post, '/form/do_ajax_save', params
+    post '/form/do_ajax_save', params: params, xhr: true
     assert_response(500)
     assert_equal(1, JSON.parse(@response.body)["errors"].length)
 
@@ -137,7 +137,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
     params[:act_condition] = {:save=>"1", :action_C_1=>"1"}.to_json
     params[:message_map] = nil
 
-    xml_http_request :post, '/form/do_ajax_save', params
+    post  '/form/do_ajax_save', params: params, xhr: true
     assert_response(500)
     assert_equal(1, JSON.parse(@response.body)["errors"].length)
 
@@ -196,7 +196,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
     params[:act_condition] = {:save=>"1"}.to_json
     params[:message_map] = nil
 
-    xml_http_request :post, '/form/do_ajax_save', params
+    post  '/form/do_ajax_save', params: params, xhr: true
 
     assert_response(:success)
 
@@ -266,7 +266,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
     params[:act_condition] = {:save=>"1"}.to_json
     params[:message_map] = nil
 
-    xml_http_request :post, '/form/do_ajax_save', params
+    post  '/form/do_ajax_save', params: params, xhr: true
 
     assert_response(:success)
     # but no error messages
@@ -330,7 +330,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
     params[:act_condition] = {:save=>"1"}.to_json
     params[:message_map] = nil
 
-    xml_http_request :post, '/form/do_ajax_save', params
+    post  '/form/do_ajax_save', params: params, xhr: true
     # no error message (obx5_value is not required!!??)
     assert_equal(0, JSON.parse(@response.body)["errors"].length)
     # and obr data is saved
@@ -344,7 +344,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
     # We use do_ajax_save for the main phr form too
     # AND we pass it the data model data table.  Commenting this out,
     # per conversation with Ye.  We don't save this way anymore.  lm, 3/11/11
-#    post '/profiles/' + id + ';edit', {:fe=>{:pseudonym=>'somebody1',
+#   post '/profiles/' + id + ';edit', params: {:fe=>{:pseudonym=>'somebody1',
 #                          :pregnant_1=>'Yes', :pregnant_C_1=>'25968', :save=>1,
 #                          :tp1_invisible_field_panel_loinc_num_1_1=>'34566-0',
 #                          :tp1_invisible_field_panel_name_1_1=>'Vital Signs Pnl',
@@ -373,7 +373,7 @@ class SavingFormRecordsTest < ActionDispatch::IntegrationTest
 #
 #    # Now edit the smoke by submitting the form again, this time using
 #    # the edit URL.
-#    post '/profiles/' + id + ';edit', {:fe=>{:pseudonym=>'somebody',
+#   post '/profiles/' + id + ';edit', params: {:fe=>{:pseudonym=>'somebody',
 #                     :pregnant_1=>'No', :pregnant_C_1=>'25969',
 #                     :save_and_close=>1}}
 #    assert_redirected_to('/profiles')

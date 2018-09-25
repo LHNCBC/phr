@@ -23,7 +23,7 @@ class PhrMedicalContactsControllerTest < ActionController::TestCase
     form_data = {:phr_record_id=>@profile.id_shown}
     session_data = {:user_id=>users(:PHR_Test).id, :cur_ip=>'127.11.11.11'}
 
-    get :index, form_data, session_data
+    get :index, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
     assert_nil flash[:notice]
@@ -38,7 +38,7 @@ class PhrMedicalContactsControllerTest < ActionController::TestCase
     form_data[:phr] =
       {:medcon_type_C=>'CARD', :medtact_name=>'Hart', :date=>'2004/1/3'}
 
-    post :create, form_data, session_data
+    post :create, params: form_data, session: session_data
     assert_redirected_to :controller=>'phr_medical_contacts', :action=>:index
     assert_nil flash[:error]
 
@@ -48,8 +48,8 @@ class PhrMedicalContactsControllerTest < ActionController::TestCase
     # Try an edit, and confirm that we get a backup record.
     form_data[:id] = pmc.id
     form_data[:phr][:medtact_name] = 'Isaac'
-    post :update, form_data, session_data
-    pmc = @profile.phr_medical_contacts(true).first
+    post :update, params: form_data, session: session_data
+    pmc = @profile.phr_medical_contacts.reload.first
     assert_equal('Isaac', pmc.name)
     # Find the backup
     assert_equal(1, HistPhrMedicalContact.where(profile_id: @profile.id,
@@ -60,15 +60,15 @@ class PhrMedicalContactsControllerTest < ActionController::TestCase
 
     # Edit again, and confirm we now have two backups
     form_data[:phr][:medtact_name] = 'Jacob'
-    post :update, form_data, session_data
-    pmc = @profile.phr_medical_contacts(true).first
+    post :update, params: form_data, session: session_data
+    pmc = @profile.phr_medical_contacts.reload.first
     assert_equal('Jacob', pmc.name)
     assert_equal(2, HistPhrMedicalContact.where(profile_id: @profile.id,
                                                 record_id: pmc.record_id).count)
 
     # Don't edit again but update, and confirm the number of backups doesn't change
-    post :update, form_data, session_data
-    pmc = @profile.phr_medical_contacts(true).first
+    post :update, params: form_data, session: session_data
+    pmc = @profile.phr_medical_contacts.reload.first
     assert_equal('Jacob', pmc.name)
     assert_equal(2, HistPhrMedicalContact.where(profile_id: @profile.id,
                                                 record_id: pmc.record_id).count)

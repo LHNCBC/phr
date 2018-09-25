@@ -1,8 +1,8 @@
 # A base class for basic mode controllers that deal with tables of resources
 # (e.g. phr_drugs and a phr_conditions, but not phrs.)
 class BasicModeTableController < BasicModeController
-  before_filter :authorize
-  before_filter :load_phr_record
+  before_action :authorize
+  before_action :load_phr_record
   layout 'basic'
   helper :phr_records
 

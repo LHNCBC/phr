@@ -21,9 +21,9 @@ class FormController < ApplicationController
   end
 
   protect_from_forgery :except=>open_methods
-  before_filter :authorize, :except=>open_methods
-  before_filter :show_header, :except => open_methods
-  #before_filter :set_account_type_flag, :except => open_methods
+  before_action :authorize, :except=>open_methods
+  before_action :show_header, :except => open_methods
+  #before_action :set_account_type_flag, :except => open_methods
 
   # The around filter to enforce that a request be made by an ajax call for
   # methods that expect it. The filter is location in the ApplicationController.
@@ -136,7 +136,7 @@ class FormController < ApplicationController
                                           ProfilesUser::READ_ONLY_ACCESS,
                                           params[:profile_id])
     ret = AutosaveTmp.have_change_data(@profile, params[:form_name])
-    render :json => ret.to_json
+    render json: ret
   end
 
 
@@ -253,7 +253,7 @@ class FormController < ApplicationController
                                           session[:showing_unsaved],
                                           params[:do_close])
     session[:showing_unsaved] = false
-    render(:nothing => true)
+    head :ok
   end
 
 
@@ -307,10 +307,10 @@ class FormController < ApplicationController
   # for that we do not require that the user be logged in.)
   def get_session_updates
     # Check for an urgent system message.
-    since = params[:since].to_i;
+    since = params[:since].to_i
     notice = SystemNotice.urgent_notice(since)
     update = notice ? {:urgent_notice=>notice} : {}
-    render(:text=>update.to_json)
+    render(:plain=>update.to_json)
   end
 
 
@@ -459,7 +459,7 @@ class FormController < ApplicationController
     end
     # return (and render the template for this method)
     theList = code_vals[1]
-    render(:text=>theList.to_json)
+    render(:plain=>theList.to_json)
   end
 
 
@@ -492,7 +492,7 @@ class FormController < ApplicationController
         db_field_desc = DbFieldDescription.find_by_id(db_id)
         results = get_matching_search_vals(db_field_desc, terms, get_search_limit)
       end
-      render(:text=>results.to_json)
+      render(:plain=>results.to_json)
 
       #result = RubyProf.stop
       #printer = RubyProf::GraphPrinter.new(result)
@@ -555,7 +555,7 @@ class FormController < ApplicationController
       results << headers
     end
 
-    render(:text=>results.to_json)
+    render(:plain=>results.to_json)
   end # get_search_res_list_by_list_desc
 
 
@@ -572,7 +572,7 @@ class FormController < ApplicationController
   def get_list_suggestions(field_desc_id=Integer(get_param(:fd_id)||0),
                            field_val=get_param(:field_val))
     field_desc = FieldDescription.find_by_id(field_desc_id)
-    render(:text=>get_suggestions_for_field(field_desc, field_val).to_json)
+    render(:plain=>get_suggestions_for_field(field_desc, field_val).to_json)
   end
 
 
@@ -739,7 +739,7 @@ class FormController < ApplicationController
       }
     }
 
-    render :text => rtn.to_json
+    render json: rtn
   end # handle_data_req
 
 
@@ -861,7 +861,7 @@ class FormController < ApplicationController
         end
       }
     }
-    render :text => rtn.to_json
+    render json: rtn
   end # handle_data_req_for_db_field
 
 
@@ -1006,7 +1006,7 @@ class FormController < ApplicationController
     drug = DrugNameRoute.where("text = ?", drug_name).take
     mplus_drugs = drug ? drug.info_link_data : []
     # render the output array as json text
-    render(:text=>mplus_drugs.to_json)
+    render(:plain=>mplus_drugs.to_json)
   end
 
 
@@ -1023,7 +1023,7 @@ class FormController < ApplicationController
     mplus_topics = GopherTerm.info_link_data(get_param(:problem_code),
       get_param(:problem_name))
     # render the output array as json text
-    render(:text=>mplus_topics.to_json)
+    render json: mplus_topics
   end
 
 
@@ -1051,7 +1051,8 @@ class FormController < ApplicationController
       # Set the action URL to be the current URL.  (This will give
       # handle_post the current URL so it can determine the next action.)
       if !request.url.nil?
-        @action_url = request.url
+        # Leave off the params part of the URL to avoid possible XSS attacks
+        @action_url = request.path
       end
 
       taffydb_data, @from_autosave = get_form_taffy_data(@profile.id)
@@ -1178,7 +1179,7 @@ class FormController < ApplicationController
         if test_data_hash = panel_taffydb_data[0]
           @prefetched_obx_observations =
             Rule.prefetched_obx_observations(profile_id)
-          test_data_hash[PanelData::OBX_TABLE+'_prefetched'] =
+          test_data_hash[OBX_TABLE+'_prefetched'] =
             @prefetched_obx_observations.values
         end
 
@@ -1232,7 +1233,7 @@ class FormController < ApplicationController
   # profile specified.
   #
   def get_prefetched_obx_observations
- 
+
     # Verify ownership of the profile by the current user
     @access_level, @profile = get_profile("getting prefetched obx observations",
                                           ProfilesUser::READ_ONLY_ACCESS,
@@ -1242,7 +1243,7 @@ class FormController < ApplicationController
     pref_obxs =  Rule.prefetched_obx_observations(@profile.id)
     rule_list = Rule.where(name: pref_obxs.keys).to_a
     complete_rules = Rule.complete_rule_list(rule_list, "used_by_rules")
-    render :json => [pref_obxs, complete_rules.map(&:name)].to_json
+    render json: [pref_obxs, complete_rules.map(&:name)]
   end
 
 
@@ -1327,7 +1328,7 @@ class FormController < ApplicationController
     end
 
       # if a valid profile is found or created.
-    if profile_id 
+    if profile_id
       HealthReminder.update_reminders_for_profile(@profile.id_shown,
                                                   message_map,
                                                   Time.now) if message_map
@@ -1459,7 +1460,7 @@ class FormController < ApplicationController
     duedate_cnt = DateReminder.get_reminder_count(@profile.id)
     # for now, the health reminders are generated on the client side
     health_cnt = 0
-    render :json => [health_cnt, duedate_cnt]
+    render json:  [health_cnt, duedate_cnt]
   end
 
 
@@ -1556,7 +1557,7 @@ class FormController < ApplicationController
     end
 
     if not_found
-      render(:nothing=>true, :status=>404)
+      head :not_found
     else
       # return the panel data hash as a JSON object
       # re-organize the table_to_group mapping, from hash to array
@@ -1589,7 +1590,7 @@ class FormController < ApplicationController
       end # if this form autosaves
 
       render :status => status,
-             :text => ret
+             :plain => ret
 
     end # if data was found for the specified loinc value
   end # get_loinc_panel_data
@@ -1623,7 +1624,7 @@ class FormController < ApplicationController
   # profile specified.
   #
   def get_loinc_panel_timeline_view
- 
+
     # Verify ownership of the profile by the current user
     @access_level, @profile = get_profile("get panel timeline view",
                                           ProfilesUser::READ_ONLY_ACCESS,
@@ -1651,7 +1652,7 @@ class FormController < ApplicationController
         in_one_grid, include_all, group_by_code, date_range_code, start_date,
         end_date, end_date_str)
     ret_value = timeline_html + "<@SP@>" + panel_info.to_json
-    render(:text => ret_value)
+    render(:plain => ret_value)
   end
 
 
@@ -1723,7 +1724,7 @@ class FormController < ApplicationController
                                            id_shown)
     @profile.archived = true
     @profile.save!
-    render(:nothing=>true, :status=>200)
+    head :ok
   end # archive_profile
 
 
@@ -1747,7 +1748,7 @@ class FormController < ApplicationController
                                           id_shown)
     @profile.archived = false
     @profile.save!
-    render(:nothing=>true, :status=>200)
+    head :ok
   end # unarchive_profile
 
 
@@ -1773,7 +1774,7 @@ class FormController < ApplicationController
     @profile.soft_delete
     render :status => status , :json => "OK".to_json
   end # delete_profile
-  
+
 
   # The handler method for performing a "HARD DELETE" of a profile.  This
   # actually deletes the profile and associated records.
@@ -1807,9 +1808,9 @@ class FormController < ApplicationController
        p.destroy
       end
       @profile.delete
-      render(:nothing=>true, :status=>200)
+      head :ok
     else
-      render(:nothing=>true, :status=>404)
+      head :not_found
     end
   end
 
@@ -1831,9 +1832,9 @@ class FormController < ApplicationController
                                             id_shown)
       reviewed_reminders = JSON.parse(params[:reviewed_reminders])
       ReviewedReminder.update_records(@user, @profile, reviewed_reminders)
-      render(:nothing=>true, :status=>200)
+      head :ok
     else
-      render(:nothing=>true, :status=>404)
+      head :not_found
     end
   end
 
@@ -1856,7 +1857,7 @@ class FormController < ApplicationController
                                                                        id_shown)
       render(:json => reviewed_reminders.to_json)
     else
-      render(:nothing=>true, :status=>404)
+      head :not_found
     end
   end
 

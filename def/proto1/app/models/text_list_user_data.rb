@@ -46,7 +46,7 @@ module TextListUserData
 
 
   # When validating, convert the dates to HL7 and epoch time.
-  def validate
+  def validate_text_list_user_data
     cl = self.class
     pf = cl.primary_field
     validate_cwe_field(pf)

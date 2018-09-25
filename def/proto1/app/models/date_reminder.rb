@@ -18,9 +18,7 @@ class DateReminder < ActiveRecord::Base
     ReminderOption.initialize_options(profile_id)
     
     reminder_option = {}
-    option_records = ReminderOption.find(:all, 
-        :conditions=>["profile_id=? AND latest=?", profile_id, true],
-        :order=>'reminder_type desc')
+    option_records = ReminderOption.where("profile_id=? AND latest=?", profile_id, true).order('reminder_type desc')
     option_records.each do |record|
       opt = {}
       opt['reminder_type'] = record.reminder_type
@@ -84,8 +82,7 @@ class DateReminder < ActiveRecord::Base
       if !options['query_condition'].blank?
         cond_str += " AND " + options['query_condition']
       end
-      user_records = tableClass.find(:all, :conditions=>
-          [cond_str, profile_id, true])
+      user_records = tableClass.where(cond_str, profile_id, true)
 
       # filter records for test panel to have only the latest records
       # for each panel
@@ -132,9 +129,9 @@ class DateReminder < ActiveRecord::Base
           reminder_rec['hide_me'] = 0
 
           # merge with the existing data in the date_reminders table
-          existing_rec = DateReminder.find(:first, :conditions=>
-              ['profile_id=? AND db_table_description_id=? AND record_id_in_user_table=? AND latest=?',
-              profile_id, db_table_id, record.record_id,true ])
+          existing_rec = DateReminder.where(
+              'profile_id=? AND db_table_description_id=? AND record_id_in_user_table=? AND latest=?',
+              profile_id, db_table_id, record.record_id,true).first
           # found an active existing record
           if !existing_rec.nil?
             if make_inactive
@@ -165,8 +162,7 @@ class DateReminder < ActiveRecord::Base
     # get all existing reminder records
     # and delete (set latest false) on those records that are no longer in the
     # new reminder record set
-    previous_records = DateReminder.find(:all, :conditions=>
-        ['profile_id=? AND latest=?', profile_id, true ])
+    previous_records = DateReminder.where('profile_id=? AND latest=?', profile_id, true)
     deleted_at = Time.now
     previous_records.each do |prev_rec|
       # if the record is not in the new reminder set
@@ -251,10 +247,8 @@ class DateReminder < ActiveRecord::Base
   # Returns:
   #  the total number of due date reminder for the profile
   def self.get_reminder_count(profile_id)
-    reminder_count = DateReminder.find(:first, :select=>"count(*) rc ",
-                       :conditions=>["profile_id=? AND latest=? AND hide_me=?",
-                                     profile_id, true, false]
-                      )
+    reminder_count = DateReminder.where("profile_id=? AND latest=? AND hide_me=?", profile_id, true, false).
+        select("count(*) rc ").first
     return reminder_count.rc
   end
 

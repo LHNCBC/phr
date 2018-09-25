@@ -1,20 +1,21 @@
-<p>Help us keep spammers out and keep your account safe.  If you are able to read
-the two words in the picture below, please enter them in the "Challenge answer"
-field and press the "Submit" button.  If you can see the words but cannot tell
-what they are, you can use the "Get another image" link below to get a new one
-which might be more readable.  If you cannot see the images at all, use the
-"Get an audio challenge" link to get a link to an audio challege.</p>
+<p>Please click the <b>I'm not a robot</b> checkbox and answer any challenge
+  prompt. </p>
+<p>If you see a visual challenge with 9 small images and have trouble reading
+  the objects there, click on the <%= recaptcha_icon('refresh_black') %> icon
+  for a new visual challenge, or select an audio challenge by clicking the
+  <%= recaptcha_icon('audio_black') %> icon.
+</p>
+<p>If you see an audio challenge and have trouble hearing the audio after
+  clicking the <b>PLAY</b> button, click on the <%= recaptcha_icon('refresh_black') %>
+  icon for a new audio challenge, or select a visual challenge by clicking the
+  <%= recaptcha_icon('image_black') %> icon. You can also download the audio and
+  listen to it by click on the <%= recaptcha_icon('download') %> icon.
+</p>
 
-<img src="<%= @captcha_info.image_url %>"/><br>
-
-<%= form_tag captcha_answer_path, :method=>:post %>
-  <%= label_tag 'answer', 'Challenge answer' %>
-  <%= text_field_tag 'answer' %>
-  <%= hidden_field_tag 'challenge_key', @captcha_info.challenge_key %>
+<%= form_tag captcha_answer_path, :method => :post %>
+  <div>
+    <%= recaptcha_tags %>
+  </div>
   <%= submit_tag 'Submit' %>
 </form>
-<div>
-  <%= link_to 'Get another image', captcha_path %> &nbsp;
-  <%= link_to 'Get an audio challege', captcha_audio_path %> &nbsp;
-  <%= link_to 'Help (ReCaptcha)', 'http://www.google.com/recaptcha/help', :target=>'_blank'%>
-</div>
+<%= link_to 'Help (ReCaptcha)', 'https://www.google.com/recaptcha/help', :target => '_blank' %>

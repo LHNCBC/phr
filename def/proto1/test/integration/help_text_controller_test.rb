@@ -52,6 +52,7 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
     system("#{HelpText::GIT_COMMAND} branch help_text_test; #{HelpText::GIT_COMMAND} checkout help_text_test")
 
     # Copy the needed text list from the development database
+    TextList.where(@@inst_mode_list).destroy_all
     tl = TextList.create!(@@inst_mode_list)
     TextListItem.disable_ferret
     @@inst_mode_list_items.each do |tli|
@@ -98,7 +99,7 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
     # Make sure the user is redirected to the login page if they are not
     # an admin user.
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:PHR_Test).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:PHR_Test).name,
                             :password_1_1=>'A password'}}
     post '/help_text'
     assert_redirected_to('/accounts/login')
@@ -108,38 +109,38 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
   def test_new_shared_file
     # Login
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
                             :password_1_1=>'A password'}}
 
     # Move from the help_text management page to the new help text page.
-    post '/help_text', {:fe=>{:mode_C=>'1'}, :new=>1}
+    post '/help_text', params: {:fe=>{:mode_C=>'1'}, :new=>1}
     assert_redirected_to('/help_text/new')
     follow_redirect!
 
     # Check handling of problems with the file name.
     # Blank file name
-    post '/help_text/new', {:fe=>{:help_html=>'Test1', :mode_C=>'1'}}
+    post '/help_text/new', params: {:fe=>{:help_html=>'Test1', :mode_C=>'1'}}
     assert_response(:success)
     assert(flash[:error])
 
     # Check file names with bad characters
-    post '/help_text/new', {:fe=>{:file_name=>'/a',
+    post '/help_text/new', params: {:fe=>{:file_name=>'/a',
       :help_html=>'Test1', :mode_C=>'1'}}
     assert_response(:success)
     assert(flash[:error])
-    post '/help_text/new', {:fe=>{:file_name=>'..',
+    post '/help_text/new', params: {:fe=>{:file_name=>'..',
       :help_html=>'Test1', :mode_C=>'1'}}
     assert_response(:success)
     assert(flash[:error])
 
     # Check a file name of an existing file
-    post '/help_text/new', {:fe=>{:file_name=>'general.shtml',
+    post '/help_text/new', params: {:fe=>{:file_name=>'general.shtml',
       :help_html=>'Test1', :mode_C=>'1'}}
     assert_response(:success)
     assert(flash[:error])
 
     # Create a help file
-    post '/help_text/new', {:fe=>{:file_name=>TEST_FILE_NAME,
+    post '/help_text/new', params: {:fe=>{:file_name=>TEST_FILE_NAME,
       :help_html=>'Test1', :mode_C=>'1'}}
     assert_redirected_to('/help_text')
     follow_redirect!
@@ -156,11 +157,11 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
 #    # Login
 #    cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
 #
-#    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+#   post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
 #                            :password_1_1=>'A password'}}
 #                        
 #    # Create a Suburban-specific help file
-#    post '/help_text/new', {:fe=>{:file_name=>TEST_FILE_NAME,
+#   post '/help_text/new', params: {:fe=>{:file_name=>TEST_FILE_NAME,
 #      :help_html=>'Test1', :mode_C=>'3'}}
 #    assert_redirected_to('/help_text')
 #    follow_redirect!
@@ -178,12 +179,12 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
   def test_edit_shared_file
     # Login
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
                             :password_1_1=>'A password'}}
 
     # Create a help file
     original_text = 'Test1'
-    post '/help_text/new', {:save=>1, :fe=>{:file_name=>TEST_FILE_NAME,
+    post '/help_text/new', params: {:save=>1, :fe=>{:file_name=>TEST_FILE_NAME,
       :help_html=>original_text, :mode_C=>'1'}}
     follow_redirect!
     assert(File.exists?(SHARED_HELP_PN))
@@ -193,7 +194,7 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
 
     # Post an edit, but with a wrong file name
     revised_text = 'Revised Text'
-    post "/help_text/edit/#{ht.code}", {:fe=>{:file_name=>'other name',
+    post "/help_text/edit/#{ht.code}", params: {:fe=>{:file_name=>'other name',
       :help_html=>revised_text}}
     assert_response :success
     assert(flash[:error])
@@ -201,15 +202,15 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
     assert_equal(original_text, File.read(SHARED_HELP_PN))
 
 #    # Post an edit, but with a wrong code
-#    post "/help_text/edit/2_1", {:fe=>{:file_name=>TEST_FILE_NAME,
+#   post "/help_text/edit/2_1", params: {:fe=>{:file_name=>TEST_FILE_NAME,
 #      :help_html=>revised_text}}
 #    assert_response :success
 #    assert(flash[:error])
 #    assert(flash[:notice].nil?)
 #    assert_equal(original_text, File.read(SHARED_HELP_PN))
 
-    # Post an edit with the right file name and code
-    post "/help_text/edit/#{ht.code}", {:fe=>{:file_name=>TEST_FILE_NAME,
+    #post an edit with the right file name and code
+    post "/help_text/edit/#{ht.code}", params: {:fe=>{:file_name=>TEST_FILE_NAME,
       :help_html=>revised_text}}
     assert_redirected_to('/help_text')
     follow_redirect!
@@ -221,7 +222,7 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
 #  def test_edit_suburban_file
 #    # Login
 #    cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-#    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+#   post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
 #                            :password_1_1=>'A password'}}
 #
 #    # Test an edit while in the default mode
@@ -234,7 +235,7 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
 #
 #    # Create a help file
 #    original_text = 'Test1'
-#    post '/help_text/new', {:save=>1, :fe=>{:file_name=>TEST_FILE_NAME,
+#   post '/help_text/new', params: {:save=>1, :fe=>{:file_name=>TEST_FILE_NAME,
 #      :help_html=>original_text, :mode_C=>'3'}}
 #    follow_redirect!
 #    assert(File.exists?(SUBURBAN_HELP_PN))
@@ -244,7 +245,7 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
 #
 #    # Post an edit
 #    revised_text = 'Revised Text'
-#    post "/help_text/edit/#{ht.code}", {:fe=>{:file_name=>TEST_FILE_NAME,
+#    post "/help_text/edit/#{ht.code}", params: {:fe=>{:file_name=>TEST_FILE_NAME,
 #      :help_html=>revised_text}}
 #    assert_redirected_to('/help_text')
 #    follow_redirect!
@@ -258,7 +259,7 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
 #    # Now put the system into suburban mode and try again.
 #    system("rake def:installation name=suburban") || raise('rake failed')
 #    revised_text = 'Newly Revised Text'
-#    post "/help_text/edit/#{ht.code}", {:fe=>{:file_name=>TEST_FILE_NAME,
+#   post "/help_text/edit/#{ht.code}", params: {:fe=>{:file_name=>TEST_FILE_NAME,
 #      :help_html=>revised_text}}
 #    assert_redirected_to('/help_text')
 #    follow_redirect!
@@ -282,11 +283,11 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
   def test_delete_shared_file
  
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
                             :password_1_1=>'A password'}}
 
     # Create a help file
-    post '/help_text/new', {:fe=>{:file_name=>TEST_FILE_NAME,
+    post '/help_text/new', params: {:fe=>{:file_name=>TEST_FILE_NAME,
       :help_html=>'Test1', :mode_C=>'1'}}
     follow_redirect!
     assert(File.exists?(SHARED_HELP_PN))
@@ -294,27 +295,27 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
     # Test deleting the file, but without a file selected
     ht = HelpText.find_by_mode_and_file_name('1', TEST_FILE_NAME)
     ht_code = ht.code
-    post '/help_text', {:delete=>1, :fe=>{:one=>:two}}
+    post '/help_text', params: {:delete=>1, :fe=>{:one=>:two}}
     assert_response(:error)
 
     # Test deleting the file, but use a blank file name
-    post '/help_text', {:delete=>1, :fe=>{:file_name_C=>ht_code}}
+    post '/help_text', params: {:delete=>1, :fe=>{:file_name_C=>ht_code}}
     assert_response(:success)
     assert(flash[:error])
 
     # Test deleting the file, but with a missing file code
     file_name_and_mode = "#{TEST_FILE_NAME} (#{ht.get_inst_mode_label})"
-    post '/help_text', {:delete=>1, :fe=>{:file_name=>file_name_and_mode}}
+    post '/help_text', params: {:delete=>1, :fe=>{:file_name=>file_name_and_mode}}
     assert_response(:error)
 
     # Test deleting the file, but use the wrong file name
-    post '/help_text', {:delete=>1,
+    post '/help_text', params: {:delete=>1,
       :fe=>{:file_name_C=>ht_code, :file_name=>'other_name'}}
     assert_response(:success)
     assert(flash[:error])
 
     # Delete the help file
-    post '/help_text', {:delete=>1,
+    post '/help_text', params: {:delete=>1,
       :fe=>{:file_name_C=>ht_code, :file_name=>file_name_and_mode}}
     assert_response(:success)
     assert(flash[:error].nil?)
@@ -325,12 +326,12 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
 #  def test_delete_suburban_file
 #    # Login
 #    cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-#    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+#   post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
 #                            :password_1_1=>'A password'}}
 #    
 #    # Create a help file
 #    original_text = 'Test1'
-#    post '/help_text/new', {:save=>1, :fe=>{:file_name=>TEST_FILE_NAME,
+#   post '/help_text/new', params: {:save=>1, :fe=>{:file_name=>TEST_FILE_NAME,
 #      :help_html=>original_text, :mode_C=>'3'}}
 #    follow_redirect!
 #    assert(File.exists?(SUBURBAN_HELP_PN))
@@ -340,7 +341,7 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
 #    # Delete it
 #    ht = HelpText.find_by_mode_and_file_name('3', TEST_FILE_NAME)
 #    file_name_and_mode = "#{TEST_FILE_NAME} (#{ht.get_inst_mode_label})"
-#    post '/help_text', {:delete=>1,
+#   post '/help_text', params: {:delete=>1,
 #      :fe=>{:file_name_C=>ht.code, :file_name=>file_name_and_mode}}
 #    assert_response(:success)
 #    assert(flash[:error].nil?)
@@ -356,7 +357,7 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
 #    # that works.
 #    ht = HelpText.find_by_mode_and_file_name('2', TEST_FILE_NAME)
 #    file_name_and_mode = "#{TEST_FILE_NAME} (#{ht.get_inst_mode_label})"
-#    post '/help_text', {:delete=>1,
+#   post '/help_text', params: {:delete=>1,
 #      :fe=>{:file_name_C=>ht.code, :file_name=>file_name_and_mode}}
 #    assert_response(:success)
 #    assert(flash[:error].nil?)
@@ -367,11 +368,11 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
   def test_new_with_vcs_lock
     # Login
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
                             :password_1_1=>'A password'}}
     # Re-create the file, but check the behavior when the VCS lock is in place
     assert(Vcs.lock_if_available)
-    post '/help_text/new', {:fe=>{:file_name=>TEST_FILE_NAME,
+    post '/help_text/new', params: {:fe=>{:file_name=>TEST_FILE_NAME,
       :help_html=>'Test2', :mode_C=>'1'}}
     assert_redirected_to('/help_text')
     follow_redirect!
@@ -388,11 +389,11 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
   def test_new_with_restart_lock
     # Login
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
                             :password_1_1=>'A password'}}
     # Re-create the file, but check the behavior when the restart lock is in place
     assert(RestartManager.lock_if_available)
-    post '/help_text/new', {:fe=>{:file_name=>TEST_FILE_NAME,
+    post '/help_text/new', params: {:fe=>{:file_name=>TEST_FILE_NAME,
       :help_html=>'Test2', :mode_C=>'1'}}
     assert_redirected_to('/help_text')
     follow_redirect!
@@ -410,14 +411,14 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
     assert(!File.exists?(SHARED_HELP_PN)) # The file should not exist yet.
     # Login
     cookies['phr_user'] = '3f0df575eda55d1b0bf59d23613d7a6e02723bc8a8dabe709876e3a1ca0afb81'
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
                             :password_1_1=>'A password'}}
     # Test what happens if the user tries to save a new file when a restart
     # has been been requested
     RestartManager.request_restart
     restart_signal = RestartManager::RESTART_FILE
     assert(File.exists?(restart_signal))
-    post '/help_text/new', {:fe=>{:file_name=>TEST_FILE_NAME,
+    post '/help_text/new', params: {:fe=>{:file_name=>TEST_FILE_NAME,
       :help_html=>'Test2', :mode_C=>'1'}}
     assert_response :success
     assert(flash[:error]) # should say the user should try later
@@ -434,12 +435,12 @@ class HelpTextControllerUpdateTest < ActionDispatch::IntegrationTest
   # be run on a side branch like the other methods here.
   def test_save_error
     # Force a save error, by redefining the save_and_check_in method.
-    HelpText.class_eval <<-END_EVAL
+    HelpText.class_eval do
       alias_method :old_save, :save_and_check_in
       def save_and_check_in(email=nil)
         raise 'save error'
       end
-    END_EVAL
+    end
 
     # Preconditions - Make sure the locks aren't present
     assert !RestartManager.is_locked?

@@ -1,7 +1,7 @@
 class PhrPanelsController < BasicModeTableSearchController
   include FlowsheetGenerator
 
-  around_filter :xhr_and_exception_filter, :only=>[:get_paginated_flowsheet_data_hash]
+  around_action :xhr_and_exception_filter, :only=>[:get_paginated_flowsheet_data_hash]
 
   # The panel (OBR) fields that appear on the form (or whose code fields do).
   OBR_FORM_FIELDS = %w{tp_panel_testdate tp_panel_testdate_time
@@ -33,7 +33,7 @@ class PhrPanelsController < BasicModeTableSearchController
       format.html {
         if params[:panel]
           # Load the panel records for this panel
-          @panel_orders = @phr_record.obr_orders.find_all_by_loinc_num(params[:panel])
+          @panel_orders = @phr_record.obr_orders.where(loinc_num: params[:panel]).all
           @order_loinc_num = params[:panel]
         end
         @page_title = PANELS_SECTION_TITLE

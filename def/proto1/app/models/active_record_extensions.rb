@@ -529,14 +529,6 @@ ENDLIST
     module_eval "def #{new_name}_changed?; self.#{old_name}_changed?; end"
   end
 
-  # all the existing instance methods will be called when validating AR record
-  validate :common_validations
-  def common_validations
-    if self.class.instance_methods.include?(:validate)
-      validate
-    end
-  end
-
 
   # Validates a date and updates the _ET and _HL7 fields.  Currently this does
   # not change the max & min date parameters.  (TBD).
@@ -640,14 +632,15 @@ ENDLIST
 
 end
 
-# The following line is a workaround for the bug introduced into rails 4.1 and will be removed in rails 4.2. Please
-# see lib/rails_4_1_5_patches.rb for details. - Frank
-require 'rails_4_1_5_patches'
-module ActiveRecord::AttributeMethods::Serialization::ClassMethods
+
+ActiveRecord::AttributeMethods::Serialization::ClassMethods.module_eval do
   # Replace YAML serialization with JSON, to avoid YAML's security issues
   # with unsanitized user data.
-  def serialize_with_json(field)
-    serialize_without_json(field, JsonProxy)
+  alias_method :serialize_old, :serialize
+
+  def seriallize(field)
+    serialize_old(field, JSON)
   end
-  alias_method_chain :serialize, :json
 end
+
+

@@ -1,7 +1,7 @@
 # A controller for the basic mode date reminders pages.
 class DateRemindersController < BasicModeController
-  before_filter :authorize
-  before_filter :load_phr_record
+  before_action :authorize
+  before_action :load_phr_record
 
   helper :phr_records
 

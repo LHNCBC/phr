@@ -178,7 +178,7 @@ module LoincPreparation
     
   def self.copy_loinc_data
     # copy the loinc table
-    loincs = LoincLoinc.find(:all)
+    loincs = LoincLoinc.all
     loincs.each do | loinc|
       LoincItem.create!(
         :loinc_num => loinc.LOINC_NUM,
@@ -219,7 +219,7 @@ module LoincPreparation
   end
   
   def self.copy_loinc_unit
-    loinc_units = LoincLoincUnit.find(:all)
+    loinc_units = LoincLoincUnit.all
     loinc_units.each do |unit|
       loinc_item = LoincItem.find_by_loinc_num(unit.LOINC_NUM)
       LoincUnit.create!(
@@ -294,10 +294,10 @@ module LoincPreparation
   def self.copy_form_data
     
     #get all panels from loinc.loinc, 794 total
-    panels = LoincItem.find(:all, :conditions=>["loinc_class like ?", "%PANEL%"])
+    panels = LoincItem.where("loinc_class like ?", "%PANEL%")
     # for each panel, find all included loinc item from loinc.form_data
     panels.each do |panel|
-      paneldefs = LoincLoincFormData.find_all_by_LOINC_NUM(panel.loinc_num)
+      paneldefs = LoincLoincFormData.where(LOINC_NUM: panel.loinc_num)
       # 11 panels have no tests defined in loinc.form_data
       if (paneldefs.length > 0)
         paneldefs.each do |paneldef|
@@ -329,7 +329,7 @@ module LoincPreparation
             toppanel.save!
             
             #sub items,
-            panelitems = LoincLoincFormData.find(:all, :conditions=>["PARENT_ID != ID and PARENT_ID =?", paneldef.ID])
+            panelitems = LoincLoincFormData.where("PARENT_ID != ID and PARENT_ID =?", paneldef.ID)
             
             if !panelitems.nil? && panelitems.length>0
               panelitems.each do |panelitem|
@@ -403,7 +403,7 @@ module LoincPreparation
 
     )    
     # process sub items of the item
-    panelitems = LoincLoincFormData.find_all_by_PARENT_ID(item.ID)
+    panelitems = LoincLoincFormData.where(PARENT_ID: item.ID)
     
     if !panelitems.nil? && panelitems.length>0
       panelitems.each do |panelitem|
@@ -492,7 +492,7 @@ module LoincPreparation
       else
         if item.answerlist_id.nil?
           # find out the new answer list and migrate them into phr database
-          answer_records = TestAllAnswer.find_all_by_loinc_num(loinc_num)
+          answer_records = TestAllAnswer.where(loinc_num: loinc_num)
           list_name = answer_records[0].TERM_TEXT
           list_desc = "for loinc item: "  + loinc_num
           if !answer_records[0].LOINC_SHORT_NAME.nil?
@@ -551,14 +551,14 @@ module LoincPreparation
     tests_in_panels = {}
     @output_file.puts("Test Loinc#|Panel Loinc#|Test Name|Panel Name")
     # panels used in PHR and their tests
-    panel_items = LoincItem.find(:all, :conditions=>["is_panel =? and has_top_level_panel= ? and included_in_phr =? and is_searchable=?", true, true, true, true])
+    panel_items = LoincItem.where("is_panel =? and has_top_level_panel= ? and included_in_phr =? and is_searchable=?", true, true, true, true)
 
     panel_items.each do |item|
       panel = LoincPanel.find_by_loinc_num(item.loinc_num, :conditions=>"p_id=id")
       tests = self.process_a_panel(panel)
       tests_in_panels[item.loinc_num] = tests
     end
-    test_items = LoincItem.find(:all, :conditions=>["is_panel =? and has_top_level_panel= ? and included_in_phr =? and is_searchable=?", false, false, true, true])
+    test_items = LoincItem.where("is_panel =? and has_top_level_panel= ? and included_in_phr =? and is_searchable=?", false, false, true, true)
     individual_tests = []
     test_items.each do |item|
       individual_tests << item.loinc_num
@@ -633,8 +633,8 @@ module LoincPreparation
     
   # get the list of panels (no tests) that are used in phr system
   def self.get_phr_panels(included_in_phr = false)
-    panel_items = LoincItem.find(:all, :conditions=>['is_panel=? and has_top_level_panel=? and included_in_phr=?',
-        true, true, included_in_phr])
+    panel_items = LoincItem.where('is_panel=? and has_top_level_panel=? and included_in_phr=?',
+        true, true, included_in_phr)
     panel_names = []
     panel_items.each do |panel_item|
       panel_names << [panel_item.display_name, panel_item.loinc_num]
@@ -658,11 +658,11 @@ module LoincPreparation
   # its loinc_num
   def self.check_panel_def
     #get all panels form loinc.loinc
-    #panels = LoincItem.find(:all, :conditions=>["component like ?", "%panel"])
-    panels = LoincItem.find(:all, :conditions=>["loinc_class like ?", "%PANEL%"])
+    #panels = LoincItem.where("component like ?", "%panel")
+    panels = LoincItem.where("loinc_class like ?", "%PANEL%")
     # for each panel, find all included loinc item from loinc.form_data
     panels.each do |panel|
-      paneldefs = LoincLoincFormData.find_all_by_LOINC_NUM(panel.loinc_num)
+      paneldefs = LoincLoincFormData.where(LOINC_NUM: panel.loinc_num)
       # 11 panels have no tests defined in loinc.form_data
       if (paneldefs.length > 0)
         paneldefs.each do |paneldef|
@@ -706,7 +706,7 @@ module LoincPreparation
     @tests_in_panels = []
     @output_file.puts("Type|Level|Loinc #|shortame|long_common_name|component|consumer_name|phr_display_name|datatype|hl7_v3_type")
     # panels used in pHR and their tests
-    panel_items = LoincItem.find(:all, :conditions=>["is_panel =? and has_top_level_panel= ? and included_in_phr =?", true, true, true])
+    panel_items = LoincItem.where("is_panel =? and has_top_level_panel= ? and included_in_phr =?", true, true, true)
 
     panel_items.each do |item|
       panel = LoincPanel.find_by_loinc_num(item.loinc_num, :conditions=>"p_id=id")
@@ -749,7 +749,7 @@ module LoincPreparation
     @tests_in_panels = []
     @output_file.puts("Type|Level|Required_in_phr|Orig_required_flag|Loinc #|shortame|long_common_name|component|consumer_name|phr_display_name|name displayed on web app|datatype|hl7_v3_type")
     # panels used in pHR and their tests
-    panel_items = LoincItem.find(:all, :conditions=>["is_panel =? and has_top_level_panel= ? and included_in_phr =? and is_searchable=?", true, true, true, true])
+    panel_items = LoincItem.where("is_panel =? and has_top_level_panel= ? and included_in_phr =? and is_searchable=?", true, true, true, true)
 
     panel_items.each do |item|
       panel = LoincPanel.find_by_loinc_num(item.loinc_num, :conditions=>"p_id=id")
@@ -764,7 +764,7 @@ module LoincPreparation
 
     @output_file.puts("Type|Level|Required_in_phr|Orig_required_flag|Loinc #|shortame|long_common_name|component|consumer_name|phr_display_name|name displayed on web app|datatype|hl7_v3_type")
     
-    test_items = LoincItem.find(:all, :conditions=>["is_panel =? and has_top_level_panel= ? and included_in_phr =? and is_searchable=?", false, false, true, true])
+    test_items = LoincItem.where("is_panel =? and has_top_level_panel= ? and included_in_phr =? and is_searchable=?", false, false, true, true)
 
     test_items.each do |item|
       if !@tests_in_panels.include?(item.loinc_num)
@@ -837,7 +837,7 @@ module LoincPreparation
     @output_file = File.new('all_panel_names','w+')
     @output_file.sync = true
     @output_file.puts("loinc_num|shortame|long_common_name|component|phr_display_name|keep")
-    panels = LoincItem.find_all_by_is_panel(true,:order=>"loinc_num")
+    panels = LoincItem.where(is_panel: true).order(:loinc_num)
     panels.each do |loinc_item|
       shortname = loinc_item.shortname.nil? ? "" : loinc_item.shortname
       long_common_name = loinc_item.long_common_name.nil? ? "" : loinc_item.long_common_name
@@ -861,7 +861,7 @@ module LoincPreparation
     @output_file = File.new('all_panel_units_in_phr','w+')
     @output_file.sync = true
     @output_file.puts("Type|Level|Loinc #|name|units")
-    panel_items = LoincItem.find(:all, :conditions=>["is_panel =? and has_top_level_panel= ? and excluded_from_phr =?", true, true, false])
+    panel_items = LoincItem.where("is_panel =? and has_top_level_panel= ? and excluded_from_phr =?", true, true, false)
 
     panel_items.each do |item|
       panel = LoincPanel.find_by_loinc_num(item.loinc_num, :conditions=>"p_id=id")
@@ -918,7 +918,7 @@ module LoincPreparation
     @output_file = File.new('all_panel_answers_in_phr','w+')
     @output_file.sync = true
     @output_file.puts("Type|Level|Loinc #|name|answerlist_id|answer_code|answers")
-    panel_items = LoincItem.find(:all, :conditions=>["is_panel =? and has_top_level_panel= ? and excluded_from_phr =?", true, true, false])
+    panel_items = LoincItem.where("is_panel =? and has_top_level_panel= ? and excluded_from_phr =?", true, true, false)
 
     panel_items.each do |item|
       panel = LoincPanel.find_by_loinc_num(item.loinc_num, :conditions=>"p_id=id")
@@ -957,7 +957,7 @@ module LoincPreparation
     name = loinc_item.display_name.nil? ? "" : loinc_item.display_name
     @output_file.puts( " Test|" + level.to_s + "|" + loinc_item.loinc_num + "|" + name +"|" + "|"+ "|" )
     if !loinc_item.answerlist_id.nil?
-      answers = ListAnswer.find(:all, :conditions=>["answer_list_id=?", loinc_item.answerlist_id])
+      answers = ListAnswer.where(answer_list_id: loinc_item.answerlist_id)
       answers.each do |answer|
         answer_text = answer.answer.answer_text
         answer_code = answer.code
@@ -979,10 +979,7 @@ module LoincPreparation
     @output_file.sync = true
     @output_file.puts("Panel Class|Code|Sequence")
     panel_class_type = Classification.find_by_class_code('panel_class')
-    panel_classes = Classification.find(:all, 
-        :conditions=>["p_id=?",panel_class_type.id],
-        :order=>"sequence"
-    )      
+    panel_classes = Classification.where(p_id: panel_class_type.id).order(:sequence)
     panel_classes.each do |panel_class|
       @output_file.puts "#{panel_class.class_name}|#{panel_class.class_code}|#{panel_class.sequence}"
     end
@@ -994,10 +991,7 @@ module LoincPreparation
     @output_file.puts("Panel Class|Sub Class|Code|Sequence")
     panel_classes.each do |panel_class|
       @output_file.puts "#{panel_class.class_name}||#{panel_class.class_code}|#{panel_class.sequence}"
-      sub_panel_classes = Classification.find(:all,
-          :conditions=>["p_id=?",panel_class.id],
-          :order=>"sequence"
-      )
+      sub_panel_classes = Classification.where(p_id: panel_class.id).order(:sequence)
       sub_panel_classes.each do |sub_panel_class|
         @output_file.puts "|#{sub_panel_class.class_name}|#{sub_panel_class.class_code}|#{sub_panel_class.sequence}"
       end
@@ -1010,15 +1004,9 @@ module LoincPreparation
     @output_file.puts("Panel Class|Sub Class|Code|Sequence|display_name|loinc_num|loinc sequence")
     panel_classes.each do |panel_class|
       @output_file.puts "#{panel_class.class_name}||#{panel_class.class_code}|#{panel_class.sequence}"
-      sub_panel_classes = Classification.find(:all,
-          :conditions=>["p_id=?",panel_class.id],
-          :order=>"sequence"
-      )
+      sub_panel_classes = Classification.where(p_id: panel_class.id).order(:sequence)
       # loinc items
-      loincs = DataClass.find(:all,
-          :conditions=>["classification_id=?",panel_class.id],
-          :order=>"sequence"
-      )
+      loincs = DataClass.where(classification_id: panel_class.id).order(:sequence)
       loincs.each do |loinc|
         loinc_name=LoincItem.find_by_loinc_num(loinc.item_code)
         @output_file.puts "||||#{loinc_name.display_name}|#{loinc_name.loinc_num}|#{loinc.sequence}"
@@ -1026,10 +1014,7 @@ module LoincPreparation
       sub_panel_classes.each do |sub_panel_class|
         @output_file.puts "|#{sub_panel_class.class_name}|#{sub_panel_class.class_code}|#{sub_panel_class.sequence}"
         # loinc items
-        loincs = DataClass.find(:all,
-            :conditions=>["classification_id=?",sub_panel_class.id],
-            :order=>"sequence"
-        )
+        loincs = DataClass.where(classification_id: sub_panel_class.id).order(:sequence)
         loincs.each do |loinc|
           loinc_name=LoincItem.find_by_loinc_num(loinc.item_code)
           @output_file.puts "||||#{loinc_name.display_name}|#{loinc_name.loinc_num}|#{loinc.sequence}"
@@ -1049,10 +1034,10 @@ module LoincPreparation
     test_to_panel = {}
 
     # panels used in PHR
-    p_items = LoincItem.find(:all, :conditions=>['is_panel=? and has_top_level_panel=? and included_in_phr=?', true, true, true])
+    p_items = LoincItem.where('is_panel=? and has_top_level_panel=? and included_in_phr=?', true, true, true)
     # check each panel
     p_items.each do |p_item|
-      p_panel_item = LoincPanel.find(:first, :conditions=>['id=p_id and loinc_num=?', p_item.loinc_num])
+      p_panel_item = LoincPanel.where('id=p_id and loinc_num=?', p_item.loinc_num).first
       sub_fields = p_panel_item.sub_fields
       # check each test within the panel
       sub_fields.each do |sub_field|
@@ -1099,7 +1084,7 @@ end
   def self.import_9_xml
     require 'xmlsimple'
     # TBD - specify for your system
-    doc = XmlSimple.xml_in('PATHTO/9.xml', {'ForceArray'=>false})
+    doc = XmlSimple.xml_in('TBD-PATHTO/9.xml', {'ForceArray'=>false})
     records = doc['Body']['NHINResponse']['Response']['RSP_Z01']['RSP_Z01.PATIENT_RESULT']['RSP_Z01.ORDER_OBSERVATION']
     puts "total number of test panel records to be imported: " + records.length.to_s
 
@@ -1379,7 +1364,7 @@ end
 
     require 'xmlsimple'
     # TBD - specify for your system
-    doc = XmlSimple.xml_in('PATHTO/1.xml', {'ForceArray'=>false})
+    doc = XmlSimple.xml_in('TBD-PATHTO/1.xml', {'ForceArray'=>false})
     records = doc['Body']['NHINResponse']['Response']['RSP_Z01']['RSP_Z01.PATIENT_RESULT'][1]['RSP_Z01.ORDER_OBSERVATION']
     puts "total number of vitals test panel records to be imported: " + records.length.to_s
 
@@ -1581,8 +1566,7 @@ end
   # for user 'Daisy Duck'
   def self.update_daisy_duck()
     profile_id = Phr.find_by_pseudonym('Daisy Duck').profile_id
-    obx_records = ObxObservation.find(:all,
-      :conditions=>['profile_id=? and latest=?', profile_id, true])
+    obx_records = ObxObservation.where('profile_id=? and latest=?', profile_id, true)
     obx_records.each do |obx_rec|
       loinc_num = obx_rec.loinc_num
       unit = obx_rec.obx6_1_unit
@@ -1617,8 +1601,7 @@ end
   def self.add_time_value
     # daisy duck's profile id
     profile_id=3361
-    obr_records = ObrOrder.find(:all,
-        :conditions=>["profile_id=? and test_date_time is null", profile_id])
+    obr_records = ObrOrder.where("profile_id=? and test_date_time is null", profile_id)
 
     obr_records.each do |obr_rec|
       test_date = obr_rec.test_date
@@ -1669,7 +1652,7 @@ end
     LoincItem.update_all("excluded_from_phr = 1", "is_panel = 1 ")
     
     # update panel names if there's a change
-    selected_panels = LoincPanelList.find(:all, :conditions=>"keep=1")
+    selected_panels = LoincPanelList.where(keep: 1)
     selected_panels.each do |panel_name|
       item = LoincItem.find_by_loinc_num(panel_name.loinc_num)
       if !item.nil?
@@ -1691,7 +1674,7 @@ end
     # make the default value of has_top_level_panel to false
     LoincItem.update_all("has_top_level_panel = 0")
 
-    panel_items = LoincItem.find(:all, :conditions=>["is_panel =?", true])
+    panel_items = LoincItem.where(is_panel: true)
     panel_items.each do |panel_item|
       panel = LoincPanel.find_by_loinc_num(panel_item.loinc_num,:conditions=>["p_id=id"])
       # if it is a top level panel
@@ -1740,8 +1723,7 @@ end
       }
 
     loinc_units_ranges_hash.each do |k,v|
-      unit_records = LoincUnit.find(:all,:conditions=>["loinc_num =? and unit = ?",
-                                k, v[0] ])
+      unit_records = LoincUnit.where("loinc_num =? and unit = ?", k, v[0])
       if !unit_records.nil? && !unit_records.empty?
         unit_records.each do |rec|
           rec.norm_range = v[1]
@@ -1796,7 +1778,7 @@ end
     unit_recs = LoincUnit.find_by_sql("select distinct loinc_num from loinc_units")
     unit_recs.each do |unit_rec|
       loinc_num = unit_rec.loinc_num
-      units = LoincUnit.find_all_by_loinc_num(loinc_num, :order=>'unit, source_id asc')
+      units = LoincUnit.where(loinc_num: loinc_num).order('unit, source_id asc')
 
       prev_unit = nil
       units.each do |unit|
@@ -1868,7 +1850,7 @@ end
 #    unit_recs = LoincUnit.find_by_sql("select distinct loinc_num from loinc_units")
 #    unit_recs.each do |unit_rec|
 #      loinc_num = unit_rec.loinc_num
-#      units = LoincUnit.find_all_by_loinc_num(loinc_num, :order=>'unit, id asc')
+#      units = LoincUnit.where(loinc_num: loinc_num).order('unit, id asc')
 #
 #      prev_unit = nil
 #      units.each do |unit|
@@ -1918,8 +1900,8 @@ end
   # 11/1/2010
   # update units range from the column 'curated_range_and_units'
   def self.new_normal_range_and_units
-    # range_recs = TestNewNormalRange.find(:all, :conditions=>"excluded=0")
-    range_recs = LoincItem.find(:all, :conditions=>'curated_range_and_units is not null')
+    # range_recs = TestNewNormalRange.where(excluded: 0)
+    range_recs = LoincItem.where('curated_range_and_units is not null')
     range_recs.each do | range_rec|
       loinc_num = range_rec.loinc_num
       range_text = range_rec.curated_range_and_units
@@ -1930,7 +1912,7 @@ end
       # parse range text
       if range_text == 'neg'
         # find all units
-        units_recs = LoincUnit.find(:all, :conditions=>["loinc_num=?", loinc_num])
+        units_recs = LoincUnit.where(loinc_num: loinc_num)
         units_recs.each do |units_rec|
           if units_rec.norm_range.blank?
             units_rec.norm_range = range_text
@@ -1948,7 +1930,7 @@ end
           # find units records, it might have dulipcated records,
           # duplicated units records are removed in function
           # update_units_and_data_type
-          units_recs = LoincUnit.find(:all, :conditions=>["loinc_num=? and unit=?", loinc_num, units])
+          units_recs = LoincUnit.where("loinc_num=? and unit=?", loinc_num, units)
           # if this units is not in db, create a new record with range
           if units_recs.empty?
             LoincUnit.create!(
@@ -1979,7 +1961,7 @@ end
   # But need to set excluded_in_phr to false 
   # use add_new_panels instead of new_loinc_panel_and_answer_list_and_units
   def self.add_new_panels
-    new_panels = TestNewPanel.find(:all, :conditions=>"sequence = 0")
+    new_panels = TestNewPanel.where(sequence: 0)
     new_panels.each do | new_panel|
       loinc_num = new_panel.LOINC_NUM
       panel_item = LoincItem.find_by_loinc_num(loinc_num)
@@ -2006,7 +1988,7 @@ end
 #  #   addition_answer_list
 #  def self.new_loinc_panel_and_answer_list_and_units
 #    # add new answer lists
-#    answer_lists = TestNewAnswerList.find_all_by_code('0')
+#    answer_lists = TestNewAnswerList.where(code: '0')
 #    answer_lists.each do | answer_list |
 #      # create an answer_lists record
 #      list_rec = AnswerList.new
@@ -2014,9 +1996,7 @@ end
 #      list_rec.list_desc ='new list that will appear in june 2009 release of Loinc'
 #      list_rec.save!
 #      # create answers records
-#      answers = TestNewAnswerList.find_all_by_list_id(answer_list.list_id,
-#                    :conditions=>"code <> '0'",
-#                    :order=>"sequence")
+#      answers = TestNewAnswerList.where("list_id=? AND code <> '0'", answer_list.list_id).order(:sequence)
 #      answers.each do | answer |
 #        answer_rec = Answer.create!(
 #          :answer_text => answer.answer
@@ -2032,7 +2012,7 @@ end
 #    end # end of answer_lists.each
 #
 #    # add new panel definitions to loinc_panels
-#    new_panels = TestNewPanel.find(:all, :conditions=>"sequence = 0")
+#    new_panels = TestNewPanel.where(sequence: 0)
 #    new_panels.each do | new_panel|
 #      loinc_num = new_panel.LOINC_NUM
 #      panel_item = LoincItem.find_by_loinc_num(loinc_num)
@@ -2087,9 +2067,7 @@ end
 #      toppanel.save!
 #
 #      # process tests in a panel
-#      new_tests = TestNewPanel.find(:all,
-#            :conditions=>["PANEL =? and sequence<>0 ", new_panel.PANEL],
-#            :order => "sequence")
+#      new_tests = TestNewPanel.where("PANEL =? and sequence<>0 ", new_panel.PANEL).order(:sequence)
 #      new_tests.each do |new_test|
 #        test_loinc_num = new_test.LOINC_NUM
 #        test_item = LoincItem.find_by_loinc_num(test_loinc_num)
@@ -2192,7 +2170,7 @@ end
 #
 #    # 5/18/2009
 #    # update phr_display_name
-#    records = TestPhrLoinc.find(:all)
+#    records = TestPhrLoinc.all
 #    records.each do |record|
 #      loinc_num = record.LOINC_NUM
 #      loinc_item = LoincItem.find_by_loinc_num(loinc_num)
@@ -2232,11 +2210,9 @@ end
     range_records.each do |range_rec|
       units = self.replace_units(range_rec.units)
       # pick 1st record for one loinc_num and units
-      full_range_rec = TestNormalRange.find(:first,
-          :conditions=>["loinc_num=? and units=?",range_rec.loinc_num, range_rec.units])
+      full_range_rec = TestNormalRange.where("loinc_num=? and units=?",range_rec.loinc_num, range_rec.units).first
 
-      loinc_units_rec = LoincUnit.find(:first,
-          :conditions=>["loinc_num=? and unit=?", range_rec.loinc_num, units])
+      loinc_units_rec = LoincUnit.where("loinc_num=? and unit=?", range_rec.loinc_num, units).first
       # no such units existing, add a new one
       if loinc_units_rec.nil?
         puts "new units " + units + " for " + range_rec.loinc_num
@@ -2277,7 +2253,7 @@ end
     end
 
     # update norm_range
-    loinc_units_records = LoincUnit.find(:all)
+    loinc_units_records = LoincUnit.all
     loinc_units_records.each do |unit_rec|
       range_text = unit_rec.norm_range
       if range_text.blank?
@@ -2305,26 +2281,26 @@ end
   # some special process for PHR, mostly for some demos
   def self.phr_special_modification
     # no normal range for weight 29463-7
-    records = LoincUnit.find(:all,:conditions=>["loinc_num=?",'29463-7' ])
+    records = LoincUnit.where(loinc_num: '29463-7')
     records.each do |record|
       record.norm_range =nil
       record.save!
     end
     # no normal range for heart rate max 55426-1
-    records = LoincUnit.find(:all,:conditions=>["loinc_num=?",'55426-1' ])
+    records = LoincUnit.where(loinc_num: '55426-1')
     records.each do |record|
       record.norm_range =nil
       record.save!
     end
     # no normal range for heart rate avg 55425-3
-    records = LoincUnit.find(:all,:conditions=>["loinc_num=?",'55425-3' ])
+    records = LoincUnit.where(loinc_num: '55425-3')
     records.each do |record|
       record.norm_range =nil
       record.save!
     end
 
     # add range for blirubin , 14631-6
-    records = LoincUnit.find(:all,:conditions=>["loinc_num=?",'14631-6' ])
+    records = LoincUnit.where(loinc_num: '14631-6')
     records.each do |record|
       record.norm_range ="0.3 - 1.0"
       record.save!
@@ -2359,7 +2335,7 @@ end
 #
 #  def self.phenx_panel
 #    # add new loinc item or update existing loinc item names
-#    phenx_items = TestPhenxLoinc.find(:all)
+#    phenx_items = TestPhenxLoinc.all
 #    phenx_items.each do |item|
 #      # check if it is already in our system
 #      loinc_item = LoincItem.find_by_loinc_num(item.LOINC_NUM)
@@ -2505,7 +2481,7 @@ end
 #  end
 #
 #  def self.phenx_answer_list_create(loinc_num)
-#    answers = TestPhenxAnswer.find_all_by_LOINC_NUM(loinc_num)
+#    answers = TestPhenxAnswer.where(LOINC_NUM: loinc_num)
 #    list_rec = AnswerList.create!(
 #      :list_desc =>'new list that will appear in june 2009 release of Loinc'
 #    )
@@ -2551,7 +2527,7 @@ end
 #    toppanel.save!
 #
 #    # sub panels and tests
-#    panelitems = TestPhenxForm.find(:all, :conditions=>["LOINC_NUM <> '56088-8' and PARENT_LOINC =?", top_panel_item.loinc_num])
+#    panelitems = TestPhenxForm.where("LOINC_NUM <> '56088-8' and PARENT_LOINC =?", top_panel_item.loinc_num)
 #
 #    if !panelitems.nil? && panelitems.length>0
 #      panelitems.each do |panelitem|
@@ -2579,7 +2555,7 @@ end
 #      :p_id => parent.id
 #    )
 #    # process sub items of the item
-#    panelitems = TestPhenxForm.find(:all, :conditions=>["LOINC_NUM <> ? and PARENT_LOINC =?", item.LOINC_NUM, item.LOINC_NUM])
+#    panelitems = TestPhenxForm.where("LOINC_NUM <> ? and PARENT_LOINC =?", item.LOINC_NUM, item.LOINC_NUM)
 #
 #    if !panelitems.nil? && panelitems.length>0
 #      panelitems.each do |panelitem|
@@ -2590,7 +2566,7 @@ end
 #
 #   def self.phenx_panel_form2
 #
-#    top_panels = TestPhenxForm.find(:all, :conditions=>["ROOT='PANEL'"])
+#    top_panels = TestPhenxForm.where(ROOT: 'PANEL')
 #
 #    top_panels.each do |top_panel|
 #      panel_item = LoincItem.find_by_loinc_num(top_panel.LOINC_NUM)
@@ -2612,7 +2588,7 @@ end
 #      toppanel.save!
 #
 #      # sub panels and tests
-#      panelitems = TestPhenxForm.find(:all, :conditions=>["LOINC_NUM <> PARENT_LOINC and PARENT_LOINC =?", panel_item.loinc_num])
+#      panelitems = TestPhenxForm.where("LOINC_NUM <> PARENT_LOINC and PARENT_LOINC =?", panel_item.loinc_num)
 #
 #      if !panelitems.nil? && panelitems.length>0
 #        panelitems.each do |panelitem|
@@ -2642,7 +2618,7 @@ end
 #      :p_id => parent.id
 #    )
 #    # process sub items of the item
-#    panelitems = TestPhenxForm.find(:all, :conditions=>["LOINC_NUM <> ? and PARENT_LOINC =?", item.LOINC_NUM, item.LOINC_NUM])
+#    panelitems = TestPhenxForm.where("LOINC_NUM <> ? and PARENT_LOINC =?", item.LOINC_NUM, item.LOINC_NUM)
 #
 #    if !panelitems.nil? && panelitems.length>0
 #      panelitems.each do |panelitem|
@@ -2844,7 +2820,7 @@ end
     # pap
     # Pap Test Results , 27
     text_list = TextList.find_by_list_name("Pap Test Results")
-    text_items = TextListItem.find_all_by_text_list_id(text_list.id)
+    text_items = TextListItem.where(text_list_id: text_list.id)
 
     answer_list= AnswerList.create!(
       :list_name=>text_list.list_name,
@@ -2869,7 +2845,7 @@ end
     # mammogram
     # Mammography Results, 28
     text_list = TextList.find_by_list_name("Mammography Results")
-    text_items = TextListItem.find_all_by_text_list_id(text_list.id)
+    text_items = TextListItem.where(text_list_id: text_list.id)
     answer_list= AnswerList.create!(
       :list_name=>text_list.list_name,
       :list_desc=>text_list.list_description,
@@ -2893,7 +2869,7 @@ end
     # colonoscopy
     # Colonoscopy Results, 29
     text_list = TextList.find_by_list_name("Colonoscopy Results")
-    text_items = TextListItem.find_all_by_text_list_id(text_list.id)
+    text_items = TextListItem.where(text_list_id: text_list.id)
     answer_list= AnswerList.create!(
       :list_name=>text_list.list_name,
       :list_desc=>text_list.list_description,
@@ -3014,7 +2990,7 @@ end
     
     LoincName.delete_all
 
-    selected_items = LoincItem.find(:all, :conditions=>["included_in_phr=?", true])
+    selected_items = LoincItem.where(included_in_phr: true)
 
     selected_items.each do |item|
       if item.is_panel?
@@ -3051,10 +3027,8 @@ end
     # clear all records in loinc_names
     LoincName.delete_all
 
-    phr_top_level_panel_loinc_items = LoincItem.find(:all,
-      :conditions=>["excluded_from_phr=? and is_panel=? and has_top_level_panel=?",
-      false, true, true]
-    )
+    phr_top_level_panel_loinc_items = LoincItem.where("excluded_from_phr=? and is_panel=? and has_top_level_panel=?",
+      false, true, true)
     phr_top_level_panel_loinc_items.each do |panel_loinc_item|
       loinc_panel = LoincPanel.find_by_loinc_num(panel_loinc_item.loinc_num,
           :conditions=>["id=p_id"])
@@ -3227,7 +3201,7 @@ end
           item.included_in_phr = true
           item.save!
           # sub fields
-          panel_item = LoincPanel.find(:first, :conditions=>["loinc_num=? and id=p_id", key])
+          panel_item = LoincPanel.where("loinc_num=? and id=p_id", key).first
           if panel_item.nil?
             puts "E: panel #{key} is not defined in loinc_panels"
           else
@@ -3302,7 +3276,7 @@ end
         'GDS_1','GDS_2',
         'BS_1','BS_2','BS_3','BS_4','BS_5','BS_6',
         'ECOG'] # list of answer lists with scores
-      alist = AnswerList.find_all_by_list_name(list)
+      alist = AnswerList.where(list_name: list)
       alist.map{|e| e.update_attribute(:has_score, true)}
 
       alist.each do |ee|
@@ -3339,7 +3313,7 @@ end
 
     # cleanup units/ranges first
     # find those record that have ranges, 25 total
-    ranges_to_parse=LoincUnit.find(:all, :conditions=> ["norm_range like ?", "%:%"])
+    ranges_to_parse=LoincUnit.where("norm_range like ?", "%:%")
     ranges_to_parse.each do |record|
       norm_range, unit = record.norm_range.split(":")
       # parse range
@@ -3420,7 +3394,7 @@ end
   # 1/28/2011
   # make BMI a required test
   def self.make_bmi_required
-    panel_items = LoincPanel.find(:all, :conditions=>["loinc_num = ?", '39156-5'])
+    panel_items = LoincPanel.where(loinc_num: '39156-5')
     panel_items.each do |panel_item|
       panel_item.observation_required_in_phr = 'R'
       panel_item.save!
@@ -3550,7 +3524,7 @@ end
           item.save!
           # sub fields
           if item.is_panel? && item.has_top_level_panel?
-            panel_item = LoincPanel.find(:first, :conditions=>["loinc_num=? and id=p_id", loinc_num])
+            panel_item = LoincPanel.where("loinc_num=? and id=p_id", loinc_num).first
             if panel_item.nil?
               puts "E: panel #{loinc_num} is not defined in loinc_panels"
             else
@@ -3649,7 +3623,7 @@ end
     dd_profile_id = 3361
 
     ObrOrder.transaction do
-      obr_records = ObrOrder.find(:all, :conditions=>["profile_id=? and latest=?", dd_profile_id, true])
+      obr_records = ObrOrder.where("profile_id=? and latest=?", dd_profile_id, true)
       obr_records.each do |obr_record|
         date_et = obr_record.test_date_ET
         shift = panels[obr_record.loinc_num]
@@ -3673,7 +3647,7 @@ end
 
       # remove unwanted data
       to_delete.each do |loinc_num|
-        obr_records = ObrOrder.find(:all, :conditions=>["profile_id=? and latest=? and loinc_num=?", dd_profile_id, true, loinc_num])
+        obr_records = ObrOrder.where("profile_id=? and latest=? and loinc_num=?", dd_profile_id, true, loinc_num)
 
         obr_records.each do |obr_record|
           obr_record.latest = false
@@ -3792,7 +3766,7 @@ end
     dd_profile_id = 3361
 
     ObrOrder.transaction do
-      obr_records = ObrOrder.find(:all, :conditions=>["profile_id=? and latest=?", dd_profile_id, true])
+      obr_records = ObrOrder.where("profile_id=? and latest=?", dd_profile_id, true)
       obr_records.each do |obr_record|
         date_et = obr_record.test_date_ET
         shift = panels[obr_record.loinc_num]
@@ -3823,7 +3797,7 @@ end
   #
   # call update_loinc_names_new once the a panel is included
   def self.make_a_panel_included(loinc_num)
-    panel_item = LoincPanel.find(:first, :conditions=>["loinc_num=? and id=p_id", loinc_num])
+    panel_item = LoincPanel.where("loinc_num=? and id=p_id", loinc_num).first
     if panel_item.nil?
       puts "E: panel #{loinc_num} is not defined in loinc_panels"
     else
@@ -3847,7 +3821,7 @@ end
     dd_profile_id = 3361
 
     ObrOrder.transaction do
-      obr_records = ObrOrder.find(:all, :conditions=>["profile_id=? and latest=?", dd_profile_id, true])
+      obr_records = ObrOrder.where("profile_id=? and latest=?", dd_profile_id, true)
       obr_records.each do |obr_record|
         date_et = obr_record.test_date_ET
         shift = panels[obr_record.loinc_num]
@@ -4168,7 +4142,7 @@ end
   def self.add_a_searchable_flag
     ActiveRecord::Base.connection.add_column :loinc_items, :is_searchable, :boolean, :default => false
     LoincItem.transaction do
-      loinc_names = LoincName.find(:all)
+      loinc_names = LoincName.all
       loinc_names.each do |loinc_name|
         loinc_item = LoincItem.find_by_loinc_num(loinc_name.loinc_num)
         loinc_item.is_searchable = true
@@ -4185,9 +4159,9 @@ end
 #  def self.create_phr_answer_code
 #    ActiveRecord::Base.connection.add_column :list_answers, :answer_code, :string, :default => nil
 #    ListAnswer.transaction do
-#      answer_lists = AnswerList.find(:all)
+#      answer_lists = AnswerList.all
 #      answer_lists.each do |list|
-#        answers = ListAnswer.find(:all,
+#        answers = ListAnswer.all,
 #            :conditions=>["answer_list_id =? ",list.id],
 #            :order=>'answer_id')
 #        answer_code = 1
@@ -4208,8 +4182,7 @@ end
     Form.transaction do
       selected_records = []
 
-      searchable_items = LoincItem.find(:all,
-          :conditions=>["included_in_phr=? and is_searchable=?", true, true])
+      searchable_items = LoincItem.where("included_in_phr=? and is_searchable=?", true, true)
 
       searchable_loinc_nums = searchable_items.map {|s| s.loinc_num }
 
@@ -4344,8 +4317,7 @@ end
 #    Form.transaction do
 #      selected_records = []
 #
-#      searchable_items = LoincItem.find(:all,
-#          :conditions=>["included_in_phr=? and is_searchable=?", true, true])
+#      searchable_items = LoincItem.where("included_in_phr=? and is_searchable=?", true, true)
 #
 #      searchable_loinc_nums = searchable_items.map {|s| s.loinc_num }
 #
@@ -4479,8 +4451,7 @@ end
     Form.transaction do
       selected_records = []
 
-#      searchable_items = LoincItem.find(:all,
-#          :conditions=>["included_in_phr=? and is_searchable=?", true, true])
+#      searchable_items = LoincItem.where("included_in_phr=? and is_searchable=?", true, true)
 #
 #      searchable_loinc_nums = searchable_items.map {|s| s.loinc_num }
 
@@ -4690,7 +4661,7 @@ end
 
       # delete existing test panel classes
       panel_root_rec = Classification.find_by_class_code('panel_class')
-      Classification.find_all_by_p_id(panel_root_rec.id).each do | subclass_rec |
+      Classification.where(p_id: panel_root_rec.id).each do | subclass_rec |
         subclass_rec.destroy
       end
 
@@ -4763,7 +4734,7 @@ end
               loinc_item.save!
               # set this panels all tests to be included
               if loinc_item.has_top_level_panel?
-                panel_item = LoincPanel.find(:first, :conditions=>["loinc_num=? and p_id=id", loinc_item.loinc_num])
+                panel_item = LoincPanel.where("loinc_num=? and p_id=id", loinc_item.loinc_num).first
                 all_sub_fields = []
                 if panel_item.nil?
                   puts "#{loinc_item.loinc_num} is not a panel"
@@ -4843,9 +4814,9 @@ end
 #      level_1_sn = 2  # 1 has been used by test panel
 #      class_types.each do |class_type|
 #        # old class type, (new class level 1)
-#        class_type_record = class_ct.model.find(:first, :conditions =>
-#          ["#{class_ct.foreign_key} = ? AND #{class_ct.name_field} like ?",
-#           ClassManagementDescription.root.id, class_type[0]])
+#        class_type_record = class_ct.model.where(
+#          "#{class_ct.foreign_key} = ? AND #{class_ct.name_field} like ?",
+#           ClassManagementDescription.root.id, class_type[0]).first
 #
 #        class_level_1  = Classification.create!(
 #            :class_name => class_type[0],
@@ -4861,7 +4832,7 @@ end
 #        # old class name, (new class level 2)
 #        level_2_sn = 1
 #        class_cn = ClassManagementDescription["class_names"]
-#        class_name_records = class_cn.model.find(:all, :conditions=>["#{class_cn.foreign_key} = ?", class_type_record.id])
+#        class_name_records = class_cn.model.where("#{class_cn.foreign_key} = ?", class_type_record.id)
 #        class_name_records.each do |class_name_rec|
 #          class_level_2 = Classification.create!(
 #            :class_name => class_name_rec.item_text,
@@ -4876,8 +4847,7 @@ end
 #
 #          # leaf nodes
 #          leaf_sn =1
-#          data_items = ClassificationJoin.find(:all,
-#              :conditions=>["class_term_id=?", class_name_rec.id])
+#          data_items = ClassificationJoin.where("class_term_id=?", class_name_rec.id)
 #          data_items.each do |data_item_rec|
 #            DataClass.create!(
 #                      :item_id => nil,
@@ -5012,7 +4982,7 @@ end
   # 
   def self.create_normal_range_from_high_and_low
     LoincUnit.transaction do
-      units = LoincUnit.find(:all, :conditions=>['(norm_range is null or norm_range="") and (norm_high is not null or norm_low is not null)'])
+      units = LoincUnit.where('(norm_range is null or norm_range="") and (norm_high is not null or norm_low is not null)')
       units.each do |unit|
         if !unit.norm_high.blank? 
           if !unit.norm_low.blank?
@@ -5061,7 +5031,7 @@ DEF
     
     Answer.transaction do
       # copy the exisitng code_ref to the answers table
-      AnswerList.find(:all).each do |phr_ll|
+      AnswerList.all.each do |phr_ll|
         phr_ll.list_answers.each do |la|
           la.answer.answer_string_id = la.code_ref
           la.answer.save!
@@ -5069,11 +5039,11 @@ DEF
       end
 
       # find all lists in the original loinc database
-      LoincAnswerList.find(:all).each do |loinc_ll|
+      LoincAnswerList.all.each do |loinc_ll|
         list_id = loinc_ll.ID
 
         # find the records in the phr join table
-        phr_las = ListAnswer.find(:all, :conditions=>['answer_list_id=?', list_id])
+        phr_las = ListAnswer.where(answer_list_id: list_id)
 
         # process the join table records
         phr_las.each do |phr_la|
@@ -5107,15 +5077,14 @@ DEF
   # update user data after the change of the answer code
   def self.update_answer_code_in_user_obx_table
     Answer.transaction do
-      obx_recs = ObxObservation.find(:all, :conditions=>['obx5_1_value_if_coded is not null and obx5_1_value_if_coded !=""'])
+      obx_recs = ObxObservation.where('obx5_1_value_if_coded is not null and obx5_1_value_if_coded !=""')
       puts "updating answer code in users obx table... \ntotal records #{obx_recs.length.to_s}... "
       obx_recs.each do |obx_rec|
         loinc_item = LoincItem.find_by_loinc_num(obx_rec.loinc_num)
         answer_list_id = loinc_item.answerlist_id
         answer_text = obx_rec.obx5_value
 
-        answer = ListAnswer.find(:first, :conditions=>['answers.answer_text=? and answers.id=list_answers.answer_id and list_answers.answer_list_id=?', answer_text, answer_list_id],
-            :from=>['list_answers, answers'])
+        answer = Answer.joins(:list_answers).where('answers.answer_text=? and list_answers.answer_list_id=?', answer_text, answer_list_id).first
         if answer
           obx_rec.obx5_1_value_if_coded = answer.code
           obx_rec.save!
@@ -5260,12 +5229,12 @@ DEF
   # and update loinc_names table
   def self.update_loinc_items_and_names
     # loinc_nums in classification
-    loinc_in_class = DataClass.find(:all, :select=>'item_code')
+    loinc_in_class = DataClass.select(:item_code)
     loinc_nums= []
     loinc_in_class.map {|a| loinc_nums << a.item_code if a.item_code.match(/-/)}
 
     # panels loinc_nums in phr
-    panels_in_phr = LoincItem.find(:all, :conditions=>['is_panel=? and is_searchable=? and included_in_phr=?', true, true, true])
+    panels_in_phr = LoincItem.where('is_panel=? and is_searchable=? and included_in_phr=?', true, true, true)
     panels_in_phr.each do |panel_item|
       if !loinc_nums.include?(panel_item.loinc_num)
         panel_item.is_searchable = false

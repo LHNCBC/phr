@@ -12,7 +12,7 @@ class PhrPanelShowPresenterTest < ActiveSupport::TestCase
 
   def test_panel_headers
     DatabaseMethod.copy_development_tables_to_test(
-      %w{loinc_names loinc_panels loinc_items})
+      %w{loinc_names loinc_panels loinc_items forms field_descriptions})
 
     # Create an OBR for testing.
     obr = ObrOrder.create!("record_id"=>5, "test_date_HL7"=>"20110825",

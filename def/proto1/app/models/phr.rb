@@ -7,7 +7,7 @@ class Phr < ActiveRecord::Base
 
   validates_presence_of :pseudonym
   belongs_to :profile
-  
+
   # Set up methods for accessing and working this model's lists
   # In the test environment, these lists might not exist, so we can't load them
   # immediately when the class is loaded, which is why we pass a proc.
@@ -23,7 +23,8 @@ class Phr < ActiveRecord::Base
   # When validating, convert the date to HL7 and epoch time.  Also check
   # gender_C, though for errors there we need to be careful with the message
   # because the gender_C field is not visible to the user.
-  def validate
+  validate :validate_instance
+  def validate_instance
     # Validate if something has changed, or if it is a new record, validate
     # everything, because even if it hasn't been changed (i.e. left as nil)
     # it likely hasn't been validated yet.
@@ -47,18 +48,18 @@ class Phr < ActiveRecord::Base
         self.race_or_ethnicity = self.class.race_for_code(race_or_ethnicity_C)
         if !race_or_ethnicity
           errors.add(:race_or_ethnicity, 'must match a list value (if specified)')
-        end      
+        end
       end
     end
 
     validate_cwe_field(:pregnant)
-    
+
     # Validate the date fields
     date_reqs = self.class.date_requirements(['birth_date'], 'phr_home')
     validate_date('birth_date', date_reqs['birth_date'])
     date_reqs = self.class.date_requirements(['due_date'], 'phr')
     validate_date('due_date', date_reqs['due_date'])
-    
+
     # Pseudonym must be unique (but strip whitespace first)
     pseudonym.strip! if pseudonym
     # For now just assume own user; otherwise we don't know which user's
@@ -95,7 +96,7 @@ class Phr < ActiveRecord::Base
 
     label = []
     label[0] = pseudonym
-    if birth_date.nil? 
+    if birth_date.nil?
       label[1] = 'no DOB on file'
     else
       label[1] = FormData.short_age(birth_date, Date.today, spell_out)

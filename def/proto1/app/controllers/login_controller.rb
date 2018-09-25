@@ -161,7 +161,7 @@
 # Revision 1.77  2010/06/29 19:42:28  lmericle removed redundant temporary
 # account banner warning
 #
-# Revision 1.76  2010/06/25 13:59:38  lmericle added before_filter for
+# Revision 1.76  2010/06/25 13:59:38  lmericle added before_action for
 # set_account_type_flag; added set_account_type_flag to application_controller
 #
 # Revision 1.75  2010/06/21 21:10:40  lmericle added code to update expiration
@@ -303,7 +303,7 @@
 #
 # July 3, 2008, I added comments and restructure the code: move some database
 #     code to the modeller.
-# June 21,2008, before_filter is revised by Gongjun Yan to add Change Profile
+# June 21,2008, before_action is revised by Gongjun Yan to add Change Profile
 #     and Change Password functions
 # #++ The program implements all the functions of account management. The
 # account management includes sign up, sign in (login), sign out (logout),
@@ -335,43 +335,44 @@
 # is located at config/routes.rb
 #
 require 'digest/sha2'
-require 'rack/recaptcha'
 
 class LoginController < ApplicationController
   helper FormHelper, PhrRecordsHelper
 
   # disable CSRF security check for public pages
-  skip_before_filter :verify_authenticity_token, :only =>
+  skip_before_action :verify_authenticity_token, :only =>
     [:login,:logoff, :browser_support, :handle_two_factor, :add_user, :email_verification]
 
-  # before_filter checks if the user is allowed to access these functions by
+  # before_action checks if the user is allowed to access these functions by
   # authorize control method which is defined in controllers/application.rb.
   # The except part lets public methods be accessible without
   # login/authorization filter screening.
-  before_filter :authorize, :except =>
+  before_action :authorize, :except =>
     [:login,:add_user,:forgot_password,:change_password,:forgot_id,
     :forgot_id_step2,:timeout_logoff,:logout,:get_reset_link, :update_password,
     :reset_account_security, :expire_reset_key, :browser_support,
     :handle_two_factor, :demo_login, :email_verification]
 
-  before_filter :check_logged_in_user, :only=>[:login, :demo_login]
-
-  include Rack::Recaptcha::Helpers
+  before_action :check_logged_in_user, :only=>[:login, :demo_login]
 
   # these pages not available on demo system
-  before_filter :check_demo_system, :only => [:login, :add_user, :forgot_id,
+  before_action :check_demo_system, :only => [:login, :add_user, :forgot_id,
       :forgot_password
   ]
   # demo_login not available on production system except when it's a demo system
-  before_filter :check_demo_system2, :only => [:demo_login]
+  before_action :check_demo_system2, :only => [:demo_login]
 
-  #before_filter :set_account_type_flag
+  #before_action :set_account_type_flag
   # Confirm user by checking password first
-  before_filter :show_header, :only =>  [:change_account_settings]
-  before_filter :verify_password, :only =>  [:change_account_settings]
-  before_filter :reset_preconditions, :only =>  [:update_password, :reset_account_security]
-  before_filter :verify_user, :only =>[:change_password, :get_reset_link]
-  around_filter :captcha, :only=>[:add_user, :forgot_id, :forgot_password]
+  before_action :show_header, :only =>  [:change_account_settings]
+  before_action :verify_password, :only =>  [:change_account_settings]
+  before_action :reset_preconditions, :only =>  [:update_password, :reset_account_security]
+  before_action :verify_user, :only =>[:change_password, :get_reset_link]
+  around_action :captcha, :only=>[:add_user, :forgot_id, :forgot_password]
+
+  before_action :get_form_params, only: [:add_user, :change_account_settings, :change_password, :update_password,
+                                         :reset_account_security, :forgot_id, :forgot_password, :handle_two_factor,
+                                         :email_verification, :login, :demo_login]
 
   # the min_hold_time is a class variable too, meaning the minimum holding time
   # if a user failed to login up to USER::MAX_TRIAL.
@@ -380,17 +381,13 @@ class LoginController < ApplicationController
   # Account registration error messages applicable just to the registration
   # process. Does not include messages related to user data that is actually
   # stored.
-  @@invalid_captcha_msg = "Typed captcha text is incorrect. Please re-enter the captcha text."
-  @@need_captcha_input_msg = '<ul>' +
-    '<li>Please verify you are human by entering the words shown ' +
-    'in the verification picture.</li></ul>'
-  @@captcha_input_msg = 'Verification section:<ul><li>'+
-    @@invalid_captcha_msg+'</li></ul>'
+  @@invalid_captcha_msg = 'Your recaptcha verification failed. Please try it again.'
+  @@need_captcha_input_msg = 'Please verify you are human by finishing any recaptcha challenge prompt.'
   @@no_email_error = 'No email address has been specified for this user.'+
     'Please answer challenge questions and reset password instead by '+
     'selecting "Answer challenge questions" option.'
-  @@no_changes = "There are no changes to save. Please update the question(s) "+
-    "and/or the password or click Cancel button to return to the login page."
+  @@no_changes = 'There are no changes to save. Please update the question(s) '+
+    'and/or the password or click Cancel button to return to the login page.'
   @@user_name = 'Please enter a valid Account ID.'
   @@password = 'Please enter a valid password.'
 
@@ -405,7 +402,7 @@ class LoginController < ApplicationController
   # to web browser. When a request is post, we validate captcha first by calling
   # the method "recaptcha_valid?" of recaptcha (Ambethia third party plugin).
   # Another note is that this method has to be placed in the "except" part of
-  # "before_filter" to enable public access. Third note: the route from a url to
+  # "before_action" to enable public access. Third note: the route from a url to
   # this method is specified in file config/routes.rb
   # Parameters:
   # * param1 - NONE
@@ -415,14 +412,13 @@ class LoginController < ApplicationController
     if request.get?
       # if a link "/accounts/new" is typed in the browser address, a request
       # "get" is sent to here. We just send the signup page to the user.
-      @action_url = request.fullpath
+      @action_url = request.path
       render_sign_up_form
     elsif request.post?
       js_to_run = ''
-      form_params = params[:fe]
       @page_errors = []
 
-      @p = SignUpPresenter.new(params[:fe])
+      @p = SignUpPresenter.new(@form_params)
       user, @page_errors = @p.process_form_params # creates a new user object
 
       # If all the tests passed, store the signup data, set the flash message to
@@ -438,7 +434,9 @@ class LoginController < ApplicationController
             pdata = @p.profile_data
             user.update_security_question(pdata[:question_answers], @page_errors)
           end
-          @page_errors.concat(@recaptcha_page_errors)
+          unless @recaptcha_page_errors.empty?
+            @page_errors << "Verification section:<ul><li>#{@recaptcha_page_errors.join}</li></ul>"
+          end
           raise ActiveRecord::Rollback , "Error creating User!!" unless @page_errors.empty?
         end # transaction
       rescue Exception => e
@@ -452,8 +450,8 @@ class LoginController < ApplicationController
       if @page_errors.empty?
         cookies[:phr_user] =  { :value => User.generate_cookie(user),
           :expires => 1.year.from_now, :secure=>true } if cookies[:phr_user].nil?
-        if default_mode && !form_params[:cookie_checkbox_1].empty? &&
-            form_params[:cookie_checkbox_1] == '1'
+        if default_mode && !@form_params[:cookie_checkbox_1].empty? &&
+            @form_params[:cookie_checkbox_1] == '1'
           user.two_factors.create(:cookie => cookies[:phr_user],
             :user_id => user.id )
           user.save!
@@ -463,24 +461,24 @@ class LoginController < ApplicationController
         # page, this person created an account so they could share access
         # to a phr based on an invitation from that phr's owner.  Finish
         # off the acceptance now that they've created the account.
-        if !params[:fe]["invite_key"].nil? && params[:fe]["invite_key"] != ""
+        if !@form_params["invite_key"].blank?
           ShareInvitationController.implement_access(user, nil,
-                                                     params[:fe]["invite_key"])
+                                                     @form_params["invite_key"])
         end
 
         # send activation email
         vtoken = user.email_verifications[0].token
-        DefMailer.verify_reg_email(user.name, vtoken, user.email).deliver
-        #flash[:notice] = "User account " + form_params[:user_name_1] +
+        DefMailer.verify_reg_email(user.name, vtoken, user.email).deliver_now
+        #flash[:notice] = "User account " + @form_params[:user_name_1] +
         #  " was created successfully."
-        flash[:notice] = "Thanks for signing up the new user account " + form_params[:user_name_1] +
+        flash[:notice] = "Thanks for signing up the new user account " + @form_params[:user_name_1] +
           ". An account activation email has been sent to your email address: #{user.email}."+
           " Please follow the instruction in the email to activate your account."
         if !default_mode
           redirect_to login_path
         else
           render :status => :ok,
-            :text => ({'target' => '/accounts/login'}).to_json
+            :plain => ({'target' => '/accounts/login'}).to_json
         end
 
         # Otherwise send a message back to the javascript client with the error
@@ -489,11 +487,10 @@ class LoginController < ApplicationController
         if !default_mode
           render_sign_up_form
         else
-          js_to_run += ' Recaptcha.focus_response_field = function(){return false;}; Recaptcha.reload(); '
           logger.debug 'post request failed, @page_errors = ' +
             @page_errors.join('  ')
           render :status => :failed,
-            :text => {'javascript' => js_to_run ,
+            :plain => {'javascript' => js_to_run ,
             'errors' => @page_errors}.to_json
         end
       end
@@ -528,15 +525,14 @@ class LoginController < ApplicationController
   # Returns:  NULL
   def change_account_settings
     no_ajax = non_default_html_mode?
-    form_params = params[:fe]
     @form_submission_method = :put
     @page_errors = []
     user = @user # @user gets set in authorize
-    if (request.put? or request.post?) && !form_params["save_changes_1"].nil?
+    if (request.put? or request.post?) && !@form_params["save_changes_1"].nil?
       old_email = user.email
       ret = nil
       User.transaction do
-        @p = AccountSettingsPresenter.new(form_params)
+        @p = AccountSettingsPresenter.new(@form_params)
         ret = user.update_profile_to_db(@p.profile_data, @page_errors)
         # If there was any error in save action, rollback the whole thing.
         raise ActiveRecord::Rollback if ret < 0
@@ -547,13 +543,13 @@ class LoginController < ApplicationController
           flash[:error] = @page_errors.join(" ")
           render_account_settings_form
         else
-          render :status => :failed, :text => {'errors'=> @page_errors }.to_json
+          render :status => :failed, :plain => {'errors'=> @page_errors }.to_json
         end
       else
         if ret > 0
           # send notification email if valid email address on file
           if !old_email.blank?
-            DefMailer.profile_update(user.name, old_email).deliver
+            DefMailer.profile_update(user.name, old_email).deliver_now
           end
           @message = 'Your account settings were updated successfully.'
         else
@@ -566,19 +562,19 @@ class LoginController < ApplicationController
         elsif params['from'] == 'popup'
           js = Hash.new
           js["javascript"] = "Def.getWindowOpener().Def.showNotice('#{@message}');  window.close() ;"
-          render :json => js.to_json
+          render json: js
         else
           js = Hash.new
           js["javascript"] = "Def.getWindowOpener().Def.showNotice('#{@message}'); "
-          render :json => js.to_json
+          render json: js
         end
       end
-    elsif form_params["delete_account_1"]
+    elsif @form_params["delete_account_1"]
       redirect_to delete_account_path
     else  #end if request.post
       # Show the account settings page
       @data_hash = user.data_hash_for_update_account_settings
-      @action_url = request.fullpath
+      @action_url = request.path
       render_account_settings_form
     end
   end  #end def change_profile
@@ -590,16 +586,15 @@ class LoginController < ApplicationController
   # account to change password online or answer challenge questions.
   def change_password
     @page_errors = []
-    form_params = params[:fe]
     if request.post?
-      if form_params[:email_option_radio_1_1] == 'email'
+      if @form_params[:email_option_radio_1_1] == 'email'
         # Generate the link based on the session[:user_name]
         redirect_to :action => :get_reset_link
       else# submitting challenge question answers from Step 2
-        if check_challenge_questions(form_params)
+        if check_challenge_questions(@form_params)
           # check errors related to the correctness of the answers
-          @user.is_answer_correct(form_params[:ch_answ1_1_1_1],
-            form_params[:ch_answ2_1_1_1], @page_errors)
+          @user.is_answer_correct(@form_params[:ch_answ1_1_1_1],
+            @form_params[:ch_answ2_1_1_1], @page_errors)
         else
           # if No option selected in step 2
           @page_errors << "Please select appropriate option and enter value in
@@ -650,12 +645,11 @@ class LoginController < ApplicationController
   def update_password
     @page_errors=[]
     if request.post?
-      form_params = params[:fe]
       # updating user record with new password
-      @user.password = form_params[:cpnew_passwd_1]
-      @user.password_confirmation = form_params[:cpconfm_passwd_1]
+      @user.password = @form_params[:cpnew_passwd_1]
+      @user.password_confirmation = @form_params[:cpconfm_passwd_1]
       if @user.save
-        DefMailer.password_reset(@user.name,@user.email).deliver
+        DefMailer.password_reset(@user.name,@user.email).deliver_now
         flash[:notice] = "Password changed successfully."
         redirect_to login_path
       else
@@ -681,7 +675,7 @@ class LoginController < ApplicationController
       render_recover_pw_step_one
     else
       @user.setup_reset_key
-      DefMailer.reset_link(@user.name, @user.reset_key, @user.email).deliver
+      DefMailer.reset_link(@user.name, @user.reset_key, @user.email).deliver_now
       flash[:notice] = "A reset link has been sent to your email box:
         #{@user.masked_email}. It will expire after 60 minutes."
       redirect_to login_url
@@ -696,7 +690,7 @@ class LoginController < ApplicationController
       user = User.where(name: session[:user]).first
       user.clear_reset_key if user
     end
-    render(:nothing => true)
+    head :ok
   end
 
 
@@ -705,12 +699,12 @@ class LoginController < ApplicationController
   def reset_account_security
     if request.post?
       @page_errors = []
-      @p = ResetSecurityPresenter.new(params[:fe])
+      @p = ResetSecurityPresenter.new(@form_params)
       ret = @user.update_profile_to_db(@p.profile_data, @page_errors)
       if ret > 0
         flash[:notice] = "Security question(s) and/or password have been "+
             "updated for user:  #{@user.name}."
-        DefMailer.profile_update(@user.name,@user.email).deliver
+        DefMailer.profile_update(@user.name,@user.email).deliver_now
         redirect_to login_url
       else
         # We need to re-create the reset key to give user another chance for password updating
@@ -744,15 +738,14 @@ class LoginController < ApplicationController
       session[:user_email] = nil
       @data_hash = nil
       @page_errors= @recaptcha_page_errors || []
-      form_params = params[:fe]
 
-      if !form_params[:user_email_1].blank? && @page_errors.empty?
-        session[:user_email] = form_params[:user_email_1]
-        user = User.where(email: form_params[:user_email_1]).first
+      if !@form_params[:user_email_1].blank? && @page_errors.empty?
+        session[:user_email] = @form_params[:user_email_1]
+        user = User.where(email: @form_params[:user_email_1]).first
         if user # forward to step2
           render_recover_id_step_two(user)
         else
-          error_msg = "User with email #{form_params[:user_email_1]}
+          error_msg = "User with email #{@form_params[:user_email_1]}
             does not exist in our system."
           if non_default_html_mode?
             # For this kind of error, make the user solve another CAPTCHA,
@@ -765,12 +758,12 @@ class LoginController < ApplicationController
           end
         end # if found == true
       else
-        @data_hash = {'user_email_1'=>form_params[:user_email_1]}
-        if form_params[:user_email_1].blank?
+        @data_hash = {'user_email_1'=>@form_params[:user_email_1]}
+        if @form_params[:user_email_1].blank?
           @page_errors << 'Please enter your e-mail address. Your input was empty.'
         end
         render_recover_id_step_one
-      end # if !form_params
+      end # if !@form_params
     end # end request.post
   end
 
@@ -805,6 +798,8 @@ class LoginController < ApplicationController
           redirect_to login_path
         end
       end
+    else
+      render_html_status_page(400)
     end
   end
 
@@ -824,8 +819,7 @@ class LoginController < ApplicationController
       session[:user_name] = nil
       @data_hash = nil
       @page_errors= @recaptcha_page_errors || []
-      form_params = params[:fe]
-      user_name_param = form_params[:user_name_1]
+      user_name_param = @form_params[:user_name_1]
       # condition of exit this method Check Captcha
 
       # captcha is valid
@@ -884,19 +878,17 @@ class LoginController < ApplicationController
     @login = false
     @page_errors = []
     @user = nil
-    form_params = params[:fe]
     # ie. user/pass correct, so ask challenge question
-    @action_url=request.fullpath # submit the form back here
+    @action_url=request.path # submit the form back here
     if !session[:user_name].blank? && !session[:password].blank?
       data_size_ok, @user = authenticate_and_check_data_sz(request,
                 session[:user_name],session[:password])
     end
 
     if @user && data_size_ok
-      good_answer = @user.check_answer(form_params[:user_answ_1_1],@page_errors)
+      good_answer = @user.check_answer(@form_params[:user_answ_1_1],@page_errors)
       if good_answer
-        if form_params[:cookie_checkbox_1_1] && !form_params[:cookie_checkbox_1_1].empty? &&
-            form_params[:cookie_checkbox_1_1] == '1'
+        if @form_params[:cookie_checkbox_1_1] && @form_params[:cookie_checkbox_1_1] == '1'
           @user.two_factors.create(:cookie => cookies[:phr_user],
             :user_id => @user.id )
         end
@@ -921,16 +913,15 @@ class LoginController < ApplicationController
   # Activates new user account using the activation link sent to user's email address
   def email_verification
     @page_errors = []
-    if request.get? 
+    if request.get?
       # render the email_verification page with a hidden token field
       @action_url="/accounts/email_verification"
       @data_hash = {:verification_token_1 => params[:verification_token]}
       render_form "email_verification"
     elsif request.post?
-      form_params = params[:fe]
-      username = form_params[:user_name_1]
-      password = form_params[:password_1]
-      vtoken = form_params[:verification_token_1]
+      username = @form_params[:user_name_1]
+      password = @form_params[:password_1]
+      vtoken = @form_params[:verification_token_1]
 
       @user = User.authenticate(username, password, @page_errors)
       # In this method, we need to have user record in order to match the input token
@@ -949,18 +940,19 @@ class LoginController < ApplicationController
 
       if @user.nil? || !@page_errors.empty?
         # show the current page with error msg
-        @action_url= request.fullpath #"/accounts/email_verification?verification_token=#{vtoken}"
-        @data_hash = {:verification_token => vtoken }
+        @action_url= request.path # /accounts/email_verification (no parameters)
+        @data_hash = {:verification_token_1 => vtoken }
         render_form "email_verification"
       else
         # show the done page with flash notice
         flash[:notice]= flash_msg
         render_login_form
-        #render :text=>"Email Verification Done! Click <a href='/accounts/login'>Here</a> to log in now."
+        #render html: "Email Verification Done! Click <a href='/accounts/login'>Here</a> to log in now.".html_safe
         #render_form "email_verification_done"
       end
     end
   end
+
 
 
   # This is a signin method. The trickiest part of the method is the openid but
@@ -972,7 +964,7 @@ class LoginController < ApplicationController
   #   that the openid is authenticated. For regular account, a conventional
   #   method, we directly validate the user name and password. Second note:
   #   Login does not need to validate captcha and this method has to be placed
-  #   in the "except" part of "before_filter" to enable public access. Third
+  #   in the "except" part of "before_action" to enable public access. Third
   #   note: the rout from a URL to this method is specified in file
   #   config/routes.rb
   #   Parameters:
@@ -987,13 +979,12 @@ class LoginController < ApplicationController
     # Else the user has filled out the page and here it is.  Process the input.
     elsif request.post?
       @page_errors = []
-      form_params = params[:fe]
       # If no input came back from the page, put up the errors page
-      if !form_params
+      if @form_params.empty?
         next_page = "bad_request"
       else
         data_size_ok, @user = authenticate_and_check_data_sz(request,
-            form_params[:user_name_1_1],form_params[:password_1_1])
+            @form_params[:user_name_1_1],@form_params[:password_1_1])
 
         if !data_size_ok
           params[:end_type] = 'data_overflow'
@@ -1016,7 +1007,7 @@ class LoginController < ApplicationController
     case next_page
     when 'two_factor'
       # Sets up two factor authentication form with challenge question.
-      create_twofactor(form_params[:user_name_1_1],form_params[:password_1_1])
+      create_twofactor(@form_params[:user_name_1_1],@form_params[:password_1_1])
     when 'login_done'
       login_successful(@user)
     when 'login'
@@ -1058,15 +1049,14 @@ class LoginController < ApplicationController
     # Else the user has filled out the page and here it is.  Process the input.
     elsif request.post?
       @page_errors = []
-      form_params = params[:fe]
 
-      if form_params['agree_chbox_1'] != '1'
+      if @form_params['agree_chbox_1'] != '1'
         flash.now[:error] = 'Please mark the checkbox to indicate that you have '+
           'read and understood the purpose of the demo account.'
         render_demo_login_form
       else
         # If no input came back from the page, put up the errors page
-        if !form_params
+        if @form_params.empty?
           render :file=>'public/errors/400.txt', :status=>:bad_request
         else
           # pick a demo user account from a demo account pool, where the demo account
@@ -1094,7 +1084,7 @@ class LoginController < ApplicationController
                 "Please come back after 3:00 A.M. EST."
             render_demo_login_form
           end # if @user
-        end # if !form_params
+        end # if !@form_params
       end # else the checkbox was checked
     end # request.post?
   end # demo_login
@@ -1245,7 +1235,7 @@ class LoginController < ApplicationController
   def set_session_state
     status = params[:session_status]
     session[:status] = status
-    render :nothing => true
+    head :ok
   end
 
 
@@ -1254,7 +1244,7 @@ class LoginController < ApplicationController
   # Return:NONE
   def check_session_state
     status = session[:status]
-    render(:text=>status)
+    render(:plain=>status)
   end
 
 
@@ -1294,7 +1284,7 @@ class LoginController < ApplicationController
           # Now permanently delete the profiles and associated phrs data. It
           # includes records that were previously deleted individually by user.
           # This method can be commented out to keep the profile data after
-          # account delete. pds = DeletedProfile.find_all_by_user_id(user_id)
+          # account delete. pds = DeletedProfile.where(user_id: user_id)
           # pds.each do |pd|
           #  pd.delete_profile_records_perm
           # end
@@ -1310,7 +1300,7 @@ class LoginController < ApplicationController
             redirect_to login_path
           else
             flash.keep
-            render :text => 'Valid', :status => 200
+            render :plain => 'Valid', :status => 200
           end
         else
           if page_errors.empty?
@@ -1320,7 +1310,7 @@ class LoginController < ApplicationController
             flash.now[:error] = page_errors.join
             render :template=>'basic/login/confirm_account_deletion', :layout=>'basic'
           else
-            render :text => page_errors.join, :status => 200
+            render :plain => page_errors.join, :status => 200
           end
         end
       rescue Exception => excep
@@ -1331,7 +1321,7 @@ class LoginController < ApplicationController
         if non_default_mode
           redirect_to phr_records_path
         else
-          render :text => flash[:notice], :status => 500
+          render :plain => flash[:notice], :status => 500
         end
       end
     end
@@ -1431,17 +1421,13 @@ class LoginController < ApplicationController
 
   private
 
-
-  # Override the original method to facilitate the testing of codes where this
-  # method was used
-  def recaptcha_valid?
-    if Rails.env =="test" || (!defined?(BYPASS_CAPTCHA).nil? && BYPASS_CAPTCHA == true)
-      return params[:recaptcha_response_field] == "correct_response"
-    else
-      super
+  # Return the value of key :fe from the controller parameter. Default to ActionController::Parameters.new if the key
+  # :fe is missing.
+  def get_form_params
+    if request.put? || request.post?
+      @form_params = params.has_key?(:fe) ? params[:fe] : ActionController::Parameters.new
     end
   end
-
 
   # An around filter for validating captcha in both basic and standard mode
   def captcha
@@ -1472,11 +1458,11 @@ class LoginController < ApplicationController
         # Now validate the registration process related data. Validate the captcha
         # response by calling the method "recaptcha_valid?" of the rack-recaptcha
         # third party plugin.
-        if params[:recaptcha_response_field].blank?
+        if params['g-recaptcha-response'].blank?
           @recaptcha_page_errors << @@need_captcha_input_msg.html_safe
         else
-          if !recaptcha_valid?
-            @recaptcha_page_errors << @@captcha_input_msg.html_safe
+          if !verify_recaptcha
+            @recaptcha_page_errors << @@invalid_captcha_msg.html_safe
             str = 'captcha_failure'
           else
             str = 'captcha_success'
@@ -1490,7 +1476,7 @@ class LoginController < ApplicationController
           UsageStat.create_stats(@user,
                                  nil,
                                  report_params.to_json,
-                                 request.session_options[:id],
+                                 request.session.id,
                                  session[:cur_ip],
                                  false)
         end
@@ -1503,7 +1489,7 @@ class LoginController < ApplicationController
   # Stores the current request's URI and redirects to the Basic HTML captcha page.
   def redirect_to_captcha
     session.delete(:passed_basic_captcha)
-    session[:captcha_protected_uri] = request.fullpath
+    session[:captcha_protected_uri] = request.path
     redirect_to captcha_path
   end
 
@@ -1515,7 +1501,7 @@ class LoginController < ApplicationController
       @page_title = @p.form.form_title
       render :template=>'basic/login/recover_id_step_one', :layout=>'basic'
     else
-      @action_url=request.fullpath # return the form back here
+      @action_url=request.path # return the form back here
       render_form('forgot_id')
     end
   end
@@ -1545,7 +1531,7 @@ class LoginController < ApplicationController
       @page_title = @p.form.form_title
       render :template=>'basic/login/reset_pw_step_one', :layout=>'basic'
     else
-      @action_url=request.fullpath # submit the form back here
+      @action_url=request.path # submit the form back here
       render_form('forgot_password')
     end
   end
@@ -1613,7 +1599,7 @@ class LoginController < ApplicationController
       @page_title = @p.form.form_title
       render :template=>'basic/login/sign_up', :layout=>'basic'
     else
-      @action_url = request.fullpath
+      @action_url = request.path
       @exp_account_name = EXP_ACCOUNT_NAME # needed to render a default_value
       @form = Form.where(:form_name=>'signup').take
       @form_subtitle = @form.sub_title.html_safe
@@ -1634,7 +1620,7 @@ class LoginController < ApplicationController
       @page_title = @p.form.form_title
       render :template=>'basic/login/account_settings', :layout=>'basic'
     else
-      @action_url = request.fullpath
+      @action_url = request.path
       render_form('change_profile')
     end
   end
@@ -1695,8 +1681,9 @@ class LoginController < ApplicationController
 
   # Renders two factor authorization form. This form presents a challenge
   # question when user logs in from a unregistered/new computer. After user
-  # successfully answers the challenge question, a cookie is added to the
-  # browser to identify the computer. The identified/registered computers do not
+  # successfully answers the challenge question and checks the checkbox labeled
+  # as "Remember the computer ...", a cookie is added to the browser
+  # to identify the computer. The identified/registered computers do not
   # need to answer challenge question and bypass this step.
   # Parameters:
   # * param1 -  use name or object
@@ -1836,10 +1823,10 @@ class LoginController < ApplicationController
       user.save
     end
   end
-    
-   
-  # A before filter for redirecting user to proper page if the user already 
-  # logged in. It is used by login and demo_login actions. 
+
+
+  # A before filter for redirecting user to proper page if the user already
+  # logged in. It is used by login and demo_login actions.
   def check_logged_in_user
     # If the user asked for a particular page view mode (basic versus default)
     # then switch to that and store it in the session; otherwise continue

@@ -14,7 +14,7 @@
         <div id="hdr_banner_text">
           <%= BANNER_ALT_TEXT.html_safe %>
         </div>
-        <div id="hdr_banner_img" class=<%=DEMO_SYSTEM ? "demo" : ""%>></div>
+        <div id="hdr_banner_img" class="<%=DEMO_SYSTEM ? "demo" : ""%>"></div>
         <%# banner specified as background image in style.css %>
         <%# prevents horizontal bar from appearing just for the banner. %>
       </div>
@@ -167,15 +167,17 @@
       <% else  %>
         var recoveredData = null ;
       <% end %>
+
+      Def.accessLevel_ = <%= @access_level %>
       
-      //<%# if @max_autosave_kb %>
-      //  <%#*Def.AutoSave.MAX_AUTOSAVE_SIZE = <%= @max_autosave_kb %> * 1024 ;%>
-      //<%# else  %>
-      //  <%#*Def.AutoSave.MAX_AUTOSAVE_SIZE = null ;%>
-      //<%# end %>
-      //<%#*<% if @overflow_at_start %>
-      //<%#*  Def.AutoSave.stopAutosave_ = true ;%>
-      //<%#*<% end %>
+      <% if @max_autosave_kb %>
+      //  Def.AutoSave.MAX_AUTOSAVE_SIZE = <%= @max_autosave_kb %> * 1024 ;
+      <% else %>
+      //  Def.AutoSave.MAX_AUTOSAVE_SIZE = null ;
+      <% end %>
+      <% if @overflow_at_start %>
+      //  Def.AutoSave.stopAutosave_ = true ;
+      <% end %>
       if (formData && formData.length > 0) {
         Def.DataModel.setup(formData, true, recoveredData, formAutosaves);
         <%#= Updates the idShown_ value of message manager using id_shown_ from data model %>
@@ -242,6 +244,6 @@
       Def.Logger.logException(e);
       throw e;
     }
-  }
+  };
   document.observe('dom:loaded', loadData);
 </script>

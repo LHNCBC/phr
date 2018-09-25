@@ -6,7 +6,7 @@ class PhrCondition  < ActiveRecord::Base
   belongs_to :gopher_term, :foreign_key=>:problem_C, :primary_key=>:key_id
   belongs_to :profile
  # alias_attribute :code, :problem_C
-  
+
   # Set up methods for accessing and working this model's lists
   # Status list
   init_nonsearch_list :present, # the field's name is "present"
@@ -17,7 +17,8 @@ class PhrCondition  < ActiveRecord::Base
   DATE_FIELDS = %w{when_started cond_stop}
 
   # When validating, convert the dates to HL7 and epoch time.
-  def validate
+  validate :validate_instance
+  def validate_instance
     validate_cne_field(:present)
 
     # Validate the condition name and code
@@ -33,7 +34,7 @@ class PhrCondition  < ActiveRecord::Base
     if problem.blank?
       errors.add(:problem, 'must not be blank')
     end
-    
+
     date_reqs = self.class.date_requirements(DATE_FIELDS, 'phr')
     DATE_FIELDS.each {|f| validate_date(f, date_reqs[f])}
   end

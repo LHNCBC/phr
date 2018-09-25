@@ -1,5 +1,4 @@
 module TextFieldsHelper
-  include Rack::Recaptcha::Helpers
   # Builds the appropriate type of input mechanism for a field
   # with a control_type of 'text_field' OR 'search_field'
   #

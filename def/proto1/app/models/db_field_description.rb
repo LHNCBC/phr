@@ -9,14 +9,15 @@ class DbFieldDescription < ActiveRecord::Base
   belongs_to :controlling_field, :class_name=>'DbFieldDescription'
   has_many :controlled_fields, :class_name=>'DbFieldDescription', :foreign_key=>'controlling_field_id'
   has_and_belongs_to_many :rules, :join_table=>'rule_db_field_dependencies'
-  serialize :fields_saved
+  serialize :fields_saved, JSON
   validates_uniqueness_of :data_column, :scope=>:db_table_description_id
 
   delegate :is_date_type, :to => :predefined_field
 
   cache_recs_for_fields 'id'
 
-  def validate
+  validate :validate_instance
+  def validate_instance
     # For some reason, accessing predefined_field_id by the method does not
     # always work here, so we use read/write_attribute.
     if read_attribute('predefined_field_id').nil?

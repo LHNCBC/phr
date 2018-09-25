@@ -2,7 +2,7 @@
 # the rails process when the rails process is first started.
 require 'net/https'
 class StartupController < ApplicationController
-  before_filter :localhost_only
+  before_action :localhost_only
 
   # A before filter to only allow accesses to this controller from the machine
   # itself.
@@ -23,7 +23,7 @@ class StartupController < ApplicationController
     resp_codes_okay = access_url('/') == http_success_code &&
                       access_url('/form/test/phr') == http_success_code
     raise 'Error accessing startup URLs' if !resp_codes_okay
-    render :text=>'Loaded.'
+    render :plain=>'Loaded.'
   end
 
 

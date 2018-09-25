@@ -989,23 +989,32 @@ Def.Validation.Xss = {
   dialog_: null,
 
   /**
+   *  Returns a version of a string sanitized against XSS.
+   * @param str the string to sanitize
+   */
+  xssSanitize: function(str) {
+    // Escapes any HTML tags found in the field value by making sure there is a
+    // space or "=" right after each less-than sign.
+    // We also allow a semi-colon right after the less-than, just to keep &lt;
+    // in the same capturing group.
+    var regex = /(<|%3C|&(lt|#(0*60|x0*3c));?|\\(x|u00)3c)(?=[^;=\s])/i;
+    return str.gsub(regex, function(match) {
+      if (match && match[5] != "=") {
+        changed = true;
+        return match[1]+" ";
+      }
+    });
+  },
+
+
+  /**
    * Returns true if there is no HTML found in the field value and vice versa
    * @params field a data input field
    **/
   validateFieldValue: function(field) {
-    // Escapes any HTML tags found in the field value by making sure there is a
-    // space or "=" right after each less-than sign.
-    // The sanitized field value will be stored in variable named "rtn"
-    var xssFound = false;
-    var rtn = Def.getFieldVal($(field));
-    var regex = /(<|%3C|&(lt|#(0*60|x0*3c));?|\\(x|u00)3c)([^\s+])/i;
-    rtn = rtn.gsub(regex, function(match) {
-      if (match && match[5] != "=") {
-        xssFound = true;
-        return match[1]+" "+match[5];
-      }
-    });
-
+    var originalVal = Def.getFieldVal($(field));
+    var rtn = this.xssSanitize(originalVal);
+    var xssFound = rtn != originalVal;
     if (xssFound) {
       // Updates the field value with the sanitized version
       Def.setFieldVal($(field), rtn, false);

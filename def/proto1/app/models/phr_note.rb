@@ -8,7 +8,8 @@ class PhrNote < ActiveRecord::Base
   DATE_FIELDS = %w{note_date}
 
   # When validating, convert the dates to HL7 and epoch time.
-  def validate
+  validate :validate_instance
+  def validate_instance
     date_reqs = self.class.date_requirements(DATE_FIELDS, 'phr')
     DATE_FIELDS.each {|f| validate_date(f, date_reqs[f])}
   end

@@ -1,5 +1,5 @@
 class PageTimerController < ApplicationController
-  before_filter :only_allow_local_ips
+  before_action :only_allow_local_ips
 
   # A before filter to only allow access from local IPs.
   def only_allow_local_ips
@@ -31,9 +31,9 @@ class PageTimerController < ApplicationController
      :rails_time=>load_times["rails_time"], 
      :view_time=>load_times["view_time"],
      :db_time=>load_times["db_time"], :rails_mode=>Rails.env)
-      render :text => "Load time saved!", :status => 200
+      render :plain => "Load time saved!", :status => 200
     else
-      render :text => "Saving load time failed.", :status => 400
+      render :plain => "Saving load time failed.", :status => 400
     end
 
 
@@ -42,8 +42,8 @@ class PageTimerController < ApplicationController
     require 'rsruby'
     r = RSRuby.instance
     user_load_time_recs =
-      PageLoadTime.find_all_by_url_and_user_agent_and_remote_ip(
-        @page_url, @user_agent, @remote_ip)
+      PageLoadTime.where(
+        url: @page_url, user_agent: @user_agent, remote_ip: @remote_ip)
     @user_load_time_hist = '/userLoadTimeHist.png'
     @user_load_time_data_count, @user_load_time_mean, @user_load_time_SE =
       load_time_stats(r, user_load_time_recs, @user_load_time_hist,
@@ -51,14 +51,14 @@ class PageTimerController < ApplicationController
 
     # Now drop the user_agent from the search
     ip_load_time_recs =
-      PageLoadTime.find_all_by_url_and_remote_ip(@page_url, @remote_ip)
+      PageLoadTime.where(url: @page_url, remote_ip:@remote_ip)
     @ip_load_time_hist = '/ipLoadTimeHist.png'
     @ip_load_time_data_count, @ip_load_time_mean, @ip_load_time_SE =
       load_time_stats(r, ip_load_time_recs, @ip_load_time_hist,
             'Data for your machine')
     
     # Now drop the remote IP from the search
-    load_time_recs = PageLoadTime.find_all_by_url(@page_url)
+    load_time_recs = PageLoadTime.where(url: @page_url)
     @load_time_hist = '/loadTimeHist.png'
     @load_time_data_count, @load_time_mean, @load_time_SE =
       load_time_stats(r, load_time_recs, @load_time_hist,
@@ -91,7 +91,7 @@ class PageTimerController < ApplicationController
       
       chart_data_array = PageLoadTime.get_chart_data(modes, ips, agents)
 
-      render(:text => chart_data_array.to_json)
+      render(:plain => chart_data_array.to_json)
     end
   end
   

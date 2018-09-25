@@ -44,7 +44,10 @@ module PhrRecordsHelper
   # * help_url - the URL for a help page about the field
   # * attrs - attitional attributes for the form field tag
   def basic_password_field(label, form_obj_name, field_id, help_url=nil, attrs={})
-    hb = help_button(help_url) if help_url  
+    hb = help_button(help_url) if help_url
+    # Per our security team, turn off autocomplete.  Most browsers will ignore
+    # this setting, but it will make the scanner happy.
+    attrs[:autocomplete] = 'off'
     label(form_obj_name, field_id, label)+": "+
       password_field(form_obj_name, field_id, attrs) + hb
   end
@@ -90,7 +93,7 @@ module PhrRecordsHelper
     rtn = [check_box(form_obj_name, field_id, {:checked=>checked} ),
       label(form_obj_name, field_id, label)]
     rtn << help_button(help_url) if help_url
-    return rtn.join(' ').html_safe    
+    return rtn.join(' ').html_safe
   end
 
 
@@ -155,7 +158,7 @@ module PhrRecordsHelper
 
 
   # Returns the HTML for a button based on the given field description.
-  # 
+  #
   # Parameters:
   # * field_desc - the field description record used for obtaining the field's
   #   label and name
@@ -376,7 +379,7 @@ module PhrRecordsHelper
   # * field_desc - used for obtaining the field's text
   # * data_rec - (not used)
   def fd_static_text(field_desc, data_rec=nil)
-    "<div>#{field_desc.default_value_eval}</div>".html_safe
+    "<div>#{field_desc.default_value}</div>".html_safe
   end
 
 
@@ -442,7 +445,7 @@ module PhrRecordsHelper
     field_set_tag(field_desc.display_name) {
       hb = "".html_safe
       if help_url = get_help_url(field_desc)
-        hb << content_tag("div", help_button(help_url, 'Section Help')) 
+        hb << content_tag("div", help_button(help_url, 'Section Help'))
       end
       if field_desc.instructions
         hb << content_tag("div", field_desc.instructions, {:class=>"instructions"})
@@ -534,6 +537,9 @@ module PhrRecordsHelper
 
   def basic_password_field_m(label, form_obj_name, field_id, help_url=nil, attrs={}, required=false)
     label_name = mobile_label(label, help_url, required)
+    # Per our security team, turn off autocomplete.  Most browsers will ignore
+    # this setting, but it will make the scanner happy.
+    attrs[:autocomplete] = 'off'
     label(form_obj_name, field_id, label_name)+
       password_field(form_obj_name, field_id, attrs)
 
@@ -817,14 +823,6 @@ module PhrRecordsHelper
     wrap_with_field_contain do
       fd_password_m(*args)
     end
-  end
-
-
-  def fd_static_text_mm(field_desc, data_rec=nil)
-    "<div>#{field_desc.default_value_eval}</div>".html_safe
-  end
-  def fd_static_text_mm_plain(field_desc, data_rec=nil)
-    "#{field_desc.default_value_eval}".html_safe
   end
 
 

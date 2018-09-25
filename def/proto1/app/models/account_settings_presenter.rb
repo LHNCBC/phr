@@ -31,8 +31,8 @@ class AccountSettingsPresenter < PresenterBase
   def self.current_settings(user)
     form_params = {}
     form_params[:ceold_email_1] = user.email
-    fixed_questions = user.question_answers.find_all_by_qtype(1)
-    user_questions = user.question_answers.find_all_by_qtype(0)
+    fixed_questions = user.question_answers.where(qtype: 1)
+    user_questions = user.question_answers.where(qtype: 0)
     (0..1).each do |i|
       qa = fixed_questions[i]
       form_params["cp_fixquest_1_#{1+i}".to_sym] = qa.question if qa

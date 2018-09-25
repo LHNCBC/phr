@@ -153,11 +153,11 @@ class ObrOrderTest < ActiveSupport::TestCase
     obr = ObrOrder.create!(:loinc_num=>'55399-0', :test_date=>'2010/11/17',
       :latest=>1)
     assert(obr.valid?)
-    obx1 = ObxObservation.create!(:loinc_num=>'8867-4', :obr_order_id=>'-1',
+    obx1 = ObxObservation.create!(:loinc_num=>'8867-4', #:obr_order_id=>'-1',
       :obx5_value=>'4', :obr_order_id=>obr.id, :latest=>1)
     assert_equal(1290013200000, obr.test_date_ET)
     assert(obx1.valid?)
-    obx2 = ObxObservation.create!(:loinc_num=>'8867-4', :obr_order_id=>'-1',
+    obx2 = ObxObservation.create!(:loinc_num=>'8867-4', #:obr_order_id=>'-1',
       :obx5_value=>'4', :obr_order_id=>obr.id, :latest=>1)
     assert(obx2.valid?)
 
@@ -170,7 +170,7 @@ class ObrOrderTest < ActiveSupport::TestCase
 
     # Now update the OBR date, and confirm it gets copied to the OBXs.
     # Reload the obx_observations association (because we added new ones).
-    obr.obx_observations(true)
+    obr.obx_observations.reload
     obr.test_date = '2010/11/18'
     obr.save!
     [obx1, obx2].each_with_index do |o, i|

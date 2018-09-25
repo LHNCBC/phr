@@ -18,7 +18,7 @@ class LoincName < ActiveRecord::Base
     # delete existing record
     LoincName.delete_all
     
-    loinc_items = LoincItem.find_all_by_is_searchable(true)
+    loinc_items = LoincItem.where(is_searchable: true)
     loinc_items.each do |item|
       if item.is_panel?
         type = "Panel"

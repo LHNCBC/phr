@@ -19,9 +19,9 @@ class FormBuilderMap < ActiveRecord::Base
   #
   def self.get_map  
     the_map = '<table id="fbFieldsMapTable">'
-    map_rows = FormBuilderMap.find(:all)
+    map_rows = FormBuilderMap.all
     
-    predef_fields = PredefinedField.find_all_by_form_builder(true)
+    predef_fields = PredefinedField.where(form_builder: true)
     predef_fields.each do |pd|
       the_map += '<tr><td>' + pd.field_type + '</td>'
       mfld_name_sym = pd.fb_map_field.downcase.to_sym    
@@ -35,7 +35,7 @@ class FormBuilderMap < ActiveRecord::Base
     #logger.debug 'in form_builder_map - the_map = ' + the_map.to_s
     return the_map
   end # get_map
-  
+
   
   # This method creates a hash that can be used to determine which
   # fields should be displayed for a field definition based on the
@@ -50,9 +50,9 @@ class FormBuilderMap < ActiveRecord::Base
   #
   def self.get_hash  
     the_map = Hash.new
-    map_rows = FormBuilderMap.find(:all)
+    map_rows = FormBuilderMap.all
     
-    predef_fields = PredefinedField.find_all_by_form_builder(true)
+    predef_fields = PredefinedField.where(form_builder: true)
     predef_fields.each do |pd|
       the_map[pd.field_type] = Hash.new
       mfld_name_sym = pd.fb_map_field.downcase.to_sym  
@@ -87,8 +87,8 @@ class FormBuilderMap < ActiveRecord::Base
   def self.get_fields_hash
     the_hash = Hash.new
     the_hash['fields_hash_populated'] = false
-    the_fields = FormBuilderMap.find(:all, :select=>'field_name')
-    logger.debug 'in form_builder_map.get_fields_hash:'   
+    the_fields = FormBuilderMap.select(:field_name)
+    logger.debug 'in form_builder_map.get_fields_hash:'
     the_fields.each do |fn|
       #logger.debug '  writing ' + fn.field_name + ' to hash'
       the_hash[fn.field_name] = ''
@@ -121,10 +121,10 @@ class FormBuilderMap < ActiveRecord::Base
   def self.get_exclusions_hash(exclusion=true)
   
     the_hash = Hash.new
-    map_rows = FormBuilderMap.find(:all)
+    map_rows = FormBuilderMap.all
     list_type = !exclusion
     
-    predef_fields = PredefinedField.find_all_by_form_builder(true)
+    predef_fields = PredefinedField.where(form_builder: true)
     predef_fields.each do |pd|
       #logger.debug 'in form_builder_map.get_exclusions_hash:'
       #logger.debug '  processing predefined field type = ' + pd.field_type

@@ -28,6 +28,7 @@ class ModelWithDate < OpenStruct
   end
 end
 
+require 'test_helper'
 class DateValidationsTest < ActiveSupport::TestCase
   def setup
     timecop_path = Dir[File.join(Gem.user_dir,"gems/timecop*/lib/")][0]

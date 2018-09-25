@@ -1,7 +1,7 @@
 class PhrSurgicalHistory < ActiveRecord::Base
   include UserData
   extend UserData::ClassMethods
-  
+
   belongs_to :gopher_term, :foreign_key=>:surgery_type_C, :primary_key=>:key_id
   belongs_to :profile
 
@@ -10,7 +10,8 @@ class PhrSurgicalHistory < ActiveRecord::Base
   DATE_FIELDS = %w{surgery_when}
 
   # When validating, convert the dates to HL7 and epoch time.
-  def validate
+  validate :validate_instance
+  def validate_instance
     # Validate the surgery name and code
     if surgery_type_C_changed?
       surgery_info = GopherTerm.find_by_key_id(surgery_type_C)

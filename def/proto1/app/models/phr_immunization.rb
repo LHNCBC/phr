@@ -4,6 +4,8 @@ class PhrImmunization < ActiveRecord::Base
   include TextListUserData
   extend TextListUserData::ClassMethods
 
+  validate :validate_text_list_user_data
+
   # Returns the lists this class will use.  Each element will get passed to
   # init_nonsearch_list.
   def self.model_lists
@@ -25,22 +27,22 @@ class PhrImmunization < ActiveRecord::Base
     'immune_name'
   end
 
-  # Returns the list item matching the immune_name_C 
+  # Returns the list item matching the immune_name_C
   def immune_item
     immune_name_C.blank? ?  nil : TextList.get_list_items(
-      "all_immunizations", nil, nil, {:code => immune_name_C})[0]  
+      "all_immunizations", nil, nil, {:code => immune_name_C})[0]
   end
-  
+
   # Returns all class names related to this record
   def immune_classes
     immune_item && immune_item.classification_names
   end
-  
+
   # Returns all class codes related to this record
   def immune_classes_C
     immune_item && immune_item.classification_codes
   end
-  
+
   alias_method :immune_url, :info_link
 
   init_text_list_user_data

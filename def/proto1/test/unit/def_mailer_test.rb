@@ -11,7 +11,7 @@ class DefMailerTest < ActionMailer::TestCase
     host = 'hostname'
 
     email = DefMailer.share_invitation("invitee@email.com", msg, accept_key,
-            link_text, host).deliver
+            link_text, host).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
     assert_equal ['donotreply@mail.nih.gov'], email.from
     assert_equal ['invitee@email.com'], email.to
@@ -44,7 +44,7 @@ class DefMailerTest < ActionMailer::TestCase
     host = 'hostname'
 
     email = DefMailer.invitation_accepted(issuer_email, issuer_name,
-            target_name, target_email, prof_name, from_lines).deliver
+            target_name, target_email, prof_name, from_lines).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
     assert_equal ['donotreply@mail.nih.gov'], email.from
     assert_equal issuer_email, email.to
@@ -84,7 +84,7 @@ class DefMailerTest < ActionMailer::TestCase
     host = 'hostname'
 
     email = DefMailer.invitation_declined(issuer_email, issuer_name,
-            target_name, target_email, prof_name, from_lines).deliver
+            target_name, target_email, prof_name, from_lines).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
     assert_equal ['donotreply@mail.nih.gov'], email.from
     assert_equal issuer_email, email.to

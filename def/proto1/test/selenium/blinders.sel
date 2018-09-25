@@ -66,7 +66,7 @@
 | click | fe_test_panel_timeline_1_1 |
 | waitForExpression | javascript{testWindow_.Def.CURRENT_POPUPS_ARR.size() > 0;} | true |
 | waitForExpression | javascript{popupTestWindow = testWindow_.Def.CURRENT_POPUPS_ARR.last(); true} | true |
-| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | true |
+#| waitForExpression | javascript{testWindow_.$('blinder').hasClassName('activeBlinder');} | true |
 
 | waitForExpression | javascript{testWindow_ = popupTestWindow; true} | true |
 | waitForExpression | javascript{testWindow_.location.href} | *popup |

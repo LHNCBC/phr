@@ -20,14 +20,6 @@ class FieldDescriptionTest < ActiveSupport::TestCase
   end
 
 
-  def test_default_value_eval
-    template = 'timeout = #{SESSION_TIMEOUT}'
-    fd = FieldDescription.new(:default_value=>template)
-    assert_equal(template, fd.default_value)
-    assert_equal("timeout = #{SESSION_TIMEOUT}", fd.default_value_eval)
-  end
-
-
   def test_list_items
     DatabaseMethod.copy_development_tables_to_test(['field_descriptions',
       'forms', 'text_lists', 'text_list_items'])
@@ -122,14 +114,14 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     assert_equal(:item_name, fields[0])
     assert_equal(:item_text, fields[1])
   end
-  
+
   # Test of the fields_returned method.
   def test_fields_returned
     fields = @field_desc.fields_returned
     assert_equal(1, fields.size)
     assert_equal(:red, fields[0])
   end
-  
+
   # Test of the fields_displayed method.
   def test_fields_displayed
     fields = @field_desc.fields_displayed
@@ -147,7 +139,7 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     assert_equal('ST',
       field_descriptions(:data_hash_table_field).hl7_data_type_code)
   end
-  
+
   def test_field_type
     # Test of a field that has an hl7_data_type_id value
     assert_equal('ST - string data',
@@ -170,13 +162,13 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     assert_equal('six', val['three'][2])
     assert_equal(1, val['seven'].size)
     assert_equal('eight', val['seven'][0])
-    
+
     val = FieldDescription.parse_hash_value(
       'one=>two,three=>four')
     assert_equal(2, val.size)
     assert_equal('two', val['one'])
     assert_equal('four', val['three'])
-    
+
     # Test of escapes
     # Remember that inside a string, you have to double the \ characters if it
     # would normally be treated as an escape (so \\\\ is really two \
@@ -191,7 +183,7 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     assert_equal('seven)', val['four'][2])
     assert_equal('eight', val['four'][3])
     assert_equal('ten\,eleven', val['nine']) # two backslashes
-    
+
     # Test of the new hash map parameter.
     val = FieldDescription.parse_hash_value(
       'one=>two,three=>{four=>five,six=>seven},eight=>nine')
@@ -202,109 +194,109 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     assert_equal(2, val['three'].size, 'size of hash map parameter')
     assert_equal('five', val['three']['four'])
     assert_equal('seven', val['three']['six'])
-    
+
     # Test that the last character can be an escaped comma
     val = FieldDescription.parse_hash_value('one=>two\\,')
     assert_equal(1, val.size)
     assert_equal('two\\,', val['one'])
-    
+
   end
-  
+
   # Test the change_target_field method
   def test_change_target_field
     DatabaseMethod.copy_development_tables_to_test(TABLES, false)
     forms[0] = forms(:one)
     RuleAction.populate_actions_cache
     FieldDescription.change_target_field('to_be_changed', 'has_been_changed')
-  
-    assert_equal('has_been_changed', 
+
+    assert_equal('has_been_changed',
           field_descriptions(:target_field_to_change).target_field,
-          'field_descriptions.target_field - target_field_to_change') 
-    assert_equal({'not_changed'=>true}, 
+          'field_descriptions.target_field - target_field_to_change')
+    assert_equal({'not_changed'=>true},
           field_descriptions(:target_field_to_change).control_type_detail,
           'field_descriptions.control_type_detail - target_field_to_change')
-          
-    assert_equal('no_change', 
+
+    assert_equal('no_change',
           field_descriptions(:control_detail_at_beginning).target_field,
           'field_descriptions.target_field - control_detail_at_beginning')
     exp = {'search_table'=>'drug_name_routes','has_been_changed'=>'at_start',
       'list_details_id'=>1000,'superfluous_parameter'=>'at_end'}
     assert_equal(exp,
           field_descriptions(:control_detail_at_beginning).control_type_detail,
-          'field_descriptions.control_type_detail - ' + 'control_detail_at_beginning')         
-                 
-    assert_equal('no_change', 
+          'field_descriptions.control_type_detail - ' + 'control_detail_at_beginning')
+
+    assert_equal('no_change',
           field_descriptions(:control_detail_at_end).target_field,
-          'field_descriptions.target_field - control_detail_at_end')   
-    assert_equal({'superfluous_parameter'=>'at_start','has_been_changed'=>'at_end'}, 
+          'field_descriptions.target_field - control_detail_at_end')
+    assert_equal({'superfluous_parameter'=>'at_start','has_been_changed'=>'at_end'},
           field_descriptions(:control_detail_at_end).control_type_detail,
-          'field_descriptions.control_type_detail - control_detail_at_end') 
-          
-    assert_equal('no_change', 
+          'field_descriptions.control_type_detail - control_detail_at_end')
+
+    assert_equal('no_change',
           field_descriptions(:control_detail_in_middle).target_field,
-          'field_descriptions.target_field - control_detail_in_middle') 
+          'field_descriptions.target_field - control_detail_in_middle')
     assert_equal(FieldDescription.parse_hash_value('superfluous_parameter=>at_start,has_been_changed=>in_middle' +
-                 ',more_superfluidity=>at_end'), 
+                 ',more_superfluidity=>at_end'),
           field_descriptions(:control_detail_in_middle).control_type_detail,
-          'field_descriptions.control_type_detail = control_detail_in_middle') 
-                 
-    assert_equal('has_been_changed', 
+          'field_descriptions.control_type_detail = control_detail_in_middle')
+
+    assert_equal('has_been_changed',
           field_descriptions(:target_and_control).target_field,
           'field_descriptions.target_field - target_and_control')
-    assert_equal(FieldDescription.parse_hash_value('has_been_changed=>with_target_field'), 
+    assert_equal(FieldDescription.parse_hash_value('has_been_changed=>with_target_field'),
           field_descriptions(:target_and_control).control_type_detail,
-          'field_descriptions.control_type_detail - target_and_control') 
-                  
-    assert_equal("has_been_changed='true'", 
+          'field_descriptions.control_type_detail - target_and_control')
+
+    assert_equal("has_been_changed='true'",
           rule_cases(:change_case_expression).case_expression,
           'rule_cases.case_expression - change_case_expression')
-    assert_equal('no_change+30', 
+    assert_equal('no_change+30',
           rule_cases(:change_case_expression).computed_value,
-          'rule_cases.computed_value - change_case_expression')                  
-                  
-    assert_equal("no_change='true'", 
+          'rule_cases.computed_value - change_case_expression')
+
+    assert_equal("no_change='true'",
           rule_cases(:change_computed_value).case_expression,
           'rule_cases.case_expression - change_computed_value')
-    assert_equal('has_been_changed+30', 
+    assert_equal('has_been_changed+30',
           rule_cases(:change_computed_value).computed_value,
-          'rule_cases.computed_value - change_computed_value')                  
-                                   
-    assert_equal("has_been_changed='true'", 
+          'rule_cases.computed_value - change_computed_value')
+
+    assert_equal("has_been_changed='true'",
           rule_cases(:change_both).case_expression,
           'rule_cases.case_expression - change_both')
-    assert_equal('has_been_changed+30', 
+    assert_equal('has_been_changed+30',
           rule_cases(:change_both).computed_value,
-          'rule_cases.computed_valuel - change_both')                  
+          'rule_cases.computed_valuel - change_both')
 
-    assert_equal('value=>has_been_changed', 
+    assert_equal('value=>has_been_changed',
           rule_actions(:change_parameters).parameters,
           'rule_actions.parameters - change_parameters')
-    assert_equal('no_change', 
+    assert_equal('no_change',
           rule_actions(:change_parameters).affected_field,
-          'rule_actions.affected_field - change_parameters')                  
-                  
-    assert_equal('value=>no_change', 
+          'rule_actions.affected_field - change_parameters')
+
+    assert_equal('value=>no_change',
           rule_actions(:change_affected_field).parameters,
           'rule_actions.parameters - change_affected_field')
-    assert_equal('has_been_changed', 
+    assert_equal('has_been_changed',
           rule_actions(:change_affected_field).affected_field,
-          'rule_actions.affected_field - change_affected_field')                  
-                                   
-    assert_equal('value=>has_been_changed', 
+          'rule_actions.affected_field - change_affected_field')
+
+    assert_equal('value=>has_been_changed',
           rule_actions(:change_both).parameters,
           'rule_actions.parameters - change_both')
-    assert_equal('has_been_changed', 
+    assert_equal('has_been_changed',
           rule_actions(:change_both).affected_field,
-          'rule_actions.affected_field - change_both')                  
+          'rule_actions.affected_field - change_both')
 
-    assert_equal("has_been_changed='true'", 
+    assert_equal("has_been_changed='true'",
           rules(:change_target_case_rule).expression,
           'rules.expression - change_target_case_rule')
-    assert_equal("has_been_changed='true'", 
+    assert_equal("has_been_changed='true'",
           rules(:change_target_not_case_rule).expression,
-          'rules.expression - change_target_not_case_rule')            
+          'rules.expression - change_target_not_case_rule')
   end
-  
+
   # Test the validity checking for predefined_field_id and field_type
   def test_validate
     new_id1 = FieldDescription.create(
@@ -313,19 +305,19 @@ class FieldDescriptionTest < ActiveSupport::TestCase
                    :predefined_field_id =>predefined_fields(:one).id)
     assert(new_id1.errors[:target_field].length > 0)
     assert_equal('ST - string data', new_id1.field_type)
-    
+
     new_id2 = FieldDescription.create(
                     :display_name => 'Missing control_type',
                     :target_field => 'targ_field_val2',
                     :predefined_field_id => predefined_fields(:two).id)
     assert(new_id2.errors[:control_type].length > 0)
-    
+
     new_id3 = FieldDescription.create(
                     :display_name => 'Missing predefined_field_id',
                     :target_field => 'targ_field_val3',
                     :control_type => 'text_field2')
     assert(new_id3.errors[:predefined_field_id].length > 0)
-    
+
     new_id4 = FieldDescription.create(
                     :display_name => 'Missing everything')
     assert(new_id4.errors[:target_field].length > 0)
@@ -355,9 +347,9 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     assert fd.valid?
 
   end # test_validate
-  
-  
-  # This method tests the remove_param method.  It tests removal of 
+
+
+  # This method tests the remove_param method.  It tests removal of
   # parameters with three types of values:  a string value, an array
   # value, and a hash value..
   #
@@ -369,8 +361,8 @@ class FieldDescriptionTest < ActiveSupport::TestCase
   def test_remove_param
     test_field = field_descriptions(:one)
     dri = {'one'=>'two','three'=>'four'}
-           
-    # test removal of a parameter with a string value 
+
+    # test removal of a parameter with a string value
     test_field.remove_param('no_button')
     assert_equal('drug_name_routes', test_field.getParam('search_table'))
     assert_equal(['text'], test_field.getParam('fields_searched'))
@@ -378,7 +370,7 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     assert_equal(dri, test_field.getParam('data_req_input'))
     assert_equal(1, test_field.getParam('auto'))
     assert_nil(test_field.getParam('no_button'))
-    
+
     # test removal of a parameter with an array value
     test_field.remove_param('fields_displayed')
     assert_equal('drug_name_routes', test_field.getParam('search_table'))
@@ -387,7 +379,7 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     assert_equal(dri, test_field.getParam('data_req_input'))
     assert_equal(1, test_field.getParam('auto'))
     assert_nil(test_field.getParam('no_button'))
-      
+
     # test removal of a parameter with a hash value
     test_field.remove_param('data_req_input')
     assert_equal('drug_name_routes', test_field.getParam('search_table'))
@@ -396,11 +388,11 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     assert_nil(test_field.getParam('data_req_input'))
     assert_equal(1, test_field.getParam('auto'))
     assert_nil(test_field.getParam('no_button'))
-   
+
   end # test_remove_param
-  
-  
-  # This method tests the add_param method.  It tests addition of 
+
+
+  # This method tests the add_param method.  It tests addition of
   # parameters with three types of values:  a string value, an array
   # value, and a hash value.
   #
@@ -410,16 +402,16 @@ class FieldDescriptionTest < ActiveSupport::TestCase
   # This method also tests, indirectly, the rewrite_ctd method
   #
   def test_add_param
-  
+
     field_two = field_descriptions(:two)
     field_two.target_field = 'a target field value'
     field_two.predefined_field_id = 1
     field_two.control_type = 'text_field'
-    
-    # test addition of a parameter with a string value 
+
+    # test addition of a parameter with a string value
     field_two.add_param('search_table', 'drug_name_routes')
     assert_equal('drug_name_routes', field_two.getParam('search_table'))
-    
+
     # test addition of a parameter with an array value
     field_two.add_param('fields_displayed', ['text','code'])
     assert_equal('drug_name_routes', field_two.getParam('search_table'))
@@ -427,13 +419,13 @@ class FieldDescriptionTest < ActiveSupport::TestCase
 
     # test addition of a parameter with a hash value
     dro = {'strength_form_list' => 'strength_and_form',
-           'code' => 'drug_code' , 
+           'code' => 'drug_code' ,
            'patient_route' => 'route',
            'id' => 'drug_name_route_id'}
     field_two.add_param('data_req_output', dro)
     assert_equal('drug_name_routes', field_two.getParam('search_table'))
     assert_equal(['text', 'code'], field_two.getParam('fields_displayed'))
-    assert_equal(dro, field_two.getParam('data_req_output'))                              
+    assert_equal(dro, field_two.getParam('data_req_output'))
 
   end # test_add_param
 
@@ -453,18 +445,18 @@ class FieldDescriptionTest < ActiveSupport::TestCase
 
     # Try changing it.
     fd.data_req_output = {3=>4}
-    assert_equal({3=>4}, fd.data_req_output)
+    assert_equal({"3"=>4}, fd.data_req_output) # JSON keys are strings
 
     # Test a field description that does not have a data req output.
     dro = field_descriptions(:one).data_req_output
     assert_nil(dro)
   end
-  
-  
+
+
   # Tests the retrieving of validations definitions for the form field
   def test_get_validation
     f= Form.create(:form_name => Time.now.to_i)
-    fld = f.field_descriptions.create( :target_field=>Time.now.to_i.to_s, 
+    fld = f.field_descriptions.create( :target_field=>Time.now.to_i.to_s,
       :control_type => "text_field")
     db_table = DbTableDescription.new(data_table: Time.now.to_i.to_s)
     db_table.save!
@@ -472,7 +464,7 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     pf.save!
     db_field = db_table.db_field_descriptions.build(:predefined_field_id => pf.id)
     db_field.save!
-    
+
     # xss validation
     fld.db_field_description_id = db_field.id # fld.db_field_description is not nil
     fld.predefined_field_id = pf.id # make sure fld.rails_data_type is a string
@@ -481,72 +473,72 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     type = "xss"
     actual = fld.get_validation(type).inspect
     expected = [type].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly when the input is #{type}"    
-    fld.db_field_description = nil # turn fld.db_field_description to nil   
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly when the input is #{type}"
+    fld.db_field_description = nil # turn fld.db_field_description to nil
     fld.save!
     actual = fld.get_validation(type) # xss validation is not needed
     assert_nil actual
-    
+
     # regex validation
     type="regex"
     code = "abcde"
     rv= RegexValidator.create!(:code => code)
     fld.regex_validator_id = rv.id
     fld.save!
-    actual = fld.get_validation(type).inspect  
+    actual = fld.get_validation(type).inspect
     expected = [type, code].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly when the input is #{type}"    
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly when the input is #{type}"
     fld.regex_validator_id = nil
     fld.save!
-    actual = fld.get_validation(type) 
+    actual = fld.get_validation(type)
     assert_nil actual
-    
+
     # date field validation
     type = "date"
     date_format, epoch_point="yyyy/mm/dd", "xxx"
     fld.control_type_detail = {"date_format"=>date_format, "epoch_point"=>epoch_point}
     fld.control_type = "calendar"
     fld.save!
-    actual = fld.get_validation(type).inspect     
+    actual = fld.get_validation(type).inspect
     expected = [type, date_format, epoch_point].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly when the input is #{type}"    
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly when the input is #{type}"
     fld.control_type = "anything"
     fld.save!
     actual = fld.get_validation(type)
     assert_nil actual
-    
+
     # time field validation
     type = "time"
     fld.control_type = "time_field"
     fld.save!
-    actual = fld.get_validation(type).inspect     
+    actual = fld.get_validation(type).inspect
     expected = [type].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly when the input is #{type}"    
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly when the input is #{type}"
     fld.control_type = "anything"
     fld.save!
     actual = fld.get_validation(type)
     assert_nil actual
-    
+
     # abs_range field validation
     type = "abs_range"
     max, min = 222, 22
     fld.control_type_detail = {"abs_max" => max, "abs_min" => min}
     fld.save!
-    actual = fld.get_validation(type).inspect     
+    actual = fld.get_validation(type).inspect
     expected=[type, max, min].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly when the input is #{type}"    
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly when the input is #{type}"
     fld.control_type_detail = nil
     fld.save!
-    actual = fld.get_validation(type)     
+    actual = fld.get_validation(type)
     assert_nil actual
-    
+
     # date_range field validation
-    type = "date_range"    
+    type = "date_range"
     max, min=222, 22
     min_msg="date range error (min)"
     max_msg="date range error (max)"
@@ -556,54 +548,54 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     fld.max_err_msg=max_msg
     fld.display_name=display_name
     fld.save!
-    actual = fld.get_validation(type).inspect     
+    actual = fld.get_validation(type).inspect
     expected = [type, display_name, min, max, min_msg, max_msg].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly when the input is #{type}"    
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly when the input is #{type}"
     fld.control_type_detail = nil
     fld.save!
     actual = fld.get_validation(type)
     assert_nil actual
-    
-    # field has unique value 
+
+    # field has unique value
     type = "uniqueness"
     fld.update_controls("unique_field_value", true)
     fld.save!
-    actual = fld.get_validation(type).inspect     
+    actual = fld.get_validation(type).inspect
     expected = [type].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly when the input is #{type}"    
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly when the input is #{type}"
     fld.control_type_detail= nil
     fld.save!
     actual = fld.get_validation(type)
     assert_nil actual
-    
+
     # required field validation
     type = "required"
     fld.required = true
     fld.group_header_id = nil
     fld.save!
-    actual = fld.get_validation(type).inspect     
+    actual = fld.get_validation(type).inspect
     expected = [type, "common"].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly on common required field"    
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly on common required field"
     # create normal line parent
     gpf = PredefinedField.create!(:form_builder=>true, :rails_data_type =>"label")
-    gfld = f.field_descriptions.build( :target_field=>fld.target_field + "1",       
+    gfld = f.field_descriptions.build( :target_field=>fld.target_field + "1",
       :predefined_field_id => gpf.id)
     gfld.control_type = "group_hdr"
     gfld.control_type_detail={"orientation" => "horizontal"}
     gfld.save!
     # create a sibling field
-    sfld = f.field_descriptions.create!( :target_field=>fld.target_field + "2", 
+    sfld = f.field_descriptions.create!( :target_field=>fld.target_field + "2",
       :control_type => "text_field", :predefined_field_id => gpf.id)
     fld.group_header=gfld
     fld.save!
-    actual = fld.get_validation(type).inspect     
+    actual = fld.get_validation(type).inspect
     expected = [type, "normalLine"].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly on normaline required field"    
-    
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly on normaline required field"
+
     # password validation
     type = "password"
     fld.control_type = "password_field"
@@ -611,28 +603,28 @@ class FieldDescriptionTest < ActiveSupport::TestCase
     ctd["password"] = true
     fld.control_type_detail = ctd
     fld.save!
-    actual = fld.get_validation(type).inspect     
+    actual = fld.get_validation(type).inspect
     expected = [type].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly when the input is #{type}"    
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly when the input is #{type}"
     fld.control_type = "non_password_field"
     fld.save!
-    actual = fld.get_validation(type)    
+    actual = fld.get_validation(type)
     assert_nil actual
-    
+
     # confirmation field validation
     type = "confirmation"
     master_field = "master_field_123"
     fld.control_type_detail = { type => master_field}
     fld.save!
-    actual = fld.get_validation(type).inspect     
+    actual = fld.get_validation(type).inspect
     expected = [type, master_field].inspect
-    assert_equal expected, actual,    
-      "The get_validation function does not working correctly when the input is #{type}"    
-    fld.control_type_detail = nil 
+    assert_equal expected, actual,
+      "The get_validation function does not work correctly when the input is #{type}"
+    fld.control_type_detail = nil
     fld.save!
-    actual = fld.get_validation(type)    
-    assert_nil actual    
-    
+    actual = fld.get_validation(type)
+    assert_nil actual
+
   end
 end

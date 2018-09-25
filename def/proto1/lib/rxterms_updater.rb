@@ -260,7 +260,7 @@ class RxtermsUpdater
       # Create it.
       route = fields[ROUTE_COL]
       synonyms = fields[SYNONYM_COL]
-      is_brand = fields[TTY_COL] != 'SCD'
+      is_brand = fields[TTY_COL] != 'SCD' && fields[TTY_COL] != 'GPCK'
       dnr_hash = {'text'=>name_route, 'route'=>route,
                        'synonyms'=>synonyms, 'is_brand'=>is_brand,
                        'drug_class_codes'=>nil, 'ingredient_rxcuis'=>nil

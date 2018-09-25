@@ -8,7 +8,7 @@ class Form < ActiveRecord::Base
   has_many :top_fields, -> { where('field_descriptions.group_header_id IS NULL').order('display_order').includes(:predefined_field) },
     :class_name=>'FieldDescription'
   has_many :visible_fields, -> { where('control_type_detail not like "%hidden_field%"').order('display_order').includes(:predefined_field)}, class_name: 'FieldDescription'
-  serialize :form_js
+  serialize :form_js, JSON
   validates_uniqueness_of :form_name, :case_sensitive=>false
   validates_presence_of :form_name
 
@@ -515,39 +515,33 @@ class Form < ActiveRecord::Base
     form_styles, print_styles = [ ], [ ]
 
     if @@form_css_files.nil?
-      form_css_files = Set.new
-      Rails.application.assets.paths.each do |spath|
-        if spath.include?("stylesheets")
-          form_css_dir = spath + "/#{FORM_CSS_DIR}"
-          if File.exist?(form_css_dir)
-            files = Dir.entries(form_css_dir)
-            files = files.map{|e| e.split(".")[0] }
-            form_css_files.merge(files) if !files.empty?
-          end
-        end
+      @@form_css_files = Set.new
+      form_css_dir = Rails.root.join('app/assets/stylesheets', FORM_CSS_DIR)
+      if File.exist?(form_css_dir)
+        files = Dir.entries(form_css_dir)
+        files = files.map{|e| e.split(".")[0] }
+        @@form_css_files.merge(files) if !files.empty?
       end
-    else
-      form_css_files = @@form_css_files
     end
 
     form_name_downcase = form_name && form_name.downcase
     # get form styles
     if (!form_style.blank?)
       form_style.split(/,/).each do |style|
-        if form_css_files.include?(style)
+        if @@form_css_files.include?(style)
           form_styles << "#{FORM_CSS_DIR}/#{style}.css"
         end
       end
     else
       style = form_name_downcase
-      if form_css_files.include?(style)
+      if @@form_css_files.include?(style)
         form_styles << "#{FORM_CSS_DIR}/#{style}.css"
       end
     end
     # define css file name for print in the format: form_name + "-print.css"
     # for now, there's only one print style for each form
     style = form_name_downcase+"-print"
-    if form_css_files.include?(style)
+    if @@form_css_files.include?(style)
       print_styles << "#{FORM_CSS_DIR}/#{style}.css"
     end
     [form_styles, print_styles]

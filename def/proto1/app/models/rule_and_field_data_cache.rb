@@ -170,66 +170,54 @@ end #END OF RuleDataCache
 module RuleWithCache
   # Returns cached used_by_rules if exist. If there is no cached used_by_rules,
   # then returns associated used_by_rules using has_many relationship
-  def used_by_rules_with_cache
-    RuleAndFieldDataCache.get_used_by_rules_by_rule(self.id) ||
-      used_by_rules_without_cache
+  def used_by_rules
+    RuleAndFieldDataCache.get_used_by_rules_by_rule(self.id) || super
   end
 
   # Returns cached field_descriptions if exist. If there is no cached
   # field_descriptions, then returns associated field_descriptions using
   # has_many relationship
-  def field_descriptions_with_cache
-    RuleAndFieldDataCache.get_field_descriptions_by_rule(self.id) ||
-      field_descriptions_without_cache
+  def field_descriptions
+    RuleAndFieldDataCache.get_field_descriptions_by_rule(self.id) || super
   end
 
   # Returns cached rule_actions if exist. If there is no cached rule_actions
   # then returns associated rule_actions using has_many relationship
-  def rule_actions_with_cache
-    RuleAndFieldDataCache.get_rule_actions_by_rule(self.id) ||
-      rule_actions_without_cache
+  def rule_actions
+    RuleAndFieldDataCache.get_rule_actions_by_rule(self.id) || super
   end
 
   # Returns cached rule_cases if exist. If there is no cached rule_cases
   # then returns associated rule_cases using has_many relationship
-  def rule_cases_with_cache
-    RuleAndFieldDataCache.get_rule_cases_by_rule(self.id) ||
-      rule_cases_without_cache
+  def rule_cases
+    RuleAndFieldDataCache.get_rule_cases_by_rule(self.id) || super
   end
 
   # Overwrite association methods with cache
-  def self.included(base)
-    base.alias_method_chain :used_by_rules, :cache
-    base.alias_method_chain :field_descriptions, :cache
-    base.alias_method_chain :rule_actions, :cache
-    base.alias_method_chain :rule_cases, :cache
+  def self.prepended(base)
     base.after_save {|record| record.forms.map{|f| ClassCacheVersion.update(RuleAndFieldDataCache, f)}}
     base.before_destroy {|record| record.forms.map{|f| ClassCacheVersion.update(RuleAndFieldDataCache, f)}}
   end
 end
-Rule.class_eval{ include RuleWithCache }
+Rule.class_eval{ prepend RuleWithCache }
 
 module FieldDescriptionWithCache
   # Returns cached rules if exist. If there is no cached rules, then returns
   # associated rules using has_many relationship
-  def rules_with_cache
-    RuleAndFieldDataCache.get_rules_by_field(self.id) ||
-      rules_without_cache
+  def rules
+    RuleAndFieldDataCache.get_rules_by_field(self.id) || super
   end
 
   # Returns cached sub_fields if exist. If there is no cached sub_fields, then
   # returns associated sub_fields using has_many relationship
-  def sub_fields_with_cache
-    RuleAndFieldDataCache.get_sub_fields_by_field( self.id) ||
-      sub_fields_without_cache
+  def sub_fields
+    RuleAndFieldDataCache.get_sub_fields_by_field( self.id) || super
   end
 
   # Overwrite association methods with cache methods
-  def self.included(base)
-    base.alias_method_chain :rules, :cache
-    base.alias_method_chain :sub_fields, :cache
+  def self.prepended(base)
     base.after_save {|record| ClassCacheVersion.update(RuleAndFieldDataCache, record.form)}
     base.before_destroy {|record| ClassCacheVersion.update(RuleAndFieldDataCache, record.form)}
   end
 end
-FieldDescription.class_eval{ include FieldDescriptionWithCache }
+FieldDescription.class_eval{ prepend FieldDescriptionWithCache }

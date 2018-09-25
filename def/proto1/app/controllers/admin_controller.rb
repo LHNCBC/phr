@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
 
-  before_filter :authorize
-  before_filter :show_header
+  before_action :authorize
+  before_action :show_header
 
 end

@@ -92,8 +92,8 @@
       <%- else -%>
       <tr units="<%=units%>">
       <%- end -%>
-        <% level = panel['disp_level'].to_i
-           indent=(level-1)*1.5
+        <% level = panel['disp_level'].to_i;
+           indent=(level-1)*1.5;
            tag = panel['is_test'] ? 'div' : "h#{level+2}" %>
         <th class="test_name"><<%=tag%> style="padding-left: <%=indent%>em"><%=value%></<%=tag%> ></th>
 
@@ -128,9 +128,9 @@
                 <%- if abnormal_flag.blank? -%>
                   <%- cell_value = value  -%>
                 <%- else -%>
-                  <%- cell_value = h(value) +
-                    '<span class="readonly_field flag">'.html_safe +
-                    h(abnormal_flag) + '</span>'.html_safe -%>
+                  <%- cell_value = "#{h(value)} \
+                    <span class='readonly_field flag'> \
+                    #{h(abnormal_flag)} </span>".html_safe -%>
                 <%- end -%>
               <%- end -%>
             <%- else -%>

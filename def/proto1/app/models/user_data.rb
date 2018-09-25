@@ -78,14 +78,12 @@ module UserData
     #   the column containing p_rec_id
     def next_record_id(profile_id, p_rec_id=nil, parent_table_foreign_key=nil)
       if !p_rec_id.nil?
-        last_record_id = self.maximum('record_id',
-          :conditions=>["profile_id = ? and " +
+        last_record_id = self.where("profile_id = ? and " +
               "#{parent_table_foreign_key} = ?",
-            profile_id, p_rec_id])
+            profile_id, p_rec_id).maximum('record_id')
       else
-        last_record_id = self.maximum('record_id',
-          :conditions=>["profile_id = ? ",
-            profile_id])
+        last_record_id = self.where("profile_id = ? ",
+            profile_id).maximum('record_id')
       end
       if !last_record_id.nil?
         record_id = last_record_id +1
@@ -108,7 +106,7 @@ module UserData
     #
     # Returns the default columns that are not checked in the save code for emptiness
     #
-    def ignored_columns
+    def phr_ignored_columns
       ['version_date','deleted_at','latest', 'profile_id', 'record_id']
     end
 

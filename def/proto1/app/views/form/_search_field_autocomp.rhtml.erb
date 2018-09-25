@@ -1,4 +1,4 @@
-var opts = {};<% if dataUrl %>
+var opts = {headerBar: 'fe_form_header_0_expcol'};<% if dataUrl %>
 opts['dataRequester']= new Def.RecordDataRequester($('<%= id %>'), '<%=dataUrl%>',
   <%=dataReqInput.to_json.html_safe%>, <%= raw dataReqOutput.to_json%>, <%=outputToSameGroup%>)<%end
 %><% if !matchListValue.nil? %>

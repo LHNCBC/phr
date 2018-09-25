@@ -4,10 +4,11 @@ class LoincFieldRule < ActiveRecord::Base
   belongs_to :rule
 
   #  make sure all these keys are valid foreign keys
-  def validate
-    errors[:base]=("field_description_id is invalid!") unless field_description
-    errors[:base]=("loinc_item_id is invalid!") unless loinc_item
-    errors[:base]=("rule_id is invalid!") unless rule
+  validate :validate_instance
+  def validate_instance
+    errors.add(:base, "field_description_id is invalid!") unless field_description
+    errors.add(:base, "loinc_item_id is invalid!") unless loinc_item
+    errors.add(:base, "rule_id is invalid!") unless rule
 
     error_msg = "Cannot save duplicated record"
     cond = ["rule_id=? and loinc_item_id=? and field_description_id=?"]
@@ -26,7 +27,7 @@ class LoincFieldRule < ActiveRecord::Base
       # the id of loinc_field_rules record is not used in this system, and the
       # operation will only accure when creating a new record.
       rec.destroy
-      #errors[:base]=("#{error_msg}: #{rec.display_name}")
+      #errors.add(:base, "#{error_msg}: #{rec.display_name}")
     end
   end
 

@@ -16,7 +16,8 @@ class TextListItem < ActiveRecord::Base
 
   DEFAULT_CODE_COLUMN="code"
 
-  def validate
+  validate :validate_instance
+  def validate_instance
     # Moved from "def save", which was breaking Rails when a
     # TextListItem was added to a TextList.
     self.code = TextListItem.maximum(:id).to_i + 1 if self.code.nil?
@@ -110,7 +111,7 @@ class TextListItem < ActiveRecord::Base
 
   # Returns all the childrens of current record
   def children
-    TextListItem.find_all_by_parent_item_id(self.id)
+    TextListItem.where(parent_item_id: self.id).all
   end
 
   # Returns all descendants of current record

@@ -9,7 +9,7 @@ class ClinicalMap < ActiveRecord::Base
   # patient - if true, return patient-text, else clinician text
   def self.getTextByLookup(name,patient=nil)
     rtn = [];
-    route = ClinicalMap.find_all_by_lookup_field(name)
+    route = ClinicalMap.where(lookup_field: name)
     if(patient == true)
       route.each do |m|
         rtn.push(m.patient_text)

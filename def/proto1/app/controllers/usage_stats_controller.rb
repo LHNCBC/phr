@@ -1,5 +1,5 @@
 class UsageStatsController < ApplicationController
-  before_filter :usage_stats_user_filter
+  before_action :usage_stats_user_filter
   
 
   # Handles usage stats received from the client.  This returns an error
@@ -49,7 +49,7 @@ class UsageStatsController < ApplicationController
         UsageStat.create_stats(@user,
                                profile_id,
                                report_param,
-                               request.session_options[:id] ,
+                               request.session.id,
                                session[:cur_ip])
 
         # Call check_for_data_overflow, which is defined in ApplicationController
@@ -84,7 +84,7 @@ class UsageStatsController < ApplicationController
       render :status => 500,
              :json => feedback.to_json
     else
-      render :nothing => true
+      head :ok
     end
   end # create
 

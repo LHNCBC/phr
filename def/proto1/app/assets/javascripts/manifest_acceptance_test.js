@@ -1,7 +1,7 @@
 //= require prototype
 //= require effects
 //= require stacktrace
-//= require autocomp/event.simulate.js
+//= require autocomp/source/event.simulate.js
 //= require application_phr
 //= require date
 //= require absPos

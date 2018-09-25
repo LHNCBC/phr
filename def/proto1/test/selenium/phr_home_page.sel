@@ -86,10 +86,10 @@
 | fireEvent | fe_sec_email_1 | change |
 | fireEvent | fe_sec_email_1 | blur |
 
-| fireEvent | recaptcha_response_field | focus |
-| type |  recaptcha_response_field | correct_response |
-| fireEvent | recaptcha_response_field | change |
-| fireEvent | recaptcha_response_field | blur |
+| fireEvent | g-recaptcha-response | focus |
+| type |  g-recaptcha-response | correct_response |
+| fireEvent | g-recaptcha-response | change |
+| fireEvent | g-recaptcha-response | blur |
 
 # Save the form
 | click | fe_signup_1 |
@@ -243,9 +243,10 @@
 | waitForTextPresent | Loaded in |
 
 | waitForVisible | fe_removed_profiles_lbl_0 |
-| verifyNotVisible | removed_profiles_list |
+| waitForNotVisible | removed_profiles_list |
 
 # Now open up the section
+| waitForVisible | fe_removed_profiles_0_expcol_button |
 | click | fe_removed_profiles_0_expcol_button |
 | waitForVisible | removed_profiles_list |
 
@@ -473,7 +474,7 @@
 
 # review the reminders that haven't been reviewed yet and then close the popup
 #| click | javascript{for (var i=1; i < storedVars['person2HRemTotal']; i++) storedVars['truncated_nodes'][i].getElementsByClassName('html_truncator_link')[i];} | true |
-| waitForExpression | javascript{Def.PhrHomeTest.reviewHealthReminders(storedVars['truncated_nodes']);} | true |
+| waitForExpression | javascript{Def.PhrHomeTest.reviewHealthReminders();} | true |
 | click | close_button |
 | waitForExpression | javascript{testWindow_ = storedVars['mainWindow']; true; } | true |
 
@@ -570,6 +571,8 @@
 | waitForExpression | javascript{testWindow_.location.href} | */phr_home |
 | waitForVisible | add_new |
 # now the flowsheet page
+| waitForVisible | wedgie_2 |
+| click | wedgie_2 |
 | click | show_tests_2 |
 | waitForExpression | javascript{testWindow_.location.href} | *panels |
 | waitForTextPresent | Loaded in |
@@ -582,6 +585,7 @@
 # ------------- end test links to main PHR and test pages -------------
 
 # ------------- test demographics updates -------------
+| waitForVisible | wedgie_1 |
 | click | wedgie_1 |
 | waitForVisible | edit_demographics_1 |
 | click | edit_demographics_1 |
@@ -807,7 +811,8 @@
 | verifyExpression | javascript{testWindow_.$('profile_list_header_row').nextElementSibling == testWindow_.$('main_profile_line_2')} | true |
 
 # restore person 4 and make sure person 4 is listed last in the active profiles list
-| click | restore_profile_2 |
+| waitForVisible | restore_profile_1 |
+| click | restore_profile_1 |
 | waitForValue | name_string_3 | javascript{storedVars['person4Name']} |
 | verifyExpression | javascript{testWindow_.$('main_profile_line_3').nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling == null} | true |
 # and make sure the removed profiles section is no longer visible
@@ -901,10 +906,10 @@
 | fireEvent | fe_sec_email_1 | change |
 | fireEvent | fe_sec_email_1 | blur |
 
-| fireEvent | recaptcha_response_field | focus |
-| type |  recaptcha_response_field | correct_response |
-| fireEvent | recaptcha_response_field | change |
-| fireEvent | recaptcha_response_field | blur |
+| fireEvent | g-recaptcha-response | focus |
+| type |  g-recaptcha-response | correct_response |
+| fireEvent | g-recaptcha-response | change |
+| fireEvent | g-recaptcha-response | blur |
 
 # Save the form
 | click | fe_signup_1 |

@@ -456,7 +456,7 @@ require 'util.rb'
 
     # Build the data_req_output hash, if any.  Find any db_table_description
     # rows that have a controlling_field_id that matches the db_field_id
-    dep_fds = DbFieldDescription.find_all_by_controlling_field_id(db_field.id)
+    dep_fds = DbFieldDescription.where(controlling_field_id: db_field.id)
 
     # Build the data_req_output hash from all found (if any)
     dep_fds.each do |df|

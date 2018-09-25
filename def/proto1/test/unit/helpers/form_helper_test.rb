@@ -51,14 +51,14 @@ class FormHelperTest < HelperTestCase
     assert_nil(tagsOut[:value],
                'add_common_attributes should no longer add a default value '+
                'attribute except on buttons')
-    assert_equal(nil, tagsOut[:class], 
+    assert_nil(tagsOut[:class],
                 'add_common_attributes generated unexpected class')
-    assert_equal(nil, tagsOut[:readonly], 
+    assert_nil(tagsOut[:readonly],
                 'add_common_attributes generated unexpected readonly attribute')             
 
     tagsOut = add_common_attributes(field_descriptions(:attributes_2),
                                     {}, '_1')   
-    assert_equal(nil, tagsOut[:value], 
+    assert_nil(tagsOut[:value],
                 'add_common_attributes generated unexpected size')                
     assert_equal('class1 class2 readonly_field', tagsOut[:class], 
                 'add_common_attributes did not generate expected class')

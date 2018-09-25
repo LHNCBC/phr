@@ -132,8 +132,7 @@ var MplusDialog_ = null;
       method:'get',
       onSuccess: function(transport){
         // Create a javascript Array object from the response text 
-        // See Core JavaScript documentation on eval() function
-        var responses = eval(transport.responseText);
+        var responses = JSON.parse(transport.responseText);
 
         // Update the pop-up window using the received url(s) and title(s)
         updateMplusLinksInPopUp(responses, theQuery);

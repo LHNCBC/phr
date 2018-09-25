@@ -50,21 +50,8 @@ require 'socket'
 # application, and the page will make AJAX calls to this class for loading
 # test suite information and for reporting results.
 class AcceptanceController < ApplicationController
-  before_filter :require_test_env
+  before_action :require_test_env
   
-  # A filter to require the test environment for these tests.
-  def require_test_env
-    rtn = true
-    unless Rails.env == 'test'
-      render(:text=>
-        'The acceptance tests must be run in the Rails test environment.<br>'+
-        'Please either run "rake acceptance_tests" to run all the tests, or '+
-        '"rake acceptance_tests autorun=false" to run the tests individually.')
-      rtn = false  # don't continue
-    end
-    return rtn
-  end
- 
   # Returns the acceptance test page that runs the tests.  If the parameter
   # "autorun" = "true", then the test page will start running the tests as soon
   # as the page loads.
@@ -100,7 +87,7 @@ class AcceptanceController < ApplicationController
       logger.debug $!
     end
 
-    render(:text=>'received')
+    render(:plain=>'received')
   end
   
   
@@ -211,6 +198,21 @@ class AcceptanceController < ApplicationController
       if !collected_comments.empty?
         rtn << ['comment', line_no, collected_comments.join(' ')]
       end
+    end
+    return rtn
+  end
+
+  private
+
+  # A filter to require the test environment for these tests.
+  def require_test_env
+    rtn = true
+    unless Rails.env == 'test'
+      render(:plain=>
+                 'The acceptance tests must be run in the Rails test environment.<br>'+
+                     'Please either run "rake acceptance_tests" to run all the tests, or '+
+                     '"rake acceptance_tests autorun=false" to run the tests individually.')
+      rtn = false  # don't continue
     end
     return rtn
   end

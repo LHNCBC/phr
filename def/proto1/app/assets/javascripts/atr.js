@@ -676,33 +676,36 @@ ATR = {
    *  Interprets a Selenium "locator" for an element, and returns the
    *  the element.  A locator can be an element's ID, or it can be
    *  a DOM expression starting with "dom=document.", or it can be a
-   *  CSS expression starting with "css=".
+   *  CSS expression starting with "css=", or it can be a special
+   *  JavaScript expression to be used by evaluatedJS function, or it
+   *  can be a dom object
    * @param locator the locator for the element.
    */
   interpretLocator: function(locator) {
     var rtn = null;
-    if (locator.length > 3 && locator.substr(0,3)=='id=') {
-      if (testWindow_.$ !== undefined)
-        rtn = testWindow_.$(locator.substr(3));
-      else
+    if (typeof locator === 'string') {
+      if (locator.length > 3 && locator.substr(0,3) == 'id=') {
         rtn = testWindow_.document.getElementById(locator.substr(3));
-    }
-    else if (locator.length > 4 && locator.substr(0,4)=='dom=')
-      rtn = eval('testWindow_.'+locator.substr(4)) ;
-    else if (locator.length > 4 && locator.substr(0,4)=='css=') {
-      var matches = testWindow_.$$(locator.substr(4));
-      if (matches && matches.length == 1)
-        rtn = matches[0];
-    }
-    else if (locator.length > 10 && locator.substr(0,10) == 'javascript')
-      rtn = this.evaluateJS(locator) ;
-    else { // Assume an ID
-      if (testWindow_.$ !== undefined)
-        rtn = testWindow_.$(locator);
-      else
+      }
+      else if (locator.length > 4 && locator.substr(0,4) == 'dom=')
+        rtn = eval('testWindow_.' + locator.substr(4));
+      else if (locator.length > 4 && locator.substr(0,4) == 'css=') {
+        var matches = testWindow_.$$(locator.substr(4));
+        if (matches && matches.length == 1)
+          rtn = matches[0];
+      }
+      else if (locator.length > 10 && locator.substr(0,10) == 'javascript')
+        rtn = this.evaluateJS(locator);
+      else { // Assume an ID
         rtn = testWindow_.document.getElementById(locator);
+      }
     }
-
+    else if (typeof locator === 'object') {
+      if (testWindow_.oldDollar !== undefined)
+        rtn = testWindow_.oldDollar(locator);
+      else if (testWindow_.$ !== undefined)
+        rtn = testWindow_.$(locator);
+    }
     return rtn;
   },
 
@@ -1915,7 +1918,7 @@ ATR = {
     if (args.length == 2) {
       try {
         var listIndex = parseInt(args[1]);
-        var field = testWindow_.$(args[0]);
+        var field = testWindow_.document.getElementById(args[0]);
         if (!field)
           Def.Logger.logMessage(['selectByIndex:  Element ',args[0],
             ' was not found']);
@@ -1965,7 +1968,7 @@ ATR = {
     if (args.length == 2) {
       try {
         var field = this.interpretLocator(args[0]);
-        var optionsULTag = testWindow_.$('completionOptions').down();
+        var optionsULTag = testWindow_.document.getElementById('completionOptions').down();
         var autocomp = field.autocomp;
         if (!this.inSelectByContentCmd_) {
           this.selectByContentEnteredContent_ = false;
@@ -1990,7 +1993,7 @@ ATR = {
           // events to the front of the queue, after which we want to run
           // this command again (after the events have happened).  So,
           // we prepend this one first, and then call typeKeysCmd.
-          ATR.FunctionQueue.replayCurrent(20); // let the events happen,
+          ATR.FunctionQueue.replayCurrent(50); // let the events happen,
           this.typeKeysCmd([field, itemContent.substr(lastCharIndex, 1)]);
           this.selectByContentEnteredContent_ = true;
           pass = null;

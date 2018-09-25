@@ -15,7 +15,7 @@ class LoincPanel < ActiveRecord::Base
   # get sub fields by checking the excluded_in_phr flag
   # deprecated, used only in loinc_preparation.rb
   def subFields_old
-    #LoincPanel.find_all_by_p_id(id, :order=>'sequence')
+    #LoincPanel.where(p_id: id).order('sequence')
     subfields = sub_fields
     # do not use subfield.delete(..), which deletes records in database
     rtn = []
@@ -103,9 +103,8 @@ class LoincPanel < ActiveRecord::Base
   def get_last_result(profile_id=nil)
     rtn = nil
     if !profile_id.nil?
-      results = ObxObservation.find(:all, :conditions =>
-          [ "loinc_num=? AND profile_id=? AND obx5_value IS NOT NULL",
-          loinc_num, profile_id], :order=>'test_date_ET DESC')
+      results = ObxObservation.where('loinc_num=? AND profile_id=? AND obx5_value IS NOT NULL',
+          loinc_num, profile_id).order('test_date_ET DESC')
       if !results.nil? && results.length >0
         rtn = results[0]
       end
@@ -159,8 +158,7 @@ class LoincPanel < ActiveRecord::Base
   #               for which the LoincPanel records are needed.
   def self.find_panels_in_order(loinc_nums)
     loinc_num_to_rec = {}
-    LoincPanel.find(:all,
-          :conditions=>["loinc_num in (?) and id=p_id", loinc_nums]).each {|lp|
+    LoincPanel.where('loinc_num in (?) and id=p_id', loinc_nums).each {|lp|
       loinc_num_to_rec[lp.loinc_num] = lp
     }
     rtn = []

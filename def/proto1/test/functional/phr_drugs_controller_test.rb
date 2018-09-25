@@ -37,7 +37,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
     session_data = {:user_id=>users(:PHR_Test).id, :cur_ip=>'127.11.11.11'}
     form_data = {:phr_record_id=>@profile.id_shown}
 
-    get :index, form_data, session_data
+    get :index, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
     assert_nil flash[:notice]
@@ -50,7 +50,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
     assert_equal("https://test.host/", det.data['url'][0,18])
 
     # Check the new action
-    get :new, form_data, session_data
+    get :new, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
     assert_select('input#phr_search_text')
@@ -58,14 +58,14 @@ class PhrDrugsControllerTest < ActionController::TestCase
     # Check the search action
     form_data[:phr] = {:search_text=>'ar'}
     form_data[:id] = 'new'
-    get :search, form_data, session_data
+    get :search, params: form_data, session: session_data
     assert_response :success
     assert_select('ul') # the list
 
     # Continue to the new page
     form_data[:code] = 4727
     form_data.delete(:search_text)
-    get :new, form_data, session_data
+    get :new, params: form_data, session: session_data
     assert_response :success
     assert_select('input#phr_name_and_route')
 
@@ -85,7 +85,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
       :drug_use_status_C=>'DRG-A',
       :drug_strength_form_C=>'', :alt_drug_strength_form=>''},
       :id=>known_drug.id, :phr_record_id=>@profile.id_shown}
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
 
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     # Confirm that the drug strength is blank
@@ -97,7 +97,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
     strength_code = dr.drug_strength_forms[0].rxcui.to_s
     strength_text = dr.drug_strength_forms[0].text
     update_data[:phr][:drug_strength_form_C] = strength_code
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(known_drug.id)
     assert_equal(strength_code, updated_rec.drug_strength_form_C)
@@ -107,7 +107,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
     strength_code = dr.drug_strength_forms[1].rxcui.to_s
     strength_text = dr.drug_strength_forms[1].text
     update_data[:phr][:drug_strength_form_C] = strength_code
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(known_drug.id)
     assert_equal(strength_code, updated_rec.drug_strength_form_C)
@@ -115,7 +115,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
 
     # Update some other part of the record, without changing the strength
     update_data[:phr][:instructions] = 'one'
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(known_drug.id)
     assert_equal('one', updated_rec.instructions)
@@ -124,7 +124,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
 
     # Use the alternate text field for the strength (non-coded value)
     update_data[:phr][:alt_drug_strength_form] = 'some'
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(known_drug.id)
     assert(updated_rec.drug_strength_form_C.blank?)
@@ -133,7 +133,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
     # Again, update some other part of the form without setting the strength
     update_data[:phr][:instructions] = 'two'
     update_data[:phr][:drug_strength_form_C] = '' # should have appeared as such on the form
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(known_drug.id)
     assert_equal('two', updated_rec.instructions)
@@ -142,7 +142,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
 
     # Pick a coded value
     update_data[:phr][:drug_strength_form_C] = strength_code
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(known_drug.id)
     assert_equal('two', updated_rec.instructions)
@@ -152,7 +152,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
     # Set the coded value to blank
     update_data[:phr][:alt_drug_strength_form] = '' # should have appeared as such on the form
     update_data[:phr][:drug_strength_form_C] = ''
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(known_drug.id)
     assert(updated_rec.drug_strength_form_C.blank?)
@@ -162,7 +162,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
     # value should win.
     update_data[:phr][:alt_drug_strength_form] = 'three'
     update_data[:phr][:drug_strength_form_C] = strength_code
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(known_drug.id)
     assert(updated_rec.drug_strength_form_C.blank?)
@@ -179,7 +179,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
       :drug_use_status_C=>'DRG-A',
       :alt_drug_strength_form=>'one'},
       :id=>unknown_drug.id, :phr_record_id=>@profile.id_shown}
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(unknown_drug.id)
     assert(updated_rec.drug_strength_form_C.blank?)
@@ -188,7 +188,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
 
     # Update something else, and confirm the strength does not get lost
     update_data[:phr][:instructions] = 'two'
-    put :update, update_data, session_data
+    put :update, params: update_data, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(unknown_drug.id)
     assert(updated_rec.drug_strength_form_C.blank?)
@@ -212,7 +212,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
     assert_equal 'ZZZ', updated_rec.why_stopped_C
     assert_equal 'Other reason', updated_rec.why_stopped
     # Get the edit page and make sure the values are there
-    get :edit, {:id=>known_drug2.id, :phr_record_id=>@profile.id_shown}, session_data
+    get :edit, params: {:id=>known_drug2.id, :phr_record_id=>@profile.id_shown}, session: session_data
     assert_response :success
     assert response.body.index('value="ZZZ"')
     assert response.body.index('Other reason')
@@ -224,7 +224,7 @@ class PhrDrugsControllerTest < ActionController::TestCase
     update_data2[:phr][:why_stopped] = 'Other reason'
     update_data2[:phr][:why_stopped_C] = 'ZZZ'
     update_data2[:phr][:instructions] = 'very important'
-    put :update, update_data2, session_data
+    put :update, params: update_data2, session: session_data
     assert_redirected_to :controller=>'phr_drugs', :action=>:index
     updated_rec = @profile.phr_drugs.find_by_id(known_drug2.id)
     assert_equal 'very important', updated_rec.instructions

@@ -18,7 +18,7 @@
 <% cache(Rails.env + '/layout_part2'+@form_cache_name) do %>
   <%= stylesheet_link_tag_for_vendor "/vendor_assets/jquery-ui_css/jquery-ui", :media => "screen" %>
   <%= stylesheet_link_tag_for_vendor "/vendor_assets/jeegoocontext_css/style", :media => "screen" %>
-  <%= stylesheet_link_tag_for_vendor "/vendor_assets/autocomp/auto_completion.css", :media => "screen" %>
+  <%= stylesheet_link_tag_for_vendor "/vendor_assets/autocomp/source/auto_completion.css", :media => "screen" %>
   <%= stylesheet_link_tag "manifest_base_package", :media => 'screen' %>
   <%= stylesheet_link_tag "manifest_form_layout_common.css", :media => "screen" %>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin" media="all"/>
@@ -105,7 +105,7 @@
   the <b>help</b> information provided by your browser.&nbsp;  This is available
   from<ul><li>the <b>Help</b> pulldown menu at the top of the page in the
   Firefox browser,</li><li>from the help question mark button
-  <%= image_tag("help.png", :align=>"bottom",
+  <%= image_tag("blank.gif", :class=>"sprite_icons-help", :align=>"bottom",
         :alt=>"blue circle with question mark inside") %>
   at the top right of the tab line
   on Microsoft's Internet Explorer,</li><li>and in similar locations on other

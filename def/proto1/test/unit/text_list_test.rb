@@ -54,13 +54,11 @@ class TextListTest < ActiveSupport::TestCase
 
     # Also check that if an accessor method is overridden, we still get the
     # data value that is in the table.  (Example: GopherTerm's consumer_name.)
-    eval <<-ENDREDEF
-      class ::TextListItem
-        def item_help
-          return 'zzzHowdy'
-        end
+    ::TextListItem.class_eval do
+      def item_help
+        'zzzHowdy'
       end
-    ENDREDEF
+    end
     all_items = TextListItem.csv_dump(:text_list_id=>test_list.id)
     assert_nil(all_items.index('zzzHowdy'))
   end
@@ -81,7 +79,7 @@ class TextListTest < ActiveSupport::TestCase
     assert_equal(1, des.size - data_edit_ori_size)
 
     # Confirm that the backup file exists.
-    backup = des[0].backup_file
+    backup = DataEdit.last.backup_file
     assert(File.exists?(backup))
     assert(File.size(backup))
 

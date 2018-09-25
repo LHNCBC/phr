@@ -1809,18 +1809,24 @@ Def.showConfirmClose = function(closeButton, nextStep, newPage) {
     Def.confirmCloseDialog_ = new Def.ModalPopupDialog({
       width: 600,
       stack: true,
-      buttons: {
-        "Save & Close": function() {
+      buttons: [{
+        text: "Save & Close",
+        id: "saveCloseConfirmBtn",
+        class: "rounded",
+        click: function() {
           Def.confirmCloseDialog_.buttonClicked_ = true ;
           Def.confirmCloseDialog_.hide() ;
           Def.doSave(closeButton, false) ;
-        },
-        "Close without Saving": function() {
+        }}, {
+        text: "Close without Saving",
+        id: "noSaveCloseConfirmBtn",
+        class: "rounded",
+        click: function() {
           Def.confirmCloseDialog_.buttonClicked_ = true ;
           Def.confirmCloseDialog_.hide() ;
           Def.doCloseNoSave(nextStep, newPage) ;
         }
-      },
+      }],
       beforeClose: function(event, ui) {
         // prevents popup closure by clicking on x
         if (!Def.confirmCloseDialog_.buttonClicked_) return false ;
@@ -1841,9 +1847,13 @@ Def.showConfirmClose = function(closeButton, nextStep, newPage) {
   Def.confirmCloseDialog_.buttonClicked_ = false ;
   Def.confirmCloseDialog_.setContent(Def.CONFIRM_CLOSE_MSG) ;
   Def.confirmCloseDialog_.setTitle('Save Pending Changes?');
-  if (window.top == window.self) {
+
+  // I'm not sure why the window.top check is here - this is called if
+  // someone presses the close button.   Removed because makes it impossible
+  // to test the button in the acceptance tests.  lm, 7/27/15
+  //if (window.top == window.self) {
     Def.confirmCloseDialog_.show();
-  }
+  //}
 } // end showConfirmClose
 
 
@@ -2023,13 +2033,10 @@ Def.setDataUpdatedState = function(new_state) {
  *  on successful completion.  Optional; default is false.
  * @param action_conditions data needed, when noClose is false, to determine
  *  what form is to be displayed next.  Optional.
- * @param cleanupFunc a string that represents the invocation of a function
- *  to be run on successful completion, after everything is done but the
- *  optional form close.  The string will be invoked via an eval.  Optional.
- * @param validationErrorFunc a function, or a string that represents the
- *  invocation of a function, to be run if the onSave method returns with
- *  validation errors or to be passed to onFailedSave.  If a string is passed,
- *  it will be invoked via an eval.  A function is preferred. Optional.
+ * @param cleanupFunc a function to be run on successful completion, after
+ * everything is done but the optional form close. Optional.
+ * @param validationErrorFunc a function, to be run if the onSave method
+ *  returns with validation errors or to be passed to onFailedSave. Optional.
  */
 Def.doSave = function(button, noClose, action_conditions, cleanupFunc,
                       validationErrorFunc) {
@@ -2063,10 +2070,7 @@ Def.doSave = function(button, noClose, action_conditions, cleanupFunc,
     if (validationErrorFunc != null) {
       Def.Logger.logMessage(
                  ['in doSave, validation error, calling validationErrorFunc']) ;
-      if (typeof validationErrorFunc === 'function')
-        validationErrorFunc.call(this);
-      else
-        eval(validationErrorFunc) ;
+      validationErrorFunc.call(this);
     }
   }
   else {
@@ -2089,8 +2093,8 @@ Def.doSave = function(button, noClose, action_conditions, cleanupFunc,
     //
     // See http://bitbucket.org/mml/ruby-recaptcha/wiki/Home for more
     // info on the recaptcha widget and software.
-    if ($('recaptcha_widget_div'))
-      Def.IDCache.addToCache(oldDollar('recaptcha_widget_div')) ;
+    if ($('g-recaptcha-response'))
+      Def.IDCache.addToCache(oldDollar('g-recaptcha-response')) ;
 
     // Send the post request to the server as an Ajax request.  This prevents
     // the server from automatically looking for the next page to display.
@@ -2177,7 +2181,7 @@ Def.doSave = function(button, noClose, action_conditions, cleanupFunc,
             windowOpener.Def.DataModel.subFormUnsavedChanges_ = false ;
         }
         debugSection = 2 ;
-        var respHash = eval('(' + response.responseText + ')');
+        var respHash = JSON.parse(response.responseText);
         // not to update record_id or other fields on flow sheet form
         if (Def.DataModel.form_name_ != 'panel_view') {
           debugSection = 3 ;
@@ -2247,7 +2251,7 @@ Def.doSave = function(button, noClose, action_conditions, cleanupFunc,
       // for all other forms - ones that don't use the data model
       else {
         if (!noClose) {
-            respHash = response.responseText.evalJSON() ;
+            respHash = JSON.parse(response.responseText) ;
           }
       }  // end if the taffydb is/isn't used with the current form
 
@@ -2260,15 +2264,10 @@ Def.doSave = function(button, noClose, action_conditions, cleanupFunc,
       }
       // Execute the cleanup function if one is specified.
       if (cleanupFunc != null) {
-        if (typeof cleanupFunc === 'function')
-          cleanupFunc.call(this);
-        else
-          eval(cleanupFunc) ;
+        cleanupFunc.call(this);
       }
       if (respHash['unique'] !=  null ){
-        var unique = "Def.Validation.Base.UniqueValuesByField_ = " +
-                      respHash['unique'] ;
-        eval(unique) ;
+        Def.Validation.Base.UniqueValuesByField_ = respHash['unique'];
         Def.updateUniqueValueValidationData();
       }
 
@@ -2331,11 +2330,9 @@ Def.doSave = function(button, noClose, action_conditions, cleanupFunc,
  *  from a call to store usage stats.  If true, setting error messages, etc.,
  *  is bypassed.  (The user doesn't even know this happens.  They don't need
  *  to be interrupted with a problem from it).  Optional, default is false.
- * @param errorFunc a function, or a string that represents the
- *  invocation of a function, to be run after the error reporting is taken
+ * @param errorFunc a function, to be run after the error reporting is taken
  *  care of.  Passed from doSave, using the validationErrorFunc parameter.
- *  If a string is passed, it will be invoked via an eval.  A function is
- *  preferred. Optional.
+ *  Optional.
  */
 Def.onFailedSave = function(response, fromUsage, errorFunc) {
 
@@ -2347,10 +2344,13 @@ Def.onFailedSave = function(response, fromUsage, errorFunc) {
   }
   var doLogout = false ;
   var from_overflow = false ;
-  var evaled_resp = response.responseText.evalJSON() ;
+  var evaled_resp = JSON.parse(response.responseText) ;
   var js = evaled_resp['javascript'] ;
   if (js)
     eval(js) ;
+
+  // Reset the Recaptcha
+  grecaptcha.reset();
 
   var msg = null ;
   if (evaled_resp['exception'] && evaled_resp['do_logout']) {
@@ -2420,10 +2420,7 @@ Def.onFailedSave = function(response, fromUsage, errorFunc) {
         window.location = Def.LOGOUT_URL ;
   }
   else if (errorFunc) {
-    if (typeof errorFunc === 'function')
-      errorFunc.call(this);
-    else
-      eval(errorFunc) ;
+    errorFunc.call(this);
   }
 } // end onFailedSave
 

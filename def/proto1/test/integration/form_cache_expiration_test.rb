@@ -177,7 +177,7 @@ class FormCacheExpirationTest < ActionDispatch::IntegrationTest
     clear_phr_cache
     confirm_phr_cache_cleared
 
-    post '/accounts/login', {:fe=>{:user_name_1_1=>users(:phr_admin).name,
+    post '/accounts/login', params: {:fe=>{:user_name_1_1=>users(:phr_admin).name,
                             :password_1_1=>'A password'}}
 
     make_phr_cache_files
@@ -185,7 +185,7 @@ class FormCacheExpirationTest < ActionDispatch::IntegrationTest
     rule = Rule.find_by_name('hide_colon_header')
     action_id = rule.rule_actions[0].id.to_s
     put '/forms/PHR/rules/8;edit',
-     {:fe=>{:rule_expression=>'age < 50 +2', :rule_name=>'hide_colon_header',
+     params: {:fe=>{:rule_expression=>'age < 50 +2', :rule_name=>'hide_colon_header',
             :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
             :affected_field_1=>'immunizations', :rule_actions_id_1=>action_id}}
 
@@ -195,22 +195,22 @@ class FormCacheExpirationTest < ActionDispatch::IntegrationTest
     # Create a new rule and confirm that the cache is cleared.
     make_phr_cache_files
     post '/forms/PHR/rules/new',
-      :fe=>{:rule_expression=>'age < 50 +12', :rule_name=>'my_test_rule',
-            :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
-            :affected_field_1=>'immunizations'}
+      params: {:fe=>{:rule_expression=>'age < 50 +12', :rule_name=>'my_test_rule',
+                :rule_action_name_1=>'hide', :rule_action_parameters_1=>'',
+                :affected_field_1=>'immunizations'}}
     assert_redirected_to('/forms/PHR/rules')
     confirm_phr_cache_cleared
 
     # Delete a rule and confirm that the cache was cleared.
     make_phr_cache_files
-    post '/forms/PHR/rules', :fe=>{:delete_general_rule_4=>4}
+    post '/forms/PHR/rules', params: {:fe=>{:delete_general_rule_4=>4}}
     assert_equal flash[:notice],
       "Cannot delete rule not_pregnant because it is used by other rules."
     # make sure this rule is no longer used by any other rules
     Rule.find_by_id(4).used_by_rules = []
     Rule.find_by_id(4).used_by_rules.reload
 
-    post '/forms/PHR/rules', :fe=>{:delete_general_rule_4=>4}
+    post '/forms/PHR/rules', params: {:fe=>{:delete_general_rule_4=>4}}
     assert_response(:success)
     assert_nil flash[:notice]
     assert_nil(Rule.find_by_id(4))
@@ -307,9 +307,9 @@ class FormCacheExpirationTest < ActionDispatch::IntegrationTest
       params[:act_condition] = {:save=>"1", :action_C_1=>"1"}.to_json
       params[:message_map] = nil
 
-#      post '/profiles' , {:fe=>{:pseudonym_1=>'test', :save=>1, :action_C_1=>1,
+#     post '/profiles' , params: {:fe=>{:pseudonym_1=>'test', :save=>1, :action_C_1=>1,
 #              :gender=>'Male', :birth_date=>'1945 Jan 02'}}
-      xml_http_request :post, '/form/do_ajax_save', params
+       post '/form/do_ajax_save', params: params, xhr: true
 #      assert_response(:redirect)
 #      @response.redirected_to =~ %r{/profiles/([[:alnum:]]+);edit}
       assert_response(:success)

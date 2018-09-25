@@ -183,7 +183,7 @@ class PhrDrugTest < ActiveSupport::TestCase
          name_and_route: 'Amoxicillin (Oral-liquid)').first
     d.drug_use_status_C = 'DRG-A'
     d.save!
-    phr_drug.profile.phr_drugs(true) # reload the profile's phr_drugs
+    phr_drug.profile.phr_drugs.reload # reload the profile's phr_drugs
 
     warnings = phr_drug.dup_check
 

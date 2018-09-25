@@ -20,7 +20,8 @@ class PhrDoctorQuestion < ActiveRecord::Base
   validates_presence_of :question
 
   # When validating, convert the dates to HL7 and epoch time.
-  def validate
+  validate :validate_instance
+  def validate_instance
     validate_cwe_field(:category)
 
     validate_cne_field(:question_status)

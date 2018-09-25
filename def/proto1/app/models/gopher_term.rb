@@ -3,6 +3,7 @@ class GopherTerm < ActiveRecord::Base
   has_paper_trail
   has_many :gopher_term_synonyms
   belongs_to :icd9_code
+  has_many :gopher_to_meshes
 
   extend HasSearchableLists
   include HasClassification
@@ -19,7 +20,7 @@ class GopherTerm < ActiveRecord::Base
   #
   def init_word_synonyms
     @@word_synonyms_hash = {}
-    syn_records = WordSynonym.find(:all)
+    syn_records = WordSynonym.all
     syn_records.each do | syn_rec |
       word_set = syn_rec.synonym_set
       words = word_set.split(';')
@@ -27,6 +28,17 @@ class GopherTerm < ActiveRecord::Base
         @@word_synonyms_hash[word] = word_set
       end
     end
+  end
+
+
+  # Returns an array of hashes of associated MeSH codes and names.  Each hash
+  # will have the keys "code" and "text".
+  def mesh
+    rtn = []
+    gopher_to_meshes.each do |r|
+      rtn.push({code: r.mesh_dnumber, text: r.mesh_concept_name})
+    end
+    return rtn
   end
 
 
@@ -172,10 +184,10 @@ class GopherTerm < ActiveRecord::Base
   # Mplus page related to this drug.
   # Returns array size zero if no matches meet query conditions.
   def self.info_link_data(code, name)
-    if code
-      recs = GopherTermsMplusHt.find_all_by_gopher_key_id(code)
+    if code.present?
+      recs = GopherTermsMplusHt.where(gopher_key_id: code)
     else
-      recs = GopherTermsMplusHt.find_all_by_gopher_primary_name(name)
+      recs = GopherTermsMplusHt.where(gopher_primary_name: name)
     end
     recs.collect {|rec| [rec.urlid , rec.mplus_page_title]}
   end
@@ -189,9 +201,9 @@ class GopherTerm < ActiveRecord::Base
   # Returns array size zero if no matches meet query conditions.
   def info_link_data
     if key_id
-      recs = GopherTermsMplusHt.find_all_by_gopher_key_id(key_id)
+      recs = GopherTermsMplusHt.where(gopher_key_id: key_id)
     else
-      recs = GopherTermsMplusHt.find_all_by_gopher_primary_name(primary_name)
+      recs = GopherTermsMplusHt.where(gopher_primary_name: primary_name)
     end
     recs.collect {|rec| [rec.urlid , rec.mplus_page_title]}
   end
@@ -201,7 +213,7 @@ class GopherTerm < ActiveRecord::Base
   # over 80 records have different word synonyms before and after
   # (Tests the difference between old_word_synonyms and the generated ones.)
   def self.test_word_synonyms
-    gts = GopherTerm.find(:all)
+    gts = GopherTerm.all
     i = 0
     gts.each do |gt|
       if gt.word_synonyms_old != gt.word_synonyms && !gt.word_synonyms_old.nil?

@@ -1,7 +1,7 @@
 require 'webrick'
 ActiveSupport::Deprecation.silenced = false
 
-Proto1::Application.configure do 
+Proto1::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # The test environment is used exclusively to run your application's
@@ -12,13 +12,13 @@ Proto1::Application.configure do
 
   config.eager_load = false
 
-  
+
   # RAILS 2.2.2 caching config
   #config.action_controller.page_cache_directory = Rails.root.join "tmp/cache/"
   #config.action_controller.cache_store = :file_store, Rails.root + "/tmp/cache/"
   #config.cache_store = :file_store, Rails.root + "/tmp/cache"
   config.autoload_paths += %W( #{Rails.root.join("app/sweepers")} )
-  
+
   # Show full error reports and disable caching
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
@@ -38,17 +38,20 @@ Proto1::Application.configure do
 #  # run "rake test:javascripts".  Firebug 1.4 won't let you see files in the
 #  # script tab unless the mime type for it is something it recognizes as text.
 #  WEBrick::HTTPUtils::DefaultMimeTypes['js'] = 'application/x-javascript'
-  config.active_support.deprecation = :stderr 
-  
-  # To make it possible to debug JavaScript files when trying to pass acceptance 
+  config.active_support.deprecation = :stderr
+
+  # To make it possible to debug JavaScript files when trying to pass acceptance
   # tests
   config.assets.debug = true
   config.assets.compress = false
   config.assets.digest = true
-  #config.assets.compile = true
+  config.assets.compile = true
+
+  # Keep the tests running in the same order
+  config.active_support.test_order = :sorted
 
   # turn off paper_trail to speed up tests
-  config.after_initialize do 
+  config.after_initialize do
     PaperTrail.enabled = false
   end
 end

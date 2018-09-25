@@ -7,7 +7,7 @@ if (window.dialogArguments) {
 
 // Set up a context menu after the page is loaded
 Event.observe(window,"dom:loaded",function() {
-  if (Def.accessLevel_ !== Def.READ_ONLY_ACCESS)
+  if (Def.formEditability_ !== Def.FORM_READ_ONLY_EDITABILITY)
     TestPanel.addContextMenuHTML();
 });
 

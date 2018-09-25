@@ -29,7 +29,7 @@ class PhrSurgicalHistoriesControllerTest < ActionController::TestCase
     # Check the search action
     form_data[:phr] = {:search_text=>'ar'}
     form_data[:id] = 'new'
-    get :search, form_data, session_data
+    get :search, params: form_data, session: session_data
     assert_response :success
     assert_select('ul') # the list
 

@@ -436,8 +436,7 @@ TestPanel.getSelectedPanel = function(loincNum, maxResponses,suffixPrefix,
   // a call back function
   function showResponse(response) {
     try {
-      // See Core JavaScript documentation on eval() function
-      var taffyDbData = eval('(' + response.responseText + ')');
+      var taffyDbData = JSON.parse(response.responseText);
 
       // load data into taffy db and form
       var dataModel = Def.DataModel;
@@ -560,8 +559,7 @@ TestPanel.getPanel4Edit = function(profileIdShown, pLoincNum, obrId,
   // a call back function
   function showResponse4Edit(response) {
     try {
-      // See Core JavaScript documentation on eval() function
-      var taffyDbData = eval('(' + response.responseText + ')');
+      var taffyDbData = JSON.parse(response.responseText);
 
       var obrRecord = taffyDbData[0][Def.DataModel.OBR_TABLE][0];
       var obxRecords = taffyDbData[0][Def.DataModel.OBX_TABLE];
@@ -689,17 +687,19 @@ TestPanel.toggleOptTests = function(el) {
  */
 TestPanel.setStripeCssClass = function() {
   var containerGroup= $$('div.panelGroupContainer.fieldGroup');
-  var panelGroups = containerGroup[0].select('div.panelGroup.fieldGroup');
-  for (var j=0, jlen=panelGroups.length; j<jlen; j++ ) {
-    var visibleTestRows= panelGroups[j].select('tr.repeatingLine.test_required');
-    for (var i=0, ilen=visibleTestRows.length; i<ilen; i++) {
-      if (i % 2 == 0) {
-        visibleTestRows[i].removeClassName('odd_row');
-        visibleTestRows[i].addClassName('even_row');
-      }
-      else {
-        visibleTestRows[i].removeClassName('even_row');
-        visibleTestRows[i].addClassName('odd_row');
+  if (containerGroup.size() > 0) {
+    var panelGroups = containerGroup[0].select('div.panelGroup.fieldGroup');
+    for (var j=0, jlen=panelGroups.length; j<jlen; j++ ) {
+      var visibleTestRows= panelGroups[j].select('tr.repeatingLine.test_required');
+      for (var i=0, ilen=visibleTestRows.length; i<ilen; i++) {
+        if (i % 2 == 0) {
+          visibleTestRows[i].removeClassName('odd_row');
+          visibleTestRows[i].addClassName('even_row');
+        }
+        else {
+          visibleTestRows[i].removeClassName('even_row');
+          visibleTestRows[i].addClassName('odd_row');
+        }
       }
     }
   }
@@ -1228,9 +1228,8 @@ TestPanel.getRecords = function(searchConditions, callBackFunc, savePref) {
  */
 TestPanel.updateTimelineView = function(response) {
   try {
-    // See Core JavaScript documentation on eval() function
     var retData = response.responseText.split('<@SP@>');
-    TestPanel.panelInfo = eval('(' + retData[1] + ')');
+    TestPanel.panelInfo = JSON.parse(retData[1]);
     //create a new div
     var newDiv = document.createElement("div");
     newDiv.innerHTML = retData[0];
@@ -1276,7 +1275,7 @@ TestPanel.updateTimelineView = function(response) {
     }
 
     // set up context menu
-    if (Def.accessLevel_ !== Def.READ_ONLY_ACCESS)
+    if (Def.formEditability_ !== Def.FORM_READ_ONLY_EDITABILITY)
       TestPanel.setupContextMenu();
 
     // highlight the column on mouse over
@@ -1860,7 +1859,7 @@ TestPanel.Flot.updateSparklineData = function(obrId, remove) {
 TestPanel.saveChanges = function(button) {
 
   // save the data
-  Def.doSave(button, true, null, "TestPanel.afterSaveCleanup();");
+  Def.doSave(button, true, null, function(){TestPanel.afterSaveCleanup();});
 
 };
 
@@ -2799,9 +2798,8 @@ TestPanel.getPrevDataForLoinc = function(loincNum) {
 TestPanel.showPrevData = function(response) {
 
   try {
-    // See Core JavaScript documentation on eval() function
     var retData = response.responseText.split('<@SP@>');
-    TestPanel.panelInfo = eval('(' + retData[1] + ')');
+    TestPanel.panelInfo = JSON.parse(retData[1]);
     //create a new div if it does not exist
     var divDialog = $('fe_panel_view');
     if (!divDialog) {
@@ -3803,7 +3801,7 @@ TestPanel.closeOrReturn = function(showSaveMsg, save_button) {
 
   function onFailedClose(response) {
     //Def.endWaitState();
-    var evaled_resp = response.responseText.evalJSON() ;
+    var evaled_resp = JSON.parse(response.responseText) ;
     if (evaled_resp == 'do_logout') {
       window.location = Def.LOGOUT_URL ;
     }
@@ -4447,7 +4445,7 @@ TestPanel.columnHighlight = function() {
         TestPanel.searchConditions.groupByCode == '1') &&
         !TestPanel.searchConditions.combined &&
         !TestPanel.searchConditions.includeAll &&
-         Def.accessLevel_ !== Def.READ_ONLY_ACCESS) {
+         Def.formEditability_ !== Def.FORM_READ_ONLY_EDITABILITY) {
       editable = true;
     }
     // add column highlights on mouseover

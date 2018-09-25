@@ -3,6 +3,8 @@
 // runs.
 Def.accessLevel_ = 1 ;
 Def.READ_ONLY_ACCESS = 3 ;
+Def.FORM_READ_ONLY_EDITABILITY = 'READ_ONLY' ;
+Def.formEditability = Def.FORM_READ_ONLY_EDITABILITY ;
 
 Def.FieldsTable.ControlledEditTable.ceTableData_ = {
   getrows_test: {
@@ -181,7 +183,7 @@ new Test.Unit.Runner({
    *  Tests clearRow.
    */
   testClearRow: function() { with(this) {
-    assertEqual('original problem', $('fe_problem_8').value);
+    assertEqual('original problem', $('fe_problem_8').value, 'field value');
     // Also check the data model
     assertEqual('original problem',
       Def.DataModel.getModelFieldValue('phr_problems', 'problem', 8));
@@ -254,15 +256,14 @@ new Test.Unit.Runner({
     // Run the "make inactive" command, followed by undo
     cet.cetClass_.setListFieldByCode(cet, TestHelpers.makeInactiveLabel_,
       'present', 'I');
-    //    wait(1000, function() {
+    // Wait for data model changes to happen (asynchronously)
+    wait(1, function() {
       TestHelpers.checkMenuAndRowForMakeInactiveState(this);
 
       // Undo
       cet.undoLatestCommand();
-      //      wait(1000, function() {
-        TestHelpers.checkMenuAndRowForInitialUneditableState(this, 'post check');
-        //           });
-        //         });
+      TestHelpers.checkMenuAndRowForInitialUneditableState(this, 'post check');
+    });
   }},
 
 
@@ -308,38 +309,41 @@ new Test.Unit.Runner({
     // Run the "make inactive" command.  Another test checks for its effect.
     cet.cetClass_.setListFieldByCode(cet, TestHelpers.makeInactiveLabel_,
       'present', 'I');
-    // Run the revise command.
-    // Change the problem field to a blank value.  We had a bug where if the
-    // old value was blank, the blank value would not be restored on undo.
-    Def.setFieldVal($('fe_problem_7'), '');
-    cet.editRow();
-    TestHelpers.checkProblemRecFieldStates(this, cet,
-      [false, true, false, false, false]);
-    TestHelpers.checkRowSevenFieldValues(this,
-      ['3000', '', 'original problem code', 'Inactive', 'I'], 'after editRow');
-    // Change the problem.
-    Def.setFieldVal($('fe_problem_7'), 'new problem');
-    Def.setFieldVal($('fe_problem_C_7'), 'new problem code');
-    cet.setUpContextMenu($('fe_problem_7'));
-    TestHelpers.checkTableMenu(this, cet,
-      [TestHelpers.undoLabel_ + ' ' +TestHelpers.editLabel_,
-       TestHelpers.editLabel_,
-       TestHelpers.deleteLabel_, TestHelpers.makeActiveLabel_],
-      [false, true, false, false]);
-    // Undo
-    cet.undoLatestCommand();
-    assertEqual('', Def.getFieldVal($('fe_problem_7')));
-    // Also check the read only value displayed to the user
-    assertEqual('', $('fe_problem_7').readOnlyNode.innerHTML);
-    // Now restore fe_problem_7 to the value it would have been if we weren't
-    // testing for the bug with blank values.
-    Def.setFieldVal($('fe_problem_7'), 'original problem');
-    $('fe_problem_7').readOnlyNode.innerHTML = 'original problem';
-    TestHelpers.checkMenuAndRowForMakeInactiveState(this);
+    // Wait for the asynchronous data model update
+    wait(1, function() {
+      // Run the revise command.
+      // Change the problem field to a blank value.  We had a bug where if the
+      // old value was blank, the blank value would not be restored on undo.
+      Def.setFieldVal($('fe_problem_7'), '');
+      cet.editRow();
+      TestHelpers.checkProblemRecFieldStates(this, cet,
+        [false, true, false, false, false]);
+      TestHelpers.checkRowSevenFieldValues(this,
+        ['3000', '', 'original problem code', 'Inactive', 'I'], 'after editRow');
+      // Change the problem.
+      Def.setFieldVal($('fe_problem_7'), 'new problem');
+      Def.setFieldVal($('fe_problem_C_7'), 'new problem code');
+      cet.setUpContextMenu($('fe_problem_7'));
+      TestHelpers.checkTableMenu(this, cet,
+        [TestHelpers.undoLabel_ + ' ' +TestHelpers.editLabel_,
+         TestHelpers.editLabel_,
+         TestHelpers.deleteLabel_, TestHelpers.makeActiveLabel_],
+        [false, true, false, false]);
+      // Undo
+      cet.undoLatestCommand();
+      assertEqual('', Def.getFieldVal($('fe_problem_7')));
+      // Also check the read only value displayed to the user
+      assertEqual('', $('fe_problem_7').readOnlyNode.innerHTML);
+      // Now restore fe_problem_7 to the value it would have been if we weren't
+      // testing for the bug with blank values.
+      Def.setFieldVal($('fe_problem_7'), 'original problem');
+      $('fe_problem_7').readOnlyNode.innerHTML = 'original problem';
+      TestHelpers.checkMenuAndRowForMakeInactiveState(this);
 
-    // Undo one last time (to undo everything)
-    cet.undoLatestCommand();
-    TestHelpers.checkMenuAndRowForInitialUneditableState(this, 'post check');
+      // Undo one last time (to undo everything)
+      cet.undoLatestCommand();
+      TestHelpers.checkMenuAndRowForInitialUneditableState(this, 'post check');
+    });
   }},
 
 
@@ -355,26 +359,29 @@ new Test.Unit.Runner({
     // Run the "make inactive" command.  Another test checks for its effect.
     cet.cetClass_.setListFieldByCode(cet, TestHelpers.makeInactiveLabel_,
       'present', 'I');
-    // Run the delete command.
-    cet.deleteRow();
-    TestHelpers.checkProblemRecFieldStates(this, cet,
-      [false, false, false, false, false]);
-    TestHelpers.checkRowSevenFieldValues(this,
-      ['delete 3000', 'original problem', 'original problem code', 'Inactive',
-       'I'], 'after deleteRow');
-    cet.setUpContextMenu($('fe_problem_7'));
-    TestHelpers.checkTableMenu(this, cet,
-      [TestHelpers.undoLabel_ + ' ' +TestHelpers.deleteLabel_,
-       TestHelpers.editLabel_,
-       TestHelpers.deleteLabel_],
-      [false, true, true]);
-    // Undo
-    cet.undoLatestCommand();
-    TestHelpers.checkMenuAndRowForMakeInactiveState(this);
+    // Wait for the asynchronous data model update
+    wait(1, function() {
+      // Run the delete command.
+      cet.deleteRow();
+      TestHelpers.checkProblemRecFieldStates(this, cet,
+        [false, false, false, false, false]);
+      TestHelpers.checkRowSevenFieldValues(this,
+        ['delete 3000', 'original problem', 'original problem code', 'Inactive',
+         'I'], 'after deleteRow');
+      cet.setUpContextMenu($('fe_problem_7'));
+      TestHelpers.checkTableMenu(this, cet,
+        [TestHelpers.undoLabel_ + ' ' +TestHelpers.deleteLabel_,
+         TestHelpers.editLabel_,
+         TestHelpers.deleteLabel_],
+        [false, true, true]);
+      // Undo
+      cet.undoLatestCommand();
+      TestHelpers.checkMenuAndRowForMakeInactiveState(this);
 
-    // Undo one last time (to undo everything)
-    cet.undoLatestCommand();
-    TestHelpers.checkMenuAndRowForInitialUneditableState(this, 'post check');
+      // Undo one last time (to undo everything)
+      cet.undoLatestCommand();
+      TestHelpers.checkMenuAndRowForInitialUneditableState(this, 'post check');
+    });
   }},
 
 
@@ -445,35 +452,38 @@ new Test.Unit.Runner({
     // Run the "make inactive" command.  Another test checks for its effect.
     cet.cetClass_.setListFieldByCode(cet, TestHelpers.makeInactiveLabel_,
       'present', 'I');
-    TestHelpers.checkProblemRecFieldStates(this, cet,
-      [false, true, false, false, false]);
-    TestHelpers.checkRowSevenFieldValues(this,
-      ['3000', 'new problem', 'new problem code', 'Inactive',
-       'I'], 'after make inactive');
-    cet.setUpContextMenu($('fe_problem_7'));
-    TestHelpers.checkTableMenu(this, cet,
-      [TestHelpers.undoLabel_ + ' ' +TestHelpers.makeInactiveLabel_,
-       TestHelpers.editLabel_,
-       TestHelpers.deleteLabel_, TestHelpers.makeActiveLabel_],
-      [false, true, false, false]);
-    // Undo
-    cet.undoLatestCommand();
-    // Confirm we are back at the edit state-- with the changes
-    TestHelpers.checkProblemRecFieldStates(this, cet,
-      [false, true, false, false, false]);
-    TestHelpers.checkRowSevenFieldValues(this,
-      ['3000', 'new problem', 'new problem code', 'Active', 'A'],
-      'after undo');
-    cet.setUpContextMenu($('fe_problem_7'));
-    TestHelpers.checkTableMenu(this, cet,
-      [TestHelpers.undoLabel_ + ' ' +TestHelpers.editLabel_,
-       TestHelpers.editLabel_,
-       TestHelpers.deleteLabel_, TestHelpers.makeInactiveLabel_],
-      [false, true, false, false]);
+    // Wait for the asynchronous data model update
+    wait(1, function() {
+      TestHelpers.checkProblemRecFieldStates(this, cet,
+        [false, true, false, false, false]);
+      TestHelpers.checkRowSevenFieldValues(this,
+        ['3000', 'new problem', 'new problem code', 'Inactive',
+         'I'], 'after make inactive');
+      cet.setUpContextMenu($('fe_problem_7'));
+      TestHelpers.checkTableMenu(this, cet,
+        [TestHelpers.undoLabel_ + ' ' +TestHelpers.makeInactiveLabel_,
+         TestHelpers.editLabel_,
+         TestHelpers.deleteLabel_, TestHelpers.makeActiveLabel_],
+        [false, true, false, false]);
+      // Undo
+      cet.undoLatestCommand();
+      // Confirm we are back at the edit state-- with the changes
+      TestHelpers.checkProblemRecFieldStates(this, cet,
+        [false, true, false, false, false]);
+      TestHelpers.checkRowSevenFieldValues(this,
+        ['3000', 'new problem', 'new problem code', 'Active', 'A'],
+        'after undo');
+      cet.setUpContextMenu($('fe_problem_7'));
+      TestHelpers.checkTableMenu(this, cet,
+        [TestHelpers.undoLabel_ + ' ' +TestHelpers.editLabel_,
+         TestHelpers.editLabel_,
+         TestHelpers.deleteLabel_, TestHelpers.makeInactiveLabel_],
+        [false, true, false, false]);
 
-    // Undo one last time (to undo everything)
-    cet.undoLatestCommand();
-    TestHelpers.checkMenuAndRowForInitialUneditableState(this, 'post check');
+      // Undo one last time (to undo everything)
+      cet.undoLatestCommand();
+      TestHelpers.checkMenuAndRowForInitialUneditableState(this, 'post check');
+    });
   }},
 
 

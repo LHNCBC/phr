@@ -3,7 +3,7 @@
 class PhrDrug  < ActiveRecord::Base
   include UserData
   extend UserData::ClassMethods
-  
+
   belongs_to :drug_name_route, :foreign_key=>:name_and_route_C,
     :primary_key=>:code
   belongs_to :profile
@@ -30,10 +30,11 @@ class PhrDrug  < ActiveRecord::Base
 
 
   # When validating, convert the dates to HL7 and epoch time.
-  def validate
+  validate :validate_instance
+  def validate_instance
     validate_cne_field(:drug_use_status)
     validate_cwe_field(:why_stopped)
-    
+
     # Validate the drug name and code
     if name_and_route_C_changed?
       drug_info = DrugNameRoute.find_by_code(name_and_route_C)

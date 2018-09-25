@@ -1,7 +1,8 @@
 class RuleController < ApplicationController
-  before_filter :admin_authorize
-  before_filter :show_header
-  
+  before_action :admin_authorize
+  before_action :show_header
+  before_action :set_paper_trail_whodunnit
+
   helper FormHelper
   include FormHelper
   include ComboFieldsHelper
@@ -48,7 +49,7 @@ class RuleController < ApplicationController
       end
     end
 
-    if !request.post? 
+    if !request.post?
       # Show the page
       @user_name = User.find_by_id(session[:user_id]).name
       rule_types = TextList.find_by_list_name('data_rule_types').text_list_items
@@ -81,7 +82,7 @@ class RuleController < ApplicationController
       names << r.name
       codes << r.id
     end
-    render(:text=>{:rule_name=>[names, codes]}.to_json)
+    render(:plain=>{:rule_name=>[names, codes]}.to_json)
   end # get_rule_name_list
 
 
@@ -91,7 +92,7 @@ class RuleController < ApplicationController
   # * readable_format - a boolean indicating whether we need to show rule
   #   expression and case expressions in a readable format (ie. without labels etc)
   def show_reminder_rules
-    @readable_format = params[:readable_format]
+    @readable_format = params[:readable_format] == 'true'
     # The following code uses two gems:  "ruport" (a table report generation
     # tool) and acts_as_reportable (an ActiveRecord extension for ruport).
     # See:  http://ruportbook.com/outline.html and http://www.rubyreports.org/
@@ -103,7 +104,7 @@ class RuleController < ApplicationController
       tables = {}
       unless (@readable_format)
         t = r.rule_labels.report_table(:all,
-          :conditions=>'rule_type="value_rule"', 
+          :conditions=>'rule_type="value_rule"',
           :only=>[:label, :rule_name],
           :methods => :rule_name)
         if t.count > 0
@@ -126,13 +127,11 @@ class RuleController < ApplicationController
         # will accept a symbol of a method name to call, so we create the one
         # needed.
         unless (@readable_format)
-          eval <<-END_METHOD
-            class ::RuleCase
-              def message
-                rule_actions[0].parsed_parameters['message']
-              end
+          ::RuleCase.class_eval do
+            def message
+              rule_actions[0].parsed_parameters['message']
             end
-          END_METHOD
+          end
           t = r.rule_cases.report_table(:all, :only=>[:case_expression],
             :methods=>:message, :order=>:sequence_num)
           tables[:expression] = r.expression
@@ -144,7 +143,7 @@ class RuleController < ApplicationController
             :order=>:sequence_num)
           tables[:expression] = r.rule_cases.first.rule_expression_in_readable_format
         end
-        
+
         if t.count > 0
           t.column_names = ['Case Expression', 'Reminder']
           tables[:cases] = t.to_html
@@ -157,7 +156,7 @@ class RuleController < ApplicationController
     render(:layout=>'nonform')
   end # show_reminder_rules
 
-  
+
   # Shows the rules for a form.
   #
   # Parameters:
@@ -170,10 +169,10 @@ class RuleController < ApplicationController
       begin
         delete_rule
         rule_change_callback(@system_form_name, true, true)
-      rescue 
+      rescue
         flash.now[:notice] = $!.message
       end
-      # Now show the form with the remaining rules      
+      # Now show the form with the remaining rules
     end
     @data_hash = Rule.data_hash_for_rule_form(@system_form)
     @action_url = "/forms/#{@system_form_name}/rules"
@@ -182,7 +181,7 @@ class RuleController < ApplicationController
     render_form(form_name)
   end # show_rules
 
-  
+
   # Upon receiving GET request, displays a form for entering a new rule or
   # modify the new rule carried over from a failed POST request.
   # Upon receiving POST request, creates a new rule using data received.
@@ -234,7 +233,7 @@ class RuleController < ApplicationController
     end
   end # new_rule
 
-  
+
   # Upon receiving GET request, displays a form for editing the existing rule
   # stored in database or carried over from a failure PUT request.
   # Upon receiving PUT request, updates the existing rule using data received.
@@ -321,8 +320,8 @@ class RuleController < ApplicationController
       render_form(@form.form_name)
     end
   end #new_data_rule
-  
- 
+
+
   # Upon receiving GET request, displays a form for modifying an existing data
   # rule using data pulled from database or carried over from a failed updating.
   # Upon receiving PUT request, updates the data rule using data received.
@@ -409,13 +408,13 @@ class RuleController < ApplicationController
             rule_data['rule_expression'],
             system_form.id)
         else
-          rule = Rule.update(rule_data["id"], 
-                             { :name       => rule_data['rule_name'], 
+          rule = Rule.update(rule_data["id"],
+                             { :name       => rule_data['rule_name'],
                                :expression => rule_data['rule_expression'] })
         end
 
         error = rule.errors.size > 0
-  
+
         # Note that when saving, we want to use the errors
         # attribute of ModelRecord to store errors on the objects.  However,
         # that means we have to be careful to use the same instances of the
@@ -441,7 +440,7 @@ class RuleController < ApplicationController
       # Use rules_url (defined by the map.rules statement in routes.rb)
       # to send the browser back to the rules page.
       redirect_to(rules_url(:form_name=>system_form.form_name))
-      
+
     rescue
       # If this was not the exception from a validation error (the messages
       # for which are stored in the errors attributes of the ActiveRecords),
@@ -453,11 +452,11 @@ class RuleController < ApplicationController
         page_errors << 'System error - ' + $!.message
       end
     end # begin, rescue
-    
+
     return redirected, rule, rule_data
   end # save_general_rule
 
-  
+
   # Saves the data for a case rule, based on parameter data from the form.
   #
   # Parameters
@@ -491,10 +490,10 @@ class RuleController < ApplicationController
           rule.save
         else
           rule = Rule.update(rule_data["id"],
-                             { :name       => rule_data["case_rule_name"], 
+                             { :name       => rule_data["case_rule_name"],
                                :expression => rule_data['exclusion_criteria'] })
         end
-        
+
         # Note that when saving, we want to use the errors
         # attribute of ModelRecord to store errors on the objects.  However,
         # that means we have to be careful to use the same instances of the
@@ -506,7 +505,7 @@ class RuleController < ApplicationController
           cached_cases_hash[rc.id] = rc
           rc.rule_actions.each {|ra| cached_actions_hash[ra.id] = ra}
         end
-        
+
         rule_cases_data = rule_data['rule_cases']
         # Require that there be at least one case.
         if (!rule_cases_data || rule_cases_data.size == 0)
@@ -555,7 +554,7 @@ class RuleController < ApplicationController
             error = error || !rule_case.errors.empty?
           end
         end
-        
+
         # Save the rule, if it hasn't been already
         # when create a case rule, we have to save the rule again to generate
         # the needed js_function based on it's rule_cases because rule_cases
@@ -574,7 +573,7 @@ class RuleController < ApplicationController
       # Use rules_url (defined by the map.rules statement in routes.rb)
       # to send the browser back to the rules page.
       redirect_to(rules_url(:form_name=>system_form.form_name))
-      
+
     rescue
       # If this was not the exception from a validation error (the messages
       # for which are stored in the errors attributes of the ActiveRecords),
@@ -593,7 +592,7 @@ class RuleController < ApplicationController
     return redirected, rule, rule_data
   end #save_case_rule
 
-   
+
   # Saves the action data for a rule or rule case.
   #
   # Parameters:
@@ -670,7 +669,7 @@ class RuleController < ApplicationController
   end #delete_rule
 
 
-  # Generates combo field specs based on source_field and other parameters. 
+  # Generates combo field specs based on source_field and other parameters.
   # In fetch rule data hash, replaces the non_date_condition_value of the source
   # field with the newly generated specs so that the AutoCompleter content of
   # that field matches to the selected source field value
@@ -704,7 +703,7 @@ class RuleController < ApplicationController
       qualifier_group  = opts["group_data"]
       form_field_id    = opts["form_field_id"]
       target_field_map = opts["target_field_map"]
-      
+
       non_date_cond_val_key = target_field_map["non_date_condition_value"]
       operator_1_key        = target_field_map["operator_1"]
       source_field_c_key    = target_field_map["source_field_C"]
@@ -736,16 +735,16 @@ class RuleController < ApplicationController
                       'non_date_fetch_qualifiers_group' => list[1]})
     return data_hash
   end # add_combofieldspecs_to_fetch_data
-  
+
 
   # Callback when there is any change happens to the rule system
   # Parameters:
   # * forms - Names of forms which maybe affected by the rule changes
-  # * expire_combo_rule_flag - A flag indicating whether the caches for both 
+  # * expire_combo_rule_flag - A flag indicating whether the caches for both
   #   new_reminder_rule and new_value_rule forms need to be expired
   # * expire_server_js_flag - A flag indicating whether the generated JavaScript
   #   file used at JavaScript server should be expired
-  def rule_change_callback(forms, expire_combo_rule_flag = true, 
+  def rule_change_callback(forms, expire_combo_rule_flag = true,
       expire_server_js_flag = true)
     forms = [forms] if forms.is_a? String
     forms.each do |form|
@@ -755,7 +754,7 @@ class RuleController < ApplicationController
       expire_form_cache("new_reminder_rule")
       expire_form_cache("new_value_rule")
     end
-#    forms.each do |form| 
+#    forms.each do |form|
 #      JsGenerator.clear(form)
 #    end
     if expire_server_js_flag

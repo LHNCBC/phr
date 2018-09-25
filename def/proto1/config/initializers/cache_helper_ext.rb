@@ -4,15 +4,11 @@
 # not practical to us. Therefore we will keep using our existing code for cache expiring and disable the
 # digest feature.
 # (see cache_digest on github or ActionView::Digestor in Rails 4 for details)
-module ActionView
-  module Helpers
-    module CacheHelper
-      def cache_with_modification(name = {}, options = nil, &block)
-        options ||={}
-        options[:skip_digest] = true
-        cache_without_modification(name, options, &block)
-      end
-      alias_method_chain :cache, :modification
-    end
+ActionView::Helpers::CacheHelper.module_eval do
+  alias_method :cache_without_modification, :cache
+  def cache(name = {}, options = nil, &block)
+    options ||={}
+    options[:skip_digest] = true
+    cache_without_modification(name, options, &block)
   end
 end

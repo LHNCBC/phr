@@ -5,12 +5,13 @@ class ObrOrder < ActiveRecord::Base
   has_many :obx_observations, ->{ where('latest=1').order('display_order')}, dependent: :destroy
   belongs_to :loinc_panel, :foreign_key=>'loinc_num', :primary_key=>'loinc_num'
   belongs_to :loinc_item, :foreign_key=>'loinc_num', :primary_key=>'loinc_num'
-  
+
   DATE_FIELDS = %w{test_date due_date}
 
 
   # Peforms validation and other updates that happen when fields change
-  def validate
+  validate :validate_instance
+  def validate_instance
     # Validate the dates.  Normally, the requirements for the date fields
     # would be taken from the field_descriptions table.  (See PhrDrug for
     # an example.)  However, there currently no tooltips for

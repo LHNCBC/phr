@@ -11,17 +11,17 @@ class FieldDescription < ActiveRecord::Base
   alias_method :subFields, :sub_fields # TBD - remove uses of subFields
   has_many :loinc_field_rules, dependent: :destroy
   delegate :is_date_type, :to => :predefined_field
-  serialize :controlled_edit_menu
-  serialize :controlled_edit_actions
-  serialize :radio_group_param
-  serialize :control_type_detail
-  serialize :data_req_output
+  serialize :controlled_edit_menu, JSON
+  serialize :controlled_edit_actions, JSON
+  serialize :radio_group_param, JSON
+  serialize :control_type_detail, JSON
+  serialize :data_req_output, JSON
 
   validates_uniqueness_of :target_field, :scope=>:form_id,
     :if => Proc.new {|fd| fd.form_id != -1}
 
   # Classes that are in our control_type_detail that are not cloneable.
-  NOT_CLONEABLE = Set.new([Fixnum, TrueClass, FalseClass])
+  NOT_CLONEABLE = Set.new([Integer, TrueClass, FalseClass])
 
   # Control types for which field_default_value should not return default_value.
   NON_DEFAULT_CONTROL_TYPES = Set.new(['static_text',
@@ -33,7 +33,8 @@ class FieldDescription < ActiveRecord::Base
   # Keys which are mapping to the subform names
   SUBFORM_KEYS = %w(panel_name)
 
-  def validate
+  validate :validate_instance
+  def validate_instance
     if target_field.nil?
       errors.add(:target_field, 'Missing target_field value.  This value is ' +
           'used as the identifier for the row, and so is required.')
@@ -608,13 +609,6 @@ class FieldDescription < ActiveRecord::Base
   end
 
 
-  # The default value, but if it contains #{...} escapes, those will
-  # be evaluated.
-  def default_value_eval
-    default_value =~ /#\{.*\}/ ? eval(%Q{"#{default_value}"}) : default_value
-  end
-
-
   # Returns the requested list items.  The return values will be instances
   # of field_descriptions.  If 'name' is nil, an empty list will be returned.
   #
@@ -1076,7 +1070,7 @@ class FieldDescription < ActiveRecord::Base
     # need to return list of active record instances
     if rtn && return_ar_instances
       tableClass = table_name.singularize.camelize.constantize
-      rtn = tableClass.send("find_all_by_#{db_field_description.list_code_column}", rtn[0])
+      rtn = tableClass.send("where","#{db_field_description.list_code_column}=?", rtn[0]).send("all")
     end
     rtn
   end

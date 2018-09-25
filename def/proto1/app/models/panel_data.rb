@@ -1397,8 +1397,7 @@ class PanelData < FormData
       if loinc_item.is_test?
         str_loinc_nums = "('#{p_loinc_num}')"
       else
-        panel_item = LoincPanel.find(:first, :conditions=>
-            ["p_id=id AND loinc_num=?", p_loinc_num])
+        panel_item = LoincPanel.where("p_id=id AND loinc_num=?", p_loinc_num).first
 
         test_loinc_nums = panel_item.get_all_test_loinc_nums
         loinc_nums_w_quote = []
@@ -1715,15 +1714,12 @@ class PanelData < FormData
           panel_timeline_data << {}
           get_panel_timeline_sub_data(panel_timeline_data, sub_item, profile_id)
         else
-          obrRecords = ObrOrder.find(:all,
-              :conditions=>["profile_id=? and loinc_num=? and latest=?",
-                  profile_id, sub_item.loinc_num, true],
-              :order=>"test_date_ET")
+          obrRecords = ObrOrder.where("profile_id=? and loinc_num=? and latest=?",
+                  profile_id, sub_item.loinc_num, true).order('test_date_ET')
           obrobx_data ={}
           obrRecords.each do |obr_record|
-            obxRecords = ObxObservation.find(:all,
-              :conditions=>["obr_order_id=? and profile_id=? and latest=?",
-                  obr_record.id, profile_id, true])
+            obxRecords = ObxObservation.where("obr_order_id=? and profile_id=? and latest=?",
+                  obr_record.id, profile_id, true)
             obx_data ={}
             obxRecords.each do |obx_record|
               obx_data[obx_record.loinc_num] = [obx_record.obx5_value,
@@ -1757,13 +1753,12 @@ class PanelData < FormData
 
     # get the data into an hash if the obr_record_id is not nil
     if (obr_record_id)
-      saved_obr = ObrOrder.find(:first,
-          :conditions=>["profile_id=? AND record_id=? AND latest=?",
-          profile_id.to_i, obr_record_id.to_i, true])
+      saved_obr = ObrOrder.where("profile_id=? AND record_id=? AND latest=?",
+          profile_id.to_i, obr_record_id.to_i, true).first
       saved_obr_data = saved_obr.attributes unless saved_obr.nil?
-      saved_obx = ObxObservation.find(:first,
-          :conditions=>["profile_id=? AND obr_order_id=? AND latest =?",
-          profile_id.to_i, saved_obr.id, true])
+      saved_obx = ObxObservation.where(
+          "profile_id=? AND obr_order_id=? AND latest =?",
+          profile_id.to_i, saved_obr.id, true).first
       saved_obx_data = saved_obx.attributes unless saved_obx.nil?
     end
 
@@ -1914,13 +1909,13 @@ class PanelData < FormData
                                profile_id=nil, obr_record_id=nil)
     # get the data into an hash if the obr_record_id is not nil
     if (obr_record_id)
-      saved_obr = ObrOrder.find(:first,
-          :conditions=>["profile_id=? AND record_id=? AND latest=?",
-          profile_id.to_i, obr_record_id.to_i, true])
+      saved_obr = ObrOrder.where(
+          "profile_id=? AND record_id=? AND latest=?",
+          profile_id.to_i, obr_record_id.to_i, true).first
       saved_obr_data = saved_obr.attributes unless saved_obr.nil?
-      saved_obx = ObxObservation.find(:all,
-          :conditions=>["profile_id=? AND obr_order_id=? AND latest =?",
-          profile_id.to_i, saved_obr.id, true])
+      saved_obx = ObxObservation.where(
+          "profile_id=? AND obr_order_id=? AND latest =?",
+          profile_id.to_i, saved_obr.id, true)
       saved_obx_data = Hash.new
       saved_obx.each do |obx|
         saved_obx_data[obx.loinc_num] = obx.attributes

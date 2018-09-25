@@ -4,14 +4,15 @@ class RuleLabel < ActiveRecord::Base
   validates_presence_of :label
   acts_as_reportable
 
-  def validate
+  validate :validate_instance
+  def validate_instance
     # When two required fields were entered
     if !label.blank? && !rule_type.blank?
       # rule_name_C is required and should be valid
       # rule_name is the name of the rule with id of rule_name_C
       data_rule_used = Rule.find_by_id(rule_name_C)
       if !data_rule_used
-        errors[:base]=("The rule_name_C value is invalid.")
+        errors.add(:base, "The rule_name_C value is invalid.")
       elsif data_rule_used.name != rule_name
         rule_name = data_rule_used.name
       end
@@ -46,7 +47,7 @@ class RuleLabel < ActiveRecord::Base
     end
   end
 
-  
+
   # Overwrites rule_name method so that it will return property based on
   # rule_name_C
   def rule_name
@@ -67,7 +68,7 @@ class RuleLabel < ActiveRecord::Base
     end
   end
 
-  
+
   # Returns the display name of the property field
   def property_display_name
     if property_C

@@ -132,15 +132,17 @@
 
 
   <!-- javascripts on the bottom -->
+  <script src="assets/jquery/jquery.js?body=1" type="text/javascript"></script>
   <script src="assets/prototype.js?body=1" type="text/javascript"></script>
   <script src="assets/effects.js?body=1" type="text/javascript"></script>
   <script src="assets/controls.js?body=1" type="text/javascript"></script>
   <script src="assets/application_phr.js?body=1" type="text/javascript"></script>
   <script src="assets/data_model.js?body=1" type="text/javascript"></script>
   <script src="assets/navigation.js?body=1" type="text/javascript"></script>
-  <script src="assets/autocomp/autoCompBase.js?body=1" type="text/javascript"></script>
-  <script src="assets/autocomp/autoCompPrefetch.js?body=1" type="text/javascript"></script>
-  <script src="assets/autocomp/autoCompSearch.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/source/screenReaderLog.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/source/autoCompBase.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/source/autoCompPrefetch.js?body=1" type="text/javascript"></script>
+  <script src="assets/autocomp/source/autoCompSearch.js?body=1" type="text/javascript"></script>
   <script src="assets/logger.js?body=1" type="text/javascript"></script>
   <script src="assets/idCache.js?body=1" type="text/javascript"></script>
   <script src="assets/rules.js?body=1" type="text/javascript"></script>
@@ -300,6 +302,38 @@
 
     teardown: function() {
     },
+
+
+    testXSSSanitize: function() { with (this) {
+      // Ported from our ruby unit test test_xss_sanitize
+      var testingList =  ("< %3C  &lt  &lt;  &LT  &LT; &#60  &#060  &#0060  &#00060 "+
+        "&#000060  &#0000060 &#60;  &#060;  &#0060;  &#00060;  &#000060; "+
+        "&#0000060; &#x3c  &#x03c  &#x003c  &#x0003c  &#x00003c  &#x000003c "+
+        "&#x3c;  &#x03c;  &#x003c;  &#x0003c;  &#x00003c;  &#x000003c; "+
+        "&#X3c  &#X03c  &#X003c  &#X0003c  &#X00003c  &#X000003c " +
+        "&#X3c;  &#X03c;  &#X003c;  &#X0003c;  &#X00003c;  &#X000003c; "+
+        "&#x3C  &#x03C  &#x003C  &#x0003C  &#x00003C  &#x000003C "+
+        "&#x3C;  &#x03C;  &#x003C;  &#x0003C;  &#x00003C;  &#x000003C; "+
+        "&#X3C  &#X03C  &#X003C  &#X0003C  &#X00003C  &#X000003C " +
+        "&#X3C;  &#X03C;  &#X003C;  &#X0003C;  &#X00003C;  &#X000003C; "+
+        "\x3c  \x3C  \u003c  \u003C").split(/\s+/);
+
+      var dataValue = testingList.join("a");
+      var actual = Def.Validation.Xss.xssSanitize(dataValue);
+      var expected = testingList.join(" a");
+      assertEqual(expected, actual);
+
+      dataValue = testingList.join("=a");
+      actual = Def.Validation.Xss.xssSanitize(dataValue);
+      expected = dataValue;
+      assertEqual(expected, actual);
+
+      dataValue = testingList.join("<<<a");
+      actual = Def.Validation.Xss.xssSanitize(dataValue);
+      expected = testingList.join(" < < < a");
+      assertEqual(expected, actual);
+    }},
+
 
     testGetReqFldErrs: function() { with(this) {
         var errHash, err, idList, reqAttrList;

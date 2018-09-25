@@ -27,7 +27,7 @@ class PhrPanelsControllerTest < ActionController::TestCase
     session_data = {:user_id=>users(:PHR_Test).id, :page_view=>'basic',
                     :cur_ip=>'127.11.11.11'}
     form_data = {:phr_record_id=>@profile.id_shown}
-    get :new, form_data, session_data
+    get :new, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
 
@@ -40,13 +40,13 @@ class PhrPanelsControllerTest < ActionController::TestCase
 
     # The "new" page "browse" link broke.  Confirm that works.
     form_data = {:phr_record_id=>@profile.id_shown, :browse=>1}
-    get :new, form_data, session_data
+    get :new, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
 
     # Check the flowhseet page for the case where there are no panels.
     # It will also be checked below after we create a panel.
-    get :flowsheet, form_data, session_data
+    get :flowsheet, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
 
@@ -55,15 +55,15 @@ class PhrPanelsControllerTest < ActionController::TestCase
       BasicModeController::FD_FORM_OBJ_NAME=>{:loinc_num=>'24356-8',
         :tp_panel_testdate=>'2012/5/21'}}
     assert_equal 0, @profile.obr_orders.size
-    post :create, form_data, session_data
+    post :create, params: form_data, session: session_data
     assert_nil flash[:error]
     assert_equal [], @controller.page_errors
-    assert_equal 1, @profile.obr_orders(true).size
+    assert_equal 1, @profile.obr_orders.reload.size
     panel = @profile.obr_orders.first
     assert_redirected_to phr_record_phr_panel_items_url(@profile, panel)
 
     # Check the flowhseet page
-    get :flowsheet, form_data, session_data
+    get :flowsheet, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
     # Make sure the page shows up.  We had a bug where the page was mostly empty.
@@ -80,7 +80,7 @@ class PhrPanelsControllerTest < ActionController::TestCase
         "group_by_C"=>"1", "date_range_C"=>"1", "start_date"=>"",
         "end_date"=>"", "in_one_grid"=>"0", "include_all"=>"0",
         "hide_empty_rows"=>"0"}}
-    post :flowsheet, form_data, session_data
+    post :flowsheet, params: form_data, session: session_data
     # Check the returned content, making sure that things the the correct things
     # are html-escaped.  (Only user data should be escaped.)
     assert_select 'tr h3', /urinalysis/i # a panel header
@@ -92,14 +92,14 @@ class PhrPanelsControllerTest < ActionController::TestCase
     form_data[BasicModeController::FD_FORM_OBJ_NAME] = {
       :start_date=>'asdf', :date_range_C=>'7'
     }
-    post :flowsheet, form_data, session_data
+    post :flowsheet, params: form_data, session: session_data
     assert_response :success
     assert_not_nil flash[:error]
 
     # Try updating the list of selected values
     form_data[BasicModeController::FD_FORM_OBJ_NAME][:panels] =
       {'one'=>'1', 'two'=>'1'}
-    post :flowsheet, form_data, session_data
+    post :flowsheet, params: form_data, session: session_data
     assert_response :success
     @profile = @profile.reload
     assert_equal ['one', 'two'], @profile.selected_panels
@@ -107,7 +107,7 @@ class PhrPanelsControllerTest < ActionController::TestCase
     # Remove one of the selected values
     form_data[BasicModeController::FD_FORM_OBJ_NAME][:panels] =
       {'one'=>'1', 'two'=>'0'}
-    post :flowsheet, form_data, session_data
+    post :flowsheet, params: form_data, session: session_data
     assert_response :success
     @profile = @profile.reload
     assert_equal ['one'], @profile.selected_panels

@@ -27,27 +27,27 @@ class LoginControllerTest < ActionController::TestCase
     users = User.where(:account_type=>DEMO_ACCOUNT_TYPE, :used_for_demo=>false)
     assert_equal 3, users.length
 
-    get :demo_login, {}, {}
+    get :demo_login, params: {}, session: {}
     assert_response :success
 
     # checkbox not checked
-    post :demo_login, {:fe=>{:agree_chbox_1=>'0'}}
+    post :demo_login, params: {:fe=>{:agree_chbox_1=>'0'}}
     assert_response :success
     assert @response.body.index('Please mark the checkbox')
     assert_not_nil flash[:error]
 
     # demo login, 3 times
-    post :demo_login, {:fe=>{:agree_chbox_1=>'1'}}
+    post :demo_login, params: {:fe=>{:agree_chbox_1=>'1'}}
     assert_redirected_to '/phr_home?logging_in=true'
     assert_nil flash[:error]
     get :logout
     assert_response :success
-    post :demo_login, {:fe=>{:agree_chbox_1=>'1'}}
+    post :demo_login, params: {:fe=>{:agree_chbox_1=>'1'}}
     assert_redirected_to '/phr_home?logging_in=true'
     assert_nil flash[:error]
     get :logout
     assert_response :success
-    post :demo_login, {:fe=>{:agree_chbox_1=>'1'}}
+    post :demo_login, params: {:fe=>{:agree_chbox_1=>'1'}}
     assert_redirected_to '/phr_home?logging_in=true'
     assert_nil flash[:error]
     get :logout
@@ -58,7 +58,7 @@ class LoginControllerTest < ActionController::TestCase
     assert_empty users
 
     # one more demo login and there are [DEMO_ACCOUNT_INCREMENTAL - 1] demo account left
-    post :demo_login, {:fe=>{:agree_chbox_1=>'1'}}
+    post :demo_login, params: {:fe=>{:agree_chbox_1=>'1'}}
     assert_redirected_to '/phr_home?logging_in=true'
     assert_nil flash[:error]
     users = User.where(:account_type=>DEMO_ACCOUNT_TYPE, :used_for_demo=>false)
@@ -75,44 +75,44 @@ class LoginControllerTest < ActionController::TestCase
         'usage_stats'])
     user = create_test_user
 
-    get :login, {}, {}
+    get :login, params: {}, session: {}
     assert_response :success
 
     # Try an invalid login attempt (empty form data)
-    post :login, {:fe=>{:user_name_1_1=>'', :password_1_1=>''}}, {}
+    post :login, params: {:fe=>{:user_name_1_1=>'', :password_1_1=>''}}, session: {}
     assert_response :success
     assert @response.body.index('Please enter')
 
     # Try an invalid login attempt (missing all form data)
-    post :login, {}, {}
+    post :login, params: {}, session:{}
     assert_response :bad_request
     assert @response.body.index('Bad Request')
 
     # Check the basic mode
     session_info = {:page_view=>'basic'}
-    get :login, {}, session_info
+    get :login, params: {}, session: session_info
     assert_response :success
     assert_not_nil @response.body.index('Current page mode:  Basic HTML')
 
     # Try a bad login attempt
-    post :login, {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'wrong'}},
+    post :login, params: {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'wrong'}}, session:
       session_info
     assert_response :success
     assert @response.body.index('invalid')
 
     # Try an invalid login attempt (empty form data)
-    post :login, {:fe=>{:user_name_1_1=>'', :password_1_1=>''}},
+    post :login, params: {:fe=>{:user_name_1_1=>'', :password_1_1=>''}}, session:
       session_info
     assert_response :success
     assert @response.body.index('Please enter')
 
     # Try an invalid login attempt (missing all form data)
-    post :login, {}, session_info
+    post :login, params: {}, session:session_info
     assert_response :bad_request
     assert @response.body.index('Bad Request')
 
     # Try a good login attempt
-    post :login, {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}},
+    post :login, params: {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}}, session:
       session_info
     assert_response :success
     assert @response.body.index('/accounts/two_factor') # confirm identity page
@@ -120,8 +120,8 @@ class LoginControllerTest < ActionController::TestCase
     # Try going through the two factor page
     session_info[:user_name] = user.name
     session_info[:password] = 'A password'
-    post :handle_two_factor, {:form_name=>'login', :fe=>{:user_answ_1_1=>'1',
-        :cookie_checkbox_1_1=>'1', :user_name_1_1=>user.name}}, session_info
+    post :handle_two_factor, params: {:form_name=>'login', :fe=>{:user_answ_1_1=>'1',
+        :cookie_checkbox_1_1=>'1', :user_name_1_1=>user.name}}, session: session_info
     assert_redirected_to '/phr_records'
 
     # Make sure the login got recorded on successful completion of
@@ -137,7 +137,7 @@ class LoginControllerTest < ActionController::TestCase
 
     # Switch to standard mode
     session_info = {:page_view=>nil}
-    get :login, {}, session_info
+    get :login, params: {}, session: session_info
     assert_response :success
     assert_nil @response.body.index('Current page mode:  Basic HTML')
 
@@ -161,8 +161,8 @@ class LoginControllerTest < ActionController::TestCase
     # Log in and confirm we get the /phr_home page - because there is already
     # a user id in the session info.
     # event gets logged in the usage stats
-    post :login, {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}},
-      session_info
+    post :login, params: {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}},
+      session: session_info
     assert_redirected_to '/phr_home'
 
     # Log out and confirm we are still in standard mode
@@ -172,7 +172,7 @@ class LoginControllerTest < ActionController::TestCase
 
     # now test to make sure the ip address is getting set in the usage data
     session_info[:cur_ip] = @request.env["REMOTE_ADDR"]
-    put :logout, {}, session_info
+    put :logout, params: {}, session: session_info
     rept = user.usage_stats.order('id desc').first
     assert_equal(@request.env["REMOTE_ADDR"], rept.ip_address)
     assert_equal('logout', rept.event)
@@ -186,8 +186,8 @@ class LoginControllerTest < ActionController::TestCase
     @request.env['rack.session.record'].session_id = 'sessionidhere'
     session_info[:user_id] = nil
 
-    post :login, {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}},
-      session_info
+    post :login, params: {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}},
+      session: session_info
 
     rept = user.usage_stats.order('id desc').first
     assert_equal(@request.env["REMOTE_ADDR"], rept.ip_address)
@@ -202,8 +202,8 @@ class LoginControllerTest < ActionController::TestCase
     user.daily_data_size = 10000001
     session_info[:user_id] = nil
     user.save!
-    post :login, {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}},
-      session_info
+    post :login, params: {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}},
+      session: session_info
     assert_response :success
     assert @response.body.index(' <title>Welcome to the')
     rept = user.usage_stats.order('id desc').first
@@ -218,10 +218,10 @@ class LoginControllerTest < ActionController::TestCase
         'forms', 'text_lists', 'text_list_items', 'db_table_descriptions',
         'db_field_descriptions'])
 
-    get :add_user, {}, {:page_view=>'basic'}
+    get :add_user, params: {}, session: {:page_view=>'basic'}
     assert_redirected_to captcha_path
 
-    get :add_user, {}, {:passed_basic_captcha=>true, :page_view=>'basic'}
+    get :add_user, params: {}, session: {:passed_basic_captcha=>true, :page_view=>'basic'}
     assert_response :success
 
     # Make sure the fixed question list does not use coded values.  Currently,
@@ -234,7 +234,7 @@ class LoginControllerTest < ActionController::TestCase
 
     # If there are flash errors when we post, we should still have the flag
     # set (from passing the captcha)
-    post :add_user, {:fe=>{}}, {:passed_basic_captcha=>true, :page_view=>'basic'}
+    post :add_user, params: {:fe=>{}}, session: {:passed_basic_captcha=>true, :page_view=>'basic'}
     assert @controller.page_errors.size > 0
     assert @request.session[:passed_basic_captcha]
 
@@ -257,7 +257,7 @@ class LoginControllerTest < ActionController::TestCase
       :admin=>'1', :admin_1=>'1'}
     }
 
-    post :add_user, form_params, {:passed_basic_captcha=>true, :page_view=>'basic'}
+    post :add_user, params: form_params, session: {:passed_basic_captcha=>true, :page_view=>'basic'}
 
     assert @controller.page_errors.size == 0, @controller.page_errors.inspect
     assert_redirected_to login_path
@@ -267,7 +267,7 @@ class LoginControllerTest < ActionController::TestCase
     assert !User.where(name: 'pl_temp1').first.admin
 
     # Confirm that if we post again we will be redirected to the captcha.
-    post :add_user, form_params, @request.session.to_hash
+    post :add_user, params: form_params, session: @request.session.to_hash
     assert_redirected_to captcha_path
   end
 
@@ -278,7 +278,7 @@ class LoginControllerTest < ActionController::TestCase
         'forms', 'text_lists', 'text_list_items', 'db_table_descriptions',
         'db_field_descriptions'])
     session_data = {:user_id=>users(:PHR_Test).id, :page_view=>'basic'}
-    get :change_account_settings, {}, session_data
+    get :change_account_settings, params: {}, session: session_data
     assert_response :success
     assert_select 'input[type="password"]' # confirm that we got the password page
     # The above test turned out to be insufficient to catch the accidental
@@ -286,8 +286,8 @@ class LoginControllerTest < ActionController::TestCase
     assert_select 'title', 'Verify Identity'
 
     # Post the password form to get to the account settings page
-    post :change_account_settings, {:fe=>{:password_1_1=>'A password'}},
-      session_data
+    post :change_account_settings, params: {:fe=>{:password_1_1=>'A password'}},
+      session: session_data
     assert_response :success
     assert @response.body.index(users(:PHR_Test).email)
     assert_select 'input#fe_cenew_email_1_1'
@@ -297,22 +297,21 @@ class LoginControllerTest < ActionController::TestCase
     assert_nil @response.body.index('fe_cp_fixquest_C_1_1')
     # Try posting a change to the account_settings page
     session_data[:password_verified_token] = '1234'
-    post :change_account_settings, {:fe=>{:cenew_email_1_1=>'one',
+    post :change_account_settings, params: {:fe=>{:cenew_email_1_1=>'one',
       :cenew_semail_1_1=>'two', :save_changes_1=>1},
-      :password_verified_token=>'1234'},
+      :password_verified_token=>'1234'}, session:
       session_data
     # The emails don't match, so there should be an error
     assert_response :success
     assert_nil flash[:notice]
     assert_not_nil flash[:error]
     assert_not_equal [], @controller.page_errors
-    flash[:error] = nil # clear the error messages in flash
 
     # Try again with a matching email
-    post :change_account_settings, {:fe=>{:cenew_email_1_1=>'two@three.four',
+    post :change_account_settings, params: {:fe=>{:cenew_email_1_1=>'two@three.four',
       :cenew_semail_1_1=>'two@three.four', :save_changes_1=>1},
       :password_verified_token=>'1234'},
-      session_data
+      session: session_data, flash: {error: nil}
     assert_redirected_to phr_records_path
     assert_not_nil flash[:notice]
     assert_nil flash[:error]
@@ -322,13 +321,13 @@ class LoginControllerTest < ActionController::TestCase
     session.delete(:fe)
     session.delete(:password_verified_token)
 
-    get :change_account_settings, {}, {:user_id=>users(:PHR_Test).id}
+    get :change_account_settings, params: {}, session: {:user_id=>users(:PHR_Test).id}
     assert_response :success
     assert_select 'input[type="password"]' # confirm that we got the password page
     assert_select 'title', 'Verify Identity'
 
-    post :change_account_settings, {:fe=>{:password_1_1=>'A password',
-      :save_changes_1=>1}},
+    post :change_account_settings, params: {:fe=>{:password_1_1=>'A password',
+      :save_changes_1=>1}}, session:
       {:user_id=>users(:PHR_Test).id}
     assert_response :success
     assert_equal '{', @response.body.slice(0..0) # a JS response
@@ -339,29 +338,28 @@ class LoginControllerTest < ActionController::TestCase
     DatabaseMethod.copy_development_tables_to_test(['field_descriptions',
         'forms', 'db_table_descriptions','db_field_descriptions', 'users',
         'question_answers'])
-    get :forgot_id, {}, {}
+    get :forgot_id, params: {}, session: {}
     assert_response :success
 
     user = create_test_user
 
     # error condition
-    assert_raise(ActionView::MissingTemplate) {
-      post :forgot_id_step2, {:fe=>{:email_1=>user.email,
-        :chall_answ_1_1=>'1', :reset_option_radio_1_1=>'challenge_q'}}
-    }
+    post :forgot_id_step2, params: {:fe=>{:email_1=>user.email,
+                                  :chall_answ_1_1=>'1', :reset_option_radio_1_1=>'challenge_q'}}
+    assert_response :bad_request
 
     # Test that we get sent back to the forgot_id page in standard mode
     # for an invalid email address.
-    param_data ={:recaptcha_response_field => 'correct_response'}
-    post :forgot_id , {:fe=>{:user_email_1=>'wrong email'}}.merge(param_data)
+    param_data ={'g-recaptcha-response' => 'correct_response'}
+    post :forgot_id , params: {:fe=>{:user_email_1=>'wrong email'}}.merge(param_data)
     assert_response :success
     assert @response.body.index('does not exist') # error message for invalid email address
     
     # good condition
-    post :forgot_id, {:fe=>{:user_email_1=>user.email}}.merge(param_data)
+    post :forgot_id, params: {:fe=>{:user_email_1=>user.email}}.merge(param_data)
     assert_response :success
     
-    post :forgot_id_step2, {:fe=>{:email_1=>user.email,
+    post :forgot_id_step2, params: {:fe=>{:email_1=>user.email,
         :chall_answ_1_1=>'1', :reset_option_radio_1_1=>'challenge_q'}}
     expected = "Your account ID has been sent to your email box:
                     #{user.email}."
@@ -377,19 +375,22 @@ class LoginControllerTest < ActionController::TestCase
 
     # Check that the user first has to pass the captcha
     session_data = {:page_view=>'basic'}
-    get :forgot_id, {}, session_data
+    get :forgot_id, params: {}, session: session_data
     assert_redirected_to captcha_path
-    post :forgot_id, {}, session_data
+    post :forgot_id, params: {}, session:session_data
     assert_redirected_to captcha_path
     # Check that posting to forgot_id_step2 without the right session data
     # does not work
-    assert_raise(ActionView::MissingTemplate) {get :forgot_id_step2, {}, session_data}
-    assert_raise(ActionView::MissingTemplate) {post :forgot_id_step2, {}, session_data}
+    get :forgot_id_step2, params: {}, session: session_data
+    assert_response :bad_request
+
+    post :forgot_id_step2, params: {}, session:session_data
+    assert_response :bad_request
 
     # Check that once the captcha is passed, the user gets to the page, but
     # make sure it is the basic mode page (no images).
     session_data[:passed_basic_captcha] = true
-    get :forgot_id, {}, session_data
+    get :forgot_id, params: {}, session: session_data
     assert_response :success
     assert_nil @response.body.index('<img')
 
@@ -398,20 +399,19 @@ class LoginControllerTest < ActionController::TestCase
 
     # Try a post with a blank email
     # Try a post with an invalid email
-    post :forgot_id, {FORM_OBJ_NAME=>{}}, session_data
+    post :forgot_id, params: {FORM_OBJ_NAME=>{}}, session: session_data
     assert_response :success
     assert_not_nil @controller.page_errors
 
     # Try a post with an invalid email
-    post :forgot_id, {FORM_OBJ_NAME=>{:user_email_1=>'asdf'}}, session_data
+    post :forgot_id, params: {FORM_OBJ_NAME=>{:user_email_1=>'asdf'}}, session: session_data
     assert_redirected_to captcha_path
     assert !flash[:error].blank?
     assert_nil session[:passed_basic_captcha]
 
     # Try with a correct email (with the passed captcha flag set)
-    flash[:error] = nil # for some reason, the error message won't go away if the previous response is a redirect
-    post :forgot_id, {FORM_OBJ_NAME=>{:user_email_1=>'one2@two.three.four'}},
-      session_data
+    post :forgot_id, params: {FORM_OBJ_NAME=>{:user_email_1=>'one2@two.three.four'}},
+      session: session_data, flash: {error: nil}
     assert_response :success
     assert_equal [], @controller.page_errors
     # Check that we get the basic version of the second page
@@ -422,21 +422,20 @@ class LoginControllerTest < ActionController::TestCase
     # Some of the processing of the second page is also tested in the
     # presenter test, RecoverIdStepTwoPresenterTest.
     # Try an invalid answer
-    post :forgot_id_step2, {FORM_OBJ_NAME=>{:chall_answ_1_1=>'wrong'}}
+    post :forgot_id_step2, params: {FORM_OBJ_NAME=>{:chall_answ_1_1=>'wrong'}}
     assert_response :success
     assert !@controller.page_errors.blank?
 
     # Try a correct response
-    post :forgot_id_step2, {FORM_OBJ_NAME=>{:chall_answ_1_1=>'1'}}
+    post :forgot_id_step2, params: {FORM_OBJ_NAME=>{:chall_answ_1_1=>'1'}}
     assert_equal [], @controller.page_errors
     assert_redirected_to login_path
     get :login # follows the redirect to clear the sessions
 
     session[:user_email] = nil # for some reason, the user_email in the session won't go away automatically
     # Try a correct response but without the user's email in the session
-    assert_raise(ActionView::MissingTemplate) {
-      post :forgot_id_step2, {FORM_OBJ_NAME=>{:chall_answ_1_1=>'1'}}, {}
-    }
+    post :forgot_id_step2, params: {FORM_OBJ_NAME=>{:chall_answ_1_1=>'1'}}, session: {}
+    assert_response :bad_request
   end
   
   
@@ -444,34 +443,34 @@ class LoginControllerTest < ActionController::TestCase
     DatabaseMethod.copy_development_tables_to_test(['field_descriptions',
         'forms', 'db_table_descriptions','db_field_descriptions', 'users',
          'question_answers'])
-    get :forgot_password, {}, {}
+    get :forgot_password, params: {}, session: {}
     assert_response :success
     assert_select 'title','Password Reset (Step 1 of 3)'
 
     user = create_test_user
-    param_data = { :recaptcha_response_field => 'correct_response'}
-    post :forgot_password, {:fe=>{:user_name_1 => user.name}}.merge(param_data)
+    param_data = { 'g-recaptcha-response' => 'correct_response'}
+    post :forgot_password, params: {:fe=>{:user_name_1 => user.name}}.merge(param_data)
     assert_redirected_to reset_password_step_two_path
     #follow rediret
-    get :change_password, {}, {:user_name => user.name}
+    get :change_password, params: {}, session: {:user_name => user.name}
     assert_select 'title','Password Reset (Step 2 of 3)'
 
-    post :change_password, {:fe=>{
+    post :change_password, params: {:fe=>{
       :ch_answ1_1_1_1=>'1', :ch_answ2_1_1_1=>'1',
       :email_option_radio_1_1=>'questions'}}
     assert_redirected_to reset_password_step_three_path
 
     new_password = "NewPassword#{Time.now.to_i}"
-    post :update_password, {:fe=>{:cpconfm_passwd_1=>new_password,
+    post :update_password, params: {:fe=>{:cpconfm_passwd_1=>new_password,
       :cpnew_passwd_1=>new_password}}
     assert_redirected_to login_path
     assert_equal flash[:notice], "Password changed successfully."
 
-    post :login, {:fe=>{:user_name_1_1=>user.name, :password_1_1=>new_password}},{}
+    post :login, params: {:fe=>{:user_name_1_1=>user.name, :password_1_1=>new_password}}, session: {}
     assert_response :success
     assert_select "title", "Your Computer Is Not Recognized"
     
-    #post :login, {:fe=>{:user_name_1=>'phr_demo', :password_1=>'ABCD1234', 
+    #post :login, params: {:fe=>{:user_name_1=>'phr_demo', :password_1=>'ABCD1234',
     #    :reset_key=>assert_select("input#fe_reset_key")}}
     #assert_response :success
    # assert @response.body.index('/accounts/two_factor') # confirm identity page
@@ -484,13 +483,13 @@ class LoginControllerTest < ActionController::TestCase
         'forms', 'db_table_descriptions','db_field_descriptions', 'users',
         'question_answers'])
     session_data = {:page_view=>'basic'}
-    get :forgot_password, {}, session_data
+    get :forgot_password, params: {}, session: session_data
     assert_redirected_to captcha_path
-    post :forgot_password, {}, session_data
+    post :forgot_password, params: {}, session: session_data
     assert_redirected_to captcha_path
 
     session_data[:passed_basic_captcha] = true
-    get :forgot_password, {}, session_data
+    get :forgot_password, params: {}, session: session_data
     assert_response :success
     assert_template 'basic/login/reset_pw_step_one'
 
@@ -498,55 +497,54 @@ class LoginControllerTest < ActionController::TestCase
     u = create_test_user
 
     # Try posting with a blank user name
-    post :forgot_password, {:fe=>{}}, session_data
+    post :forgot_password, params: {:fe=>{}}, session: session_data
     assert_response :success # back to same page
     assert @controller.page_errors[0] == "Please specify a user name."
     assert_select 'title','Password Reset (Step 1 of 3)'
 
     # Try the same thing again to make sure we don't have to pass the captcha
     # again.
-    post :forgot_password, {FORM_OBJ_NAME=>{}}, session_data
+    post :forgot_password, params: {FORM_OBJ_NAME=>{}}, session: session_data
     assert_response :success # back to same page
     assert @controller.page_errors[0] == "Please specify a user name."
     assert_select 'title','Password Reset (Step 1 of 3)'
 
     # Try an invalid user name.  The user should be sent back to the captcha.
     wrong_user_name = u.name+"#{Time.now.to_i}"
-    post :forgot_password, {FORM_OBJ_NAME=>{:user_name_1=>wrong_user_name}}, session_data
+    post :forgot_password, params: {FORM_OBJ_NAME=>{:user_name_1=>wrong_user_name}}, session: session_data
     assert_redirected_to captcha_path
     assert_equal flash[:error], User.non_exist_user_error(wrong_user_name)
     assert_nil session[:passed_basic_captcha]
     
     # Now try a valid user name
     form_data = {FORM_OBJ_NAME=>{:user_name_1=>u.name}}
-    flash[:error] = nil
     session[:user_name] = nil
-    post :forgot_password, form_data, session_data
+    post :forgot_password, params: form_data, session: session_data, flash: {error: nil}
     assert_redirected_to reset_password_step_two_path
     assert_nil flash[:error]
     assert @controller.page_errors.empty?
 
     # Try to follow the redirect
-    get :change_password,{},{:user_name =>u.name}
+    get :change_password, params: {}, session:{:user_name =>u.name}
     assert_not_nil @response.body.index('radio') # radio buttons on the next page
     assert session[:user_name] == u.name
 
     # Try submitting without answers
     session_data[:user_name] = u.name
-    post :change_password, {FORM_OBJ_NAME=>{
+    post :change_password, params: {FORM_OBJ_NAME=>{
         :email_option_radio_1_1=>'questions'}}
     assert_response :success
     assert !@controller.page_errors.empty?
 
     # Try submitting wrong answers
-    post :change_password, {FORM_OBJ_NAME=>{
+    post :change_password, params: {FORM_OBJ_NAME=>{
         :email_option_radio_1_1=>'questions', :ch_answ1_1_1_1=>'wrong',
         :ch_answ2_1_1_1=>'wrong_too'}}
     assert_response :success
     assert !@controller.page_errors.empty?
 
     # Try submitting correct answers
-    post :change_password, {FORM_OBJ_NAME=>{
+    post :change_password, params: {FORM_OBJ_NAME=>{
         :email_option_radio_1_1=>'questions', :ch_answ1_1_1_1=>'1',
         :ch_answ2_1_1_1=>'1'}}
     assert_redirected_to reset_password_step_three_path
@@ -564,21 +562,21 @@ class LoginControllerTest < ActionController::TestCase
         'question_answers', 'text_lists', 'test_list_items'])
 
     session_data = {:page_view=>'basic'}
-    get :forgot_id, {}, session_data
+    get :forgot_id, params: {}, session: session_data
     assert_redirected_to captcha_path
 
     # Now return to the default mode's login page
     session[:page_view] = 'default'
-    get :login, {}
+    get :login, params: {}
     # Log in
     user = create_test_user
-    post :login, {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}}
+    post :login, params: {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}}
     assert_response :success
     assert @response.body.index('/accounts/two_factor') # confirm identity page
     # Answer the challenge question
     session[:user_name] = user.name
     session[:password] = 'A password'
-    post :handle_two_factor, {:form_name=>'login', :fe=>{:user_answ_1_1=>'1',
+    post :handle_two_factor, params: {:form_name=>'login', :fe=>{:user_answ_1_1=>'1',
         :cookie_checkbox_1_1=>'1', :user_name_1_1=>user.name}}
     assert_redirected_to '/phr_home?logging_in=true'
   end
@@ -592,58 +590,55 @@ class LoginControllerTest < ActionController::TestCase
     # Confirm we get redirected to the login page without a valid key
     u = create_test_user
     session_data = {:page_view=>'basic'}
-    get :reset_account_security, {:user=>u.name}, session_data
+    get :reset_account_security, params: {:user=>u.name}, session: session_data
     assert_redirected_to login_url
     assert_not_nil flash[:error]
 
-    flash[:notice] = flash[:error] = nil # for some reason this does not get reset
-    get :reset_account_security, {:user=>u.name, :reset_key=>'a'}, session_data
+    get :reset_account_security, params: {:user=>u.name, :reset_key=>'a'}, session: session_data,
+        flash: {notice: nil, error: nil}
     assert_redirected_to login_url
     assert_not_nil flash[:error]
 
     # Now make the key valid and try again
-    flash[:notice] = flash[:error] = nil # for some reason this does not get reset
     u.reset_key = 'a'
     u.last_reset = Time.now
     u.save!
-    get :reset_account_security, {:user=>u.name, :reset_key=>u.reset_key}, session_data
+    get :reset_account_security, params: {:user=>u.name, :reset_key=>u.reset_key}, session: session_data,
+        flash: {notice: nil, error: nil}
     assert_response :success
 
     # Attempt a post.  It should return with errors on the page.
-    flash[:notice] = flash[:error] = nil # for some reason this does not get reset
-    post :reset_account_security, {FORM_OBJ_NAME=>{}}
+    post :reset_account_security, params: {FORM_OBJ_NAME=>{}},
+         flash: {notice: nil, error: nil}
     assert_response :success
     assert_equal flash[:error], @controller.class.class_variable_get("@@no_changes")
 
     # Confirm that we can submit the form a second time.  Provide a new password
     # so that the form posts successfully.
-    flash[:notice] = flash[:error] = nil # for some reason this does not get reset
-    post :reset_account_security, {
+    post :reset_account_security, params: {
       FORM_OBJ_NAME=>{:cpnew_passwd_1_1=>'AAAbbb111',
-        :cpconfm_passwd_1_1=>'AAAbbb111'}}
+        :cpconfm_passwd_1_1=>'AAAbbb111'}}, flash: {notice: nil, error: nil}
     assert_not_nil flash[:notice]
     assert_nil flash[:error]
     assert_redirected_to login_url
 
     # Confirm that we can't post again now that it updated.  (The user should
     # have to get another reset key.)
-    flash[:notice] = flash[:error] = nil # for some reason this does not get reset
-    post :reset_account_security, {
+    post :reset_account_security, params: {
       FORM_OBJ_NAME=>{:cpnew_passwd_1_1=>'AAAbbb111',
-        :cpconfm_passwd_1_1=>'AAAbbb111'}}
+        :cpconfm_passwd_1_1=>'AAAbbb111'}}, flash: {notice: nil, error: nil}
     assert_nil flash[:notice]
     assert_not_nil flash[:error]
     assert_redirected_to login_url
 
     # Confirm that the original key does not work either.
-    flash[:notice] = flash[:error] = nil # for some reason this does not get reset
-    get :reset_account_security, {:user=>u.name, :reset_key=>'a'}, session_data
+    get :reset_account_security, params: {:user=>u.name, :reset_key=>'a'}, session: session_data,
+        flash: {notice: nil, error: nil}
     assert_not_nil flash[:error]
     assert_redirected_to login_url
-    flash[:notice] = flash[:error] = nil # for some reason this does not get reset
-    post :reset_account_security, {  # Try posting again with the key we set above
+    post :reset_account_security, params: {  # Try posting again with the key we set above
       FORM_OBJ_NAME=>{:cpnew_passwd_1_1=>'AAAbbb111',
-        :cpconfm_passwd_1_1=>'AAAbbb111'}}
+        :cpconfm_passwd_1_1=>'AAAbbb111'}}, flash: {notice: nil, error: nil}
     assert_nil flash[:notice]
     assert_not_nil flash[:error]
     assert_redirected_to login_url
@@ -657,19 +652,19 @@ class LoginControllerTest < ActionController::TestCase
         'question_answers', 'text_lists', 'test_list_items'])
     user = create_test_user
 
-    get :login, {}, {}
+    get :login, params: {}, session: {}
     assert_response :success
 
     # Test a good login attempt
-    post :login, {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}}
+    post :login, params: {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}}
     assert_response :success
     assert @response.body.index('/accounts/two_factor') # confirm identity page
 
     # Try going through the two factor page
     session_info[:user_name] = user.name
     session_info[:password] = 'A password'
-    post :handle_two_factor, {:form_name=>'login', :fe=>{:user_answ_1_1=>'1',
-        :cookie_checkbox_1_1=>'1', :user_name_1_1=>user.name}}, session_info
+    post :handle_two_factor, params: {:form_name=>'login', :fe=>{:user_answ_1_1=>'1',
+        :cookie_checkbox_1_1=>'1', :user_name_1_1=>user.name}}, session: session_info
     assert_redirected_to '/phr_home?logging_in=true'
     
     # add a profile to test deletion later
@@ -677,7 +672,7 @@ class LoginControllerTest < ActionController::TestCase
     user.profiles << @profile
     id_shown = @profile.id_shown
    
-    delete :delete_account, {:password => 'A password'} # , session_info
+    delete :delete_account, params: {:password => 'A password'} # , session: session_info
     assert_response :success
     assert_not_nil(@response.body.index('Valid'))
     
@@ -703,8 +698,8 @@ class LoginControllerTest < ActionController::TestCase
     @request.env['rack.session.record'].session_id = 'sessionidhere'
     session_info[:user_id] = nil
 
-    post :login, {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}},
-      session_info
+    post :login, params: {:fe=>{:user_name_1_1=>user.name, :password_1_1=>'A password'}},
+      session: session_info
 
     # session_info
     assert_response :success
@@ -714,27 +709,27 @@ class LoginControllerTest < ActionController::TestCase
     session_info = {}
     session_info[:user_name] = user.name
     session_info[:password] = 'A password'
-    post :handle_two_factor, {:form_name=>'login', :fe=>{:user_answ_1_1=>'1',
-        :cookie_checkbox_1_1=>'1', :user_name_1_1=>user.name}} # , session_info
+    post :handle_two_factor, params: {:form_name=>'login', :fe=>{:user_answ_1_1=>'1',
+        :cookie_checkbox_1_1=>'1', :user_name_1_1=>user.name}} # , session: session_info
     assert_redirected_to '/phr_home?logging_in=true'
     
     session_info = {:user_id=>user.id}
-    delete :delete_account, {:password => 'A password2'}, session_info
+    delete :delete_account, params: {:password => 'A password2'}, session: session_info
     assert_response :success
     assert_not_nil(@response.body.index(
         'The account ID and password combination is invalid.'))
     
-    delete :delete_account, {:password => 'A password2'}, session_info
+    delete :delete_account, params: {:password => 'A password2'}, session: session_info
     assert_response :success
     assert_not_nil(@response.body.index(
         'The account ID and password combination is invalid.'))
     
-    delete :delete_account, {:password => 'A password2'}, session_info
+    delete :delete_account, params: {:password => 'A password2'}, session: session_info
     assert_response :success
     assert_not_nil(@response.body.index(
         'The account ID and password combination is invalid.'))
     
-    delete :delete_account, {:password => 'A password2'}, session_info
+    delete :delete_account, params: {:password => 'A password2'}, session: session_info
     assert_response :success
     assert_not_nil(@response.body.index(
         'Your password verification attempts exceeded the maximum allowed. '))
@@ -746,16 +741,16 @@ class LoginControllerTest < ActionController::TestCase
     user.save!
     assert_equal(0, User.find_by_id(user.id).password_trial)
     session_info[:page_view] = 'basic'
-    get :delete_account, {}, session_info
+    get :delete_account, params: {}, session: session_info
     assert @response.body.index('Enter your password')
     # Enter an incorrect password
-    delete :delete_account, {:password => 'Wrong password'}
+    delete :delete_account, params: {:password => 'Wrong password'}
     assert_response :success
     assert @response.body.index('Enter your password')
     assert flash[:error].size > 0
     assert_not_nil User.find_by_id(user.id)
     # Now try the correct password
-    delete :delete_account, {:password => 'A password'}
+    delete :delete_account, params: {:password => 'A password'}
     assert_redirected_to :login
     assert_nil User.find_by_id(user.id)
 
@@ -776,7 +771,7 @@ class LoginControllerTest < ActionController::TestCase
     assert_equal flash[:error], 'The request is invalid'
 
     # missing either reset_key or user_name, e.g. the user_name
-    get reset_link, { :reset_key => u.reset_key }
+    get reset_link, params: { :reset_key => u.reset_key }
     assert_redirected_to login_path
     assert_equal flash[:error], 'The request is invalid'
 
@@ -787,25 +782,25 @@ class LoginControllerTest < ActionController::TestCase
     #   recaptcha )
     wrong_user_name = "wrong_user_name"
     u.setup_reset_key
-    get reset_link, { :reset_key => u.reset_key, :user=>wrong_user_name }
+    get reset_link, params: { :reset_key => u.reset_key, :user=>wrong_user_name }
     assert_redirected_to login_path
     assert_equal flash[:error], ApplicationController.incorrect_reset_pw_key
     # 2) reset_key is wrong
     wrong_reset_key = "wrong_reset_key"
-    get reset_link, { :reset_key => wrong_reset_key, :user => u.name}
+    get reset_link, params: { :reset_key => wrong_reset_key, :user => u.name}
     assert_redirected_to login_path
     assert_equal flash[:error], ApplicationController.incorrect_reset_pw_key
 
     # 3) both user_name and reset_key are correct
     u.setup_reset_key
-    flash[:error] = nil
-    get reset_link, { :reset_key => u.reset_key, :user => u.name }
+    get reset_link, params: { :reset_key => u.reset_key, :user => u.name },
+        flash: {error: nil}
     assert_response :success
     assert_select 'title',  "Reset Account Security Settings"
 
     # 4) update password with wrong params, user will be allow to try again
     # on the same page
-    post reset_link, {:fe =>{}}
+    post reset_link, params: {:fe =>{}}
     assert_response :success
     assert_select 'title',  "Reset Account Security Settings"
     assert_not_nil flash[:error]
@@ -820,17 +815,17 @@ class LoginControllerTest < ActionController::TestCase
         :cp_selfquest_1_1 => 'Dummy Question 1?',  :cp_selfansw_1_1 => '',
         :cp_selfquest_1_2 => 'Dummy Quest 2?',     :cp_selfansw_1_2 => ''
     }
-    post reset_link, {:fe => password_only}
+    post reset_link, params: {:fe => password_only}
     assert_redirected_to login_path
     assert_equal flash[:notice], "Security question(s) and/or password have been updated for user:  #{u.name}."
 
     # 5) test re-post without getting a new reset_key
-    post reset_link, {:fe=>password_only}
+    post reset_link, params: {:fe=>password_only}
     assert_redirected_to login_path
     assert_not_nil flash[:error]
 
     # 6) the original reset_key became invalid after a successful post
-    get reset_link, { :reset_key => u.reset_key, :user => u.name }
+    get reset_link, params: { :reset_key => u.reset_key, :user => u.name }
     assert_redirected_to login_path
     assert_not_nil flash[:error]
   end
@@ -851,7 +846,7 @@ class LoginControllerTest < ActionController::TestCase
     get :login
     assert_select "#page_view", false # Only standard mode has no page_view element
     # Switch PHR mode by adding format parameter
-    get :login, {:format => "mobile"}
+    get :login, params: {:format => "mobile"}
     assert_select "#page_view", "mobile"
     assert session["page_view"] == "mobile"
     # After a format is accepted
@@ -859,7 +854,7 @@ class LoginControllerTest < ActionController::TestCase
     get :login
     assert_select "#page_view", "mobile"
     # If a new format provided, it will replace the existing format
-    get :login, {:format => "basic"}
+    get :login, params: {:format => "basic"}
     assert_select "#page_view", "basic"
 
 
@@ -871,7 +866,7 @@ class LoginControllerTest < ActionController::TestCase
     get :login
     assert_select "#page_view", "mobile"
     # We can switch PHR mode using format parameter
-    get :login, {:format => "basic"}
+    get :login, params: {:format => "basic"}
     assert_select "#page_view", "basic"
   end
 
@@ -899,21 +894,21 @@ class LoginControllerTest < ActionController::TestCase
     # Wrong user login
     data = data_default.deep_dup
     data[:fe][:user_name_1] += "_#{Time.now.to_i}" # wrong username
-    post :email_verification, data
+    post :email_verification, params: data
     assert_response :success
     assert_equal assigns["page_errors"][0], User::INVALID_LOGIN
 
 
     # Try to activate the new user with correct user/pwd and
     # -- blank token
-    post :email_verification, data_default
+    post :email_verification, params: data_default
     assert_response :success
     assert_equal assigns["page_errors"][0], EmailVerification::TOKEN_MSGS["blank"]
     # -- Invalid token including non-existing, used, expired tokens
     data = data_default.deep_dup
     # --- non-existing
     data[:fe][:verification_token_1] = correct_token + "_wrong_suffix"
-    post :email_verification, data
+    post :email_verification, params: data
     assert_response :success
     assert_equal assigns["page_errors"][0], EmailVerification::TOKEN_MSGS["invalid"]
     # --- expired token
@@ -921,19 +916,19 @@ class LoginControllerTest < ActionController::TestCase
     valid_data[:fe][:verification_token_1] = correct_token
     vtoken.created_at = 10.days.ago
     assert vtoken.save
-    post :email_verification, valid_data
+    post :email_verification, params: valid_data
     assert_response :success
     assert_equal assigns["page_errors"][0], EmailVerification::TOKEN_MSGS["no_pending"]
     # -- valid token
     vtoken.created_at = 1.days.ago
     assert vtoken.save
-    post :email_verification, valid_data
+    post :email_verification, params:valid_data
     assert_response :success
     assert_equal flash[:notice], EmailVerification::TOKEN_MSGS["verified"], flash[:notice]
 
     # For an active user
     # There should be no pending verification token
-    post :email_verification, data_default
+    post :email_verification, params:data_default
     assert_response :success
     assert_equal assigns["page_errors"][0], EmailVerification::TOKEN_MSGS["no_pending"]
   end

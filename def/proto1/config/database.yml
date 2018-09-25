@@ -6,7 +6,7 @@
 #   gem install mysql -- --include=/usr/local/lib
 # On Windows:
 #   gem install mysql
-#       Choose the win32 build.
+#       Choose win32.
 #       Install MySQL and put its /bin directory on your path.
 #
 # And be sure to use new-style password hashing:

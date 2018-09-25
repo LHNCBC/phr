@@ -34,7 +34,7 @@ before this page will be useful.
 
   <% if @flowsheet %>
     <h2>Flowsheet</h2>
-    <%= @flowsheet.html_safe %>
+    <%= render inline: @flowsheet.html_safe %>
   <%  end %>
 <% end %>
 

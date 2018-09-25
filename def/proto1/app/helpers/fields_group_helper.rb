@@ -776,7 +776,6 @@ module FieldsGroupHelper
         else
           warn_method = 'warnAboutDuplicates'
         end
-logger.info "%%% conflict_checker, warn_method, f.cet_no_dup_check = #{[conflict_checker, warn_method, f.cet_no_dup_check].inspect}"
         # Use a timeout to allow the data model to get updated before
         # the duplicate check.
         add_observer(f.target_field, 'change',

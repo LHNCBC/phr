@@ -10,13 +10,13 @@ class ErrorControllerTest < ActionController::TestCase
 
   test "post to 'new'" do
     assert SystemError.count == 0
-    post :new, :message=>"Hello"
+    post :new, params: {:message=>"Hello"}
     assert SystemError.count == 1
     report = SystemError.first
     assert_equal("Hello", report.exception)
     # Check that we can't make another one from the same IP (within the
     # one hour window).
-    post :new, :message=>"Howdy"
+    post :new, params: {:message=>"Howdy"}
     assert SystemError.count == 1
   end
 end

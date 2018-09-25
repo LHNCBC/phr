@@ -65,7 +65,7 @@ Daughter1:
   gender: "Female"
   race_or_ethnicity: "White"
   pregnant: "2 - No"
-  
+
 temp_profile_1a:
   id: -101
   profile_id: -20
@@ -176,7 +176,7 @@ phr_home_removed_profile_2:
 
 phr_home_removed_profile_3:
   id: -45
-  profile_ID: -45
+  profile_id: -45
   latest: true
   birth_date: 2000/08/13
   pseudonym: "Just a blur"
@@ -184,7 +184,7 @@ phr_home_removed_profile_3:
   gender_C: F
   race_or_ethnicity: "White"
   race_or_ethnicity_C: LA4457-3
-  
+
 phr_home_active_profile_4:
   id: -46
   profile_id: -46
@@ -231,7 +231,7 @@ phr_home_removed_profile_5:
 
 phr_home_removed_profile_6:
   id: -50
-  profile_ID: -50
+  profile_id: -50
   latest: true
   birth_date: 1985/06/03
   pseudonym: "Gemini"

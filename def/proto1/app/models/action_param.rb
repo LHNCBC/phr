@@ -30,7 +30,7 @@ class ActionParam < ActiveRecord::Base
       relative_url.sub!(id_pat, '/:id')
     end
 
-    actions =  ActionParam.find_all_by_current_url(relative_url)
+    actions =  ActionParam.where(current_url: relative_url)
     actions.each do |act|
       match = true
       params_h =  act.params_hash

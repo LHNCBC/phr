@@ -16,7 +16,8 @@ class PhrMedicalContact < ActiveRecord::Base
   DATE_FIELDS = %w{next_appt}
 
   # When validating, convert the dates to HL7 and epoch time.
-  def validate
+  validate :validate_instance
+  def validate_instance
     validate_cwe_field(:medcon_type)
 
     date_reqs = self.class.date_requirements(DATE_FIELDS, 'phr')

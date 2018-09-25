@@ -121,7 +121,7 @@ class FormData
   #
   def update_all_virtual_fields(user_id)
     AutosaveTmp.delete_all
-    profiles = Profile.find(:all)
+    profiles = Profile.all
     user_obj = User.find(user_id)
     profiles.each do |profile|
       update_virtual_fields_for_one_profile(profile.id, user_obj)
@@ -470,9 +470,7 @@ class FormData
           @table_definition.each do |table_name, column_definition|
             tableClass = table_name.singularize.camelcase.constantize
             # get the current record for each record_id
-            table_records = tableClass.find_all_by_latest(true,
-              :conditions=>["profile_id = ? ", profile_id],
-              :order=>@table_to_sql_order[table_name])
+            table_records = tableClass.where(latest: true, profile_id: profile_id).order(@table_to_sql_order[table_name])
             record_data_array = []
 
             # if record found
@@ -512,9 +510,7 @@ class FormData
       @table_definition.each do |table_name, column_definition|
         tableClass = table_name.classify.constantize
         # get the current record for each record_id
-        table_records = tableClass.find_all_by_latest(true,
-          :conditions=>["profile_id = ? ", profile_id],
-          :order=>@table_to_sql_order[table_name])
+        table_records = tableClass.where(latest: true, profile_id: profile_id).order(@table_to_sql_order[table_name])
         table_records = table_records.map do |record|
           needed_data(table_name, record)
         end # end of !table_records.nil?
@@ -547,9 +543,7 @@ class FormData
         @table_definition.each do |table_name, column_definition|
           tableClass = table_name.singularize.camelcase.constantize
           # get the current record for each record_id
-          table_records = tableClass.find_all_by_latest(true,
-            :conditions=>["profile_id = ? ", profile_id],
-            :order=>@table_to_sql_order[table_name])
+          table_records = tableClass.where(latest: true, profile_id: profile_id).order(@table_to_sql_order[table_name])
           record_data_array = []
           # if record found
           if !table_records.nil?
@@ -1045,14 +1039,12 @@ class FormData
       record_id = matched[1].to_i
       # get this record
       if !p_rec_id.nil?
-        last_record = table_class.find_by_latest(true,
-          :conditions=>["profile_id = ? and record_id = ? " +
-                " and #{parent_table_foreign_key} = ?",
-            profile_id, record_id, p_rec_id])
+        last_record = table_class.where(["profile_id = ? and record_id = ? " +
+                " and #{parent_table_foreign_key} = ? and latest = true",
+            profile_id, record_id, p_rec_id]).take
       else
-        last_record = table_class.find_by_latest(true,
-          :conditions=>["profile_id = ? and record_id = ? ",
-            profile_id, record_id])
+        last_record = table_class.where(["profile_id = ? and record_id = ? and latest = true",
+            profile_id, record_id]).take
       end
       # set the flag 'latest' to false on the this record
       # this means this record will not be displayed on form any more
@@ -1118,14 +1110,11 @@ class FormData
       else
         # get the last record
         if !p_rec_id.nil?
-          last_record = table_class.find_by_latest(true,
-            :conditions=>["profile_id = ? and record_id = ? and " +
-            "#{parent_table_foreign_key} = ?", profile_id, record_id, p_rec_id])
+          last_record = table_class.where(["profile_id = ? and record_id = ? and " +
+            "#{parent_table_foreign_key} = ? and latest = true", profile_id, record_id, p_rec_id]).take
         else
-          last_record = table_class.find_by_latest(true,
-            :conditions=>["profile_id = ? and record_id = ? ", profile_id,
-              record_id])
-
+          last_record = table_class.where(["profile_id = ? and record_id = ? and latest = true", profile_id,
+              record_id]).take
         end
         if !last_record.nil?
           db_key_id = last_record.id
@@ -1196,12 +1185,10 @@ class FormData
     if !matched.nil?
       # get this record
       if !p_rec_id.nil?
-        last_record = table_class.find_by_latest(true,
-          :conditions=>["profile_id = ? and #{parent_table_foreign_key} = ?",
-            profile_id, p_rec_id])
+        last_record = table_class.where(["profile_id = ? and #{parent_table_foreign_key} = ? and latest = true",
+            profile_id, p_rec_id]).take
       else
-        last_record = table_class.find_by_latest(true,
-          :conditions=>["profile_id = ? ", profile_id])
+        last_record = table_class.where(["profile_id = ? and latest = true", profile_id]).take
       end
       # set the flag 'latest' to false on the this record
       # this means this record will not be displayed on form any more
@@ -1233,12 +1220,10 @@ class FormData
       # add an foreign key value pointing to a parent record
       if !p_rec_id.nil?
         record_data[parent_table_foreign_key] = p_rec_id
-        table_record = table_class.find_by_latest(true,
-          :conditions=>["profile_id = ? and #{parent_table_foreign_key} = ?",
-            profile_id, p_rec_id])
+        table_record = table_class.where("profile_id = ? and #{parent_table_foreign_key} = ? and latest = true",
+                                         profile_id, p_rec_id).take
       else
-        table_record = table_class.find_by_latest(true,
-          :conditions=>["profile_id = ? ", profile_id])
+        table_record = table_class.where("profile_id = ? and latest = true", profile_id).take
       end
 
       # if this is a new record
@@ -1660,7 +1645,7 @@ class FormData
   #
   def get_child_parent_mapping
     c_p_mapping = Hash.new
-    db_table_records = DbTableDescription.find(:all)
+    db_table_records = DbTableDescription.all
 
     db_table_records.each do |rec|
       p_table_name = nil
@@ -1986,7 +1971,7 @@ class FormData
         taffy_mapping = parse_data_hash_for_id_2_db_mapping(value,
             suffix + "_1", taffy_mapping, index_in_table)
       # an end field
-      when String, Fixnum, Bignum, Float, BigDecimal, Numeric, nil
+      when String, Integer, Float, BigDecimal, Numeric, nil
         field_suffix = suffix
         table_name = get_table_name_by_target_field(key)
         column_name = get_column_name_by_target_field(key)
@@ -2081,7 +2066,7 @@ class FormData
   #
   def get_field_name_mapping()
     column_name_mapping = Hash.new
-    fields = FieldDescription.find(:all, :conditions=>["form_id=?", @form.id])
+    fields = FieldDescription.where(form_id: @form.id)
     fields.each do | field |
       display_name = field.display_name
       if display_name.blank?
@@ -2891,7 +2876,7 @@ class FormData
   #
   def is_data_empty?(table_class, record_data, parent_table_foreign_key)
 
-    ignored_columns = table_class.ignored_columns
+    ignored_columns = table_class.phr_ignored_columns
 
     record_data.each do |column, value|
       if !ignored_columns.include?(column)
@@ -2972,9 +2957,11 @@ class FormData
     rtn = data_value
     if [:string, :text].include? data_type
       if rtn && (rtn.is_a? String)
-        regex = Regexp.new(/(<|%3C|&(lt|#(0*60|x0*3c));?|\\(x|u00)3c)([^\s+])/i)
+        # Here we are also allowing ; as the character following <, but only in
+        # order to push the ; from &lt; in the same capturing group.
+        regex = Regexp.new(/(<|%3C|&(lt|#(0*60|x0*3c));?|\\(x|u00)3c)(?=[^;=\s])/i)
         rtn = rtn.gsub(regex) do |m|
-          $5 == "=" ? $& : ($1+" "+$5)
+          $1+" "
          end
       end
     end
@@ -3091,7 +3078,7 @@ class FormData
       when Hash, Dictionary
         sub_ret = flatten_hash(value)
         ret = ret.merge(sub_ret)
-      when String, Fixnum, Bignum, Float, BigDecimal, Numeric, nil
+      when String, Integer, Float, BigDecimal, Numeric, nil
         ret[key]=value
       end
     end
@@ -3219,9 +3206,8 @@ class FormData
       # Find a list of fields that should control the sort order of items
       # retrieved from this table.
       td = DbTableDescription.find_by_data_table(table_name)
-      dfs =td.db_field_descriptions.find(:all, :conditions=>
-        '(is_major_item=1 or controlling_field_id is not null) and '+
-        'predefined_field_id=1 and virtual=0')
+      dfs =td.db_field_descriptions.where(
+        '(is_major_item=1 or controlling_field_id is not null) and predefined_field_id=1 and virtual=0')
       major = nil
       other = []
       # There should be one for which "is_major_item" is true; separate that
@@ -3655,7 +3641,7 @@ class FormData
     if !@mass_deletes.empty?
       @mass_deletes.each do | table_name, ids |
         table_class = table_name.classify.constantize
-        table_class.delete_all(["id in (?)", ids ])
+        table_class.where(["id in (?)", ids ]).delete_all
       end
 
       # how to calculate data lenth?

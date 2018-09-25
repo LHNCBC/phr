@@ -1,5 +1,5 @@
 class FormbuilderController < ApplicationController
-  before_filter :admin_authorize
+  before_action :admin_authorize
   helper :calendar
   helper :form
 
@@ -276,8 +276,8 @@ class FormbuilderController < ApplicationController
     # left over.  Sort of like taking a car apart and then putting
     # it back together.  If no parts are left over, everything's
     # great - right?
-    fe = get_param(:fe).clone
-    
+    fe = get_param(:fe)
+
     # Check now for the save_and_close button in the fe object.
     # We won't actually use it until we're done saving, but we
     # destroy the fe object as we process it, so grab this before
@@ -290,8 +290,7 @@ class FormbuilderController < ApplicationController
     # default values.    
     fb_form = Form.find_by_form_name(FORM_BUILDER_FORM_NAME)
     fb_vals = FieldDescription.where(form_id: fb_form.id).to_a
-    #def_vals = FieldDescription.find(:all, :conditions=>"form_id = " +
-    #                      fb_form.id.to_s + " AND default_value IS NOT NULL")
+    #def_vals = FieldDescription.where("form_id = ? AND default_value IS NOT NULL", fb_form.id.to_s)
     fb_defs = Hash.new
     fb_fields = Hash.new
     fb_vals.each do |fv|
@@ -1308,7 +1307,7 @@ class FormbuilderController < ApplicationController
       if val.nil? && !suffix.nil?
         comp_val = fkey + suffix
         flen = comp_val.length
-        fe.each_key { |skey|
+        fe.keys.each { |skey|
           if val.nil? && skey[0,flen] == comp_val
             val = fe.delete(skey)
           end
@@ -1399,7 +1398,7 @@ class FormbuilderController < ApplicationController
     log_this('in get_extra_form_data')
     
     # process each key/value pair left in the fe hash
-    fe.each_key do |fkey|
+    fe.keys.each do |fkey|
       val = fe.delete(fkey)
       log_this('  processing fe object w/key = ' + fkey + ', val = ' + val)
         

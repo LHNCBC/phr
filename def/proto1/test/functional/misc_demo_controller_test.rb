@@ -7,8 +7,8 @@ class MiscDemoController; def rescue_action(e) raise e end; end
 class MiscDemoControllerTest < ActionController::TestCase
   def setup
     @controller = MiscDemoController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
+    @request    = ActionController::TestRequest.create(@controller.class)
+    @response   = ActionDispatch::TestResponse.new
   end
 
   # Replace this with your real tests.

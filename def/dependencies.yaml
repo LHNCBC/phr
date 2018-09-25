@@ -1,10 +1,10 @@
 ---
-autocomp: autocomp-2.2.3_r275
+autocomp: autocomp-6.1.1_r283
 jqueryPlugins: jqueryPlugins_r32
 jquery-ui: jquery-ui-1.10.1.custom_r162
 javascript-stacktrace: javascript-stacktrace_r25
 jquery: jquery-1.9.1_r162
-node: node-v0.10.24-linux-x64_r208
-node_modules: node_modules_20140115_r208
-ruby: ruby-2.1.2-p95_r251
+node: node-v8.11.3-npm-5.7.1_r305
+node_modules: node_modules_phr_20180508_r303
+ruby: ruby-2.4.4_r302
 jquery-mobile: jquery-mobile-1.4.2_r245

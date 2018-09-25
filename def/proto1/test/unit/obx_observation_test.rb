@@ -33,7 +33,7 @@ class ObxObservationTest < ActiveSupport::TestCase
     assert_equal('100', obx.test_normal_high)
 
     # Change the unit to one without a range
-    obx.unit_code = 5594; obx.loinc_unit(true) # reload the LoincUnit
+    obx.unit_code = 5594; obx.reload_loinc_unit # reload the LoincUnit
     obx.save!
     assert_equal('bpm', obx.obx6_1_unit)
     assert(obx.obx7_reference_ranges.blank?)
@@ -45,7 +45,7 @@ class ObxObservationTest < ActiveSupport::TestCase
     assert_equal('1-2', obx.obx7_reference_ranges)
 
     # Change the unit to one without a range.  Again, the range should clear
-    obx.unit_code = 5595; obx.loinc_unit(true) # reload the LoincUnit
+    obx.unit_code = 5595; obx.reload_loinc_unit # reload the LoincUnit
     obx.save!
     assert_equal('bpm2', obx.obx6_1_unit)
     assert(obx.obx7_reference_ranges.blank?)
@@ -54,7 +54,7 @@ class ObxObservationTest < ActiveSupport::TestCase
     # might be entering a range different from the default one for that unit,
     # so the user's range should prevail.
     obx.obx7_reference_ranges = '1-2'
-    obx.unit_code = 5593; obx.loinc_unit(true) # reload the LoincUnit
+    obx.unit_code = 5593; obx.reload_loinc_unit # reload the LoincUnit
     obx.save!
     assert_equal('/min', obx.obx6_1_unit)
     assert_equal('1-2', obx.obx7_reference_ranges)
@@ -62,7 +62,7 @@ class ObxObservationTest < ActiveSupport::TestCase
     # Change the range, and also pick a new unit without a range.  Again,
     # the user's newly entered range should be taken.
     obx.obx7_reference_ranges = '3-4'
-    obx.unit_code = 5594; obx.loinc_unit(true) # reload the LoincUnit
+    obx.unit_code = 5594; obx.reload_loinc_unit # reload the LoincUnit
     obx.save!
     assert_equal('bpm', obx.obx6_1_unit)
     assert_equal('3-4', obx.obx7_reference_ranges)

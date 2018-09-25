@@ -1,6 +1,7 @@
 # A module for routines that intepret/parse date/time strings.
 module DateInterpretation
-  require 'active_support/core_ext' # for Fixnum.years
+  require 'active_support'
+  require 'active_support/core_ext' # for Integer.years
 
   # Returns the value of the given string as a Time object.
   # Currently allowed formats are limited.  You can use "t" for today, and write

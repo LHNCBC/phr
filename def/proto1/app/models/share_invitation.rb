@@ -1,6 +1,6 @@
 class ShareInvitation < ActiveRecord::Base
   belongs_to :profile
-  serialize :data
+  serialize :data, JSON
   validates_uniqueness_of :accept_key
   
   
@@ -16,7 +16,7 @@ class ShareInvitation < ActiveRecord::Base
   # Returns:
   # * nothing
   #
-    def initialize(attributes, options={})
+    def initialize(attributes)
     # Create and store the row in the database table
     super
     # associate it with the profile object

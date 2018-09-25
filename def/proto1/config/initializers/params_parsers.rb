@@ -1,2 +1,2 @@
-ActionDispatch::ParamsParser::DEFAULT_PARSERS.delete(Mime::XML)
-ActionDispatch::ParamsParser::DEFAULT_PARSERS.delete(Mime::JSON)
+ActionDispatch::Request::DEFAULT_PARSERS.delete(Mime[:xml])
+ActionDispatch::Request::DEFAULT_PARSERS.delete(Mime[:json])

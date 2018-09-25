@@ -45,7 +45,7 @@ class TextFieldsHelperTest < HelperTestCase
     params = data_req_params(fd)
     assert_equal(4, params.size, 'drug name')
     assert_equal("/form/handle_data_req?fd_id=#{fd.id}", params[:dataUrl])
-    assert_equal(nil, params[:dataReqInput])
+    assert_nil(params[:dataReqInput])
 
     # Test for case where output fields are in the same group
     fd = field_descriptions(:data_req_params_test_list_field)

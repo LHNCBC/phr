@@ -27,7 +27,7 @@ class PhrAllergiesControllerTest < ActionController::TestCase
     form_data = {:phr_record_id=>@profile.id_shown}
     session_data = {:user_id=>users(:PHR_Test).id, :cur_ip=>'127.11.11.11'}
 
-    get :index, form_data, session_data
+    get :index, params: form_data, session: session_data
     assert_response :success
     assert_nil flash[:error]
     assert_nil flash[:notice]
@@ -40,12 +40,12 @@ class PhrAllergiesControllerTest < ActionController::TestCase
 
     form_data[:phr] =
       {:allergy_name_C1=>'FOOD-2', :reaction_date=>'asdf'}
-    post :create, form_data, session_data
+    post :create, params: form_data, session: session_data
     assert_response :success
     assert_not_nil flash[:error] # for the date
 
     form_data[:phr][:reaction_date] = '2010/12/14'
-    post :create, form_data, session_data
+    post :create, params: form_data, session: session_data
     assert_redirected_to :controller=>'phr_allergies', :action=>:index
     assert_nil flash[:error]
 
@@ -57,39 +57,39 @@ class PhrAllergiesControllerTest < ActionController::TestCase
     # value there)
     form_data[:phr][:allergy_name_C2] = 'DRUG-CLASS-2'
     form_data[:id] = allergy.id
-    put :update, form_data, session_data
+    put :update, params: form_data, session: session_data
     assert_redirected_to :controller=>'phr_allergies', :action=>:index
     assert_nil flash[:error]
-    allergy = @profile.phr_allergies(true).first
+    allergy = @profile.phr_allergies.reload.first
     assert_equal('Aminoglycosides', allergy.allergy_name)
     assert_equal('DRUG-CLASS-2', allergy.allergy_name_C)
 
     # Now change the first allergy list value and make sure the value changes
     form_data[:phr][:allergy_name_C2] = 'FOOD-7'
     form_data[:phr][:allergy_name_C1] = allergy.allergy_name_C
-    put :update, form_data, session_data
+    put :update, params: form_data, session: session_data
     assert_redirected_to :controller=>'phr_allergies', :action=>:index
     assert_nil flash[:error]
-    allergy = @profile.phr_allergies(true).first
+    allergy = @profile.phr_allergies.reload.first
     assert_equal('Gluten', allergy.allergy_name)
     assert_equal('FOOD-7', allergy.allergy_name_C)
 
     # Now use the alt field
     form_data[:phr][:alt_allergy_name] = 'Ice Cream'
-    put :update, form_data, session_data
+    put :update, params: form_data, session: session_data
     assert_redirected_to :controller=>'phr_allergies', :action=>:index
     assert_nil flash[:error]
-    allergy = @profile.phr_allergies(true).first
+    allergy = @profile.phr_allergies.reload.first
     assert_equal('Ice Cream', allergy.allergy_name)
     assert(allergy.allergy_name_C.blank?)
 
     # Create a new record using the alt field
     form_data[:phr] =
       {:alt_allergy_name=>'Lima Beans', :reaction_date=>'2010/12/14'}
-    post :create, form_data, session_data
+    post :create, params: form_data, session: session_data
     assert_redirected_to :controller=>'phr_allergies', :action=>:index
     assert_nil flash[:error]
-    allergy = @profile.phr_allergies(true).find_by_allergy_name('Lima Beans')
+    allergy = @profile.phr_allergies.reload.find_by_allergy_name('Lima Beans')
     assert_not_nil(allergy)
     assert(allergy.allergy_name_C.blank?)
   end

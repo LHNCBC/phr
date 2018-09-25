@@ -51,7 +51,7 @@ class PhrPanelItemsControllerTest < ActionController::TestCase
     phr_data = {}
     form_data[BasicModeController::FD_FORM_OBJ_NAME] = phr_data
     session_data = {:user_id=>users(:PHR_Test).id, :cur_ip=>'127.11.11.11'}
-    get :edit, form_data, session_data
+    get :edit, params: form_data, session: session_data
     assert_response :success
 
     access_det = UsageStat.where(profile_id: @profile.id).
@@ -64,7 +64,7 @@ class PhrPanelItemsControllerTest < ActionController::TestCase
     # Confirm that we can update the value and units
     phr_data[:alt_tp_test_value]='1234'
     phr_data[:tp_test_unit_C] = '5594' # 'bpm'
-    put :update, form_data, session_data
+    put :update, params: form_data, session: session_data
     assert_redirected_to :controller=>'phr_panel_items', :action=>:index
     assert_nil flash[:error]
     assert_equal(phr_data[:alt_tp_test_value],
@@ -82,7 +82,7 @@ class PhrPanelItemsControllerTest < ActionController::TestCase
     form_data[:phr_panel_id] = obr.id
     # Test the generation of the "new" panel item page
     form_data[:loinc_num] = '5767-9'
-    get :new, form_data, session_data
+    get :new, params: form_data, session: session_data
     assert_response :success
     form_data.delete(:loinc_num)
 
@@ -92,32 +92,32 @@ class PhrPanelItemsControllerTest < ActionController::TestCase
     phr_data[:loinc_num] = '5767-9'
     phr_data[:tp_test_value_C] = '1323'
     assert_equal 0, obr.obx_observations.size
-    post :create, form_data, session_data
+    post :create, params: form_data, session: session_data
     assert_nil flash[:error]
     assert_redirected_to phr_record_phr_panel_items_url(@profile, obr)
-    assert_equal 1, obr.obx_observations(true).size
+    assert_equal 1, obr.obx_observations.reload.size
 
     # Confirm that the correct value shows on the next page.
-    get :index, {:phr_record_id=>@profile.id_shown,
-      :phr_panel_id=>obr.id}, session_data
+    get :index, params: {:phr_record_id=>@profile.id_shown,
+      :phr_panel_id=>obr.id}, session: session_data
     assert_not_nil @response.body.index('sl cldy')
 
     # Confirm that the correct value is selected if we pull up the page for
     # editing.
     obx = obr.obx_observations.first
-    get :edit, {:phr_record_id=>@profile.id_shown, :phr_panel_id=>obr.id,
+    get :edit, params: {:phr_record_id=>@profile.id_shown, :phr_panel_id=>obr.id,
       :id=>obx.id}
-    assert_select 'select option[selected=selected][value=1323]'
+    assert_select 'select option[selected="selected"][value="1323"]'
 
     # Delete the obx and try again with a non-standard value.
     obx = obr.obx_observations.first
     obx.destroy
-    assert_equal 0, obr.obx_observations(true).size
+    assert_equal 0, obr.obx_observations.reload.size
     phr_data[:tp_test_value_C] = ''
     phr_data[:alt_tp_test_value] = 'green'
-    post :create, form_data, session_data
+    post :create, params: form_data, session: session_data
     assert_nil flash[:error]
     assert_redirected_to phr_record_phr_panel_items_url(@profile, obr)
-    assert_equal 1, obr.obx_observations(true).size
+    assert_equal 1, obr.obx_observations.reload.size
   end
 end

@@ -22,8 +22,8 @@ class HelperTestCase < ActionView::TestCase
   def setup
     super
 
-    @request    = ActionController::TestRequest.new
     @controller = StubController.new
+    @request    = ActionController::TestRequest.create(@controller.class)
     @controller.request = @request
 
 

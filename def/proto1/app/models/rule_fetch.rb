@@ -4,8 +4,8 @@ class RuleFetch < ActiveRecord::Base
   belongs_to :db_table_description, :foreign_key => :source_table_C
   has_many :rule_fetch_conditions, :dependent=>:delete_all
   cache_recs_for_fields 'rule_id'
-  serialize :executable_fetch_query_js
-  serialize :executable_fetch_query_ar
+  serialize :executable_fetch_query_js, JSON
+  serialize :executable_fetch_query_ar, JSON
 
   MAJOR_QUALIFIER = 'M'
   OTHER_QUALIFIER = 'O'
@@ -325,7 +325,7 @@ class RuleFetch < ActiveRecord::Base
 #    return quals
 #  end # get_date_qualifiers_data
 
-  
+
   # This extracts the non-date comparison data from the form_data hash passed
   # in.  This is the data that's stored for a the non-date qualifier conditions,
   # where multiple conditions may be specified.
@@ -395,7 +395,8 @@ class RuleFetch < ActiveRecord::Base
   #
   # Problems are documented via messages written to the errors object that
   # is automatically created for the class.
-  def validate
+  validate :validate_instance
+  def validate_instance
     if rule_id.nil?
       errors.add(:rule_id, 'must not be nil')
     else
@@ -487,7 +488,7 @@ class RuleFetch < ActiveRecord::Base
         ar_hash[:order] = order_hash.to_a.map{|e| e.join(" ")}.join(",") if order_hash
         limit_value = query_hash[:limit]
         ar_hash[:limit] = limit_value if limit_value
-        
+
         rtn = query_table_class.where(ar_hash[:conditions])
         rtn = rtn.order(ar_hash[:order]) if ar_hash[:order]
         rtn = rtn.limit(ar_hash[:limit]) if ar_hash[:limit]

@@ -1,6 +1,6 @@
 class UsageStat < ActiveRecord::Base
   belongs_to :user
-  serialize :data
+  serialize :data, JSON
   
   # The maximum number of events not connected to a user that we store at
   # any one time.  

@@ -10,12 +10,12 @@ class PhrHomeControllerTest < ActionController::TestCase
   fixtures :profiles_users, :profiles, :phrs
  
   def setup
-    #@controller = PhrHomeController.new
+    @controller = PhrHomeController.new
     DatabaseMethod.copy_development_tables_to_test(['field_descriptions',
         'forms', 'db_table_descriptions', 'db_field_descriptions',
         'usage_stats', 'text_lists', 'text_list_items'])
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
+    @request    = ActionController::TestRequest.create(@controller.class)
+    @response   = ActionDispatch::TestResponse.new
     @request.env['HTTPS'] = 'on'  # Set the request to be SSL
     timecop_path = Dir[File.join(Gem.user_dir,"gems/timecop*/lib/")][0]
     require timecop_path + 'timecop'
@@ -27,8 +27,8 @@ class PhrHomeControllerTest < ActionController::TestCase
   def test_get_initial_listings
 
     # Test requesting the page for a user with active, other, and removed phrs
-    get :index, {:form_name=>'phr_home'}, {:user_id=>users(:phr_home_user).id}
-    xhr :get, :get_initial_listings, {}, {:user_id=>users(:phr_home_user).id,
+    get :index, params: {:form_name=>'phr_home'}, session: {:user_id=>users(:phr_home_user).id}
+    get :get_initial_listings, xhr: true, params: {}, session: {:user_id=>users(:phr_home_user).id,
                                           :cur_ip=>'127.11.11.11'}
     assert_response :success
     @profiles = assigns(:profiles)
@@ -52,7 +52,7 @@ class PhrHomeControllerTest < ActionController::TestCase
 
     ret = JSON.parse(response.body)
     oListings = ret['other']['listings']
-    check_include = ['other_profile_line_1', 'o_icon_cell_1', 'o_wedgie_1',
+    check_include = ['other_profile_line_1', 'o_icon_cell_1', 'o_wedgie_cell_1',
                      'o_name_cell_1', 'o_last_updated_cell_1',
                      'o_envelope_cell_1', 'o_health_reminders_cell_1',
                      'o_calendar_cell_1', 'o_date_reminders_cell_1',
@@ -84,8 +84,8 @@ class PhrHomeControllerTest < ActionController::TestCase
     assert_equal(users(:phr_home_user).name, uname)
  
     # Test for a user with only active profiles
-    get :index, {:form_name=>'phr_home'}, {:user_id=>users(:phr_home_user2).id}
-    xhr :get, :get_initial_listings, {}, {:user_id=>users(:phr_home_user2).id,
+    get :index, params: {:form_name=>'phr_home'}, session: {:user_id=>users(:phr_home_user2).id}
+    get :get_initial_listings, xhr: true, params: {}, session: {:user_id=>users(:phr_home_user2).id,
                                           :cur_ip=>'127.11.11.11'}
     assert_response :success
     @profiles = assigns(:profiles)
@@ -97,8 +97,8 @@ class PhrHomeControllerTest < ActionController::TestCase
     assert(assigns(:other_profiles).empty?)
 
     # Test for a user with only removed profiles
-    get :index, {:form_name=>'phr_home'}, {:user_id=>users(:phr_home_user3).id}
-    xhr :get, :get_initial_listings, {}, {:user_id=>users(:phr_home_user3).id,
+    get :index, params: {:form_name=>'phr_home'}, session: {:user_id=>users(:phr_home_user3).id}
+    get :get_initial_listings, xhr: true, params: {}, session: {:user_id=>users(:phr_home_user3).id,
                                           :cur_ip=>'127.11.11.11'}
     assert_response :success
     assert(assigns(:profiles).empty?)
@@ -106,8 +106,8 @@ class PhrHomeControllerTest < ActionController::TestCase
     assert(assigns(:other_profiles).empty?)
 
     # Test for a user with no profiles
-    get :index, {:form_name=>'phr_home'}, {:user_id=>users(:phr_home_user4).id}
-    xhr :get, :get_initial_listings, {}, {:user_id=>users(:phr_home_user4).id,
+    get :index, params: {:form_name=>'phr_home'}, session: {:user_id=>users(:phr_home_user4).id}
+    get :get_initial_listings, xhr: true, params: {}, session: {:user_id=>users(:phr_home_user4).id,
                                           :cur_ip=>'127.11.11.11'}
     assert_response :success
     assert(assigns(:profiles).empty?)
@@ -126,14 +126,14 @@ class PhrHomeControllerTest < ActionController::TestCase
 
     # confirm error return for missing id_shown and file_format parameters
     assert_raise ActionController::UrlGenerationError do
-      get :export_one_profile, nil,
-                               {:user_id=>users(:phr_home_user).id,
+      get :export_one_profile, params: {},
+                               session: {:user_id=>users(:phr_home_user).id,
                                :cur_ip=>'127.11.11.11'}
     end
  
     # confirm error return for missing id_shown parameter
     assert_raise ActionController::UrlGenerationError do
-      get :export_one_profile, {:file_format=>"1"},
+      get :export_one_profile, params: {:file_format=>"1"}, session:
                                {:user_id=>users(:phr_home_user).id,
                                :cur_ip=>'127.11.11.11'}
     end
@@ -142,7 +142,7 @@ class PhrHomeControllerTest < ActionController::TestCase
     user1_prof = user1.active_profiles.find_by_id(-41)
     # confirm error return for missing file_format parameter
     assert_raise ActionController::UrlGenerationError do
-      get :get_export_one_profile, {:id_shown=>user1_prof.id_shown},
+      get :get_export_one_profile, params: {:id_shown=>user1_prof.id_shown}, session:
                                    {:user_id=>users(:phr_home_user).id,
                                     :cur_ip=>'127.11.11.11'}
     end
@@ -150,24 +150,24 @@ class PhrHomeControllerTest < ActionController::TestCase
     user2 = User.find_by_id(-16)
     user2_prof = user2.active_profiles.find_by_id(-46)
     # confirm error return for invalid id_shown parameter
-    get :export_one_profile, {:id_shown=>'xyz',
-                              :file_format=>"2"},
+    get :export_one_profile, params: {:id_shown=>'xyz',
+                              :file_format=>"2"}, session:
                              {:user_id=>users(:phr_home_user).id,
                               :cur_ip=>'127.11.11.11'}
     assert_template file: '500.html'
     assert response.status == 500
 
     # confirm error return for invalid file_format parameter
-    get :export_one_profile, {:id_shown=>user1_prof.id_shown,
-                              :file_format=>"12"},
+    get :export_one_profile, params: {:id_shown=>user1_prof.id_shown,
+                              :file_format=>"12"}, session:
                              {:user_id=>users(:phr_home_user).id,
                               :cur_ip=>'127.11.11.11'}
     assert_template file: '500.html'
     assert response.status == 500
 
     # confirm success for valid parameters
-    get :export_one_profile, {:id_shown=>user1_prof.id_shown,
-                              :file_format=>"2"},
+    get :export_one_profile, params: {:id_shown=>user1_prof.id_shown,
+                              :file_format=>"2"}, session:
                              {:user_id=>users(:phr_home_user).id,
                               :cur_ip=>'127.11.11.11'}
     assert_response(:success)
@@ -180,7 +180,7 @@ class PhrHomeControllerTest < ActionController::TestCase
   # profile.
   def test_get_removed_listings
 
-    xhr :get, :get_removed_listings, {}, {:user_id=>users(:phr_home_user).id,
+    get :get_removed_listings, xhr: true, params: {}, session: {:user_id=>users(:phr_home_user).id,
                                           :cur_ip=>'127.11.11.11'}
     ret = JSON.parse(response.body)
     rListings = ret['removed']['listings']
@@ -210,15 +210,15 @@ class PhrHomeControllerTest < ActionController::TestCase
     user1_phr.birth_date = (DateTime.now - 100.years).strftime("%Y/%m/%d")
     user1_phr.save!
 
-    xhr :get, :get_one_active_profile_listing, {:id_shown=>user1_prof.id_shown,
-                                                :row_num=>"12"},
+    get :get_one_active_profile_listing, xhr: true, params: {:id_shown=>user1_prof.id_shown,
+                                                :row_num=>"12"}, session:
                                                {:user_id=>users(:phr_home_user).id,
                                                 :cur_ip=>'127.11.11.11'}
     # this can actually use the assert_selects, because what gets returned is
     # the html for the section without being enclosed in a hash.
     assert_select 'tr#main_profile_line_12' do
       assert_select 'td#icon_cell_12', 1
-      assert_select 'td#wedgie_12', 1
+      assert_select 'td#wedgie_cell_12', 1
       assert_select 'td#name_cell_12', 1
       assert_select 'td#last_updated_cell_12', 1
       assert_select 'td#envelope_cell_12', 1
@@ -266,9 +266,8 @@ class PhrHomeControllerTest < ActionController::TestCase
     user1_prof.last_updated_at -= 1.minutes
     user1_prof.save!
 
-    xhr :get, :get_name_age_gender_updated_labels,
-                                            {:id_shown=>user1_prof.id_shown,
-                                             :pseudonym=>user1_phr.pseudonym},
+    get :get_name_age_gender_updated_labels, xhr: true, params: {:id_shown=>user1_prof.id_shown,
+                                             :pseudonym=>user1_phr.pseudonym}, session:
                                             {:user_id=>users(:phr_home_user).id,
                                              :cur_ip=>'127.11.11.11'}
     assert_equal("[\"Liberty\",\"1 week old\",\"4 hours ago\"]", @response.body)

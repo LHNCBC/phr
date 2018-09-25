@@ -10,17 +10,18 @@ class RuleAction < ActiveRecord::Base
 #  ACTIONS.each do |a|
 #    VALID_NAMES << a.item_name
 #  end
-  
+
   # The disallowed control types for a set_value/set_or_clear_value action.
   INVALID_SET_VALUE_TYPES =
     Set.new(['group_hdr', 'print_button', 'expcol_button'])
 
   NO_AFFECTED_FIELD_NEEDED = Set.new(['execute_javascript'])
-    
+
   # A validation method.  This runs when "save" is called.  If it finds
   # errors, it adds them to the "errors" hash.  See AWDWR2, p.361.
-  def validate
-  
+  validate :validate_instance
+  def validate_instance
+
     if !defined? @@valid_names
       RuleAction.populate_actions_cache
     end
@@ -29,7 +30,7 @@ class RuleAction < ActiveRecord::Base
       if self.new_record?
         errors.add(:rule_part, 'must be associated with a rule_part when created')
       else
-        errors[:base]=('This is an orphan rule action.')
+        errors.add(:base, 'This is an orphan rule action.')
         return
       end
     end
@@ -44,7 +45,7 @@ class RuleAction < ActiveRecord::Base
       # for a user specifying action names).
       self.action = action.strip.downcase
     end
-    if action.blank? 
+    if action.blank?
       errors.add(:action, 'no action specified')
     elsif !@@valid_names.include?(action)
       errors.add(:action, action + ' is invalid')
@@ -150,8 +151,8 @@ class RuleAction < ActiveRecord::Base
 #    raise 'function names returns ' +
 #          RuleActionDescription.function_names.join(' ')
   end # def populate_actions_cache
-  
-  
+
+
   # Handles the validation of the parameters field for the case where
   # there is only a single value allowed.  The user is permitted to enter
   # the value without specifying the parameter name.
@@ -198,7 +199,7 @@ class RuleAction < ActiveRecord::Base
 
   def validate_loinc_number
     # make sure the parameters is a hash like string
-    if !parameters.nil? 
+    if !parameters.nil?
       if parameters !~ /=>/
         param_value = parameters.strip
         self.parameters = "loinc_number=>#{param_value}"
@@ -206,23 +207,23 @@ class RuleAction < ActiveRecord::Base
         param_value = RuleAction.parse_hash_value(parameters)["loinc_number"]
       end
     end
-    
+
     if param_value.blank? || !LoincItem.find_by_loinc_num(param_value)
       errors.add(:parameters, "the loinc number #{param_value} is not valid.")
     end
   end
-  
+
   # Handles the validation of the parameters field for the case where
-  # multiple parameters are allowed. 
+  # multiple parameters are allowed.
   #
   # A hash containing the validation data for each parameter is passed in.
   # The parameter name serves as the key to the hash elements.  Each hash
-  # element should contain an array of 2 elements.  The first element is the 
+  # element should contain an array of 2 elements.  The first element is the
   # data type expected for the value.  The second is a flag indicating
   # whether or not the parameter is required.
   #
   # See the do_type_validations method for the data types currently validated.
-  # 
+  #
   # If the parameter data type is an array, an array is specified for the
   # data type, where the array contains the expected type for each element,
   # in the same order in which the elements should appear in the array.
@@ -230,37 +231,37 @@ class RuleAction < ActiveRecord::Base
   # If the parameter type is a hash, a hash is specified for the data type.
   # That hash should contain a key for the hash parameter name and a data
   # type for the value for that parameter.  Oh goody.
-  #   
+  #
   # An error is signalled for any parameters that are not specified in the
   # expected hash.
   #
   # Any errors found are loaded to the errors object.  This must be checked
   # to ascertain success.
-  #  
+  #
   # Parameters:
   # * expected hash containing the specifications for each parameter.
-  # 
+  #
   def handle_multiple_param_validation(expected)
-    
+
     if (parameters.blank?)
       errors.add(:parameters, expected.length_to_s + ' are required for ' +
                  'the ' + action + ' action, but none were specified.')
     else
-      specified = parsed_parameters.clone 
+      specified = parsed_parameters.clone
       expected.each do |exp_name, exp_details|
-      
+
         if !specified[exp_name].nil?
           spec = specified.delete(exp_name)
           exp_type = exp_details[0]
           do_type_validation(exp_name, exp_type, spec)
-        
+
         elsif exp_details[1] == true
           errors.add(:parameters, 'Missing ' + exp_name + ' parameter.  ' +
                       'This parameter is required for action = ' +
                       action + '.')
         end # if we do/don't have that parameter
       end # do for each expected parameter
-      
+
       # If there are any parameters left, list them as unrecognized.
       if specified.length > 0
         extra_list = String.new
@@ -273,43 +274,43 @@ class RuleAction < ActiveRecord::Base
                    extra_list)
       end # if we have leftover parameters
     end # if the parameters are/aren't blank
-  end # handle_multiple_param_validation  
-  
-  
+  end # handle_multiple_param_validation
+
+
   # This method invokes the appropriate type validation method for
   # a parameter based on the expected type of the parameter.  This
   # is in its own method because parameter checking may be recursive,
   # specifically in the case of parameters that accept arrays and
-  # hashes.  
+  # hashes.
   #
   # Parameter types supported are as checked in this method.  At some
   # point they should probably be elsewhere, but for now they're here.
-  #  
+  #
   # Parameters:
   # * exp_name name of the parameter
   # * exp_type expected type of the parameter
   # * spec the parameter specified
-  #   
+  #
   def do_type_validation(exp_name, exp_type, spec)
-    
+
     if (exp_type.class.to_s == 'String')
       exp_type.downcase!
       case exp_type
       when 'string'
         validate_simple_type(exp_name, exp_type, 'String', spec)
-      when 'integer', 'fixnum'
-        validate_simple_type(exp_name, exp_type, 'Fixnum', spec)
+      when 'integer'
+        validate_simple_type(exp_name, exp_type, 'Integer', spec)
       when 'number', 'float'
-        validate_simple_type(exp_name, exp_type, 'Float,Fixnum', spec)
+        validate_simple_type(exp_name, exp_type, 'Float,Integer', spec)
       when 'operator'
         validate_operator_param(exp_name, spec)
-      when 'field' 
+      when 'field'
         validate_field_param(exp_name, spec)
       else
         errors.add(:parameters, 'Unexpected type indicated for ' +
                    exp_name + ' parameter.  Indicated type = ' +
                    exp_type + ' (for action = ' + action + ')')
-      end        
+      end
     elsif (exp_type.class.to_s == 'Array')
       validate_array_param(exp_name, exp_type, spec)
     elsif (exp_type.class.to_s == 'Hash')
@@ -320,8 +321,8 @@ class RuleAction < ActiveRecord::Base
                  exp_type.to_s + ' (for action = ' + action + ')')
     end
   end # do_type_validation
-  
-  
+
+
   # This method validates one of the simple data types possible for
   # a parameter and adds an error message to errors if the type of the
   # value passed in is not as specified.
@@ -333,11 +334,11 @@ class RuleAction < ActiveRecord::Base
   # * value parameter value
   #
   def validate_simple_type(param_name, type_name, match_class, value)
-    
-    val_class = value.class.to_s  
+
+    val_class = value.class.to_s
     if !match_class.include? ','
       if (val_class != match_class)
-        errors.add(:parameters, param_name + ' value should be of type ' + 
+        errors.add(:parameters, param_name + ' value should be of type ' +
                    type_name + ', but ' + value.to_s + ' is of type ' +
                    val_class + ' (for action = ' + action + ')')
       end
@@ -348,21 +349,21 @@ class RuleAction < ActiveRecord::Base
                    type_name + ', but ' + value.to_s + ' is of type ' +
                    val_class + ' (for action = ' + action + ')')
       end
-    end                 
+    end
   end # validate_simple_type
-  
-  
+
+
   # This method validates an operator parameter to see if the value
-  # specified is one of the ones currently considered valid, and adds 
-  # error message to errors if the test fails.  
+  # specified is one of the ones currently considered valid, and adds
+  # error message to errors if the test fails.
   #
-  # At the moment the moment the valid operators are defined within 
+  # At the moment the moment the valid operators are defined within
   # this method - but at some point that should be changed.
   #
   # Parameters:
   # * param_name name of the parameter
   # * operator the parameter value specified
-  #  
+  #
   def validate_operator_param(param_name, operator)
     operators = ['==', '!=', '<', '>', '<=', '>=']
     if (operator.class.to_s != 'String' || !operators.include?(operator))
@@ -372,29 +373,29 @@ class RuleAction < ActiveRecord::Base
                  ' (for action = ' + action + ')')
     end
   end # validate_operator_param
-  
+
   # This method validates a parameter that is supposed to be the
   # name of a form field.  It checks for the field on all forms
   # used by the rule to which this action is attached, and adds
   # an error message to errors if the form field is not found on
-  # all applicable forms.  
+  # all applicable forms.
   #
   # Parameters:
   # * param_name name of the parameter
   # * field_name the parameter value specified
-  #    
+  #
   def validate_field_param(param_name, field_name)
-  
+
     have_fd = check_field_on_all_forms(field_name)
     if !have_fd
       errors.add(:parameters, param_name + ' value must be the name of ' +
                  'a field on each form to which this rule is applied for ' +
-                 'action = ' + action + '.  ' + 
+                 'action = ' + action + '.  ' +
                  field_name + ' was not found for at least one form.' )
     end
   end # validate_field_param
-  
-  
+
+
   # This method validates a parameter that is supposed to be an
   # array.  The exp_type passed in should be an array, where each
   # element specifies the type for the corresponding element in
@@ -407,16 +408,16 @@ class RuleAction < ActiveRecord::Base
   # array are optional.  It is assumed that they are all required.
   #
   # If an invalid type is found, or the two arrays are not the same
-  # length an error message is added to errors.  
+  # length an error message is added to errors.
   #
   # Parameters:
   # * param_name name of the parameter
   # * exp_type the array specifying a data type for each element
   #   in the parameter array
   # * spec_array the array specified for the parameter.
-  #      
+  #
   def validate_array_param(param_name, exp_type, spec_array)
-  
+
     if (exp_type.length != spec_array.length)
       errors.add(:parameters, 'Incorrect number of array elements specified ' +
                  'for the ' + param_name + ' parameter.  Should be an ' +
@@ -425,13 +426,13 @@ class RuleAction < ActiveRecord::Base
                  action + ').')
     else
       0.upto(exp_type.length - 1) do |i|
-        do_type_validation(param_name + '[' + i.to_s + ']', 
+        do_type_validation(param_name + '[' + i.to_s + ']',
                            exp_type[i], spec_array[i])
       end
     end
   end # validate_array_param
-  
-  
+
+
   # This method validates a parameter that is supposed to be a hash.
   # The exp_type passed in should be a hash, where each element is
   # a param_name=>type pair.  Each type specification and parameter
@@ -443,14 +444,14 @@ class RuleAction < ActiveRecord::Base
   # hash are optional.  It is assumed that they are all required.
   #
   # If an invalid type is found, or a parameter is not found, or there
-  # are parameters left over after checking is complete, an error message is added to errorss.  
+  # are parameters left over after checking is complete, an error message is added to errorss.
   #
   # Parameters:
   # * param_name name of the parameter
   # * exp_type the hash specifying a data type for each element
   #   in the parameter hash
   # * spec_hash the hash specified for the parameter.
-  #        
+  #
   def validate_hash_param(param_name, exp_type, spec_hash)
     exp_type.each_pair do |exp_key, exp_type_name|
       do_type_validation(param_name + '.' + exp_key, exp_type_name,
@@ -465,16 +466,16 @@ class RuleAction < ActiveRecord::Base
       errors.add(:parameters, 'Unrecognized parameters specified ' +
                  'for action = ' + action + '.  Parameters are:  ' +
                  extra_list)
-    end # if we have leftover parameters    
+    end # if we have leftover parameters
   end # validate_array_param
-  
-  
-  
+
+
+
   # Returns the value of parameters, parsed into a hash map.
   # For the format of the parameters field, see parse_hash_value.
   def parsed_parameters
     rtn = RuleAction.parse_hash_value(parameters)
-    
+
     # For set_value action, we need to convert
     # "value"=>"''" or "value"=>"\"\"" into "value" =>""
     if rtn && rtn["value"] && rtn["value"].length == 2
@@ -482,9 +483,9 @@ class RuleAction < ActiveRecord::Base
     end
     rtn
   end
-  
-  
-  # Checks whether a field name is defined as a field on all of the 
+
+
+  # Checks whether a field name is defined as a field on all of the
   # rule's forms.  If no field name is passed in, the affected field
   # is assumed to be the target.
   #
@@ -497,7 +498,7 @@ class RuleAction < ActiveRecord::Base
   #
   def check_field_on_all_forms(field_name=nil)
     return nil unless rule_part
-    
+
     if field_name.nil?
       field_name = affected_field
     end
@@ -538,7 +539,7 @@ class RuleAction < ActiveRecord::Base
   end
 
   # Overwrites getter method so that returning parameters will replace its rule
-  # variables with matching rule names 
+  # variables with matching rule names
   def parameters
     saved_param = attributes["parameters"]
     if saved_param

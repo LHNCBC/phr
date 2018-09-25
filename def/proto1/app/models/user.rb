@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   has_many :phrs, :through => :profiles
   has_many :email_verifications
   
-  attr_accessible nil
   # set the regular usertype as 5, and set the openid user type as 6
   USERTYPE_REGULAR = 5
   USERTYPE_OPENID = 6
@@ -223,7 +222,7 @@ class User < ActiveRecord::Base
   #
   # Parameters:
   # * attrs - the attribute hash.  We check this with a white list.
-  def initialize(attrs={}, options={})
+  def initialize(attrs={})
     attrs = {} if !attrs # attrs might be nil
     super
     self.usertype = USERTYPE_REGULAR
@@ -375,14 +374,13 @@ class User < ActiveRecord::Base
         # so that instances can know what that value is (e.g. for
         # data_req_output)
         if !table_cls.respond_to?('id_shown')
-          eval <<-ENDIDSHOWN
-            class ::#{table_cls.name}
-              belongs_to :profile
-              def id_shown
-                return profile.id_shown
-              end
+          table_cls.class_eval do
+            belongs_to :profile
+
+            def id_shown
+              profile.id_shown
             end
-          ENDIDSHOWN
+          end
         end
         # if condition[:latest] comes in as a argument, either all or true/false
         #  conditions[:latest] = true by default.
@@ -1106,7 +1104,7 @@ class User < ActiveRecord::Base
     if new_record?
       vtoken = self.generate_random_str
       self.email_verifications.build(:token=>vtoken, :token_type=>"new")
-      #DefMailer.verify_reg_email(self.name, vtoken, self.email).deliver
+      #DefMailer.verify_reg_email(self.name, vtoken, self.email).deliver_now
     end
   end
 

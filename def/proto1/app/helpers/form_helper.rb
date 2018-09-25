@@ -818,7 +818,11 @@ logger.debug ''
     regexArr.each do |a|
       # Replace the instance variable name with the value.
       # a = "#{@instance_var_name}"
-      output_string.gsub!(a,instance_variable_get(a[2..-2]))
+      # Since this was originally written, the instance variable in question now
+      # sometimes is user-supplied data (e.g. the profile name) which should
+      # have already been sanitized, but just to be safe, we are doing
+      # HTML-encoding before putting it into the page (via the "h" call).
+      output_string.gsub!(a, h(instance_variable_get(a[2..-2])))
     end
   end
 
@@ -1044,9 +1048,9 @@ logger.debug ''
         end
       end
     end
-    
-    # The delete/undeleted memu is available to the row which has a virtual 
-    # field of class cet_actions. Only fields with a parent field meet this 
+
+    # The delete/undeleted memu is available to the row which has a virtual
+    # field of class cet_actions. Only fields with a parent field meet this
     # requirement.  And only when the user has more than read-only access.
     the_header = the_field.group_header
     if (@access_level == ProfilesUser::NO_PROFILE_ACTIVE ||

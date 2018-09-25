@@ -52,6 +52,11 @@ Def.Autocompleter.Event.observeRDRAssignment(function(data) {
 Def.Autocompleter.Event.observeListSelections(null, function(data) {
   var fieldID = data.field_id;
   var field = $(fieldID);
+
+  // The change event for the field might not have fired.  Run the DEF
+  // change event observers.
+  Def.FieldEvents.runChangeEventObservers(field);
+
   var codeField = Def.getFieldsCodeField(field);
   var codeVal = data.item_code;
   if (codeVal === undefined)

@@ -34,7 +34,7 @@ class RuleData
     all_rule_ids = form.rule_ids
     
     form.foreign_form_ids.each {|id| all_rule_ids.concat(Form.find(id).rule_ids) }
-    all_rules = Rule.find(all_rule_ids.uniq)
+    all_rules = Rule.find(all_rule_ids.sort.uniq)
     f_sorted_rules = Rule.complete_rule_list(all_rules)
 
     f_data_rules = required_data_rules_by_form(form, f_sorted_rules)
@@ -59,8 +59,8 @@ class RuleData
 
   #  def self.load_data_rules_by_tables(table_list)
   #    table_list = table_list.delete_if{|e| e.match(/_prefetched\z/)}
-  #    table_ids = DbTableDescription.find_all_by_data_table(table_list).map(&:id)
-  #    fetch_rules = RuleFetch.find_all_by_source_table_C(table_ids).map(&:rule)
+  #    table_ids = DbTableDescription.where(data_table: table_list).map(&:id)
+  #    fetch_rules = RuleFetch.where(source_table_C: table_ids).map(&:rule)
   #    Rule.complete_rule_list(fetch_rules)
   #  end
 

@@ -166,7 +166,7 @@ class ShareInvitationController < ApplicationController
             UsageStat.create_stats(@user,
                                    profile_id,
                                    report_params,
-                                   request.session_options[:id],
+                                   request.session.id,
                                    session[:cur_ip],
                                    false)
           end # if the target user doesn't already have access to this phr
@@ -416,7 +416,7 @@ class ShareInvitationController < ApplicationController
                                   invite.target_name,
                                   invite.target_email,
                                   prof_name_possessive,
-                                  SHARE_INVITE_FROM_LINES.html_safe).deliver
+                                  SHARE_INVITE_FROM_LINES.html_safe).deliver_now
   end # send_invitation_accepted
 
 
@@ -438,7 +438,7 @@ class ShareInvitationController < ApplicationController
                                   invite.target_name,
                                   invite.target_email,
                                   prof_name_possessive,
-                                  SHARE_INVITE_FROM_LINES.html_safe).deliver
+                                  SHARE_INVITE_FROM_LINES.html_safe).deliver_now
   end # send_invitation_declined
 
 
@@ -602,7 +602,7 @@ class ShareInvitationController < ApplicationController
     # but be sure to sanitize the email address before sending it on (since
     # it's not in the body of the email).
     DefMailer.share_invitation(view_context.sanitize(invite_data["target_email"]),
-                               msg, accept_key, link_text, request.host).deliver
+                               msg, accept_key, link_text, request.host).deliver_now
     return accept_key
   end # send_invitation
 

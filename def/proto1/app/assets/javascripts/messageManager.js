@@ -471,7 +471,7 @@ Def.attachMessageManagers = function(anchorMap) {
       Def.Logger.logMessage(["Ajax request was successfuly completed in ", 
         (new Date().getTime() - stime)," ms "]);
       
-      var msgs = eval('(' + response.responseText + ')')[0]; 
+      var msgs = JSON.parse(response.responseText)[0];
       stime = new Date().getTime();
       Def.completeMessageManager(msgs, anchorMap);
       Def.Logger.logMessage(["Attaching message managers was done in: ",

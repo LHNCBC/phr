@@ -1705,8 +1705,9 @@ Def.DataModel = {
             maxResponses = newTotalNumDataRows;
             fieldGroup.setAttribute('max_responses', maxResponses);
           }
-          var addBlankRow = !isTestPanel && Def.accessLevel_ < Def.READ_ONLY_ACCESS &&
-                        (maxResponses == 0 || newTotalNumDataRows < maxResponses);
+          var addBlankRow = !isTestPanel && 
+                      Def.formEditability_ !== Def.FORM_READ_ONLY_EDITABILITY &&
+                      (maxResponses == 0 || newTotalNumDataRows < maxResponses);
           var numDataRowsToAdd = numNewDataRows - numExistingBlank;
 
           if (isCETable) {
@@ -1720,7 +1721,8 @@ Def.DataModel = {
               fieldGroup.ce_table.createReadOnlyRows(tableElem, numDataRowsToAdd);
             if (addBlankRow || tableAdds > 0)
               fieldsTable.addTableLine(tableElem, null, 1 + tableAdds, loading);
-            if (numNewDataRows === 0 && Def.accessLevel_ === Def.READ_ONLY_ACCESS)
+            if (numNewDataRows === 0 && 
+                Def.formEditability_ === Def.FORM_READ_ONLY_EDITABILITY)
               fieldsTable.addNoDataLine(tableElem, fieldGroupID)
           }
           else {
