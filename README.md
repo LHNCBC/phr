@@ -8,9 +8,6 @@ This application was developed by staff in the Computer Science Branch at the U.
 
 The PHR is a web-based system.  The server code is written primarily in Ruby on Rails, and the client side code is written in Javascript.  A MySQL database contains both user and program data.
 
-### Demonstration Site
-You may "try out" the system at our [demonstration site](https://phr-demo.nlm.nih.gov).
-
 ### Key Features
 
 ####	Single Account for All Family Members 
