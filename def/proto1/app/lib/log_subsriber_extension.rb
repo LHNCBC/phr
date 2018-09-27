@@ -1,0 +1,1 @@
+../../lib/log_subsriber_extension.rb
