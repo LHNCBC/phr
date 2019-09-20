@@ -72,8 +72,6 @@
                           jquery-1.9.1 code or a softlink to it;</li>
                       <li>jquery-mobile - either the top-level directory of the
                           jquery-mobile-1.4.2 code or a softlink to it;</li>
-                      <li>jqueryPlugins - either the top-level directory of
-                          the jqueryPlugins code or a softlink to it;</li>
                       <li>jquery-ui - either the top-level directory of the
                           jquery-ui-1.10.1 code or a softlink to it;</li>
                       <li>node - either the top-level directory of the node.js
@@ -102,7 +100,7 @@
 
           <div id='mysql'><h4>MySQL or some other SQL database</h4>
              <ul><li><a href='http://www.mysql.com'>http://www.mysql.com</a></li>
-                 <li>we are using MySQL version 5.6.6 (linux)</li>
+                 <li>we are using MySQL version 5.6.45 (linux)</li>
                  <li>the <i>def/bin</i> directory contains a
                      <i>mysql</i> softlink to the <i>mysql</i> executable.  If
                      this is not correct for your installation, update that
@@ -113,9 +111,12 @@
                      PHR system deals with sensitive information</li>
              </ul>
            </div> <!-- end mysql -->
-           <div id='apache'><h4>a webserver such as Apache</h4>
-              <ul><li><a href='http://httpd.apache.org'>
-                         http://httpd.apache.org</a></li></ul>
+           <div id='apache'><h4>A webserver such as Apache</h4>
+              <ul>
+                <li><a href='http://httpd.apache.org'>
+                         http://httpd.apache.org</a></li>
+                <li>version 2.4.6</li>
+              </ul>
            </div> <!-- end apache -->
 
 
@@ -123,8 +124,8 @@
               <ul><li><a href='http://rubyonrails.org'>
                          http://rubyonrails.org</a></li>
                 <li>we are using
-                  <ul><li>ruby version 2.1</li>
-                  <li>rails version 4.1</li></ul>
+                  <ul><li>ruby version 2.4.4</li>
+                  <li>rails version 5.1.4</li></ul>
                 </li>
                 <li>installation order that works for us:
                   <ol><li>install ruby</li>
@@ -147,12 +148,13 @@
            <div id='node_js'><h4>node.js</h4>
              <ul><li><a href='http://nodejs.org'>http://nodejs.org</a></li>
                <li>we are using
-                 <ul><li>node-v0.10.24-linux-x64</li></ul>
+                 <ul><li>node-v8.11.3-linux-x64</li></ul>
                </li>
                <li>create a softlink <i>node</i> in the <i>def/packages</i>
                    directory that points to your node directory</li>
                <li>create a softlink <i>node_modules</i> in the <i>def/packages</i>
-                   directory that points to your node_modules directory</li>
+                   directory that points to your node_modules directory. The node_modules 
+                   should include prototype v0.0.5</li>
                <li><b>npm</b> - use the version that comes with your node.js
                    distribution</li>
              </ul>
@@ -168,11 +170,15 @@
                                <li>softlink jquery.min.js should point to jquery-1.9.1.min.js</li>
                              </ul>
                            </li>
-                           <li>jquery.flot.js and jquery.flot.min.js</li>
-                           <li>jquery.flot.crosshair.js and jquery.flot.crosshair.min.js</li>
-                           <li>jquery.flot.selection.js and
-                               jquery.flot.crosshair.selection.min.js</li>
-                           <li>jquery.sparkline.js and jquery.sparkline.min.js</li>
+                           <li>jquery.flot (v0.8.3)
+                             <ul>
+                                <li>jquery.flot.js and jquery.flot.min.js</li>
+                                <li>jquery.flot.crosshair.js and jquery.flot.crosshair.min.js</li>
+                                <li>jquery.flot.selection.js and
+                                    jquery.flot.crosshair.selection.min.js</li>
+                             </ul>
+                           </li>
+                           <li>jquery.sparkline.js and jquery.sparkline.min.js (v2.1.1)</li>
                          </ul>
                        </li>
 
@@ -217,17 +223,12 @@
                        <li>jquery-ui</li>
                    </ul>
                  </li>
-                 <li>the <i>def/proto1/public</i> directory should contain a
-                     jqueryPlugins subdirectory that contains a single softlink,
-                     <b>packages</b> that points to the same directory to which
-                     the <b>jqueryPlugins</b> softlink in the <i>def/packages</i>
-                     directory points.
-                 </li>
              </ul>
            </div> <!-- end jquery -->
            <div id='autocomplete_lhc'><h4>autocomplete-lhc</h4>
              <ul><li><a href='https://github.com/lhncbc/autocomplete-lhc.git'>
                         https://github.com/lhncbc/autocomplete-lhc.git</a></li>
+                 <li>version 6.1.1</li>
                  <li>create a softlink <i>autocomp</i> in the <i>packages</i>
                    directory that points to your autocomplete-lhc directory</li>
              </ul>
@@ -235,6 +236,7 @@
            <div id='javascript_stacktrace'><h4>javascript-stacktrace</h4>
              <ul><li><a href='https://github.com/stacktracejs/stacktrace.js/'>
                         https://github.com/stacktracejs/stacktrace.js/</a></li>
+                  <li>version 0.6.4 on 8/28/2015</li>      
                   <li>create a softlink <i>javascript-stacktrace</i> in the
                       <i>packages</i> directory that points to your
                       javascript-stacktrace directory</li>
@@ -302,7 +304,7 @@
               <li>After the database is populated you need to build the indexes
                   used to search some of the program data tables.  There is a
                   rake task that will build those indexes:<br>
-                  <b>rake def:rebuild_indexes</b></li>
+                  <b>rake def:rebuild_ferret_index</b></li>
               <li>The indexes will be built in a subdirectory of the def/proto1/index
                   directory.</li>
            </ul>
