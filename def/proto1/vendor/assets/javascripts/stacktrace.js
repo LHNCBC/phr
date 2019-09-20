@@ -1,1 +1,1 @@
-javascript-stacktrace/stacktrace.js
+../../../../packages/javascript-stacktrace/stacktrace.js
