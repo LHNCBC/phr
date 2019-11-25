@@ -37,7 +37,7 @@ Proto1::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Directory for table backups made by the data controller
-  DATA_CONTROLLER_BACKUP_DIR = '/proj/defExtra/dataTableBackups'
+  DATA_CONTROLLER_BACKUP_DIR = 'TBD, e.g./proj/defExtra/dataTableBackups'
 
 
 # Compress JavaScripts and CSS

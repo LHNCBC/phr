@@ -1,6 +1,6 @@
 class DefMailer < ActionMailer::Base
 
-  default :from => "TBD - YOUR EMAIL FOR REPLIES",
+  default :from => SITE_OWNER_EMAIL,
     :date => Proc.new { Time.now },
     :content_type => "text/html"
 

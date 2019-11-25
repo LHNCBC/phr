@@ -4,7 +4,7 @@ require 'etc'
 module Vcs
   # The path to git.  Use the full path to git to avoid getting our git script
   # (which requires this file, resulting in an infinite loop).
-  GIT_CMD = '/usr/local/bin/git'
+  GIT_CMD = '/bin/git'
 
   # The number of seconds between checks for the existence of the lock file.
   LOCK_CHECK_INTERVAL = 5
