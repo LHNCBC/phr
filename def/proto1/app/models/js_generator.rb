@@ -28,9 +28,8 @@ class JsGenerator
   end
 
 
-  # Returns the full path of an asset file, or nil if we are using production assets
-  # but a precompiled version is not found.  (For development assets, it is
-  # assumed that the file exists.)
+  # Returns the full path of an asset file, or nil if a precompiled version 
+  # is not found.
   # This method assumes that there is only one precompiled version available
   # (which should be fine for our purposes, since we delete the old ones when
   # there is a change).
@@ -49,7 +48,8 @@ class JsGenerator
       rtn = File.join(@@production_asset_dir, file_name) if file_name
       Dir.chdir cwd
     else
-      rtn = File.join(@@development_js_dir, file_name)
+      file_path = File.join(@@development_js_dir, file_name)
+      rtn = file_path if File.exists?(file_path)
     end
     return rtn
   end

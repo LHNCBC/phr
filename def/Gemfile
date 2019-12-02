@@ -1,0 +1,47 @@
+# Edit this Gemfile to bundle your application's dependencies.
+source 'https://rubygems.org'
+
+gem 'rails', '5.1.4'
+gem 'mysql2', '~>0.3.18'
+gem 'recaptcha'
+gem 'ferret'
+gem 'acts_as_ferret'
+gem 'acts_as_tree' # used by drug_route.rb
+gem 'acts_as_reportable'
+gem 'activerecord-import'
+gem 'paper_trail', '>=3.0.0rc1'
+gem 'thin'
+gem 'rubyzip'
+gem 'spreadsheet'
+gem 'dictionary' # used by form_data.rb
+gem 'passenger', '>=5.1.11'
+gem 'lrucache' # required by brake.rb
+gem 'net-sftp' # required by packUpdate script
+gem 'byebug' # an replacement for ruby-debug which has issue when step-over
+gem 'nokogiri', '1.8.1' # XML dom/xpath parser
+
+# features have been removed from rails4
+gem 'rails-observers', '0.1.5'
+gem 'activerecord-session_store'
+
+gem 'sass-rails'
+gem 'compass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem 'yui-compressor'
+
+group :test do 
+  # handle deprecated assign method in controller test
+  gem 'rails-controller-testing'
+end
+
+group :production do
+  gem 'therubyracer' # required by rails 3.1+
+end
+
+group :test, :development do
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-remote'
+end
+
