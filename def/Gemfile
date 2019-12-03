@@ -18,7 +18,7 @@ gem 'passenger', '>=5.1.11'
 gem 'lrucache' # required by brake.rb
 gem 'net-sftp' # required by packUpdate script
 gem 'byebug' # an replacement for ruby-debug which has issue when step-over
-gem 'nokogiri', '1.8.1' # XML dom/xpath parser
+gem 'nokogiri', '1.10.4' # XML dom/xpath parser
 
 # features have been removed from rails4
 gem 'rails-observers', '0.1.5'

@@ -110,7 +110,7 @@ GEM
       mini_mime (>= 0.1.1)
     method_source (0.8.2)
     mini_mime (1.0.0)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.10.3)
     multi_json (1.12.2)
     mysql2 (0.3.21)
@@ -118,8 +118,8 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
     nio4r (2.1.0)
-    nokogiri (1.8.1)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.4)
+      mini_portile2 (~> 2.4.0)
     paper_trail (8.0.0)
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.1)
@@ -248,7 +248,7 @@ DEPENDENCIES
   lrucache
   mysql2 (~> 0.3.18)
   net-sftp
-  nokogiri (= 1.8.1)
+  nokogiri (= 1.10.4)
   paper_trail (>= 3.0.0rc1)
   passenger (>= 5.1.11)
   pry
