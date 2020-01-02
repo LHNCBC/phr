@@ -13,7 +13,7 @@ class DefMailerTest < ActionMailer::TestCase
     email = DefMailer.share_invitation("invitee@email.com", msg, accept_key,
             link_text, host).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
-    assert_equal ['donotreply@mail.nih.gov'], email.from
+    assert_equal SITE_OWNER_EMAIL, email.from
     assert_equal ['invitee@email.com'], email.to
     assert_equal 'Invitation to Share Personal Health Record (PHR) Information',
                  email.subject
@@ -46,7 +46,7 @@ class DefMailerTest < ActionMailer::TestCase
     email = DefMailer.invitation_accepted(issuer_email, issuer_name,
             target_name, target_email, prof_name, from_lines).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
-    assert_equal ['donotreply@mail.nih.gov'], email.from
+    assert_equal SITE_OWNER_EMAIL, email.from
     assert_equal issuer_email, email.to
     assert_equal 'Your Invitation was Accepted', email.subject
 
@@ -86,7 +86,7 @@ class DefMailerTest < ActionMailer::TestCase
     email = DefMailer.invitation_declined(issuer_email, issuer_name,
             target_name, target_email, prof_name, from_lines).deliver_now
     assert_not ActionMailer::Base.deliveries.empty?
-    assert_equal ['donotreply@mail.nih.gov'], email.from
+    assert_equal SITE_OWNER_EMAIL, email.from
     assert_equal issuer_email, email.to
     assert_equal 'Your Invitation was Declined', email.subject
 

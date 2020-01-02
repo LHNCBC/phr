@@ -22,7 +22,7 @@ Proto1::Application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   # Directory for table backups made by the data controller
-  DATA_CONTROLLER_BACKUP_DIR = '/proj/defExtra/dataTableBackups'
+  DATA_CONTROLLER_BACKUP_DIR = 'TBD, e.g. /proj/defExtra/dataTableBackups'
 
   # Remote debugger settings under Phusion Passenger
   debug_file = File.join(Rails.root, 'tmp', 'debug.txt')

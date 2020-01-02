@@ -19,3 +19,6 @@ PHR_SYSTEM_NAME = "TBD Your Organization's PHR " +
 # the "from" lines used on a shared access invitation
 SHARE_INVITE_FROM_LINES =
   "TBD Your Organization's PHR Team<br>phr@your.org.com"
+
+# Site owner's email address
+SITE_OWNER_EMAIL = 'TBD - your@email.address.com'

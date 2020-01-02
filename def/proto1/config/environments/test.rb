@@ -29,7 +29,7 @@ Proto1::Application.configure do
   config.action_mailer.delivery_method = :test
 
   # Directory for table backups made by the data controller
-  DATA_CONTROLLER_BACKUP_DIR = '/proj/defExtra/dataTableBackups/test'
+  DATA_CONTROLLER_BACKUP_DIR = 'TBD, e.g./proj/defExtra/dataTableBackups/test'
 
   #Disable request forgery protection in test environment
   config.action_controller.allow_forgery_protection = false

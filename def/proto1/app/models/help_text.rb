@@ -2,7 +2,7 @@ class HelpText
   require 'vcs'
 
   # The GIT command
-  GIT_COMMAND = '/usr/local/bin/git'
+  GIT_COMMAND = '/bin/git'
 
   # The list of installation mode codes.
   @@mode_codes = nil
