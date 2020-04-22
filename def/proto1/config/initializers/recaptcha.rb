@@ -12,8 +12,8 @@ end
 
 Recaptcha.configuration.skip_verify_env.delete('test')
 
-module Recaptcha
-  module ClientHelper
+module Recaptcha::Adapters
+  module ViewMethods
     def recaptcha_icon(name)
       html = %Q(<img src="https://www.gstatic.com/recaptcha/api2/#{name}.png" alt="#{name}" height="15" width="15">)
       html.respond_to?('html_safe') ? html.html_safe : html

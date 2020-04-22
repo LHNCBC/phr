@@ -113,7 +113,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
-    mysql2 (0.3.21)
+    mysql2 (0.4.6)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
@@ -123,7 +123,7 @@ GEM
     paper_trail (8.0.0)
       activerecord (>= 4.2, < 5.2)
       request_store (~> 1.1)
-    passenger (5.1.11)
+    passenger (6.0.4)
       rack
       rake (>= 0.8.1)
     pdf-reader (2.0.0)
@@ -147,7 +147,7 @@ GEM
     pry-remote (0.1.8)
       pry (~> 0.9)
       slop (~> 3.0)
-    rack (2.0.3)
+    rack (2.2.2)
     rack-test (0.8.0)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -179,7 +179,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.3.0)
+    rake (13.0.1)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -242,15 +242,15 @@ DEPENDENCIES
   acts_as_tree
   byebug
   coffee-rails
-  compass-rails
+  compass-rails (= 3.0.2)
   dictionary
   ferret
   lrucache
-  mysql2 (~> 0.3.18)
+  mysql2 (= 0.4.6)
   net-sftp
   nokogiri (= 1.8.1)
   paper_trail (>= 3.0.0rc1)
-  passenger (>= 5.1.11)
+  passenger (= 6.0.4)
   pry
   pry-nav
   pry-remote

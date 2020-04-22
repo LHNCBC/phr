@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '5.1.4'
-gem 'mysql2', '~>0.3.18'
+gem 'mysql2', '0.4.6'
 gem 'recaptcha'
 gem 'ferret'
 gem 'acts_as_ferret'
@@ -14,7 +14,7 @@ gem 'thin'
 gem 'rubyzip'
 gem 'spreadsheet'
 gem 'dictionary' # used by form_data.rb
-gem 'passenger', '>=5.1.11'
+gem 'passenger', '6.0.4'
 gem 'lrucache' # required by brake.rb
 gem 'net-sftp' # required by packUpdate script
 gem 'byebug' # an replacement for ruby-debug which has issue when step-over
@@ -25,7 +25,7 @@ gem 'rails-observers', '0.1.5'
 gem 'activerecord-session_store'
 
 gem 'sass-rails'
-gem 'compass-rails'
+gem 'compass-rails', '3.0.2'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'yui-compressor'
@@ -44,4 +44,5 @@ group :test, :development do
   gem 'pry-nav'
   gem 'pry-remote'
 end
+
 
