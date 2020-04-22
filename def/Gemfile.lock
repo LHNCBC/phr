@@ -93,7 +93,7 @@ GEM
     eventmachine (1.2.5)
     execjs (2.7.0)
     ferret (0.11.8.7)
-    ffi (1.9.18)
+    ffi (1.12.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashery (2.1.2)
