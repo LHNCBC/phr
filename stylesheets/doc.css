@@ -1,0 +1,94 @@
+
+    body {
+      background: url("../images/phr-body-gradient.png") repeat-x scroll 0 0 #fff;
+      margin: 0;
+      overflow: visible;
+      padding: 0;
+      font-family: Arial;
+      font-size: 14.4px;
+    }
+    .indent {
+      list-style-type: none;
+    }
+    div#hdr_banner {
+      background: url("../images/org_banner.png") no-repeat scroll 40px 15px rgba(0,0,0,0);
+      display: block;
+      height: 96px;
+      margin: 0 0 10px;
+    }
+    div#hdr_banner_img {
+      background: url("../images/phr_banner.png") no-repeat scroll 96% 25px rgba(0,0,0,0);
+      height: 100%;
+      width: 100%
+    }
+    div#target_name {
+      border: medium none;
+      color: #fff;
+      font-family: Arial;
+      font-size: 18px;
+      font-weight: bold;
+      padding-top: 0px;
+      margin-left: 25px;
+      clear: both;
+    }
+    div#content {
+      background-color: #FFF;
+      border: 7px solid rgba(0, 0, 0, 0);
+      border-bottom: 0;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding;
+      background-clip: padding-box;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px 5px 0 0;
+      width: auto;
+      margin: 10px 25px 25px 25px;
+      padding: 25px;     
+    }
+    div#main_title {
+      font-family: "Ubuntu",Arial;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333333;
+      margin-bottom: 5px;
+    }
+    li.note {
+      margin-bottom: 10px;
+    }
+    span#ack {
+      text-decoration: underline;
+      color: darkBlue;
+    }
+    div#license_req {
+      display: block;
+    }
+    div#download_link {
+      display: none;
+    }
+    p#retired_note {
+      font-weight: bold;
+      color: red;
+    }
+    /* Styles for the footer */
+    #fine-print {
+      border-top: 2px solid darkblue;
+      clear: left;
+      text-align: center;
+      font-size: 11px;
+      padding-top: 10px;
+    }
+    #fine-print ul.horz-list li {
+      list-style-type: none;
+      display: inline;
+      padding-left: 8px;
+      padding-right: 10px;
+      border-right: 1px solid #999;
+    }
+    #fine-print ul.horz-list li.last-item {
+      border-right: none;
+    }
+    #usagov {
+      margin-bottom: -2px;
+      vertical-align: bottom;
+    }
+    /* End of styles for the footer */
