@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NLM PHR: VM Download</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-59GQ6JK');</script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="stylesheet" href="stylesheets/doc.css">
+    <script type="text/javascript">
+      function toggleAck() {
+        var licenseReq = document.getElementById('license_req');
+        var downDiv = document.getElementById('download_link');
+        licenseReq.style.display = 'none';
+        downDiv.style.display = 'block';
+      }
+    </script>
+  </head>
+  <body>
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-59GQ6JK"
+      height="0" width="0" style="display:none;visibility:hidden"
+      title="googletagmanager"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+
+      <div id="hdr_banner">
+        <div id="hdr_banner_img"></div>
+      </div>
+      <div id="content">
+      <div id="main_title">The Virtual Machine (VM) PHR</div>
+      <h1>Download the VM</h1>
+      <p>
+        The NLM PHR system is available for download in the form of a Virtual
+        Machine (VM).  If you would like to download this implementation, you
+        will first need to install a VM manager on your system.  We used
+        <a href="https://www.virtualbox.org">Oracle's Virtual Box</a> VM Manager
+        to create the VM.
+      <p>
+      <div id="license_req">
+        To download the VM, we require that you first read and agree to the
+        <a href="License.html">License Agreement</a>.  Please acknowledge that
+        you have read the agreement and agree to it by <span id="ack"
+        onclick="toggleAck()">clicking here</span>.</div>
+      <div id="download_link">
+        You may now <a href="ftp://lhcftp.nlm.nih.gov/Open-Access-Datasets/VmPHR.ova">download</a>
+        the VM file and import it into your manager.   If you are using Oracle's
+        Virtual Box, use the "Import Appliance" option from the File pulldown
+        menu on the top menubar of the manager window.  If would like to check the
+        integrity of the downloaded file, check the <a
+        href="./VmPHR.ova.sha256sum">SHASUM hash</a>.  You may review the
+        <a href="License.html">License Agreement</a> again if you wish.</div>
+
+      <p>
+        Once you've imported the VM, use the VM Manager to open it up.  Several
+        startup steps will be performed automatically and you will be presented
+        with a Firefox browser window displaying the login page for the PHR
+        system.
+
+      <p>
+        See the <a href="notes.html">Notes</a> page for a description of those
+        steps as well as other startup info you will need.
+
+      </div> <!-- content -->
+    </body>
+</html>
