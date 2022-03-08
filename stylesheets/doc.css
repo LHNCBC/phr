@@ -69,26 +69,4 @@
       font-weight: bold;
       color: red;
     }
-    /* Styles for the footer */
-    #fine-print {
-      border-top: 2px solid darkblue;
-      clear: left;
-      text-align: center;
-      font-size: 11px;
-      padding-top: 10px;
-    }
-    #fine-print ul.horz-list li {
-      list-style-type: none;
-      display: inline;
-      padding-left: 8px;
-      padding-right: 10px;
-      border-right: 1px solid #999;
-    }
-    #fine-print ul.horz-list li.last-item {
-      border-right: none;
-    }
-    #usagov {
-      margin-bottom: -2px;
-      vertical-align: bottom;
-    }
-    /* End of styles for the footer */
+
