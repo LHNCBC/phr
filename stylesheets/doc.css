@@ -10,17 +10,6 @@
     .indent {
       list-style-type: none;
     }
-    div#hdr_banner {
-      background: url("../images/org_banner.png") no-repeat scroll 40px 15px rgba(0,0,0,0);
-      display: block;
-      height: 96px;
-      margin: 0 0 10px;
-    }
-    div#hdr_banner_img {
-      background: url("../images/phr_banner.png") no-repeat scroll 96% 25px rgba(0,0,0,0);
-      height: 100%;
-      width: 100%
-    }
     div#target_name {
       border: medium none;
       color: #fff;
