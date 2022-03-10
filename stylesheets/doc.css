@@ -10,17 +10,6 @@
     .indent {
       list-style-type: none;
     }
-    div#hdr_banner {
-      background: url("../images/org_banner.png") no-repeat scroll 40px 15px rgba(0,0,0,0);
-      display: block;
-      height: 96px;
-      margin: 0 0 10px;
-    }
-    div#hdr_banner_img {
-      background: url("../images/phr_banner.png") no-repeat scroll 96% 25px rgba(0,0,0,0);
-      height: 100%;
-      width: 100%
-    }
     div#target_name {
       border: medium none;
       color: #fff;
@@ -69,26 +58,4 @@
       font-weight: bold;
       color: red;
     }
-    /* Styles for the footer */
-    #fine-print {
-      border-top: 2px solid darkblue;
-      clear: left;
-      text-align: center;
-      font-size: 11px;
-      padding-top: 10px;
-    }
-    #fine-print ul.horz-list li {
-      list-style-type: none;
-      display: inline;
-      padding-left: 8px;
-      padding-right: 10px;
-      border-right: 1px solid #999;
-    }
-    #fine-print ul.horz-list li.last-item {
-      border-right: none;
-    }
-    #usagov {
-      margin-bottom: -2px;
-      vertical-align: bottom;
-    }
-    /* End of styles for the footer */
+
