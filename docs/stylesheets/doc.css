@@ -63,5 +63,5 @@
       display: block;
     }
     div#download_link {
-      display: none;
+      display: block; /* TODO: Temporary change for testing. */
     }
